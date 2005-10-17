@@ -1,0 +1,61 @@
+
+\begin{tabularx}{\linewidth}{|l|X|}
+\hline
+\textbf{Use Case Name:} & \textbf{Remove package} \\
+\hline
+\textbf{Description:} & 
+Remove an installed package. \\
+\hline
+\textbf{Actors:} & User \\
+\hline
+\textbf{Preconditions:} & 
+Requested package is installed. \\
+\hline
+\textbf{Triggers:} & abt remove $<$pkg$>$ \\
+\hline
+\textbf{Basic Course of Events:} & 
+\begin{minipage}{\linewidth} 
+  \vspace{0.05em}
+  \begin{enumerate}
+    \item User submits a remove package request.
+    \item Check for dependency breakage, report for user input.
+    \item Package is added to uninstall queue.
+    \item Tarball is created containing the following:
+    \begin{enumerate}
+      \item Copy of installed configuration files.
+      \item Copy of configuration.
+      \item Copy of build.
+      \item List of installed files.
+      \item List of integrity checks for installed files.
+      \item Copy of installed files.
+      \item Copy of source files for this version.
+      \item Copy of package data (detail, pre, configure, etc).
+    \end{enumerate}
+    \item Installed package files are removed.
+    \item Package is removed from installed packages list.
+    \item Package is removed from uninstall queue.
+    \item Check for dependency breakage.
+    \item User is notified that package was successfully uninstalled.
+  \end{enumerate}
+  \vspace{0.05em}
+\end{minipage}
+\\
+\hline 
+\textbf{Exceptions:} & 
+If package not installed, exit with success.
+\\
+\hline 
+\textbf{Postconditions:} &
+\begin{minipage}{\linewidth}
+  \vspace{0.05em}
+  \begin{enumerate}
+    \item The package is no longer installed.
+    \item There is a tarball containing everything needed to re-create the package that was just removed.
+    \item For broken dependencies, package added to install or uninstall queues.
+  \end{enumerate}
+  \vspace{0.05em}
+\end{minipage}
+\\
+\hline
+\end{tabularx}
+

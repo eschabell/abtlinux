@@ -1,0 +1,79 @@
+
+\begin{tabularx}{\linewidth}{|l|X|}
+\hline
+\textbf{Use Case Name:} & \textbf{Install package} \\
+\hline
+\textbf{Description:} & 
+The basic steps to be taken to install a software package. \\
+\hline
+\textbf{Actors:} & User \\
+\hline
+\textbf{Preconditions:} & Package description is available. \\
+\hline
+\textbf{Triggers:} & abt install $<$pkg$>$ \\
+\hline
+\textbf{Basic Course of Events:} & 
+\begin{minipage}{\linewidth} 
+  \vspace{0.05em}
+  \begin{enumerate}
+    \item User submits an install package request.
+    \item Package to be installed is placed in install queue.
+    \item \emph{Details} section of package is processed.
+    \item \emph{Pre} section of package is processed.
+    \item \emph{Configure} section of package is processed.
+    \item Copy of configuration is saved.
+    \item \emph{Prebuild} section of package is processed.
+    \item \emph{Build} section of package is processed.
+    \item Copy of build is saved.
+    \item \emph{Preinstall} section of package is processed.
+    \item \emph{Install} section of package is processed.
+    \item A list of installed files is saved.
+    \item An integrity check is created on each installed file and saved.
+    \item \emph{Post} section of package is processed.
+    \item Package is added to installed packages list.
+    \item Package is removed from install queue.
+    \item Package build is cached for future usage.
+    \item Package sources (build directories) are cleaned up (removed).
+    \item User is notified that package was successfully installed.
+    \item Check for possible dependency breakage.
+  \end{enumerate}
+  \vspace{0.05em}
+\end{minipage}
+\\
+\hline
+\end{tabularx}
+
+\newpage
+\begin{tabularx}{\linewidth}{|l|X|}
+\hline
+\textbf{Exceptions:} & 
+\begin{minipage}{\linewidth} 
+  \vspace{0.05em}
+  \begin{enumerate}
+    \item The package is already installed, report this and terminate with success.
+    \item The \emph{details/pre/prebuild/preinstall/post} sections fail, report error and process stops.
+    \item \emph{Configure} section fails, report error, save copy of configuration and process stops.
+    \item \emph{Build} section fails, report error, save copy of build log and process stops.
+    \item \emph{Install} section fails, report error, clean up any installed files (all or nothing is installed) and process stops.
+    \item Dependency breakage detected, add broken package to install queue.
+    \item Existing configuration files detected during installation of new files, query user to either; backup old versions and replace with new, keep old in place and copy new one next to it, replace old with new, default to the first choice.
+  \end{enumerate}
+  \vspace{0.05em}
+\end{minipage}
+\\
+\hline 
+\textbf{Postconditions:} &
+\begin{minipage}{\linewidth}
+  \vspace{0.05em}
+  \begin{enumerate}
+    \item Package is installed.
+    \item For existing packages, when error is reported, then package is still in install queue.
+    \item For broken dependencies, package added to install queue.
+  \end{enumerate}
+  \vspace{0.05em}
+\end{minipage}
+\\
+\hline
+\end{tabularx}
+
+

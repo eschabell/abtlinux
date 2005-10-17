@@ -1,0 +1,32 @@
+
+\begin{tabularx}{\linewidth}{|l|X|}
+\hline
+\textbf{Use Case Name:} & \textbf{Show available patches} \\
+\hline
+\textbf{Description:} & Display all available patches. \\
+\hline
+\textbf{Actors:} & User \\
+\hline
+\textbf{Preconditions:} & Network available. \\
+\hline
+\textbf{Triggers:} & abt show-patches \\
+\hline
+\textbf{Basic Course of Events:} & 
+\begin{minipage}{\linewidth} 
+  \vspace{0.05em}
+  \begin{enumerate}
+    \item User requests to view all available patches.
+    \item The list of available patches is retrieved from network.
+    \item List of available patches displayed.
+  \end{enumerate}
+  \vspace{0.05em}
+\end{minipage}
+\\
+\hline 
+\textbf{Exceptions:} & Retrieval of patch listing fails, report error. \\
+\hline 
+\textbf{Postconditions:} &
+User has been presented a complete list of available patches. \\
+\hline
+\end{tabularx}
+

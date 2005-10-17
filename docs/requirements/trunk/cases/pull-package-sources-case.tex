@@ -1,0 +1,38 @@
+
+\begin{tabularx}{\linewidth}{|l|X|}
+\hline
+\textbf{Use Case Name:} & \textbf{Pull package sources} \\
+\hline
+\textbf{Description:} & 
+Downloading the source tarball for a given package. \\
+\hline
+\textbf{Actors:} & User \\
+\hline
+\textbf{Preconditions:} & 
+Package description and network are available. \\
+\hline
+\textbf{Triggers:} & abt download $<$pkg$>$  \\
+\hline
+\textbf{Basic Course of Events:} & 
+\begin{minipage}{\linewidth} 
+  \vspace{0.05em}
+  \begin{enumerate}
+    \item User requests for package source(s) to be downloaded.
+    \item The source location is obtained from the package description.
+    \item Support for http(s), (s)ftp, cvs, subversion and tla repositories.
+    \item Source is downloaded and placed in download location.
+  \end{enumerate}
+  \vspace{0.05em}
+\end{minipage}
+\\
+\hline
+\textbf{Exceptions:} & 
+Source location is unreachable or gives error, report error. \\
+\hline 
+\textbf{Postconditions:} &
+Package source(s) have been downloaded.
+\\
+\hline
+\end{tabularx}
+
+

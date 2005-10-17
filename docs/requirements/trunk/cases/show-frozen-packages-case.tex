@@ -1,0 +1,33 @@
+
+\begin{tabularx}{\linewidth}{|l|X|}
+\hline
+\textbf{Use Case Name:} & \textbf{Show frozen packages} \\
+\hline
+\textbf{Description:} & Display all packages with a frozen status. \\
+\hline
+\textbf{Actors:} & User \\
+\hline
+\textbf{Preconditions:} & none. \\
+\hline
+\textbf{Triggers:} & abt show-frozen \\
+\hline
+\textbf{Basic Course of Events:} & 
+\begin{minipage}{\linewidth} 
+  \vspace{0.05em}
+  \begin{enumerate}
+    \item User requests a list of frozen packages.
+    \item The installed package list is used to determine which packages need to be checked.
+    \item Packages that are determined to be frozen are displayed.
+  \end{enumerate}
+  \vspace{0.05em}
+\end{minipage}
+\\
+\hline 
+\textbf{Exceptions:} & Missing install log, report error. \\
+\hline 
+\textbf{Postconditions:} &
+User has been presented a list of frozen packages. \\
+\hline
+\end{tabularx}
+
+

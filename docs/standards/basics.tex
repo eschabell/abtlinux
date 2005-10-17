@@ -1,0 +1,38 @@
+\section{The basics}  
+We will attempt to layout our basic guidelines without any particular order,
+therefore it will become a necessity that the document be read in its entirety
+to cover all the presented guidelines.
+
+
+\subsection{Control structures}
+Where possible, no syntax shortcuts will be taken when presenting looping control
+structures. Preferences will be for clarity in expanded syntax such as:
+
+\begin{verbatim}
+	if radiation > 3000
+	  puts ``Danger, too high!''
+	end
+\end{verbatim}
+	
+Above any kind of shortening of the syntax like:
+
+\begin{verbatim}
+	puts ``Danger, too high!'' if radiation > 3000
+\end{verbatim}
+
+
+\subsection{Regular expressions}
+While regular expressions are a very powerful tool, the often remain very
+cryptic and hard to decipher for anyone except the developer that wrote it. To
+create a coding environment that makes it easy to get started we will require
+that all regular expressions be commented with a short description of what
+that particular expression is doing (or attempting to do!) such as:
+
+\begin{verbatim}
+	# This expression is matching for 'Ruby', a space and either 'Perl' or
+	# 'Python'.
+	#
+	if line =~ /Ruby (Perl|Python)/
+    puts ``Some text.''
+	end
+\end{verbatim}

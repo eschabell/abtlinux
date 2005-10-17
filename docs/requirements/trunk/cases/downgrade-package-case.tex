@@ -1,0 +1,49 @@
+
+\begin{tabularx}{\linewidth}{|l|X|}
+\hline
+\textbf{Use Case Name:} & \textbf{Downgrade a package} \\
+\hline
+\textbf{Description:} & 
+Downgrade an installed package to a previously built version. \\
+\hline
+\textbf{Actors:} & User \\
+\hline
+\textbf{Preconditions:} & Previously requested version must be available. \\
+\hline
+\textbf{Triggers:} & abt downgrade $<$pkg$>$ $[$version$]$ \\
+\hline
+\textbf{Basic Course of Events:} & 
+\begin{minipage}{\linewidth} 
+  \vspace{0.05em}
+  \begin{enumerate}
+    \item User submits a request to downgrade a package.
+    \item Check for dependency breakage, report for user input.
+    \item If User requests specific version and it is available we run \emph{reinstall use case} for the cached version.
+    \item if no version selected or version not available, User presented with a list of previously cached versions.
+    \item User selects version to install.
+    \item Using package versions tarball (contains all data saved on \emph{remove package use case}), User is led through the \emph{reinstall package use case}.
+    \item Check for dependency breakage.
+    \item User is notified that package was successfully downgraded to selected version.
+  \end{enumerate}
+  \vspace{0.05em}
+\end{minipage}
+\\
+\hline 
+\textbf{Exceptions:} & 
+Requested versions are not available (empty list of cached versions), exit with error message.
+\\
+\hline 
+\textbf{Postconditions:} &
+\begin{minipage}{\linewidth}
+  \vspace{0.05em}
+  \begin{enumerate}
+    \item Requested package version has been installed, downgrading installed package version.
+    \item For broken dependencies, package added to install or uninstall queues.
+  \end{enumerate}
+  \vspace{0.05em}
+\end{minipage}
+\\
+\hline
+\end{tabularx}
+
+

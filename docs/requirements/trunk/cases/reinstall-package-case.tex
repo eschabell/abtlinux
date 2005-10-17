@@ -1,0 +1,80 @@
+\begin{tabularx}{\linewidth}{|l|X|}
+\hline
+\textbf{Use Case Name:} & \textbf{Reinstall package} \\
+\hline
+\textbf{Description:} & 
+The basic steps to be taken to reinstall (from cache or rebuild) a software package.\\
+\hline
+\textbf{Actors:} & User \\
+\hline
+\textbf{Preconditions:} & Package description is available and installed on system. \\
+\hline
+\textbf{Triggers:} & abt reinstall $<$pkg$>$ \\
+\hline
+\textbf{Basic Course of Events:} & 
+\begin{minipage}{\linewidth} 
+  \vspace{0.02em}
+  \begin{enumerate}
+    \item User submits a reinstall package request.
+    \item User asked if cached version should be installed or rebuild package.
+    \item Cached version can be installed.
+    \item Rebuild requested, package added to install queue.
+    \item Previous configuration details available, query for reconfigure.
+    \item \emph{Details} section of package is processed.
+    \item \emph{Pre} section of package processed, reconfigure only if requested.
+    \item \emph{Configure} section of package processed.
+    \item Copy of configuration created in temporary file.
+    \item \emph{Prebuild} section of package processed.
+    \item \emph{Build} section of package is processed.
+    \item Copy of build is created in temporary file.
+    \item \emph{Preinstall} section of package processed.
+    \item \emph{Install} section of package is processed.
+    \item A list of installed files is created in temporary file.
+    \item An integrity check created in temporary file on each installed file.
+    \item \emph{Post} section of package is processed.
+    \item Configuration, build, install and integrity temporary files replace originals.
+    \item Package listing in installed packages list updated.
+    \item Package removed from install queue.
+    \item Package sources (build directories) are cleaned up (removed).
+    \item User notified that package was successfully reinstalled.
+    \item Check for possible dependency breakage. 
+  \end{enumerate}
+  \vspace{0.02em}
+\end{minipage}
+\\
+\hline
+\end{tabularx}
+
+\newpage
+\begin{tabularx}{\linewidth}{|l|X|}
+\hline
+\textbf{Exceptions:} & 
+\begin{minipage}{\linewidth} 
+  \vspace{0.05em}
+  \begin{enumerate}
+    \item Any failures will result in created files (configuration and/or build) being saved with timestamp in file name.
+    \item Any previous timestamped (unsuccessful reinstalls) will be removed, but original successful installs will remain.
+    \item Any failures will result in user being given an error message with failure location information.
+		\item Dependency breakage detected, add broken package to install queue.
+    \item Existing configuration files detected during installation of new files, query user to either; backup old versions and replace with new, keep old in place and copy new one next to it, replace old with new, default to the first choice.
+  \end{enumerate}
+  \vspace{0.05em}
+\end{minipage}
+\\
+\hline 
+\textbf{Postconditions:} &
+\begin{minipage}{\linewidth}
+  \vspace{0.05em}
+  \begin{enumerate}
+    \item Package is reinstalled from cached version or rebuilt.
+    \item New reinstall configuration, build, install and integrity files replace original installed files.
+    \item For rebuild reinstalls (not for cached reinstalls) that fail, the package remains in the install queue.
+		\item For broken dependencies, package added to install queue.
+  \end{enumerate}
+  \vspace{0.05em}
+\end{minipage}
+\\
+\hline
+\end{tabularx}
+
+
