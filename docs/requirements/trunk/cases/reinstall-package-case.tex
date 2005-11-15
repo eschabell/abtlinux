@@ -22,20 +22,18 @@ The basic steps to be taken to reinstall (from cache or rebuild) a software pack
     \item \emph{Details} section of package is processed.
     \item \emph{Pre} section processed, reconfigure only if requested.
     \item \emph{Configure} section of package processed.
-    \item Copy configuration created in temporary file.
-    \item \emph{Prebuild} section of package processed.
+    \item Copy configuration is saved.
     \item \emph{Build} section of package is processed.
-    \item Copy of build created in temporary file.
+    \item Copy of build is saved.
     \item \emph{Preinstall} section of package processed.
     \item \emph{Install} section of package is processed.
-    \item Installed files listed in temporary file.
-    \item Create integrity check temp file on each installed file.
+    \item List of installed files is saved.
+    \item An integrity check is created on each installed file and saved.
     \item \emph{Post} section of package is processed.
-    \item Temporary files replace originals.
-    \item Package listing in installed packages list updated.
+    \item Package is added to installed packages list.
     \item Package removed from install queue.
-    \item Package sources removed.
-    \item User notified package reinstalled.
+    \item Package sources (build directories) are cleaned up (removed).
+    \item User is notified that package was successfully reinstalled.
   \end{enumerate}
   \vspace{0.02em}
 \end{minipage}
