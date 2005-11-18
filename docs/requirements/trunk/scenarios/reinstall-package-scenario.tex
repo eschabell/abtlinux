@@ -11,6 +11,9 @@
     \item User command \textbf{'abt reinstall fortune'}.
     \item User asked if reconfigure or to use cached version of fortune.
     \item Rebuild requested, \textbf{fortune} added to install queue.
+    \item Dependencies for this package are checked.
+    \item Missing dependencies are added to install queue (sorted before this package).
+    \item Packages needing rebuild after this package rebuilt added to intstall queue (sorted after this package).
     \item Reconfigure requested:
     \begin{itemize}
       \item Retrieve and use previous configuration as default.
@@ -38,12 +41,6 @@
       \item Default used, sets install location to \textbf{\url{/usr/local}}.
       \item Run \textbf{configuration}.
     \end{enumerate}
-    \item Save \url{/var/state/abt/install/fortune/fortune_mod-9708.config}.
-    \item \emph{Build} section processed:
-    \begin{enumerate}
-      \item Default used, run \textbf{make}.
-    \end{enumerate}
-    \item Save \url{/var/state/abt/install/fortune/fortune_mod-9708.build}.
   \end{itemize}
   \vspace{0.05em}
 \end{minipage}
@@ -57,6 +54,12 @@
 \begin{minipage}{\linewidth}
   \vspace{0.05em}
   \begin{itemize}
+    \item Save \url{/var/state/abt/install/fortune/fortune_mod-9708.config}.
+    \item \emph{Build} section processed:
+    \begin{enumerate}
+      \item Default used, run \textbf{make}.
+    \end{enumerate}
+    \item Save \url{/var/state/abt/install/fortune/fortune_mod-9708.build}.
     \item \emph{Preinstall} section processed:
     \begin{enumerate}
       \item Default used, nothing done.

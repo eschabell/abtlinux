@@ -18,6 +18,7 @@ The basic steps to be taken to reinstall (from cache or rebuild) a software pack
     \item User submits a reinstall package request.
     \item User asked, install cached version or rebuild package.
     \item Rebuild requested, add to install queue.
+    \item Dependencies for this package are checked.
     \item Previous configuration details available, query for reconfigure.
     \item \emph{Details} section of package is processed.
     \item \emph{Pre} section processed, reconfigure only if requested.
@@ -33,6 +34,7 @@ The basic steps to be taken to reinstall (from cache or rebuild) a software pack
     \item Package is added to installed packages list.
     \item Package removed from install queue.
     \item Package sources (build directories) are cleaned up (removed).
+    \item Dependencies on this package are checked.
     \item User is notified that package was successfully reinstalled.
   \end{enumerate}
   \vspace{0.02em}
