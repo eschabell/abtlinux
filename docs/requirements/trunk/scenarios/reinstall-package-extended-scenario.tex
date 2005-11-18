@@ -2,7 +2,7 @@
 
 \begin{tabularx}{\linewidth}{|l|X|}
 \hline
-\textbf{Use Case Name:} & \textbf{Reinstall package} \\
+\textbf{Use Case Name:} & \textbf{Reinstall package extended} \\
 \hline
 \textbf{Use Case Steps:} & 
 \begin{minipage}{\linewidth} 
@@ -34,12 +34,10 @@
     \begin{enumerate}
       \item Download package sources from \textbf{SRCURL}.
       \item Unpack package sources in \textbf{SRCDIR}.
+      \item Patches applied to sources.
+      \item User accounts created as needed.
+      \item Query user for any optional setting for this package.
       \item Reconfigure requested, query user to allow for configuration changes.
-    \end{enumerate}
-    \item \emph{Configure} section of package is processed.
-    \begin{enumerate}
-      \item Default used, sets install location to \textbf{\url{/usr/local}}.
-      \item Run \textbf{configuration}.
     \end{enumerate}
   \end{itemize}
   \vspace{0.05em}
@@ -54,19 +52,29 @@
 \begin{minipage}{\linewidth}
   \vspace{0.05em}
   \begin{itemize}
+    \item \emph{Configure} section of package is processed.
+    \begin{enumerate}
+      \item Set install location to \textbf{\url{/usr/local}}.
+      \item Set any default system build options (arch, flags, etc).
+      \item Set any options the user selected in previous section.
+      \item Run \textbf{configuration}.
+    \end{enumerate}
     \item Save \url{/var/state/abt/install/fortune/fortune_mod-9708.config}.
     \item \emph{Build} section processed:
     \begin{enumerate}
       \item Default used, run \textbf{make}.
+      \item Run any offered (by abt API) build routines (ruby, python, perl, etc).
     \end{enumerate}
     \item Save \url{/var/state/abt/install/fortune/fortune_mod-9708.build}.
     \item \emph{Preinstall} section processed:
     \begin{enumerate}
       \item Default used, nothing done.
+      \item Special steps needed to modify generated files before install done here.
     \end{enumerate}
     item \emph{Install} section processed:
     \begin{enumerate}
       \item Default used, run \textbf{make install}.
+      \item Possible special install steps done here.
     \end{enumerate}
     \item Save \url{/var/state/abt/install/fortune_mod-9708.install}.
     \item Save installed files integrity check \url{/var/tmp/abt/install/fortune_mod-9708.integrity}.
@@ -74,8 +82,24 @@
     \begin{enumerate}
       \item Check which shells are installed.
       \item Add fortune message to these shell configurations.
+      \item Restart any services as needed.
     \end{enumerate}
     \item Package configure file is added to \url{/var/log/abt/configure/}.
+  \end{itemize}
+  \vspace{0.05em}
+\end{minipage}
+\\
+\hline 
+\end{tabularx}
+
+
+
+\begin{tabularx}{\linewidth}{|l|X|}
+\hline
+\textbf{Use Case Steps:} & 
+\begin{minipage}{\linewidth}
+  \vspace{0.05em}
+  \begin{itemize}
     \item Package build file is added to \url{/var/log/abt/build/}.
     \item Package install file is added to \url{/var/log/abt/install/}.
     \item Package integrity file is added to \url{/var/log/abt/integrity/}.

@@ -2,22 +2,16 @@
 
 \begin{tabularx}{\linewidth}{|l|X|}
 \hline
-\textbf{Use Case Name:} & \textbf{Reinstall package} \\
+\textbf{Use Case Name:} & \textbf{Install package extended} \\
 \hline
 \textbf{Use Case Steps:} & 
 \begin{minipage}{\linewidth} 
   \vspace{0.05em}
   \begin{itemize}
-    \item User command \textbf{'abt reinstall fortune'}.
-    \item User asked if reconfigure or to use cached version of fortune.
-    \item Rebuild requested, \textbf{fortune} added to install queue.
+    \item User command \textbf{'abt install fortune'}.
+    \item \textbf{fortune} added to install queue.
     \item Dependencies for this package are checked.
     \item Missing dependencies are added to install queue (sorted before this package).
-    \item Packages needing rebuild after this package rebuilt added to intstall queue (sorted after this package).
-    \item Reconfigure requested:
-    \begin{itemize}
-      \item Retrieve and use previous configuration as default.
-    \end{itemize}
     \item \emph{Details} section processed:
     \begin{enumerate}
       \item NAME = fortune
@@ -34,13 +28,18 @@
     \begin{enumerate}
       \item Download package sources from \textbf{SRCURL}.
       \item Unpack package sources in \textbf{SRCDIR}.
-      \item Reconfigure requested, query user to allow for configuration changes.
+      \item Patches applied to sources.
+      \item User accounts created as needed.
+      \item Query user for any optional setting for this package.
     \end{enumerate}
     \item \emph{Configure} section of package is processed.
     \begin{enumerate}
-      \item Default used, sets install location to \textbf{\url{/usr/local}}.
+      \item Set install location to \textbf{\url{/usr/local}}.
+      \item Set any default system build options (arch, flags, etc).
+      \item Set any options the user selected in previous section.
       \item Run \textbf{configuration}.
     \end{enumerate}
+    \item Save \url{/var/state/abt/install/fortune/fortune_mod-9708.config}.
   \end{itemize}
   \vspace{0.05em}
 \end{minipage}
@@ -54,19 +53,21 @@
 \begin{minipage}{\linewidth}
   \vspace{0.05em}
   \begin{itemize}
-    \item Save \url{/var/state/abt/install/fortune/fortune_mod-9708.config}.
     \item \emph{Build} section processed:
     \begin{enumerate}
       \item Default used, run \textbf{make}.
+      \item Run any offered (by abt API) build routines (ruby, python, perl, etc).
     \end{enumerate}
     \item Save \url{/var/state/abt/install/fortune/fortune_mod-9708.build}.
     \item \emph{Preinstall} section processed:
     \begin{enumerate}
       \item Default used, nothing done.
+      \item Special steps needed to modify generated files before install done here.
     \end{enumerate}
     item \emph{Install} section processed:
     \begin{enumerate}
       \item Default used, run \textbf{make install}.
+      \item Possible special install steps done here.
     \end{enumerate}
     \item Save \url{/var/state/abt/install/fortune_mod-9708.install}.
     \item Save installed files integrity check \url{/var/tmp/abt/install/fortune_mod-9708.integrity}.
@@ -74,14 +75,28 @@
     \begin{enumerate}
       \item Check which shells are installed.
       \item Add fortune message to these shell configurations.
+      \item Restart any services as needed.
     \end{enumerate}
     \item Package configure file is added to \url{/var/log/abt/configure/}.
     \item Package build file is added to \url{/var/log/abt/build/}.
     \item Package install file is added to \url{/var/log/abt/install/}.
     \item Package integrity file is added to \url{/var/log/abt/integrity/}.
+  \end{itemize}
+  \vspace{0.05em}
+\end{minipage}
+\\
+\hline 
+\end{tabularx}
+
+
+\begin{tabularx}{\linewidth}{|l|X|}
+\hline
+\textbf{Use Case Steps:} & 
+\begin{minipage}{\linewidth}
+  \vspace{0.05em}
+  \begin{itemize}
     \item Package sources (build directories) are cleaned up (removed).
     \item Package is removed from install queue.
-    \item Dependencies on this package are checked.
     \item User is notified that package was successfully installed.
   \end{itemize}
   \vspace{0.05em}
