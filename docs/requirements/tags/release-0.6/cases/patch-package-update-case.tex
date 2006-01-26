@@ -1,0 +1,39 @@
+
+\begin{tabularx}{\linewidth}{|l|X|}
+\hline
+\textbf{Use Case Name:} & \textbf{Patch package update} \\
+\hline
+\textbf{Description:} & 
+Patches will be provided as preferred method of updating a package, fall-back
+is to use the complete updated package description. \\
+\hline
+\textbf{Actors:} & User \\
+\hline
+\textbf{Preconditions:} & 
+Patch is available over the network and package is installed. \\
+\hline
+\textbf{Triggers:} & Any command leading to update or fix from AbTLinux network.  \\
+\hline
+\textbf{Basic Course of Events:} & 
+\begin{minipage}{\linewidth} 
+  \vspace{0.05em}
+  \begin{enumerate}
+    \item User request leading to an update or fix being needed over the network.
+    \item Attempt is made to retrieve needed patch over network.
+    \item Fall-back is to retrieve needed package (entire package description) over network.
+    \item Package is updated with patch or new package description and left in install queue.
+  \end{enumerate}
+  \vspace{0.05em}
+\end{minipage}
+\\
+\hline
+\textbf{Exceptions:} & 
+Patch fails to be applied, fall-back to entire package description update. \\
+\hline 
+\textbf{Postconditions:} &
+Package has been updated with patch if available, otherwise with complete package listing.
+\\
+\hline
+\end{tabularx}
+
+

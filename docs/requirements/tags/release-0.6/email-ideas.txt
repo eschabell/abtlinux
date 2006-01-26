@@ -1,0 +1,933 @@
+Dependencies:
+=============
+OK basic idea: building a Linux distro is the same as building any software
+product - there are sources and targets so instead of trying to write a
+dependency tree in bash why not use a build tool that already has one?
+
+Make sucks so I'm not even thinking about that, but Chris Seiwald the founder
+of Perforce also wrote Jam (Just another Make) which is the real deal and is
+BSD licensed open source - try "cast jam" (The docs are quite hard to get to
+grips with, but here's the URL anyway: http://www.perforce.com/jam/jam/html)
+
+One of the benefits of SMGL is that because we build from source the
+dependencies between related packages are much more loosely coupled than a
+binary distro would allow. You only need to rebuild a target if rebuilding
+its sources has caused it to be broken.
+
+One of the problems is that the SMGL dependency engine often rebuilds things
+in the wrong order (e.g. bash before readline!) so you sometimes need more
+than one update to get things right and the longer you leave it between
+updates the more chance there is of this occurring.
+
+By using a proper dependency engine to work out the dependencies dynamically
+you can ensure that packages are built in the right order and that will take
+a lot of the guesswork out of updates. Not only that, but Jam's flexibility
+would allow you to specify whether or not an update to a dependency requires
+a rebuild of the target. In a Jamfile, you might say this:
+
+    BuildsRequires  galeon : gtk+ ;
+	    RuntimeRequires galeon : mozilla ;
+
+		which would say that if mozilla is updated, then galeon needs to be
+		recompiled
+		because there is a runtime linkage between them - not just a code
+		linkage.
+		But a gtk+ update can mostly just be ignored as there's largely a
+		compile
+		time linkage there. Of course that's not 100% true as gtk+ uses shared
+		libs
+		which may break galeon on a major update but there will be an
+		equivalent of
+		"sorcery rebuild" and of "cast --fix" for that.
+
+		The implementations of the BuildRequires rule will just add galeon to
+		a
+		non-default target (i.e. "ancestors" ) - something like this:
+
+		OK basic idea: building a Linux distro is the same as building any software
+product - there are sources and targets so instead of trying to write a
+dependency tree in bash why not use a build tool that already has one?
+
+Make sucks so I'm not even thinking about that, but Chris Seiwald the founder
+of Perforce also wrote Jam (Just another Make) which is the real deal and is
+BSD licensed open source - try "cast jam" (The docs are quite hard to get to
+grips with, but here's the URL anyway: http://www.perforce.com/jam/jam/html)
+
+One of the benefits of SMGL is that because we build from source the
+dependencies between related packages are much more loosely coupled than a
+binary distro would allow. You only need to rebuild a target if rebuilding
+its sources has caused it to be broken.
+
+One of the problems is that the SMGL dependency engine often rebuilds things
+in the wrong order (e.g. bash before readline!) so you sometimes need more
+than one update to get things right and the longer you leave it between
+updates the more chance there is of this occurring.
+
+By using a proper dependency engine to work out the dependencies dynamically
+you can ensure that packages are built in the right order and that will take
+a lot of the guesswork out of updates. Not only that, but Jam's flexibility
+would allow you to specify whether or not an update to a dependency requires
+a rebuild of the target. In a Jamfile, you might say this:
+
+    BuildsRequires  galeon : gtk+ ;
+    RuntimeRequires galeon : mozilla ;
+
+which would say that if mozilla is updated, then galeon needs to be recompiled
+because there is a runtime linkage between them - not just a code linkage.
+But a gtk+ update can mostly just be ignored as there's largely a compile
+time linkage there. Of course that's not 100% true as gtk+ uses shared libs
+which may break galeon on a major update but there will be an equivalent of
+"sorcery rebuild" and of "cast --fix" for that.
+
+The implementations of the BuildRequires rule will just add galeon to a
+non-default target (i.e. "ancestors" ) - something like this:
+
+  Rule BuildRequires
+  {
+    NotFile $(<) ;
+    Depends ancestors : $(<) ;
+  }
+
+  Rule RuntimeRequires
+  {
+    NotFile $(<) ;
+    NotFile $(>) ;
+    Depends packages : $(<) ;
+    Depends $(<) : $(>) ;
+  }
+
+By default "all" will not depend on "ancestors" so they won't get built, but a
+flag to rebuild them too would be trivial.
+
+(You can't get it 100% perfect without going down the route the binary
+distro's have chosen or by doing excessive rebuilds so this is a good balance
+in my view)
+
+Another nice thing about Jam is that there is a very clean split between (a)
+rules for doing common actions (Jambase) (b) your build environment and
+structure (Jamrules) and (c) the sources and targets (Jamfile). You can also
+build your Jambase into the binary so it goes wherever Jam does.
+
+Jam also has the ability to scan the sources for #include's to dynamically
+determine the header file dependencies. Fortunately the rule for matching a
+#include is a regexp that you can customise (easily - it's in Jambase). So we
+can use it for parsing state files and determining dependencies based on
+what's installed on the machine.
+
+I'm still thinking that bash should be used for (a) the top layer and (b) the
+BUILD/INSTALL etc scripts that will just be invoked by Jam.
+
+***********************************************
+
+So. I've spent a lot of time looking at Jam's code to see how hard the
+dependency stuff is and it's actually quite simple - at least Chris has made
+it look that way! The options I'm considering at the moment are:
+
+1. Add code to Jam which enables it to timestamp packages by looking inside
+their details file. No doubt this would not be the only hack.
+
+2. Write a new package manager borrowing extensively from Jam's ideas. uPM
+looks OK, but it's config file syntax is obtuse. I want something more
+expressive like these examples:
+
+Package galeon
+{
+        Version         = 1.2.6
+        Description     = "A cool browser"
+        TightDepends    Mozilla
+        LooseDepends    gnome-libs libglade gnome-vfs
+}
+
+or perhaps this:
+
+galeon.Version          = 1.2.6
+galeon.Description      = "A cool browser"
+galeon.TightDepends     = mozilla
+galeon.LooseDepends     = gnome-libs libglade gnome-vfs
+
+The jam syntax I was hoping for is this:
+
+Version         galeon : 1.2.6 ;
+Description     galeon : "A cool browser" ;
+TightDepends    galeon : mozilla ;
+LooseDepends    galeon : gnome-libs libglade gnome-vfs ;
+
+(I still really like the last one)
+
+To me the syntax you use to describe the package must be easy to read and
+understand and that's where uPM falls down. It's also very important that the
+dependency graph can be built from the contents of several files (by an
+"include" statement say).
+
+So can you have a think about what sort of syntax you would like to use and
+let me know. It'd be great if we could come up with something clean and
+powerful - it'll be a bit more effort but I'd rather do something really
+worthwhile than just reinvent the same tired old junk.
+
+BTW, I discovered this recently:
+http://www.perforce.com/perforce/conf2001/wingerd/WPLaura.pdf you might want
+to check it out as it's a much better intro to Jam than the docs provide! As
+you've read the docs now it might help to clarify things a little.
+
+*************************************************************************************************
+
+So. I've spent a lot of time looking at Jam's code to see how hard the
+dependency stuff is and it's actually quite simple - at least Chris has made
+it look that way! The options I'm considering at the moment are:
+
+1. Add code to Jam which enables it to timestamp packages by looking inside
+their details file. No doubt this would not be the only hack.
+
+2. Write a new package manager borrowing extensively from Jam's ideas. uPM
+looks OK, but it's config file syntax is obtuse. I want something more
+expressive like these examples:
+
+Package galeon
+{
+        Version         = 1.2.6
+        Description     = "A cool browser"
+        TightDepends    Mozilla
+        LooseDepends    gnome-libs libglade gnome-vfs
+}
+
+or perhaps this:
+
+galeon.Version          = 1.2.6
+galeon.Description      = "A cool browser"
+galeon.TightDepends     = mozilla
+galeon.LooseDepends     = gnome-libs libglade gnome-vfs
+
+The jam syntax I was hoping for is this:
+
+Version         galeon : 1.2.6 ;
+Description     galeon : "A cool browser" ;
+TightDepends    galeon : mozilla ;
+LooseDepends    galeon : gnome-libs libglade gnome-vfs ;
+
+(I still really like the last one)
+
+To me the syntax you use to describe the package must be easy to read and
+understand and that's where uPM falls down. It's also very important that the
+dependency graph can be built from the contents of several files (by an
+"include" statement say).
+
+So can you have a think about what sort of syntax you would like to use and
+let me know. It'd be great if we could come up with something clean and
+powerful - it'll be a bit more effort but I'd rather do something really
+worthwhile than just reinvent the same tired old junk.
+
+BTW, I discovered this recently:
+http://www.perforce.com/perforce/conf2001/wingerd/WPLaura.pdf you might want
+to check it out as it's a much better intro to Jam than the docs provide! As
+you've read the docs now it might help to clarify things a little.
+
+*************************************************************************************************
+
+So. I've spent a lot of time looking at Jam's code to see how hard the
+dependency stuff is and it's actually quite simple - at least Chris has made
+it look that way! The options I'm considering at the moment are:
+
+1. Add code to Jam which enables it to timestamp packages by looking inside
+their details file. No doubt this would not be the only hack.
+
+2. Write a new package manager borrowing extensively from Jam's ideas. uPM
+looks OK, but it's config file syntax is obtuse. I want something more
+expressive like these examples:
+
+Package galeon
+{
+        Version         = 1.2.6
+        Description     = "A cool browser"
+        TightDepends    Mozilla
+        LooseDepends    gnome-libs libglade gnome-vfs
+}
+
+or perhaps this:
+
+galeon.Version          = 1.2.6
+galeon.Description      = "A cool browser"
+galeon.TightDepends     = mozilla
+galeon.LooseDepends     = gnome-libs libglade gnome-vfs
+
+The jam syntax I was hoping for is this:
+
+Version         galeon : 1.2.6 ;
+Description     galeon : "A cool browser" ;
+TightDepends    galeon : mozilla ;
+LooseDepends    galeon : gnome-libs libglade gnome-vfs ;
+
+(I still really like the last one)
+
+To me the syntax you use to describe the package must be easy to read and
+understand and that's where uPM falls down. It's also very important that the
+dependency graph can be built from the contents of several files (by an
+"include" statement say).
+
+So can you have a think about what sort of syntax you would like to use and
+let me know. It'd be great if we could come up with something clean and
+powerful - it'll be a bit more effort but I'd rather do something really
+worthwhile than just reinvent the same tired old junk.
+
+BTW, I discovered this recently:
+http://www.perforce.com/perforce/conf2001/wingerd/WPLaura.pdf you might want
+to check it out as it's a much better intro to Jam than the docs provide! As
+you've read the docs now it might help to clarify things a little.
+
+*************************************************************************************************
+
+So. I've spent a lot of time looking at Jam's code to see how hard the
+dependency stuff is and it's actually quite simple - at least Chris has made
+it look that way! The options I'm considering at the moment are:
+
+1. Add code to Jam which enables it to timestamp packages by looking inside
+their details file. No doubt this would not be the only hack.
+
+2. Write a new package manager borrowing extensively from Jam's ideas. uPM
+looks OK, but it's config file syntax is obtuse. I want something more
+expressive like these examples:
+
+Package galeon
+{
+        Version         = 1.2.6
+        Description     = "A cool browser"
+        TightDepends    Mozilla
+        LooseDepends    gnome-libs libglade gnome-vfs
+}
+
+or perhaps this:
+
+galeon.Version          = 1.2.6
+galeon.Description      = "A cool browser"
+galeon.TightDepends     = mozilla
+galeon.LooseDepends     = gnome-libs libglade gnome-vfs
+
+The jam syntax I was hoping for is this:
+
+Version         galeon : 1.2.6 ;
+Description     galeon : "A cool browser" ;
+TightDepends    galeon : mozilla ;
+LooseDepends    galeon : gnome-libs libglade gnome-vfs ;
+
+(I still really like the last one)
+
+To me the syntax you use to describe the package must be easy to read and
+understand and that's where uPM falls down. It's also very important that the
+dependency graph can be built from the contents of several files (by an
+"include" statement say).
+
+So can you have a think about what sort of syntax you would like to use and
+let me know. It'd be great if we could come up with something clean and
+powerful - it'll be a bit more effort but I'd rather do something really
+worthwhile than just reinvent the same tired old junk.
+
+BTW, I discovered this recently:
+http://www.perforce.com/perforce/conf2001/wingerd/WPLaura.pdf you might want
+to check it out as it's a much better intro to Jam than the docs provide! As
+you've read the docs now it might help to clarify things a little.
+
+*************************************************************************************************
+
+So. I've spent a lot of time looking at Jam's code to see how hard the
+dependency stuff is and it's actually quite simple - at least Chris has made
+it look that way! The options I'm considering at the moment are:
+
+1. Add code to Jam which enables it to timestamp packages by looking inside
+their details file. No doubt this would not be the only hack.
+
+2. Write a new package manager borrowing extensively from Jam's ideas. uPM
+looks OK, but it's config file syntax is obtuse. I want something more
+expressive like these examples:
+
+Package galeon
+{
+        Version         = 1.2.6
+        Description     = "A cool browser"
+        TightDepends    Mozilla
+        LooseDepends    gnome-libs libglade gnome-vfs
+}
+
+or perhaps this:
+
+galeon.Version          = 1.2.6
+galeon.Description      = "A cool browser"
+galeon.TightDepends     = mozilla
+galeon.LooseDepends     = gnome-libs libglade gnome-vfs
+
+The jam syntax I was hoping for is this:
+
+Version         galeon : 1.2.6 ;
+Description     galeon : "A cool browser" ;
+TightDepends    galeon : mozilla ;
+LooseDepends    galeon : gnome-libs libglade gnome-vfs ;
+
+(I still really like the last one)
+
+To me the syntax you use to describe the package must be easy to read and
+understand and that's where uPM falls down. It's also very important that the
+dependency graph can be built from the contents of several files (by an
+"include" statement say).
+
+So can you have a think about what sort of syntax you would like to use and
+let me know. It'd be great if we could come up with something clean and
+powerful - it'll be a bit more effort but I'd rather do something really
+worthwhile than just reinvent the same tired old junk.
+
+BTW, I discovered this recently:
+http://www.perforce.com/perforce/conf2001/wingerd/WPLaura.pdf you might want
+to check it out as it's a much better intro to Jam than the docs provide! As
+you've read the docs now it might help to clarify things a little.
+
+*************************************************************************************************
+
+So. I've spent a lot of time looking at Jam's code to see how hard the
+dependency stuff is and it's actually quite simple - at least Chris has made
+it look that way! The options I'm considering at the moment are:
+
+1. Add code to Jam which enables it to timestamp packages by looking inside
+their details file. No doubt this would not be the only hack.
+
+2. Write a new package manager borrowing extensively from Jam's ideas. uPM
+looks OK, but it's config file syntax is obtuse. I want something more
+expressive like these examples:
+
+Package galeon
+{
+        Version         = 1.2.6
+        Description     = "A cool browser"
+        TightDepends    Mozilla
+        LooseDepends    gnome-libs libglade gnome-vfs
+}
+
+or perhaps this:
+
+galeon.Version          = 1.2.6
+galeon.Description      = "A cool browser"
+galeon.TightDepends     = mozilla
+galeon.LooseDepends     = gnome-libs libglade gnome-vfs
+
+The jam syntax I was hoping for is this:
+
+Version         galeon : 1.2.6 ;
+Description     galeon : "A cool browser" ;
+TightDepends    galeon : mozilla ;
+LooseDepends    galeon : gnome-libs libglade gnome-vfs ;
+
+(I still really like the last one)
+
+To me the syntax you use to describe the package must be easy to read and
+understand and that's where uPM falls down. It's also very important that the
+dependency graph can be built from the contents of several files (by an
+"include" statement say).
+
+So can you have a think about what sort of syntax you would like to use and
+let me know. It'd be great if we could come up with something clean and
+powerful - it'll be a bit more effort but I'd rather do something really
+worthwhile than just reinvent the same tired old junk.
+
+BTW, I discovered this recently:
+http://www.perforce.com/perforce/conf2001/wingerd/WPLaura.pdf you might want
+to check it out as it's a much better intro to Jam than the docs provide! As
+you've read the docs now it might help to clarify things a little.
+
+*************************************************************************************************
+
+So. I've spent a lot of time looking at Jam's code to see how hard the
+dependency stuff is and it's actually quite simple - at least Chris has made
+it look that way! The options I'm considering at the moment are:
+
+1. Add code to Jam which enables it to timestamp packages by looking inside
+their details file. No doubt this would not be the only hack.
+
+2. Write a new package manager borrowing extensively from Jam's ideas. uPM
+looks OK, but it's config file syntax is obtuse. I want something more
+expressive like these examples:
+
+Package galeon
+{
+        Version         = 1.2.6
+        Description     = "A cool browser"
+        TightDepends    Mozilla
+        LooseDepends    gnome-libs libglade gnome-vfs
+}
+
+or perhaps this:
+
+galeon.Version          = 1.2.6
+galeon.Description      = "A cool browser"
+galeon.TightDepends     = mozilla
+galeon.LooseDepends     = gnome-libs libglade gnome-vfs
+
+The jam syntax I was hoping for is this:
+
+Version         galeon : 1.2.6 ;
+Description     galeon : "A cool browser" ;
+TightDepends    galeon : mozilla ;
+LooseDepends    galeon : gnome-libs libglade gnome-vfs ;
+
+(I still really like the last one)
+
+To me the syntax you use to describe the package must be easy to read and
+understand and that's where uPM falls down. It's also very important that the
+dependency graph can be built from the contents of several files (by an
+"include" statement say).
+
+So can you have a think about what sort of syntax you would like to use and
+let me know. It'd be great if we could come up with something clean and
+powerful - it'll be a bit more effort but I'd rather do something really
+worthwhile than just reinvent the same tired old junk.
+
+BTW, I discovered this recently:
+http://www.perforce.com/perforce/conf2001/wingerd/WPLaura.pdf you might want
+to check it out as it's a much better intro to Jam than the docs provide! As
+you've read the docs now it might help to clarify things a little.
+
+************************************************************
+
+So. I've spent a lot of time looking at Jam's code to see how hard the
+dependency stuff is and it's actually quite simple - at least Chris has made
+it look that way! The options I'm considering at the moment are:
+
+1. Add code to Jam which enables it to timestamp packages by looking inside
+their details file. No doubt this would not be the only hack.
+
+2. Write a new package manager borrowing extensively from Jam's ideas. uPM
+looks OK, but it's config file syntax is obtuse. I want something more
+expressive like these examples:
+
+Package galeon
+{
+        Version         = 1.2.6
+        Description     = "A cool browser"
+        TightDepends    Mozilla
+        LooseDepends    gnome-libs libglade gnome-vfs
+}
+
+or perhaps this:
+
+galeon.Version          = 1.2.6
+galeon.Description      = "A cool browser"
+galeon.TightDepends     = mozilla
+galeon.LooseDepends     = gnome-libs libglade gnome-vfs
+
+The jam syntax I was hoping for is this:
+
+Version         galeon : 1.2.6 ;
+Description     galeon : "A cool browser" ;
+TightDepends    galeon : mozilla ;
+LooseDepends    galeon : gnome-libs libglade gnome-vfs ;
+
+(I still really like the last one)
+
+To me the syntax you use to describe the package must be easy to read and
+understand and that's where uPM falls down. It's also very important that the
+dependency graph can be built from the contents of several files (by an
+"include" statement say).
+
+So can you have a think about what sort of syntax you would like to use and
+let me know. It'd be great if we could come up with something clean and
+powerful - it'll be a bit more effort but I'd rather do something really
+worthwhile than just reinvent the same tired old junk.
+
+BTW, I discovered this recently:
+http://www.perforce.com/perforce/conf2001/wingerd/WPLaura.pdf you might want
+to check it out as it's a much better intro to Jam than the docs provide! As
+you've read the docs now it might help to clarify things a little.
+
+************************************************************
+
+Results of some playing around attached. Put it somewhere and run "jam build"
+
+T
+[-- Attachment #2: Jamfile --]
+[-- Type: text/plain, Encoding: 7bit, Size: 3.4K --]
+
+CONFIGDIR       = etc/jux ;
+STATEDIR        = var/state/jux ;
+STATEFILE       = jux.state ;
+
+MakeLocate      $(STATEFILE)    : $(STATEDIR)   ;
+Depends         build           : $(STATEFILE)  ;
+
+# Locate the config file for the package which may or may not exist
+rule ConfigFile
+{
+    local c ;
+    c = $(1:S=$(CONFIGSUFF)) ;
+    MakeLocate $(c) : $(CONFIGDIR) ;
+    return $(c) ;
+}
+
+# Define the base attributes of a package
+rule Package
+{
+
+    Configure $(1) ;
+    Build $(1) ;
+    SaveState $(1) ;
+
+    #RmTemps $(STATEFILE) : $(s) ;
+
+}
+
+rule Configure
+{
+    local c ;
+    c = [ ConfigFile $(1) ] ;
+    PACKAGE on $(c) = $(1) ;
+
+    Depends config_$(1) : $(c) ;
+    Depends config : config_$(1) ;
+    Configure1 $(c) ;
+}
+
+rule Build
+{
+
+    MakeLocate $(1) : $(STATEDIR) ;
+    Depends $(STATEFILE) : $(1) ;
+    PACKAGE on $(1) = $(1) ;
+
+    # For now... later to be added only when packages are out of date
+    Depends build : $(1) ;
+}
+
+# Rule to set the vars for the available version of a package
+rule Version
+{
+    SetPkgVar AVAILABLE_VERSION : $(1) : $(2) ;
+}
+
+# Rule to set the vars for the installed version of a package
+rule Installed
+{
+    SetPkgVar INSTALLED_VERSION : $(1) : $(2) ;
+}
+
+# Rule to set the package timestamp - currently does nothing
+rule Timestamp
+{
+    SetPkgVar TIMESTAMP : $(1) : $(2) ;
+}
+
+#
+# Utility rule to set package vars in three places.
+#
+# 1. Define a VAR_PACKAGE global variable
+# 2. Set the VAR on PACKAGE
+# 3. set the VAR on the package config file
+#
+rule SetPkgVar
+{
+    local c ;
+    c = [ ConfigFile $(2) ] ;
+
+    $(1)_$(2) = $(3) ;
+    $(1) on $(2) = $(3) ;
+    $(1) on $(c) = $(3) ;
+}
+
+#
+# Define a "loose" relationship between two packages. Currently
+# acts like a "tight" relationship (targets will be rebuilt if
+# sources are updated), but will be more flexible later. The idea
+# is that the dependency between the two packages will only be expressed
+# if:
+#
+# (a) the installed and available versions/timestamps are equal
+#
+# (b) the installed and available versions are not equal but only differ
+#     by a minor version increment
+#
+# I'm not even sure we need (a).
+#
+rule LooseDepends
+{
+    # For now. Will compare major/minor version numbers
+    Depends $(1) : $(2) ;
+}
+
+
+#
+# Rule to make sure that once a statefile has been updated the global
+# statefile is recreated by cat'ing the source files together. I don't think
+# this is necessarily the best way to do it, but it's OK for now. We still
+# need to preserve the individual statefiles - for now.
+#
+rule SaveState
+{
+    ConcatState $(STATEFILE) : $(1) ;
+}
+
+#
+# Echo a package state into its state file
+#
+actions SaveState
+{
+    echo "Installed $(PACKAGE) : $(AVAILABLE_VERSION) ;" > $(1) ;
+}
+
+
+#
+# Invoke the build script to compile and install the package. Will need
+# to do the standard stuff and then invoke a package specific script - if one
+# exists.
+#
+actions quietly Build
+{
+    echo "Would now build $(PACKAGE)"
+}
+
+#
+# Run
+actions Configure1
+{
+    echo "Would now execute configure script"
+}
+
+actions together ConcatState
+{
+    cat $(2) > $(1)
+}
+
+# Load existing state
+for statefile in [ Glob $(STATEDIR) : $(STATEFILE) ]
+{
+    include $(statefile) ;
+}
+
+
+Package galeon ;
+Version galeon : 1.2.6 ;
+LooseDepends galeon : mozilla gnome-libs ;
+
+Package mozilla ;
+Version mozilla : 1.1 ;
+LooseDepends mozilla : gtk+ jpeg libpng ;
+
+Package gnome-libs ;
+Version gnome-libs : 1.4.1.7 ;
+
+Package  gtk+ ;
+Version gtk+ 1.2.10 ;
+
+Package  jpeg ;
+Version  jpeg : 6b ;
+
+Package  libpng ;
+Version  libpng : 1.2.4 ;
+
+************************************************************
+
+I've attached a GIF image of a very basic DFD for Jux along with the dot file
+that was used to create the image. See what you think. Also, here are what I
+think are the main goals of Jux. Have I missed anything?
+
+Jux System Design Goals
+-----------------------
+
+1. Primarily source based package management. Binary capability is a bonus.
+
+2. Reliable package rebuilding based on dependencies and package timestamps
+
+3. Support for build-time dependencies and runtime dependencies.
+
+4. Caching of previously installed packages. To include the package sources
+   and all scripts used to create the package - so you can rebuild it later
+   and get the same results.
+
+5. All builds journalled so you can rollback to previous point in time. i.e.
+   if you install a package which breaks things you can just roll back to
+   a previously saved point and recover.
+
+6. Optional? Auto merging of config files? Would be nice.
+
+7. Caching of package builds - to facilitate reinstalling without compiling
+and
+   potentially to enable binary distributions.
+
+8. Reliability. The base Jux system must be extremely robust and statically
+   linked to increase its availability when things go wrong.
+
+9. OO C++ implementation for speed
+
+10. All data files to be in ascii format and easy to read and edit if need
+   be.
+
+************************************************************
+
+Here's my "vision" for the future direction of SMGL. I've tried to structure
+it in a way that makes it easy to read but the big scary stuff is at the
+top so you can get your gasping out of the way quickly!
+
+
+Highlights
+==========
+
+1. Sorcery not 100% bash in future
+
+2. DETAILS files not executable - parsable instead
+
+3. Sources for installed spells (i.e. DETAILS, BUILD, etc.) to be cached
+   along with the compiled binaries (optional I guess). So you can always
+   recast an existing (held) spell if you want to.
+
+4. Rollback. Provide a way to rollback all recently cast spells - in reverse
+   order.
+
+************************************************************
+
+Been playing around with possible syntaxes for a parseable details file. See
+what you think of these...
+
+Option 1
+---------
+
+Spell structure expressed with blocks in braces:
+
+Spell sed {
+    Version 4.0.3
+    License GPL
+    Source0 $(SPELL)-$(VERSION).tar.gz {
+        Url     $(GNU_URL)/$(SPELL)/$(SOURCE)
+        Url     ftp://ftp.gnu.org/gnu/$(SPELL)/$(SOURCE)
+        Md5     122e8d046c268704d9ba3468bc28cd33
+    }
+
+Option 2
+--------
+
+Spell structure expressed as a record
+
+spell                   = sed
+spell.version           = 4.0.3
+spell.license           = GPL
+spell.source1           = $(spell)-$(spell.version).tar.gz
+spell.source1.url1      = $(GNU_URL)/$(spell)/$(spell.source1)
+spell.source1.url2      = ftp://ftp.gnu.org/gnu/$(spell)/$(spell.source1)
+spell.source1.md5       = 122e8d046c268704d9ba3468bc28cd33
+
+Option 3
+--------
+
+Jam style:
+
+Spell   sed ;           # Spell rule defines $(SPELL)
+Version sed : 4.0.3 ;   # Version rule sets $(VERSION) on $(SPELL)
+License sed : GPL ;     # License rule sets $(LICENSE) on $(SPELL)
+
+SOURCE1 = $(SPELL)-$(VERSION).tar.gz ;
+
+Url     $(SOURCE1) :    $(GNU_URL)/$(SPELL)/$(SOURCE1)
+                        ftp://ftp.gnu.org/gnu/$(SPELL)/$(SOURCE1) ;
+Md5     $(SOURCE1) :    122e8d046c268704d9ba3468bc28cd33 ;
+Source  sed : $(SOURCE1) ;
+
+Option 4
+--------
+
+Faux-bash style.
+
+           SPELL=sed
+         VERSION=4.0.3
+          SOURCE=$(SPELL)-$(VERSION).tar.gz
+SOURCE_DIRECTORY=$(BUILD_DIRECTORY)/$(SPELL-$VERSION)
+   SOURCE_URL[0]=$(GNU_URL)/sed/$(SOURCE)
+          MD5[0]=122e8d046c268704d9ba3468bc28cd33
+      LICENSE[0]=GPL
+
+************************************************************
+
+I've been playing with some Ruby code to generate a dependency graph and I
+have something basic now. There seem to be lots of cases that we want to
+handle so I thought I'd jot down a few and see if you've got any to add. I'll
+start with the obvious:
+
+Dependencies come in two flavours:
+
+1. Strong dependencies (eg. RELIES ON).
+
+If package A relies on package B, then package A will be rebuilt anytime that
+B is rebuilt.
+
+2. Normal dependencies (e.g. DEPENDS ON)
+
+If package A depends on package B, then package A will be rebuilt if package
+B's configuration is changed. This means if the user changes any optional
+dependencies for package B or package B gets a major update. In other cases,
+package A need not be rebuilt just because B changes.
+
+Similarly, there are two subtypes of dependency which we know and love:
+Required-dependencies and Optional-dependencies.  These can be in either of
+the above flavours. This gives us four basic dependency types with which we
+have to deal. They can be expressed as:
+
+ "permanently relies on"
+ "permanently depends on"
+ "optionally relies on"
+ "optionally depends on"
+
+To handle all these dependencies, we need to keep track of the following
+pieces of information for each package:
+
+1.  Major version id
+2. Build time   ( time installed copy was built )
+3. Configuration time  ( time of last reconfigure )
+4. Dependencies
+
+Basically we need to be able to do some funky things like:
+
+A. Prevent removal of a package on which others depend (i.e. "dispel kdebase")
+
+B. Add packages to the build list if they RELY on packages the user is
+rebuilding. i.e. if the user rebuilds openssl, then openssh must be added to
+the build queue whether the user asks for it or not. SMGL does this with
+triggers but they suck. What's needed is just a wholistic view of the
+dependencies.
+
+************************************************************
+
+First comments -
+The backup/restore configuration can also be used as a base for the installer,
+right?
+The "build box" is a good idea, but can also be coupled with a nice
+ccache/distcc centralized management - so that we can use all available cpu power.
+Also, it would need good cross-compile and build root support, assuming a
+heterogenous environment. A alternative would be to build for the lowest
+common denominator, which is what most binary distros do already. If we do
+that properly, we can do what the openembedded.org guys do, with better tools
+- generating images and packages for machines too underpowered to build it
+themselves.
+
+************************************************************
+
+The idea is that since TL will still be a source-based distro we just have
+to discriminate between three types of dependency:
+
+Loose dependencies
+------------------
+
+Target does not get rebuilt if source is updated unless the source update
+is a major version change. "target" and "source" are used here in the same
+context as "make" would use them.
+
+Strict dependencies
+-------------------
+
+Target always gets rebuilt if source is updated.
+
+Build Dependencies
+------------------
+
+Target requires source to build, but doesn't use source at all at runtime
+so it doesn't care about the version. Target is not rebuilt if source is
+updated. This could be used for the likes of flex, m4 etc.
+
+
+When developing the distro the aim would be to keep the number of Strict
+dependencies to the minimum necessary. That would keep the number of
+compiles down to those that are necessary but no more.
+
+
+
+
+

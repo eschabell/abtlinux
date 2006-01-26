@@ -1,0 +1,51 @@
+\newpage
+\section{Design}  
+Here I will detail the design and implementation choices made for
+\emph{AbTLinux}. Some early thoughts are Object Orientation and Ruby 
+as implementation language. 
+
+\subsection{Package structure}
+A single package will have one file containing the entire structure needed for
+installing the software it offers. This structure will be split into sections,
+such as the following:
+\begin{itemize}
+  \item details\{\}
+  \item pre\{\}
+  \item configure\{\}
+  \item pre-build\{\}
+  \item build\{\}
+  \item pre-install\{\}
+  \item install\{\}
+  \item post\{\}
+\end{itemize}
+
+This is rather flexible and open for debate, an example should be put together
+for a rather complex package just to give an idea of what it will look like.
+I think each section should be enclosed in curly brackets.
+
+\subsubsection{Install locations}
+Base system for AbTLinux will be in /usr, all others will be installed into /usr/local/*.
+This will facilitate ease of usage within other Linux systems that follow the LSB/FHS.
+
+
+\subsection{Configuration update tools}
+Here I mean tools dealing with how we want configuration file updates to be
+handled. Almost everything located in /etc of the Linux filesystem is considered
+holy to a running system. They need to be updated sometimes when a new package
+version is installed, but should never destroy an existing configuration. We
+want to provide for the following:
+
+\begin{itemize}
+	\item view existing configuration file
+	\item view new (default to install) configuration file
+	\item allow editing to take place in old or new config file
+	\item show user diff
+	\item let user select one of the above options to install
+\end{itemize}
+
+
+\subsection{Package manager}
+The design of the abt package manager will be worked out here.
+
+
+

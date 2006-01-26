@@ -1,0 +1,35 @@
+
+\begin{tabularx}{\linewidth}{|l|X|}
+\hline
+\textbf{Use Case Name:} & \textbf{Purge old package sources} \\
+\hline
+\textbf{Description:} & 
+Source tarballs will be removed for packages that are no longer installed. 
+This will remove source tarballs for any versions of installed packages other
+than those currently installed. \\
+\hline
+\textbf{Actors:} & User \\
+\hline
+\textbf{Preconditions:} & Installed package list is available. \\
+\hline
+\textbf{Triggers:} & abt purge-src \\
+\hline
+\textbf{Basic Course of Events:} & 
+\begin{minipage}{\linewidth} 
+  \vspace{0.05em}
+  \begin{enumerate}
+    \item The user requests to remove unused package sources from system.
+    \item The installed package list is used to determine which package (versions) to keep.
+    \item All source tarballs from packages not currently installed are removed.
+  \end{enumerate}
+  \vspace{0.05em}
+\end{minipage}
+\\
+\hline
+\textbf{Exceptions:} & none. \\
+\hline 
+\textbf{Postconditions:} & All old source tarballs have been removed from the system. \\
+\hline
+\end{tabularx}
+
+

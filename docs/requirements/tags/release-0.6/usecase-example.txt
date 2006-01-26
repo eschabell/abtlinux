@@ -1,0 +1,60 @@
+\subsubsection{Example Use Case}
+This use case deals with returning the resulting data from a users query. It
+will need to be returned to the user and the queue cleaned out.
+
+\medskip
+
+\begin{tabularx}{\linewidth}{|l|X|}
+	\hline
+	\textbf{Use Case Name:} & \textbf{Send user results} \\
+	\hline
+	\textbf{Description:} &
+	The broker will be able to send results of user queries back to the user.\\
+	\hline
+	\textbf{Actors:} &
+	Search, Transform \\
+	\hline
+	\textbf{Preconditions:} &
+	\begin{minipage}{\linewidth}
+		\vspace{0.25em}
+		\begin{enumerate}
+				\item Queue must be reachable for the broker
+				\item User must be reachable for
+		\end{enumerate}
+	\end{minipage}
+	\\
+	\hline
+	\textbf{Triggers:} &
+	Job reaches completed status
+	\\
+	\hline
+	\textbf{Basic Course of Events:} &
+	\begin{minipage}{\linewidth}
+		  \vspace{0.25em}
+		  \begin{enumerate}
+				\item A
+			\end{enumerate}
+	\end{minipage}
+	\\
+	\hline
+	\textbf{Exceptions:} 	&
+	\begin{minipage}{\linewidth}
+		  \vspace{0.25em}
+			\begin{enumerate}
+				\item User
+			\end{enumerate}
+	\end{minipage}
+	\\
+	\hline
+	\textbf{Postconditions:} &
+	\begin{minipage}{\linewidth}
+		\vspace{0.25em}
+		\begin{enumerate}
+			\item Requested
+		\end{enumerate}
+		\vspace{0.25em}
+	\end{minipage}
+	\\
+	\hline
+\end{tabularx}
+

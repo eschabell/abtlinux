@@ -1,0 +1,33 @@
+
+\begin{tabularx}{\linewidth}{|l|X|}
+\hline
+\textbf{Use Case Name:} & \textbf{Show untracked files} \\
+\hline
+\textbf{Description:} & Finds and displays a list of files not being tracked by abt. \\
+\hline
+\textbf{Actors:} & User \\
+\hline
+\textbf{Preconditions:} & none. \\
+\hline
+\textbf{Triggers:} & abt show-untracked \\
+\hline
+\textbf{Basic Course of Events:} & 
+\begin{minipage}{\linewidth} 
+  \vspace{0.05em}
+  \begin{enumerate}
+    \item User requests to view a list of untracked files.
+    \item Using install logs as cross reference, list of untracked files is created.
+    \item Display list of untracked files.
+  \end{enumerate}
+  \vspace{0.05em}
+\end{minipage}
+\\
+\hline 
+\textbf{Exceptions:} & Missing installed packages or install log files, report error. \\
+\hline 
+\textbf{Postconditions:} &
+User has been presented a list of untracked files on the system. \\
+\hline
+\end{tabularx}
+
+

@@ -1,0 +1,97 @@
+\medskip
+
+\begin{tabularx}{\linewidth}{|l|X|}
+\hline
+\textbf{Use Case Name:} & \textbf{Install package} \\
+\hline
+\textbf{Use Case Steps:} & 
+\begin{minipage}{\linewidth} 
+  \vspace{0.05em}
+  \begin{itemize}
+    \item User command \textbf{'abt install fortune'}.
+    \item \textbf{fortune} added to install queue.
+    \item Dependencies for this package are checked.
+    \item Missing dependencies are added to install queue (sorted before this package).
+    \item \emph{Details} section processed:
+    \begin{enumerate}
+      \item NAME = fortune
+      \item VERSION = \url{mod-9708}
+      \item SRCFILE = \url{fortune-mod-9708.tar.gz}
+      \item SRCDIR = \url{/usr/src/fortune-mod-9708}
+      \item SRCURL = \url{http://www.fortune.org/pub/fortune-mod-9708.tar.gz}
+      \item INTEGRITY = c016e3549942cbb
+      \item URL = \url{http://www.fortune.org}
+      \item LICENSE = BSD
+      \item DESCRIPTION = "Random quotations from a large database."
+    \end{enumerate}
+    \item \emph{Pre} section processed:
+    \begin{enumerate}
+      \item Download package sources from \textbf{SRCURL}.
+      \item Unpack package sources in \textbf{SRCDIR}.
+    \end{enumerate}
+    \item \emph{Configure} section of package is processed.
+    \begin{enumerate}
+      \item Default used, sets install location to \textbf{\url{/usr/local}}.
+      \item Run \textbf{configuration}.
+    \end{enumerate}
+    \item Save \url{/var/state/abt/install/fortune/fortune_mod-9708.config}.
+    \item \emph{Build} section processed:
+    \begin{enumerate}
+      \item Default used, run \textbf{make}.
+    \end{enumerate}
+    \item Save \url{/var/state/abt/install/fortune/fortune_mod-9708.build}.
+  \end{itemize}
+  \vspace{0.05em}
+\end{minipage}
+\\
+\hline 
+\end{tabularx}
+
+\begin{tabularx}{\linewidth}{|l|X|}
+\hline
+\textbf{Use Case Steps:} & 
+\begin{minipage}{\linewidth}
+  \vspace{0.05em}
+  \begin{itemize}
+    \item \emph{Preinstall} section processed:
+    \begin{enumerate}
+      \item Default used, nothing done.
+    \end{enumerate}
+    item \emph{Install} section processed:
+    \begin{enumerate}
+      \item Default used, run \textbf{make install}.
+    \end{enumerate}
+    \item Save \url{/var/state/abt/install/fortune_mod-9708.install}.
+    \item Save installed files integrity check \url{/var/tmp/abt/install/fortune_mod-9708.integrity}.
+    \item \emph{Post} section processed:
+    \begin{enumerate}
+      \item Check which shells are installed.
+      \item Add fortune message to these shell configurations.
+    \end{enumerate}
+    \item Package configure file is added to \url{/var/log/abt/configure/}.
+    \item Package build file is added to \url{/var/log/abt/build/}.
+    \item Package install file is added to \url{/var/log/abt/install/}.
+    \item Package integrity file is added to \url{/var/log/abt/integrity/}.
+    \item Package sources (build directories) are cleaned up (removed).
+    \item Package is removed from install queue.
+    \item User is notified that package was successfully installed.
+  \end{itemize}
+  \vspace{0.05em}
+\end{minipage}
+\\
+\hline 
+\textbf{Alternative Path:} &
+\begin{minipage}{\linewidth}
+  \vspace{0.05em} 
+  \begin{enumerate}
+    \item Installing package that has been previously built (cached).
+  \end{enumerate}
+  \vspace{0.05em} 
+\end{minipage}
+\\
+\hline
+\end{tabularx}
+
+\newpage
+
+

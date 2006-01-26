@@ -1,0 +1,42 @@
+
+\begin{tabularx}{\linewidth}{|l|X|}
+\hline
+\textbf{Use Case Name:} & \textbf{Central build} \\
+\hline
+\textbf{Description:} & 
+Allows a single machine to function as a build center, providing cached software package
+builds for other machines on a network. \\
+\hline
+\textbf{Actors:} & User \\
+\hline
+\textbf{Preconditions:} & 
+Network is available. \\
+\hline
+\textbf{Triggers:} & 
+User setup is pointing to this central server as provider of cached software packages
+and requests a package install or update. \\
+\hline
+\textbf{Basic Course of Events:} & 
+\begin{minipage}{\linewidth} 
+  \vspace{0.05em}
+  \begin{enumerate}
+    \item User request leading to an (re)-install, update or fix of package being needed.
+    \item User setup to direct all request to remote machine for cached packages.
+    \item Fall-back is to search for cached packages on local machine.
+    \item Cached package is retrieved and installed on local machine.
+    \item A fix package check is run.
+    \item User notified that package installed successfully.
+  \end{enumerate}
+  \vspace{0.05em}
+\end{minipage}
+\\
+\hline
+\textbf{Exceptions:} & 
+Unable to obtain cached package from central server, fall-back to local machine. \\
+\hline 
+\textbf{Postconditions:} &
+Cached package has been installed and checked successfully. \\
+\hline
+\end{tabularx}
+
+

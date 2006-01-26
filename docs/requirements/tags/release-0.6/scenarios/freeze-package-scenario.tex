@@ -1,0 +1,29 @@
+\medskip
+
+\begin{tabularx}{\linewidth}{|l|X|}
+\hline
+\textbf{Use Case Name:} & \textbf{Freeze package} \\
+\hline
+\textbf{Use Case Steps:} & 
+\begin{minipage}{\linewidth} 
+  \vspace{0.05em}
+  \begin{itemize}
+   \item User command \textbf{'abt freeze fortune'}.
+    \item Check to ensure \textbf{fortune} package installed.
+    \item Add \textbf{fortune} to the frozen packages list:
+    \begin{enumerate}
+      \item Save \url{/var/state/abt/frozen/fortune.frozen}.
+      \item This file will include a date and any other relevant information.
+    \end{enumerate}
+    \item User notified that fortune has been successfully frozen.
+  \end{itemize}
+  \vspace{0.05em}
+\end{minipage}
+\\
+\hline 
+\textbf{Alternative Path:} & None. \\
+\hline
+\end{tabularx}
+
+\newpage
+
