@@ -1,5 +1,3 @@
-\medskip
-
 \begin{tabularx}{\linewidth}{|l|X|}
 \hline
 \textbf{Use Case Name:} & \textbf{Install package} \\
@@ -34,12 +32,6 @@
       \item Default used, sets install location to \textbf{\url{/usr/local}}.
       \item Run \textbf{configuration}.
     \end{enumerate}
-    \item Save \url{/var/state/abt/install/fortune/fortune_mod-9708.config}.
-    \item \emph{Build} section processed:
-    \begin{enumerate}
-      \item Default used, run \textbf{make}.
-    \end{enumerate}
-    \item Save \url{/var/state/abt/install/fortune/fortune_mod-9708.build}.
   \end{itemize}
   \vspace{0.05em}
 \end{minipage}
@@ -53,6 +45,12 @@
 \begin{minipage}{\linewidth}
   \vspace{0.05em}
   \begin{itemize}
+    \item Save \url{/var/state/abt/install/fortune/fortune_mod-9708.config}.
+    \item \emph{Build} section processed:
+    \begin{enumerate}
+      \item Default used, run \textbf{make}.
+    \end{enumerate}
+    \item Save \url{/var/state/abt/install/fortune/fortune_mod-9708.build}.
     \item \emph{Preinstall} section processed:
     \begin{enumerate}
       \item Default used, nothing done.
@@ -62,7 +60,7 @@
       \item Default used, run \textbf{make install}.
     \end{enumerate}
     \item Save \url{/var/state/abt/install/fortune_mod-9708.install}.
-    \item Save installed files integrity check \url{/var/tmp/abt/install/fortune_mod-9708.integrity}.
+    \item Save installed files integrity check \url{/var/state/abt/install/fortune_mod-9708.integrity}.
     \item \emph{Post} section processed:
     \begin{enumerate}
       \item Check which shells are installed.
