@@ -27,7 +27,6 @@ I think each section should be enclosed in curly brackets.
 Base system for AbTLinux will be in /usr, all others will be installed into /usr/local/*.
 This will facilitate ease of usage within other Linux systems that follow the LSB/FHS.
 
-
 \subsection{Configuration update tools}
 Here I mean tools dealing with how we want configuration file updates to be
 handled. Almost everything located in /etc of the Linux filesystem is considered
@@ -47,5 +46,15 @@ want to provide for the following:
 \subsection{Package manager}
 The design of the abt package manager will be worked out here.
 
+\subsubsection{File storage}
+The various files that are generated and needed by the abt package manager will be stored in the following locations:
 
-
+\begin{itemize}
+	\item installed config logs - \url{/var/log/abt/configure/}
+	\item installed build logs - \url{/var/log/abt/build/}
+	\item installed install logs - \url{/var/log/abt/install/}
+	\item installed integrity logs - \url{/var/log/abt/integrity/}
+	\item package sources - \url{/var/spool/abt/}
+	\item install info - \url{/var/state/abt/install/PKG_NAME}
+	\item cached info - \url{/var/state/abt/cached/PKG_NAME/}
+\end{itemize}
