@@ -35,11 +35,11 @@ version is installed, but should never destroy an existing configuration. We
 want to provide for the following:
 
 \begin{itemize}
-	\item view existing configuration file
-	\item view new (default to install) configuration file
-	\item allow editing to take place in old or new config file
-	\item show user diff
-	\item let user select one of the above options to install
+  \item view existing configuration file
+  \item view new (default to install) configuration file
+  \item allow editing to take place in old or new config file
+  \item show user diff
+  \item let user select one of the above options to install
 \end{itemize}
 
 
@@ -50,11 +50,12 @@ The design of the abt package manager will be worked out here.
 The various files that are generated and needed by the abt package manager will be stored in the following locations:
 
 \begin{itemize}
-	\item installed config logs - \url{/var/log/abt/configure/}
-	\item installed build logs - \url{/var/log/abt/build/}
-	\item installed install logs - \url{/var/log/abt/install/}
-	\item installed integrity logs - \url{/var/log/abt/integrity/}
-	\item package sources - \url{/var/spool/abt/}
-	\item install info - \url{/var/state/abt/install/PKG_NAME}
-	\item cached info - \url{/var/state/abt/cached/PKG_NAME/}
+  \item installed config logs - \url{/var/log/abt/configure/}
+  \item installed build logs - \url{/var/log/abt/build/}
+  \item installed install logs - \url{/var/log/abt/install/}
+  \item installed integrity logs - \url{/var/log/abt/integrity/}
+  \item package sources - \url{/var/spool/abt/}
+  \item install info - \url{/var/state/abt/install/PKG_NAME}
+  \item cached info - \url{/var/state/abt/cached/PKG_NAME/}
+  \item frozen info - \url{/etc/abt/frozen.log}
 \end{itemize}
