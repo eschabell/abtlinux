@@ -1,0 +1,45 @@
+\begin{tabularx}{\linewidth}{|l|X|}
+\hline
+\textbf{Use Case Name:} & \textbf{Generate complete dependency list} \\
+\hline
+\textbf{Authors:} & AbTCans\\
+\hline
+\textbf{Dates:} & 12-12-2005\\
+\hline
+\textbf{Iteration:} & Focused\\
+\hline
+\textbf{Description:} & Generates the complete list of dependencies up and down the tree.\\
+\hline
+\textbf{Actors:} & abt\\ 
+\hline
+\textbf{Preconditions:} & Dependency engine has generated lists up and down the tree.\\
+\hline
+\textbf{Triggers:} & Triggering these actions in case of operations Rebuild, Reconfigure, Downgrade, Upgrade and Repair.\\
+\hline
+\textbf{Basic Course of Events:} & 
+\begin{minipage}{\linewidth} 
+  \vspace{0.05em}
+  \begin{enumerate}
+   \item Abt submits a request for a list of dependencies up and down the tree and provides a list of dependencies up the tree and a list of dependencies down the tree.
+   \item The list of dependencies up the tree is merged with the list of dependencies down the tree.
+   \item Return the complete list of dependencies.
+   \item Write actions to the log.
+  \end{enumerate}
+  \vspace{0.05em}
+\end{minipage}
+\\
+\hline 
+\textbf{Alternative Path:} & None.\\
+\hline
+\textbf{Exceptions:} & If merge action fails, return ERROR. \\
+\hline
+\textbf{Assumptions:} & Abt has a log to write actions to. \\
+\hline
+\textbf{Postconditions:} & Generated list of all dependencies.\\
+\hline
+\textbf{Related business rules:} & None\\
+\hline
+\end{tabularx}
+
+
+   

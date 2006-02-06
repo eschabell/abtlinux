@@ -1,0 +1,47 @@
+\begin{tabularx}{\linewidth}{|l|X|}
+\hline
+\textbf{Use Case Name:} & \textbf{Sort packages for right build order} \\
+\hline
+\textbf{Authors:} & AbTCans\\
+\hline
+\textbf{Dates:} & 11-12-2005\\
+\hline
+\textbf{Iteration:} & Focused\\
+\hline
+\textbf{Description:} & Given a list of dependencies, create the right build order. In building the list, checks are performed to locate redundant operations and to locate cycles.\\
+\hline
+\textbf{Actors:} & abt \\ 
+\hline
+\textbf{Preconditions:} & Dependency engine has generated a list of dependencies.\\ 
+\hline
+\textbf{Triggers:} & Triggering these actions in case of operations Install, Rebuild, Reconfigure, Upgrade.\\
+\hline
+\textbf{Basic Course of Events:} & 
+\begin{minipage}{\linewidth} 
+  \vspace{0.05em}
+  \begin{enumerate}
+  \item Abt submits a request for a sorted list of dependencies and provides a list of unsorted dependencies, as well as the operation to be performed with this list.
+  \item Choose algorithm to be applied according to requested operation.
+  \item Apply algorithm to sort the list of dependencies.
+  \item Return the list of sorted dependencies.
+  \item Write actions to the log.
+   \vspace{0.05em}
+  \end{enumerate}
+\end{minipage}
+\\
+\hline 
+\textbf{Alternative Path:} & None.\\
+\hline
+\textbf{Exceptions:} & If sorting operation fails, return ERROR. \\
+ & If algotithm returns cycle alert, return ERROR.\\
+\hline
+\textbf{Assumptions:} & Abt has a log to write actions to.\\
+\hline
+\textbf{Postconditions:} & Correct build order for operation to be performed.\\
+\hline
+\textbf{Related business rules:} & None\\
+\hline
+\end{tabularx}
+
+
+      

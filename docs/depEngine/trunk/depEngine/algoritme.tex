@@ -1,0 +1,23 @@
+ \begin{enumerate}
+   \item abt submits a request for a list of dependencies.
+   \item The list of dependencies is sorted with the following algorithm
+    \begin{enumerate}
+     \item Given a dependency A \begin{math} \rightarrow \end{math} B:
+     \item Check if list contains B followed by A, e.g. [X,Y,B,C,D,A];
+     \item If so, continue with next dependency (because it is redundant); if not:
+     \item Check if list contains A followed by B, e.g. [X,Y,A,C,D,B];
+      \begin{enumerate}
+       \item If so, check if alternatives are available. 
+        \begin{enumerate}
+         \item If so return to that alternative; 
+         \item If not generate vicious cycle alert;
+        \end{enumerate}
+        \item If not, proceed as follows:
+      \end{enumerate}
+     \item If A is not in the list, add B,A in front of the list, e.g. [X,Y,Z] \begin{math} \rightarrow \end{math} [B,A,X,Y,Z];
+     \item If A is already on the list, add B in front of it, e.g. [X,A,Y,Z] \begin{math} \rightarrow \end{math} [X,B,A,Y,Z];
+     \item Count alternatives (alternative places for B), in this example only one (in front of X); 
+    \end{enumerate}
+    \item Write all actions to the log.
+  \end{enumerate}
+ 

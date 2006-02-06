@@ -1,0 +1,45 @@
+\begin{tabularx}{\linewidth}{|l|X|}
+\hline
+\textbf{Use Case Name:} & \textbf{Look for unremovable dependencies} \\
+\hline
+\textbf{Authors:} & AbTCans\\
+\hline
+\textbf{Dates:} & 11-12-2005\\
+\hline
+\textbf{Iteration:} & Focused\\
+\hline
+\textbf{Description:} & The required dependencies are checked in the list of dependencies up the tree and sent as a report to abt. \\
+\hline
+\textbf{Actors:} & abt \\ 
+\hline
+\textbf{Preconditions:} & Abt has generated a list of dependencies up the tree.\\
+\hline
+\textbf{Triggers:} & Triggering these actions in case of operation Remove.\\
+\hline
+\textbf{Basic Course of Events:} & 
+\begin{minipage}{\linewidth} 
+  \vspace{0.05em}
+  \begin{enumerate}
+   \item Abt submits a request for a check for unremovable packages, as well as a list of dependencies up the tree.
+   \item The list of dependencies is checked for required dependencies on given package (one level up).
+   \item If the list does not contain required dependencies, return list. 
+   \item Write actions to the log.
+  \end{enumerate}
+  \vspace{0.05em}
+\end{minipage}
+\\
+\hline 
+\textbf{Alternative Path:} & If the list contains required dependencies, return REPORT.\\
+\hline
+\textbf{Exceptions:} & If checking operation fails, return ERROR. \\
+\hline
+\textbf{Assumptions:} & Abt has a log to write actions to.\\
+\hline
+\textbf{Postconditions:} & Generated list of all dependencies to be deleted or a warning message that there are required dependencies on the list.\\
+\hline
+\textbf{Related business rules:} & None\\
+\hline
+\end{tabularx}
+
+
+     

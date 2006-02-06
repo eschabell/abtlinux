@@ -1,0 +1,48 @@
+\begin{tabularx}{\linewidth}{|l|X|}
+\hline
+\textbf{Use Case Name:} & \textbf{Look for dependency version problems} \\
+\hline
+\textbf{Authors:} & AbTCans\\
+\hline
+\textbf{Dates:} & 11-12-2005\\
+\hline
+\textbf{Iteration:} & Focused\\
+\hline
+\textbf{Description:} & Checks the versions of all dependencies to see if they are the same.\\
+\hline
+\textbf{Actors:} & abt\\ 
+\hline
+\textbf{Preconditions:} & None\\
+\hline
+\textbf{Triggers:} & Triggering these actions in case of operations Upgrade or Downgrade.\\
+\hline
+\textbf{Basic Course of Events:} & 
+\begin{minipage}{\linewidth} 
+  \vspace{0.05em}
+  \begin{enumerate}
+   \item AbT submits a request for a version check and provides a list of dependencies.
+   \item Each package on the list is checked to see if its version matches the desired version.
+   \item Packages that need to be upgraded or downgraded are placed on a list.
+   \item The list is returned to abt. 
+   \item Write actions to the log.
+  \end{enumerate}
+  \vspace{0.05em}
+\end{minipage}
+\\
+\hline 
+\textbf{Alternative Path:} & None.\\
+\hline
+
+\textbf{Exceptions:} & If sorting operation fails, return ERROR.\\
+ & If no version can be found in some package, return ERROR.\\
+\hline
+\textbf{Assumptions:} & Abt has a log to write actions to. \\
+\hline
+\textbf{Postconditions:} & Generated list of needed dependencies.\\
+\hline
+\textbf{Related business rules:} & None\\
+\hline
+\end{tabularx}
+
+
+    

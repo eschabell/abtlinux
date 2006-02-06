@@ -1,0 +1,46 @@
+\begin{tabularx}{\linewidth}{|l|X|}
+\hline
+\textbf{Use Case Name:} & \textbf{Select needed dependencies} \\
+\hline
+\textbf{Authors:} & AbTCans\\
+\hline
+\textbf{Dates:} & 13-12-2005\\
+\hline
+\textbf{Iteration:} & Filled\\
+\hline
+\textbf{Description:} & Selects the dependencies needed for the operation required by abt.\\
+\hline
+\textbf{Actors:} & abt\\ 
+\hline
+\textbf{Preconditions:} & Dependency engine has generated a list of dependencies.\\ 
+ & Dependency engine has specified an operation to be performed.\\ 
+\hline
+\textbf{Triggers:} & Triggering these actions in case of all operations.\\
+\hline
+\textbf{Basic Course of Events:} & 
+\begin{minipage}{\linewidth} 
+  \vspace{0.05em}
+  \begin{enumerate}
+   \item Abt submits a request for a list of needed dependencies and provides a list of dependencies, as well as the operation to be performed with this list.
+   \item The list of dependencies is checked for dependencies needed to perform the given operation.
+   \item DepEngine returns the list of needed dependencies.
+   \item Write actions to the log.
+  \end{enumerate}
+  \vspace{0.05em}
+\end{minipage}
+\\
+\hline 
+\textbf{Alternative Path:} & In step 2, if no needed dependencies are found, return an empty list.\\
+\hline
+\textbf{Exceptions:} & If selecting operation fails, return ERROR. \\
+\hline
+\textbf{Assumptions:} & Abt has a log to write actions to.\\
+\hline
+\textbf{Postconditions:} & Generated list of all needed dependencies.\\
+\hline
+\textbf{Related business rules:} & None\\
+\hline
+\end{tabularx}
+
+
+    

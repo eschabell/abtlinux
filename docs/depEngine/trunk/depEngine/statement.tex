@@ -1,0 +1,34 @@
+\section{Statement of Work}
+An outline of exactly what will be done by the depEngine project group will be presented here. We provide the scope, objectives, an application overview and outline current project constraints that have an effect on the depEngine project.
+
+\subsection{Scope}
+The scope of our project consists of listing the requirements for the dependency engine of AbTLinux. The dependency engine can, given a command and a (set of) packages, deliver amongst others a proper build order for the packages. An example of this was given in the Problem Statement. Commands can be:
+
+\begin{itemize}
+  \item install
+  \item remove
+  \item rebuild
+  \item reconfigure
+  \item upgrade
+  \item downgrade
+  \item repair
+ \end{itemize}
+
+\subsection{Objectives}
+We intend to obtain the basic requirements needed basic dependency handling for the dependency engine of the AbTLinux project. Our objective is to deliver clearly documented requirements which will ultimately be used for implementing the dependency engine for AbTLinux.
+
+\subsection{Application overview}
+The dependency engine is part of the distribution AbTLinux. It must be able to:
+
+\begin{itemize}
+  \item provide a depends tree (up and down) for the packages
+  \item given a package list, sort for proper build order
+  \item provide a count of a package's dependencies
+  \item provide a count of packages dependent on a given package
+  \item provide a list of independent packages
+  \item provide for depends versions
+  \item log dependency engine actions.
+\end{itemize}
+
+\subsection{Constraints}
+Some of the constraints were set by current AbTLinux project standards. The first constraint is the use of the English language because the developers come from different countries. The second constraint is the use of LaTeX for the document because LaTeX is the de facto standard for the production of technical and scientific documentation.

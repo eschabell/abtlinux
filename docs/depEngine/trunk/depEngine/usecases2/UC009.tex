@@ -1,0 +1,45 @@
+\begin{tabularx}{\linewidth}{|l|X|}
+\hline
+\textbf{Use Case Name:} & \textbf{Look for independent packages} \\
+\hline
+\textbf{Authors:} & AbTCans\\
+\hline
+\textbf{Dates:} & 12-12-2005\\
+\hline
+\textbf{Iteration:} & Focused\\
+\hline
+\textbf{Description:} & This Use Case is used to create a list of independent packages.\\
+\hline
+\textbf{Actors:} & abt \\ 
+\hline
+\textbf{Preconditions:} & None.\\
+\hline
+\textbf{Triggers:} & Abt requests a list of independent packages\\
+\hline
+\textbf{Basic Course of Events:} & 
+\begin{minipage}{\linewidth} 
+  \vspace{0.05em}
+  \begin{enumerate}
+   \item Abt submits a request for a list of independent packages.
+   \item Look for independent packages up and down the tree.
+   \item Return a list of all independent packages. 
+   \item Write actions to the log.
+  \end{enumerate}
+  \vspace{0.05em}
+\end{minipage}
+\\
+\hline 
+\textbf{Alternative Path:} & In step 3, if no independent packages are found, return empty list.\\
+\hline
+\textbf{Exceptions:} & If checking operation fails, return ERROR.  \\
+\hline
+\textbf{Assumptions:} & Abt has a log to write actions to.\\
+\hline
+\textbf{Postconditions:} & Generated list of all dependencies to be deleted.\\
+\hline
+\textbf{Related business rules:} & None\\
+\hline
+\end{tabularx}
+
+
+      
