@@ -4,7 +4,6 @@
 \contentsline {subsection}{\numberline {3.1}Mission}{6}
 \contentsline {subsection}{\numberline {3.2}Vision}{6}
 \contentsline {subsection}{\numberline {3.3}Values}{6}
-\contentsline {subsection}{\numberline {3.4}Executive Sponsors viewpoint}{6}
 \contentsline {section}{\numberline {4}Statement of Work}{6}
 \contentsline {subsection}{\numberline {4.1}Scope}{6}
 \contentsline {subsection}{\numberline {4.2}Objectives}{7}
