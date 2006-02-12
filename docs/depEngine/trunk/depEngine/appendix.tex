@@ -2,13 +2,24 @@
 
 \section{Appendix - algorithms}\label{sec:appendix}
 
-\subsection{Tree-algorithm}\label{sec:tree}
+\subsection{UpTree algorithm}\label{sec:uptree}
   \begin{enumerate}
+     \item For a given pakcage A
      \item Given a dependency A Do B (or A Ro B etc.):
-     \item Check if the list already contains this dependency;
-     \item If so, continue with next dependency (because it is redundant); if not:
-     \item Add A Do B to the list and continue with next dependency;
+     \item Check if the list already contains this dependency
+     \item If so, continue with next package (B), because this is redundant; if not:
+     \item Add A Do B to the list and continue with next package (B)
     \end{enumerate}
+
+\subsection{DownTree algorithm}\label{sec:downtree}
+  \begin{enumerate}
+     \item For a given package A
+     \item Given a dependency B Do A (or B Ro A etc.):
+     \item Check if the list already contains this dependency
+     \item If so, continue with next possible package with dependency on A, because this is redundant; if not:
+     \item Add A Do B to the list and continue with next package with dependency on A
+    \end{enumerate}
+
 
 \subsection{Sorting algorithm}\label{sec:sort}
     \begin{enumerate}
