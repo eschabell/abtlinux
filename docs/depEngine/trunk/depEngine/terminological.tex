@@ -24,13 +24,13 @@ Dependency & Link to package that relies or depends on the current package.\\
 \hline
 Dependency engine (DepEngine) & The part of the SPMS which is responsible handling dependency operations.\\
 \hline
-Dependency down the tree & Given package depends on another package.\\
+Dependency uptree & Given package depends on another package.\\
 \hline
 Dependency tree & (Imaginary) representation of all packages and links between them.\\
 \hline
 Dependency-type & Depends on, Relies on, Optionally Depends on, Optionally Relies on (Do, Ro, ODo, ORo).\\
 \hline
-Dependency up the tree & Another package depends on given package.\\
+Dependency downtree & Another package depends on given package.\\
 \hline
 Depends on & If package foo1 depends on package foo2, then package foo1 will be rebuilt any time package foo2 is rebuilt.\\
 \hline
@@ -50,7 +50,7 @@ Package (dependency) description & File listing all dependencies on and from giv
 \hline
 Rebuild & Recompile and link source.\\
 \hline
-Relies on & If package foo1 depends on package foo2, then package foo1 will be rebuilt any time package foo2 is reconfigured.\\
+Relies on & If package foo1 relies on package foo2, then package foo1 will be rebuilt any time package foo2 is reconfigured.\\
 \hline
 Requirement & A characteristic of a system in order to be acceptable to the acquirer.\\
 \hline
