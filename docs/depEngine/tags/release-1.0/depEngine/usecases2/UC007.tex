@@ -1,0 +1,45 @@
+\begin{tabularx}{\linewidth}{|l|X|}
+\hline
+\textbf{Use Case Name:} & \textbf{Count dependencies} \\
+\hline
+\textbf{Authors:} & AbTCans\\
+\hline
+\textbf{Dates:} & 13-12-2005\\
+\hline
+\textbf{Iteration:} & Focused\\
+\hline
+\textbf{Description:} & Counts all dependencies up or down the tree.\\
+\hline
+\textbf{Actors:} & abt\\ 
+\hline
+\textbf{Preconditions:} & Dependency engine has generated a list of dependencies.\\
+\hline
+\textbf{Triggers:} & Triggering these actions in case of all operations.\\
+\hline
+\textbf{Basic Course of Events:} & 
+\begin{minipage}{\linewidth} 
+  \vspace{0.05em}
+  \begin{enumerate}
+   \item Abt sends a list of dependencies up or down the tree, as well as the depth of the tree to which the elements need to be counted.
+   \item The elements on the list(s) are counted.
+   \item This number is returned to abt.
+   \item Write all actions to the log.
+  \end{enumerate}
+  \vspace{0.05em}
+\end{minipage}
+\\
+\hline 
+\textbf{Alternative Path:} & In step 1, if abt does not specify a depth, count all packages on the list.\\
+\hline
+\textbf{Exceptions:} & None. \\
+\hline
+\textbf{Assumptions:} & Abt has a log to write actions to. \\
+\hline
+\textbf{Postconditions:} & Generated count of dependencies.\\
+\hline
+\textbf{Related business rules:} & None\\
+\hline
+\end{tabularx}
+
+
+     

@@ -1,0 +1,14 @@
+[General]
+Author=Eric D. Schabell
+BackColor=255,204,153
+EMail=erics@abtlinux.org
+Encoding=koi8-r
+Path=$HOME/public_html/abtlinux-www
+SlideTitle0=AbTLinux Dependency Engine\s
+SlideTitle1=AbTLinux Dependency Engine\s
+Slides=2
+TextColor=0,0,0
+Title=AbTLinux Dependency Engine
+TitleColor=255,0,0
+XML=false
+Zoom=51

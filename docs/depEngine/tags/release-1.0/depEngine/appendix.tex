@@ -1,0 +1,43 @@
+\newpage
+
+\section{Appendix - algorithms}\label{sec:appendix}
+
+\subsection{UpTree algorithm}\label{sec:uptree}
+  \begin{enumerate}
+     \item For a given pakcage A
+     \item Given a dependency A Do B (or A Ro B etc.):
+     \item Check if the list already contains this dependency
+     \item If so, continue with next package (B), because this is redundant; if not:
+     \item Add A Do B to the list and continue with next package (B)
+    \end{enumerate}
+
+\subsection{DownTree algorithm}\label{sec:downtree}
+  \begin{enumerate}
+     \item For a given package A
+     \item Given a dependency B Do A (or B Ro A etc.):
+     \item Check if the list already contains this dependency
+     \item If so, continue with next possible package with dependency on A, because this is redundant; if not:
+     \item Add A Do B to the list and continue with next package with dependency on A
+    \end{enumerate}
+
+
+\subsection{Sorting algorithm}\label{sec:sort}
+    \begin{enumerate}
+     \item Given a required dependency A Do/Ro B:
+     \item Check if list contains B followed by A, e.g. [X,Y,B,C,D,A];
+     \item If so, continue with next required dependency (because it is redundant); if not:
+     \item Check if list contains A followed by B, e.g. [X,Y,A,C,D,B];
+      \begin{enumerate}
+       \item If so, check if alternatives are available. 
+        \begin{enumerate}
+         \item If so return to that alternative; 
+         \item If not generate cycle alert;
+        \end{enumerate}
+        \item If not, proceed as follows:
+      \end{enumerate}
+     \item If A is not in the list, add B,A in front of the list, e.g. [X,Y,Z] \begin{math} \rightarrow \end{math} [B,A,X,Y,Z];
+     \item If A is already on the list, add B in front of it, e.g. [X,A,Y,Z] \begin{math} \rightarrow \end{math} [X,B,A,Y,Z];
+     \item List alternatives (alternative places for B), in this example only one (in front of X); 
+     \item Continue with next required dependency.
+     \item Sort optional dependencies (ODo, ORo).
+    \end{enumerate}

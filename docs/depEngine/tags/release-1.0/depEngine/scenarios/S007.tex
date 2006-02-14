@@ -1,0 +1,35 @@
+
+\begin{tabularx}{\linewidth}{|l|X|}
+\hline
+\textbf{Use Case Name:} & \textbf{Count dependencies} \\
+\hline
+\textbf{Use Case Steps:} & 
+\begin{minipage}{\linewidth} 
+ \vspace{0.05em}
+  \begin{enumerate}
+   \item DepEngine receives a list [foo1 v. 3.2; foo2 v. 3.11] and a depth of 10 from abt.
+   \item DepEngine counts items with max 10 depth in [foo1 v. 3.2; foo2 v. 3.11].
+   \item DepEngine finds 2 dependencies.
+   \item DepEngine returns the countvalue of 2 to abt.
+   \item DepEngine writes actions performed in step 1, 2 and 3 to the abt log.
+  \end{enumerate}
+ \vspace{0.05em}
+\end{minipage}
+\\
+\hline 
+\textbf{Use Case Steps:} & 
+\begin{minipage}{\linewidth} 
+ \vspace{0.05em}
+  \begin{enumerate}
+   \item DepEngine receives a list [foo3 v. 3.4; foo4 v. 3.45; foo5 v. 4.33] from abt.
+   \item DepEngine counts each item in [foo3 v. 3.4; foo4 v. 3.45; foo5 v4.33].
+   \item DepEngine returns the countvalue of 3 to abt.
+   \item DepEngine writes actions performed in step 1, 2 and 3 to the abt log.
+  \end{enumerate}
+ \vspace{0.05em}
+\end{minipage}
+\\
+\hline
+\end{tabularx}
+
+

@@ -1,0 +1,48 @@
+\begin{tabularx}{\linewidth}{|l|X|}
+\hline
+\textbf{Use Case Name:} & \textbf{Look for dependencies up the tree} \\
+\hline
+\textbf{Authors:} & AbTCans\\
+\hline
+\textbf{Dates:} & 13-12-2005\\
+\hline
+\textbf{Iteration:} & Focused\\
+\hline
+\textbf{Description:} & Look for packages up the tree, i.e. packages depending on the given package.\\
+\hline
+\textbf{Actors:} & abt \\ 
+\hline
+\textbf{Preconditions:} & Dependency engine has access to the package dependency description.\\
+\hline
+\textbf{Triggers:} & Triggering these actions in case of all operations, except for Install.\\
+\hline
+\textbf{Basic Course of Events:} & 
+\begin{minipage}{\linewidth} 
+  \vspace{0.05em}
+  \begin{enumerate}
+   \item Abt submits a request for a list of dependencies up the tree from a given package (and a depth).
+   \item Look for packages up the tree (to a given depth).
+   \item Generate a list dependencies down the tree.
+   \item Apply UpTree algorithm (see section \ref{sec:uptree}) to fill the list.
+   \item Return the list of dependencies up the tree.
+   \item Write actions to the log.
+  \end{enumerate}
+  \vspace{0.05em}
+\end{minipage}
+\\
+\hline 
+\textbf{Alternative Path:} & In step 2, if no dependencies are found, an empty list is returned.\\
+\hline
+\textbf{Exception Paths:} & If dependency data can not be retrieved from a package, return ERROR. \\
+\hline
+\textbf{Assumptions:} & Abt has a log to write actions to. \\
+\hline
+
+\textbf{Postconditions:} & Generated list of dependencies up the tree.\\
+\hline
+\textbf{Related business rules:} & None\\
+\hline
+\end{tabularx}
+
+
+  

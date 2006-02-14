@@ -1,0 +1,36 @@
+
+\begin{tabularx}{\linewidth}{|l|X|}
+\hline
+\textbf{Use Case Name:} & \textbf{Look for independent packages} \\
+\hline
+\textbf{Use Case Steps:} & 
+\begin{minipage}{\linewidth} 
+ \vspace{0.05em}
+  \begin{enumerate}
+   \item DepEngine receives request for a list of independent packages.
+   \item DepEngine looks up and down the tree for packages with no dependencies.
+   \item DepEngine has found independent packages bar1 v. 1.0 and bar2 v. 2.35 (not in example).
+   \item DepEngine returns [bar1 v. 1.0; bar2 v. 2.35].
+   \item DepEngine writes action performed in step 1, 2, 3 and 4 to the abt log.
+  \end{enumerate}
+ \vspace{0.05em}
+\end{minipage}
+\\
+\hline 
+\textbf{Use Case Steps:} & 
+\begin{minipage}{\linewidth} 
+ \vspace{0.05em}
+  \begin{enumerate}
+   \item DepEngine receives request for a list of independent packages.
+   \item DepEngine looks up and down the tree for packages with no dependencies.
+   \item DepEngine has not found independent packages.
+   \item DepEngine returns [ ].
+   \item DepEngine writes action performed in step 1, 2, 3 and 4 to the abt log.
+  \end{enumerate}
+ \vspace{0.05em}
+\end{minipage}
+\\
+\hline
+\end{tabularx}
+
+

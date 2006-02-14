@@ -1,0 +1,34 @@
+\begin{tabularx}{\linewidth}{|l|X|}
+\hline
+\textbf{Use Case Name:} & \textbf{Generate complete dependency list} \\
+\hline
+
+\textbf{Use Case Steps:} & 
+\begin{minipage}{\linewidth} 
+ \vspace{0.05em}
+  \begin{enumerate}
+   \item DepEngine retrieves a request for a complete dependency list, as well as a list dependencies down the tree [foo1 v. 3.2 Do foo2 v. 3.11; foo1 v. 3.2 ODo foo3 v. 3.11; foo2 v. 3.11 Ro foo4 v. 3.0; foo2 v. 3.11 ORo foo3 v 3.11; foo4 v. 3.0 Do foo1 v. 3.2] and a list dependencies up the tree [foo1 v. 3.2 Do foo2 v. 3.11;  foo2 v. 3.11 Ro foo4 v. 3.0; foo4 v. 3.0 Do foo1 v. 3.2]. 
+   \item DepEngine creates a list "complete dependency list".
+   \item DepEngine merges [foo1 v. 3.2 Do foo2 v. 3.11; foo1 v. 3.2 ODo foo3 v. 3.11; foo2 v. 3.11 Ro foo4 v. 3.0; foo2 v. 3.11 ORo foo3 v 3.11; foo4 v. 3.0 Do foo1 v. 3.2] and [foo1 v. 3.2 Do foo2 v. 3.11;  foo2 v. 3.11 Ro foo4 v. 3.0; foo4 v. 3.0 Do foo1 v. 3.2], resulting in [foo1 v. 3.2 Do foo2 v. 3.11; foo1 v. 3.2 ODo foo3 v. 3.11; foo2 v. 3.11 Ro foo4 v. 3.0; foo2 v. 3.11 ORo foo3 v 3.11; foo4 v. 3.0 Do foo1 v. 3.2; foo1 v. 3.2 Do foo2 v. 3.11;  foo2 v. 3.11 Ro foo4 v. 3.0; foo4 v. 3.0 Do foo1 v. 3.2]   
+   \item DepEngine returns [foo1 v. 3.2 Do foo2 v. 3.11; foo1 v. 3.2 ODo foo3 v. 3.11; foo2 v. 3.11 Ro foo4 v. 3.0; foo2 v. 3.11 ORo foo3 v 3.11; foo4 v. 3.0 Do foo1 v. 3.2; foo1 v. 3.2 Do foo2 v. 3.11;  foo2 v. 3.11 Ro foo4 v. 3.0; foo4 v. 3.0 Do foo1 v. 3.2] to abt.
+   \item DepEngine writes actions 1, 2, 3, 4 to the abt log.
+  \end{enumerate}
+ \vspace{0.05em}
+\end{minipage}
+\\
+\hline 
+\textbf{Use Case Steps:} & 
+\begin{minipage}{\linewidth} 
+ \vspace{0.05em}
+  \begin{enumerate}
+   \item DepEngine retrieves a request for a complete dependency list, as well as a list dependencies down the tree [ ] and a list dependencies up the tree [foo1 v. 3.2 Do foo2 v. 3.11;  foo2 v. 3.11 Ro foo4 v. 3.0; foo4 v. 3.0 Do foo1 v. 3.2]. 
+   \item DepEngine creates a list "complete dependency list".
+   \item DepEngine merges [ ] and [foo1 v. 3.2 Do foo2 v. 3.11;  foo2 v. 3.11 Ro foo4 v. 3.0; foo4 v. 3.0 Do foo1 v. 3.2], resulting in [foo1 v. 3.2 Do foo2 v. 3.11;  foo2 v. 3.11 Ro foo4 v. 3.0; foo4 v. 3.0 Do foo1 v. 3.2]   
+   \item DepEngine returns [foo1 v. 3.2 Do foo2 v. 3.11;  foo2 v. 3.11 Ro foo4 v. 3.0; foo4 v. 3.0 Do foo1 v. 3.2] to abt.
+   \item DepEngine writes actions 1, 2, 3, 4 to the abt log.
+  \end{enumerate}
+ \vspace{0.05em}
+\end{minipage}
+\\
+\hline 
+\end{tabularx}

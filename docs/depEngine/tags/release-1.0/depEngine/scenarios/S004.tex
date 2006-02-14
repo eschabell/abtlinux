@@ -1,0 +1,120 @@
+
+\begin{tabularx}{\linewidth}{|l|X|}
+\hline
+\textbf{Use Case Name:} & \textbf{Select needed dependencies} \\
+\hline
+\textbf{Use Case Steps:} & 
+\begin{minipage}{\linewidth} 
+  \vspace{0.05em}
+  \begin{enumerate}
+  \item DepEngine receives list [foo1 v. 3.2 Do foo2 v. 3.11; foo1 v. 3.2 ODo foo3 v. 3.11; foo2 v. 3.11 Ro foo4 v. 3.0; foo2 v. 3.11 ORo foo3 v 3.11; foo4 v. 3.0 Do foo1 v. 3.2] from abt and operation Install foo1 v. 3.2.
+  \item DepEngine creates list Needed Dependencies.
+  \item DepEngine adds foo1 v. 3.2 Do foo2 v. 3.11; foo2 v. 3.11 Ro foo4 v. 3.0; foo4 v. 3.0 Do foo1 v. 3.2 to list Needed Dependencies.
+  \item DepEngine returns [foo1 v. 3.2 Do foo2 v. 3.11; foo2 v. 3.11 Ro foo4 v. 3.0; foo4 v. 3.0 Do foo1 v. 3.2] to abt.
+  \item DepEngine writes actions 1, 2, 3, 4 to the abt log.
+    \end{enumerate}
+  \vspace{0.05em}
+\end{minipage}
+\\
+\hline 
+\textbf{Use Case Steps:} & 
+\begin{minipage}{\linewidth} 
+  \vspace{0.05em}
+  \begin{enumerate}
+  \item DepEngine receives list [foo1 v. 3.2 Do foo2 v. 3.11; foo1 v. 3.2 ODo foo3 v. 3.11; foo2 v. 3.11 Ro foo4 v. 3.0; foo2 v. 3.11 ORo foo3 v 3.11; foo4 v. 3.0 Do foo1 v. 3.2] from abt and operation Remove foo2 v. 3.11.
+  \item DepEngine creates list Needed Dependencies.
+  \item DepEngine adds foo1, v. 3.2 Do foo2, v. 3.11 to list Needed Dependencies.
+  \item DepEngine returns [foo1 v. 3.2 Do foo2 v. 3.11] to abt.
+  \item DepEngine writes actions 1, 2, 3, 4 to the abt log.
+    \end{enumerate}
+  \vspace{0.05em}
+\end{minipage}
+\\
+\hline 
+\textbf{Use Case Steps:} & 
+\begin{minipage}{\linewidth} 
+  \vspace{0.05em}
+  \begin{enumerate}
+  \item DepEngine receives list [foo1 v. 3.2 Do foo2 v. 3.11; foo1 v. 3.2 ODo foo3 v. 3.11; foo2 v. 3.11 Ro foo4 v. 3.0; foo2 v. 3.11 ORo foo3 v 3.11; foo4 v. 3.0 Do foo1 v. 3.2] from abt and operation Rebuild foo2 v. 3.11.
+ \item DepEngine creates list Needed Dependencies.
+  \item DepEngine adds foo1, v. 3.2 Do foo2, v. 3.11 to list Needed Dependencies.
+  \item DepEngine returns [foo1 v. 3.2 Do foo2 v. 3.11] to abt.
+  \item DepEngine writes actions 1, 2, 3, 4 to the abt log.
+    \end{enumerate}
+
+  \vspace{0.05em}
+\end{minipage}
+\\
+\hline 
+\end{tabularx}
+\newpage
+
+\begin{tabularx}{\linewidth}{|l|X|}
+\hline
+\textbf{Use Case Name:} & \textbf{Select needed dependencies} \\
+\hline
+\textbf{Use Case Steps:} & 
+\begin{minipage}{\linewidth} 
+  \vspace{0.05em}
+  \begin{enumerate}
+  \item DepEngine receives list [foo1 v. 3.2 Do foo2 v. 3.11; foo1 v. 3.2 ODo foo3 v. 3.11; foo2 v. 3.11 Ro foo4 v. 3.0; foo2 v. 3.11 ORo foo3 v 3.11; foo4 v. 3.0 Do foo1 v. 3.2] from abt and operation Reconfigure foo2 v. 3.11.
+  \item DepEngine creates list Needed Dependencies.
+  \item DepEngine adds foo1, v. 3.2 Do foo2, v. 3.11 to list Needed Dependencies.
+  \item DepEngine returns [foo1 v. 3.2 Do foo2 v. 3.11] to abt.
+  \item DepEngine writes actions 1, 2, 3, 4 to the abt log.
+    \end{enumerate}
+  \vspace{0.05em}
+\end{minipage}
+\\
+\hline 
+\textbf{Use Case Steps:} & 
+\begin{minipage}{\linewidth} 
+  \vspace{0.05em}
+  \begin{enumerate}
+  \item DepEngine receives list [foo1 v. 3.2 Do foo2 v. 3.11; foo1 v. 3.2 ODo foo3 v. 3.11; foo2 v. 3.11 Ro foo4 v. 3.0; foo2 v. 3.11 ORo foo3 v 3.11; foo4 v. 3.0 Do foo1 v. 3.2] from abt and operation Upgrade foo2 v. 3.11 to foo2 v. 3.2.
+  \item DepEngine creates list Needed Dependencies.
+  \item DepEngine adds foo1, v. 3.2 Do foo2, v. 3.11; foo2, v. 3.2 Ro foo4 v. 3.0; foo2, v. 3.2 oRo foo3 v. 3.2 to list Needed Dependencies.
+  \item DepEngine returns [foo1, v. 3.2 Do foo2, v. 3.11; foo2, v. 3.2 Ro foo4 v. 3.0; foo2, v. 3.2 oRo foo3 v. 3.2] to abt.
+  \item DepEngine writes actions 1, 2, 3, 4 to the abt log.
+    \end{enumerate}
+  \vspace{0.05em}
+\end{minipage}
+\\
+\hline 
+\textbf{Use Case Steps:} & 
+\begin{minipage}{\linewidth} 
+  \vspace{0.05em}
+  \begin{enumerate}
+  \item DepEngine receives list [foo1 v. 3.2 Do foo2 v. 3.11; foo1 v. 3.2 ODo foo3 v. 3.11; foo2 v. 3.11 Ro foo4 v. 3.0; foo2 v. 3.11 ORo foo3 v 3.11; foo4 v. 3.0 Do foo1 v. 3.2] from abt and operation Downgrade foo2 v. 3.11 to foo2 v.3.1.
+  \item DepEngine creates list Needed Dependencies.
+  \item DepEngine adds foo1, v. 3.2 Do foo2, v. 3.11; foo2, v. 3.1 Ro foo4 v. 2.0; foo2 v. 3.1 oRo foo3 v. 3.1 to list Needed Dependencies.
+  \item DepEngine returns [foo1, v. 3.2 Do foo2, v. 3.11; foo2, v. 3.1 Ro foo4 v. 2.0; foo2 v. 3.1 oRo foo3 v. 3.1] to abt.
+  \item DepEngine writes actions 1, 2, 3, 4 to the abt log.
+    \end{enumerate}
+  \vspace{0.05em}
+\end{minipage}
+\\
+\hline 
+
+\end{tabularx}
+\newpage
+
+\begin{tabularx}{\linewidth}{|l|X|}
+\hline
+\textbf{Use Case Name:} & \textbf{Select needed dependencies} \\
+\hline
+\textbf{Use Case Steps:} & 
+\begin{minipage}{\linewidth} 
+  \vspace{0.05em}
+  \begin{enumerate}
+  \item DepEngine receives list [foo1 v. 3.2 Do foo2 v. 3.11; foo1 v. 3.2 ODo foo3 v. 3.11; foo2 v. 3.11 Ro foo4 v. 3.0; foo2 v. 3.11 ORo foo3 v 3.11; foo4 v. 3.0 Do foo1 v. 3.2] from abt and operation Remove foo3 v. 3.11.
+  \item DepEngine creates list Needed Dependencies.
+  \item DepEngine finds no needed dependencies.
+  \item DepEngine returns [ ] to abt.
+  \item DepEngine writes actions 1, 2, 3, 4 to the abt log.
+    \end{enumerate}
+  \vspace{0.05em}
+\end{minipage}
+\\
+\hline 
+\end{tabularx}
