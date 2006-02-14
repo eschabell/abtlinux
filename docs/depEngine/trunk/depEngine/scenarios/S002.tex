@@ -9,9 +9,16 @@
   \begin{enumerate}
    \item DepEngine retrieves a request for dependencies up the tree for package foo1 v. 3.0.
    \item DepEngine creates a list "dependencies up the tree".
-   \item DepEngine finds dependencies foo1 v. 3.2 Do foo2 v. 3.11;  foo2 v. 3.11 Ro foo4 v. 3.0; foo4 v. 3.0 Do foo1 v. 3.2.
+   \item DepEngine finds dependencies:
+   \begin{itemize}
+      \item foo1 v. 3.2 Do foo2 v. 3.11
+      \item foo1 v. 3.2 ODo foo3 v. 3.11
+      \item foo2 v. 3.11 ORo foo3 v 3.11
+      \item foo2 v. 3.11 Ro foo4 v. 3.0
+      \item foo4 v. 3.0 Do foo1 v. 3.2
+   \end{itemize}
    \item DepEngine adds these dependencies to the list "dependencies up the tree".
-   \item DepEngine returns [foo1 v. 3.2 Do foo2 v. 3.11;  foo2 v. 3.11 Ro foo4 v. 3.0; foo4 v. 3.0 Do foo1 v. 3.2] to abt.
+   \item DepEngine returns above list to abt.
    \item DepEngine writes actions 1, 2, 3, 4, 5 to the abt log.
   \end{enumerate}
  \vspace{0.05em}
@@ -24,9 +31,9 @@
   \begin{enumerate}
    \item DepEngine retrieves a request for dependencies up the tree for package foo1 v. 3.2 with depth 1. 
    \item DepEngine creates a list "dependencies up the tree".
-   \item DepEngine finds dependency foo2 v. 3.11 Ro foo4 v. 3.0.
+   \item DepEngine finds dependencies: foo1 v. 3.2 Do foo2 v. 3.11, foo1 v. 3.2 ODo foo3 v. 3.11.
    \item DepEngine adds this dependency to the list "dependencies up the tree".
-   \item DepEngine returns [foo2 v. 3.11 Ro foo4 v. 3.0] to abt.
+   \item DepEngine returns above list to abt.
    \item DepEngine writes actions 1, 2, 3, 4, 5 to the abt log.
   \end{enumerate}
  \vspace{0.05em}
@@ -43,7 +50,7 @@
 \begin{minipage}{\linewidth} 
  \vspace{0.05em}
   \begin{enumerate}
-   \item DepEngine retrieves a request for dependencies up the tree for package foo1 v. 3.2 (in this scenario we assume the dependency foo4 v. 3.0 Do foo1 v. 3.2 does not exist).
+   \item DepEngine retrieves a request for dependencies up the tree for package foo12 v. 3.2 (package without any dependencies).
    \item DepEngine creates a list "dependencies up the tree".
    \item DepEngine finds no dependencies up the tree for given package.   
    \item DepEngine returns [ ] to abt.
