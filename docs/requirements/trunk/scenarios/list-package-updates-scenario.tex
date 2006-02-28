@@ -7,9 +7,12 @@
 \textbf{Use Case Steps:} & 
 \begin{minipage}{\linewidth} 
   \vspace{0.05em}
-  \begin{enumerate}
-   \item Steps
-  \end{enumerate}
+  \begin{itemize}
+    \item User command \textbf{'abt show-updates'}.
+    \item Compare installed packages listing to current package descriptions.
+    \item Generate listing of packages that have a newer version in the current package descriptions.
+    \item Present user with listing of available updates; \textbf{package name, current version, update version.}
+  \end{itemize}
   \vspace{0.05em}
 \end{minipage}
 \\
@@ -18,14 +21,11 @@
 \begin{minipage}{\linewidth}
   \vspace{0.05em} 
   \begin{enumerate}
-    \item Steps
+    \item Installed packages listing is unavailable, warn user.
+    \item Package description for some package is unavailable, include line in results; \textbf{package name, current version, unknown.}
   \end{enumerate}
   \vspace{0.05em} 
 \end{minipage}
 \\
 \hline
 \end{tabularx}
-
-\newpage
-
-
