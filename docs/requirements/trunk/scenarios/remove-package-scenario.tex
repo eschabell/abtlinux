@@ -25,12 +25,12 @@
     \item Check to ensure package installed.
     \item Dependencies for this package are checked.
     \item Eventual broken dependencies are added to install queue to be rebuilt.
-    \item Retrieve fortune logs: \url{/var/log/abt/*/fortune-mod-9708/*}.
+    \item Retrieve fortune install info: \url{/var/state/abt/install/fortune-mod-9708.*}.
     \begin{enumerate}
-      \item Package configure file: \url{/var/log/abt/configure/}.
-      \item Package build file: \url{/var/log/abt/build/}.
-      \item Package install file: \url{/var/log/abt/install/}.
-      \item Package integrity file: \url{/var/log/abt/integrity/}.
+      \item Package configure file: \url{/var/state/abt/install/fortune-mod-9708.config}.
+      \item Package build file: \url{/var/state/abt/install/fortune-mod-9708.build}.
+      \item Package install file: \url{/var/state/abt/install/fortune-mod-9708.install}.
+      \item Package integrity file: \url{/var/state/abt/install/fortune-mod-9708.integrity}.
       \item Package sources: \url{/var/spool/abt/fortune-mod-9708.tar.gz}
     \end{enumerate}
     \item \emph{Preremove} section processed:
