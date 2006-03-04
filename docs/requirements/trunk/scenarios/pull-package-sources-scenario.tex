@@ -7,9 +7,12 @@
 \textbf{Use Case Steps:} & 
 \begin{minipage}{\linewidth} 
   \vspace{0.05em}
-  \begin{enumerate}
-   \item Steps
-  \end{enumerate}
+  \begin{itemize}
+    \item User command \textbf{'abt download fortune'}.
+    \item Obtain from fortune package description the \textbf{SRCURL}, \url{http://www.fortune.org/pub/fortune-mod-9708.tar.gz}.
+    \item Download the fortune source file to \url{/var/spool/abt}.
+    \item Report to user that download successful.
+  \end{itemize}
   \vspace{0.05em}
 \end{minipage}
 \\
@@ -18,14 +21,12 @@
 \begin{minipage}{\linewidth}
   \vspace{0.05em} 
   \begin{enumerate}
-    \item Steps
+    \item Fortune description is not available, warn user.
+    \item Fortuen source file location not reachable, warn user.
+    \item Support http(s), (s)ftp, cvs and subversion downloads.
   \end{enumerate}
   \vspace{0.05em} 
 \end{minipage}
 \\
 \hline
 \end{tabularx}
-
-\newpage
-
-
