@@ -7,9 +7,12 @@
 \textbf{Use Case Steps:} & 
 \begin{minipage}{\linewidth} 
   \vspace{0.05em}
-  \begin{enumerate}
-   \item Steps
-  \end{enumerate}
+  \begin{itemize}
+    \item User command \textbf{'abt verify-symlinks fortune'}.
+    \item Install log for \textbf{fortune} is accessed at \url{/var/state/abt/install/fortune/fortune-mod-9807.install}.
+    \item Each file marked as a symlink is checked for exitance as symlink.
+    \item User supplied with overview of any symlinked files failing check.
+  \end{itemize}
   \vspace{0.05em}
 \end{minipage}
 \\
@@ -18,13 +21,11 @@
 \begin{minipage}{\linewidth}
   \vspace{0.05em} 
   \begin{enumerate}
-    \item Steps
+    \item Install log unavailable, warn user.
+    \item No files fail the check, inform user.
   \end{enumerate}
   \vspace{0.05em} 
 \end{minipage}
 \\
 \hline
 \end{tabularx}
-
-\newpage
-

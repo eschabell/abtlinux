@@ -11,13 +11,13 @@ Verify that the given packages dependencies are not broken (libraries).
 \hline
 \textbf{Preconditions:} & Package to be verified has a valid description. \\
 \hline
-\textbf{Triggers:} & abt verify-libs $<$pkg$>$ \\
+\textbf{Triggers:} & abt verify-deps $<$pkg$>$ \\
 \hline
 \textbf{Basic Course of Events:} & 
 \begin{minipage}{\linewidth} 
   \vspace{0.05em}
   \begin{enumerate}
-    \item User submits a verify libraries request.
+    \item User submits a verify dependencies request.
     \item Dependency engine used to determine given packages dependency tree.
     \item Installed files for each dependency are checked for existence.
     \item Installed symlinks for each dependency are checked for existence.
@@ -30,7 +30,7 @@ Verify that the given packages dependencies are not broken (libraries).
 \textbf{Exceptions:} & none. \\
 \hline 
 \textbf{Postconditions:} &
-The installed libraries for given package have been verified, eventual discrepencies have been reported. \\
+The installed libraries for given package have been verified, eventual discrepancies have been reported. \\
 \hline
 \end{tabularx}
 
