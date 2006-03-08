@@ -1,0 +1,53 @@
+
+\begin{tabularx}{\linewidth}{|l|X|}
+\hline
+\textbf{Use Case Name:} & \textbf{Fix package} \\
+\hline
+\textbf{Description:} & 
+Check the package for missing/broken libraries, symlinks and file permissions.
+\\
+\hline
+\textbf{Actors:} & User \\
+\hline
+\textbf{Preconditions:} & Package to be fixed is installed. \\
+\hline
+\textbf{Triggers:} & abt fix $[$pkg$]$ \\
+\hline
+\textbf{Basic Course of Events:} & 
+\begin{minipage}{\linewidth} 
+  \vspace{0.05em}
+  \begin{enumerate}
+    \item User submits a fix request, either on a package or on entire installed packages list if no package is given.
+    \item Package(s) are checked by comparing:
+    \begin{enumerate}
+      \item Installed files are checked if they exist.
+      \item Installed files are checked for integrity.
+      \item Installed libraries are checked for dependency breakage.
+      \item Configuration files are checked only for existence.
+    \end{enumerate}
+    \item Any problems found result in User being asked if rebuild wanted.
+    \item Default if User does not respond is to rebuild package.
+    \item Check for possible dependency breakage.
+    \item After package(s) checked, overview of good, bad and fixed package(s) reported to User.
+  \end{enumerate}
+  \vspace{0.05em}
+\end{minipage}
+\\
+\hline 
+\textbf{Exceptions:} & 
+Any problems results in package(s) being left in the install or uninstall queues. 
+\\
+\hline 
+\textbf{Postconditions:} &
+\begin{minipage}{\linewidth}
+  \vspace{0.05em}
+  \begin{enumerate}
+    \item User has report of good, bad and fixed package(s).
+  \end{enumerate}
+  \vspace{0.05em}
+\end{minipage}
+\\
+\hline
+\end{tabularx}
+
+

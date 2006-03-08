@@ -1,0 +1,40 @@
+
+\begin{tabularx}{\linewidth}{|l|X|}
+\hline
+\textbf{Use Case Name:} & \textbf{Log package cache} \\
+\hline
+\textbf{Description:} & 
+A complete cache of a built package, including everything needed to duplicate 
+the build at a later date. \\
+\hline
+\textbf{Actors:} & System \\
+\hline
+\textbf{Preconditions:} & none. \\
+\hline
+\textbf{Triggers:} & The end of a package install. \\
+\hline
+\textbf{Basic Course of Events:} & 
+\begin{minipage}{\linewidth} 
+  \vspace{0.05em}
+  \begin{enumerate}
+    \item At end of a complete package install a cache will be made, including:
+    \item Copy of build configuration (preserve configuration time).
+    \item Copy of build log (preserve build time).
+    \item Copy of install log.
+    \item Copy of package description (includes major version number).
+    \item Copy of source.
+    \item Copy of dependency tree.
+  \end{enumerate}
+  \vspace{0.05em}
+\end{minipage}
+\\
+\hline
+\textbf{Exceptions:} & 
+Any failure to create cache will be reported as error. \\
+\hline 
+\textbf{Postconditions:} &
+Package build has been cached. \\
+\hline
+\end{tabularx}
+
+

@@ -1,0 +1,35 @@
+\medskip
+
+\begin{tabularx}{\linewidth}{|l|X|}
+\hline
+\textbf{Use Case Name:} & \textbf{Show installed packages} \\
+\hline
+\textbf{Use Case Steps:} & 
+\begin{minipage}{\linewidth} 
+  \vspace{0.05em}
+  \begin{itemize}
+    \item User command \textbf{'abt show-installed'}.
+    \item Installed packages information is acquired from install log contents, \url{/var/log/abt/installied.log}.
+    \item For each package that is installed the following is displayed:
+    \begin{enumerate}
+      \item package name
+      \item package version
+      \item package install date
+      \item package version available (obtain from current package description).
+    \end{enumerate}
+  \end{itemize}
+  \vspace{0.05em}
+\end{minipage}
+\\
+\hline 
+\textbf{Alternative Path:} &
+\begin{minipage}{\linewidth}
+  \vspace{0.05em} 
+  \begin{enumerate}
+    \item Unable to generate installed packages list, warn user.
+  \end{enumerate}
+  \vspace{0.05em} 
+\end{minipage}
+\\
+\hline
+\end{tabularx}

@@ -1,0 +1,39 @@
+
+\begin{tabularx}{\linewidth}{|l|X|}
+\hline
+\textbf{Use Case Name:} & \textbf{List package updates} \\
+\hline
+\textbf{Description:} & 
+Generate a list of updates available for installed packages. \\
+\hline
+\textbf{Actors:} & User \\
+\hline
+\textbf{Preconditions:} & 
+Package install list and list of available updates from network are available. \\
+\hline
+\textbf{Triggers:} & abt show-updates \\
+\hline
+\textbf{Basic Course of Events:} & 
+\begin{minipage}{\linewidth} 
+  \vspace{0.05em}
+  \begin{enumerate}
+    \item User submits an updates request.
+    \item Package install list is processed to check each package for updates.
+    \item Available updates retrieved from over network.
+    \item User is notified by showing available updates for all installed packages.
+  \end{enumerate}
+  \vspace{0.05em}
+\end{minipage}
+\\
+\hline
+\textbf{Exceptions:} & 
+Warning when available update is older than installed package version.
+\\
+\hline 
+\textbf{Postconditions:} &
+Package updates list has been generated.
+\\
+\hline
+\end{tabularx}
+
+

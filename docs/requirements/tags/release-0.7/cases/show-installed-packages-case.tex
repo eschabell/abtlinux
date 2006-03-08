@@ -1,0 +1,41 @@
+
+\begin{tabularx}{\linewidth}{|l|X|}
+\hline
+\textbf{Use Case Name:} & \textbf{Show installed packages} \\
+\hline
+\textbf{Description:} & Display a formatted listing of the installed packages. \\
+\hline
+\textbf{Actors:} & User \\
+\hline
+\textbf{Preconditions:} & Package install listing and network is available. \\
+\hline
+\textbf{Triggers:} & abt show-installed \\
+\hline
+\textbf{Basic Course of Events:} & 
+\begin{minipage}{\linewidth} 
+  \vspace{0.05em}
+  \begin{enumerate}
+    \item User requests an installed packages report.
+    \item Access the installed packages listing.
+    \item Access the remote update listing for most recent package versions.
+    \item List presented containing the installed package details:
+      \begin{enumerate}
+        \item name
+        \item date
+        \item installed version
+        \item available version local
+        \item available version abt repository
+      \end{enumerate}
+  \end{enumerate}
+  \vspace{0.05em}
+\end{minipage}
+\\
+\hline 
+\textbf{Exceptions:} & 
+Remote package update listing is not available, complete report by filling in nothing for available version. \\
+\hline 
+\textbf{Postconditions:} &
+User has been presented an overview of the installed packages. \\
+\hline
+\end{tabularx}
+

@@ -1,0 +1,35 @@
+\begin{tabularx}{\linewidth}{|l|X|}
+\hline
+\textbf{Use Case Name:} & \textbf{Purge old logs} \\
+\hline
+\textbf{Description:} & 
+This command will query the user about removal of all old package logs (configuration, build,
+install, integrity) and cache logs for packages that are no longer installed. \\
+\hline
+\textbf{Actors:} & User \\
+\hline
+\textbf{Preconditions:} & Installed package list is available. \\
+\hline
+\textbf{Triggers:} & abt purge-logs \\
+\hline
+\textbf{Basic Course of Events:} & 
+\begin{minipage}{\linewidth} 
+  \vspace{0.05em}
+  \begin{enumerate}
+    \item The user requests to remove old logs from the system.
+    \item The user is queried whether cache logs also need to be removed.
+    \item The installed package list is used to determine which package (versions) to keep.
+    \item All package logs are removed from the system for packages not currently installed.
+    \item Eventual cache logs are removed from the system for packages not currently installed.
+  \end{enumerate}
+  \vspace{0.05em}
+\end{minipage}
+\\
+\hline
+\textbf{Exceptions:} & none. \\
+\hline 
+\textbf{Postconditions:} & All old package log and eventual cache logs have been removed from the system. \\
+\hline
+\end{tabularx}
+
+

@@ -1,0 +1,32 @@
+\medskip
+
+\begin{tabularx}{\linewidth}{|l|X|}
+\hline
+\textbf{Use Case Name:} & \textbf{Pull package tree} \\
+\hline
+\textbf{Use Case Steps:} & 
+\begin{minipage}{\linewidth} 
+  \vspace{0.05em}
+  \begin{itemize}
+    \item User command \textbf{'abt update $<$name$>$'}.
+    \item If name is given, then update only that package tree via the source location entry.
+    \item Otherwise update all registered package trees.
+    \item Package tree(s) updated, \textbf{'svn -r REPO-NAME update'}.
+    \item Report to user update was successful.
+  \end{itemize}
+  \vspace{0.05em}
+\end{minipage}
+\\
+\hline 
+\textbf{Alternative Path:} &
+\begin{minipage}{\linewidth}
+  \vspace{0.05em} 
+  \begin{enumerate}
+    \item Package tree name not in listing, provide user with dialog to add new entry.
+    \item Package tree location unreachable, warn user.
+  \end{enumerate}
+  \vspace{0.05em} 
+\end{minipage}
+\\
+\hline
+\end{tabularx}

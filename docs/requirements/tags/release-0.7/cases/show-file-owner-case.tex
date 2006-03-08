@@ -1,0 +1,34 @@
+
+\begin{tabularx}{\linewidth}{|l|X|}
+\hline
+\textbf{Use Case Name:} & \textbf{Show file owner} \\
+\hline
+\textbf{Description:} & Display the owning package for a given file. \\
+\hline
+\textbf{Actors:} & User \\
+\hline
+\textbf{Preconditions:} & Package owning file is installed correctly. \\
+\hline
+\textbf{Triggers:} & abt show-owner $<$file$>$ \\
+\hline
+\textbf{Basic Course of Events:} & 
+\begin{minipage}{\linewidth} 
+  \vspace{0.05em}
+  \begin{enumerate}
+    \item User requests to view the owning package for a given file.
+    \item The file may given as relative path or complete path.
+    \item The install logs are searched to determine which package is owner.
+    \item Owning package is displayed to user.
+  \end{enumerate}
+  \vspace{0.05em}
+\end{minipage}
+\\
+\hline 
+\textbf{Exceptions:} & File not found to be owned by a tracked package, show warning. \\
+\hline 
+\textbf{Postconditions:} &
+User has been presented the name of the owning package for given file. \\
+\hline
+\end{tabularx}
+
+

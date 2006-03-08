@@ -1,0 +1,39 @@
+
+\begin{tabularx}{\linewidth}{|l|X|}
+\hline
+\textbf{Use Case Name:} & \textbf{Source location package tree} \\
+\hline
+\textbf{Description:} & 
+User can specify package tree repository, default being the AbTLinux provided repository. \\
+\hline
+\textbf{Actors:} & User \\
+\hline
+\textbf{Preconditions:} & 
+Given repository is available and reachable. \\
+\hline
+\textbf{Triggers:} & 
+User requests to set a package tree repository location. \\
+\hline
+\textbf{Basic Course of Events:} & 
+\begin{minipage}{\linewidth} 
+  \vspace{0.05em}
+  \begin{enumerate}
+    \item User provides a given URI as default package tree repository.
+    \item Fall-back is to use the AbTLinux provided repository.
+    \item User requests package tree update.
+    \item Package tree is updated from given URI.
+    \item User notified that package tree updated successfully.
+  \end{enumerate}
+  \vspace{0.05em}
+\end{minipage}
+\\
+\hline
+\textbf{Exceptions:} & 
+Unable to obtain package tree from URI, fall-back to AbTLinux repository. \\
+\hline 
+\textbf{Postconditions:} &
+Package tree has been updated successfully. \\
+\hline
+\end{tabularx}
+
+

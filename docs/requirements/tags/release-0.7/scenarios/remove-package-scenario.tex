@@ -1,0 +1,69 @@
+\medskip
+
+\begin{tabularx}{\linewidth}{|l|X|}
+\hline
+\textbf{Use Case Name:} & \textbf{Remove package} \\
+\hline
+\textbf{Use Case Steps:} & 
+\begin{minipage}{\linewidth} 
+  \vspace{0.05em}
+  \begin{itemize}
+    \item User command \textbf{'abt remove fortune'}.
+    \item \textbf{fortune} added to remove queue.
+    \item \emph{Details} section processed:
+    \begin{enumerate}
+      \item NAME = fortune
+      \item VERSION = \url{mod-9708}
+      \item SRCFILE = \url{fortune-mod-9708.tar.gz}
+      \item SRCDIR = \url{/usr/src/fortune-mod-9708}
+      \item SRCURL = \url{http://www.fortune.org/pub/fortune-mod-9708.tar.gz}
+      \item INTEGRITY = c016e3549942cbb
+      \item URL = \url{http://www.fortune.org}
+      \item LICENSE = BSD
+      \item DESCRIPTION = "Random quotations from a large database."
+    \end{enumerate}
+    \item Check to ensure package installed.
+    \item Dependencies for this package are checked.
+    \item Eventual broken dependencies are added to install queue to be rebuilt.
+    \item Retrieve fortune install info: \url{/var/state/abt/install/fortune-mod-9708.*}.
+    \begin{enumerate}
+      \item Package configure file: \url{/var/state/abt/install/fortune-mod-9708.config}.
+      \item Package build file: \url{/var/state/abt/install/fortune-mod-9708.build}.
+      \item Package install file: \url{/var/state/abt/install/fortune-mod-9708.install}.
+      \item Package integrity file: \url{/var/state/abt/install/fortune-mod-9708.integrity}.
+      \item Package sources: \url{/var/spool/abt/fortune-mod-9708.tar.gz}
+    \end{enumerate}
+    \item \emph{Preremove} section processed:
+    \begin{enumerate}
+      \item Process any given special instructions found here.
+    \end{enumerate}
+  \end{itemize}
+  \vspace{0.05em}
+\end{minipage}
+\\
+\hline 
+\end{tabularx}
+
+\begin{tabularx}{\linewidth}{|l|X|}
+\hline
+\textbf{Use Case Steps:} & 
+\begin{minipage}{\linewidth} 
+  \vspace{0.05em}
+  \begin{itemize}
+    \item Files cached in \url{/var/state/abt/cached/fortune/*}.
+    \item Process any configuration files:
+    \begin{enumerate}
+      \item Cache copies of existing configuration files: \url{fortune_mod-9708.user-configs}.
+      \item Base removal/keeping of existing configuration files on user provided option (globally set).
+    \end{enumerate}
+    \item Create compressed tarball of all relevant logs.
+    \item Remove fortune installed files.
+    \item User notified that fortune-mod-9708 has been successfully removed.
+  \end{itemize}
+  \vspace{0.05em}
+\end{minipage}
+\\
+\hline 
+\textbf{Alternative Path:} & None. \\
+\hline
+\end{tabularx}
