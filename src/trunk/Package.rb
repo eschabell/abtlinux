@@ -37,5 +37,8 @@ class Package
 	
 	def pre
 	end
+  
+  def install
+  end
 
 end
