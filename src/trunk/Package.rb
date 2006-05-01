@@ -30,8 +30,11 @@
 
 class Package
 
-	protected
-
+  ##
+  # Provides all the data needed for this package.
+  #
+  # RETURNS:  array containing the package details.
+  ##
 	def details
 	end
 	
