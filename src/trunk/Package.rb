@@ -38,7 +38,19 @@ class Package
 	def pre
 	end
   
+  def configure
+  end
+  
+  def build
+  end
+  
+  def preinstall
+  end
+  
   def install
   end
 
+  def post
+  end
+  
 end
