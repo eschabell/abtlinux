@@ -24,8 +24,8 @@ rm -rf ./doc
 rdoc --diagram --inline-source --line-numbers --title "AbTLinux Package Manager API" $FILES
 
 # remove old tarball and refresh with new docs.
-rm ./doc.tar.bz2
-tar cf doc.tar ./doc
-bzip2 doc.tar
+#rm ./doc.tar.bz2
+#tar cf doc.tar ./doc
+#bzip2 doc.tar
 
 # end docGen.sh
