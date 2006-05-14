@@ -38,21 +38,57 @@ class Package
 	def details
 	end
 	
+  ##
+  # PREliminary work will happen here such as downloading the tarball, 
+  # unpacking it, downloading and applying patches.
+  #
+  # RETURNS:  boolean True if completes sucessfully, otherwise false.
+  ##
 	def pre
 	end
   
+  ##
+  # Here we manage the ./configure step (or equivalent). We need to give ./configure 
+  # (or autogen.sh, or whatever) the correct options so files are to be placed later in the 
+  # right directories, so doc files and man pages are all in the same common location, etc. 
+  # Don't forget too that it's here where we interact with the user in case there are optionnal 
+  # dependencies.
+  #
+  # RETURNS:  boolean True if the completes sucessfully, otherwise false.
+  ##
   def configure
   end
   
+  ##
+  # Here is where the actual builing of the software starts, for example running 'make'.
+  #
+  # RETURNS:  boolean True if the completes sucessfully, otherwise false.
+  ##
   def build
   end
   
+  ##
+  # Any actions needed before the installation can occur will happen here, such as creating
+  # new user accounts, dealing with existing configuration files, etc.
+  #
+  # RETURNS:  boolean True if the completes sucessfully, otherwise false.
+  ##
   def preinstall
   end
-  
+
+  ##
+  # All files to be installed are installed here.
+  #
+  # RETURNS:  boolean True if the completes sucessfully, otherwise false.
+  ##
   def install
   end
-
+  
+  ##
+  # Last bits of installation. adding the service for automatic start in init.d for example.
+  #
+  # RETURNS:  boolean True if the completes sucessfully, otherwise false.
+  ##
   def post
   end
   

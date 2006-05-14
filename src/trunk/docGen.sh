@@ -17,4 +17,15 @@
 
 FILES=Package.rb
 
+# clean out existing docs directory.
+rm -rf ./doc
+
+# run the actual doc generation.
 rdoc --diagram --inline-source --line-numbers --title "AbTLinux Package Manager API" $FILES
+
+# remove old tarball and refresh with new docs.
+rm ./doc.tar.bz2
+tar cf doc.tar ./doc
+bzip2 doc.tar
+
+# end docGen.sh
