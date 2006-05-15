@@ -18,12 +18,10 @@
 FILES=Package.rb
 TEMPLATE=./abtTemplate.rb
 
-# clean out existing docs directory.
-rm -rf ./doc
-
 # run the actual doc generation.
 rdoc 	--diagram                               \
 			--template $TEMPLATE                    \
+			--fileboxes                             \
 			--inline-source                         \
 			--line-numbers                          \
 			--title "AbTLinux Package Manager API"  \

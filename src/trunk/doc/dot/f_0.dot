@@ -10,14 +10,20 @@ digraph TopLevel {
         color = black
     ]
 
-    Package [
-        fontcolor = black,
-        URL = "classes/Package.html",
-        shape = ellipse,
-        color = palegoldenrod,
-        style = filled,
-        label = "Package"
-    ]
+    subgraph cluster_1 {
+        fontname = Arial
+        color = red
+        label = "Package.rb"
+        Package [
+            fontcolor = black,
+            URL = "classes/Package.html",
+            shape = ellipse,
+            color = palegoldenrod,
+            style = filled,
+            label = "Package"
+        ]
+
+    }
 
 }
 
