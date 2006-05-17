@@ -33,7 +33,13 @@ class Package
   attr_reader :name, :version, :srcfile
   attr_reader :srcdir, :srcurl, :integrity
   attr_reader :url, :licence, :description
-
+  
+protected
+  
+private
+  
+public 
+    
   ##
   # Provides all the data needed for this package.
   #
