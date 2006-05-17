@@ -20,12 +20,12 @@ TEMPLATE=./abtTemplate.rb
 
 # run the actual doc generation.
 rdoc 	--diagram                               \
-			--template $TEMPLATE                    \
-			--fileboxes                             \
-			--inline-source                         \
-			--line-numbers                          \
-			--title "AbTLinux Package Manager API"  \
-			$FILES
+      --template $TEMPLATE                    \
+      --fileboxes                             \
+      --inline-source                         \
+      --line-numbers                          \
+      --title "AbTLinux Package Manager API"  \
+      $FILES
 
 # remove old tarball and refresh with new docs.
 #rm ./doc.tar.bz2

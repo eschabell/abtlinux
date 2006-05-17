@@ -33,7 +33,7 @@ class Package
   ##
   # Provides all the data needed for this package.
   #
-  # RETURNS:  array containing the package details.
+  # RETURNS:  HASH containing all package information.
   ##
 	def details
 	end
