@@ -30,16 +30,6 @@
 
 class Package
 
-  ##
-  # <b>VARIABEL:</b> name - The name of the software package.
-  ##
-  @name
-  
-  ##
-  # <b>VARIABEL:</b> version - The version number of the software package.
-  ##
-  @version
-  
   attr_reader :name, :version, :srcfile
   attr_reader :srcdir, :srcurl, :integrity
   attr_reader :url, :licence, :description
