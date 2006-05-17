@@ -30,19 +30,23 @@
 
 class Package
 
+  attr_reader :name, :version, :srcfile
+  attr_reader :srcdir, :srcurl, :integrity
+  attr_reader :url, :licence, :description
+
   ##
   # Provides all the data needed for this package.
   #
-  # RETURNS:  HASH containing all package information.
+  # <b>RETURNS:</b>  <i>hash</i> - Contains all package information.
   ##
 	def details
 	end
 	
   ##
-  # PREliminary work will happen here such as downloading the tarball, 
+  # Preliminary work will happen here such as downloading the tarball, 
   # unpacking it, downloading and applying patches.
   #
-  # RETURNS:  boolean True if completes sucessfully, otherwise false.
+  # <b>RETURNS:</b>  <i>boolean</i> - True if completes sucessfully, otherwise false.
   ##
 	def pre
 	end
@@ -54,7 +58,7 @@ class Package
   # Don't forget too that it's here where we interact with the user in case there are optionnal 
   # dependencies.
   #
-  # RETURNS:  boolean True if the completes sucessfully, otherwise false.
+  # <b>RETURNS:</b>  <i>boolean</i> - True if the completes sucessfully, otherwise false.
   ##
   def configure
   end
@@ -62,7 +66,7 @@ class Package
   ##
   # Here is where the actual builing of the software starts, for example running 'make'.
   #
-  # RETURNS:  boolean True if the completes sucessfully, otherwise false.
+  # <b>RETURNS:</b>  <i>boolean</i> - True if the completes sucessfully, otherwise false.
   ##
   def build
   end
@@ -71,7 +75,7 @@ class Package
   # Any actions needed before the installation can occur will happen here, such as creating
   # new user accounts, dealing with existing configuration files, etc.
   #
-  # RETURNS:  boolean True if the completes sucessfully, otherwise false.
+  # <b>RETURNS:</b>  <i>boolean</i> - True if the completes sucessfully, otherwise false.
   ##
   def preinstall
   end
@@ -79,7 +83,7 @@ class Package
   ##
   # All files to be installed are installed here.
   #
-  # RETURNS:  boolean True if the completes sucessfully, otherwise false.
+  # <b>RETURNS:</b>  <i>boolean</i> - True if the completes sucessfully, otherwise false.
   ##
   def install
   end
@@ -87,7 +91,7 @@ class Package
   ##
   # Last bits of installation. adding the service for automatic start in init.d for example.
   #
-  # RETURNS:  boolean True if the completes sucessfully, otherwise false.
+  # <b>RETURNS:</b>  <i>boolean</i> - True if the completes sucessfully, otherwise false.
   ##
   def post
   end

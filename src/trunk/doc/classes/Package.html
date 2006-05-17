@@ -132,6 +132,72 @@ Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
 
 
 
+  <div class="sectiontitle">Attributes</div>
+  <table border='0' cellpadding='5'>
+  <tr valign='top'>
+    <td class='attr-rw'>
+[R]
+    </td>
+    <td class='attr-name'>description</td>
+    <td class='attr-desc'></td>
+  </tr>
+  <tr valign='top'>
+    <td class='attr-rw'>
+[R]
+    </td>
+    <td class='attr-name'>integrity</td>
+    <td class='attr-desc'></td>
+  </tr>
+  <tr valign='top'>
+    <td class='attr-rw'>
+[R]
+    </td>
+    <td class='attr-name'>licence</td>
+    <td class='attr-desc'></td>
+  </tr>
+  <tr valign='top'>
+    <td class='attr-rw'>
+[R]
+    </td>
+    <td class='attr-name'>name</td>
+    <td class='attr-desc'></td>
+  </tr>
+  <tr valign='top'>
+    <td class='attr-rw'>
+[R]
+    </td>
+    <td class='attr-name'>srcdir</td>
+    <td class='attr-desc'></td>
+  </tr>
+  <tr valign='top'>
+    <td class='attr-rw'>
+[R]
+    </td>
+    <td class='attr-name'>srcfile</td>
+    <td class='attr-desc'></td>
+  </tr>
+  <tr valign='top'>
+    <td class='attr-rw'>
+[R]
+    </td>
+    <td class='attr-name'>srcurl</td>
+    <td class='attr-desc'></td>
+  </tr>
+  <tr valign='top'>
+    <td class='attr-rw'>
+[R]
+    </td>
+    <td class='attr-name'>url</td>
+    <td class='attr-desc'></td>
+  </tr>
+  <tr valign='top'>
+    <td class='attr-rw'>
+[R]
+    </td>
+    <td class='attr-name'>version</td>
+    <td class='attr-desc'></td>
+  </tr>
+  </table>
 
 <div class="sectiontitle">Public Instance methods</div>
 <div class="method">
@@ -144,16 +210,17 @@ Here is where the actual builing of the software starts, for example
 running &#8216;make&#8217;.
 </p>
 <p>
-RETURNS: boolean True if the completes sucessfully, otherwise false.
+<b>RETURNS:</b> <em>boolean</em> - True if the completes sucessfully,
+otherwise false.
 </p>
   </div>
 <div class="sourcecode">
   <p class="source-link">[ <a href="javascript:toggleSource('M000004_source')" id="l_M000004_source">show source</a> ]</p>
   <div id="M000004_source" class="dyn-source">
 <pre>
-    <span class="ruby-comment cmt"># File Package.rb, line 67</span>
-67:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">build</span>
-68:   <span class="ruby-keyword kw">end</span>
+    <span class="ruby-comment cmt"># File Package.rb, line 71</span>
+71:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">build</span>
+72:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>
@@ -172,16 +239,17 @@ it&#8217;s here where we interact with the user in case there are optionnal
 dependencies.
 </p>
 <p>
-RETURNS: boolean True if the completes sucessfully, otherwise false.
+<b>RETURNS:</b> <em>boolean</em> - True if the completes sucessfully,
+otherwise false.
 </p>
   </div>
 <div class="sourcecode">
   <p class="source-link">[ <a href="javascript:toggleSource('M000003_source')" id="l_M000003_source">show source</a> ]</p>
   <div id="M000003_source" class="dyn-source">
 <pre>
-    <span class="ruby-comment cmt"># File Package.rb, line 59</span>
-59:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">configure</span>
-60:   <span class="ruby-keyword kw">end</span>
+    <span class="ruby-comment cmt"># File Package.rb, line 63</span>
+63:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">configure</span>
+64:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>
@@ -195,16 +263,16 @@ RETURNS: boolean True if the completes sucessfully, otherwise false.
 Provides all the data needed for this package.
 </p>
 <p>
-RETURNS: HASH containing all package information.
+<b>RETURNS:</b> <em>hash</em> - Contains all package information.
 </p>
   </div>
 <div class="sourcecode">
   <p class="source-link">[ <a href="javascript:toggleSource('M000001_source')" id="l_M000001_source">show source</a> ]</p>
   <div id="M000001_source" class="dyn-source">
 <pre>
-    <span class="ruby-comment cmt"># File Package.rb, line 38</span>
-38:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">details</span>
-39:         <span class="ruby-keyword kw">end</span>
+    <span class="ruby-comment cmt"># File Package.rb, line 42</span>
+42:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">details</span>
+43:         <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>
@@ -218,16 +286,17 @@ RETURNS: HASH containing all package information.
 All files to be installed are installed here.
 </p>
 <p>
-RETURNS: boolean True if the completes sucessfully, otherwise false.
+<b>RETURNS:</b> <em>boolean</em> - True if the completes sucessfully,
+otherwise false.
 </p>
   </div>
 <div class="sourcecode">
   <p class="source-link">[ <a href="javascript:toggleSource('M000006_source')" id="l_M000006_source">show source</a> ]</p>
   <div id="M000006_source" class="dyn-source">
 <pre>
-    <span class="ruby-comment cmt"># File Package.rb, line 84</span>
-84:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">install</span>
-85:   <span class="ruby-keyword kw">end</span>
+    <span class="ruby-comment cmt"># File Package.rb, line 88</span>
+88:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">install</span>
+89:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>
@@ -242,16 +311,17 @@ Last bits of installation. adding the service for automatic start in init.d
 for example.
 </p>
 <p>
-RETURNS: boolean True if the completes sucessfully, otherwise false.
+<b>RETURNS:</b> <em>boolean</em> - True if the completes sucessfully,
+otherwise false.
 </p>
   </div>
 <div class="sourcecode">
   <p class="source-link">[ <a href="javascript:toggleSource('M000007_source')" id="l_M000007_source">show source</a> ]</p>
   <div id="M000007_source" class="dyn-source">
 <pre>
-    <span class="ruby-comment cmt"># File Package.rb, line 92</span>
-92:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">post</span>
-93:   <span class="ruby-keyword kw">end</span>
+    <span class="ruby-comment cmt"># File Package.rb, line 96</span>
+96:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">post</span>
+97:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>
@@ -262,20 +332,21 @@ RETURNS: boolean True if the completes sucessfully, otherwise false.
   </div>
   <div class="description">
   <p>
-PREliminary work will happen here such as downloading the tarball,
+Preliminary work will happen here such as downloading the tarball,
 unpacking it, downloading and applying patches.
 </p>
 <p>
-RETURNS: boolean True if completes sucessfully, otherwise false.
+<b>RETURNS:</b> <em>boolean</em> - True if completes sucessfully, otherwise
+false.
 </p>
   </div>
 <div class="sourcecode">
   <p class="source-link">[ <a href="javascript:toggleSource('M000002_source')" id="l_M000002_source">show source</a> ]</p>
   <div id="M000002_source" class="dyn-source">
 <pre>
-    <span class="ruby-comment cmt"># File Package.rb, line 47</span>
-47:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">pre</span>
-48:         <span class="ruby-keyword kw">end</span>
+    <span class="ruby-comment cmt"># File Package.rb, line 51</span>
+51:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">pre</span>
+52:         <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>
@@ -291,16 +362,17 @@ as creating new user accounts, dealing with existing configuration files,
 etc.
 </p>
 <p>
-RETURNS: boolean True if the completes sucessfully, otherwise false.
+<b>RETURNS:</b> <em>boolean</em> - True if the completes sucessfully,
+otherwise false.
 </p>
   </div>
 <div class="sourcecode">
   <p class="source-link">[ <a href="javascript:toggleSource('M000005_source')" id="l_M000005_source">show source</a> ]</p>
   <div id="M000005_source" class="dyn-source">
 <pre>
-    <span class="ruby-comment cmt"># File Package.rb, line 76</span>
-76:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">preinstall</span>
-77:   <span class="ruby-keyword kw">end</span>
+    <span class="ruby-comment cmt"># File Package.rb, line 80</span>
+80:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">preinstall</span>
+81:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>
