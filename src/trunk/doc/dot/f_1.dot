@@ -1,0 +1,38 @@
+digraph TopLevel {
+    compound = true
+    bgcolor = lightcyan1
+    fontname = Arial
+    fontsize = 8
+    label = "InstallPackage.rb"
+    node [
+        fontname = Arial,
+        fontsize = 8,
+        color = black
+    ]
+
+    subgraph cluster_2 {
+        fontname = Arial
+        color = red
+        label = "InstallPackage.rb"
+        InstallPackage [
+            fontcolor = black,
+            URL = "classes/InstallPackage.html",
+            shape = ellipse,
+            color = palegoldenrod,
+            style = filled,
+            label = "InstallPackage"
+        ]
+
+    }
+
+    Package [
+        URL = "classes/Package.html",
+        label = "Package"
+    ]
+
+    Package -> InstallPackage [
+
+    ]
+
+}
+

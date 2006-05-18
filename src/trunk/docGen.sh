@@ -15,8 +15,8 @@
 #     REVISION:  ---
 #===============================================================================
 
-FILES=Package.rb
-TEMPLATE=./abtTemplate.rb
+FILES="Package.rb InstallPackage.rb";
+TEMPLATE="./abtTemplate.rb";
 
 # run the actual doc generation.
 rdoc 	--diagram                               \
