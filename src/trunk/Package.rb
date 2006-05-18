@@ -29,16 +29,15 @@
 ##
 
 class Package
-
+  
   protected
   
   private
   
   public
 
-    attr_reader :name, :version, :srcfile
-    attr_reader :srcdir, :srcurl, :integrity
-    attr_reader :url, :licence, :description
+    attr_reader :NAME, :VERSION, :SRCFILE, :SRCDIR, :SRCURL, :INTEGRITY
+    attr_reader :URL, :LICENSE, :DESCRIPTION
     
     ##
     # Provides all the data needed for this package.
