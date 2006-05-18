@@ -42,7 +42,7 @@ class Package
     ##
     # Provides all the data needed for this package.
     #
-    # <b>RETURNS:</b>  <i>hash</i> - Contains all package attributes.
+    # <b>RETURNS:</b>  <i>hash</i> - Contains all package attributes (constants).
     ##
     def details
     end
