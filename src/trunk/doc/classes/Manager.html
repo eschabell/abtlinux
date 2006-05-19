@@ -4,7 +4,7 @@
      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
   <head>
-    <title>Class: InstallPackage</title>
+    <title>Class: Manager</title>
     <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
     <link rel="stylesheet" href=".././rdoc-style.css" type="text/css" media="screen" />
 
@@ -51,21 +51,19 @@
 
   <body>
   <table width="100%" border='0' cellpadding='0' cellspacing='0' class='banner'><tr>
-  <td class="file-title"><span class="file-title-prefix">Class</span><br />InstallPackage</td>
+  <td class="file-title"><span class="file-title-prefix">Class</span><br />Manager</td>
   <td align="right">
     <table cellspacing=0 cellpadding=2>
       <tr valign="top">
         <td>In:</td>
         <td>
-<a href="../files/InstallPackage_rb.html">InstallPackage.rb</a>
+<a href="../files/Manager_rb.html">Manager.rb</a>
         </td>
       </tr>
     <tr>
       <td>Parent:</td>
       <td>
-        <a href="Package.html">
-Package
-         </a>
+Object
      </td>
    </tr>
          </table>
@@ -78,18 +76,17 @@ Package
       <div id="content">
   <table cellpadding='0' cellspacing='0' border='0' width="100%"><tr><td align="center">
     <map id="map" name="map">
-  <area shape="RECT" coords="29,104,127,152"      href="InstallPackage.html" alt="InstallPackage">
-  <area shape="RECT" coords="42,8,114,56"      href="Package.html" alt="Package">
+  <area shape="RECT" coords="29,52,101,100"      href="Manager.html" alt="Manager">
 </map>
 <img src="../dot/f_1.png" usemap="#map" border=0 alt="TopLevel">
   </td></tr></table>
 
   <div class="description"><p>
-InstallPackage.rb
+Manager.rb
 </p>
 <p>
-<a href="InstallPackage.html">InstallPackage</a> class provides for
-installation of AbTLinux packages.
+<a href="Manager.html">Manager</a> is super class for all other AbTLinux
+manager classes to inherit from.
 </p>
 <p>
 Created by Eric D. Schabell &lt;erics@abtlinux.org&gt; Copyright 2006, GPL.
@@ -118,12 +115,53 @@ Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
 
 
 
+  <div class="sectiontitle">Methods</div>
+  <ul>
+  <li><a href="#M000001">new</a></li>
+  </ul>
 
 
 
 
 
+  <div class="sectiontitle">Attributes</div>
+  <table border='0' cellpadding='5'>
+  <tr valign='top'>
+    <td class='attr-rw'>
+[R]
+    </td>
+    <td class='attr-name'>managerType</td>
+    <td class='attr-desc'></td>
+  </tr>
+  </table>
 
+<div class="sectiontitle">Public Class methods</div>
+<div class="method">
+  <div class="title">
+    <a name="M000001"></a><b>new</b>( type )
+  </div>
+  <div class="description">
+  <p>
+Constructor that sets the type of manager being created.
+</p>
+<p>
+<b>PARAM</b> <em>String</em> - the name of the manager type being created.
+<b>RETURN</b> <em><a href="Manager.html">Manager</a></em> - an initialized
+<a href="Manager.html">Manager</a> object.
+</p>
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000001_source')" id="l_M000001_source">show source</a> ]</p>
+  <div id="M000001_source" class="dyn-source">
+<pre>
+    <span class="ruby-comment cmt"># File Manager.rb, line 45</span>
+45:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>( <span class="ruby-identifier">type</span> )
+46:                 <span class="ruby-ivar">@managerType</span> = <span class="ruby-identifier">type</span>
+47:         <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
 </div>
 
   </div>

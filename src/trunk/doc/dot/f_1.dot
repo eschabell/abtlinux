@@ -3,7 +3,7 @@ digraph TopLevel {
     bgcolor = lightcyan1
     fontname = Arial
     fontsize = 8
-    label = "InstallPackage.rb"
+    label = "Manager.rb"
     node [
         fontname = Arial,
         fontsize = 8,
@@ -13,26 +13,17 @@ digraph TopLevel {
     subgraph cluster_2 {
         fontname = Arial
         color = red
-        label = "InstallPackage.rb"
-        InstallPackage [
+        label = "Manager.rb"
+        Manager [
             fontcolor = black,
-            URL = "classes/InstallPackage.html",
+            URL = "classes/Manager.html",
             shape = ellipse,
             color = palegoldenrod,
             style = filled,
-            label = "InstallPackage"
+            label = "Manager"
         ]
 
     }
-
-    Package [
-        URL = "classes/Package.html",
-        label = "Package"
-    ]
-
-    Package -> InstallPackage [
-
-    ]
 
 }
 

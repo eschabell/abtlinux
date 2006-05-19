@@ -1,9 +1,10 @@
 #!/usr/bin/ruby -w
 
 ##
-# InstallPackage.rb 
+# Manager.rb 
 #
-# InstallPackage class provides for installation of AbTLinux packages.
+# Manager is super class for all other AbTLinux manager classes to inherit
+# from.
 #
 # Created by Eric D. Schabell <erics@abtlinux.org>
 # Copyright 2006, GPL.
@@ -25,12 +26,24 @@
 # St, Fifth Floor, Boston, MA 02110-1301  USA
 ##
 
-class InstallPackage < Package
+class Manager
 
+	attr_reader :managerType
+	
   protected
   
   private
   
   public
+
+	##
+	# Constructor that sets the type of manager being created.
+	#
+	# <b>PARAM</b> <i>String</i> - the name of the manager type being created.
+	# <b>RETURN</b> <i>Manager</i> - an initialized Manager object. 
+	##
+	def initialize( type )
+		@managerType = type
+	end
   
 end
