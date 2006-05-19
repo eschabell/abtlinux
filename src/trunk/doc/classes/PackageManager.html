@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+  <head>
+    <title>Class: PackageManager</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+    <link rel="stylesheet" href=".././rdoc-style.css" type="text/css" media="screen" />
+
+    <script language="JavaScript" type="text/javascript">
+    // <![CDATA[
+
+        function toggleSource( id )
+        {
+          var elem
+          var link
+
+          if( document.getElementById )
+          {
+            elem = document.getElementById( id )
+            link = document.getElementById( "l_" + id )
+          }
+          else if ( document.all )
+          {
+            elem = eval( "document.all." + id )
+            link = eval( "document.all.l_" + id )
+          }
+          else
+            return false;
+
+          if( elem.style.display == "block" )
+          {
+            elem.style.display = "none"
+            link.innerHTML = "show source"
+          }
+          else
+          {
+            elem.style.display = "block"
+            link.innerHTML = "hide source"
+          }
+        }
+
+        function openCode( url )
+        {
+          window.open( url, "SOURCE_CODE", "width=400,height=400,scrollbars=yes" )
+        }
+      // ]]>
+    </script>
+  </head>
+
+  <body>
+  <table width="100%" border='0' cellpadding='0' cellspacing='0' class='banner'><tr>
+  <td class="file-title"><span class="file-title-prefix">Class</span><br />PackageManager</td>
+  <td align="right">
+    <table cellspacing=0 cellpadding=2>
+      <tr valign="top">
+        <td>In:</td>
+        <td>
+<a href="../files/PackageManager_rb.html">PackageManager.rb</a>
+        </td>
+      </tr>
+    <tr>
+      <td>Parent:</td>
+      <td>
+        <a href="Manager.html">
+Manager
+         </a>
+     </td>
+   </tr>
+         </table>
+        </td>
+        </tr>
+      </table>
+ <!-- banner header -->
+
+  <div id="bodyContent">
+      <div id="content">
+  <table cellpadding='0' cellspacing='0' border='0' width="100%"><tr><td align="center">
+    <map id="map" name="map">
+  <area shape="RECT" coords="29,104,138,152"      href="PackageManager.html" alt="PackageManager">
+  <area shape="RECT" coords="48,8,120,56"      href="Manager.html" alt="Manager">
+</map>
+<img src="../dot/f_2.png" usemap="#map" border=0 alt="TopLevel">
+  </td></tr></table>
+
+  <div class="description"><p>
+PackageManager.rb
+</p>
+<p>
+<a href="PackageManager.html">PackageManager</a> class will take care of
+the installation, removal, updating, downgrading and freezing of AbTLinux
+software packages.
+</p>
+<p>
+Created by Eric D. Schabell &lt;erics@abtlinux.org&gt; Copyright 2006, GPL.
+</p>
+<p>
+This file is part of AbTLinux.
+</p>
+<p>
+AbTLinux is free software; you can redistribute it and/or modify it under
+the terms of the GNU General Public License as published by the Free
+Software Foundation; either version 2 of the License, or (at your option)
+any later version.
+</p>
+<p>
+AbTLinux is distributed in the hope that it will be useful, but WITHOUT ANY
+WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
+details.
+</p>
+<p>
+You should have received a copy of the GNU General Public License along
+with AbTLinux; if not, write to the Free Software Foundation, Inc., 51
+Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
+</p>
+</div>
+
+
+
+  <div class="sectiontitle">Methods</div>
+  <ul>
+  <li><a href="#M000005">downgrade</a></li>
+  <li><a href="#M000002">install</a></li>
+  <li><a href="#M000001">new</a></li>
+  <li><a href="#M000003">reinstall</a></li>
+  <li><a href="#M000004">remove</a></li>
+  <li><a href="#M000006">remove</a></li>
+  </ul>
+
+
+
+
+
+
+<div class="sectiontitle">Public Class methods</div>
+<div class="method">
+  <div class="title">
+    <a name="M000001"></a><b>new</b>()
+  </div>
+  <div class="description">
+  <p>
+Constructor that sets the type of manager being created.
+</p>
+<p>
+<b>RETURN</b> <em><a href="PackageManager.html">PackageManager</a></em> -
+an initialized <a href="PackageManager.html">PackageManager</a> object.
+</p>
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000001_source')" id="l_M000001_source">show source</a> ]</p>
+  <div id="M000001_source" class="dyn-source">
+<pre>
+    <span class="ruby-comment cmt"># File PackageManager.rb, line 42</span>
+42:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>
+43:                 <span class="ruby-ivar">@managerType</span> = <span class="ruby-value str">&quot;PackageManager&quot;</span>
+44:         <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="sectiontitle">Public Instance methods</div>
+<div class="method">
+  <div class="title">
+    <a name="M000005"></a><b>downgrade</b>( packageName, verison )
+  </div>
+  <div class="description">
+  <p>
+Downgrades a given package.
+</p>
+<p>
+<b>PARAM</b> <em>String</em> - the name of the package to be downgraded.
+<b>PARAM</b> <em>String</em> - the version number to be downgraded to.
+<b>RETURN</b> <em>boolean</em> - True if the package is downgraded,
+otherwise false.
+</p>
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000005_source')" id="l_M000005_source">show source</a> ]</p>
+  <div id="M000005_source" class="dyn-source">
+<pre>
+    <span class="ruby-comment cmt"># File PackageManager.rb, line 84</span>
+84:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">downgrade</span>( <span class="ruby-identifier">packageName</span>, <span class="ruby-identifier">verison</span> )
+85:         <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000002"></a><b>install</b>( packageName )
+  </div>
+  <div class="description">
+  <p>
+Installs a given package.
+</p>
+<p>
+<b>PARAM</b> <em>String</em> - the name of the package to be installed.
+<b>RETURN</b> <em>boolean</em> - True if the package is installed,
+otherwise false.
+</p>
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000002_source')" id="l_M000002_source">show source</a> ]</p>
+  <div id="M000002_source" class="dyn-source">
+<pre>
+    <span class="ruby-comment cmt"># File PackageManager.rb, line 53</span>
+53:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">install</span>( <span class="ruby-identifier">packageName</span> )
+54:         <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000003"></a><b>reinstall</b>( packageName )
+  </div>
+  <div class="description">
+  <p>
+Reinstalls a given package.
+</p>
+<p>
+<b>PARAM</b> <em>String</em> - the name of the package to be reinstalled.
+<b>RETURN</b> <em>boolean</em> - True if the package is reinstalled,
+otherwise false.
+</p>
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000003_source')" id="l_M000003_source">show source</a> ]</p>
+  <div id="M000003_source" class="dyn-source">
+<pre>
+    <span class="ruby-comment cmt"># File PackageManager.rb, line 63</span>
+63:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">reinstall</span>( <span class="ruby-identifier">packageName</span> )
+64:         <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000004"></a><b>remove</b>( packageName )
+  </div>
+  <div class="description">
+  <p>
+Removes a given package.
+</p>
+<p>
+<b>PARAM</b> <em>String</em> - the name of the package to be removed.
+<b>RETURN</b> <em>boolean</em> - True if the package is removed, otherwise
+false.
+</p>
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000004_source')" id="l_M000004_source">show source</a> ]</p>
+  <div id="M000004_source" class="dyn-source">
+<pre>
+    <span class="ruby-comment cmt"># File PackageManager.rb, line 73</span>
+73:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">remove</span>( <span class="ruby-identifier">packageName</span> )
+74:         <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000006"></a><b>remove</b>( packageName )
+  </div>
+  <div class="description">
+  <p>
+Freezes a given package. If successful will add give package to the frozen
+list.
+</p>
+<p>
+<b>PARAM</b> <em>String</em> - the name of the package to be frozen.
+<b>RETURN</b> <em>boolean</em> - True if the package is frozen, otherwise
+false.
+</p>
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000006_source')" id="l_M000006_source">show source</a> ]</p>
+  <div id="M000006_source" class="dyn-source">
+<pre>
+    <span class="ruby-comment cmt"># File PackageManager.rb, line 95</span>
+95:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">remove</span>( <span class="ruby-identifier">packageName</span> )
+96:         <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+</div>
+
+  </div>
+
+    </body>
+</html>
