@@ -40,7 +40,7 @@ class PackageManager < Manager
 	# <b>RETURN</b> <i>PackageManager</i> - an initialized PackageManager object. 
 	##
 	def initialize
-		@managerType = "PackageManager"
+		@managerType = "Package Manager"
 	end
 
 	##

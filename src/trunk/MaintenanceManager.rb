@@ -1,9 +1,9 @@
 #!/usr/bin/ruby -w
 
 ##
-# DownloadManager.rb 
+# MainenanceManager.rb 
 #
-# DownloadManager class handles all downloading of components needed for
+# MainenanceManager class handles all downloading of components needed for
 # AbTLinux.
 #
 # Created by Eric D. Schabell <erics@abtlinux.org>
@@ -26,7 +26,7 @@
 # St, Fifth Floor, Boston, MA 02110-1301  USA
 ##
 
-class DownloadManager < Manager
+class MainenanceManager < Manager
 
   protected
   
@@ -37,40 +37,31 @@ class DownloadManager < Manager
 	##
 	# Constructor that sets the type of manager being created.
 	#
-	# <b>RETURN</b> <i>DownloadManager</i> - an initialized DownloadManager object. 
+	# <b>RETURN</b> <i>MainenanceManager</i> - an initialized MainenanceManager object. 
 	##
 	def initialize
-		@managerType = "Download Manager"
+		@managerType = "Mainenance Manager"
 	end
 
 	##
-	# Downloads a given package source.
+	# Sets the URI of a central repository for pre-compiled packages.
 	#
-	# <b>PARAM</b> <i>String</i> - the name of the package for which the source
-	# is to be downloaded.
-	# <b>RETURN</b> <i>boolean</i> - True if the package source has been
-	# downloaded, otherwise false.
+	# <b>PARAM</b> <i>String</i> - the URI where the central repository is
+	# located.
+	# <b>RETURN</b> <i>boolean</i> - True if the URI is set, otherwise false.
 	##
-	def retreiveSource( packageName )
+	def setCentralRepo( uri )
 	end
   
 	##
-	# Downloads a given pacakge tree.
+	# Sets the location where the package tree is to be downloaded from, can be
+	# set to a local location.
 	#
-	# <b>PARAM</b> <i>String</i> - the name of the package tree to be retrieved.
-	# <b>RETURN</b> <i>boolean</i> - True if the package tree is retrieved, otherwise
+	# <b>PARAM</b> <i>String</i> - the location of the package tree.
+	# <b>RETURN</b> <i>boolean</i> - True if the package tree location is set, otherwise
 	# false.
 	##
-	def retrieveTree( packageTreeName )
-	end
-  
-	##
-	# Retrieves the AbTLinux news feed.
-	#
-	# <b>RETURN</b> <i>boolean</i> - True if the AbTLinux news feed has been
-	# retrieved, otherwise false.
-	##
-	def retrieveNews
+	def setPackageTreeLocation( location )
 	end
   
 end

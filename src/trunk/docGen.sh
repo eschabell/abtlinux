@@ -15,7 +15,7 @@
 #     REVISION:  ---
 #===============================================================================
 
-FILES="Package.rb Manager.rb PackageManager.rb DownloadManager.rb";
+FILES="Package.rb Manager.rb PackageManager.rb DownloadManager.rb MaintenanceManager.rb";
 TEMPLATE="./abtTemplate.rb";
 
 # run the actual doc generation.
