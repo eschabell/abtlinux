@@ -26,7 +26,7 @@
 # St, Fifth Floor, Boston, MA 02110-1301  USA
 ##
 
-class PackageManager < Manager
+class PackageManager
 
   protected
   
@@ -35,12 +35,11 @@ class PackageManager < Manager
   public
 
 	##
-	# Constructor that sets the type of manager being created.
+	# Constructor for PackageManager.
 	#
 	# <b>RETURN</b> <i>PackageManager</i> - an initialized PackageManager object. 
 	##
 	def initialize
-		@managerType = "Package Manager"
 	end
 
 	##
@@ -50,7 +49,7 @@ class PackageManager < Manager
 	# <b>RETURN</b> <i>boolean</i> - True if the package is installed, otherwise
 	# false.
 	##
-	def install( packageName )
+	def install( package )
 	end
   
 	##
@@ -60,7 +59,7 @@ class PackageManager < Manager
 	# <b>RETURN</b> <i>boolean</i> - True if the package is reinstalled, otherwise
 	# false.
 	##
-	def reinstall( packageName )
+	def reinstall( package )
 	end
   
 	##
@@ -70,7 +69,7 @@ class PackageManager < Manager
 	# <b>RETURN</b> <i>boolean</i> - True if the package is removed, otherwise
 	# false.
 	##
-	def remove( packageName )
+	def remove( package )
 	end
   
 	##
@@ -81,7 +80,7 @@ class PackageManager < Manager
 	# <b>RETURN</b> <i>boolean</i> - True if the package is downgraded, otherwise
 	# false.
 	##
-	def downgrade( packageName, verison )
+	def downgrade( package, verison )
 	end
   
 	##
@@ -92,7 +91,7 @@ class PackageManager < Manager
 	# <b>RETURN</b> <i>boolean</i> - True if the package is frozen, otherwise
 	# false.
 	##
-	def remove( packageName )
+	def freezePackage( package )
 	end
   
 end

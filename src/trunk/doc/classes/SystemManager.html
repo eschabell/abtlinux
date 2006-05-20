@@ -1,0 +1,396 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+  <head>
+    <title>Class: SystemManager</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+    <link rel="stylesheet" href=".././rdoc-style.css" type="text/css" media="screen" />
+
+    <script language="JavaScript" type="text/javascript">
+    // <![CDATA[
+
+        function toggleSource( id )
+        {
+          var elem
+          var link
+
+          if( document.getElementById )
+          {
+            elem = document.getElementById( id )
+            link = document.getElementById( "l_" + id )
+          }
+          else if ( document.all )
+          {
+            elem = eval( "document.all." + id )
+            link = eval( "document.all.l_" + id )
+          }
+          else
+            return false;
+
+          if( elem.style.display == "block" )
+          {
+            elem.style.display = "none"
+            link.innerHTML = "show source"
+          }
+          else
+          {
+            elem.style.display = "block"
+            link.innerHTML = "hide source"
+          }
+        }
+
+        function openCode( url )
+        {
+          window.open( url, "SOURCE_CODE", "width=400,height=400,scrollbars=yes" )
+        }
+      // ]]>
+    </script>
+  </head>
+
+  <body>
+  <table width="100%" border='0' cellpadding='0' cellspacing='0' class='banner'><tr>
+  <td class="file-title"><span class="file-title-prefix">Class</span><br />SystemManager</td>
+  <td align="right">
+    <table cellspacing=0 cellpadding=2>
+      <tr valign="top">
+        <td>In:</td>
+        <td>
+<a href="../files/SystemManager_rb.html">SystemManager.rb</a>
+        </td>
+      </tr>
+    <tr>
+      <td>Parent:</td>
+      <td>
+Object
+     </td>
+   </tr>
+         </table>
+        </td>
+        </tr>
+      </table>
+ <!-- banner header -->
+
+  <div id="bodyContent">
+      <div id="content">
+  <table cellpadding='0' cellspacing='0' border='0' width="100%"><tr><td align="center">
+    <map id="map" name="map">
+  <area shape="RECT" coords="29,52,133,100"      href="SystemManager.html" alt="SystemManager">
+</map>
+<img src="../dot/f_3.png" usemap="#map" border=0 alt="TopLevel">
+  </td></tr></table>
+
+  <div class="description"><p>
+SystemManager.rb
+</p>
+<p>
+<a href="SystemManager.html">SystemManager</a> class handles all aspects of
+the AbTLinux system. It takes care of such tasks as cleanup, fixing,
+verification and management of settings within the system.
+</p>
+<p>
+Created by Eric D. Schabell &lt;erics@abtlinux.org&gt; Copyright 2006, GPL.
+</p>
+<p>
+This file is part of AbTLinux.
+</p>
+<p>
+AbTLinux is free software; you can redistribute it and/or modify it under
+the terms of the GNU General Public License as published by the Free
+Software Foundation; either version 2 of the License, or (at your option)
+any later version.
+</p>
+<p>
+AbTLinux is distributed in the hope that it will be useful, but WITHOUT ANY
+WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
+details.
+</p>
+<p>
+You should have received a copy of the GNU General Public License along
+with AbTLinux; if not, write to the Free Software Foundation, Inc., 51
+Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
+</p>
+</div>
+
+
+
+  <div class="sectiontitle">Methods</div>
+  <ul>
+  <li><a href="#M000009">cleanupLogs</a></li>
+  <li><a href="#M000008">cleanupPackageSources</a></li>
+  <li><a href="#M000014">fixPackage</a></li>
+  <li><a href="#M000007">new</a></li>
+  <li><a href="#M000015">setCentralRepo</a></li>
+  <li><a href="#M000016">setPackageTreeLocation</a></li>
+  <li><a href="#M000010">verifyInstalledFiles</a></li>
+  <li><a href="#M000012">verifyPackageDepends</a></li>
+  <li><a href="#M000013">verifyPackageIntegrity</a></li>
+  <li><a href="#M000011">verifySymlinks</a></li>
+  </ul>
+
+
+
+
+
+
+<div class="sectiontitle">Public Class methods</div>
+<div class="method">
+  <div class="title">
+    <a name="M000007"></a><b>new</b>()
+  </div>
+  <div class="description">
+  <p>
+Constructor for the System manager
+</p>
+<p>
+<b>RETURN</b> <em><a href="SystemManager.html">SystemManager</a></em> - an
+initialized <a href="SystemManager.html">SystemManager</a> object.
+</p>
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000007_source')" id="l_M000007_source">show source</a> ]</p>
+  <div id="M000007_source" class="dyn-source">
+<pre>
+    <span class="ruby-comment cmt"># File SystemManager.rb, line 43</span>
+43:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>
+44:         <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="sectiontitle">Public Instance methods</div>
+<div class="method">
+  <div class="title">
+    <a name="M000009"></a><b>cleanupLogs</b>()
+  </div>
+  <div class="description">
+  <p>
+All logs for packages not in install list are cleaned off the system.
+</p>
+<p>
+<b>RETURN</b> <em>boolean</em> - True if completes without error, otherwise
+false.
+</p>
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000009_source')" id="l_M000009_source">show source</a> ]</p>
+  <div id="M000009_source" class="dyn-source">
+<pre>
+    <span class="ruby-comment cmt"># File SystemManager.rb, line 62</span>
+62:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">cleanupLogs</span>
+63:         <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000008"></a><b>cleanupPackageSources</b>()
+  </div>
+  <div class="description">
+  <p>
+Removes all sources for packages that are not currently installed. Makes
+use of install listing to determine package sources to keep.
+</p>
+<p>
+<b>RETURN</b> <em>boolean</em> - True if completes without error, otherwise
+false.
+</p>
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000008_source')" id="l_M000008_source">show source</a> ]</p>
+  <div id="M000008_source" class="dyn-source">
+<pre>
+    <span class="ruby-comment cmt"># File SystemManager.rb, line 53</span>
+53:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">cleanupPackageSources</span>
+54:         <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000014"></a><b>fixPackage</b>( package )
+  </div>
+  <div class="description">
+  <p>
+Fixes the given package.
+</p>
+<p>
+&lt;a&gt;PARAM&lt;//b&gt; <em>String</em> - <a
+href="Package.html">Package</a> name. <b>RETURN</b> <em>boolean</em> - True
+if completes without error, otherwise false.
+</p>
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000014_source')" id="l_M000014_source">show source</a> ]</p>
+  <div id="M000014_source" class="dyn-source">
+<pre>
+     <span class="ruby-comment cmt"># File SystemManager.rb, line 113</span>
+113:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">fixPackage</span>( <span class="ruby-identifier">package</span> )
+114:         <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000015"></a><b>setCentralRepo</b>( uri )
+  </div>
+  <div class="description">
+  <p>
+Sets the URI of a central repository for pre-compiled packages.
+</p>
+<p>
+<b>PARAM</b> <em>String</em> - the URI where the central repository is
+located. <b>RETURN</b> <em>boolean</em> - True if the URI is set, otherwise
+false.
+</p>
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000015_source')" id="l_M000015_source">show source</a> ]</p>
+  <div id="M000015_source" class="dyn-source">
+<pre>
+     <span class="ruby-comment cmt"># File SystemManager.rb, line 123</span>
+123:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">setCentralRepo</span>( <span class="ruby-identifier">uri</span> )
+124:         <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000016"></a><b>setPackageTreeLocation</b>( location )
+  </div>
+  <div class="description">
+  <p>
+Sets the location where the package tree is to be downloaded from, can be
+set to a local location.
+</p>
+<p>
+<b>PARAM</b> <em>String</em> - the location of the package tree.
+<b>RETURN</b> <em>boolean</em> - True if the package tree location is set,
+otherwise false.
+</p>
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000016_source')" id="l_M000016_source">show source</a> ]</p>
+  <div id="M000016_source" class="dyn-source">
+<pre>
+     <span class="ruby-comment cmt"># File SystemManager.rb, line 134</span>
+134:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">setPackageTreeLocation</span>( <span class="ruby-identifier">location</span> )
+135:         <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000010"></a><b>verifyInstalledFiles</b>( package )
+  </div>
+  <div class="description">
+  <p>
+Checks if files from given package install list are actually installed.
+</p>
+<p>
+&lt;a&gt;PARAM&lt;//b&gt; <em>String</em> - <a
+href="Package.html">Package</a> name. <b>RETURN</b> <em>boolean</em> - True
+if no installed files are missing, otherwise false.
+</p>
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000010_source')" id="l_M000010_source">show source</a> ]</p>
+  <div id="M000010_source" class="dyn-source">
+<pre>
+    <span class="ruby-comment cmt"># File SystemManager.rb, line 72</span>
+72:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">verifyInstalledFiles</span>( <span class="ruby-identifier">package</span> )
+73:         <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000012"></a><b>verifyPackageDepends</b>( package )
+  </div>
+  <div class="description">
+  <p>
+Checks the given packages dependencies for missing or broken dependencies.
+</p>
+<p>
+&lt;a&gt;PARAM&lt;//b&gt; <em>String</em> - <a
+href="Package.html">Package</a> name. <b>RETURN</b> <em>boolean</em> - True
+if dependencies intact, otherwise false.
+</p>
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000012_source')" id="l_M000012_source">show source</a> ]</p>
+  <div id="M000012_source" class="dyn-source">
+<pre>
+    <span class="ruby-comment cmt"># File SystemManager.rb, line 92</span>
+92:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">verifyPackageDepends</span>( <span class="ruby-identifier">package</span> )
+93:         <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000013"></a><b>verifyPackageIntegrity</b>( package )
+  </div>
+  <div class="description">
+  <p>
+Checks the given packages installed files against the integrity log for
+changes to installed files.
+</p>
+<p>
+&lt;a&gt;PARAM&lt;//b&gt; <em>String</em> - <a
+href="Package.html">Package</a> name. <b>RETURN</b> <em>hash</em> - Empty
+hash if no problems found, otherwise hash of problem files and their
+encountered errors.
+</p>
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000013_source')" id="l_M000013_source">show source</a> ]</p>
+  <div id="M000013_source" class="dyn-source">
+<pre>
+     <span class="ruby-comment cmt"># File SystemManager.rb, line 103</span>
+103:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">verifyPackageIntegrity</span>( <span class="ruby-identifier">package</span> ) 
+104:         <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000011"></a><b>verifySymlinks</b>( package )
+  </div>
+  <div class="description">
+  <p>
+Checks if given packages installed symlinks are broken or missing.
+</p>
+<p>
+&lt;a&gt;PARAM&lt;//b&gt; <em>String</em> - <a
+href="Package.html">Package</a> name. <b>RETURN</b> <em>boolean</em> - True
+if no symlinks found missing or broken, otherwise false.
+</p>
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000011_source')" id="l_M000011_source">show source</a> ]</p>
+  <div id="M000011_source" class="dyn-source">
+<pre>
+    <span class="ruby-comment cmt"># File SystemManager.rb, line 82</span>
+82:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">verifySymlinks</span>( <span class="ruby-identifier">package</span> )
+83:         <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+</div>
+
+  </div>
+
+    </body>
+</html>

@@ -26,7 +26,7 @@
 # St, Fifth Floor, Boston, MA 02110-1301  USA
 ##
 
-class DownloadManager < Manager
+class DownloadManager
 
   protected
   
@@ -35,12 +35,11 @@ class DownloadManager < Manager
   public
 
 	##
-	# Constructor that sets the type of manager being created.
+	# Constructor for the DownloadManager class.
 	#
 	# <b>RETURN</b> <i>DownloadManager</i> - an initialized DownloadManager object. 
 	##
 	def initialize
-		@managerType = "Download Manager"
 	end
 
 	##
@@ -51,7 +50,7 @@ class DownloadManager < Manager
 	# <b>RETURN</b> <i>boolean</i> - True if the package source has been
 	# downloaded, otherwise false.
 	##
-	def retreiveSource( packageName )
+	def retrievePackageSource( packageName )
 	end
   
 	##
@@ -61,7 +60,7 @@ class DownloadManager < Manager
 	# <b>RETURN</b> <i>boolean</i> - True if the package tree is retrieved, otherwise
 	# false.
 	##
-	def retrieveTree( packageTreeName )
+	def retrievePackageTree( packageTreeName )
 	end
   
 	##
@@ -70,7 +69,26 @@ class DownloadManager < Manager
 	# <b>RETURN</b> <i>boolean</i> - True if the AbTLinux news feed has been
 	# retrieved, otherwise false.
 	##
-	def retrieveNews
+	def retrieveNewsFeed
+	end
+  
+	##
+	# Updates a given package with available patches (version updates).
+	#
+	# <b>PARAM</b> <i>String</i> - the name of the package to be updated.
+	# <b>RETURN</b> <i>boolean</i> - True if the given package has been updated,
+	# otherwise false.
+	##
+	def updatePackage
+	end
+  
+	##
+	# Updates the package tree.
+	#
+	# <b>RETURN</b> <i>boolean</i> - True if the package tree has been updated,
+	# otherwise false.
+	##
+	def updatePackageTree
 	end
   
 end

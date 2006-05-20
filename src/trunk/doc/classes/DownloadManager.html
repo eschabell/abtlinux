@@ -63,9 +63,7 @@
     <tr>
       <td>Parent:</td>
       <td>
-        <a href="Manager.html">
-Manager
-         </a>
+Object
      </td>
    </tr>
          </table>
@@ -78,10 +76,9 @@ Manager
       <div id="content">
   <table cellpadding='0' cellspacing='0' border='0' width="100%"><tr><td align="center">
     <map id="map" name="map">
-  <area shape="RECT" coords="29,104,143,152"      href="DownloadManager.html" alt="DownloadManager">
-  <area shape="RECT" coords="50,8,122,56"      href="Manager.html" alt="Manager">
+  <area shape="RECT" coords="29,52,143,100"      href="DownloadManager.html" alt="DownloadManager">
 </map>
-<img src="../dot/f_3.png" usemap="#map" border=0 alt="TopLevel">
+<img src="../dot/f_2.png" usemap="#map" border=0 alt="TopLevel">
   </td></tr></table>
 
   <div class="description"><p>
@@ -120,10 +117,12 @@ Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
 
   <div class="sectiontitle">Methods</div>
   <ul>
-  <li><a href="#M000018">new</a></li>
-  <li><a href="#M000019">retreiveSource</a></li>
-  <li><a href="#M000021">retrieveNews</a></li>
-  <li><a href="#M000020">retrieveTree</a></li>
+  <li><a href="#M000024">new</a></li>
+  <li><a href="#M000027">retrieveNewsFeed</a></li>
+  <li><a href="#M000025">retrievePackageSource</a></li>
+  <li><a href="#M000026">retrievePackageTree</a></li>
+  <li><a href="#M000028">updatePackage</a></li>
+  <li><a href="#M000029">updatePackageTree</a></li>
   </ul>
 
 
@@ -134,11 +133,12 @@ Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
 <div class="sectiontitle">Public Class methods</div>
 <div class="method">
   <div class="title">
-    <a name="M000018"></a><b>new</b>()
+    <a name="M000024"></a><b>new</b>()
   </div>
   <div class="description">
   <p>
-Constructor that sets the type of manager being created.
+Constructor for the <a href="DownloadManager.html">DownloadManager</a>
+class.
 </p>
 <p>
 <b>RETURN</b> <em><a href="DownloadManager.html">DownloadManager</a></em> -
@@ -146,13 +146,12 @@ an initialized <a href="DownloadManager.html">DownloadManager</a> object.
 </p>
   </div>
 <div class="sourcecode">
-  <p class="source-link">[ <a href="javascript:toggleSource('M000018_source')" id="l_M000018_source">show source</a> ]</p>
-  <div id="M000018_source" class="dyn-source">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000024_source')" id="l_M000024_source">show source</a> ]</p>
+  <div id="M000024_source" class="dyn-source">
 <pre>
     <span class="ruby-comment cmt"># File DownloadManager.rb, line 42</span>
 42:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>
-43:                 <span class="ruby-ivar">@managerType</span> = <span class="ruby-value str">&quot;Download Manager&quot;</span>
-44:         <span class="ruby-keyword kw">end</span>
+43:         <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>
@@ -160,7 +159,31 @@ an initialized <a href="DownloadManager.html">DownloadManager</a> object.
 <div class="sectiontitle">Public Instance methods</div>
 <div class="method">
   <div class="title">
-    <a name="M000019"></a><b>retreiveSource</b>( packageName )
+    <a name="M000027"></a><b>retrieveNewsFeed</b>()
+  </div>
+  <div class="description">
+  <p>
+Retrieves the AbTLinux news feed.
+</p>
+<p>
+<b>RETURN</b> <em>boolean</em> - True if the AbTLinux news feed has been
+retrieved, otherwise false.
+</p>
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000027_source')" id="l_M000027_source">show source</a> ]</p>
+  <div id="M000027_source" class="dyn-source">
+<pre>
+    <span class="ruby-comment cmt"># File DownloadManager.rb, line 72</span>
+72:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">retrieveNewsFeed</span>
+73:         <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000025"></a><b>retrievePackageSource</b>( packageName )
   </div>
   <div class="description">
   <p>
@@ -173,43 +196,19 @@ source has been downloaded, otherwise false.
 </p>
   </div>
 <div class="sourcecode">
-  <p class="source-link">[ <a href="javascript:toggleSource('M000019_source')" id="l_M000019_source">show source</a> ]</p>
-  <div id="M000019_source" class="dyn-source">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000025_source')" id="l_M000025_source">show source</a> ]</p>
+  <div id="M000025_source" class="dyn-source">
 <pre>
-    <span class="ruby-comment cmt"># File DownloadManager.rb, line 54</span>
-54:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">retreiveSource</span>( <span class="ruby-identifier">packageName</span> )
-55:         <span class="ruby-keyword kw">end</span>
+    <span class="ruby-comment cmt"># File DownloadManager.rb, line 53</span>
+53:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">retrievePackageSource</span>( <span class="ruby-identifier">packageName</span> )
+54:         <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>
 </div>
 <div class="method">
   <div class="title">
-    <a name="M000021"></a><b>retrieveNews</b>()
-  </div>
-  <div class="description">
-  <p>
-Retrieves the AbTLinux news feed.
-</p>
-<p>
-<b>RETURN</b> <em>boolean</em> - True if the AbTLinux news feed has been
-retrieved, otherwise false.
-</p>
-  </div>
-<div class="sourcecode">
-  <p class="source-link">[ <a href="javascript:toggleSource('M000021_source')" id="l_M000021_source">show source</a> ]</p>
-  <div id="M000021_source" class="dyn-source">
-<pre>
-    <span class="ruby-comment cmt"># File DownloadManager.rb, line 73</span>
-73:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">retrieveNews</span>
-74:         <span class="ruby-keyword kw">end</span>
-</pre>
-  </div>
-</div>
-</div>
-<div class="method">
-  <div class="title">
-    <a name="M000020"></a><b>retrieveTree</b>( packageTreeName )
+    <a name="M000026"></a><b>retrievePackageTree</b>( packageTreeName )
   </div>
   <div class="description">
   <p>
@@ -222,12 +221,61 @@ retrieved, otherwise false.
 </p>
   </div>
 <div class="sourcecode">
-  <p class="source-link">[ <a href="javascript:toggleSource('M000020_source')" id="l_M000020_source">show source</a> ]</p>
-  <div id="M000020_source" class="dyn-source">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000026_source')" id="l_M000026_source">show source</a> ]</p>
+  <div id="M000026_source" class="dyn-source">
 <pre>
-    <span class="ruby-comment cmt"># File DownloadManager.rb, line 64</span>
-64:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">retrieveTree</span>( <span class="ruby-identifier">packageTreeName</span> )
-65:         <span class="ruby-keyword kw">end</span>
+    <span class="ruby-comment cmt"># File DownloadManager.rb, line 63</span>
+63:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">retrievePackageTree</span>( <span class="ruby-identifier">packageTreeName</span> )
+64:         <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000028"></a><b>updatePackage</b>()
+  </div>
+  <div class="description">
+  <p>
+Updates a given package with available patches (version updates).
+</p>
+<p>
+<b>PARAM</b> <em>String</em> - the name of the package to be updated.
+<b>RETURN</b> <em>boolean</em> - True if the given package has been
+updated, otherwise false.
+</p>
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000028_source')" id="l_M000028_source">show source</a> ]</p>
+  <div id="M000028_source" class="dyn-source">
+<pre>
+    <span class="ruby-comment cmt"># File DownloadManager.rb, line 82</span>
+82:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">updatePackage</span>
+83:         <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000029"></a><b>updatePackageTree</b>()
+  </div>
+  <div class="description">
+  <p>
+Updates the package tree.
+</p>
+<p>
+<b>RETURN</b> <em>boolean</em> - True if the package tree has been updated,
+otherwise false.
+</p>
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000029_source')" id="l_M000029_source">show source</a> ]</p>
+  <div id="M000029_source" class="dyn-source">
+<pre>
+    <span class="ruby-comment cmt"># File DownloadManager.rb, line 91</span>
+91:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">updatePackageTree</span>
+92:         <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>
