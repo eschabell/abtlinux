@@ -15,8 +15,12 @@
 #     REVISION:  ---
 #===============================================================================
 
-FILES="PackageManager.rb Package.rb DownloadManager.rb SystemManager.rb";
 TEMPLATE="./abtTemplate.rb";
+FILES="PackageManager.rb 
+       Package.rb 
+			 DownloadManager.rb 
+			 SystemManager.rb
+			 DepEngine.rb";
 
 # run the actual doc generation.
 rdoc 	--diagram                               \
