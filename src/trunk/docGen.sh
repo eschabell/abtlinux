@@ -15,7 +15,7 @@
 #     REVISION:  ---
 #===============================================================================
 
-FILES="Package.rb PackageManager.rb DownloadManager.rb SystemManager.rb";
+FILES="PackageManager.rb Package.rb DownloadManager.rb SystemManager.rb";
 TEMPLATE="./abtTemplate.rb";
 
 # run the actual doc generation.
@@ -24,6 +24,7 @@ rdoc 	--diagram                               \
       --fileboxes                             \
       --inline-source                         \
       --line-numbers                          \
+			--main PackageManager                   \
       --title "AbTLinux Package Manager API"  \
       $FILES
 
