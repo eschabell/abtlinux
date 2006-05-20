@@ -20,6 +20,7 @@ FILES="PackageManager.rb
        Package.rb 
 			 DownloadManager.rb 
 			 SystemManager.rb
+			 LogManager.rb
 			 DepEngine.rb";
 
 # run the actual doc generation.

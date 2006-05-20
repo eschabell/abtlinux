@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+  <head>
+    <title>Class: LogManager</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+    <link rel="stylesheet" href=".././rdoc-style.css" type="text/css" media="screen" />
+
+    <script language="JavaScript" type="text/javascript">
+    // <![CDATA[
+
+        function toggleSource( id )
+        {
+          var elem
+          var link
+
+          if( document.getElementById )
+          {
+            elem = document.getElementById( id )
+            link = document.getElementById( "l_" + id )
+          }
+          else if ( document.all )
+          {
+            elem = eval( "document.all." + id )
+            link = eval( "document.all.l_" + id )
+          }
+          else
+            return false;
+
+          if( elem.style.display == "block" )
+          {
+            elem.style.display = "none"
+            link.innerHTML = "show source"
+          }
+          else
+          {
+            elem.style.display = "block"
+            link.innerHTML = "hide source"
+          }
+        }
+
+        function openCode( url )
+        {
+          window.open( url, "SOURCE_CODE", "width=400,height=400,scrollbars=yes" )
+        }
+      // ]]>
+    </script>
+  </head>
+
+  <body>
+  <table width="100%" border='0' cellpadding='0' cellspacing='0' class='banner'><tr>
+  <td class="file-title"><span class="file-title-prefix">Class</span><br />LogManager</td>
+  <td align="right">
+    <table cellspacing=0 cellpadding=2>
+      <tr valign="top">
+        <td>In:</td>
+        <td>
+<a href="../files/LogManager_rb.html">LogManager.rb</a>
+        </td>
+      </tr>
+    <tr>
+      <td>Parent:</td>
+      <td>
+Object
+     </td>
+   </tr>
+         </table>
+        </td>
+        </tr>
+      </table>
+ <!-- banner header -->
+
+  <div id="bodyContent">
+      <div id="content">
+  <table cellpadding='0' cellspacing='0' border='0' width="100%"><tr><td align="center">
+    <map id="map" name="map">
+  <area shape="RECT" coords="29,52,117,100"      href="LogManager.html" alt="LogManager">
+</map>
+<img src="../dot/f_4.png" usemap="#map" border=0 alt="TopLevel">
+  </td></tr></table>
+
+  <div class="description"><p>
+LogManager.rb
+</p>
+<p>
+<a href="LogManager.html">LogManager</a> class handles all aspects of
+logging and access to existing logs within the AbTLinux system.
+</p>
+<p>
+Created by Eric D. Schabell &lt;erics@abtlinux.org&gt; Copyright 2006, GPL.
+</p>
+<p>
+This file is part of AbTLinux.
+</p>
+<p>
+AbTLinux is free software; you can redistribute it and/or modify it under
+the terms of the GNU General Public License as published by the Free
+Software Foundation; either version 2 of the License, or (at your option)
+any later version.
+</p>
+<p>
+AbTLinux is distributed in the hope that it will be useful, but WITHOUT ANY
+WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
+details.
+</p>
+<p>
+You should have received a copy of the GNU General Public License along
+with AbTLinux; if not, write to the Free Software Foundation, Inc., 51
+Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
+</p>
+</div>
+
+
+
+  <div class="sectiontitle">Methods</div>
+  <ul>
+  <li><a href="#M000020">cachePackage</a></li>
+  <li><a href="#M000019">logPackageBuild</a></li>
+  <li><a href="#M000018">logPackageInstall</a></li>
+  <li><a href="#M000021">logToJournal</a></li>
+  <li><a href="#M000017">new</a></li>
+  </ul>
+
+
+
+
+
+
+<div class="sectiontitle">Public Class methods</div>
+<div class="method">
+  <div class="title">
+    <a name="M000017"></a><b>new</b>()
+  </div>
+  <div class="description">
+  <p>
+Constructor for the <a href="LogManager.html">LogManager</a>.
+</p>
+<p>
+<b>RETURN</b> <em><a href="LogManager.html">LogManager</a></em> - an
+initialized <a href="LogManager.html">LogManager</a> object.
+</p>
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000017_source')" id="l_M000017_source">show source</a> ]</p>
+  <div id="M000017_source" class="dyn-source">
+<pre>
+    <span class="ruby-comment cmt"># File LogManager.rb, line 58</span>
+58:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>
+59:         <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="sectiontitle">Public Instance methods</div>
+<div class="method">
+  <div class="title">
+    <a name="M000020"></a><b>cachePackage</b>( package )
+  </div>
+  <div class="description">
+  <p>
+Provides a complete log of the given packages build. Includes everything
+needed to duplicate the build at a later date.
+</p>
+<p>
+&lt;a&gt;PARAM&lt;//b&gt; <em>String</em> - <a
+href="Package.html">Package</a> name. <b>RETURN</b> <em>boolean</em> - True
+if package cache created successfully, otherwise false.
+</p>
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000020_source')" id="l_M000020_source">show source</a> ]</p>
+  <div id="M000020_source" class="dyn-source">
+<pre>
+    <span class="ruby-comment cmt"># File LogManager.rb, line 91</span>
+91:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">cachePackage</span>( <span class="ruby-identifier">package</span> )
+92:         <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000019"></a><b>logPackageBuild</b>( package )
+  </div>
+  <div class="description">
+  <p>
+Provides logging of all output produced during the build phase of the given
+package. Should be called as part of the install phase of the build.
+</p>
+<p>
+&lt;a&gt;PARAM&lt;//b&gt; <em>String</em> - <a
+href="Package.html">Package</a> name. <b>RETURN</b> <em>boolean</em> - True
+if build log created successfully, otherwise false.
+</p>
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000019_source')" id="l_M000019_source">show source</a> ]</p>
+  <div id="M000019_source" class="dyn-source">
+<pre>
+    <span class="ruby-comment cmt"># File LogManager.rb, line 80</span>
+80:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">logPackageBuild</span>( <span class="ruby-identifier">package</span> )
+81:         <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000018"></a><b>logPackageInstall</b>( package )
+  </div>
+  <div class="description">
+  <p>
+Provides logging of all files installed by given package. Should be called
+as part of the install phase of the build.
+</p>
+<p>
+&lt;a&gt;PARAM&lt;//b&gt; <em>String</em> - <a
+href="Package.html">Package</a> name. <b>RETURN</b> <em>boolean</em> - True
+if install log created successfully, otherwise false.
+</p>
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000018_source')" id="l_M000018_source">show source</a> ]</p>
+  <div id="M000018_source" class="dyn-source">
+<pre>
+    <span class="ruby-comment cmt"># File LogManager.rb, line 69</span>
+69:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">logPackageInstall</span>( <span class="ruby-identifier">package</span> )
+70:         <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000021"></a><b>logToJournal</b>( message )
+  </div>
+  <div class="description">
+  <p>
+Provides logging of given message to the AbTLinux journal. Message logged
+with date timestamp.
+</p>
+<p>
+&lt;a&gt;PARAM&lt;//b&gt; <em>String</em> - Message to be added to the log.
+<b>RETURN</b> <em>boolean</em> - True if message logged successfully,
+otherwise false.
+</p>
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000021_source')" id="l_M000021_source">show source</a> ]</p>
+  <div id="M000021_source" class="dyn-source">
+<pre>
+     <span class="ruby-comment cmt"># File LogManager.rb, line 102</span>
+102:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">logToJournal</span>( <span class="ruby-identifier">message</span> )
+103:         <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+</div>
+
+  </div>
+
+    </body>
+</html>
