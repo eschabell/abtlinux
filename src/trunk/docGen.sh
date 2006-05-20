@@ -21,6 +21,7 @@ FILES="PackageManager.rb
 			 DownloadManager.rb 
 			 SystemManager.rb
 			 LogManager.rb
+			 ReportManager.rb
 			 DepEngine.rb";
 
 # run the actual doc generation.
