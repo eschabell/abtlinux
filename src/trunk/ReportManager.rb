@@ -45,7 +45,8 @@ class ReportManager
 	##
 	# Display all data for a given package.
 	#
-	# <a>PARAM<//b> <i>String</i> - Package name.
+	# <b>PARAM</b> <i>String</i> - Package name.
+	#
 	# <b>RETURN</b> <i>boolean</i> - True if completes without error, otherwise
 	# false.
 	##
@@ -64,8 +65,10 @@ class ReportManager
 	# Display the contents of the requested log for a given package. Possible
 	# log types are; install, build and integrity.
 	#
-	# <a>PARAM<//b> <i>String</i> - Package name.
-	# <a>PARAM<//b> <i>String</i> - log type.
+	# <b>PARAM</b> <i>String</i> - Package name.
+	#
+	# <b>PARAM</b> <i>String</i> - log type.
+	#
 	# <b>RETURN</b> <i>void.</i>
 	##
 	def showPackageLog( package, logType )
@@ -87,7 +90,8 @@ class ReportManager
 	# portal to the DepEngine will be expanded in apart sub-project, more
 	# details at a later date.)
 	#
-	# <a>PARAM<//b> <i>String</i> - Package name.
+	# <b>PARAM</b> <i>String</i> - Package name.
+	#
 	# <b>RETURN</b> <i>hash</i> - Empty hash if no problems found, otherwise
 	# hash of problem files and their encountered errors.
 	##
@@ -116,6 +120,7 @@ class ReportManager
 	# Display the name of the package(s) that own the given file.
 	#
 	# <b>PARAM</b> <i>String</i> - a file name.
+	#
 	# <b>RETURN</b> <i>void.</i>
 	##
 	def showFileOwner( file )
@@ -125,7 +130,8 @@ class ReportManager
 	# Searches the installed package trees package descriptions for matching
 	# occurrances of the given search text.
 	# 
-	# <a>PARAM<//b> <i>String</i> - a search text.
+	# <b>PARAM</b> <i>String</i> - a search text.
+	#
 	# <b>RETURN</b> <i>hash</i> - a hash of the search results, keys are package
 	# names and values are matching descriptions.
 	##
@@ -135,8 +141,9 @@ class ReportManager
 	##
 	# Displays the contents of the current queue based on the given queue.
 	# 
-	# <a>PARAM<//b> <i>String</i> - the type of queue to display such as install
+	# <b>PARAM</b> <i>String</i> - the type of queue to display such as install
 	# queue.
+	#
 	# <b>RETURN</b> <i>void.</i>
 	##
 	def showQueue( queueType )
@@ -146,8 +153,9 @@ class ReportManager
 	# Reports available updates for a given package or package tree based on the
 	# current system.
 	# 
-	# <a>PARAM<//b> <i>String</i> - the target of the update check, either a
+	# <b>PARAM</b> <i>String</i> - the target of the update check, either a
 	# package name or a package tree name.
+	#
 	# <b>RETURN</b> <i>boolean</i> - True if completes without error, otherwise
 	# false.
 	##
@@ -161,4 +169,5 @@ class ReportManager
 	##
 	def generateHTMLPackageListing
 	end
+
 end

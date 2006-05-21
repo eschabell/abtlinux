@@ -76,7 +76,7 @@ Object
       <div id="content">
   <table cellpadding='0' cellspacing='0' border='0' width="100%"><tr><td align="center">
     <map id="map" name="map">
-  <area shape="RECT" coords="29,52,133,100"      href="SystemManager.html" alt="SystemManager">
+  <area shape="RECT" coords="28,51,135,99"      href="SystemManager.html" alt="SystemManager">
 </map>
 <img src="../dot/f_3.png" usemap="#map" border=0 alt="TopLevel">
   </td></tr></table>
@@ -219,18 +219,20 @@ false.
 Fixes the given package.
 </p>
 <p>
-&lt;a&gt;PARAM&lt;//b&gt; <em>String</em> - <a
-href="Package.html">Package</a> name. <b>RETURN</b> <em>boolean</em> - True
-if completes without error, otherwise false.
+<b>PARAM</b> <em>String</em> - <a href="Package.html">Package</a> name.
+</p>
+<p>
+<b>RETURN</b> <em>boolean</em> - True if completes without error, otherwise
+false.
 </p>
   </div>
 <div class="sourcecode">
   <p class="source-link">[ <a href="javascript:toggleSource('M000014_source')" id="l_M000014_source">show source</a> ]</p>
   <div id="M000014_source" class="dyn-source">
 <pre>
-     <span class="ruby-comment cmt"># File SystemManager.rb, line 113</span>
-113:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">fixPackage</span>( <span class="ruby-identifier">package</span> )
-114:         <span class="ruby-keyword kw">end</span>
+     <span class="ruby-comment cmt"># File SystemManager.rb, line 118</span>
+118:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">fixPackage</span>( <span class="ruby-identifier">package</span> )
+119:         <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>
@@ -245,17 +247,19 @@ Sets the URI of a central repository for pre-compiled packages.
 </p>
 <p>
 <b>PARAM</b> <em>String</em> - the URI where the central repository is
-located. <b>RETURN</b> <em>boolean</em> - True if the URI is set, otherwise
-false.
+located.
+</p>
+<p>
+<b>RETURN</b> <em>boolean</em> - True if the URI is set, otherwise false.
 </p>
   </div>
 <div class="sourcecode">
   <p class="source-link">[ <a href="javascript:toggleSource('M000015_source')" id="l_M000015_source">show source</a> ]</p>
   <div id="M000015_source" class="dyn-source">
 <pre>
-     <span class="ruby-comment cmt"># File SystemManager.rb, line 123</span>
-123:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">setCentralRepo</span>( <span class="ruby-identifier">uri</span> )
-124:         <span class="ruby-keyword kw">end</span>
+     <span class="ruby-comment cmt"># File SystemManager.rb, line 129</span>
+129:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">setCentralRepo</span>( <span class="ruby-identifier">uri</span> )
+130:         <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>
@@ -271,6 +275,8 @@ set to a local location.
 </p>
 <p>
 <b>PARAM</b> <em>String</em> - the location of the package tree.
+</p>
+<p>
 <b>RETURN</b> <em>boolean</em> - True if the package tree location is set,
 otherwise false.
 </p>
@@ -279,9 +285,9 @@ otherwise false.
   <p class="source-link">[ <a href="javascript:toggleSource('M000016_source')" id="l_M000016_source">show source</a> ]</p>
   <div id="M000016_source" class="dyn-source">
 <pre>
-     <span class="ruby-comment cmt"># File SystemManager.rb, line 134</span>
-134:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">setPackageTreeLocation</span>( <span class="ruby-identifier">location</span> )
-135:         <span class="ruby-keyword kw">end</span>
+     <span class="ruby-comment cmt"># File SystemManager.rb, line 141</span>
+141:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">setPackageTreeLocation</span>( <span class="ruby-identifier">location</span> )
+142:         <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>
@@ -295,18 +301,20 @@ otherwise false.
 Checks if files from given package install list are actually installed.
 </p>
 <p>
-&lt;a&gt;PARAM&lt;//b&gt; <em>String</em> - <a
-href="Package.html">Package</a> name. <b>RETURN</b> <em>boolean</em> - True
-if no installed files are missing, otherwise false.
+<b>PARAM</b> <em>String</em> - <a href="Package.html">Package</a> name.
+</p>
+<p>
+<b>RETURN</b> <em>boolean</em> - True if no installed files are missing,
+otherwise false.
 </p>
   </div>
 <div class="sourcecode">
   <p class="source-link">[ <a href="javascript:toggleSource('M000010_source')" id="l_M000010_source">show source</a> ]</p>
   <div id="M000010_source" class="dyn-source">
 <pre>
-    <span class="ruby-comment cmt"># File SystemManager.rb, line 72</span>
-72:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">verifyInstalledFiles</span>( <span class="ruby-identifier">package</span> )
-73:         <span class="ruby-keyword kw">end</span>
+    <span class="ruby-comment cmt"># File SystemManager.rb, line 73</span>
+73:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">verifyInstalledFiles</span>( <span class="ruby-identifier">package</span> )
+74:         <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>
@@ -320,18 +328,20 @@ if no installed files are missing, otherwise false.
 Checks the given packages dependencies for missing or broken dependencies.
 </p>
 <p>
-&lt;a&gt;PARAM&lt;//b&gt; <em>String</em> - <a
-href="Package.html">Package</a> name. <b>RETURN</b> <em>boolean</em> - True
-if dependencies intact, otherwise false.
+<b>PARAM</b> <em>String</em> - <a href="Package.html">Package</a> name.
+</p>
+<p>
+<b>RETURN</b> <em>boolean</em> - True if dependencies intact, otherwise
+false.
 </p>
   </div>
 <div class="sourcecode">
   <p class="source-link">[ <a href="javascript:toggleSource('M000012_source')" id="l_M000012_source">show source</a> ]</p>
   <div id="M000012_source" class="dyn-source">
 <pre>
-    <span class="ruby-comment cmt"># File SystemManager.rb, line 92</span>
-92:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">verifyPackageDepends</span>( <span class="ruby-identifier">package</span> )
-93:         <span class="ruby-keyword kw">end</span>
+    <span class="ruby-comment cmt"># File SystemManager.rb, line 95</span>
+95:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">verifyPackageDepends</span>( <span class="ruby-identifier">package</span> )
+96:         <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>
@@ -346,19 +356,20 @@ Checks the given packages installed files against the integrity log for
 changes to installed files.
 </p>
 <p>
-&lt;a&gt;PARAM&lt;//b&gt; <em>String</em> - <a
-href="Package.html">Package</a> name. <b>RETURN</b> <em>hash</em> - Empty
-hash if no problems found, otherwise hash of problem files and their
-encountered errors.
+<b>PARAM</b> <em>String</em> - <a href="Package.html">Package</a> name.
+</p>
+<p>
+<b>RETURN</b> <em>hash</em> - Empty hash if no problems found, otherwise
+hash of problem files and their encountered errors.
 </p>
   </div>
 <div class="sourcecode">
   <p class="source-link">[ <a href="javascript:toggleSource('M000013_source')" id="l_M000013_source">show source</a> ]</p>
   <div id="M000013_source" class="dyn-source">
 <pre>
-     <span class="ruby-comment cmt"># File SystemManager.rb, line 103</span>
-103:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">verifyPackageIntegrity</span>( <span class="ruby-identifier">package</span> ) 
-104:         <span class="ruby-keyword kw">end</span>
+     <span class="ruby-comment cmt"># File SystemManager.rb, line 107</span>
+107:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">verifyPackageIntegrity</span>( <span class="ruby-identifier">package</span> ) 
+108:         <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>
@@ -372,18 +383,20 @@ encountered errors.
 Checks if given packages installed symlinks are broken or missing.
 </p>
 <p>
-&lt;a&gt;PARAM&lt;//b&gt; <em>String</em> - <a
-href="Package.html">Package</a> name. <b>RETURN</b> <em>boolean</em> - True
-if no symlinks found missing or broken, otherwise false.
+<b>PARAM</b> <em>String</em> - <a href="Package.html">Package</a> name.
+</p>
+<p>
+<b>RETURN</b> <em>boolean</em> - True if no symlinks found missing or
+broken, otherwise false.
 </p>
   </div>
 <div class="sourcecode">
   <p class="source-link">[ <a href="javascript:toggleSource('M000011_source')" id="l_M000011_source">show source</a> ]</p>
   <div id="M000011_source" class="dyn-source">
 <pre>
-    <span class="ruby-comment cmt"># File SystemManager.rb, line 82</span>
-82:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">verifySymlinks</span>( <span class="ruby-identifier">package</span> )
-83:         <span class="ruby-keyword kw">end</span>
+    <span class="ruby-comment cmt"># File SystemManager.rb, line 84</span>
+84:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">verifySymlinks</span>( <span class="ruby-identifier">package</span> )
+85:         <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>

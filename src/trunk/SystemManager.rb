@@ -65,7 +65,8 @@ class SystemManager
 	##
 	# Checks if files from given package install list are actually installed.
 	# 
-	# <a>PARAM<//b> <i>String</i> - Package name.
+	# <b>PARAM</b> <i>String</i> - Package name.
+	# 
 	# <b>RETURN</b> <i>boolean</i> - True if no installed files are missing, otherwise
 	# false.
 	##
@@ -75,7 +76,8 @@ class SystemManager
 	##
 	# Checks if given packages installed symlinks are broken or missing.
 	# 
-	# <a>PARAM<//b> <i>String</i> - Package name.
+	# <b>PARAM</b> <i>String</i> - Package name.
+	# 
 	# <b>RETURN</b> <i>boolean</i> - True if no symlinks found missing or broken, otherwise
 	# false.
 	##
@@ -85,7 +87,8 @@ class SystemManager
 	##
 	# Checks the given packages dependencies for missing or broken dependencies.
 	# 
-	# <a>PARAM<//b> <i>String</i> - Package name.
+	# <b>PARAM</b> <i>String</i> - Package name.
+	# 
 	# <b>RETURN</b> <i>boolean</i> - True if dependencies intact, otherwise
 	# false.
 	##
@@ -96,7 +99,8 @@ class SystemManager
 	# Checks the given packages installed files against the integrity log for
 	# changes to installed files.
 	# 
-	# <a>PARAM<//b> <i>String</i> - Package name.
+	# <b>PARAM</b> <i>String</i> - Package name.
+	# 
 	# <b>RETURN</b> <i>hash</i> - Empty hash if no problems found, otherwise
 	# hash of problem files and their encountered errors.
 	##
@@ -106,7 +110,8 @@ class SystemManager
 	##
 	# Fixes the given package.
 	# 
-	# <a>PARAM<//b> <i>String</i> - Package name.
+	# <b>PARAM</b> <i>String</i> - Package name.
+	# 
 	# <b>RETURN</b> <i>boolean</i> - True if completes without error, otherwise
 	# false.
 	##
@@ -118,6 +123,7 @@ class SystemManager
 	#
 	# <b>PARAM</b> <i>String</i> - the URI where the central repository is
 	# located.
+	# 
 	# <b>RETURN</b> <i>boolean</i> - True if the URI is set, otherwise false.
 	##
 	def setCentralRepo( uri )
@@ -128,6 +134,7 @@ class SystemManager
 	# set to a local location.
 	#
 	# <b>PARAM</b> <i>String</i> - the location of the package tree.
+	# 
 	# <b>RETURN</b> <i>boolean</i> - True if the package tree location is set, otherwise
 	# false.
 	##

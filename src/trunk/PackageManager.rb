@@ -46,6 +46,7 @@ class PackageManager
 	# Installs a given package.
 	#
 	# <b>PARAM</b> <i>String</i> - the name of the package to be installed.
+	#
 	# <b>RETURN</b> <i>boolean</i> - True if the package is installed, otherwise
 	# false.
 	##
@@ -56,6 +57,7 @@ class PackageManager
 	# Reinstalls a given package.
 	#
 	# <b>PARAM</b> <i>String</i> - the name of the package to be reinstalled.
+	#
 	# <b>RETURN</b> <i>boolean</i> - True if the package is reinstalled, otherwise
 	# false.
 	##
@@ -66,6 +68,7 @@ class PackageManager
 	# Removes a given package.
 	#
 	# <b>PARAM</b> <i>String</i> - the name of the package to be removed.
+	#
 	# <b>RETURN</b> <i>boolean</i> - True if the package is removed, otherwise
 	# false.
 	##
@@ -76,11 +79,13 @@ class PackageManager
 	# Downgrades a given package.
 	#
 	# <b>PARAM</b> <i>String</i> - the name of the package to be downgraded.
+	#
 	# <b>PARAM</b> <i>String</i> - the version number to be downgraded to.
+	#
 	# <b>RETURN</b> <i>boolean</i> - True if the package is downgraded, otherwise
 	# false.
 	##
-	def downgrade( package, verison )
+	def downgrade( package, version )
 	end
   
 	##
@@ -88,6 +93,7 @@ class PackageManager
 	# list.
 	#
 	# <b>PARAM</b> <i>String</i> - the name of the package to be frozen.
+	#
 	# <b>RETURN</b> <i>boolean</i> - True if the package is frozen, otherwise
 	# false.
 	##

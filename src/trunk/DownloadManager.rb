@@ -47,6 +47,7 @@ class DownloadManager
 	#
 	# <b>PARAM</b> <i>String</i> - the name of the package for which the source
 	# is to be downloaded.
+	#
 	# <b>RETURN</b> <i>boolean</i> - True if the package source has been
 	# downloaded, otherwise false.
 	##
@@ -57,6 +58,7 @@ class DownloadManager
 	# Downloads a given pacakge tree.
 	#
 	# <b>PARAM</b> <i>String</i> - the name of the package tree to be retrieved.
+	#
 	# <b>RETURN</b> <i>boolean</i> - True if the package tree is retrieved, otherwise
 	# false.
 	##
@@ -76,6 +78,7 @@ class DownloadManager
 	# Updates a given package with available patches (version updates).
 	#
 	# <b>PARAM</b> <i>String</i> - the name of the package to be updated.
+	#
 	# <b>RETURN</b> <i>boolean</i> - True if the given package has been updated,
 	# otherwise false.
 	##

@@ -76,7 +76,7 @@ Object
       <div id="content">
   <table cellpadding='0' cellspacing='0' border='0' width="100%"><tr><td align="center">
     <map id="map" name="map">
-  <area shape="RECT" coords="29,52,130,100"      href="ReportManager.html" alt="ReportManager">
+  <area shape="RECT" coords="28,51,132,99"      href="ReportManager.html" alt="ReportManager">
 </map>
 <img src="../dot/f_5.png" usemap="#map" border=0 alt="TopLevel">
   </td></tr></table>
@@ -117,19 +117,19 @@ Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
 
   <div class="sectiontitle">Methods</div>
   <ul>
-  <li><a href="#M000034">generateHTMLPackageListing</a></li>
-  <li><a href="#M000022">new</a></li>
-  <li><a href="#M000031">searchPackageDescriptions</a></li>
-  <li><a href="#M000030">showFileOwner</a></li>
-  <li><a href="#M000026">showFrozenPackages</a></li>
-  <li><a href="#M000024">showInstalledPackages</a></li>
-  <li><a href="#M000029">showJournal</a></li>
-  <li><a href="#M000027">showPackageDependencies</a></li>
-  <li><a href="#M000023">showPackageDetails</a></li>
-  <li><a href="#M000025">showPackageLog</a></li>
-  <li><a href="#M000032">showQueue</a></li>
-  <li><a href="#M000028">showUntrackedFiles</a></li>
-  <li><a href="#M000033">showUpdates</a></li>
+  <li><a href="#M000035">generateHTMLPackageListing</a></li>
+  <li><a href="#M000023">new</a></li>
+  <li><a href="#M000032">searchPackageDescriptions</a></li>
+  <li><a href="#M000031">showFileOwner</a></li>
+  <li><a href="#M000027">showFrozenPackages</a></li>
+  <li><a href="#M000025">showInstalledPackages</a></li>
+  <li><a href="#M000030">showJournal</a></li>
+  <li><a href="#M000028">showPackageDependencies</a></li>
+  <li><a href="#M000024">showPackageDetails</a></li>
+  <li><a href="#M000026">showPackageLog</a></li>
+  <li><a href="#M000033">showQueue</a></li>
+  <li><a href="#M000029">showUntrackedFiles</a></li>
+  <li><a href="#M000034">showUpdates</a></li>
   </ul>
 
 
@@ -140,7 +140,7 @@ Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
 <div class="sectiontitle">Public Class methods</div>
 <div class="method">
   <div class="title">
-    <a name="M000022"></a><b>new</b>()
+    <a name="M000023"></a><b>new</b>()
   </div>
   <div class="description">
   <p>
@@ -152,8 +152,8 @@ initialized Report1Manager object.
 </p>
   </div>
 <div class="sourcecode">
-  <p class="source-link">[ <a href="javascript:toggleSource('M000022_source')" id="l_M000022_source">show source</a> ]</p>
-  <div id="M000022_source" class="dyn-source">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000023_source')" id="l_M000023_source">show source</a> ]</p>
+  <div id="M000023_source" class="dyn-source">
 <pre>
     <span class="ruby-comment cmt"># File ReportManager.rb, line 42</span>
 42:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>
@@ -165,7 +165,7 @@ initialized Report1Manager object.
 <div class="sectiontitle">Public Instance methods</div>
 <div class="method">
   <div class="title">
-    <a name="M000034"></a><b>generateHTMLPackageListing</b>()
+    <a name="M000035"></a><b>generateHTMLPackageListing</b>()
   </div>
   <div class="description">
   <p>
@@ -176,19 +176,19 @@ Generates an HTML page of installed packages from installed packages list.
 </p>
   </div>
 <div class="sourcecode">
-  <p class="source-link">[ <a href="javascript:toggleSource('M000034_source')" id="l_M000034_source">show source</a> ]</p>
-  <div id="M000034_source" class="dyn-source">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000035_source')" id="l_M000035_source">show source</a> ]</p>
+  <div id="M000035_source" class="dyn-source">
 <pre>
-     <span class="ruby-comment cmt"># File ReportManager.rb, line 162</span>
-162:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">generateHTMLPackageListing</span>
-163:         <span class="ruby-keyword kw">end</span>
+     <span class="ruby-comment cmt"># File ReportManager.rb, line 170</span>
+170:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">generateHTMLPackageListing</span>
+171:         <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>
 </div>
 <div class="method">
   <div class="title">
-    <a name="M000031"></a><b>searchPackageDescriptions</b>( searchText )
+    <a name="M000032"></a><b>searchPackageDescriptions</b>( searchText )
   </div>
   <div class="description">
   <p>
@@ -196,48 +196,53 @@ Searches the installed package trees package descriptions for matching
 occurrances of the given search text.
 </p>
 <p>
-&lt;a&gt;PARAM&lt;//b&gt; <em>String</em> - a search text. <b>RETURN</b>
-<em>hash</em> - a hash of the search results, keys are package names and
-values are matching descriptions.
+<b>PARAM</b> <em>String</em> - a search text.
+</p>
+<p>
+<b>RETURN</b> <em>hash</em> - a hash of the search results, keys are
+package names and values are matching descriptions.
 </p>
   </div>
 <div class="sourcecode">
-  <p class="source-link">[ <a href="javascript:toggleSource('M000031_source')" id="l_M000031_source">show source</a> ]</p>
-  <div id="M000031_source" class="dyn-source">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000032_source')" id="l_M000032_source">show source</a> ]</p>
+  <div id="M000032_source" class="dyn-source">
 <pre>
-     <span class="ruby-comment cmt"># File ReportManager.rb, line 132</span>
-132:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">searchPackageDescriptions</span>( <span class="ruby-identifier">searchText</span> )
-133:         <span class="ruby-keyword kw">end</span>
+     <span class="ruby-comment cmt"># File ReportManager.rb, line 138</span>
+138:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">searchPackageDescriptions</span>( <span class="ruby-identifier">searchText</span> )
+139:         <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>
 </div>
 <div class="method">
   <div class="title">
-    <a name="M000030"></a><b>showFileOwner</b>( file )
+    <a name="M000031"></a><b>showFileOwner</b>( file )
   </div>
   <div class="description">
   <p>
 Display the name of the package(s) that own the given file.
 </p>
 <p>
-<b>PARAM</b> <em>String</em> - a file name. <b>RETURN</b> <em>void.</em>
+<b>PARAM</b> <em>String</em> - a file name.
+</p>
+<p>
+<b>RETURN</b> <em>void.</em>
 </p>
   </div>
 <div class="sourcecode">
-  <p class="source-link">[ <a href="javascript:toggleSource('M000030_source')" id="l_M000030_source">show source</a> ]</p>
-  <div id="M000030_source" class="dyn-source">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000031_source')" id="l_M000031_source">show source</a> ]</p>
+  <div id="M000031_source" class="dyn-source">
 <pre>
-     <span class="ruby-comment cmt"># File ReportManager.rb, line 121</span>
-121:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">showFileOwner</span>( <span class="ruby-identifier">file</span> )
-122:         <span class="ruby-keyword kw">end</span>
+     <span class="ruby-comment cmt"># File ReportManager.rb, line 126</span>
+126:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">showFileOwner</span>( <span class="ruby-identifier">file</span> )
+127:         <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>
 </div>
 <div class="method">
   <div class="title">
-    <a name="M000026"></a><b>showFrozenPackages</b>()
+    <a name="M000027"></a><b>showFrozenPackages</b>()
   </div>
   <div class="description">
   <p>
@@ -248,19 +253,19 @@ Display a list of the packages found in the frozen list.
 </p>
   </div>
 <div class="sourcecode">
-  <p class="source-link">[ <a href="javascript:toggleSource('M000026_source')" id="l_M000026_source">show source</a> ]</p>
-  <div id="M000026_source" class="dyn-source">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000027_source')" id="l_M000027_source">show source</a> ]</p>
+  <div id="M000027_source" class="dyn-source">
 <pre>
-    <span class="ruby-comment cmt"># File ReportManager.rb, line 82</span>
-82:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">showFrozenPackages</span>
-83:         <span class="ruby-keyword kw">end</span>
+    <span class="ruby-comment cmt"># File ReportManager.rb, line 85</span>
+85:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">showFrozenPackages</span>
+86:         <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>
 </div>
 <div class="method">
   <div class="title">
-    <a name="M000024"></a><b>showInstalledPackages</b>()
+    <a name="M000025"></a><b>showInstalledPackages</b>()
   </div>
   <div class="description">
   <p>
@@ -271,19 +276,19 @@ Display all packages installed and tracked by AbTLinux.
 </p>
   </div>
 <div class="sourcecode">
-  <p class="source-link">[ <a href="javascript:toggleSource('M000024_source')" id="l_M000024_source">show source</a> ]</p>
-  <div id="M000024_source" class="dyn-source">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000025_source')" id="l_M000025_source">show source</a> ]</p>
+  <div id="M000025_source" class="dyn-source">
 <pre>
-    <span class="ruby-comment cmt"># File ReportManager.rb, line 60</span>
-60:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">showInstalledPackages</span>
-61:         <span class="ruby-keyword kw">end</span>
+    <span class="ruby-comment cmt"># File ReportManager.rb, line 61</span>
+61:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">showInstalledPackages</span>
+62:         <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>
 </div>
 <div class="method">
   <div class="title">
-    <a name="M000029"></a><b>showJournal</b>()
+    <a name="M000030"></a><b>showJournal</b>()
   </div>
   <div class="description">
   <p>
@@ -294,19 +299,19 @@ Display the AbTLinux journal file.
 </p>
   </div>
 <div class="sourcecode">
-  <p class="source-link">[ <a href="javascript:toggleSource('M000029_source')" id="l_M000029_source">show source</a> ]</p>
-  <div id="M000029_source" class="dyn-source">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000030_source')" id="l_M000030_source">show source</a> ]</p>
+  <div id="M000030_source" class="dyn-source">
 <pre>
-     <span class="ruby-comment cmt"># File ReportManager.rb, line 112</span>
-112:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">showJournal</span>
-113:         <span class="ruby-keyword kw">end</span>
+     <span class="ruby-comment cmt"># File ReportManager.rb, line 116</span>
+116:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">showJournal</span>
+117:         <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>
 </div>
 <div class="method">
   <div class="title">
-    <a name="M000027"></a><b>showPackageDependencies</b>( package )
+    <a name="M000028"></a><b>showPackageDependencies</b>( package )
   </div>
   <div class="description">
   <p>
@@ -316,51 +321,54 @@ href="DepEngine.html">DepEngine</a> will be expanded in apart sub-project,
 more details at a later date.)
 </p>
 <p>
-&lt;a&gt;PARAM&lt;//b&gt; <em>String</em> - <a
-href="Package.html">Package</a> name. <b>RETURN</b> <em>hash</em> - Empty
-hash if no problems found, otherwise hash of problem files and their
-encountered errors.
+<b>PARAM</b> <em>String</em> - <a href="Package.html">Package</a> name.
+</p>
+<p>
+<b>RETURN</b> <em>hash</em> - Empty hash if no problems found, otherwise
+hash of problem files and their encountered errors.
 </p>
   </div>
 <div class="sourcecode">
-  <p class="source-link">[ <a href="javascript:toggleSource('M000027_source')" id="l_M000027_source">show source</a> ]</p>
-  <div id="M000027_source" class="dyn-source">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000028_source')" id="l_M000028_source">show source</a> ]</p>
+  <div id="M000028_source" class="dyn-source">
 <pre>
-    <span class="ruby-comment cmt"># File ReportManager.rb, line 94</span>
-94:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">showPackageDependencies</span>( <span class="ruby-identifier">package</span> ) 
-95:         <span class="ruby-keyword kw">end</span>
+    <span class="ruby-comment cmt"># File ReportManager.rb, line 98</span>
+98:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">showPackageDependencies</span>( <span class="ruby-identifier">package</span> ) 
+99:         <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>
 </div>
 <div class="method">
   <div class="title">
-    <a name="M000023"></a><b>showPackageDetails</b>( package )
+    <a name="M000024"></a><b>showPackageDetails</b>( package )
   </div>
   <div class="description">
   <p>
 Display all data for a given package.
 </p>
 <p>
-&lt;a&gt;PARAM&lt;//b&gt; <em>String</em> - <a
-href="Package.html">Package</a> name. <b>RETURN</b> <em>boolean</em> - True
-if completes without error, otherwise false.
+<b>PARAM</b> <em>String</em> - <a href="Package.html">Package</a> name.
+</p>
+<p>
+<b>RETURN</b> <em>boolean</em> - True if completes without error, otherwise
+false.
 </p>
   </div>
 <div class="sourcecode">
-  <p class="source-link">[ <a href="javascript:toggleSource('M000023_source')" id="l_M000023_source">show source</a> ]</p>
-  <div id="M000023_source" class="dyn-source">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000024_source')" id="l_M000024_source">show source</a> ]</p>
+  <div id="M000024_source" class="dyn-source">
 <pre>
-    <span class="ruby-comment cmt"># File ReportManager.rb, line 52</span>
-52:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">showPackageDetails</span>( <span class="ruby-identifier">package</span> )
-53:         <span class="ruby-keyword kw">end</span>
+    <span class="ruby-comment cmt"># File ReportManager.rb, line 53</span>
+53:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">showPackageDetails</span>( <span class="ruby-identifier">package</span> )
+54:         <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>
 </div>
 <div class="method">
   <div class="title">
-    <a name="M000025"></a><b>showPackageLog</b>( package, logType )
+    <a name="M000026"></a><b>showPackageLog</b>( package, logType )
   </div>
   <div class="description">
   <p>
@@ -368,52 +376,59 @@ Display the contents of the requested log for a given package. Possible log
 types are; install, build and integrity.
 </p>
 <p>
-&lt;a&gt;PARAM&lt;//b&gt; <em>String</em> - <a
-href="Package.html">Package</a> name. &lt;a&gt;PARAM&lt;//b&gt;
-<em>String</em> - log type. <b>RETURN</b> <em>void.</em>
+<b>PARAM</b> <em>String</em> - <a href="Package.html">Package</a> name.
+</p>
+<p>
+<b>PARAM</b> <em>String</em> - log type.
+</p>
+<p>
+<b>RETURN</b> <em>void.</em>
 </p>
   </div>
 <div class="sourcecode">
-  <p class="source-link">[ <a href="javascript:toggleSource('M000025_source')" id="l_M000025_source">show source</a> ]</p>
-  <div id="M000025_source" class="dyn-source">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000026_source')" id="l_M000026_source">show source</a> ]</p>
+  <div id="M000026_source" class="dyn-source">
 <pre>
-    <span class="ruby-comment cmt"># File ReportManager.rb, line 71</span>
-71:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">showPackageLog</span>( <span class="ruby-identifier">package</span>, <span class="ruby-identifier">logType</span> )
-72:                 <span class="ruby-comment cmt"># install log</span>
-73:                 <span class="ruby-comment cmt"># build log</span>
-74:                 <span class="ruby-comment cmt"># integrity log</span>
-75:         <span class="ruby-keyword kw">end</span>
+    <span class="ruby-comment cmt"># File ReportManager.rb, line 74</span>
+74:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">showPackageLog</span>( <span class="ruby-identifier">package</span>, <span class="ruby-identifier">logType</span> )
+75:                 <span class="ruby-comment cmt"># install log</span>
+76:                 <span class="ruby-comment cmt"># build log</span>
+77:                 <span class="ruby-comment cmt"># integrity log</span>
+78:         <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>
 </div>
 <div class="method">
   <div class="title">
-    <a name="M000032"></a><b>showQueue</b>( queueType )
+    <a name="M000033"></a><b>showQueue</b>( queueType )
   </div>
   <div class="description">
   <p>
 Displays the contents of the current queue based on the given queue.
 </p>
 <p>
-&lt;a&gt;PARAM&lt;//b&gt; <em>String</em> - the type of queue to display
-such as install queue. <b>RETURN</b> <em>void.</em>
+<b>PARAM</b> <em>String</em> - the type of queue to display such as install
+queue.
+</p>
+<p>
+<b>RETURN</b> <em>void.</em>
 </p>
   </div>
 <div class="sourcecode">
-  <p class="source-link">[ <a href="javascript:toggleSource('M000032_source')" id="l_M000032_source">show source</a> ]</p>
-  <div id="M000032_source" class="dyn-source">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000033_source')" id="l_M000033_source">show source</a> ]</p>
+  <div id="M000033_source" class="dyn-source">
 <pre>
-     <span class="ruby-comment cmt"># File ReportManager.rb, line 142</span>
-142:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">showQueue</span>( <span class="ruby-identifier">queueType</span> )
-143:         <span class="ruby-keyword kw">end</span>
+     <span class="ruby-comment cmt"># File ReportManager.rb, line 149</span>
+149:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">showQueue</span>( <span class="ruby-identifier">queueType</span> )
+150:         <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>
 </div>
 <div class="method">
   <div class="title">
-    <a name="M000028"></a><b>showUntrackedFiles</b>()
+    <a name="M000029"></a><b>showUntrackedFiles</b>()
   </div>
   <div class="description">
   <p>
@@ -425,19 +440,19 @@ a list of files that are not tracked by AbTLinux package management.
 </p>
   </div>
 <div class="sourcecode">
-  <p class="source-link">[ <a href="javascript:toggleSource('M000028_source')" id="l_M000028_source">show source</a> ]</p>
-  <div id="M000028_source" class="dyn-source">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000029_source')" id="l_M000029_source">show source</a> ]</p>
+  <div id="M000029_source" class="dyn-source">
 <pre>
-     <span class="ruby-comment cmt"># File ReportManager.rb, line 104</span>
-104:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">showUntrackedFiles</span>
-105:         <span class="ruby-keyword kw">end</span>
+     <span class="ruby-comment cmt"># File ReportManager.rb, line 108</span>
+108:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">showUntrackedFiles</span>
+109:         <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>
 </div>
 <div class="method">
   <div class="title">
-    <a name="M000033"></a><b>showUpdates</b>( target )
+    <a name="M000034"></a><b>showUpdates</b>( target )
   </div>
   <div class="description">
   <p>
@@ -445,18 +460,21 @@ Reports available updates for a given package or package tree based on the
 current system.
 </p>
 <p>
-&lt;a&gt;PARAM&lt;//b&gt; <em>String</em> - the target of the update check,
-either a package name or a package tree name. <b>RETURN</b>
-<em>boolean</em> - True if completes without error, otherwise false.
+<b>PARAM</b> <em>String</em> - the target of the update check, either a
+package name or a package tree name.
+</p>
+<p>
+<b>RETURN</b> <em>boolean</em> - True if completes without error, otherwise
+false.
 </p>
   </div>
 <div class="sourcecode">
-  <p class="source-link">[ <a href="javascript:toggleSource('M000033_source')" id="l_M000033_source">show source</a> ]</p>
-  <div id="M000033_source" class="dyn-source">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000034_source')" id="l_M000034_source">show source</a> ]</p>
+  <div id="M000034_source" class="dyn-source">
 <pre>
-     <span class="ruby-comment cmt"># File ReportManager.rb, line 154</span>
-154:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">showUpdates</span>( <span class="ruby-identifier">target</span> )
-155:         <span class="ruby-keyword kw">end</span>
+     <span class="ruby-comment cmt"># File ReportManager.rb, line 162</span>
+162:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">showUpdates</span>( <span class="ruby-identifier">target</span> )
+163:         <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>

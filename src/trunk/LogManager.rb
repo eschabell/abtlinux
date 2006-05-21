@@ -35,7 +35,8 @@ class LogManager
 	# package. Will be called as part of the logging done during the install
 	# phase.
 	# 
-	# <a>PARAM<//b> <i>String</i> - Package name.
+	# <b>PARAM</b> <i>String</i> - Package name.
+	# 
 	# <b>RETURN</b> <i>boolean</i> - True if integrity log created successfully,
 	# otherwise false.
 	##
@@ -62,7 +63,8 @@ class LogManager
 	# Provides logging of all files installed by given package. Should be called
 	# as part of the install phase of the build.
 	# 
-	# <a>PARAM<//b> <i>String</i> - Package name.
+	# <b>PARAM</b> <i>String</i> - Package name.
+	# 
 	# <b>RETURN</b> <i>boolean</i> - True if install log created successfully,
 	# otherwise false.
 	##
@@ -73,7 +75,8 @@ class LogManager
 	# Provides logging of all output produced during the build phase of the
 	# given package. Should be called as part of the install phase of the build.
 	# 
-	# <a>PARAM<//b> <i>String</i> - Package name.
+	# <b>PARAM</b> <i>String</i> - Package name.
+	# 
 	# <b>RETURN</b> <i>boolean</i> - True if build log created successfully,
 	# otherwise false.
 	##
@@ -84,7 +87,8 @@ class LogManager
 	# Provides a complete log of the given packages build. Includes everything
 	# needed to duplicate the build at a later date.
 	# 
-	# <a>PARAM<//b> <i>String</i> - Package name.
+	# <b>PARAM</b> <i>String</i> - Package name.
+	# 
 	# <b>RETURN</b> <i>boolean</i> - True if package cache created successfully,
 	# otherwise false.
 	##
@@ -95,7 +99,8 @@ class LogManager
 	# Provides logging of given message to the AbTLinux journal. Message logged
 	# with date timestamp.
 	# 
-	# <a>PARAM<//b> <i>String</i> - Message to be added to the log.
+	# <b>PARAM</b> <i>String</i> - Message to be added to the log.
+	# 
 	# <b>RETURN</b> <i>boolean</i> - True if message logged successfully,
 	# otherwise false.
 	##
