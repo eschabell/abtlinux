@@ -22,6 +22,7 @@ FILES="AbtPackageManager.rb
 			 AbtSystemManager.rb
 			 AbtLogManager.rb
 			 AbtReportManager.rb
+			 AbtQueueManager.rb
 			 AbtDepEngine.rb";
 
 # run the actual doc generation.
