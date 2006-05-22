@@ -3,7 +3,7 @@ digraph TopLevel {
     bgcolor = lightcyan1
     fontname = Arial
     fontsize = 8
-    label = "ReportManager.rb"
+    label = "AbtReportManager.rb"
     node [
         fontname = Arial,
         fontsize = 8,
@@ -13,14 +13,14 @@ digraph TopLevel {
     subgraph cluster_6 {
         fontname = Arial
         color = red
-        label = "ReportManager.rb"
-        ReportManager [
+        label = "AbtReportManager.rb"
+        AbtReportManager [
             fontcolor = black,
-            URL = "classes/ReportManager.html",
+            URL = "classes/AbtReportManager.html",
             shape = ellipse,
             color = palegoldenrod,
             style = filled,
-            label = "ReportManager"
+            label = "AbtReportManager"
         ]
 
     }

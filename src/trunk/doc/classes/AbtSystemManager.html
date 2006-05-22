@@ -4,7 +4,7 @@
      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
   <head>
-    <title>Class: SystemManager</title>
+    <title>Class: AbtSystemManager</title>
     <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
     <link rel="stylesheet" href=".././rdoc-style.css" type="text/css" media="screen" />
 
@@ -51,13 +51,13 @@
 
   <body>
   <table width="100%" border='0' cellpadding='0' cellspacing='0' class='banner'><tr>
-  <td class="file-title"><span class="file-title-prefix">Class</span><br />SystemManager</td>
+  <td class="file-title"><span class="file-title-prefix">Class</span><br />AbtSystemManager</td>
   <td align="right">
     <table cellspacing=0 cellpadding=2>
       <tr valign="top">
         <td>In:</td>
         <td>
-<a href="../files/SystemManager_rb.html">SystemManager.rb</a>
+<a href="../files/AbtSystemManager_rb.html">AbtSystemManager.rb</a>
         </td>
       </tr>
     <tr>
@@ -76,18 +76,18 @@ Object
       <div id="content">
   <table cellpadding='0' cellspacing='0' border='0' width="100%"><tr><td align="center">
     <map id="map" name="map">
-  <area shape="RECT" coords="28,51,135,99"      href="SystemManager.html" alt="SystemManager">
+  <area shape="RECT" coords="29,52,151,100"      href="AbtSystemManager.html" alt="AbtSystemManager">
 </map>
 <img src="../dot/f_3.png" usemap="#map" border=0 alt="TopLevel">
   </td></tr></table>
 
   <div class="description"><p>
-SystemManager.rb
+AbtSystemManager.rb
 </p>
 <p>
-<a href="SystemManager.html">SystemManager</a> class handles all aspects of
-the AbTLinux system. It takes care of such tasks as cleanup, fixing,
-verification and management of settings within the system.
+<a href="AbtSystemManager.html">AbtSystemManager</a> class handles all
+aspects of the AbTLinux system. It takes care of such tasks as cleanup,
+fixing, verification and management of settings within the system.
 </p>
 <p>
 Created by Eric D. Schabell &lt;erics@abtlinux.org&gt; Copyright 2006, GPL.
@@ -118,16 +118,16 @@ Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
 
   <div class="sectiontitle">Methods</div>
   <ul>
-  <li><a href="#M000009">cleanupLogs</a></li>
-  <li><a href="#M000008">cleanupPackageSources</a></li>
-  <li><a href="#M000014">fixPackage</a></li>
-  <li><a href="#M000007">new</a></li>
-  <li><a href="#M000015">setCentralRepo</a></li>
-  <li><a href="#M000016">setPackageTreeLocation</a></li>
-  <li><a href="#M000010">verifyInstalledFiles</a></li>
-  <li><a href="#M000012">verifyPackageDepends</a></li>
-  <li><a href="#M000013">verifyPackageIntegrity</a></li>
-  <li><a href="#M000011">verifySymlinks</a></li>
+  <li><a href="#M000003">cleanupLogs</a></li>
+  <li><a href="#M000002">cleanupPackageSources</a></li>
+  <li><a href="#M000008">fixPackage</a></li>
+  <li><a href="#M000001">new</a></li>
+  <li><a href="#M000009">setCentralRepo</a></li>
+  <li><a href="#M000010">setPackageTreeLocation</a></li>
+  <li><a href="#M000004">verifyInstalledFiles</a></li>
+  <li><a href="#M000006">verifyPackageDepends</a></li>
+  <li><a href="#M000007">verifyPackageIntegrity</a></li>
+  <li><a href="#M000005">verifySymlinks</a></li>
   </ul>
 
 
@@ -138,22 +138,23 @@ Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
 <div class="sectiontitle">Public Class methods</div>
 <div class="method">
   <div class="title">
-    <a name="M000007"></a><b>new</b>()
+    <a name="M000001"></a><b>new</b>()
   </div>
   <div class="description">
   <p>
 Constructor for the System manager
 </p>
 <p>
-<b>RETURN</b> <em><a href="SystemManager.html">SystemManager</a></em> - an
-initialized <a href="SystemManager.html">SystemManager</a> object.
+<b>RETURN</b> <em><a href="AbtSystemManager.html">AbtSystemManager</a></em>
+- an initialized <a href="AbtSystemManager.html">AbtSystemManager</a>
+object.
 </p>
   </div>
 <div class="sourcecode">
-  <p class="source-link">[ <a href="javascript:toggleSource('M000007_source')" id="l_M000007_source">show source</a> ]</p>
-  <div id="M000007_source" class="dyn-source">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000001_source')" id="l_M000001_source">show source</a> ]</p>
+  <div id="M000001_source" class="dyn-source">
 <pre>
-    <span class="ruby-comment cmt"># File SystemManager.rb, line 43</span>
+    <span class="ruby-comment cmt"># File AbtSystemManager.rb, line 43</span>
 43:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>
 44:         <span class="ruby-keyword kw">end</span>
 </pre>
@@ -163,7 +164,7 @@ initialized <a href="SystemManager.html">SystemManager</a> object.
 <div class="sectiontitle">Public Instance methods</div>
 <div class="method">
   <div class="title">
-    <a name="M000009"></a><b>cleanupLogs</b>()
+    <a name="M000003"></a><b>cleanupLogs</b>()
   </div>
   <div class="description">
   <p>
@@ -175,10 +176,10 @@ false.
 </p>
   </div>
 <div class="sourcecode">
-  <p class="source-link">[ <a href="javascript:toggleSource('M000009_source')" id="l_M000009_source">show source</a> ]</p>
-  <div id="M000009_source" class="dyn-source">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000003_source')" id="l_M000003_source">show source</a> ]</p>
+  <div id="M000003_source" class="dyn-source">
 <pre>
-    <span class="ruby-comment cmt"># File SystemManager.rb, line 62</span>
+    <span class="ruby-comment cmt"># File AbtSystemManager.rb, line 62</span>
 62:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">cleanupLogs</span>
 63:         <span class="ruby-keyword kw">end</span>
 </pre>
@@ -187,7 +188,7 @@ false.
 </div>
 <div class="method">
   <div class="title">
-    <a name="M000008"></a><b>cleanupPackageSources</b>()
+    <a name="M000002"></a><b>cleanupPackageSources</b>()
   </div>
   <div class="description">
   <p>
@@ -200,10 +201,10 @@ false.
 </p>
   </div>
 <div class="sourcecode">
-  <p class="source-link">[ <a href="javascript:toggleSource('M000008_source')" id="l_M000008_source">show source</a> ]</p>
-  <div id="M000008_source" class="dyn-source">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000002_source')" id="l_M000002_source">show source</a> ]</p>
+  <div id="M000002_source" class="dyn-source">
 <pre>
-    <span class="ruby-comment cmt"># File SystemManager.rb, line 53</span>
+    <span class="ruby-comment cmt"># File AbtSystemManager.rb, line 53</span>
 53:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">cleanupPackageSources</span>
 54:         <span class="ruby-keyword kw">end</span>
 </pre>
@@ -212,14 +213,14 @@ false.
 </div>
 <div class="method">
   <div class="title">
-    <a name="M000014"></a><b>fixPackage</b>( package )
+    <a name="M000008"></a><b>fixPackage</b>( package )
   </div>
   <div class="description">
   <p>
 Fixes the given package.
 </p>
 <p>
-<b>PARAM</b> <em>String</em> - <a href="Package.html">Package</a> name.
+<b>PARAM</b> <em>String</em> - Package name.
 </p>
 <p>
 <b>RETURN</b> <em>boolean</em> - True if completes without error, otherwise
@@ -227,10 +228,10 @@ false.
 </p>
   </div>
 <div class="sourcecode">
-  <p class="source-link">[ <a href="javascript:toggleSource('M000014_source')" id="l_M000014_source">show source</a> ]</p>
-  <div id="M000014_source" class="dyn-source">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000008_source')" id="l_M000008_source">show source</a> ]</p>
+  <div id="M000008_source" class="dyn-source">
 <pre>
-     <span class="ruby-comment cmt"># File SystemManager.rb, line 118</span>
+     <span class="ruby-comment cmt"># File AbtSystemManager.rb, line 118</span>
 118:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">fixPackage</span>( <span class="ruby-identifier">package</span> )
 119:         <span class="ruby-keyword kw">end</span>
 </pre>
@@ -239,7 +240,7 @@ false.
 </div>
 <div class="method">
   <div class="title">
-    <a name="M000015"></a><b>setCentralRepo</b>( uri )
+    <a name="M000009"></a><b>setCentralRepo</b>( uri )
   </div>
   <div class="description">
   <p>
@@ -254,10 +255,10 @@ located.
 </p>
   </div>
 <div class="sourcecode">
-  <p class="source-link">[ <a href="javascript:toggleSource('M000015_source')" id="l_M000015_source">show source</a> ]</p>
-  <div id="M000015_source" class="dyn-source">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000009_source')" id="l_M000009_source">show source</a> ]</p>
+  <div id="M000009_source" class="dyn-source">
 <pre>
-     <span class="ruby-comment cmt"># File SystemManager.rb, line 129</span>
+     <span class="ruby-comment cmt"># File AbtSystemManager.rb, line 129</span>
 129:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">setCentralRepo</span>( <span class="ruby-identifier">uri</span> )
 130:         <span class="ruby-keyword kw">end</span>
 </pre>
@@ -266,7 +267,7 @@ located.
 </div>
 <div class="method">
   <div class="title">
-    <a name="M000016"></a><b>setPackageTreeLocation</b>( location )
+    <a name="M000010"></a><b>setPackageTreeLocation</b>( location )
   </div>
   <div class="description">
   <p>
@@ -282,10 +283,10 @@ otherwise false.
 </p>
   </div>
 <div class="sourcecode">
-  <p class="source-link">[ <a href="javascript:toggleSource('M000016_source')" id="l_M000016_source">show source</a> ]</p>
-  <div id="M000016_source" class="dyn-source">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000010_source')" id="l_M000010_source">show source</a> ]</p>
+  <div id="M000010_source" class="dyn-source">
 <pre>
-     <span class="ruby-comment cmt"># File SystemManager.rb, line 141</span>
+     <span class="ruby-comment cmt"># File AbtSystemManager.rb, line 141</span>
 141:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">setPackageTreeLocation</span>( <span class="ruby-identifier">location</span> )
 142:         <span class="ruby-keyword kw">end</span>
 </pre>
@@ -294,14 +295,14 @@ otherwise false.
 </div>
 <div class="method">
   <div class="title">
-    <a name="M000010"></a><b>verifyInstalledFiles</b>( package )
+    <a name="M000004"></a><b>verifyInstalledFiles</b>( package )
   </div>
   <div class="description">
   <p>
 Checks if files from given package install list are actually installed.
 </p>
 <p>
-<b>PARAM</b> <em>String</em> - <a href="Package.html">Package</a> name.
+<b>PARAM</b> <em>String</em> - Package name.
 </p>
 <p>
 <b>RETURN</b> <em>boolean</em> - True if no installed files are missing,
@@ -309,10 +310,10 @@ otherwise false.
 </p>
   </div>
 <div class="sourcecode">
-  <p class="source-link">[ <a href="javascript:toggleSource('M000010_source')" id="l_M000010_source">show source</a> ]</p>
-  <div id="M000010_source" class="dyn-source">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000004_source')" id="l_M000004_source">show source</a> ]</p>
+  <div id="M000004_source" class="dyn-source">
 <pre>
-    <span class="ruby-comment cmt"># File SystemManager.rb, line 73</span>
+    <span class="ruby-comment cmt"># File AbtSystemManager.rb, line 73</span>
 73:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">verifyInstalledFiles</span>( <span class="ruby-identifier">package</span> )
 74:         <span class="ruby-keyword kw">end</span>
 </pre>
@@ -321,14 +322,14 @@ otherwise false.
 </div>
 <div class="method">
   <div class="title">
-    <a name="M000012"></a><b>verifyPackageDepends</b>( package )
+    <a name="M000006"></a><b>verifyPackageDepends</b>( package )
   </div>
   <div class="description">
   <p>
 Checks the given packages dependencies for missing or broken dependencies.
 </p>
 <p>
-<b>PARAM</b> <em>String</em> - <a href="Package.html">Package</a> name.
+<b>PARAM</b> <em>String</em> - Package name.
 </p>
 <p>
 <b>RETURN</b> <em>boolean</em> - True if dependencies intact, otherwise
@@ -336,10 +337,10 @@ false.
 </p>
   </div>
 <div class="sourcecode">
-  <p class="source-link">[ <a href="javascript:toggleSource('M000012_source')" id="l_M000012_source">show source</a> ]</p>
-  <div id="M000012_source" class="dyn-source">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000006_source')" id="l_M000006_source">show source</a> ]</p>
+  <div id="M000006_source" class="dyn-source">
 <pre>
-    <span class="ruby-comment cmt"># File SystemManager.rb, line 95</span>
+    <span class="ruby-comment cmt"># File AbtSystemManager.rb, line 95</span>
 95:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">verifyPackageDepends</span>( <span class="ruby-identifier">package</span> )
 96:         <span class="ruby-keyword kw">end</span>
 </pre>
@@ -348,7 +349,7 @@ false.
 </div>
 <div class="method">
   <div class="title">
-    <a name="M000013"></a><b>verifyPackageIntegrity</b>( package )
+    <a name="M000007"></a><b>verifyPackageIntegrity</b>( package )
   </div>
   <div class="description">
   <p>
@@ -356,7 +357,7 @@ Checks the given packages installed files against the integrity log for
 changes to installed files.
 </p>
 <p>
-<b>PARAM</b> <em>String</em> - <a href="Package.html">Package</a> name.
+<b>PARAM</b> <em>String</em> - Package name.
 </p>
 <p>
 <b>RETURN</b> <em>hash</em> - Empty hash if no problems found, otherwise
@@ -364,10 +365,10 @@ hash of problem files and their encountered errors.
 </p>
   </div>
 <div class="sourcecode">
-  <p class="source-link">[ <a href="javascript:toggleSource('M000013_source')" id="l_M000013_source">show source</a> ]</p>
-  <div id="M000013_source" class="dyn-source">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000007_source')" id="l_M000007_source">show source</a> ]</p>
+  <div id="M000007_source" class="dyn-source">
 <pre>
-     <span class="ruby-comment cmt"># File SystemManager.rb, line 107</span>
+     <span class="ruby-comment cmt"># File AbtSystemManager.rb, line 107</span>
 107:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">verifyPackageIntegrity</span>( <span class="ruby-identifier">package</span> ) 
 108:         <span class="ruby-keyword kw">end</span>
 </pre>
@@ -376,14 +377,14 @@ hash of problem files and their encountered errors.
 </div>
 <div class="method">
   <div class="title">
-    <a name="M000011"></a><b>verifySymlinks</b>( package )
+    <a name="M000005"></a><b>verifySymlinks</b>( package )
   </div>
   <div class="description">
   <p>
 Checks if given packages installed symlinks are broken or missing.
 </p>
 <p>
-<b>PARAM</b> <em>String</em> - <a href="Package.html">Package</a> name.
+<b>PARAM</b> <em>String</em> - Package name.
 </p>
 <p>
 <b>RETURN</b> <em>boolean</em> - True if no symlinks found missing or
@@ -391,10 +392,10 @@ broken, otherwise false.
 </p>
   </div>
 <div class="sourcecode">
-  <p class="source-link">[ <a href="javascript:toggleSource('M000011_source')" id="l_M000011_source">show source</a> ]</p>
-  <div id="M000011_source" class="dyn-source">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000005_source')" id="l_M000005_source">show source</a> ]</p>
+  <div id="M000005_source" class="dyn-source">
 <pre>
-    <span class="ruby-comment cmt"># File SystemManager.rb, line 84</span>
+    <span class="ruby-comment cmt"># File AbtSystemManager.rb, line 84</span>
 84:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">verifySymlinks</span>( <span class="ruby-identifier">package</span> )
 85:         <span class="ruby-keyword kw">end</span>
 </pre>

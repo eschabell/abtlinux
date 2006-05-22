@@ -1,9 +1,9 @@
 #!/usr/bin/ruby -w
 
 ##
-# SystemManager.rb 
+# AbtSystemManager.rb 
 #
-# SystemManager class handles all aspects of the AbTLinux system. It takes
+# AbtSystemManager class handles all aspects of the AbTLinux system. It takes
 # care of such tasks as cleanup, fixing, verification and management of
 # settings within the system.
 #
@@ -27,7 +27,7 @@
 # St, Fifth Floor, Boston, MA 02110-1301  USA
 ##
 
-class SystemManager
+class AbtSystemManager
 
   protected
   
@@ -38,7 +38,7 @@ class SystemManager
 	##
 	# Constructor for the System manager
 	#
-	# <b>RETURN</b> <i>SystemManager</i> - an initialized SystemManager object. 
+	# <b>RETURN</b> <i>AbtSystemManager</i> - an initialized AbtSystemManager object. 
 	##
 	def initialize
 	end

@@ -1,9 +1,9 @@
 #!/usr/bin/ruby -w
 
 ##
-# PackageManager.rb 
+# AbtPackageManager.rb 
 #
-# PackageManager class will take care of the installation, removal, updating,
+# AbtPackageManager class will take care of the installation, removal, updating,
 # downgrading and freezing of AbTLinux software packages.
 #
 # Created by Eric D. Schabell <erics@abtlinux.org>
@@ -26,7 +26,7 @@
 # St, Fifth Floor, Boston, MA 02110-1301  USA
 ##
 
-class PackageManager
+class AbtPackageManager
 
   protected
   
@@ -35,9 +35,9 @@ class PackageManager
   public
 
 	##
-	# Constructor for PackageManager.
+	# Constructor for AbtPackageManager.
 	#
-	# <b>RETURN</b> <i>PackageManager</i> - an initialized PackageManager object. 
+	# <b>RETURN</b> <i>AbtPackageManager</i> - an initialized AbtPackageManager object. 
 	##
 	def initialize
 	end

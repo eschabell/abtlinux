@@ -1,9 +1,9 @@
 #!/usr/bin/ruby -w
 
 ##
-# ReportManager.rb 
+# AbtReportManager.rb 
 #
-# ReportManager class handles all sort of report and query generation within
+# AbtReportManager class handles all sort of report and query generation within
 # the AbTLinux system.
 #
 # Created by Eric D. Schabell <erics@abtlinux.org>
@@ -26,7 +26,7 @@
 # St, Fifth Floor, Boston, MA 02110-1301  USA
 ##
 
-class ReportManager
+class AbtReportManager
 
   protected
   
@@ -35,9 +35,9 @@ class ReportManager
   public
 
 	##
-	# Constructor for the Reportmanager.
+	# Constructor for the AbtReportManager.
 	#
-	# <b>RETURN</b> <i>ReportManager</i> - an initialized Report1Manager object. 
+	# <b>RETURN</b> <i>AbtReportManager</i> - an initialized Report1Manager object. 
 	##
 	def initialize
 	end

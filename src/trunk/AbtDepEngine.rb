@@ -1,9 +1,9 @@
 #!/usr/bin/ruby -w
 
 ##
-# DepEngine.rb 
+# AbtDepEngine.rb 
 #
-# DepEngine class handles all dependency aspects of the AbTLinux system. It is
+# AbtDepEngine class handles all dependency aspects of the AbTLinux system. It is
 # part of a sub-project with it's own requirements document.
 #
 # Created by Eric D. Schabell <erics@abtlinux.org>
@@ -26,7 +26,7 @@
 # St, Fifth Floor, Boston, MA 02110-1301  USA
 ##
 
-class DepEngine
+class AbtDepEngine
 
   protected
   
@@ -35,9 +35,9 @@ class DepEngine
   public
 
 	##
-	# Constructor for the DepEngine class.
+	# Constructor for the AbtDepEngine class.
 	#
-	# <b>RETURN</b> <i>DepEngine</i> - an initialized DepEngine object. 
+	# <b>RETURN</b> <i>AbtDepEngine</i> - an initialized AbtDepEngine object. 
 	##
 	def initialize
 	end

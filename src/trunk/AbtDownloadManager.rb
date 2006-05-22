@@ -1,9 +1,9 @@
 #!/usr/bin/ruby -w
 
 ##
-# DownloadManager.rb 
+# AbtDownloadManager.rb 
 #
-# DownloadManager class handles all downloading of components needed for
+# AbtDownloadManager class handles all downloading of components needed for
 # AbTLinux.
 #
 # Created by Eric D. Schabell <erics@abtlinux.org>
@@ -26,7 +26,7 @@
 # St, Fifth Floor, Boston, MA 02110-1301  USA
 ##
 
-class DownloadManager
+class AbtDownloadManager
 
   protected
   
@@ -35,9 +35,9 @@ class DownloadManager
   public
 
 	##
-	# Constructor for the DownloadManager class.
+	# Constructor for the AbtDownloadManager class.
 	#
-	# <b>RETURN</b> <i>DownloadManager</i> - an initialized DownloadManager object. 
+	# <b>RETURN</b> <i>AbtDownloadManager</i> - an initialized AbtDownloadManager object. 
 	##
 	def initialize
 	end

@@ -1,9 +1,9 @@
 #!/usr/bin/ruby -w
 
 ##
-# LogManager.rb 
+# AbtLogManager.rb 
 #
-# LogManager class handles all aspects of logging and access to existing logs
+# AbtLogManager class handles all aspects of logging and access to existing logs
 # within the AbTLinux system.
 #
 # Created by Eric D. Schabell <erics@abtlinux.org>
@@ -26,7 +26,7 @@
 # St, Fifth Floor, Boston, MA 02110-1301  USA
 ##
 
-class LogManager
+class AbtLogManager
 
   protected
  
@@ -52,9 +52,9 @@ class LogManager
   public
 
 	##
-	# Constructor for the LogManager.
+	# Constructor for the AbtLogManager.
 	#
-	# <b>RETURN</b> <i>LogManager</i> - an initialized LogManager object. 
+	# <b>RETURN</b> <i>AbtLogManager</i> - an initialized AbtLogManager object. 
 	##
 	def initialize
 	end

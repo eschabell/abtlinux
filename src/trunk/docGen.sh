@@ -16,13 +16,13 @@
 #===============================================================================
 
 TEMPLATE="./abtTemplate.rb";
-FILES="PackageManager.rb 
-       Package.rb 
-			 DownloadManager.rb 
-			 SystemManager.rb
-			 LogManager.rb
-			 ReportManager.rb
-			 DepEngine.rb";
+FILES="AbtPackageManager.rb 
+       AbtPackage.rb 
+			 AbtDownloadManager.rb 
+			 AbtSystemManager.rb
+			 AbtLogManager.rb
+			 AbtReportManager.rb
+			 AbtDepEngine.rb";
 
 # run the actual doc generation.
 rdoc 	--diagram                               \
@@ -30,7 +30,7 @@ rdoc 	--diagram                               \
       --fileboxes                             \
       --inline-source                         \
       --line-numbers                          \
-			--main PackageManager                   \
+			--main AbtPackageManager                \
       --title "AbTLinux Package Manager API"  \
       $FILES
 

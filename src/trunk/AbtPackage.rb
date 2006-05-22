@@ -1,12 +1,12 @@
 #!/usr/bin/ruby -w
 
 ##
-# Package.rb 
+# AbtPackage.rb 
 #
-# Package class provides an interface to package creation within AbTLinux. By
-# inheriting from this class (class Fortune < Package) one picks up all
-# supported standard functions for the abt package manager to make use of the
-# new package.
+# AbtPackage class provides an interface to AbtPackage creation within AbTLinux. By
+# inheriting from this class (class Fortune < AbtPackage) one picks up all
+# supported standard functions for the abt AbtPackage manager to make use of the
+# new AbtPackage.
 #
 # Created by Eric D. Schabell <erics@abtlinux.org>
 # Copyright 2006, GPL.
@@ -28,7 +28,7 @@
 # St, Fifth Floor, Boston, MA 02110-1301  USA
 ##
 
-class Package
+class AbtPackage
   
   protected
   
@@ -40,9 +40,9 @@ class Package
     attr_reader :URL, :LICENSE, :DESCRIPTION
     
     ##
-    # Provides all the data needed for this package.
+    # Provides all the data needed for this AbtPackage.
     #
-    # <b>RETURNS:</b>  <i>hash</i> - Contains all package attributes (constants).
+    # <b>RETURNS:</b>  <i>hash</i> - Contains all AbtPackage attributes (constants).
     ##
     def details
     end
