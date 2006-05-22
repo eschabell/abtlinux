@@ -50,7 +50,7 @@ class AbtPackageManager
 	# <b>RETURN</b> <i>boolean</i> - True if the package is installed, otherwise
 	# false.
 	##
-	def install( package )
+	def installPackage( package )
 	end
   
 	##
@@ -61,7 +61,7 @@ class AbtPackageManager
 	# <b>RETURN</b> <i>boolean</i> - True if the package is reinstalled, otherwise
 	# false.
 	##
-	def reinstall( package )
+	def reinstallPackage( package )
 	end
   
 	##
@@ -72,7 +72,7 @@ class AbtPackageManager
 	# <b>RETURN</b> <i>boolean</i> - True if the package is removed, otherwise
 	# false.
 	##
-	def remove( package )
+	def removePackage( package )
 	end
   
 	##
@@ -85,7 +85,7 @@ class AbtPackageManager
 	# <b>RETURN</b> <i>boolean</i> - True if the package is downgraded, otherwise
 	# false.
 	##
-	def downgrade( package, version )
+	def downgradePackage( package, version )
 	end
   
 	##
