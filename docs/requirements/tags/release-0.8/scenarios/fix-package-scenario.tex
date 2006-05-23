@@ -1,0 +1,45 @@
+\medskip
+
+\begin{tabularx}{\linewidth}{|l|X|}
+\hline
+\textbf{Use Case Name:} & \textbf{Fix package} \\
+\hline
+\textbf{Use Case Steps:} & 
+\begin{minipage}{\linewidth} 
+  \vspace{0.05em}
+  \begin{itemize}
+    \item User command \textbf{'abt fix fortune'}.
+    \begin{enumerate}
+      \item \textbf{abt verify-files fortune}
+      \item \textbf{abt verify-symlinks fortune}
+      \item \textbf{abt verify-integrity fortune}
+    \end{enumerate}
+    \item depEngine requested to determine dependencies downtree for fortune.
+    \item Each package in downtree list is checked with:
+    \begin{enumerate}
+      \item \textbf{abt verify-files DOWNTREE-PKG}
+      \item \textbf{abt verify-symlinks DOWNTREE-PKG}
+      \item \textbf{abt verify-integrity DOWNTREE-PKG}
+    \end{enumerate}
+    \item User supplied with overview of any broken dependencies.
+    \item User offered to rebuild broken package list.
+    \item After rebuild, report broken and fixed packages.
+  \end{itemize}
+  \vspace{0.05em}
+\end{minipage}
+\\
+\hline 
+\textbf{Alternative Path:} &
+\begin{minipage}{\linewidth}
+  \vspace{0.05em} 
+  \begin{enumerate}
+    \item No package name is given, process entire installed packages log.
+  \end{enumerate}
+  \vspace{0.05em} 
+\end{minipage}
+\\
+\hline
+\end{tabularx}
+
+\newpage
+

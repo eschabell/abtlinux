@@ -1,0 +1,39 @@
+\medskip
+
+\begin{tabularx}{\linewidth}{|l|X|}
+\hline
+\textbf{Use Case Name:} & \textbf{Log package cache} \\
+\hline
+\textbf{Use Case Steps:} & 
+\begin{minipage}{\linewidth} 
+  \vspace{0.05em}
+  \begin{itemize}
+    \item At completion of successful install or removal of the \textbf{fortune} package.
+    \item The following will be caches at \url{/var/state/abt/cached/fortune/}:
+    \begin{enumerate}
+      \item copy of \textbf{fortune-mod-9708.config}
+      \item copy of \textbf{fortune-mod-9708.build}
+      \item copy of \textbf{fortune-mod-9708.install}
+      \item copy of \textbf{fortune-mod-9708.integrity}
+      \item copy of \textbf{fortune} configuration options (setting user specified)
+      \item copy of current configuration files
+      \item copy of \textbf{fortune} package description
+      \item copy of \textbf{fortune} sources
+    \end{enumerate}
+    \item This set of data will be tarballed and compressed for storage.
+  \end{itemize}
+  \vspace{0.05em}
+\end{minipage}
+\\
+\hline 
+\textbf{Alternative Path:} &
+\begin{minipage}{\linewidth}
+  \vspace{0.05em} 
+  \begin{enumerate}
+    \item Any item missing in the above list, warn user.
+  \end{enumerate}
+  \vspace{0.05em} 
+\end{minipage}
+\\
+\hline
+\end{tabularx}

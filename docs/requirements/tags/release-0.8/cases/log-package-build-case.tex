@@ -1,0 +1,34 @@
+
+\begin{tabularx}{\linewidth}{|l|X|}
+\hline
+\textbf{Use Case Name:} & \textbf{Log package build} \\
+\hline
+\textbf{Description:} & 
+What will be logged from a package build. \\
+\hline
+\textbf{Actors:} & System \\
+\hline
+\textbf{Preconditions:} & none. \\
+\hline
+\textbf{Triggers:} & The build phase of a package install. \\
+\hline
+\textbf{Basic Course of Events:} & 
+\begin{minipage}{\linewidth} 
+  \vspace{0.05em}
+  \begin{enumerate}
+    \item \emph{Build} section of package is processed.
+    \item The running of the package build is logged to a file.
+  \end{enumerate}
+  \vspace{0.05em}
+\end{minipage}
+\\
+\hline
+\textbf{Exceptions:} & 
+Any failure to create log files will be reported as error. \\
+\hline 
+\textbf{Postconditions:} &
+Package build has been logged in a file. \\
+\hline
+\end{tabularx}
+
+

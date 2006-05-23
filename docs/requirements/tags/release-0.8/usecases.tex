@@ -1,0 +1,355 @@
+\section{Use Cases}
+The requirements for this project are to be defined though \emph{Use Cases}
+and are the basis for an initial 1.0 release. I wish for the final set of
+requirements to be those needed to define a basic framework to manage the
+software on a Linux machine. I consider these to provide that basic
+functionality:
+
+\subsection{General}
+This section details items that are global in nature the \emph{AbTLinux}:
+
+\begin{itemize}
+\item source-based distro, binary as a bonus.
+\item provide configuration file tools (view, edit, diff for smooth package updates).
+\item suggest to install package if not installed and a command is entered from that package.
+\item the abt package manager will be a command line interface.
+\end{itemize}
+
+
+\subsection{Packages}
+This section details the requirements related to the packages themselves:
+
+\begin{itemize}
+\item install package
+ 
+	\begin{itemize}
+			\item if new install, just do it and generate logs.
+			\item if upgrade, install over, compare old/new logs to delete what is not new.
+	\end{itemize}
+
+\item reinstall a package, either from cached build or rebuild/reconfigure.
+\item remove package (includes check for lone package dependencies, ask user if wants to remove them)
+\item downgrade a package to previous version
+\item freeze a package in its current state (version holding)
+\end{itemize}
+
+%
+% Use Cases - Packages.
+%
+\subsubsection{Install package}
+\input{cases/install-package-case.tex}
+
+\newpage
+\subsubsection{Reinstall package}
+\input{cases/reinstall-package-case.tex}
+
+\newpage
+\subsubsection{Remove package}
+\input{cases/remove-package-case.tex}
+
+\newpage
+\subsubsection{Downgrade package}
+\input{cases/downgrade-package-case.tex}
+
+\newpage
+\subsubsection{Freeze package}
+\input{cases/freeze-package-case.tex}
+
+
+\newpage
+\subsection{Queries}
+This section details items related to queries a user / administrator would need to be
+able to make on \emph{AbTLinux} machines:
+
+\begin{itemize}
+  \item show package details
+  \item show installed packages
+  \item show package install
+  \item show package build
+  \item show frozen packages
+  \item show package dependencies
+  \item show untracked files on system
+  \item show journal
+  \item show package that a file comes from
+  \item search package description
+  \item show install queue (all builds will be via a queue)
+  \item show available update patch list (before retrieving them)
+\end{itemize}
+
+% 
+% Use Cases - Queries.
+%
+\subsubsection{Show package details}
+\input{cases/show-package-details-case.tex}
+
+%\newpage
+\subsubsection{Show installed packages}
+\input{cases/show-installed-packages-case.tex}
+
+%\newpage
+\subsubsection{Show package install}
+\input{cases/show-package-install-case.tex}
+
+%\newpage
+\subsubsection{Show package build}
+\input{cases/show-package-build-case.tex}
+
+%\newpage
+\subsubsection{Show frozen packages}
+\input{cases/show-frozen-packages-case.tex}
+
+%\newpage
+\subsubsection{Show packages dependencies}
+\input{cases/show-package-depends-case.tex}
+
+%\newpage
+\subsubsection{Show untracked files}
+\input{cases/show-untracked-files-case.tex}
+
+%\newpage
+\subsubsection{Show journal}
+\input{cases/show-journal-case.tex}
+
+%\newpage
+\subsubsection{Show file owner}
+\input{cases/show-file-owner-case.tex}
+
+%\newpage
+\subsubsection{Search package descriptions}
+\input{cases/search-package-descriptions-case.tex}
+
+%\newpage
+\subsubsection{Show install queue}
+\input{cases/show-install-queue-case.tex}
+
+%\newpage
+\subsubsection{Show available patches}
+\input{cases/show-available-patches-case.tex}
+
+
+\newpage
+\subsection{Generation}
+This section details items that need to be generated from an installed
+machine:
+
+\begin{itemize}
+  \item list of packages needing updates
+  \item HTML listing of package listing on box
+\end{itemize}
+
+%
+% Use Cases - Generation.
+%
+\subsubsection{List package updates}
+\input{cases/list-package-updates-case.tex}
+
+%\newpage
+\subsubsection{HTML package listing}
+\input{cases/HTML-package-listing-case.tex}
+
+
+%\newpage
+\subsection{Downloads}
+This section details the items that involve downloading diverse components
+for \emph{AbTLinux} machines:
+
+\begin{itemize}
+  \item pull package sources
+  \item pull package tree
+  \item pull news feed 
+  \end{itemize}
+
+%
+% Use Cases - Downloads.
+%
+\subsubsection{Pull package sources}
+\input{cases/pull-package-sources-case.tex}
+
+%\newpage
+\subsubsection{Pull package tree}
+\input{cases/pull-package-tree-case.tex}
+
+%\newpage
+\subsubsection{Pull news feed}
+\input{cases/pull-news-feed-case.tex}
+
+
+
+\newpage
+\subsection{Logging}
+This section details the requirements for keeping track of work progress
+with some form of logging. These items are the ones that require tracking:
+
+\begin{itemize}
+  \item log package installation, not tracking:
+
+  \begin{itemize}
+    \item /home
+    \item /tmp
+		\item /var/tmp
+  \end{itemize}
+
+  \item log package files integrity information (tool to use: md5)
+  \item log package builds
+  \item log general progression (journal)
+  \item cached builds include all scripts needed to build so it can always be duplicated (not lost on package maintenance in the future), track the following for each package:
+
+\begin{itemize}
+  \item Major version number
+  \item Build time (time installed package was built)
+  \item Configuration time (time configuration last updated)
+  \item Dependencies 
+\end{itemize}
+
+\end{itemize}
+
+%
+% Use Cases - Logging.
+%
+\subsubsection{Log package install}
+\input{cases/log-package-install-case.tex}
+
+%\newpage
+\subsubsection{Log package files integrity}
+\input{cases/log-package-files-integrity-case.tex}
+
+%\newpage
+\subsubsection{Log package build}
+\input{cases/log-package-build-case.tex}
+
+%\newpage
+\subsubsection{Log journal}
+\input{cases/log-journal-case.tex}
+
+%\newpage
+\subsubsection{Log package cache}
+\input{cases/log-package-cache-case.tex}
+
+
+
+\newpage
+\subsection{Fixing}
+This section details requirements related to checking the health of
+\emph{AbTLinux} machines and repairing any problems found:
+
+\begin{itemize}
+  \item remove unused package sources
+  \item remove unused package logs
+  \item verify installed package files
+  \item verify installed package symlinks
+  \item verify installed package dependencies (libraries, versions)
+  \item verify system integrity 
+  \item fix package(s)
+\end{itemize}
+
+%
+% Use Cases - Fixing.
+%
+\subsubsection{Purge old package sources}
+\input{cases/purge-old-package-sources-case.tex}
+
+%\newpage
+\subsubsection{Purge old logs}
+\input{cases/purge-old-logs-case.tex}
+
+%\newpage
+\subsubsection{Verify installed package files}
+\input{cases/verify-installed-package-files-case.tex}
+
+%\newpage
+\subsubsection{Verify installed package symlinks}
+\input{cases/verify-installed-package-symlinks-case.tex}
+
+%\newpage
+\subsubsection{Verify installed package dependencies}
+\input{cases/verify-installed-package-deps-case.tex}
+
+%\newpage
+\subsubsection{Verify installed package integrity}
+\input{cases/verify-installed-package-integrity-case.tex}
+
+%\newpage
+\subsubsection{Fix package}
+\input{cases/fix-package-case.tex}
+
+
+
+\newpage
+\subsection{Patching}
+This section details the requirements related to providing patching for
+updates and fixes on \emph{AbTLinux} machines:
+
+\begin{itemize}
+  \item provide for updating with a patch per package
+  \item provide package tree patches (i.e. for entire stable tree)
+\end{itemize}
+
+%
+% Use Cases - Patching.
+%
+\subsubsection{Patch package update}
+\input{cases/patch-package-update-case.tex}
+
+%\newpage
+\subsubsection{Patch package tree update}
+\input{cases/patch-package-tree-update-case.tex}
+
+
+
+\newpage
+\subsection{Maintaining}
+This section details the requirements related to maintenance tasks on
+\emph{AbTLinux} machines:
+
+\begin{itemize}
+  \item provide for central build box (clients pull package builds from central box)
+  \item provide for specification of package sources download location
+\end{itemize}
+
+%
+% Use Cases - Maintaining.
+%
+\subsubsection{Central build}
+\input{cases/central-build-case.tex}
+
+%\newpage
+\subsubsection{Source location package tree}
+\input{cases/source-location-package-tree-case.tex}
+
+\subsection{Dependencies}
+This section will be covered in an apart requirements document, focusing on
+the
+entire dependency engine problem. This will be a student project for the course 
+Requirements Engineering at the Radboud University Nijmegen. 
+
+%This section details the requirements related to dependencies between
+%packages and how to deal with them:
+
+%\begin{itemize}
+%    \item dependency will specify a version (or use default?)
+%    \item dependency can be optional
+%    \item dependencies will be ordered for a correct build process (dep engine!)
+%    \item support build-time and run-time dependencies:
+
+%    \begin{itemize}
+%        \item RELIES ON (RO) - 'A' RO 'B'; then 'A' will be rebuilt anytime 'B' is rebuilt.
+%        \item DEPENDS ON (DO) - 'A' DO 'B'; then 'A' will be rebuilt if 'B' config changes.
+%				\item a buildDep is a dependency needed to build some package.
+%        \item leads to several types of depends:
+
+%        \begin{itemize}
+
+%            \item permanently relies on
+%            \item permanently depends on
+%            \item optionally relies on
+%            \item optionally depends on
+%        \end{itemize}
+
+%    \end{itemize}
+
+%    \item prevent removal of packages with DEPENDS ON (DO) dependencies.
+%    \item auto add packages with RELIES ON (RO) dependencies to build queue if user rebuilds a package that relies on it.
+
+%\end{itemize}
+
+

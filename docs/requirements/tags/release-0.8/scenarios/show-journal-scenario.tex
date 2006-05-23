@@ -1,0 +1,29 @@
+\medskip
+
+\begin{tabularx}{\linewidth}{|l|X|}
+\hline
+\textbf{Use Case Name:} & \textbf{Show journal} \\
+\hline
+\textbf{Use Case Steps:} & 
+\begin{minipage}{\linewidth} 
+  \vspace{0.05em}
+  \begin{itemize}
+    \item User command \textbf{'abt show-journal'}.
+    \item Return the contents of the abt journal log, \url{/var/log/abt/abt.log}.
+  \end{itemize}
+  \vspace{0.05em}
+\end{minipage}
+\\
+\hline 
+\textbf{Alternative Path:} &
+\begin{minipage}{\linewidth}
+  \vspace{0.05em} 
+  \begin{enumerate}
+    \item No abt journal log available, warn user.
+    \item Unable to access abt journal log, warn user.
+  \end{enumerate}
+  \vspace{0.05em} 
+\end{minipage}
+\\
+\hline
+\end{tabularx}

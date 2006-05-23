@@ -1,0 +1,35 @@
+
+\begin{tabularx}{\linewidth}{|l|X|}
+\hline
+\textbf{Use Case Name:} & \textbf{Verify installed package files} \\
+\hline
+\textbf{Description:} & 
+Verify that the given packages files are available on the system. 
+\\
+\hline
+\textbf{Actors:} & User \\
+\hline
+\textbf{Preconditions:} & Package to be verified has a valid install log. \\
+\hline
+\textbf{Triggers:} & abt verify-files $<$pkg$>$ \\
+\hline
+\textbf{Basic Course of Events:} & 
+\begin{minipage}{\linewidth} 
+  \vspace{0.05em}
+  \begin{enumerate}
+    \item User submits a verify files request.
+    \item Installed files for given package are checked if they exist by comparison to packages install log.
+    \item After package checked, overview of eventual missing files reported to user.
+  \end{enumerate}
+  \vspace{0.05em}
+\end{minipage}
+\\
+\hline 
+\textbf{Exceptions:} & none. \\
+\hline 
+\textbf{Postconditions:} &
+The installed files for given package have been verified, eventual missing files have been reported. \\
+\hline
+\end{tabularx}
+
+

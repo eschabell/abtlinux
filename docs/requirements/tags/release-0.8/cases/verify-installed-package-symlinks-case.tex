@@ -1,0 +1,35 @@
+
+\begin{tabularx}{\linewidth}{|l|X|}
+\hline
+\textbf{Use Case Name:} & \textbf{Verify installed package symlinks} \\
+\hline
+\textbf{Description:} & 
+Verify that the given packages symlinks are available on the system. 
+\\
+\hline
+\textbf{Actors:} & User \\
+\hline
+\textbf{Preconditions:} & Package to be verified has a valid install log. \\
+\hline
+\textbf{Triggers:} & abt verify-symlinks $<$pkg$>$ \\
+\hline
+\textbf{Basic Course of Events:} & 
+\begin{minipage}{\linewidth} 
+  \vspace{0.05em}
+  \begin{enumerate}
+    \item User submits a verify symlinks request.
+    \item Installed symlinks for given package are checked if they exist by comparison to packages install log.
+    \item After package checked, overview of eventual missing symlinks reported to user.
+  \end{enumerate}
+  \vspace{0.05em}
+\end{minipage}
+\\
+\hline 
+\textbf{Exceptions:} & none. \\
+\hline 
+\textbf{Postconditions:} &
+The installed symlinks for given package have been verified, eventual missing symlinks have been reported. \\
+\hline
+\end{tabularx}
+
+

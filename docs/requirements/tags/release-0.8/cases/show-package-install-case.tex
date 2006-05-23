@@ -1,0 +1,32 @@
+
+\begin{tabularx}{\linewidth}{|l|X|}
+\hline
+\textbf{Use Case Name:} & \textbf{Show package install} \\
+\hline
+\textbf{Description:} & Display a listing of the files installed for given package. \\
+\hline
+\textbf{Actors:} & User \\
+\hline
+\textbf{Preconditions:} & Package requested is installed. \\
+\hline
+\textbf{Triggers:} & abt show-files $<$pkg$>$ \\
+\hline
+\textbf{Basic Course of Events:} & 
+\begin{minipage}{\linewidth} 
+  \vspace{0.05em}
+  \begin{enumerate}
+    \item User requests to view a listing of the files installed by a package.
+    \item A dump is given of the installed files log for the package.
+  \end{enumerate}
+  \vspace{0.05em}
+\end{minipage}
+\\
+\hline 
+\textbf{Exceptions:} & Missing file log, report error. \\
+\hline 
+\textbf{Postconditions:} &
+User has been presented a listing of the files installed by a package. \\
+\hline
+\end{tabularx}
+
+

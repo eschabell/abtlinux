@@ -1,0 +1,29 @@
+\medskip
+
+\begin{tabularx}{\linewidth}{|l|X|}
+\hline
+\textbf{Use Case Name:} & \textbf{Patch package tree update} \\
+\hline
+\textbf{Use Case Steps:} & 
+\begin{minipage}{\linewidth} 
+  \vspace{0.05em}
+  \begin{itemize}
+    \item User command \textbf{'abt update'}.
+    \item Package tree is updated from repository, \textbf{'svn -r REPO-NAME update'}.
+    \item Report package tree updated.
+  \end{itemize}
+  \vspace{0.05em}
+\end{minipage}
+\\
+\hline 
+\textbf{Alternative Path:} &
+\begin{minipage}{\linewidth}
+  \vspace{0.05em} 
+  \begin{enumerate}
+    \item Unable to reach package repository, warn user.
+  \end{enumerate}
+  \vspace{0.05em} 
+\end{minipage}
+\\
+\hline
+\end{tabularx}

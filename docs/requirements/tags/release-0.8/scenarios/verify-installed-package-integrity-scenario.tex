@@ -1,0 +1,33 @@
+\medskip
+
+\begin{tabularx}{\linewidth}{|l|X|}
+\hline
+\textbf{Use Case Name:} & \textbf{Verify installed package integrity} \\
+\hline
+\textbf{Use Case Steps:} & 
+\begin{minipage}{\linewidth} 
+  \vspace{0.05em}
+  \begin{itemize}
+    \item User command \textbf{'abt verify-integrity fortune'}.
+    \item Install log for \textbf{fortune} is accessed at \url{/var/state/abt/install/fortune/fortune-mod-9807.install}.
+    \item Integrity log for \textbf{fortune} is accessed at \url{/var/state/abt/install/fortune/fortune-mod-9807.integrity}.
+    \item Each file is checked for integrity.
+    \item User supplied with overview of any files failing check.
+  \end{itemize}
+  \vspace{0.05em}
+\end{minipage}
+\\
+\hline 
+\textbf{Alternative Path:} &
+\begin{minipage}{\linewidth}
+  \vspace{0.05em} 
+  \begin{enumerate}
+    \item Install log unavailable, warn user.
+    \item Integrity log unavailable, warn user.
+    \item No files fail the integrity check, inform user.
+  \end{enumerate}
+  \vspace{0.05em} 
+\end{minipage}
+\\
+\hline
+\end{tabularx}

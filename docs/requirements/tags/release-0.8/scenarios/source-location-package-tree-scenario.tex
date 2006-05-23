@@ -1,0 +1,36 @@
+\medskip
+
+\begin{tabularx}{\linewidth}{|l|X|}
+\hline
+\textbf{Use Case Name:} & \textbf{Source location package tree} \\
+\hline
+\textbf{Use Case Steps:} & 
+\begin{minipage}{\linewidth} 
+  \vspace{0.05em}
+  \begin{itemize}
+    \item User command \textbf{'abt package-repository (add$|$remove$|$list) $<$URI$>$'}.
+    \item The \textbf{list} command will display all current repository locations in order.
+    \item The \textbf{add} command will add new location.
+    \item The \textbf{remove} command will remove a location.
+    \item The \textbf{URI} need only be a valid svn package repository.
+    \item The AbTLinux package repository will always be the last fallback repository.
+    \item The new locations are run to update the package trees.
+    \item User notified that the package tree locations have been updated and is shown a listing.
+  \end{itemize}
+  \vspace{0.05em}
+\end{minipage}
+\\
+\hline 
+\textbf{Alternative Path:} &
+\begin{minipage}{\linewidth}
+  \vspace{0.05em} 
+  \begin{enumerate}
+    \item Package location is not reachable, do not add repository and warn user.
+  \end{enumerate}
+  \vspace{0.05em} 
+\end{minipage}
+\\
+\hline
+\end{tabularx}
+
+\newpage

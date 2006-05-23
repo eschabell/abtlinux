@@ -1,0 +1,34 @@
+\medskip
+
+\begin{tabularx}{\linewidth}{|l|X|}
+\hline
+\textbf{Use Case Name:} & \textbf{Purge old package sources} \\
+\hline
+\textbf{Use Case Steps:} & 
+\begin{minipage}{\linewidth} 
+  \vspace{0.05em}
+  \begin{itemize}
+    \item User command \textbf{'abt purge-src'}.
+    \item Install log is accessed from \url{/var/log/abt/installed.log}.
+    \item Each package description is accessed for sources name that appears in the install log.
+    \item In source storage \url{/var/spool/abt/}, any package sources found not installed will be removed.
+    \item Note removed packages sources in journal.
+    \item Report amount of freed disk space to user.
+  \end{itemize}
+  \vspace{0.05em}
+\end{minipage}
+\\
+\hline 
+\textbf{Alternative Path:} &
+\begin{minipage}{\linewidth}
+  \vspace{0.05em} 
+  \begin{enumerate}
+    \item Installed packages log is unavailable, warn user.
+    \item Package descriptions are unavailable, warn user.
+    \item If unsure about a package source, default is to remove it.
+  \end{enumerate}
+  \vspace{0.05em} 
+\end{minipage}
+\\
+\hline
+\end{tabularx}
