@@ -28,76 +28,76 @@
 
 class AbtPackageManager
 
-  protected
+protected
   
-  private
+private
   
-  public
+public
 
-	##
-	# Constructor for AbtPackageManager.
-	#
-	# <b>RETURN</b> <i>AbtPackageManager</i> - an initialized AbtPackageManager object. 
-	##
-	def initialize
-	end
+  ##
+  # Constructor for AbtPackageManager.
+  #
+  # <b>RETURN</b> <i>AbtPackageManager</i> - an initialized AbtPackageManager object. 
+  ##
+  def initialize
+  end
 
-	##
-	# Installs a given package.
-	#
-	# <b>PARAM</b> <i>String</i> - the name of the package to be installed.
-	#
-	# <b>RETURN</b> <i>boolean</i> - True if the package is installed, otherwise
-	# false.
-	##
-	def installPackage( package )
-	end
+  ##
+  # Installs a given package.
+  #
+  # <b>PARAM</b> <i>String</i> - the name of the package to be installed.
+  #
+  # <b>RETURN</b> <i>boolean</i> - True if the package is installed, otherwise
+  # false.
+  ##
+  def installPackage( package )
+  end
   
-	##
-	# Reinstalls a given package.
-	#
-	# <b>PARAM</b> <i>String</i> - the name of the package to be reinstalled.
-	#
-	# <b>RETURN</b> <i>boolean</i> - True if the package is reinstalled, otherwise
-	# false.
-	##
-	def reinstallPackage( package )
-	end
+  ##
+  # Reinstalls a given package.
+  #
+  # <b>PARAM</b> <i>String</i> - the name of the package to be reinstalled.
+  #
+  # <b>RETURN</b> <i>boolean</i> - True if the package is reinstalled, otherwise
+  # false.
+  ##
+  def reinstallPackage( package )
+  end
   
-	##
-	# Removes a given package.
-	#
-	# <b>PARAM</b> <i>String</i> - the name of the package to be removed.
-	#
-	# <b>RETURN</b> <i>boolean</i> - True if the package is removed, otherwise
-	# false.
-	##
-	def removePackage( package )
-	end
+  ##
+  # Removes a given package.
+  #
+  # <b>PARAM</b> <i>String</i> - the name of the package to be removed.
+  #
+  # <b>RETURN</b> <i>boolean</i> - True if the package is removed, otherwise
+  # false.
+  ##
+  def removePackage( package )
+  end
   
-	##
-	# Downgrades a given package.
-	#
-	# <b>PARAM</b> <i>String</i> - the name of the package to be downgraded.
-	#
-	# <b>PARAM</b> <i>String</i> - the version number to be downgraded to.
-	#
-	# <b>RETURN</b> <i>boolean</i> - True if the package is downgraded, otherwise
-	# false.
-	##
-	def downgradePackage( package, version )
-	end
+  ##
+  # Downgrades a given package.
+  #
+  # <b>PARAM</b> <i>String</i> - the name of the package to be downgraded.
+  #
+  # <b>PARAM</b> <i>String</i> - the version number to be downgraded to.
+  #
+  # <b>RETURN</b> <i>boolean</i> - True if the package is downgraded, otherwise
+  # false.
+  ##
+  def downgradePackage( package, version )
+  end
   
-	##
-	# Freezes a given package. If successful will add give package to the frozen
-	# list.
-	#
-	# <b>PARAM</b> <i>String</i> - the name of the package to be frozen.
-	#
-	# <b>RETURN</b> <i>boolean</i> - True if the package is frozen, otherwise
-	# false.
-	##
-	def freezePackage( package )
-	end
+  ##
+  # Freezes a given package. If successful will add give package to the frozen
+  # list.
+  #
+  # <b>PARAM</b> <i>String</i> - the name of the package to be frozen.
+  #
+  # <b>RETURN</b> <i>boolean</i> - True if the package is frozen, otherwise
+  # false.
+  ##
+  def freezePackage( package )
+  end
   
 end

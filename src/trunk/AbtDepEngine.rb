@@ -28,18 +28,18 @@
 
 class AbtDepEngine
 
-  protected
+protected
   
-  private
+private
   
-  public
+public
 
-	##
-	# Constructor for the AbtDepEngine class.
-	#
-	# <b>RETURN</b> <i>AbtDepEngine</i> - an initialized AbtDepEngine object. 
-	##
-	def initialize
-	end
+  ##
+  # Constructor for the AbtDepEngine class.
+  #
+  # <b>RETURN</b> <i>AbtDepEngine</i> - an initialized AbtDepEngine object. 
+  ##
+  def initialize
+  end
   
 end

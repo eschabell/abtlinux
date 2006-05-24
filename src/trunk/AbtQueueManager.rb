@@ -27,18 +27,18 @@
 
 class AbtQueueManager
 
-  protected
+protected
   
-  private
+private
   
-  public
+public
 
-	##
-	# Constructor for the AbtQueueManager class.
-	#
-	# <b>RETURN</b> <i>AbtQueueManager</i> - an initialized AbtQueueManager object. 
-	##
-	def initialize
-	end
+  ##
+  # Constructor for the AbtQueueManager class.
+  #
+  # <b>RETURN</b> <i>AbtQueueManager</i> - an initialized AbtQueueManager object. 
+  ##
+  def initialize
+  end
   
 end

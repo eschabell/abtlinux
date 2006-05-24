@@ -28,70 +28,70 @@
 
 class AbtDownloadManager
 
-  protected
+protected
   
-  private
+private
   
-  public
+public
 
-	##
-	# Constructor for the AbtDownloadManager class.
-	#
-	# <b>RETURN</b> <i>AbtDownloadManager</i> - an initialized AbtDownloadManager object. 
-	##
-	def initialize
-	end
-
-	##
-	# Downloads a given package source.
-	#
-	# <b>PARAM</b> <i>String</i> - the name of the package for which the source
-	# is to be downloaded.
-	#
-	# <b>RETURN</b> <i>boolean</i> - True if the package source has been
-	# downloaded, otherwise false.
-	##
-	def retrievePackageSource( packageName )
-	end
+  ##
+  # Constructor for the AbtDownloadManager class.
+  #
+  # <b>RETURN</b> <i>AbtDownloadManager</i> - an initialized AbtDownloadManager object. 
+  ##
+  def initialize
+  end
   
-	##
-	# Downloads a given pacakge tree.
-	#
-	# <b>PARAM</b> <i>String</i> - the name of the package tree to be retrieved.
-	#
-	# <b>RETURN</b> <i>boolean</i> - True if the package tree is retrieved, otherwise
-	# false.
-	##
-	def retrievePackageTree( packageTreeName )
-	end
+  ##
+  # Downloads a given package source.
+  #
+  # <b>PARAM</b> <i>String</i> - the name of the package for which the source
+  # is to be downloaded.
+  #
+  # <b>RETURN</b> <i>boolean</i> - True if the package source has been
+  # downloaded, otherwise false.
+  ##
+  def retrievePackageSource( packageName )
+  end
   
-	##
-	# Retrieves the AbTLinux news feed.
-	#
-	# <b>RETURN</b> <i>boolean</i> - True if the AbTLinux news feed has been
-	# retrieved, otherwise false.
-	##
-	def retrieveNewsFeed
-	end
+  ##
+  # Downloads a given pacakge tree.
+  #
+  # <b>PARAM</b> <i>String</i> - the name of the package tree to be retrieved.
+  #
+  # <b>RETURN</b> <i>boolean</i> - True if the package tree is retrieved, otherwise
+  # false.
+  ##
+  def retrievePackageTree( packageTreeName )
+  end
   
-	##
-	# Updates a given package with available patches (version updates).
-	#
-	# <b>PARAM</b> <i>String</i> - the name of the package to be updated.
-	#
-	# <b>RETURN</b> <i>boolean</i> - True if the given package has been updated,
-	# otherwise false.
-	##
-	def updatePackage
-	end
+  ##
+  # Retrieves the AbTLinux news feed.
+  #
+  # <b>RETURN</b> <i>boolean</i> - True if the AbTLinux news feed has been
+  # retrieved, otherwise false.
+  ##
+  def retrieveNewsFeed
+  end
   
-	##
-	# Updates the package tree.
-	#
-	# <b>RETURN</b> <i>boolean</i> - True if the package tree has been updated,
-	# otherwise false.
-	##
-	def updatePackageTree
-	end
+  ##
+  # Updates a given package with available patches (version updates).
+  #
+  # <b>PARAM</b> <i>String</i> - the name of the package to be updated.
+  #
+  # <b>RETURN</b> <i>boolean</i> - True if the given package has been updated,
+  # otherwise false.
+  ##
+  def updatePackage
+  end
+  
+  ##
+  # Updates the package tree.
+  #
+  # <b>RETURN</b> <i>boolean</i> - True if the package tree has been updated,
+  # otherwise false.
+  ##
+  def updatePackageTree
+  end
   
 end

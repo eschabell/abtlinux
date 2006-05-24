@@ -28,83 +28,80 @@
 
 class AbtLogManager
 
-  protected
+protected
  
-	##
-	# Provides logging of the integrity of all installed files for the given
-	# package. Will be called as part of the logging done during the install
-	# phase.
-	# 
-	# <b>PARAM</b> <i>String</i> - Package name.
-	# 
-	# <b>RETURN</b> <i>boolean</i> - True if integrity log created successfully,
-	# otherwise false.
-	##
-	def logPackageIntegrity( package )
-	end
+  ##
+  # Provides logging of the integrity of all installed files for the given
+  # package. Will be called as part of the logging done during the install
+  # phase.
+  # 
+  # <b>PARAM</b> <i>String</i> - Package name.
+  # 
+  # <b>RETURN</b> <i>boolean</i> - True if integrity log created successfully,
+  # otherwise false.
+  ##
+  def logPackageIntegrity( package )
+  end
  
 	
-  private
+private
 
-	# placeholder for private methods.
-	
+public
 
-  public
+  ##
+  # Constructor for the AbtLogManager.
+  #
+  # <b>RETURN</b> <i>AbtLogManager</i> - an initialized AbtLogManager object. 
+  ##
+  def initialize
+  end
 
-	##
-	# Constructor for the AbtLogManager.
-	#
-	# <b>RETURN</b> <i>AbtLogManager</i> - an initialized AbtLogManager object. 
-	##
-	def initialize
-	end
+  ##
+  # Provides logging of all files installed by given package. Should be called
+  # as part of the install phase of the build.
+  # 
+  # <b>PARAM</b> <i>String</i> - Package name.
+  # 
+  # <b>RETURN</b> <i>boolean</i> - True if install log created successfully,
+  # otherwise false.
+  ##
+  def logPackageInstall( package )
+  end
 
-	##
-	# Provides logging of all files installed by given package. Should be called
-	# as part of the install phase of the build.
-	# 
-	# <b>PARAM</b> <i>String</i> - Package name.
-	# 
-	# <b>RETURN</b> <i>boolean</i> - True if install log created successfully,
-	# otherwise false.
-	##
-	def logPackageInstall( package )
-	end
+  ##
+  # Provides logging of all output produced during the build phase of the
+  # given package. Should be called as part of the install phase of the build.
+  # 
+  # <b>PARAM</b> <i>String</i> - Package name.
+  # 
+  # <b>RETURN</b> <i>boolean</i> - True if build log created successfully,
+  # otherwise false.
+  ##
+  def logPackageBuild( package )
+  end
 
-	##
-	# Provides logging of all output produced during the build phase of the
-	# given package. Should be called as part of the install phase of the build.
-	# 
-	# <b>PARAM</b> <i>String</i> - Package name.
-	# 
-	# <b>RETURN</b> <i>boolean</i> - True if build log created successfully,
-	# otherwise false.
-	##
-	def logPackageBuild( package )
-	end
+  ##
+  # Provides a complete log of the given packages build. Includes everything
+  # needed to duplicate the build at a later date.
+  # 
+  # <b>PARAM</b> <i>String</i> - Package name.
+  # 
+  # <b>RETURN</b> <i>boolean</i> - True if package cache created successfully,
+  # otherwise false.
+  ##
+  def cachePackage( package )
+  end
 
-	##
-	# Provides a complete log of the given packages build. Includes everything
-	# needed to duplicate the build at a later date.
-	# 
-	# <b>PARAM</b> <i>String</i> - Package name.
-	# 
-	# <b>RETURN</b> <i>boolean</i> - True if package cache created successfully,
-	# otherwise false.
-	##
-	def cachePackage( package )
-	end
-
-	##
-	# Provides logging of given message to the AbTLinux journal. Message logged
-	# with date timestamp.
-	# 
-	# <b>PARAM</b> <i>String</i> - Message to be added to the log.
-	# 
-	# <b>RETURN</b> <i>boolean</i> - True if message logged successfully,
-	# otherwise false.
-	##
-	def logToJournal( message )
-	end
+  ##
+  # Provides logging of given message to the AbTLinux journal. Message logged
+  # with date timestamp.
+  # 
+  # <b>PARAM</b> <i>String</i> - Message to be added to the log.
+  # 
+  # <b>RETURN</b> <i>boolean</i> - True if message logged successfully,
+  # otherwise false.
+  ##
+  def logToJournal( message )
+  end
   
 end
