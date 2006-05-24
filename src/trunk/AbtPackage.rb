@@ -36,15 +36,63 @@ class AbtPackage
   
   public
 
-    attr_reader :NAME, :VERSION, :SRCFILE, :SRCDIR, :SRCURL, :INTEGRITY
-    attr_reader :URL, :LICENSE, :DESCRIPTION
+    attr_reader :NAME, :EXEC_NAME, :VERSION, :SRC_DIR, HOMEPAGE, :SRC_URL
+		attr_reader :DEPENDSON, :RELIESON, :OPTIONAL_DO, :OPTIONAL_RO, :GPG_CHECK
+		attr_reader :PATCHES, :PATCHES_GPG_CHECK, :MIRROR_PATH, :LICENSE, :DESCRIPTION
     
+		##
+		# Constructor for an AbtPackage, requires all the packge details.
+		#
+		# <b>PARAM</b> <i>Hash</i> - hash containing all package data.
+		#
+		##
+		def initialize( data )
+    
+      @NAME = data['name']
+      @EXEC_NAME = data['execName']
+      @VERSION = data['version']
+			@SRC_DIR = data['srcDir']
+			@HOMEPAGE = data['homepage']
+			@SRC_URL = data['srcUrl']
+			@DEPENDSON = data['dependOn']
+			@RELIESON = data['reliesOn']
+			@OPTIONAL_DO = data['optionalDO']
+			@OPTIONAL_RO = data['optionalRO']
+			@GPG_CHECK = data['gpgCheck']
+			@PATCHES = data['patches']
+			@PATCHES_GPG_CHECK = data['patchesGpgCheck']
+			@MIRROR_PATH = data['mirrorPath']
+			@LICENSE = data['license']
+			@DESCRIPTION = data['description']
+			
+		end
+		
     ##
     # Provides all the data needed for this AbtPackage.
     #
     # <b>RETURNS:</b>  <i>hash</i> - Contains all AbtPackage attributes (constants).
     ##
     def details
+    
+      return { 
+        'name'            => @NAME,
+        'execName'        => @EXEC_NAME,
+        'version'         => @VERSION,
+        'srcDir'          => @SRC_DIR,
+        'homepage'        => @HOMEPAGE,
+        'srcUrl'          => @SRC_URL,
+        'dependsOn'       => @DEPENDSON,
+        'reliesOn'        => @RELIESON,
+        'optionalDO'      => @OPTIONAL_DO,
+        'optionalRO'      => @OPTIONAL_RO,
+        'gpgCheck'        => @GPG_CHECK,
+        'patches'         => @PATCHES,
+        'patchesGpgCheck' => @PATCHES_GPG_CHECK,
+        'mirrorPath'      => @MIRROR_PATH,
+        'license'         => @LICENSE,
+        'description'     => @DESCRIPTION
+      }
+      
     end
     
     ##
