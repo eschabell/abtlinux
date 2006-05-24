@@ -76,7 +76,7 @@ Object
       <div id="content">
   <table cellpadding='0' cellspacing='0' border='0' width="100%"><tr><td align="center">
     <map id="map" name="map">
-  <area shape="RECT" coords="28,51,116,99"      href="AbtPackage.html" alt="AbtPackage">
+  <area shape="RECT" coords="29,52,117,100"      href="AbtPackage.html" alt="AbtPackage">
 </map>
 <img src="../dot/f_1.png" usemap="#map" border=0 alt="TopLevel">
   </td></tr></table>
@@ -121,13 +121,14 @@ Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
 
   <div class="sectiontitle">Methods</div>
   <ul>
-  <li><a href="#M000020">build</a></li>
-  <li><a href="#M000019">configure</a></li>
-  <li><a href="#M000017">details</a></li>
-  <li><a href="#M000022">install</a></li>
-  <li><a href="#M000023">post</a></li>
-  <li><a href="#M000018">pre</a></li>
-  <li><a href="#M000021">preinstall</a></li>
+  <li><a href="#M000021">build</a></li>
+  <li><a href="#M000020">configure</a></li>
+  <li><a href="#M000018">details</a></li>
+  <li><a href="#M000023">install</a></li>
+  <li><a href="#M000017">new</a></li>
+  <li><a href="#M000024">post</a></li>
+  <li><a href="#M000019">pre</a></li>
+  <li><a href="#M000022">preinstall</a></li>
   </ul>
 
 
@@ -140,6 +141,13 @@ Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
     <td class='attr-rw'>
 [R]
     </td>
+    <td class='attr-name'>DEPENDSON</td>
+    <td class='attr-desc'></td>
+  </tr>
+  <tr valign='top'>
+    <td class='attr-rw'>
+[R]
+    </td>
     <td class='attr-name'>DESCRIPTION</td>
     <td class='attr-desc'></td>
   </tr>
@@ -147,7 +155,14 @@ Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
     <td class='attr-rw'>
 [R]
     </td>
-    <td class='attr-name'>INTEGRITY</td>
+    <td class='attr-name'>EXEC_NAME</td>
+    <td class='attr-desc'></td>
+  </tr>
+  <tr valign='top'>
+    <td class='attr-rw'>
+[R]
+    </td>
+    <td class='attr-name'>GPG_CHECK</td>
     <td class='attr-desc'></td>
   </tr>
   <tr valign='top'>
@@ -161,6 +176,13 @@ Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
     <td class='attr-rw'>
 [R]
     </td>
+    <td class='attr-name'>MIRROR_PATH</td>
+    <td class='attr-desc'></td>
+  </tr>
+  <tr valign='top'>
+    <td class='attr-rw'>
+[R]
+    </td>
     <td class='attr-name'>NAME</td>
     <td class='attr-desc'></td>
   </tr>
@@ -168,28 +190,49 @@ Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
     <td class='attr-rw'>
 [R]
     </td>
-    <td class='attr-name'>SRCDIR</td>
+    <td class='attr-name'>OPTIONAL_DO</td>
     <td class='attr-desc'></td>
   </tr>
   <tr valign='top'>
     <td class='attr-rw'>
 [R]
     </td>
-    <td class='attr-name'>SRCFILE</td>
+    <td class='attr-name'>OPTIONAL_RO</td>
     <td class='attr-desc'></td>
   </tr>
   <tr valign='top'>
     <td class='attr-rw'>
 [R]
     </td>
-    <td class='attr-name'>SRCURL</td>
+    <td class='attr-name'>PATCHES</td>
     <td class='attr-desc'></td>
   </tr>
   <tr valign='top'>
     <td class='attr-rw'>
 [R]
     </td>
-    <td class='attr-name'>URL</td>
+    <td class='attr-name'>PATCHES_GPG_CHECK</td>
+    <td class='attr-desc'></td>
+  </tr>
+  <tr valign='top'>
+    <td class='attr-rw'>
+[R]
+    </td>
+    <td class='attr-name'>RELIESON</td>
+    <td class='attr-desc'></td>
+  </tr>
+  <tr valign='top'>
+    <td class='attr-rw'>
+[R]
+    </td>
+    <td class='attr-name'>SRC_DIR</td>
+    <td class='attr-desc'></td>
+  </tr>
+  <tr valign='top'>
+    <td class='attr-rw'>
+[R]
+    </td>
+    <td class='attr-name'>SRC_URL</td>
     <td class='attr-desc'></td>
   </tr>
   <tr valign='top'>
@@ -201,10 +244,53 @@ Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
   </tr>
   </table>
 
+<div class="sectiontitle">Public Class methods</div>
+<div class="method">
+  <div class="title">
+    <a name="M000017"></a><b>new</b>( data )
+  </div>
+  <div class="description">
+  <p>
+Constructor for an <a href="AbtPackage.html">AbtPackage</a>, requires all
+the packge details.
+</p>
+<p>
+<b>PARAM</b> <em>Hash</em> - hash containing all package data.
+</p>
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000017_source')" id="l_M000017_source">show source</a> ]</p>
+  <div id="M000017_source" class="dyn-source">
+<pre>
+    <span class="ruby-comment cmt"># File AbtPackage.rb, line 49</span>
+49:                 <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>( <span class="ruby-identifier">data</span> )
+50:     
+51:       <span class="ruby-ivar">@NAME</span> = <span class="ruby-identifier">data</span>[<span class="ruby-value str">'name'</span>]
+52:       <span class="ruby-ivar">@EXEC_NAME</span> = <span class="ruby-identifier">data</span>[<span class="ruby-value str">'execName'</span>]
+53:       <span class="ruby-ivar">@VERSION</span> = <span class="ruby-identifier">data</span>[<span class="ruby-value str">'version'</span>]
+54:                         <span class="ruby-ivar">@SRC_DIR</span> = <span class="ruby-identifier">data</span>[<span class="ruby-value str">'srcDir'</span>]
+55:                         <span class="ruby-ivar">@HOMEPAGE</span> = <span class="ruby-identifier">data</span>[<span class="ruby-value str">'homepage'</span>]
+56:                         <span class="ruby-ivar">@SRC_URL</span> = <span class="ruby-identifier">data</span>[<span class="ruby-value str">'srcUrl'</span>]
+57:                         <span class="ruby-ivar">@DEPENDSON</span> = <span class="ruby-identifier">data</span>[<span class="ruby-value str">'dependOn'</span>]
+58:                         <span class="ruby-ivar">@RELIESON</span> = <span class="ruby-identifier">data</span>[<span class="ruby-value str">'reliesOn'</span>]
+59:                         <span class="ruby-ivar">@OPTIONAL_DO</span> = <span class="ruby-identifier">data</span>[<span class="ruby-value str">'optionalDO'</span>]
+60:                         <span class="ruby-ivar">@OPTIONAL_RO</span> = <span class="ruby-identifier">data</span>[<span class="ruby-value str">'optionalRO'</span>]
+61:                         <span class="ruby-ivar">@GPG_CHECK</span> = <span class="ruby-identifier">data</span>[<span class="ruby-value str">'gpgCheck'</span>]
+62:                         <span class="ruby-ivar">@PATCHES</span> = <span class="ruby-identifier">data</span>[<span class="ruby-value str">'patches'</span>]
+63:                         <span class="ruby-ivar">@PATCHES_GPG_CHECK</span> = <span class="ruby-identifier">data</span>[<span class="ruby-value str">'patchesGpgCheck'</span>]
+64:                         <span class="ruby-ivar">@MIRROR_PATH</span> = <span class="ruby-identifier">data</span>[<span class="ruby-value str">'mirrorPath'</span>]
+65:                         <span class="ruby-ivar">@LICENSE</span> = <span class="ruby-identifier">data</span>[<span class="ruby-value str">'license'</span>]
+66:                         <span class="ruby-ivar">@DESCRIPTION</span> = <span class="ruby-identifier">data</span>[<span class="ruby-value str">'description'</span>]
+67:                         
+68:                 <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
 <div class="sectiontitle">Public Instance methods</div>
 <div class="method">
   <div class="title">
-    <a name="M000020"></a><b>build</b>()
+    <a name="M000021"></a><b>build</b>()
   </div>
   <div class="description">
   <p>
@@ -217,19 +303,19 @@ otherwise false.
 </p>
   </div>
 <div class="sourcecode">
-  <p class="source-link">[ <a href="javascript:toggleSource('M000020_source')" id="l_M000020_source">show source</a> ]</p>
-  <div id="M000020_source" class="dyn-source">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000021_source')" id="l_M000021_source">show source</a> ]</p>
+  <div id="M000021_source" class="dyn-source">
 <pre>
-    <span class="ruby-comment cmt"># File AbtPackage.rb, line 76</span>
-76:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">build</span>
-77:     <span class="ruby-keyword kw">end</span>
+     <span class="ruby-comment cmt"># File AbtPackage.rb, line 124</span>
+124:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">build</span>
+125:     <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>
 </div>
 <div class="method">
   <div class="title">
-    <a name="M000019"></a><b>configure</b>()
+    <a name="M000020"></a><b>configure</b>()
   </div>
   <div class="description">
   <p>
@@ -246,19 +332,19 @@ otherwise false.
 </p>
   </div>
 <div class="sourcecode">
-  <p class="source-link">[ <a href="javascript:toggleSource('M000019_source')" id="l_M000019_source">show source</a> ]</p>
-  <div id="M000019_source" class="dyn-source">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000020_source')" id="l_M000020_source">show source</a> ]</p>
+  <div id="M000020_source" class="dyn-source">
 <pre>
-    <span class="ruby-comment cmt"># File AbtPackage.rb, line 68</span>
-68:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">configure</span>
-69:     <span class="ruby-keyword kw">end</span>
+     <span class="ruby-comment cmt"># File AbtPackage.rb, line 116</span>
+116:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">configure</span>
+117:     <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>
 </div>
 <div class="method">
   <div class="title">
-    <a name="M000017"></a><b>details</b>()
+    <a name="M000018"></a><b>details</b>()
   </div>
   <div class="description">
   <p>
@@ -271,19 +357,39 @@ href="AbtPackage.html">AbtPackage</a> attributes (constants).
 </p>
   </div>
 <div class="sourcecode">
-  <p class="source-link">[ <a href="javascript:toggleSource('M000017_source')" id="l_M000017_source">show source</a> ]</p>
-  <div id="M000017_source" class="dyn-source">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000018_source')" id="l_M000018_source">show source</a> ]</p>
+  <div id="M000018_source" class="dyn-source">
 <pre>
-    <span class="ruby-comment cmt"># File AbtPackage.rb, line 47</span>
-47:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">details</span>
-48:     <span class="ruby-keyword kw">end</span>
+    <span class="ruby-comment cmt"># File AbtPackage.rb, line 75</span>
+75:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">details</span>
+76:     
+77:       <span class="ruby-keyword kw">return</span> { 
+78:         <span class="ruby-value str">'name'</span>            =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@NAME</span>,
+79:         <span class="ruby-value str">'execName'</span>        =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@EXEC_NAME</span>,
+80:         <span class="ruby-value str">'version'</span>         =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@VERSION</span>,
+81:         <span class="ruby-value str">'srcDir'</span>          =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@SRC_DIR</span>,
+82:         <span class="ruby-value str">'homepage'</span>        =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@HOMEPAGE</span>,
+83:         <span class="ruby-value str">'srcUrl'</span>          =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@SRC_URL</span>,
+84:         <span class="ruby-value str">'dependsOn'</span>       =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@DEPENDSON</span>,
+85:         <span class="ruby-value str">'reliesOn'</span>        =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@RELIESON</span>,
+86:         <span class="ruby-value str">'optionalDO'</span>      =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@OPTIONAL_DO</span>,
+87:         <span class="ruby-value str">'optionalRO'</span>      =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@OPTIONAL_RO</span>,
+88:         <span class="ruby-value str">'gpgCheck'</span>        =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@GPG_CHECK</span>,
+89:         <span class="ruby-value str">'patches'</span>         =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@PATCHES</span>,
+90:         <span class="ruby-value str">'patchesGpgCheck'</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@PATCHES_GPG_CHECK</span>,
+91:         <span class="ruby-value str">'mirrorPath'</span>      =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@MIRROR_PATH</span>,
+92:         <span class="ruby-value str">'license'</span>         =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@LICENSE</span>,
+93:         <span class="ruby-value str">'description'</span>     =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@DESCRIPTION</span>
+94:       }
+95:       
+96:     <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>
 </div>
 <div class="method">
   <div class="title">
-    <a name="M000022"></a><b>install</b>()
+    <a name="M000023"></a><b>install</b>()
   </div>
   <div class="description">
   <p>
@@ -295,19 +401,19 @@ otherwise false.
 </p>
   </div>
 <div class="sourcecode">
-  <p class="source-link">[ <a href="javascript:toggleSource('M000022_source')" id="l_M000022_source">show source</a> ]</p>
-  <div id="M000022_source" class="dyn-source">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000023_source')" id="l_M000023_source">show source</a> ]</p>
+  <div id="M000023_source" class="dyn-source">
 <pre>
-    <span class="ruby-comment cmt"># File AbtPackage.rb, line 93</span>
-93:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">install</span>
-94:     <span class="ruby-keyword kw">end</span>
+     <span class="ruby-comment cmt"># File AbtPackage.rb, line 141</span>
+141:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">install</span>
+142:     <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>
 </div>
 <div class="method">
   <div class="title">
-    <a name="M000023"></a><b>post</b>()
+    <a name="M000024"></a><b>post</b>()
   </div>
   <div class="description">
   <p>
@@ -320,19 +426,19 @@ otherwise false.
 </p>
   </div>
 <div class="sourcecode">
-  <p class="source-link">[ <a href="javascript:toggleSource('M000023_source')" id="l_M000023_source">show source</a> ]</p>
-  <div id="M000023_source" class="dyn-source">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000024_source')" id="l_M000024_source">show source</a> ]</p>
+  <div id="M000024_source" class="dyn-source">
 <pre>
-     <span class="ruby-comment cmt"># File AbtPackage.rb, line 101</span>
-101:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">post</span>
-102:     <span class="ruby-keyword kw">end</span>
+     <span class="ruby-comment cmt"># File AbtPackage.rb, line 149</span>
+149:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">post</span>
+150:     <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>
 </div>
 <div class="method">
   <div class="title">
-    <a name="M000018"></a><b>pre</b>()
+    <a name="M000019"></a><b>pre</b>()
   </div>
   <div class="description">
   <p>
@@ -345,19 +451,19 @@ false.
 </p>
   </div>
 <div class="sourcecode">
-  <p class="source-link">[ <a href="javascript:toggleSource('M000018_source')" id="l_M000018_source">show source</a> ]</p>
-  <div id="M000018_source" class="dyn-source">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000019_source')" id="l_M000019_source">show source</a> ]</p>
+  <div id="M000019_source" class="dyn-source">
 <pre>
-    <span class="ruby-comment cmt"># File AbtPackage.rb, line 56</span>
-56:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">pre</span>
-57:     <span class="ruby-keyword kw">end</span>
+     <span class="ruby-comment cmt"># File AbtPackage.rb, line 104</span>
+104:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">pre</span>
+105:     <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>
 </div>
 <div class="method">
   <div class="title">
-    <a name="M000021"></a><b>preinstall</b>()
+    <a name="M000022"></a><b>preinstall</b>()
   </div>
   <div class="description">
   <p>
@@ -371,12 +477,12 @@ otherwise false.
 </p>
   </div>
 <div class="sourcecode">
-  <p class="source-link">[ <a href="javascript:toggleSource('M000021_source')" id="l_M000021_source">show source</a> ]</p>
-  <div id="M000021_source" class="dyn-source">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000022_source')" id="l_M000022_source">show source</a> ]</p>
+  <div id="M000022_source" class="dyn-source">
 <pre>
-    <span class="ruby-comment cmt"># File AbtPackage.rb, line 85</span>
-85:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">preinstall</span>
-86:     <span class="ruby-keyword kw">end</span>
+     <span class="ruby-comment cmt"># File AbtPackage.rb, line 133</span>
+133:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">preinstall</span>
+134:     <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>
