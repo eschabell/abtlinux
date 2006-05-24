@@ -169,6 +169,13 @@ Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
     <td class='attr-rw'>
 [R]
     </td>
+    <td class='attr-name'>HOMEPAGE</td>
+    <td class='attr-desc'></td>
+  </tr>
+  <tr valign='top'>
+    <td class='attr-rw'>
+[R]
+    </td>
     <td class='attr-name'>LICENSE</td>
     <td class='attr-desc'></td>
   </tr>
@@ -263,26 +270,26 @@ the packge details.
   <div id="M000017_source" class="dyn-source">
 <pre>
     <span class="ruby-comment cmt"># File AbtPackage.rb, line 49</span>
-49:                 <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>( <span class="ruby-identifier">data</span> )
-50:     
+49:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>( <span class="ruby-identifier">data</span> )
+50:         
 51:       <span class="ruby-ivar">@NAME</span> = <span class="ruby-identifier">data</span>[<span class="ruby-value str">'name'</span>]
 52:       <span class="ruby-ivar">@EXEC_NAME</span> = <span class="ruby-identifier">data</span>[<span class="ruby-value str">'execName'</span>]
 53:       <span class="ruby-ivar">@VERSION</span> = <span class="ruby-identifier">data</span>[<span class="ruby-value str">'version'</span>]
-54:                         <span class="ruby-ivar">@SRC_DIR</span> = <span class="ruby-identifier">data</span>[<span class="ruby-value str">'srcDir'</span>]
-55:                         <span class="ruby-ivar">@HOMEPAGE</span> = <span class="ruby-identifier">data</span>[<span class="ruby-value str">'homepage'</span>]
-56:                         <span class="ruby-ivar">@SRC_URL</span> = <span class="ruby-identifier">data</span>[<span class="ruby-value str">'srcUrl'</span>]
-57:                         <span class="ruby-ivar">@DEPENDSON</span> = <span class="ruby-identifier">data</span>[<span class="ruby-value str">'dependOn'</span>]
-58:                         <span class="ruby-ivar">@RELIESON</span> = <span class="ruby-identifier">data</span>[<span class="ruby-value str">'reliesOn'</span>]
-59:                         <span class="ruby-ivar">@OPTIONAL_DO</span> = <span class="ruby-identifier">data</span>[<span class="ruby-value str">'optionalDO'</span>]
-60:                         <span class="ruby-ivar">@OPTIONAL_RO</span> = <span class="ruby-identifier">data</span>[<span class="ruby-value str">'optionalRO'</span>]
-61:                         <span class="ruby-ivar">@GPG_CHECK</span> = <span class="ruby-identifier">data</span>[<span class="ruby-value str">'gpgCheck'</span>]
-62:                         <span class="ruby-ivar">@PATCHES</span> = <span class="ruby-identifier">data</span>[<span class="ruby-value str">'patches'</span>]
-63:                         <span class="ruby-ivar">@PATCHES_GPG_CHECK</span> = <span class="ruby-identifier">data</span>[<span class="ruby-value str">'patchesGpgCheck'</span>]
-64:                         <span class="ruby-ivar">@MIRROR_PATH</span> = <span class="ruby-identifier">data</span>[<span class="ruby-value str">'mirrorPath'</span>]
-65:                         <span class="ruby-ivar">@LICENSE</span> = <span class="ruby-identifier">data</span>[<span class="ruby-value str">'license'</span>]
-66:                         <span class="ruby-ivar">@DESCRIPTION</span> = <span class="ruby-identifier">data</span>[<span class="ruby-value str">'description'</span>]
-67:                         
-68:                 <span class="ruby-keyword kw">end</span>
+54:       <span class="ruby-ivar">@SRC_DIR</span> = <span class="ruby-identifier">data</span>[<span class="ruby-value str">'srcDir'</span>]
+55:       <span class="ruby-ivar">@HOMEPAGE</span> = <span class="ruby-identifier">data</span>[<span class="ruby-value str">'homepage'</span>]
+56:       <span class="ruby-ivar">@SRC_URL</span> = <span class="ruby-identifier">data</span>[<span class="ruby-value str">'srcUrl'</span>]
+57:       <span class="ruby-ivar">@DEPENDSON</span> = <span class="ruby-identifier">data</span>[<span class="ruby-value str">'dependOn'</span>]
+58:       <span class="ruby-ivar">@RELIESON</span> = <span class="ruby-identifier">data</span>[<span class="ruby-value str">'reliesOn'</span>]
+59:       <span class="ruby-ivar">@OPTIONAL_DO</span> = <span class="ruby-identifier">data</span>[<span class="ruby-value str">'optionalDO'</span>]
+60:       <span class="ruby-ivar">@OPTIONAL_RO</span> = <span class="ruby-identifier">data</span>[<span class="ruby-value str">'optionalRO'</span>]
+61:       <span class="ruby-ivar">@GPG_CHECK</span> = <span class="ruby-identifier">data</span>[<span class="ruby-value str">'gpgCheck'</span>]
+62:       <span class="ruby-ivar">@PATCHES</span> = <span class="ruby-identifier">data</span>[<span class="ruby-value str">'patches'</span>]
+63:       <span class="ruby-ivar">@PATCHES_GPG_CHECK</span> = <span class="ruby-identifier">data</span>[<span class="ruby-value str">'patchesGpgCheck'</span>]
+64:       <span class="ruby-ivar">@MIRROR_PATH</span> = <span class="ruby-identifier">data</span>[<span class="ruby-value str">'mirrorPath'</span>]
+65:       <span class="ruby-ivar">@LICENSE</span> = <span class="ruby-identifier">data</span>[<span class="ruby-value str">'license'</span>]
+66:       <span class="ruby-ivar">@DESCRIPTION</span> = <span class="ruby-identifier">data</span>[<span class="ruby-value str">'description'</span>]
+67:                 
+68:         <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>

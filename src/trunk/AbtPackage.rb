@@ -35,37 +35,37 @@ class AbtPackage
   private
   
   public
-
-    attr_reader :NAME, :EXEC_NAME, :VERSION, :SRC_DIR, HOMEPAGE, :SRC_URL
-		attr_reader :DEPENDSON, :RELIESON, :OPTIONAL_DO, :OPTIONAL_RO, :GPG_CHECK
-		attr_reader :PATCHES, :PATCHES_GPG_CHECK, :MIRROR_PATH, :LICENSE, :DESCRIPTION
+  
+    attr_reader :NAME, :EXEC_NAME, :VERSION, :SRC_DIR, :HOMEPAGE, :SRC_URL
+    attr_reader :DEPENDSON, :RELIESON, :OPTIONAL_DO, :OPTIONAL_RO, :GPG_CHECK
+	attr_reader :PATCHES, :PATCHES_GPG_CHECK, :MIRROR_PATH, :LICENSE, :DESCRIPTION
     
-		##
-		# Constructor for an AbtPackage, requires all the packge details.
-		#
-		# <b>PARAM</b> <i>Hash</i> - hash containing all package data.
-		#
-		##
-		def initialize( data )
-    
+	##
+	# Constructor for an AbtPackage, requires all the packge details.
+	#
+	# <b>PARAM</b> <i>Hash</i> - hash containing all package data.
+	#
+	##
+	def initialize( data )
+	
       @NAME = data['name']
       @EXEC_NAME = data['execName']
       @VERSION = data['version']
-			@SRC_DIR = data['srcDir']
-			@HOMEPAGE = data['homepage']
-			@SRC_URL = data['srcUrl']
-			@DEPENDSON = data['dependOn']
-			@RELIESON = data['reliesOn']
-			@OPTIONAL_DO = data['optionalDO']
-			@OPTIONAL_RO = data['optionalRO']
-			@GPG_CHECK = data['gpgCheck']
-			@PATCHES = data['patches']
-			@PATCHES_GPG_CHECK = data['patchesGpgCheck']
-			@MIRROR_PATH = data['mirrorPath']
-			@LICENSE = data['license']
-			@DESCRIPTION = data['description']
-			
-		end
+      @SRC_DIR = data['srcDir']
+      @HOMEPAGE = data['homepage']
+      @SRC_URL = data['srcUrl']
+      @DEPENDSON = data['dependOn']
+      @RELIESON = data['reliesOn']
+      @OPTIONAL_DO = data['optionalDO']
+      @OPTIONAL_RO = data['optionalRO']
+      @GPG_CHECK = data['gpgCheck']
+      @PATCHES = data['patches']
+      @PATCHES_GPG_CHECK = data['patchesGpgCheck']
+      @MIRROR_PATH = data['mirrorPath']
+      @LICENSE = data['license']
+      @DESCRIPTION = data['description']
+		
+	end
 		
     ##
     # Provides all the data needed for this AbtPackage.

@@ -35,40 +35,38 @@ class AbtFortune < AbtPackage
     @version  = "mod-9708"
     @srcDir   = "#{@name.downcase}-#{@version}"
 
-		@packageData = {
-			'name' 			  			=> "Fortune",
-			'execName'		  		=> @name.downcase,
-			'version'				  	=> @version,
-			'srcDir'					  => @srcDir,
-			'homepage'  				=> "http://www.ibiblio.org/pub/Linux/games/amusements/#{@name.downcase}/",
-			'srcUrl'		  			=> "http://www.ibiblio.org/pub/Linux/games/amusements/#{@srcDir}.tar.gz",
-			'dependsOn'		  		=> [],
-			'reliesOn'			  	=> [],
-			'optionalDO'			  => [],
-			'optionalRO'		  	=> [],
-			'hashCheck'		  		=> "sha512:80c5b71d84eeb3092b2dfe483f0dad8ed42e2efeaa1f8791c26fb2ae80fbd7775777ac5252b1d8270e2e176ad14ce98940bee6d8e71fdbb9ac3323dc7188c4d0",
-			'patches'		  			=> "http://patches.abtlinux.org/#{@srcDir}-patches-1.tar.gz",
-			'patcheshashCheck'	=> "",
-			'mirrorPath'			  => "http://mirror.abtlinux.org/#{@srcDir}.tar.gz",
-			'license'		  			=> "GPL",
-			'description'	  		=> "Prints a random, hopefully interesting, adage." 
-		}
+	@packageData = {
+		'name'           	=> "Fortune",
+		'execName'		  	=> @name.downcase,
+		'version'			=> @version,
+		'srcDir'			=> @srcDir,
+		'homepage'  		=> "http://www.ibiblio.org/pub/Linux/games/amusements/#{@name.downcase}/",
+		'srcUrl'		  	=> "http://www.ibiblio.org/pub/Linux/games/amusements/#{@srcDir}.tar.gz",
+		'dependsOn'		  	=> [],
+		'reliesOn'			=> [],
+		'optionalDO'		=> [],
+		'optionalRO'		=> [],
+		'hashCheck'		  	=> "sha512:80c5b71d84eeb3092b2dfe483f0dad8ed42e2efeaa1f8791c26fb2ae80fbd7775777ac5252b1d8270e2e176ad14ce98940bee6d8e71fdbb9ac3323dc7188c4d0",
+		'patches'		  	=> "http://patches.abtlinux.org/#{@srcDir}-patches-1.tar.gz",
+		'patcheshashCheck'  => "",
+		'mirrorPath'		=> "http://mirror.abtlinux.org/#{@srcDir}.tar.gz",
+		'license'		  	=> "GPL",
+		'description'	  	=> "Prints a random, hopefully interesting, adage." 
+	}
 
   
   public
 
-		##
-		# Constructor for an AbtPackage, requires all the packge details.
-		#
-		# <b>PARAM</b> <i>Hash</i> - hash containing all pacakge data.
-		#
-		##
-		def initialize()
-      
+	##
+	# Constructor for an AbtPackage, requires all the packge details.
+	#
+	# <b>PARAM</b> <i>Hash</i> - hash containing all pacakge data.
+	#
+	##
+	def initialize()
+	
       super( @packageData )
-      
-		end
     
-    
-    
+	end
+	
 end
