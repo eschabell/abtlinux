@@ -1,13 +1,9 @@
 \newpage
 \section{Design}  
-Here I will detail the design and implementation choices made for
-\emph{AbTLinux}. Some early thoughts are Object Orientation and Ruby 
-as implementation language. 
+Here the design and implementation choices made for \emph{AbTLinux} will be laid out.
 
 \subsection{Package structure}
-A single package will have one file containing the entire structure needed for
-installing the software it offers. This structure will be split into sections,
-such as the following:
+A single package will have one file containing the entire structure needed for installing the software it offers. This structure will be split into sections, such as the following:
 \begin{itemize}
   \item details\{\}
   \item pre\{\}
@@ -19,20 +15,22 @@ such as the following:
   \item post\{\}
 \end{itemize}
 
-This is rather flexible and open for debate, an example should be put together
-for a rather complex package just to give an idea of what it will look like.
-I think each section should be enclosed in curly brackets.
+%This is rather flexible and open for debate, an example should 
+%be put together for a rather complex package just to give an 
+%idea of what it will look like. I think each section should be 
+%enclosed in curly brackets.
+
+\subsubsection{Example - fortune}
+To provide a simple overview of a package description we will detail a package. The running example will be of \emph{fortune}, a software application that prints a random, hopefully interesting, adage.
+
+% provide package desription here.
+
 
 \subsubsection{Install locations}
-Base system for AbTLinux will be in /usr, all others will be installed into /usr/local/*.
-This will facilitate ease of usage within other Linux systems that follow the LSB/FHS.
+Base system for AbTLinux will be in /usr, all others will be installed into /usr/local/*. This will facilitate ease of usage within other Linux systems that follow the LSB/FHS. Initial implementaion will allow for setting the install location, therefore we can install everything into /usr/local/* for ease of testing on all available Linux distributions.
 
 \subsection{Configuration update tools}
-Here I mean tools dealing with how we want configuration file updates to be
-handled. Almost everything located in /etc of the Linux filesystem is considered
-holy to a running system. They need to be updated sometimes when a new package
-version is installed, but should never destroy an existing configuration. We
-want to provide for the following:
+Here we mean tools dealing with how we want configuration file updates to be handled. Almost everything located in /etc of the Linux filesystem is considered holy to a running system. They need to be updated sometimes when a new package version is installed, but should never destroy an existing configuration. We want to provide for the following:
 
 \begin{itemize}
   \item view existing configuration file
