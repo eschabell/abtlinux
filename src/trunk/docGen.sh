@@ -23,7 +23,9 @@ FILES="AbtPackageManager.rb
 			 AbtLogManager.rb
 			 AbtReportManager.rb
 			 AbtQueueManager.rb
-			 AbtDepEngine.rb";
+			 AbtDepEngine.rb
+			 TestAbtPackage.rb
+			 ";
 
 # run the actual doc generation.
 rdoc 	--diagram                               \

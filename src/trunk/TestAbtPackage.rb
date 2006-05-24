@@ -1,9 +1,13 @@
 #!/usr/bin/ruby -w
 
+require 'test/unit/testcase'
+require 'test/unit/autorunner'
+require 'AbtPackage'
+
 ##
-# AbtFortune.rb 
+# TestAbtPackage.rb 
 #
-# AbtFortune package.
+# Unit testing for AbtPackage class.
 #
 # Created by Eric D. Schabell <erics@abtlinux.org>
 # Copyright 2006, GPL.
@@ -25,18 +29,15 @@
 # St, Fifth Floor, Boston, MA 02110-1301  USA
 ##
 
-class AbtFortune < AbtPackage
-  
-protected
-  
-private
-  
+
+class TestAbtPacakge < Test::Unit::TestCase
+
   @name     = "Fortune"
   @version  = "mod-9708"
   @srcDir   = "#{@name.downcase}-#{@version}"
 
-  @packageData = {
-    'name'           	=> @name,
+  $data = {
+    'name'           	=> "Fortune",
     'execName'		  	=> @name.downcase,
     'version'			=> @version,
     'srcDir'			=> @srcDir,
@@ -54,19 +55,12 @@ private
     'description'	  	=> "Prints a random, hopefully interesting, adage." 
   }
 
-  
-public
-
-  ##
-  # Constructor for an AbtPackage, requires all the packge details.
-  #
-  # <b>PARAM</b> <i>Hash</i> - hash containing all pacakge data.
-  #
-  ##
-  def initialize()
-  
-      super( @packageData )
-    
+  def setup
+    @fortune = AbtPackage.new( $data )
   end
-	
+
+  def testDetails
+    assert( $data['name'] == @fortune.details['name'] )
+  end
+
 end
