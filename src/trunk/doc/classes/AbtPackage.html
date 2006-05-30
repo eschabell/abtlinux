@@ -76,7 +76,7 @@ Object
       <div id="content">
   <table cellpadding='0' cellspacing='0' border='0' width="100%"><tr><td align="center">
     <map id="map" name="map">
-  <area shape="RECT" coords="29,52,117,100"      href="AbtPackage.html" alt="AbtPackage">
+  <area shape="RECT" coords="28,51,116,99"      href="AbtPackage.html" alt="AbtPackage">
 </map>
 <img src="../dot/f_1.png" usemap="#map" border=0 alt="TopLevel">
   </td></tr></table>
@@ -142,112 +142,160 @@ Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
 [R]
     </td>
     <td class='attr-name'>DEPENDSON</td>
-    <td class='attr-desc'></td>
+    <td class='attr-desc'>
+list of dependsOn (DO) related package dependencies.
+
+</td>
   </tr>
   <tr valign='top'>
     <td class='attr-rw'>
 [R]
     </td>
     <td class='attr-name'>DESCRIPTION</td>
-    <td class='attr-desc'></td>
+    <td class='attr-desc'>
+the package description.
+
+</td>
   </tr>
   <tr valign='top'>
     <td class='attr-rw'>
 [R]
     </td>
     <td class='attr-name'>EXEC_NAME</td>
-    <td class='attr-desc'></td>
+    <td class='attr-desc'>
+the executable name for the package.
+
+</td>
   </tr>
   <tr valign='top'>
     <td class='attr-rw'>
 [R]
     </td>
-    <td class='attr-name'>GPG_CHECK</td>
-    <td class='attr-desc'></td>
+    <td class='attr-name'>HASH_CHECK</td>
+    <td class='attr-desc'>
+security hash value of package sources.
+
+</td>
   </tr>
   <tr valign='top'>
     <td class='attr-rw'>
 [R]
     </td>
     <td class='attr-name'>HOMEPAGE</td>
-    <td class='attr-desc'></td>
+    <td class='attr-desc'>
+the packages homepage.
+
+</td>
   </tr>
   <tr valign='top'>
     <td class='attr-rw'>
 [R]
     </td>
     <td class='attr-name'>LICENSE</td>
-    <td class='attr-desc'></td>
+    <td class='attr-desc'>
+type of license this package has.
+
+</td>
   </tr>
   <tr valign='top'>
     <td class='attr-rw'>
 [R]
     </td>
     <td class='attr-name'>MIRROR_PATH</td>
-    <td class='attr-desc'></td>
+    <td class='attr-desc'>
+available mirrors for this package.
+
+</td>
   </tr>
   <tr valign='top'>
     <td class='attr-rw'>
 [R]
     </td>
     <td class='attr-name'>NAME</td>
-    <td class='attr-desc'></td>
+    <td class='attr-desc'>
+the name of the package.
+
+</td>
   </tr>
   <tr valign='top'>
     <td class='attr-rw'>
 [R]
     </td>
     <td class='attr-name'>OPTIONAL_DO</td>
-    <td class='attr-desc'></td>
+    <td class='attr-desc'>
+list of optional reliesOn (oRO) related package dependencies.
+
+</td>
   </tr>
   <tr valign='top'>
     <td class='attr-rw'>
 [R]
     </td>
     <td class='attr-name'>OPTIONAL_RO</td>
-    <td class='attr-desc'></td>
+    <td class='attr-desc'>
+list of optional dependsOn (oDO) related package dependencies.
+
+</td>
   </tr>
   <tr valign='top'>
     <td class='attr-rw'>
 [R]
     </td>
     <td class='attr-name'>PATCHES</td>
-    <td class='attr-desc'></td>
+    <td class='attr-desc'>
+list of available patches for this package.
+
+</td>
   </tr>
   <tr valign='top'>
     <td class='attr-rw'>
 [R]
     </td>
-    <td class='attr-name'>PATCHES_GPG_CHECK</td>
-    <td class='attr-desc'></td>
+    <td class='attr-name'>PATCHES_HASH_CHECK</td>
+    <td class='attr-desc'>
+security hash value of this packages patches.
+
+</td>
   </tr>
   <tr valign='top'>
     <td class='attr-rw'>
 [R]
     </td>
     <td class='attr-name'>RELIESON</td>
-    <td class='attr-desc'></td>
+    <td class='attr-desc'>
+list of reliesOn (RO) related package dependencies.
+
+</td>
   </tr>
   <tr valign='top'>
     <td class='attr-rw'>
 [R]
     </td>
     <td class='attr-name'>SRC_DIR</td>
-    <td class='attr-desc'></td>
+    <td class='attr-desc'>
+the source directory for the package.
+
+</td>
   </tr>
   <tr valign='top'>
     <td class='attr-rw'>
 [R]
     </td>
     <td class='attr-name'>SRC_URL</td>
-    <td class='attr-desc'></td>
+    <td class='attr-desc'>
+the URL where this packages sources can be obtained.
+
+</td>
   </tr>
   <tr valign='top'>
     <td class='attr-rw'>
 [R]
     </td>
     <td class='attr-name'>VERSION</td>
-    <td class='attr-desc'></td>
+    <td class='attr-desc'>
+the package version number.
+
+</td>
   </tr>
   </table>
 
@@ -269,27 +317,27 @@ the packge details.
   <p class="source-link">[ <a href="javascript:toggleSource('M000017_source')" id="l_M000017_source">show source</a> ]</p>
   <div id="M000017_source" class="dyn-source">
 <pre>
-    <span class="ruby-comment cmt"># File AbtPackage.rb, line 49</span>
-49:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>( <span class="ruby-identifier">data</span> )
-50:     
-51:     <span class="ruby-ivar">@NAME</span> = <span class="ruby-identifier">data</span>[<span class="ruby-value str">'name'</span>]
-52:     <span class="ruby-ivar">@EXEC_NAME</span> = <span class="ruby-identifier">data</span>[<span class="ruby-value str">'execName'</span>]
-53:     <span class="ruby-ivar">@VERSION</span> = <span class="ruby-identifier">data</span>[<span class="ruby-value str">'version'</span>]
-54:     <span class="ruby-ivar">@SRC_DIR</span> = <span class="ruby-identifier">data</span>[<span class="ruby-value str">'srcDir'</span>]
-55:     <span class="ruby-ivar">@HOMEPAGE</span> = <span class="ruby-identifier">data</span>[<span class="ruby-value str">'homepage'</span>]
-56:     <span class="ruby-ivar">@SRC_URL</span> = <span class="ruby-identifier">data</span>[<span class="ruby-value str">'srcUrl'</span>]
-57:     <span class="ruby-ivar">@DEPENDSON</span> = <span class="ruby-identifier">data</span>[<span class="ruby-value str">'dependOn'</span>]
-58:     <span class="ruby-ivar">@RELIESON</span> = <span class="ruby-identifier">data</span>[<span class="ruby-value str">'reliesOn'</span>]
-59:     <span class="ruby-ivar">@OPTIONAL_DO</span> = <span class="ruby-identifier">data</span>[<span class="ruby-value str">'optionalDO'</span>]
-60:     <span class="ruby-ivar">@OPTIONAL_RO</span> = <span class="ruby-identifier">data</span>[<span class="ruby-value str">'optionalRO'</span>]
-61:     <span class="ruby-ivar">@GPG_CHECK</span> = <span class="ruby-identifier">data</span>[<span class="ruby-value str">'gpgCheck'</span>]
-62:     <span class="ruby-ivar">@PATCHES</span> = <span class="ruby-identifier">data</span>[<span class="ruby-value str">'patches'</span>]
-63:     <span class="ruby-ivar">@PATCHES_GPG_CHECK</span> = <span class="ruby-identifier">data</span>[<span class="ruby-value str">'patchesGpgCheck'</span>]
-64:     <span class="ruby-ivar">@MIRROR_PATH</span> = <span class="ruby-identifier">data</span>[<span class="ruby-value str">'mirrorPath'</span>]
-65:     <span class="ruby-ivar">@LICENSE</span> = <span class="ruby-identifier">data</span>[<span class="ruby-value str">'license'</span>]
-66:     <span class="ruby-ivar">@DESCRIPTION</span> = <span class="ruby-identifier">data</span>[<span class="ruby-value str">'description'</span>]
-67:         
-68:   <span class="ruby-keyword kw">end</span>
+     <span class="ruby-comment cmt"># File AbtPackage.rb, line 94</span>
+ 94:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>( <span class="ruby-identifier">data</span> )
+ 95:     
+ 96:     <span class="ruby-ivar">@NAME</span> = <span class="ruby-identifier">data</span>[<span class="ruby-value str">'name'</span>]
+ 97:     <span class="ruby-ivar">@EXEC_NAME</span> = <span class="ruby-identifier">data</span>[<span class="ruby-value str">'execName'</span>]
+ 98:     <span class="ruby-ivar">@VERSION</span> = <span class="ruby-identifier">data</span>[<span class="ruby-value str">'version'</span>]
+ 99:     <span class="ruby-ivar">@SRC_DIR</span> = <span class="ruby-identifier">data</span>[<span class="ruby-value str">'srcDir'</span>]
+100:     <span class="ruby-ivar">@HOMEPAGE</span> = <span class="ruby-identifier">data</span>[<span class="ruby-value str">'homepage'</span>]
+101:     <span class="ruby-ivar">@SRC_URL</span> = <span class="ruby-identifier">data</span>[<span class="ruby-value str">'srcUrl'</span>]
+102:     <span class="ruby-ivar">@DEPENDSON</span> = <span class="ruby-identifier">data</span>[<span class="ruby-value str">'dependOn'</span>]
+103:     <span class="ruby-ivar">@RELIESON</span> = <span class="ruby-identifier">data</span>[<span class="ruby-value str">'reliesOn'</span>]
+104:     <span class="ruby-ivar">@OPTIONAL_DO</span> = <span class="ruby-identifier">data</span>[<span class="ruby-value str">'optionalDO'</span>]
+105:     <span class="ruby-ivar">@OPTIONAL_RO</span> = <span class="ruby-identifier">data</span>[<span class="ruby-value str">'optionalRO'</span>]
+106:     <span class="ruby-ivar">@GPG_CHECK</span> = <span class="ruby-identifier">data</span>[<span class="ruby-value str">'gpgCheck'</span>]
+107:     <span class="ruby-ivar">@PATCHES</span> = <span class="ruby-identifier">data</span>[<span class="ruby-value str">'patches'</span>]
+108:     <span class="ruby-ivar">@PATCHES_GPG_CHECK</span> = <span class="ruby-identifier">data</span>[<span class="ruby-value str">'patchesGpgCheck'</span>]
+109:     <span class="ruby-ivar">@MIRROR_PATH</span> = <span class="ruby-identifier">data</span>[<span class="ruby-value str">'mirrorPath'</span>]
+110:     <span class="ruby-ivar">@LICENSE</span> = <span class="ruby-identifier">data</span>[<span class="ruby-value str">'license'</span>]
+111:     <span class="ruby-ivar">@DESCRIPTION</span> = <span class="ruby-identifier">data</span>[<span class="ruby-value str">'description'</span>]
+112:         
+113:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>
@@ -313,9 +361,9 @@ otherwise false.
   <p class="source-link">[ <a href="javascript:toggleSource('M000021_source')" id="l_M000021_source">show source</a> ]</p>
   <div id="M000021_source" class="dyn-source">
 <pre>
-     <span class="ruby-comment cmt"># File AbtPackage.rb, line 124</span>
-124:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">build</span>
-125:   <span class="ruby-keyword kw">end</span>
+     <span class="ruby-comment cmt"># File AbtPackage.rb, line 169</span>
+169:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">build</span>
+170:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>
@@ -342,9 +390,9 @@ otherwise false.
   <p class="source-link">[ <a href="javascript:toggleSource('M000020_source')" id="l_M000020_source">show source</a> ]</p>
   <div id="M000020_source" class="dyn-source">
 <pre>
-     <span class="ruby-comment cmt"># File AbtPackage.rb, line 116</span>
-116:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">configure</span>
-117:   <span class="ruby-keyword kw">end</span>
+     <span class="ruby-comment cmt"># File AbtPackage.rb, line 161</span>
+161:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">configure</span>
+162:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>
@@ -367,29 +415,29 @@ href="AbtPackage.html">AbtPackage</a> attributes (constants).
   <p class="source-link">[ <a href="javascript:toggleSource('M000018_source')" id="l_M000018_source">show source</a> ]</p>
   <div id="M000018_source" class="dyn-source">
 <pre>
-    <span class="ruby-comment cmt"># File AbtPackage.rb, line 75</span>
-75:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">details</span>
-76:   
-77:     <span class="ruby-keyword kw">return</span> { 
-78:       <span class="ruby-value str">'name'</span>            =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@NAME</span>,
-79:       <span class="ruby-value str">'execName'</span>        =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@EXEC_NAME</span>,
-80:       <span class="ruby-value str">'version'</span>         =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@VERSION</span>,
-81:       <span class="ruby-value str">'srcDir'</span>          =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@SRC_DIR</span>,
-82:       <span class="ruby-value str">'homepage'</span>        =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@HOMEPAGE</span>,
-83:       <span class="ruby-value str">'srcUrl'</span>          =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@SRC_URL</span>,
-84:       <span class="ruby-value str">'dependsOn'</span>       =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@DEPENDSON</span>,
-85:       <span class="ruby-value str">'reliesOn'</span>        =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@RELIESON</span>,
-86:       <span class="ruby-value str">'optionalDO'</span>      =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@OPTIONAL_DO</span>,
-87:       <span class="ruby-value str">'optionalRO'</span>      =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@OPTIONAL_RO</span>,
-88:       <span class="ruby-value str">'gpgCheck'</span>        =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@GPG_CHECK</span>,
-89:       <span class="ruby-value str">'patches'</span>         =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@PATCHES</span>,
-90:       <span class="ruby-value str">'patchesGpgCheck'</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@PATCHES_GPG_CHECK</span>,
-91:       <span class="ruby-value str">'mirrorPath'</span>      =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@MIRROR_PATH</span>,
-92:       <span class="ruby-value str">'license'</span>         =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@LICENSE</span>,
-93:       <span class="ruby-value str">'description'</span>     =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@DESCRIPTION</span>
-94:     }
-95:     
-96:   <span class="ruby-keyword kw">end</span>
+     <span class="ruby-comment cmt"># File AbtPackage.rb, line 120</span>
+120:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">details</span>
+121:   
+122:     <span class="ruby-keyword kw">return</span> { 
+123:       <span class="ruby-value str">'name'</span>            =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@NAME</span>,
+124:       <span class="ruby-value str">'execName'</span>        =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@EXEC_NAME</span>,
+125:       <span class="ruby-value str">'version'</span>         =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@VERSION</span>,
+126:       <span class="ruby-value str">'srcDir'</span>          =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@SRC_DIR</span>,
+127:       <span class="ruby-value str">'homepage'</span>        =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@HOMEPAGE</span>,
+128:       <span class="ruby-value str">'srcUrl'</span>          =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@SRC_URL</span>,
+129:       <span class="ruby-value str">'dependsOn'</span>       =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@DEPENDSON</span>,
+130:       <span class="ruby-value str">'reliesOn'</span>        =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@RELIESON</span>,
+131:       <span class="ruby-value str">'optionalDO'</span>      =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@OPTIONAL_DO</span>,
+132:       <span class="ruby-value str">'optionalRO'</span>      =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@OPTIONAL_RO</span>,
+133:       <span class="ruby-value str">'gpgCheck'</span>        =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@GPG_CHECK</span>,
+134:       <span class="ruby-value str">'patches'</span>         =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@PATCHES</span>,
+135:       <span class="ruby-value str">'patchesGpgCheck'</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@PATCHES_GPG_CHECK</span>,
+136:       <span class="ruby-value str">'mirrorPath'</span>      =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@MIRROR_PATH</span>,
+137:       <span class="ruby-value str">'license'</span>         =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@LICENSE</span>,
+138:       <span class="ruby-value str">'description'</span>     =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@DESCRIPTION</span>
+139:     }
+140:     
+141:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>
@@ -411,9 +459,9 @@ otherwise false.
   <p class="source-link">[ <a href="javascript:toggleSource('M000023_source')" id="l_M000023_source">show source</a> ]</p>
   <div id="M000023_source" class="dyn-source">
 <pre>
-     <span class="ruby-comment cmt"># File AbtPackage.rb, line 141</span>
-141:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">install</span>
-142:   <span class="ruby-keyword kw">end</span>
+     <span class="ruby-comment cmt"># File AbtPackage.rb, line 186</span>
+186:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">install</span>
+187:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>
@@ -436,9 +484,9 @@ otherwise false.
   <p class="source-link">[ <a href="javascript:toggleSource('M000024_source')" id="l_M000024_source">show source</a> ]</p>
   <div id="M000024_source" class="dyn-source">
 <pre>
-     <span class="ruby-comment cmt"># File AbtPackage.rb, line 149</span>
-149:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">post</span>
-150:   <span class="ruby-keyword kw">end</span>
+     <span class="ruby-comment cmt"># File AbtPackage.rb, line 194</span>
+194:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">post</span>
+195:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>
@@ -461,9 +509,9 @@ false.
   <p class="source-link">[ <a href="javascript:toggleSource('M000019_source')" id="l_M000019_source">show source</a> ]</p>
   <div id="M000019_source" class="dyn-source">
 <pre>
-     <span class="ruby-comment cmt"># File AbtPackage.rb, line 104</span>
-104:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">pre</span>
-105:   <span class="ruby-keyword kw">end</span>
+     <span class="ruby-comment cmt"># File AbtPackage.rb, line 149</span>
+149:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">pre</span>
+150:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>
@@ -487,9 +535,9 @@ otherwise false.
   <p class="source-link">[ <a href="javascript:toggleSource('M000022_source')" id="l_M000022_source">show source</a> ]</p>
   <div id="M000022_source" class="dyn-source">
 <pre>
-     <span class="ruby-comment cmt"># File AbtPackage.rb, line 133</span>
-133:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">preinstall</span>
-134:   <span class="ruby-keyword kw">end</span>
+     <span class="ruby-comment cmt"># File AbtPackage.rb, line 178</span>
+178:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">preinstall</span>
+179:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>

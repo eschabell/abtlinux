@@ -36,9 +36,54 @@ private
   
 public
   
-  attr_reader :NAME, :EXEC_NAME, :VERSION, :SRC_DIR, :HOMEPAGE, :SRC_URL
-  attr_reader :DEPENDSON, :RELIESON, :OPTIONAL_DO, :OPTIONAL_RO, :GPG_CHECK
-  attr_reader :PATCHES, :PATCHES_GPG_CHECK, :MIRROR_PATH, :LICENSE, :DESCRIPTION
+  # the name of the package.
+  attr_reader :NAME
+  
+  # the executable name for the package.
+  attr_reader :EXEC_NAME
+  
+  # the package version number.
+  attr_reader :VERSION
+  
+  # the source directory for the package.
+  attr_reader :SRC_DIR
+  
+  # the packages homepage.
+  attr_reader :HOMEPAGE
+  
+  # the URL where this packages sources can be obtained.
+  attr_reader :SRC_URL
+  
+  # list of dependsOn (DO) related package dependencies.
+  attr_reader :DEPENDSON
+  
+  # list of reliesOn (RO) related package dependencies.
+  attr_reader :RELIESON
+  
+  # list of optional reliesOn (oRO) related package dependencies.
+  attr_reader :OPTIONAL_DO
+
+  # list of optional dependsOn (oDO) related package dependencies.
+  attr_reader :OPTIONAL_RO
+  
+  # security hash value of package sources.
+  attr_reader :HASH_CHECK
+  
+  # list of available patches for this package.
+  attr_reader :PATCHES
+  
+  # security hash value of this packages patches.
+  attr_reader :PATCHES_HASH_CHECK
+  
+  # available mirrors for this package.
+  attr_reader :MIRROR_PATH
+  
+  # type of license this package has.
+  attr_reader :LICENSE
+  
+  # the package description.
+  attr_reader :DESCRIPTION
+    
     
   ##
   # Constructor for an AbtPackage, requires all the packge details.
