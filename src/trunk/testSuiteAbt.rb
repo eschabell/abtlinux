@@ -2,4 +2,5 @@
 
 require 'test/unit'
 require 'TestAbtDepEngine'
+require 'TestAbtDownloadManager'
 require 'TestAbtPackage'

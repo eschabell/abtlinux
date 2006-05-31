@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+  <head>
+    <title>Class: TestAbtDownloadManager</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+    <link rel="stylesheet" href=".././rdoc-style.css" type="text/css" media="screen" />
+
+    <script language="JavaScript" type="text/javascript">
+    // <![CDATA[
+
+        function toggleSource( id )
+        {
+          var elem
+          var link
+
+          if( document.getElementById )
+          {
+            elem = document.getElementById( id )
+            link = document.getElementById( "l_" + id )
+          }
+          else if ( document.all )
+          {
+            elem = eval( "document.all." + id )
+            link = eval( "document.all.l_" + id )
+          }
+          else
+            return false;
+
+          if( elem.style.display == "block" )
+          {
+            elem.style.display = "none"
+            link.innerHTML = "show source"
+          }
+          else
+          {
+            elem.style.display = "block"
+            link.innerHTML = "hide source"
+          }
+        }
+
+        function openCode( url )
+        {
+          window.open( url, "SOURCE_CODE", "width=400,height=400,scrollbars=yes" )
+        }
+      // ]]>
+    </script>
+  </head>
+
+  <body>
+  <table width="100%" border='0' cellpadding='0' cellspacing='0' class='banner'><tr>
+  <td class="file-title"><span class="file-title-prefix">Class</span><br />TestAbtDownloadManager</td>
+  <td align="right">
+    <table cellspacing=0 cellpadding=2>
+      <tr valign="top">
+        <td>In:</td>
+        <td>
+<a href="../files/TestAbtDownloadManager_rb.html">TestAbtDownloadManager.rb</a>
+        </td>
+      </tr>
+    <tr>
+      <td>Parent:</td>
+      <td>
+Test::Unit::TestCase
+     </td>
+   </tr>
+         </table>
+        </td>
+        </tr>
+      </table>
+ <!-- banner header -->
+
+  <div id="bodyContent">
+      <div id="content">
+  <table cellpadding='0' cellspacing='0' border='0' width="100%"><tr><td align="center">
+    <map id="map" name="map">
+  <area shape="RECT" coords="28,103,180,151"      href="TestAbtDownloadManager.html" alt="TestAbtDownloadManager">
+  <area shape="RECT" coords="41,7,167,55"      href="Test/Unit/TestCase.html" alt="Test::Unit::TestCase">
+</map>
+<img src="../dot/f_9.png" usemap="#map" border=0 alt="TopLevel">
+  </td></tr></table>
+
+  <div class="description"><p>
+TestAbtDownloadManager.rb
+</p>
+<p>
+Unit testing for <a href="AbtDownloadManager.html">AbtDownloadManager</a>
+class.
+</p>
+<p>
+Created by Eric D. Schabell &lt;erics@abtlinux.org&gt; Copyright 2006, GPL.
+</p>
+<p>
+This file is part of AbTLinux.
+</p>
+<p>
+AbTLinux is free software; you can redistribute it and/or modify it under
+the terms of the GNU General Public License as published by the Free
+Software Foundation; either version 2 of the License, or (at your option)
+any later version.
+</p>
+<p>
+AbTLinux is distributed in the hope that it will be useful, but WITHOUT ANY
+WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
+details.
+</p>
+<p>
+You should have received a copy of the GNU General Public License along
+with AbTLinux; if not, write to the Free Software Foundation, Inc., 51
+Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
+</p>
+</div>
+
+
+
+  <div class="sectiontitle">Methods</div>
+  <ul>
+  <li><a href="#M000044">setup</a></li>
+  <li><a href="#M000047">testRetrieveNewsFeed</a></li>
+  <li><a href="#M000045">testRetrievePackageSource</a></li>
+  <li><a href="#M000046">testRetrievePackageTree</a></li>
+  <li><a href="#M000048">testUpdatePackage</a></li>
+  <li><a href="#M000049">testUpdatePackageTree</a></li>
+  </ul>
+
+
+
+
+
+
+<div class="sectiontitle">Public Instance methods</div>
+<div class="method">
+  <div class="title">
+    <a name="M000044"></a><b>setup</b>()
+  </div>
+  <div class="description">
+  <p>
+setup method for testing <a
+href="AbtDownloadManager.html">AbtDownloadManager</a>.
+</p>
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000044_source')" id="l_M000044_source">show source</a> ]</p>
+  <div id="M000044_source" class="dyn-source">
+<pre>
+    <span class="ruby-comment cmt"># File TestAbtDownloadManager.rb, line 36</span>
+36:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">setup</span>
+37:     <span class="ruby-ivar">@download</span> = <span class="ruby-constant">AbtDownloadManager</span>.<span class="ruby-identifier">new</span>()
+38:   <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000047"></a><b>testRetrieveNewsFeed</b>()
+  </div>
+  <div class="description">
+  <p>
+Test method for &#8216;AbtDownloadManager.testRetrieveNewsFeed()&#8217;
+</p>
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000047_source')" id="l_M000047_source">show source</a> ]</p>
+  <div id="M000047_source" class="dyn-source">
+<pre>
+    <span class="ruby-comment cmt"># File TestAbtDownloadManager.rb, line 57</span>
+57:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">testRetrieveNewsFeed</span>()
+58:     <span class="ruby-identifier">assert</span>( <span class="ruby-ivar">@download</span>.<span class="ruby-identifier">retrieveNewsFeed</span>(), <span class="ruby-value str">&quot;testRetrieveNewsFeed()&quot;</span> )
+59:   <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000045"></a><b>testRetrievePackageSource</b>()
+  </div>
+  <div class="description">
+  <p>
+Test method for
+&#8216;AbtDownloadManager.testRetrievePackageSource()&#8217;
+</p>
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000045_source')" id="l_M000045_source">show source</a> ]</p>
+  <div id="M000045_source" class="dyn-source">
+<pre>
+    <span class="ruby-comment cmt"># File TestAbtDownloadManager.rb, line 43</span>
+43:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">testRetrievePackageSource</span>()
+44:     <span class="ruby-identifier">assert</span>( <span class="ruby-ivar">@download</span>.<span class="ruby-identifier">retrievePackageSource</span>( <span class="ruby-value str">&quot;Fortune&quot;</span> ), <span class="ruby-value str">&quot;testRetrievePackageSource()&quot;</span> )
+45:   <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000046"></a><b>testRetrievePackageTree</b>()
+  </div>
+  <div class="description">
+  <p>
+Test method for &#8216;AbtDownloadManager.testRetrievePackageTree()&#8217;
+</p>
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000046_source')" id="l_M000046_source">show source</a> ]</p>
+  <div id="M000046_source" class="dyn-source">
+<pre>
+    <span class="ruby-comment cmt"># File TestAbtDownloadManager.rb, line 50</span>
+50:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">testRetrievePackageTree</span>()
+51:     <span class="ruby-identifier">assert</span>( <span class="ruby-ivar">@download</span>.<span class="ruby-identifier">retrievePackageTree</span>( <span class="ruby-value str">&quot;dummy&quot;</span> ), <span class="ruby-value str">&quot;testRetrievePackageTree()&quot;</span> )
+52:   <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000048"></a><b>testUpdatePackage</b>()
+  </div>
+  <div class="description">
+  <p>
+Test method for &#8216;AbtDownloadManager.testUpdatePackage()&#8217;
+</p>
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000048_source')" id="l_M000048_source">show source</a> ]</p>
+  <div id="M000048_source" class="dyn-source">
+<pre>
+    <span class="ruby-comment cmt"># File TestAbtDownloadManager.rb, line 64</span>
+64:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">testUpdatePackage</span>()
+65:     <span class="ruby-identifier">assert</span>( <span class="ruby-ivar">@download</span>.<span class="ruby-identifier">updatePackage</span>(), <span class="ruby-value str">&quot;testUpdatePackage()&quot;</span> )
+66:   <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000049"></a><b>testUpdatePackageTree</b>()
+  </div>
+  <div class="description">
+  <p>
+Test method for &#8216;AbtDownloadManager.testUpdatePackageTree()&#8217;
+</p>
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000049_source')" id="l_M000049_source">show source</a> ]</p>
+  <div id="M000049_source" class="dyn-source">
+<pre>
+    <span class="ruby-comment cmt"># File TestAbtDownloadManager.rb, line 71</span>
+71:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">testUpdatePackageTree</span>()
+72:     <span class="ruby-identifier">assert</span>( <span class="ruby-ivar">@download</span>.<span class="ruby-identifier">updatePackageTree</span>(), <span class="ruby-value str">&quot;testUpdatePackageTree()&quot;</span> )
+73:   <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+</div>
+
+  </div>
+
+    </body>
+</html>
