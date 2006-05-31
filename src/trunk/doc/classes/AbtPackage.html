@@ -141,7 +141,7 @@ Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
     <td class='attr-rw'>
 [R]
     </td>
-    <td class='attr-name'>DEPENDSON</td>
+    <td class='attr-name'>dependsOn</td>
     <td class='attr-desc'>
 list of dependsOn (DO) related package dependencies.
 
@@ -151,7 +151,7 @@ list of dependsOn (DO) related package dependencies.
     <td class='attr-rw'>
 [R]
     </td>
-    <td class='attr-name'>DESCRIPTION</td>
+    <td class='attr-name'>description</td>
     <td class='attr-desc'>
 the package description.
 
@@ -161,7 +161,7 @@ the package description.
     <td class='attr-rw'>
 [R]
     </td>
-    <td class='attr-name'>EXEC_NAME</td>
+    <td class='attr-name'>execName</td>
     <td class='attr-desc'>
 the executable name for the package.
 
@@ -171,7 +171,7 @@ the executable name for the package.
     <td class='attr-rw'>
 [R]
     </td>
-    <td class='attr-name'>HASH_CHECK</td>
+    <td class='attr-name'>hashCheck</td>
     <td class='attr-desc'>
 security hash value of package sources.
 
@@ -181,7 +181,7 @@ security hash value of package sources.
     <td class='attr-rw'>
 [R]
     </td>
-    <td class='attr-name'>HOMEPAGE</td>
+    <td class='attr-name'>homepage</td>
     <td class='attr-desc'>
 the packages homepage.
 
@@ -191,7 +191,7 @@ the packages homepage.
     <td class='attr-rw'>
 [R]
     </td>
-    <td class='attr-name'>LICENSE</td>
+    <td class='attr-name'>licence</td>
     <td class='attr-desc'>
 type of license this package has.
 
@@ -201,7 +201,7 @@ type of license this package has.
     <td class='attr-rw'>
 [R]
     </td>
-    <td class='attr-name'>MIRROR_PATH</td>
+    <td class='attr-name'>mirrorPath</td>
     <td class='attr-desc'>
 available mirrors for this package.
 
@@ -211,7 +211,7 @@ available mirrors for this package.
     <td class='attr-rw'>
 [R]
     </td>
-    <td class='attr-name'>NAME</td>
+    <td class='attr-name'>name</td>
     <td class='attr-desc'>
 the name of the package.
 
@@ -221,7 +221,7 @@ the name of the package.
     <td class='attr-rw'>
 [R]
     </td>
-    <td class='attr-name'>OPTIONAL_DO</td>
+    <td class='attr-name'>optionalDO</td>
     <td class='attr-desc'>
 list of optional reliesOn (oRO) related package dependencies.
 
@@ -231,7 +231,7 @@ list of optional reliesOn (oRO) related package dependencies.
     <td class='attr-rw'>
 [R]
     </td>
-    <td class='attr-name'>OPTIONAL_RO</td>
+    <td class='attr-name'>optionalRO</td>
     <td class='attr-desc'>
 list of optional dependsOn (oDO) related package dependencies.
 
@@ -241,7 +241,7 @@ list of optional dependsOn (oDO) related package dependencies.
     <td class='attr-rw'>
 [R]
     </td>
-    <td class='attr-name'>PATCHES</td>
+    <td class='attr-name'>patches</td>
     <td class='attr-desc'>
 list of available patches for this package.
 
@@ -251,7 +251,7 @@ list of available patches for this package.
     <td class='attr-rw'>
 [R]
     </td>
-    <td class='attr-name'>PATCHES_HASH_CHECK</td>
+    <td class='attr-name'>patchesHashCheck</td>
     <td class='attr-desc'>
 security hash value of this packages patches.
 
@@ -261,7 +261,7 @@ security hash value of this packages patches.
     <td class='attr-rw'>
 [R]
     </td>
-    <td class='attr-name'>RELIESON</td>
+    <td class='attr-name'>reliesOn</td>
     <td class='attr-desc'>
 list of reliesOn (RO) related package dependencies.
 
@@ -271,7 +271,7 @@ list of reliesOn (RO) related package dependencies.
     <td class='attr-rw'>
 [R]
     </td>
-    <td class='attr-name'>SRC_DIR</td>
+    <td class='attr-name'>srcDir</td>
     <td class='attr-desc'>
 the source directory for the package.
 
@@ -281,7 +281,7 @@ the source directory for the package.
     <td class='attr-rw'>
 [R]
     </td>
-    <td class='attr-name'>SRC_URL</td>
+    <td class='attr-name'>srcUrl</td>
     <td class='attr-desc'>
 the URL where this packages sources can be obtained.
 
@@ -291,7 +291,7 @@ the URL where this packages sources can be obtained.
     <td class='attr-rw'>
 [R]
     </td>
-    <td class='attr-name'>VERSION</td>
+    <td class='attr-name'>version</td>
     <td class='attr-desc'>
 the package version number.
 
@@ -320,22 +320,22 @@ the packge details.
      <span class="ruby-comment cmt"># File AbtPackage.rb, line 94</span>
  94:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>( <span class="ruby-identifier">data</span> )
  95:     
- 96:     <span class="ruby-ivar">@NAME</span> = <span class="ruby-identifier">data</span>[<span class="ruby-value str">'name'</span>]
- 97:     <span class="ruby-ivar">@EXEC_NAME</span> = <span class="ruby-identifier">data</span>[<span class="ruby-value str">'execName'</span>]
- 98:     <span class="ruby-ivar">@VERSION</span> = <span class="ruby-identifier">data</span>[<span class="ruby-value str">'version'</span>]
- 99:     <span class="ruby-ivar">@SRC_DIR</span> = <span class="ruby-identifier">data</span>[<span class="ruby-value str">'srcDir'</span>]
-100:     <span class="ruby-ivar">@HOMEPAGE</span> = <span class="ruby-identifier">data</span>[<span class="ruby-value str">'homepage'</span>]
-101:     <span class="ruby-ivar">@SRC_URL</span> = <span class="ruby-identifier">data</span>[<span class="ruby-value str">'srcUrl'</span>]
-102:     <span class="ruby-ivar">@DEPENDSON</span> = <span class="ruby-identifier">data</span>[<span class="ruby-value str">'dependOn'</span>]
-103:     <span class="ruby-ivar">@RELIESON</span> = <span class="ruby-identifier">data</span>[<span class="ruby-value str">'reliesOn'</span>]
-104:     <span class="ruby-ivar">@OPTIONAL_DO</span> = <span class="ruby-identifier">data</span>[<span class="ruby-value str">'optionalDO'</span>]
-105:     <span class="ruby-ivar">@OPTIONAL_RO</span> = <span class="ruby-identifier">data</span>[<span class="ruby-value str">'optionalRO'</span>]
-106:     <span class="ruby-ivar">@GPG_CHECK</span> = <span class="ruby-identifier">data</span>[<span class="ruby-value str">'gpgCheck'</span>]
-107:     <span class="ruby-ivar">@PATCHES</span> = <span class="ruby-identifier">data</span>[<span class="ruby-value str">'patches'</span>]
-108:     <span class="ruby-ivar">@PATCHES_GPG_CHECK</span> = <span class="ruby-identifier">data</span>[<span class="ruby-value str">'patchesGpgCheck'</span>]
-109:     <span class="ruby-ivar">@MIRROR_PATH</span> = <span class="ruby-identifier">data</span>[<span class="ruby-value str">'mirrorPath'</span>]
-110:     <span class="ruby-ivar">@LICENSE</span> = <span class="ruby-identifier">data</span>[<span class="ruby-value str">'license'</span>]
-111:     <span class="ruby-ivar">@DESCRIPTION</span> = <span class="ruby-identifier">data</span>[<span class="ruby-value str">'description'</span>]
+ 96:     <span class="ruby-ivar">@name</span> = <span class="ruby-identifier">data</span>[<span class="ruby-value str">'name'</span>]
+ 97:     <span class="ruby-ivar">@execName</span> = <span class="ruby-identifier">data</span>[<span class="ruby-value str">'execName'</span>]
+ 98:     <span class="ruby-ivar">@version</span> = <span class="ruby-identifier">data</span>[<span class="ruby-value str">'version'</span>]
+ 99:     <span class="ruby-ivar">@srcDir</span> = <span class="ruby-identifier">data</span>[<span class="ruby-value str">'srcDir'</span>]
+100:     <span class="ruby-ivar">@homepage</span> = <span class="ruby-identifier">data</span>[<span class="ruby-value str">'homepage'</span>]
+101:     <span class="ruby-ivar">@srcUrl</span> = <span class="ruby-identifier">data</span>[<span class="ruby-value str">'srcUrl'</span>]
+102:     <span class="ruby-ivar">@dependsOn</span> = <span class="ruby-identifier">data</span>[<span class="ruby-value str">'dependsOn'</span>]
+103:     <span class="ruby-ivar">@reliesOn</span> = <span class="ruby-identifier">data</span>[<span class="ruby-value str">'reliesOn'</span>]
+104:     <span class="ruby-ivar">@optionalDO</span> = <span class="ruby-identifier">data</span>[<span class="ruby-value str">'optionalDO'</span>]
+105:     <span class="ruby-ivar">@optionalRO</span> = <span class="ruby-identifier">data</span>[<span class="ruby-value str">'optionalRO'</span>]
+106:     <span class="ruby-ivar">@hashCheck</span> = <span class="ruby-identifier">data</span>[<span class="ruby-value str">'hashCheck'</span>]
+107:     <span class="ruby-ivar">@patches</span> = <span class="ruby-identifier">data</span>[<span class="ruby-value str">'patches'</span>]
+108:     <span class="ruby-ivar">@patchesHashCheck</span> = <span class="ruby-identifier">data</span>[<span class="ruby-value str">'patchesHashCheck'</span>]
+109:     <span class="ruby-ivar">@mirrorPath</span> = <span class="ruby-identifier">data</span>[<span class="ruby-value str">'mirrorPath'</span>]
+110:     <span class="ruby-ivar">@license</span> = <span class="ruby-identifier">data</span>[<span class="ruby-value str">'license'</span>]
+111:     <span class="ruby-ivar">@description</span> = <span class="ruby-identifier">data</span>[<span class="ruby-value str">'description'</span>]
 112:         
 113:   <span class="ruby-keyword kw">end</span>
 </pre>
@@ -419,22 +419,22 @@ href="AbtPackage.html">AbtPackage</a> attributes (constants).
 120:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">details</span>
 121:   
 122:     <span class="ruby-keyword kw">return</span> { 
-123:       <span class="ruby-value str">'name'</span>            =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@NAME</span>,
-124:       <span class="ruby-value str">'execName'</span>        =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@EXEC_NAME</span>,
-125:       <span class="ruby-value str">'version'</span>         =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@VERSION</span>,
-126:       <span class="ruby-value str">'srcDir'</span>          =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@SRC_DIR</span>,
-127:       <span class="ruby-value str">'homepage'</span>        =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@HOMEPAGE</span>,
-128:       <span class="ruby-value str">'srcUrl'</span>          =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@SRC_URL</span>,
-129:       <span class="ruby-value str">'dependsOn'</span>       =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@DEPENDSON</span>,
-130:       <span class="ruby-value str">'reliesOn'</span>        =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@RELIESON</span>,
-131:       <span class="ruby-value str">'optionalDO'</span>      =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@OPTIONAL_DO</span>,
-132:       <span class="ruby-value str">'optionalRO'</span>      =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@OPTIONAL_RO</span>,
-133:       <span class="ruby-value str">'gpgCheck'</span>        =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@GPG_CHECK</span>,
-134:       <span class="ruby-value str">'patches'</span>         =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@PATCHES</span>,
-135:       <span class="ruby-value str">'patchesGpgCheck'</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@PATCHES_GPG_CHECK</span>,
-136:       <span class="ruby-value str">'mirrorPath'</span>      =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@MIRROR_PATH</span>,
-137:       <span class="ruby-value str">'license'</span>         =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@LICENSE</span>,
-138:       <span class="ruby-value str">'description'</span>     =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@DESCRIPTION</span>
+123:       <span class="ruby-value str">'name'</span>            =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@name</span>,
+124:       <span class="ruby-value str">'execName'</span>        =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@execName</span>,
+125:       <span class="ruby-value str">'version'</span>         =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@version</span>,
+126:       <span class="ruby-value str">'srcDir'</span>          =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@srcDir</span>,
+127:       <span class="ruby-value str">'homepage'</span>        =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@homepage</span>,
+128:       <span class="ruby-value str">'srcUrl'</span>          =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@srcUrl</span>,
+129:       <span class="ruby-value str">'dependsOn'</span>       =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@dependsOn</span>,
+130:       <span class="ruby-value str">'reliesOn'</span>        =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@reliesOn</span>,
+131:       <span class="ruby-value str">'optionalDO'</span>      =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@optionalDO</span>,
+132:       <span class="ruby-value str">'optionalRO'</span>      =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@optionalRO</span>,
+133:       <span class="ruby-value str">'hashCheck'</span>        =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@hashCheck</span>,
+134:       <span class="ruby-value str">'patches'</span>         =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@patches</span>,
+135:       <span class="ruby-value str">'patchesHashCheck'</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@patchesHashCheck</span>,
+136:       <span class="ruby-value str">'mirrorPath'</span>      =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@mirrorPath</span>,
+137:       <span class="ruby-value str">'license'</span>         =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@license</span>,
+138:       <span class="ruby-value str">'description'</span>     =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@description</span>
 139:     }
 140:     
 141:   <span class="ruby-keyword kw">end</span>

@@ -43,13 +43,13 @@ class TestAbtPacakge < Test::Unit::TestCase
     'srcDir'			=> @srcDir,
     'homepage'  		=> "http://www.ibiblio.org/pub/Linux/games/amusements/#{@name.downcase}/",
     'srcUrl'		  	=> "http://www.ibiblio.org/pub/Linux/games/amusements/#{@srcDir}.tar.gz",
-    'dependsOn'		  	=> "",
-    'reliesOn'			=> "",
-    'optionalDO'		=> "",
-    'optionalRO'		=> "",
+    'dependsOn'		  	=> "none",
+    'reliesOn'			=> "none",
+    'optionalDO'		=> "none",
+    'optionalRO'		=> "none",
     'hashCheck'		  	=> "sha512:80c5b71d84eeb3092b2dfe483f0dad8ed42e2efeaa1f8791c26fb2ae80fbd7775777ac5252b1d8270e2e176ad14ce98940bee6d8e71fdbb9ac3323dc7188c4d0",
     'patches'		  	=> "http://patches.abtlinux.org/#{@srcDir}-patches-1.tar.gz",
-    'patcheshashCheck'  => "",
+    'patchesHashCheck'  => "sha512:80c5b71d84eeb3092b2dfe483f0dad8ed42",
     'mirrorPath'		=> "http://mirror.abtlinux.org/#{@srcDir}.tar.gz",
     'license'		  	=> "GPL",
     'description'	  	=> "Prints a random, hopefully interesting, adage." 
@@ -60,7 +60,46 @@ class TestAbtPacakge < Test::Unit::TestCase
   end
 
   def testDetails
-    assert( $data['name'] == @fortune.details['name'] )
+    assert_equal( $data['name'], @fortune.details['name'], "testDetails()" )
+    assert_equal( $data['execName'], @fortune.details['execName'], "testDetails()" )
+    assert_equal( $data['version'], @fortune.details['version'], "testDetails()" )
+    assert_equal( $data['srcDir'], @fortune.details['srcDir'], "testDetails()" )
+    assert_equal( $data['homepage'], @fortune.details['homepage'], "testDetails()" )
+    assert_equal( $data['srcUrl'], @fortune.details['srcUrl'], "testDetails()" )
+    assert_equal( $data['dependsOn'], @fortune.details['dependsOn'], "testDetails()" )
+    assert_equal( $data['reliesOn'], @fortune.details['reliesOn'], "testDetails()" )
+    assert_equal( $data['optionalDO'], @fortune.details['optionalDO'], "testDetails()" )
+    assert_equal( $data['optionalRO'], @fortune.details['optionalRO'], "testDetails()" )
+    assert_equal( $data['hashCheck'], @fortune.details['hashCheck'], "testDetails()" )
+    assert_equal( $data['patches'], @fortune.details['patches'], "testDetails()" )
+    assert_equal( $data['patchesHashCheck'], @fortune.details['patchesHashCheck'], "testDetails()" )
+    assert_equal( $data['mirrorPath'], @fortune.details['mirrorPath'], "testDetails()" )
+    assert_equal( $data['license'], @fortune.details['license'], "testDetails()" )
+    assert_equal( $data['description'], @fortune.details['description'], "testDetails()" )
+  end
+  
+  def testPre
+    assert_equal( false, true, "testPre()" )
+  end
+
+  def testConfigure
+    assert_equal( false, true, "testConfigure()" )
+  end
+
+  def testBuild
+    assert_equal( false, true, "testBuild()" )
+  end
+
+  def testPreinstall
+    assert_equal( false, true, "testPreinstall()" )
+  end
+
+  def testInstall
+    assert_equal( false, true, "testInstall()" )
+  end
+
+  def testPost
+    assert_equal( false, true, "testPost()" )
   end
 
 end

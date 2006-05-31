@@ -37,52 +37,52 @@ private
 public
   
   # the name of the package.
-  attr_reader :NAME
+  attr_reader :name
   
   # the executable name for the package.
-  attr_reader :EXEC_NAME
+  attr_reader :execName
   
   # the package version number.
-  attr_reader :VERSION
+  attr_reader :version
   
   # the source directory for the package.
-  attr_reader :SRC_DIR
+  attr_reader :srcDir
   
   # the packages homepage.
-  attr_reader :HOMEPAGE
+  attr_reader :homepage
   
   # the URL where this packages sources can be obtained.
-  attr_reader :SRC_URL
+  attr_reader :srcUrl
   
   # list of dependsOn (DO) related package dependencies.
-  attr_reader :DEPENDSON
+  attr_reader :dependsOn
   
   # list of reliesOn (RO) related package dependencies.
-  attr_reader :RELIESON
+  attr_reader :reliesOn
   
   # list of optional reliesOn (oRO) related package dependencies.
-  attr_reader :OPTIONAL_DO
+  attr_reader :optionalDO
 
   # list of optional dependsOn (oDO) related package dependencies.
-  attr_reader :OPTIONAL_RO
+  attr_reader :optionalRO
   
   # security hash value of package sources.
-  attr_reader :HASH_CHECK
+  attr_reader :hashCheck
   
   # list of available patches for this package.
-  attr_reader :PATCHES
+  attr_reader :patches
   
   # security hash value of this packages patches.
-  attr_reader :PATCHES_HASH_CHECK
+  attr_reader :patchesHashCheck
   
   # available mirrors for this package.
-  attr_reader :MIRROR_PATH
+  attr_reader :mirrorPath
   
   # type of license this package has.
-  attr_reader :LICENSE
+  attr_reader :licence
   
   # the package description.
-  attr_reader :DESCRIPTION
+  attr_reader :description
     
     
   ##
@@ -93,22 +93,22 @@ public
   ##
   def initialize( data )
     
-    @NAME = data['name']
-    @EXEC_NAME = data['execName']
-    @VERSION = data['version']
-    @SRC_DIR = data['srcDir']
-    @HOMEPAGE = data['homepage']
-    @SRC_URL = data['srcUrl']
-    @DEPENDSON = data['dependOn']
-    @RELIESON = data['reliesOn']
-    @OPTIONAL_DO = data['optionalDO']
-    @OPTIONAL_RO = data['optionalRO']
-    @GPG_CHECK = data['gpgCheck']
-    @PATCHES = data['patches']
-    @PATCHES_GPG_CHECK = data['patchesGpgCheck']
-    @MIRROR_PATH = data['mirrorPath']
-    @LICENSE = data['license']
-    @DESCRIPTION = data['description']
+    @name = data['name']
+    @execName = data['execName']
+    @version = data['version']
+    @srcDir = data['srcDir']
+    @homepage = data['homepage']
+    @srcUrl = data['srcUrl']
+    @dependsOn = data['dependsOn']
+    @reliesOn = data['reliesOn']
+    @optionalDO = data['optionalDO']
+    @optionalRO = data['optionalRO']
+    @hashCheck = data['hashCheck']
+    @patches = data['patches']
+    @patchesHashCheck = data['patchesHashCheck']
+    @mirrorPath = data['mirrorPath']
+    @license = data['license']
+    @description = data['description']
 	
   end
 		
@@ -120,22 +120,22 @@ public
   def details
   
     return { 
-      'name'            => @NAME,
-      'execName'        => @EXEC_NAME,
-      'version'         => @VERSION,
-      'srcDir'          => @SRC_DIR,
-      'homepage'        => @HOMEPAGE,
-      'srcUrl'          => @SRC_URL,
-      'dependsOn'       => @DEPENDSON,
-      'reliesOn'        => @RELIESON,
-      'optionalDO'      => @OPTIONAL_DO,
-      'optionalRO'      => @OPTIONAL_RO,
-      'gpgCheck'        => @GPG_CHECK,
-      'patches'         => @PATCHES,
-      'patchesGpgCheck' => @PATCHES_GPG_CHECK,
-      'mirrorPath'      => @MIRROR_PATH,
-      'license'         => @LICENSE,
-      'description'     => @DESCRIPTION
+      'name'            => @name,
+      'execName'        => @execName,
+      'version'         => @version,
+      'srcDir'          => @srcDir,
+      'homepage'        => @homepage,
+      'srcUrl'          => @srcUrl,
+      'dependsOn'       => @dependsOn,
+      'reliesOn'        => @reliesOn,
+      'optionalDO'      => @optionalDO,
+      'optionalRO'      => @optionalRO,
+      'hashCheck'        => @hashCheck,
+      'patches'         => @patches,
+      'patchesHashCheck' => @patchesHashCheck,
+      'mirrorPath'      => @mirrorPath,
+      'license'         => @license,
+      'description'     => @description
     }
     
   end
