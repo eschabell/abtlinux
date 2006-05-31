@@ -38,7 +38,7 @@ class TestAbtQueueManager < Test::Unit::TestCase
   end
   
   ##
-  # Test method for _AbtQueueManager.testQueueMananger()_
+  # Test method for 'AbtQueueManager.testQueueMananger()'
   ## 
   def testQueueManager
     assert_equal( false, true, "testQueueManager()" )
