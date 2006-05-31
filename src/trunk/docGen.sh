@@ -16,28 +16,29 @@
 #===============================================================================
 
 TEMPLATE="./abtTemplate.rb";
-FILES="AbtPackageManager.rb 
-       AbtPackage.rb 
-			 AbtDownloadManager.rb 
-			 AbtSystemManager.rb
-			 AbtLogManager.rb
-			 AbtReportManager.rb
-			 AbtQueueManager.rb
-			 AbtDepEngine.rb
-			 TestAbtDepEngine.rb
-			 TestAbtDownloadManager.rb
-			 TestAbtPackage.rb
-			 ";
+FILES="AbtPackageManager.rb
+		AbtPackage.rb
+		AbtDownloadManager.rb
+		AbtSystemManager.rb
+		AbtLogManager.rb
+		AbtReportManager.rb
+		AbtQueueManager.rb
+		AbtDepEngine.rb
+		TestAbtDepEngine.rb
+		TestAbtDownloadManager.rb
+		TestAbtLogManager.rb
+		TestAbtPackage.rb
+		";
 
 # run the actual doc generation.
-rdoc 	--diagram                               \
-      --template $TEMPLATE                    \
-      --fileboxes                             \
-      --inline-source                         \
-      --line-numbers                          \
-			--main AbtPackageManager                \
-      --title "AbTLinux Package Manager API"  \
-      $FILES
+rdoc	--diagram                               \
+		--template $TEMPLATE                    \
+		--fileboxes                             \
+		--inline-source                         \
+		--line-numbers                          \
+		--main AbtPackageManager                \
+		--title "AbTLinux Package Manager API"  \
+		$FILES
 
 # remove old tarball and refresh with new docs.
 #rm ./doc.tar.bz2
