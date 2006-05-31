@@ -16,18 +16,19 @@
 #===============================================================================
 
 TEMPLATE="./abtTemplate.rb";
-FILES="AbtPackageManager.rb
-		AbtPackage.rb
+FILES="AbtDepEngine.rb
 		AbtDownloadManager.rb
-		AbtSystemManager.rb
 		AbtLogManager.rb
-		AbtReportManager.rb
+		AbtPackage.rb
+		AbtPackageManager.rb
 		AbtQueueManager.rb
-		AbtDepEngine.rb
+		AbtReportManager.rb
+		AbtSystemManager.rb
 		TestAbtDepEngine.rb
 		TestAbtDownloadManager.rb
 		TestAbtLogManager.rb
 		TestAbtPackage.rb
+		TestAbtPackageManager.rb
 		";
 
 # run the actual doc generation.

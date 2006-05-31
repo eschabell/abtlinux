@@ -41,28 +41,28 @@ class TestAbtLogManager < Test::Unit::TestCase
   # Test method for 'AbtLogManager.testLogPackageIntegrity()'
   ## 
   def testLogPackageIntegrity()
-    assert( @log.logPackageIntegrity( "Fortune" ), "testLogPackageIntegrity()" )
+    assert( @log.logPackageIntegrity( "dummy" ), "testLogPackageIntegrity()" )
   end
   
   ##
   # Test method for 'AbtLogManager.testLogPackageInstall()'
   ## 
   def testLogPackageInstall()
-    assert( @log.logPackageInstall( "Fortune" ), "testLogPackageInstall()" )
+    assert( @log.logPackageInstall( "dummy" ), "testLogPackageInstall()" )
   end
 
   ##
   # Test method for 'AbtLogManager.testLogPackageBuild()'
   ## 
   def testLogPackageBuild()
-    assert( @log.logPackageBuild( "Fortune" ), "testLogPackageBuild()" )
+    assert( @log.logPackageBuild( "dummy" ), "testLogPackageBuild()" )
   end
 
   ##
   # Test method for 'AbtLogManager.testCachePackage()'
   ## 
   def testCachePackage()
-    assert( @log.cachePackage( "Fortune" ), "testCachePackage()" )
+    assert( @log.cachePackage( "dummy" ), "testCachePackage()" )
   end
 
   ##

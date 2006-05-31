@@ -28,7 +28,7 @@ require 'AbtPackage'
 # AbTLinux; if not, write to the Free Software Foundation, Inc., 51 Franklin
 # St, Fifth Floor, Boston, MA 02110-1301  USA
 ##
-class TestAbtPacakge < Test::Unit::TestCase
+class TestAbtPackage < Test::Unit::TestCase
 
   @name     = "Fortune"
   @version  = "mod-9708"
