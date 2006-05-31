@@ -41,7 +41,8 @@ class TestAbtLogManager < Test::Unit::TestCase
   # Test method for 'AbtLogManager.testLogPackageIntegrity()'
   ## 
   def testLogPackageIntegrity()
-    assert( @log.logPackageIntegrity( "dummy" ), "testLogPackageIntegrity()" )
+    #assert( @log.logPackageIntegrity( "dummy" ), "testLogPackageIntegrity()" )
+    assert( false, "testLogPackageIntegrity()" )
   end
   
   ##
@@ -69,7 +70,7 @@ class TestAbtLogManager < Test::Unit::TestCase
   # Test method for 'AbtLogManager.testLogToJournal()'
   ## 
   def testLogToJournal()
-    assert( @log.updatePackageTree( "Test message." ), "testLogToJournal()" )
+    assert( @log.logToJournal( "Test message." ), "testLogToJournal()" )
   end
 
 end

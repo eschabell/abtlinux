@@ -4,7 +4,7 @@
      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
   <head>
-    <title>Class: AbtQueueManager</title>
+    <title>Class: TestAbtQueueManager</title>
     <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
     <link rel="stylesheet" href=".././rdoc-style.css" type="text/css" media="screen" />
 
@@ -51,19 +51,19 @@
 
   <body>
   <table width="100%" border='0' cellpadding='0' cellspacing='0' class='banner'><tr>
-  <td class="file-title"><span class="file-title-prefix">Class</span><br />AbtQueueManager</td>
+  <td class="file-title"><span class="file-title-prefix">Class</span><br />TestAbtQueueManager</td>
   <td align="right">
     <table cellspacing=0 cellpadding=2>
       <tr valign="top">
         <td>In:</td>
         <td>
-<a href="../files/AbtQueueManager_rb.html">AbtQueueManager.rb</a>
+<a href="../files/TestAbtQueueManager_rb.html">TestAbtQueueManager.rb</a>
         </td>
       </tr>
     <tr>
       <td>Parent:</td>
       <td>
-Object
+Test::Unit::TestCase
      </td>
    </tr>
          </table>
@@ -76,17 +76,17 @@ Object
       <div id="content">
   <table cellpadding='0' cellspacing='0' border='0' width="100%"><tr><td align="center">
     <map id="map" name="map">
-  <area shape="RECT" coords="28,51,145,99"      href="AbtQueueManager.html" alt="AbtQueueManager">
+  <area shape="RECT" coords="28,103,167,151"      href="TestAbtQueueManager.html" alt="TestAbtQueueManager">
+  <area shape="RECT" coords="35,7,160,55"      href="Test/Unit/TestCase.html" alt="Test::Unit::TestCase">
 </map>
-<img src="../dot/f_5.png" usemap="#map" border=0 alt="TopLevel">
+<img src="../dot/f_13.png" usemap="#map" border=0 alt="TopLevel">
   </td></tr></table>
 
   <div class="description"><p>
-AbtQueueManager.rb
+TestAbtQueueManager.rb
 </p>
 <p>
-<a href="AbtQueueManager.html">AbtQueueManager</a> class handles all
-AbTLinux queue interaction.
+Unit testing for <a href="AbtQueueManager.html">AbtQueueManager</a> class.
 </p>
 <p>
 Created by Eric D. Schabell &lt;erics@abtlinux.org&gt; Copyright 2006, GPL.
@@ -117,7 +117,8 @@ Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
 
   <div class="sectiontitle">Methods</div>
   <ul>
-  <li><a href="#M000050">new</a></li>
+  <li><a href="#M000042">setup</a></li>
+  <li><a href="#M000043">testQueueManager</a></li>
   </ul>
 
 
@@ -125,28 +126,46 @@ Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
 
 
 
-<div class="sectiontitle">Public Class methods</div>
+<div class="sectiontitle">Public Instance methods</div>
 <div class="method">
   <div class="title">
-    <a name="M000050"></a><b>new</b>()
+    <a name="M000042"></a><b>setup</b>()
   </div>
   <div class="description">
   <p>
-Constructor for the <a href="AbtQueueManager.html">AbtQueueManager</a>
-class.
-</p>
-<p>
-<b>RETURN</b> <em><a href="AbtQueueManager.html">AbtQueueManager</a></em> -
-an initialized <a href="AbtQueueManager.html">AbtQueueManager</a> object.
+setup method for testing <a
+href="AbtQueueManager.html">AbtQueueManager</a>.
 </p>
   </div>
 <div class="sourcecode">
-  <p class="source-link">[ <a href="javascript:toggleSource('M000050_source')" id="l_M000050_source">show source</a> ]</p>
-  <div id="M000050_source" class="dyn-source">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000042_source')" id="l_M000042_source">show source</a> ]</p>
+  <div id="M000042_source" class="dyn-source">
 <pre>
-    <span class="ruby-comment cmt"># File AbtQueueManager.rb, line 40</span>
-40:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>
-41:   <span class="ruby-keyword kw">end</span>
+    <span class="ruby-comment cmt"># File TestAbtQueueManager.rb, line 36</span>
+36:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">setup</span>
+37:     <span class="ruby-ivar">@queue</span> = <span class="ruby-constant">AbtQueueManager</span>.<span class="ruby-identifier">new</span>()
+38:   <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000043"></a><b>testQueueManager</b>()
+  </div>
+  <div class="description">
+  <p>
+Test method for _AbtQueueManager.testQueueMananger()_
+</p>
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000043_source')" id="l_M000043_source">show source</a> ]</p>
+  <div id="M000043_source" class="dyn-source">
+<pre>
+    <span class="ruby-comment cmt"># File TestAbtQueueManager.rb, line 43</span>
+43:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">testQueueManager</span>
+44:     <span class="ruby-identifier">assert_equal</span>( <span class="ruby-keyword kw">false</span>, <span class="ruby-keyword kw">true</span>, <span class="ruby-value str">&quot;testQueueManager()&quot;</span> )
+45:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>

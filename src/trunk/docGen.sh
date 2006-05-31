@@ -29,6 +29,7 @@ FILES="AbtDepEngine.rb
 		TestAbtLogManager.rb
 		TestAbtPackage.rb
 		TestAbtPackageManager.rb
+		TestAbtQueueManager.rb
 		";
 
 # run the actual doc generation.
