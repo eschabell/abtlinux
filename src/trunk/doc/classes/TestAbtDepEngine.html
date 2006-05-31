@@ -4,7 +4,7 @@
      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
   <head>
-    <title>Class: AbtDepEngine</title>
+    <title>Class: TestAbtDepEngine</title>
     <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
     <link rel="stylesheet" href=".././rdoc-style.css" type="text/css" media="screen" />
 
@@ -51,19 +51,19 @@
 
   <body>
   <table width="100%" border='0' cellpadding='0' cellspacing='0' class='banner'><tr>
-  <td class="file-title"><span class="file-title-prefix">Class</span><br />AbtDepEngine</td>
+  <td class="file-title"><span class="file-title-prefix">Class</span><br />TestAbtDepEngine</td>
   <td align="right">
     <table cellspacing=0 cellpadding=2>
       <tr valign="top">
         <td>In:</td>
         <td>
-<a href="../files/AbtDepEngine_rb.html">AbtDepEngine.rb</a>
+<a href="../files/TestAbtDepEngine_rb.html">TestAbtDepEngine.rb</a>
         </td>
       </tr>
     <tr>
       <td>Parent:</td>
       <td>
-Object
+Test::Unit::TestCase
      </td>
    </tr>
          </table>
@@ -76,18 +76,17 @@ Object
       <div id="content">
   <table cellpadding='0' cellspacing='0' border='0' width="100%"><tr><td align="center">
     <map id="map" name="map">
-  <area shape="RECT" coords="28,51,127,99"      href="AbtDepEngine.html" alt="AbtDepEngine">
+  <area shape="RECT" coords="28,103,145,151"      href="TestAbtDepEngine.html" alt="TestAbtDepEngine">
+  <area shape="RECT" coords="24,7,149,55"      href="Test/Unit/TestCase.html" alt="Test::Unit::TestCase">
 </map>
-<img src="../dot/f_7.png" usemap="#map" border=0 alt="TopLevel">
+<img src="../dot/f_8.png" usemap="#map" border=0 alt="TopLevel">
   </td></tr></table>
 
   <div class="description"><p>
-AbtDepEngine.rb
+TestAbtDepEngine.rb
 </p>
 <p>
-<a href="AbtDepEngine.html">AbtDepEngine</a> class handles all dependency
-aspects of the AbTLinux system. It is part of a sub-project with it&#8217;s
-own requirements document.
+Unit testing for <a href="AbtDepEngine.html">AbtDepEngine</a> class.
 </p>
 <p>
 Created by Eric D. Schabell &lt;erics@abtlinux.org&gt; Copyright 2006, GPL.
@@ -118,7 +117,8 @@ Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
 
   <div class="sectiontitle">Methods</div>
   <ul>
-  <li><a href="#M000044">new</a></li>
+  <li><a href="#M000046">setup</a></li>
+  <li><a href="#M000047">testDepEngine</a></li>
   </ul>
 
 
@@ -126,27 +126,45 @@ Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
 
 
 
-<div class="sectiontitle">Public Class methods</div>
+<div class="sectiontitle">Public Instance methods</div>
 <div class="method">
   <div class="title">
-    <a name="M000044"></a><b>new</b>()
+    <a name="M000046"></a><b>setup</b>()
   </div>
   <div class="description">
   <p>
-Constructor for the <a href="AbtDepEngine.html">AbtDepEngine</a> class.
-</p>
-<p>
-<b>RETURN</b> <em><a href="AbtDepEngine.html">AbtDepEngine</a></em> - an
-initialized <a href="AbtDepEngine.html">AbtDepEngine</a> object.
+setup method for testing <a href="AbtDepEngine.html">AbtDepEngine</a>.
 </p>
   </div>
 <div class="sourcecode">
-  <p class="source-link">[ <a href="javascript:toggleSource('M000044_source')" id="l_M000044_source">show source</a> ]</p>
-  <div id="M000044_source" class="dyn-source">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000046_source')" id="l_M000046_source">show source</a> ]</p>
+  <div id="M000046_source" class="dyn-source">
 <pre>
-    <span class="ruby-comment cmt"># File AbtDepEngine.rb, line 41</span>
-41:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>
-42:   <span class="ruby-keyword kw">end</span>
+    <span class="ruby-comment cmt"># File TestAbtDepEngine.rb, line 36</span>
+36:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">setup</span>
+37:     <span class="ruby-ivar">@depEngine</span> = <span class="ruby-constant">AbtDepEngine</span>.<span class="ruby-identifier">new</span>()
+38:   <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000047"></a><b>testDepEngine</b>()
+  </div>
+  <div class="description">
+  <p>
+Test method for &#8216;AbtDepEngine.testDepEngine()&#8217;
+</p>
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000047_source')" id="l_M000047_source">show source</a> ]</p>
+  <div id="M000047_source" class="dyn-source">
+<pre>
+    <span class="ruby-comment cmt"># File TestAbtDepEngine.rb, line 43</span>
+43:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">testDepEngine</span>
+44:     <span class="ruby-identifier">assert_equal</span>( <span class="ruby-keyword kw">false</span>, <span class="ruby-keyword kw">true</span>, <span class="ruby-value str">&quot;testDepEngine()&quot;</span> )
+45:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>

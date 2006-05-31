@@ -1,9 +1,13 @@
 #!/usr/bin/ruby -w
 
+require 'test/unit/testcase'
+require 'test/unit/autorunner'
+require 'AbtDepEngine'
+
 ##
-# AbtQueueManager.rb 
+# TestAbtDepEngine.rb 
 #
-# AbtQueueManager class handles all AbTLinux queue interaction.
+# Unit testing for AbtDepEngine class.
 #
 # Created by Eric D. Schabell <erics@abtlinux.org>
 # Copyright 2006, GPL.
@@ -24,20 +28,20 @@
 # AbTLinux; if not, write to the Free Software Foundation, Inc., 51 Franklin
 # St, Fifth Floor, Boston, MA 02110-1301  USA
 ##
-class AbtQueueManager
-
-protected
-  
-private
-  
-public
+class TestAbtDepEngine < Test::Unit::TestCase
 
   ##
-  # Constructor for the AbtQueueManager class.
-  #
-  # <b>RETURN</b> <i>AbtQueueManager</i> - an initialized AbtQueueManager object. 
+  # setup method for testing AbtDepEngine.
+  ## 
+  def setup
+    @depEngine = AbtDepEngine.new()
+  end
+  
   ##
-  def initialize
+  # Test method for 'AbtDepEngine.testDepEngine()'
+  ## 
+  def testDepEngine
+    assert_equal( false, true, "testDepEngine()" )
   end
   
 end

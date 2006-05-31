@@ -3,24 +3,24 @@ digraph TopLevel {
     bgcolor = lightcyan1
     fontname = Arial
     fontsize = 8
-    label = "TestAbtDepEngine.rb"
+    label = "TestAbtPackage.rb"
     node [
         fontname = Arial,
         fontsize = 8,
         color = black
     ]
 
-    subgraph cluster_9 {
+    subgraph cluster_10 {
         fontname = Arial
         color = red
-        label = "TestAbtDepEngine.rb"
-        TestAbtDepEngine [
+        label = "TestAbtPackage.rb"
+        TestAbtPacakge [
             fontcolor = black,
-            URL = "classes/TestAbtDepEngine.html",
+            URL = "classes/TestAbtPacakge.html",
             shape = ellipse,
             color = palegoldenrod,
             style = filled,
-            label = "TestAbtDepEngine"
+            label = "TestAbtPacakge"
         ]
 
     }
@@ -30,7 +30,7 @@ digraph TopLevel {
         label = "Test::Unit::TestCase"
     ]
 
-    Test__Unit__TestCase -> TestAbtDepEngine [
+    Test__Unit__TestCase -> TestAbtPacakge [
 
     ]
 

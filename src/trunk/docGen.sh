@@ -24,6 +24,7 @@ FILES="AbtPackageManager.rb
 			 AbtReportManager.rb
 			 AbtQueueManager.rb
 			 AbtDepEngine.rb
+			 TestAbtDepEngine.rb
 			 TestAbtPackage.rb
 			 ";
 

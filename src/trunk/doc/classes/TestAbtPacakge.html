@@ -79,7 +79,7 @@ Test::Unit::TestCase
   <area shape="RECT" coords="28,103,135,151"      href="TestAbtPacakge.html" alt="TestAbtPacakge">
   <area shape="RECT" coords="19,7,144,55"      href="Test/Unit/TestCase.html" alt="Test::Unit::TestCase">
 </map>
-<img src="../dot/f_8.png" usemap="#map" border=0 alt="TopLevel">
+<img src="../dot/f_9.png" usemap="#map" border=0 alt="TopLevel">
   </td></tr></table>
 
   <div class="description"><p>
@@ -137,14 +137,19 @@ Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
   <div class="title">
     <a name="M000036"></a><b>setup</b>()
   </div>
+  <div class="description">
+  <p>
+setup method for testing <a href="AbtPackage.html">AbtPackage</a>.
+</p>
+  </div>
 <div class="sourcecode">
   <p class="source-link">[ <a href="javascript:toggleSource('M000036_source')" id="l_M000036_source">show source</a> ]</p>
   <div id="M000036_source" class="dyn-source">
 <pre>
-    <span class="ruby-comment cmt"># File TestAbtPackage.rb, line 58</span>
-58:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">setup</span>
-59:     <span class="ruby-ivar">@fortune</span> = <span class="ruby-constant">AbtPackage</span>.<span class="ruby-identifier">new</span>( <span class="ruby-identifier">$data</span> )
-60:   <span class="ruby-keyword kw">end</span>
+    <span class="ruby-comment cmt"># File TestAbtPackage.rb, line 59</span>
+59:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">setup</span>
+60:     <span class="ruby-ivar">@fortune</span> = <span class="ruby-constant">AbtPackage</span>.<span class="ruby-identifier">new</span>( <span class="ruby-identifier">$data</span> )
+61:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>
@@ -153,14 +158,19 @@ Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
   <div class="title">
     <a name="M000040"></a><b>testBuild</b>()
   </div>
+  <div class="description">
+  <p>
+Test method for &#8216;AbtPackage.testBuild()&#8217;
+</p>
+  </div>
 <div class="sourcecode">
   <p class="source-link">[ <a href="javascript:toggleSource('M000040_source')" id="l_M000040_source">show source</a> ]</p>
   <div id="M000040_source" class="dyn-source">
 <pre>
-    <span class="ruby-comment cmt"># File TestAbtPackage.rb, line 89</span>
-89:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">testBuild</span>
-90:     <span class="ruby-identifier">assert_equal</span>( <span class="ruby-keyword kw">false</span>, <span class="ruby-keyword kw">true</span>, <span class="ruby-value str">&quot;testBuild()&quot;</span> )
-91:   <span class="ruby-keyword kw">end</span>
+     <span class="ruby-comment cmt"># File TestAbtPackage.rb, line 102</span>
+102:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">testBuild</span>
+103:     <span class="ruby-identifier">assert_equal</span>( <span class="ruby-keyword kw">false</span>, <span class="ruby-keyword kw">true</span>, <span class="ruby-value str">&quot;testBuild()&quot;</span> )
+104:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>
@@ -169,14 +179,19 @@ Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
   <div class="title">
     <a name="M000039"></a><b>testConfigure</b>()
   </div>
+  <div class="description">
+  <p>
+Test method for &#8216;AbtPackage.testConfigure()&#8217;
+</p>
+  </div>
 <div class="sourcecode">
   <p class="source-link">[ <a href="javascript:toggleSource('M000039_source')" id="l_M000039_source">show source</a> ]</p>
   <div id="M000039_source" class="dyn-source">
 <pre>
-    <span class="ruby-comment cmt"># File TestAbtPackage.rb, line 85</span>
-85:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">testConfigure</span>
-86:     <span class="ruby-identifier">assert_equal</span>( <span class="ruby-keyword kw">false</span>, <span class="ruby-keyword kw">true</span>, <span class="ruby-value str">&quot;testConfigure()&quot;</span> )
-87:   <span class="ruby-keyword kw">end</span>
+    <span class="ruby-comment cmt"># File TestAbtPackage.rb, line 95</span>
+95:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">testConfigure</span>
+96:     <span class="ruby-identifier">assert_equal</span>( <span class="ruby-keyword kw">false</span>, <span class="ruby-keyword kw">true</span>, <span class="ruby-value str">&quot;testConfigure()&quot;</span> )
+97:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>
@@ -185,29 +200,34 @@ Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
   <div class="title">
     <a name="M000037"></a><b>testDetails</b>()
   </div>
+  <div class="description">
+  <p>
+Test method for &#8216;AbtPackage.testDetails()&#8217;
+</p>
+  </div>
 <div class="sourcecode">
   <p class="source-link">[ <a href="javascript:toggleSource('M000037_source')" id="l_M000037_source">show source</a> ]</p>
   <div id="M000037_source" class="dyn-source">
 <pre>
-    <span class="ruby-comment cmt"># File TestAbtPackage.rb, line 62</span>
-62:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">testDetails</span>
-63:     <span class="ruby-identifier">assert_equal</span>( <span class="ruby-identifier">$data</span>[<span class="ruby-value str">'name'</span>], <span class="ruby-ivar">@fortune</span>.<span class="ruby-identifier">details</span>[<span class="ruby-value str">'name'</span>], <span class="ruby-value str">&quot;testDetails()&quot;</span> )
-64:     <span class="ruby-identifier">assert_equal</span>( <span class="ruby-identifier">$data</span>[<span class="ruby-value str">'execName'</span>], <span class="ruby-ivar">@fortune</span>.<span class="ruby-identifier">details</span>[<span class="ruby-value str">'execName'</span>], <span class="ruby-value str">&quot;testDetails()&quot;</span> )
-65:     <span class="ruby-identifier">assert_equal</span>( <span class="ruby-identifier">$data</span>[<span class="ruby-value str">'version'</span>], <span class="ruby-ivar">@fortune</span>.<span class="ruby-identifier">details</span>[<span class="ruby-value str">'version'</span>], <span class="ruby-value str">&quot;testDetails()&quot;</span> )
-66:     <span class="ruby-identifier">assert_equal</span>( <span class="ruby-identifier">$data</span>[<span class="ruby-value str">'srcDir'</span>], <span class="ruby-ivar">@fortune</span>.<span class="ruby-identifier">details</span>[<span class="ruby-value str">'srcDir'</span>], <span class="ruby-value str">&quot;testDetails()&quot;</span> )
-67:     <span class="ruby-identifier">assert_equal</span>( <span class="ruby-identifier">$data</span>[<span class="ruby-value str">'homepage'</span>], <span class="ruby-ivar">@fortune</span>.<span class="ruby-identifier">details</span>[<span class="ruby-value str">'homepage'</span>], <span class="ruby-value str">&quot;testDetails()&quot;</span> )
-68:     <span class="ruby-identifier">assert_equal</span>( <span class="ruby-identifier">$data</span>[<span class="ruby-value str">'srcUrl'</span>], <span class="ruby-ivar">@fortune</span>.<span class="ruby-identifier">details</span>[<span class="ruby-value str">'srcUrl'</span>], <span class="ruby-value str">&quot;testDetails()&quot;</span> )
-69:     <span class="ruby-identifier">assert_equal</span>( <span class="ruby-identifier">$data</span>[<span class="ruby-value str">'dependsOn'</span>], <span class="ruby-ivar">@fortune</span>.<span class="ruby-identifier">details</span>[<span class="ruby-value str">'dependsOn'</span>], <span class="ruby-value str">&quot;testDetails()&quot;</span> )
-70:     <span class="ruby-identifier">assert_equal</span>( <span class="ruby-identifier">$data</span>[<span class="ruby-value str">'reliesOn'</span>], <span class="ruby-ivar">@fortune</span>.<span class="ruby-identifier">details</span>[<span class="ruby-value str">'reliesOn'</span>], <span class="ruby-value str">&quot;testDetails()&quot;</span> )
-71:     <span class="ruby-identifier">assert_equal</span>( <span class="ruby-identifier">$data</span>[<span class="ruby-value str">'optionalDO'</span>], <span class="ruby-ivar">@fortune</span>.<span class="ruby-identifier">details</span>[<span class="ruby-value str">'optionalDO'</span>], <span class="ruby-value str">&quot;testDetails()&quot;</span> )
-72:     <span class="ruby-identifier">assert_equal</span>( <span class="ruby-identifier">$data</span>[<span class="ruby-value str">'optionalRO'</span>], <span class="ruby-ivar">@fortune</span>.<span class="ruby-identifier">details</span>[<span class="ruby-value str">'optionalRO'</span>], <span class="ruby-value str">&quot;testDetails()&quot;</span> )
-73:     <span class="ruby-identifier">assert_equal</span>( <span class="ruby-identifier">$data</span>[<span class="ruby-value str">'hashCheck'</span>], <span class="ruby-ivar">@fortune</span>.<span class="ruby-identifier">details</span>[<span class="ruby-value str">'hashCheck'</span>], <span class="ruby-value str">&quot;testDetails()&quot;</span> )
-74:     <span class="ruby-identifier">assert_equal</span>( <span class="ruby-identifier">$data</span>[<span class="ruby-value str">'patches'</span>], <span class="ruby-ivar">@fortune</span>.<span class="ruby-identifier">details</span>[<span class="ruby-value str">'patches'</span>], <span class="ruby-value str">&quot;testDetails()&quot;</span> )
-75:     <span class="ruby-identifier">assert_equal</span>( <span class="ruby-identifier">$data</span>[<span class="ruby-value str">'patchesHashCheck'</span>], <span class="ruby-ivar">@fortune</span>.<span class="ruby-identifier">details</span>[<span class="ruby-value str">'patchesHashCheck'</span>], <span class="ruby-value str">&quot;testDetails()&quot;</span> )
-76:     <span class="ruby-identifier">assert_equal</span>( <span class="ruby-identifier">$data</span>[<span class="ruby-value str">'mirrorPath'</span>], <span class="ruby-ivar">@fortune</span>.<span class="ruby-identifier">details</span>[<span class="ruby-value str">'mirrorPath'</span>], <span class="ruby-value str">&quot;testDetails()&quot;</span> )
-77:     <span class="ruby-identifier">assert_equal</span>( <span class="ruby-identifier">$data</span>[<span class="ruby-value str">'license'</span>], <span class="ruby-ivar">@fortune</span>.<span class="ruby-identifier">details</span>[<span class="ruby-value str">'license'</span>], <span class="ruby-value str">&quot;testDetails()&quot;</span> )
-78:     <span class="ruby-identifier">assert_equal</span>( <span class="ruby-identifier">$data</span>[<span class="ruby-value str">'description'</span>], <span class="ruby-ivar">@fortune</span>.<span class="ruby-identifier">details</span>[<span class="ruby-value str">'description'</span>], <span class="ruby-value str">&quot;testDetails()&quot;</span> )
-79:   <span class="ruby-keyword kw">end</span>
+    <span class="ruby-comment cmt"># File TestAbtPackage.rb, line 66</span>
+66:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">testDetails</span>
+67:     <span class="ruby-identifier">assert_equal</span>( <span class="ruby-identifier">$data</span>[<span class="ruby-value str">'name'</span>], <span class="ruby-ivar">@fortune</span>.<span class="ruby-identifier">details</span>[<span class="ruby-value str">'name'</span>], <span class="ruby-value str">&quot;testDetails()&quot;</span> )
+68:     <span class="ruby-identifier">assert_equal</span>( <span class="ruby-identifier">$data</span>[<span class="ruby-value str">'execName'</span>], <span class="ruby-ivar">@fortune</span>.<span class="ruby-identifier">details</span>[<span class="ruby-value str">'execName'</span>], <span class="ruby-value str">&quot;testDetails()&quot;</span> )
+69:     <span class="ruby-identifier">assert_equal</span>( <span class="ruby-identifier">$data</span>[<span class="ruby-value str">'version'</span>], <span class="ruby-ivar">@fortune</span>.<span class="ruby-identifier">details</span>[<span class="ruby-value str">'version'</span>], <span class="ruby-value str">&quot;testDetails()&quot;</span> )
+70:     <span class="ruby-identifier">assert_equal</span>( <span class="ruby-identifier">$data</span>[<span class="ruby-value str">'srcDir'</span>], <span class="ruby-ivar">@fortune</span>.<span class="ruby-identifier">details</span>[<span class="ruby-value str">'srcDir'</span>], <span class="ruby-value str">&quot;testDetails()&quot;</span> )
+71:     <span class="ruby-identifier">assert_equal</span>( <span class="ruby-identifier">$data</span>[<span class="ruby-value str">'homepage'</span>], <span class="ruby-ivar">@fortune</span>.<span class="ruby-identifier">details</span>[<span class="ruby-value str">'homepage'</span>], <span class="ruby-value str">&quot;testDetails()&quot;</span> )
+72:     <span class="ruby-identifier">assert_equal</span>( <span class="ruby-identifier">$data</span>[<span class="ruby-value str">'srcUrl'</span>], <span class="ruby-ivar">@fortune</span>.<span class="ruby-identifier">details</span>[<span class="ruby-value str">'srcUrl'</span>], <span class="ruby-value str">&quot;testDetails()&quot;</span> )
+73:     <span class="ruby-identifier">assert_equal</span>( <span class="ruby-identifier">$data</span>[<span class="ruby-value str">'dependsOn'</span>], <span class="ruby-ivar">@fortune</span>.<span class="ruby-identifier">details</span>[<span class="ruby-value str">'dependsOn'</span>], <span class="ruby-value str">&quot;testDetails()&quot;</span> )
+74:     <span class="ruby-identifier">assert_equal</span>( <span class="ruby-identifier">$data</span>[<span class="ruby-value str">'reliesOn'</span>], <span class="ruby-ivar">@fortune</span>.<span class="ruby-identifier">details</span>[<span class="ruby-value str">'reliesOn'</span>], <span class="ruby-value str">&quot;testDetails()&quot;</span> )
+75:     <span class="ruby-identifier">assert_equal</span>( <span class="ruby-identifier">$data</span>[<span class="ruby-value str">'optionalDO'</span>], <span class="ruby-ivar">@fortune</span>.<span class="ruby-identifier">details</span>[<span class="ruby-value str">'optionalDO'</span>], <span class="ruby-value str">&quot;testDetails()&quot;</span> )
+76:     <span class="ruby-identifier">assert_equal</span>( <span class="ruby-identifier">$data</span>[<span class="ruby-value str">'optionalRO'</span>], <span class="ruby-ivar">@fortune</span>.<span class="ruby-identifier">details</span>[<span class="ruby-value str">'optionalRO'</span>], <span class="ruby-value str">&quot;testDetails()&quot;</span> )
+77:     <span class="ruby-identifier">assert_equal</span>( <span class="ruby-identifier">$data</span>[<span class="ruby-value str">'hashCheck'</span>], <span class="ruby-ivar">@fortune</span>.<span class="ruby-identifier">details</span>[<span class="ruby-value str">'hashCheck'</span>], <span class="ruby-value str">&quot;testDetails()&quot;</span> )
+78:     <span class="ruby-identifier">assert_equal</span>( <span class="ruby-identifier">$data</span>[<span class="ruby-value str">'patches'</span>], <span class="ruby-ivar">@fortune</span>.<span class="ruby-identifier">details</span>[<span class="ruby-value str">'patches'</span>], <span class="ruby-value str">&quot;testDetails()&quot;</span> )
+79:     <span class="ruby-identifier">assert_equal</span>( <span class="ruby-identifier">$data</span>[<span class="ruby-value str">'patchesHashCheck'</span>], <span class="ruby-ivar">@fortune</span>.<span class="ruby-identifier">details</span>[<span class="ruby-value str">'patchesHashCheck'</span>], <span class="ruby-value str">&quot;testDetails()&quot;</span> )
+80:     <span class="ruby-identifier">assert_equal</span>( <span class="ruby-identifier">$data</span>[<span class="ruby-value str">'mirrorPath'</span>], <span class="ruby-ivar">@fortune</span>.<span class="ruby-identifier">details</span>[<span class="ruby-value str">'mirrorPath'</span>], <span class="ruby-value str">&quot;testDetails()&quot;</span> )
+81:     <span class="ruby-identifier">assert_equal</span>( <span class="ruby-identifier">$data</span>[<span class="ruby-value str">'license'</span>], <span class="ruby-ivar">@fortune</span>.<span class="ruby-identifier">details</span>[<span class="ruby-value str">'license'</span>], <span class="ruby-value str">&quot;testDetails()&quot;</span> )
+82:     <span class="ruby-identifier">assert_equal</span>( <span class="ruby-identifier">$data</span>[<span class="ruby-value str">'description'</span>], <span class="ruby-ivar">@fortune</span>.<span class="ruby-identifier">details</span>[<span class="ruby-value str">'description'</span>], <span class="ruby-value str">&quot;testDetails()&quot;</span> )
+83:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>
@@ -216,14 +236,19 @@ Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
   <div class="title">
     <a name="M000042"></a><b>testInstall</b>()
   </div>
+  <div class="description">
+  <p>
+Test method for &#8216;AbtPackage.testInstall()&#8217;
+</p>
+  </div>
 <div class="sourcecode">
   <p class="source-link">[ <a href="javascript:toggleSource('M000042_source')" id="l_M000042_source">show source</a> ]</p>
   <div id="M000042_source" class="dyn-source">
 <pre>
-    <span class="ruby-comment cmt"># File TestAbtPackage.rb, line 97</span>
-97:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">testInstall</span>
-98:     <span class="ruby-identifier">assert_equal</span>( <span class="ruby-keyword kw">false</span>, <span class="ruby-keyword kw">true</span>, <span class="ruby-value str">&quot;testInstall()&quot;</span> )
-99:   <span class="ruby-keyword kw">end</span>
+     <span class="ruby-comment cmt"># File TestAbtPackage.rb, line 116</span>
+116:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">testInstall</span>
+117:     <span class="ruby-identifier">assert_equal</span>( <span class="ruby-keyword kw">false</span>, <span class="ruby-keyword kw">true</span>, <span class="ruby-value str">&quot;testInstall()&quot;</span> )
+118:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>
@@ -232,14 +257,19 @@ Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
   <div class="title">
     <a name="M000043"></a><b>testPost</b>()
   </div>
+  <div class="description">
+  <p>
+Test method for &#8216;AbtPackage.testPost()&#8217;
+</p>
+  </div>
 <div class="sourcecode">
   <p class="source-link">[ <a href="javascript:toggleSource('M000043_source')" id="l_M000043_source">show source</a> ]</p>
   <div id="M000043_source" class="dyn-source">
 <pre>
-     <span class="ruby-comment cmt"># File TestAbtPackage.rb, line 101</span>
-101:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">testPost</span>
-102:     <span class="ruby-identifier">assert_equal</span>( <span class="ruby-keyword kw">false</span>, <span class="ruby-keyword kw">true</span>, <span class="ruby-value str">&quot;testPost()&quot;</span> )
-103:   <span class="ruby-keyword kw">end</span>
+     <span class="ruby-comment cmt"># File TestAbtPackage.rb, line 123</span>
+123:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">testPost</span>
+124:     <span class="ruby-identifier">assert_equal</span>( <span class="ruby-keyword kw">false</span>, <span class="ruby-keyword kw">true</span>, <span class="ruby-value str">&quot;testPost()&quot;</span> )
+125:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>
@@ -248,14 +278,19 @@ Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
   <div class="title">
     <a name="M000038"></a><b>testPre</b>()
   </div>
+  <div class="description">
+  <p>
+Test method for &#8216;AbtPackage.testPre()&#8217;
+</p>
+  </div>
 <div class="sourcecode">
   <p class="source-link">[ <a href="javascript:toggleSource('M000038_source')" id="l_M000038_source">show source</a> ]</p>
   <div id="M000038_source" class="dyn-source">
 <pre>
-    <span class="ruby-comment cmt"># File TestAbtPackage.rb, line 81</span>
-81:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">testPre</span>
-82:     <span class="ruby-identifier">assert_equal</span>( <span class="ruby-keyword kw">false</span>, <span class="ruby-keyword kw">true</span>, <span class="ruby-value str">&quot;testPre()&quot;</span> )
-83:   <span class="ruby-keyword kw">end</span>
+    <span class="ruby-comment cmt"># File TestAbtPackage.rb, line 88</span>
+88:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">testPre</span>
+89:     <span class="ruby-identifier">assert_equal</span>( <span class="ruby-keyword kw">false</span>, <span class="ruby-keyword kw">true</span>, <span class="ruby-value str">&quot;testPre()&quot;</span> )
+90:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>
@@ -264,14 +299,19 @@ Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
   <div class="title">
     <a name="M000041"></a><b>testPreinstall</b>()
   </div>
+  <div class="description">
+  <p>
+Test method for &#8216;AbtPackage.testPreinstall()&#8217;
+</p>
+  </div>
 <div class="sourcecode">
   <p class="source-link">[ <a href="javascript:toggleSource('M000041_source')" id="l_M000041_source">show source</a> ]</p>
   <div id="M000041_source" class="dyn-source">
 <pre>
-    <span class="ruby-comment cmt"># File TestAbtPackage.rb, line 93</span>
-93:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">testPreinstall</span>
-94:     <span class="ruby-identifier">assert_equal</span>( <span class="ruby-keyword kw">false</span>, <span class="ruby-keyword kw">true</span>, <span class="ruby-value str">&quot;testPreinstall()&quot;</span> )
-95:   <span class="ruby-keyword kw">end</span>
+     <span class="ruby-comment cmt"># File TestAbtPackage.rb, line 109</span>
+109:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">testPreinstall</span>
+110:     <span class="ruby-identifier">assert_equal</span>( <span class="ruby-keyword kw">false</span>, <span class="ruby-keyword kw">true</span>, <span class="ruby-value str">&quot;testPreinstall()&quot;</span> )
+111:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>

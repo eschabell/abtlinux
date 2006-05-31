@@ -28,8 +28,6 @@ require 'AbtPackage'
 # AbTLinux; if not, write to the Free Software Foundation, Inc., 51 Franklin
 # St, Fifth Floor, Boston, MA 02110-1301  USA
 ##
-
-
 class TestAbtPacakge < Test::Unit::TestCase
 
   @name     = "Fortune"
@@ -55,10 +53,16 @@ class TestAbtPacakge < Test::Unit::TestCase
     'description'	  	=> "Prints a random, hopefully interesting, adage." 
   }
 
+  ##
+  # setup method for testing AbtPackage.
+  ## 
   def setup
     @fortune = AbtPackage.new( $data )
   end
 
+  ##
+  # Test method for 'AbtPackage.testDetails()'
+  ## 
   def testDetails
     assert_equal( $data['name'], @fortune.details['name'], "testDetails()" )
     assert_equal( $data['execName'], @fortune.details['execName'], "testDetails()" )
@@ -78,26 +82,44 @@ class TestAbtPacakge < Test::Unit::TestCase
     assert_equal( $data['description'], @fortune.details['description'], "testDetails()" )
   end
   
+  ##
+  # Test method for 'AbtPackage.testPre()'
+  ## 
   def testPre
     assert_equal( false, true, "testPre()" )
   end
 
+  ##
+  # Test method for 'AbtPackage.testConfigure()'
+  ##
   def testConfigure
     assert_equal( false, true, "testConfigure()" )
   end
 
+  ##
+  # Test method for 'AbtPackage.testBuild()'
+  ##
   def testBuild
     assert_equal( false, true, "testBuild()" )
   end
 
+  ##
+  # Test method for 'AbtPackage.testPreinstall()'
+  ##
   def testPreinstall
     assert_equal( false, true, "testPreinstall()" )
   end
 
+  ##
+  # Test method for 'AbtPackage.testInstall()'
+  ##
   def testInstall
     assert_equal( false, true, "testInstall()" )
   end
 
+  ##
+  # Test method for 'AbtPackage.testPost()'
+  ##
   def testPost
     assert_equal( false, true, "testPost()" )
   end
