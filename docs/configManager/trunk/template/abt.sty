@@ -1,0 +1,76 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% file    : basvgils.sty                           %
+%           style-file with layout and macros      %
+% author  : Bas van Gils <bas.vangils@cs.kun.nl>   %
+% version : 1.1                                    %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%% LOAD PACKAGES
+%\usepackage{a4wide}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{theorem}
+\usepackage{apalike}
+\usepackage{graphicx}
+\usepackage{tabularx}
+\usepackage{palatino}
+\usepackage{url}
+\usepackage{textcomp}
+\usepackage{subfigure}
+\usepackage{float}
+%\usepackage[dvips]{color}
+
+%%%%% FIX THE LAYOUT
+
+\sloppy
+%\setlength{\parindent}{0pt}
+%\setlength{\parskip}{\bigskipamount}
+
+%%%%% DEFINE NEW COMMANDS
+
+% mail -> for small sized mail lines
+\newcommand{\mail}[1]{\scriptsize{\url{#1}}}
+
+% acr -> for acronyms
+\newcommand{\ACR}[1]{{\scshape\lowercase{#1}}}
+
+% rel -> for relations / predicates
+\newcommand{\REL}[1]{\ensuremath{\mathop{\mathsf{#1}}}}
+
+% set -> for sets 
+\newcommand{\SET}[1]{\ensuremath{\mathop{\mathcal{#1}}}}
+
+% TUPLE -> for (mathematical) tuples
+\newcommand{\TUPLE}[1]{\ensuremath{\mathop{\langle #1 \rangle}}}
+
+% PS -> symbol for powerset
+\newcommand{\PS}{{\text{\Large $\wp$}}}
+
+% Func -> symbol for arrow in mathmode
+\newcommand{\Func}{\ensuremath{\mathop{\rightarrow}}}
+
+% PartFunc -> symbol for arrow in mathmode
+\newcommand{\PartFunc}{\ensuremath{\mathop{\rightarrowtail}}}
+
+% IsDef -> symbol for 'is defined as'
+\newcommand{\IsDef}{\ensuremath{\mathop{~\triangleq~}}}
+
+% definition -> defintions in article
+\newtheorem{definition}{Definition}[section]
+
+% DEFINE THEOREM-ENVIRONMENTS:\newcommand{\mail}[1]{\scriptsize{\url{#1}}}
+
+% Axiom - Lemma - Corollary - Proof
+{\theorembodyfont{\rmfamily} \newtheorem{axiom}{Axiom}}
+{\theorembodyfont{\rmfamily} \newtheorem{lemma}{Lemma}}
+{\theorembodyfont{\rmfamily} \newtheorem{corollary}{Corollary}}
+\newenvironment{proof}{
+  {\bf Proof:}
+  \vspace{-1em}
+  \begin{quote}
+}{
+  \end{quote}
+  \vspace{-1em}
+  $\square$
+}
