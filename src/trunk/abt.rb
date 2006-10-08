@@ -27,4 +27,18 @@
 require "AbtPackageManager"
 require "AbtLogManager"
 require "AbtReportManager"
+require 'optparse'
 
+##
+# Parsing our options.
+##
+options = {}
+ARGV.options do |options|
+  options.on_tail('-h', '--help', 'Print this help information'){puts options; exit}
+  options.on('-q', '--quiet', 'be verry quiet') do
+    puts "OK, I'm being very, very, very quiet... can't you tell?"
+  end
+  options.on('-v', '--verbose', 'Run verbosely'){|v| puts "Option to be verbose passed"}
+     
+  options.parse!
+end
