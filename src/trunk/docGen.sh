@@ -16,8 +16,7 @@
 #===============================================================================
 
 TEMPLATE="./abtTemplate.rb";
-FILES="abt.rb
-		AbtDepEngine.rb
+FILES="AbtDepEngine.rb
 		AbtDownloadManager.rb
 		AbtLogManager.rb
 		AbtPackage.rb
