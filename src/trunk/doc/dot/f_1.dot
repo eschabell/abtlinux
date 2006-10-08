@@ -3,24 +3,24 @@ digraph TopLevel {
     bgcolor = lightcyan1
     fontname = Arial
     fontsize = 8
-    label = "AbtDepEngine.rb"
+    label = "AbtDownloadManager.rb"
     node [
         fontname = Arial,
         fontsize = 8,
         color = black
     ]
 
-    subgraph cluster_1 {
+    subgraph cluster_2 {
         fontname = Arial
         color = red
-        label = "AbtDepEngine.rb"
-        AbtDepEngine [
+        label = "AbtDownloadManager.rb"
+        AbtDownloadManager [
             fontcolor = black,
-            URL = "classes/AbtDepEngine.html",
+            URL = "classes/AbtDownloadManager.html",
             shape = ellipse,
             color = palegoldenrod,
             style = filled,
-            label = "AbtDepEngine"
+            label = "AbtDownloadManager"
         ]
 
     }
