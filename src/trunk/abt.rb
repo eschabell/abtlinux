@@ -24,21 +24,35 @@
 # AbTLinux; if not, write to the Free Software Foundation, Inc., 51 Franklin
 # St, Fifth Floor, Boston, MA 02110-1301  USA
 ##
-require "AbtPackageManager"
-require "AbtLogManager"
-require "AbtReportManager"
+require 'AbtPackageManager'
+require 'AbtLogManager'
+require 'AbtReportManager'
 require 'optparse'
 
 ##
 # Parsing our options.
 ##
 options = {}
-ARGV.options do |options|
-  options.on_tail('-h', '--help', 'Print this help information'){puts options; exit}
-  options.on('-q', '--quiet', 'be verry quiet') do
-    puts "OK, I'm being very, very, very quiet... can't you tell?"
+OptionParser.new do |opts|
+  opts.banner = "AbTLinux Package Mangaer Usage:  abt.rb [options]\n\n"
+
+  opts.on_tail('-h', '--help', 'Print this help information'){puts opts; exit}
+  opts.on('-v', '--verbose', 'Run verbosely') { |v| puts 'Option to be verbose passed' }
+  opts.on('-q', '--quiet', 'Be very quiet') do
+    puts 'Be very, very quiet!'
   end
-  options.on('-v', '--verbose', 'Run verbosely'){|v| puts "Option to be verbose passed"}
-     
-  options.parse!
+  
+  opts.parse
+  
+  if ARGV.length == 0
+    puts opts
+  end
+  
 end
+
+
+#puts options
+#puts 'DEBUG: '
+#puts ARGV
+#puts 'Number of args:'
+#puts ARGV.length
