@@ -29,30 +29,75 @@ require 'AbtLogManager'
 require 'AbtReportManager'
 require 'optparse'
 
+class AbtUsage
+      def usage
+          puts "Usage: abt.rb [options]\n\n"
+          puts "  -i,  install     [package]\t\tInstall given package."
+          puts "  -ri, reinstall   [package]\t\tReinstall given package."
+          puts "  -r,  remove      [package]\t\tRemove given package."
+          puts "  -dg, downgrade   [version] [package]\tDowngrade given package to given version."
+          puts "  -f,  freeze      [package]\t\tHolds given package at current version, prevents upgrades."
+      end
+end
+
 ##
 # Parsing our options.
 ##
-options = {}
-OptionParser.new do |opts|
-  opts.banner = "AbTLinux Package Mangaer Usage:  abt.rb [options]\n\n"
+options = Hash.new()
+show = AbtUsage.new();
 
-  opts.on_tail('-h', '--help', 'Print this help information'){puts opts; exit}
-  opts.on('-v', '--verbose', 'Run verbosely') { |v| puts 'Option to be verbose passed' }
-  opts.on('-q', '--quiet', 'Be very quiet') do
-    puts 'Be very, very quiet!'
-  end
-  
-  opts.parse
-  
-  if ARGV.length == 0
-    puts opts
-  end
-  
+if ( ARGV.length == 0 )
+    show.usage
 end
 
+case ARGV[0]
+    
+    when "install", "-i"
+        if ( ARGV.length == 2 )
+            options['package'] = ARGV[1]
+        else
+            show.usage
+            exit
+        end
+            
+    
+    when "reinstall", "-ri"
+        if ( ARGV.length == 2 )
+            options['package'] = ARGV[1]
+        else
+            show.usage
+            exit
+        end
+    
+    when "remove", "-r"
+        if ( ARGV.length == 2 )
+            options['package'] = ARGV[1]
+        else
+            show.usage
+            exit
+        end
+    
+    when "downgrade", "-dg"
+        if ( ARGV.length == 2 )
+            options['package'] = ARGV[1]
+        else
+            show.usage
+            exit
+        end
+    
+    when "freeze", "-f"  
+        if ( ARGV.length == 2 )
+            options['package'] = ARGV[1]
+        else
+            show.usage
+            exit
+        end
+end
 
-#puts options
-#puts 'DEBUG: '
-#puts ARGV
-#puts 'Number of args:'
+#puts 'DEBUG: options are -'
+#puts 'package => ' + options['package']
+#puts 'DEBUG: argv is -'
+#puts ARGV[0]
+#puts ARGV[1]
+#puts 'DEBUG: number of args are -'
 #puts ARGV.length
