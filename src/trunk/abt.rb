@@ -38,6 +38,20 @@ class AbtUsage
 		puts "  -r,  remove      [package]\t\tRemove given package."
 		puts "  -dg, downgrade   [version] [package]\tDowngrade given package to given version."
 		puts "  -f,  freeze      [package]\t\tHolds given package at current version, prevents upgrades."
+		puts "  -s,  search      [string | regexp ]\tSearch package descriptions for given input."
+		puts
+		puts "  show-details     [package]\t\tShow give package details."
+		puts "  show-build       [package]\t\tShow build log of given package."
+		puts "  show-depends     [package]\t\tShow the dependency tree of given package."
+		puts "  show-files       [package]\t\tShow all installed files from given package."
+		puts "  show-owner       [file]\t\tShow the package owning given file."
+        puts
+        puts "  show-installed\t\t\tShow list of all installed packages."
+		puts "  show-frozen\t\t\t\tShow list of all frozen packages."
+		puts "  show-untracked\t\t\tShow all files on system not tracked by AbTLinux."
+		puts "  show-journal\t\t\t\tShow the system journal."
+		puts "  show-iqueue\t\t\t\tShow the contents of the install queue."
+		puts "  show-patches\t\t\t\tShow the current available patches for installed package tree."
 	end
 end
 
@@ -99,7 +113,81 @@ end
 			show.usage
 			exit
 		end
-	end
+		
+	when "search", "-s"  
+		if ( ARGV.length == 2 )
+			options['searchString'] = ARGV[1]
+			puts "Searching package descriptions for : " + options['searchString']
+		else
+			show.usage
+			exit
+		end
+
+    when "show-details"  
+		if ( ARGV.length == 2 )
+			options['package'] = ARGV[1]
+			puts "Display details for package : " + options['package']
+		else
+			show.usage
+			exit
+		end
+
+    when "show-build"  
+		if ( ARGV.length == 2 )
+			options['package'] = ARGV[1]
+			puts "Display build log for package : " + options['package']
+		else
+			show.usage
+			exit
+		end
+
+
+    when "show-depends"  
+		if ( ARGV.length == 2 )
+			options['package'] = ARGV[1]
+			puts "Display dependency tree for package : " + options['package']
+		else
+			show.usage
+			exit
+		end
+
+    when "show-files"  
+		if ( ARGV.length == 2 )
+			options['package'] = ARGV[1]
+			puts "Display installed files from package : " + options['package']
+		else
+			show.usage
+			exit
+		end
+
+    when "show-owner"  
+		if ( ARGV.length == 2 )
+			options['fileName'] = ARGV[1]
+			puts "Display owning package for file : " + options['fileName']
+		else
+			show.usage
+			exit
+		end
+
+    when "show-installed"  
+		puts "Display all installed packages."
+
+    when "show-frozen"  
+		puts "Display all packages frozen at current version."
+
+    when "show-untracked"  
+		puts "Display all files on system not tracked by AbTLinux."
+
+    when "show-journal"  
+		puts "Display system log with AbTLinux activity."
+
+    when "show-iqueue"  
+		puts "Display contents of install queue."
+
+    when "show-patches"  
+		puts "Display currently available patches for installed package tree."
+
+    end # case
 	
 	#puts 'DEBUG: options are -'
 	#puts 'package => ' + options['package']
