@@ -63,7 +63,16 @@ class AbtUsage
         puts "downloads:"
         puts "  -d,  download     [package]\t\tRetrieve given package sources."
         puts "  -u,  update       [package]|[tree]\tUpdate given package or tree from AbTLinux repository."
-        puts "  news\t\t\t\t\tDisplays newsfeed from AbTLinux website."
+        puts "  -n,  news\t\t\t\tDisplays newsfeed from AbTLinux website."
+        puts
+        puts "fix:"
+        puts "  purge-src\t\t\t\tRemove source caches for packages no longer installed."
+        puts "  purge-logs\t\t\t\tRemove log files for packages no longer installed."
+        puts "  verify-files      [package]\t\tInstalled files are verified for given package."
+        puts "  verify-symlinks   [package]\t\tSymlinks verified for given package."
+        puts "  verify-deps       [package]\t\tDependency tree is verified for given package."
+        puts "  verify-integrity  [package]\t\tVerify integrity of installed files for given package."
+        puts "  fix               [package]\t\tGiven package is verified and fixed if needed."
 	end
 end
 
@@ -202,13 +211,13 @@ end
     when "show-updates"  
 		puts "Display package listing with available update versions."
 
-    when "news"
-        puts "Display AbTLinux website newsfeed."
-        
     when "html"
         puts "Generate HTML page from installed packages:"
         puts "  (package name with hyperlink to package website and version installed)"
-        
+
+    when "news", "-n"
+        puts "Display AbTLinux website newsfeed."
+                
     when "download", "-d"  
 		if ( ARGV.length == 2 )
 			options['package'] = ARGV[1]
@@ -222,6 +231,57 @@ end
 		if ( ARGV.length == 2 )
 			options['updateItem'] = ARGV[1]
 			puts "Updating this item (either package or a package tree : " + options['updateItem']
+		else
+			show.usage
+			exit
+		end
+
+    when "purge-src"
+        puts "Remove source caches for packages no longer installed."
+
+    when "purge-logs"
+        puts "Remove log files for packages no longer installed."
+
+    when "verify-files"  
+		if ( ARGV.length == 2 )
+			options['package'] = ARGV[1]
+			puts "Installed files verified for package : " + options['package']
+		else
+			show.usage
+			exit
+		end
+
+    when "verify-symlinks"  
+		if ( ARGV.length == 2 )
+			options['package'] = ARGV[1]
+			puts "Symlinks verified for package : " + options['package']
+		else
+			show.usage
+			exit
+		end
+
+    when "verify-deps"  
+		if ( ARGV.length == 2 )
+			options['package'] = ARGV[1]
+			puts "Symlinks verified for package : " + options['package']
+		else
+			show.usage
+			exit
+		end
+        
+    when "verify-integrity"  
+		if ( ARGV.length == 2 )
+			options['package'] = ARGV[1]
+			puts "Verifiy the integrity of installed files for package : " + options['package']
+		else
+			show.usage
+			exit
+		end
+
+    when "fix"  
+		if ( ARGV.length == 2 )
+			options['package'] = ARGV[1]
+			puts "Package : " + options['package'] + " is verified and checked if needed."
 		else
 			show.usage
 			exit
