@@ -59,7 +59,11 @@ class AbtUsage
 		puts "  show-updates\t\tShow a package listing with available update versions."
 		puts "  html\t\t\tGenerate HTML page from installed packages:"
         puts "  \t\t\t\t(package name with hyperlink to package website and version installed)"
- 
+        puts
+        puts "downloads:"
+        puts "  -d,  download     [package]\t\tRetrieve given package sources."
+        puts "  -u,  update       [package]|[tree]\tUpdate given package or tree from AbTLinux repository."
+        puts "  news\t\t\t\t\tDisplays newsfeed from AbTLinux website."
 	end
 end
 
@@ -198,9 +202,30 @@ end
     when "show-updates"  
 		puts "Display package listing with available update versions."
 
+    when "news"
+        puts "Display AbTLinux website newsfeed."
+        
     when "html"
         puts "Generate HTML page from installed packages:"
         puts "  (package name with hyperlink to package website and version installed)"
+        
+    when "download", "-d"  
+		if ( ARGV.length == 2 )
+			options['package'] = ARGV[1]
+			puts "Retrieve sources for package : " + options['package']
+		else
+			show.usage
+			exit
+		end
+		
+    when "update", "-u"  
+		if ( ARGV.length == 2 )
+			options['updateItem'] = ARGV[1]
+			puts "Updating this item (either package or a package tree : " + options['updateItem']
+		else
+			show.usage
+			exit
+		end
     end # case
 	
 	#puts 'DEBUG: options are -'
