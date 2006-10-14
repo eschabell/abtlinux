@@ -30,74 +30,81 @@ require 'AbtReportManager'
 require 'optparse'
 
 class AbtUsage
-      def usage
-          puts "Usage: abt.rb [options]\n\n"
-          puts "  -i,  install     [package]\t\tInstall given package."
-          puts "  -ri, reinstall   [package]\t\tReinstall given package."
-          puts "  -r,  remove      [package]\t\tRemove given package."
-          puts "  -dg, downgrade   [version] [package]\tDowngrade given package to given version."
-          puts "  -f,  freeze      [package]\t\tHolds given package at current version, prevents upgrades."
-      end
+
+    def usage
+        puts "Usage: abt.rb [options]\n\n"
+		puts "  -i,  install     [package]\t\tInstall given package."
+		puts "  -ri, reinstall   [package]\t\tReinstall given package."
+		puts "  -r,  remove      [package]\t\tRemove given package."
+		puts "  -dg, downgrade   [version] [package]\tDowngrade given package to given version."
+		puts "  -f,  freeze      [package]\t\tHolds given package at current version, prevents upgrades."
+	end
 end
 
-##
-# Parsing our options.
-##
-options = Hash.new()
-show = AbtUsage.new();
-
-if ( ARGV.length == 0 )
-    show.usage
-end
-
-case ARGV[0]
-    
-    when "install", "-i"
-        if ( ARGV.length == 2 )
-            options['package'] = ARGV[1]
-        else
-            show.usage
-            exit
-        end
-            
-    
-    when "reinstall", "-ri"
-        if ( ARGV.length == 2 )
-            options['package'] = ARGV[1]
-        else
-            show.usage
-            exit
-        end
-    
-    when "remove", "-r"
-        if ( ARGV.length == 2 )
-            options['package'] = ARGV[1]
-        else
-            show.usage
-            exit
-        end
-    
-    when "downgrade", "-dg"
-        if ( ARGV.length == 2 )
-            options['package'] = ARGV[1]
-        else
-            show.usage
-            exit
-        end
-    
-    when "freeze", "-f"  
-        if ( ARGV.length == 2 )
-            options['package'] = ARGV[1]
-        else
-            show.usage
-            exit
-        end
-end
-
-#puts 'DEBUG: options are -'
-#puts 'package => ' + options['package']
-#puts 'DEBUG: argv is -'
-#puts ARGV[0]
-#puts ARGV[1]
-#puts 'DEBUG: number of args are -'
-#puts ARGV.length
+	##
+	# Parsing our options.
+	##
+	options = Hash.new()
+	show = AbtUsage.new();
+	
+	if ( ARGV.length == 0 )
+		show.usage
+	end
+	
+	case ARGV[0]
+		
+	when "install", "-i"
+		if ( ARGV.length == 2 )
+			options['package'] = ARGV[1]
+			puts "Installing package : " + options['package']
+		else
+			show.usage
+			exit
+		end
+		
+		
+	when "reinstall", "-ri"
+		if ( ARGV.length == 2 )
+			options['package'] = ARGV[1]
+			puts "Reinstalling package : " + options['package']
+		else
+			show.usage
+			exit
+		end
+		
+	when "remove", "-r"
+		if ( ARGV.length == 2 )
+			options['package'] = ARGV[1]
+			puts "Removing package : " + options['package']
+		else
+			show.usage
+			exit
+		end
+		
+	when "downgrade", "-dg"
+		if ( ARGV.length == 3 )
+		    options['version'] = ARGV[1]
+			options['package'] = ARGV[2]
+			puts "Downgradinging package : " + options['package'] + " to version : " + options['version']
+		else
+			show.usage
+			exit
+		end
+		
+	when "freeze", "-f"  
+		if ( ARGV.length == 2 )
+			options['package'] = ARGV[1]
+			puts "Holdinging package : " + options['package'] + " at the current version."
+		else
+			show.usage
+			exit
+		end
+	end
+	
+	#puts 'DEBUG: options are -'
+	#puts 'package => ' + options['package']
+	#puts 'DEBUG: argv is -'
+	#puts ARGV[0]
+	#puts ARGV[1]
+	#puts 'DEBUG: number of args are -'
+	#puts ARGV.length
