@@ -153,6 +153,12 @@ case ARGV[0]
 		if ( ARGV.length == 2 )
 			options['package'] = ARGV[1]
 			puts "Display details for package : " + options['package']
+
+			# TODO: make this work!
+			#require "AbtFortune"
+			#package = AbtFortune.new
+			#puts package.details
+			#exit
 		else
 			show.usage
 			exit
