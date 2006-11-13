@@ -31,16 +31,52 @@ require 'optparse'
 
 class AbtUsage
 
-	def usage
+	$PACKAGE_PATH = "./packages/"
+
+	def usage( section )
 		puts "Usage: abt.rb [options]\n\n"
-    puts "packages:"
+
+		case section
+
+		when "packages"
+			usagePackages
+		
+		when "queries"
+			usageQueries
+
+		when "generation"
+			usageGeneration
+
+		when "downloads"
+			usageDownloads
+
+		when "fix"
+			usageFix
+
+		when "maintenance"
+			usageMaintenance
+		
+		else
+			usagePackages
+			usageQueries
+			usageGeneration
+			usageDownloads
+			usageFix
+			usageMaintenance
+		end
+	end
+
+	def usagePackages
+    puts "\npackages:"
 		puts "  -i,  install     [package]\t\tInstall given package."
 		puts "  -ri, reinstall   [package]\t\tReinstall given package."
 		puts "  -r,  remove      [package]\t\tRemove given package."
 		puts "  -dg, downgrade   [version] [package]\tDowngrade given package to given version."
-		puts "  -f,  freeze      [package]\t\tHolds given package at current version, prevents upgrades."
-		puts
-		puts "queries:"
+		puts "  -f,  freeze      [package]\t\tHolds given package at current version, prevents upgrades.\n"
+	end
+
+	def usageQueries
+		puts "\nqueries:"
 		puts "  -s,  search      [string | regexp ]\tSearch package descriptions for given input."
 		puts "  show-details     [package]\t\tShow give package details."
 		puts "  show-build       [package]\t\tShow build log of given package."
@@ -52,33 +88,41 @@ class AbtUsage
 		puts "  show-untracked\t\t\tShow all files on system not tracked by AbTLinux."
 		puts "  show-journal\t\t\t\tShow the system journal."
 		puts "  show-iqueue\t\t\t\tShow the contents of the install queue."
-		puts "  show-patches\t\t\t\tShow the current available patches for installed package tree."
-		puts
-		puts "generation:"
+		puts "  show-patches\t\t\t\tShow the current available patches for installed package tree.\n"
+	end
+
+	def usageGeneration
+		puts "\ngeneration:"
 		puts "  show-updates\t\tShow a package listing with available update versions."
 		puts "  html\t\t\tGenerate HTML page from installed packages:"
-    puts "  \t\t\t\t(package name with hyperlink to package website and version installed)"
-    puts
-    puts "downloads:"
+    puts "  \t\t\t\t(package name with hyperlink to package website and version installed)\n"
+	end
+
+	def usageDownloads
+    puts "\ndownloads:"
     puts "  -d,  download     [package]\t\tRetrieve given package sources."
     puts "  -u,  update       [package]|[tree]\tUpdate given package or tree from AbTLinux repository."
-    puts "  -n,  news\t\t\t\tDisplays newsfeed from AbTLinux website."
-    puts
-    puts "fix:"
+    puts "  -n,  news\t\t\t\tDisplays newsfeed from AbTLinux website.\n"
+	end
+
+	def usageFix
+    puts "\nfix:"
     puts "  purge-src\t\t\t\tRemove source caches for packages no longer installed."
     puts "  purge-logs\t\t\t\tRemove log files for packages no longer installed."
     puts "  verify-files      [package]\t\tInstalled files are verified for given package."
     puts "  verify-symlinks   [package]\t\tSymlinks verified for given package."
     puts "  verify-deps       [package]\t\tDependency tree is verified for given package."
     puts "  verify-integrity  [package]\t\tVerify integrity of installed files for given package."
-    puts "  fix               [package]\t\tGiven package is verified and fixed if needed."
-    puts
-    puts "maintenance:"
+    puts "  fix               [package]\t\tGiven package is verified and fixed if needed.\n"
+	end
+
+	def usageMaintenance
+    puts "\nmaintenance:"
     puts "  build-location    [host]\t\tSets global location (default: localhost) for retrieving cached package builds."
     puts "  package-repo      [add|remove|list] [URI]"
     puts "                                        add    - add package repository to list."
     puts "                                        remove - remove a package repository from list."
-    puts "                                        list   - display current repository list."
+    puts "                                        list   - display current repository list.\n"
 	end
 end
 
@@ -89,7 +133,7 @@ options = Hash.new()
 show = AbtUsage.new();
 
 if ( ARGV.length == 0 )
-	show.usage
+	show.usage( "all" )
 end
 
 case ARGV[0]
@@ -99,7 +143,7 @@ case ARGV[0]
 			options['package'] = ARGV[1]
 			puts "Installing package : " + options['package']
 		else
-			show.usage
+			show.usage( "packages" )
 			exit
 		end
 	
@@ -108,7 +152,7 @@ case ARGV[0]
 			options['package'] = ARGV[1]
 			puts "Reinstalling package : " + options['package']
 		else
-			show.usage
+			show.usage( "packages" )
 			exit
 		end
 	
@@ -117,7 +161,7 @@ case ARGV[0]
 			options['package'] = ARGV[1]
 			puts "Removing package : " + options['package']
 		else
-			show.usage
+			show.usage( "packages" )
 			exit
 		end
 	
@@ -127,7 +171,7 @@ case ARGV[0]
 			options['package'] = ARGV[2]
 			puts "Downgradinging package : " + options['package'] + " to version : " + options['version']
 		else
-			show.usage
+			show.usage( "packages" )
 			exit
 		end
 	
@@ -136,7 +180,7 @@ case ARGV[0]
 			options['package'] = ARGV[1]
 			puts "Holdinging package : " + options['package'] + " at the current version."
 		else
-			show.usage
+			show.usage( "packages" )
 			exit
 		end
 		
@@ -145,19 +189,19 @@ case ARGV[0]
 			options['searchString'] = ARGV[1]
 			puts "Searching package descriptions for : " + options['searchString']
 		else
-			show.usage
+			show.usage( "queries" )
 			exit
 		end
 	
 	when "show-details"  
-		if ( ARGV.length == 2 )
+		if ( ARGV.length == 2 && FileTest.exist?( $PACKAGE_PATH + ARGV[1] + ".rb" ) )
 			options['package'] = ARGV[1]
 
 			require options['package']
 			package = Fortune.new
 			puts package.details
 		else
-			show.usage
+			show.usage( "queries" )
 			exit
 		end
 	
@@ -166,7 +210,7 @@ case ARGV[0]
 			options['package'] = ARGV[1]
 			puts "Display build log for package : " + options['package']
 		else
-			show.usage
+			show.usage( "queries" )
 			exit
 		end
 
@@ -176,7 +220,7 @@ case ARGV[0]
 			options['package'] = ARGV[1]
 			puts "Display dependency tree for package : " + options['package']
 		else
-			show.usage
+			show.usage( "queries" )
 			exit
 		end
 	
@@ -185,7 +229,7 @@ case ARGV[0]
 			options['package'] = ARGV[1]
 			puts "Display installed files from package : " + options['package']
 		else
-			show.usage
+			show.usage( "queries" )
 			exit
 		end
 
@@ -194,44 +238,53 @@ case ARGV[0]
 			options['fileName'] = ARGV[1]
 			puts "Display owning package for file : " + options['fileName']
 		else
-			show.usage
+			show.usage( "queries" )
 			exit
 		end
 	
 	when "show-installed"  
 		puts "Display all installed packages."
+		show.usage( "queries" )
 	
 	when "show-frozen"  
 		puts "Display all packages frozen at current version."
+		show.usage( "queries" )
 	
 	when "show-untracked"  
 		puts "Display all files on system not tracked by AbTLinux."
+		show.usage( "queries" )
 
 	when "show-journal"  
 		puts "Display system log with AbTLinux activity."
+		show.usage( "queries" )
 	
 	when "show-iqueue"  
 		puts "Display contents of install queue."
+		show.usage( "queries" )
 	
 	when "show-patches"  
 		puts "Display currently available patches for installed package tree."
+		show.usage( "queries" )
 	
 	when "show-updates"  
 		puts "Display package listing with available update versions."
+		show.usage( "generation" )
 	
 	when "html"
 	  puts "Generate HTML page from installed packages:"
 	  puts "  (package name with hyperlink to package website and version installed)"
+		show.usage( "generation" )
 	
 	when "news", "-n"
   puts "Display AbTLinux website newsfeed."
+	show.usage( "downloads" )
             
 	when "download", "-d"  
 		if ( ARGV.length == 2 )
 			options['package'] = ARGV[1]
 			puts "Retrieve sources for package : " + options['package']
 		else
-			show.usage
+			show.usage( "downloads" )
 			exit
 		end
 		
@@ -240,22 +293,24 @@ case ARGV[0]
 			options['updateItem'] = ARGV[1]
 			puts "Updating this item (either package or a package tree : " + options['updateItem']
 		else
-			show.usage
+			show.usage( "downloads" )
 			exit
 		end
 
 	when "purge-src"
 	  puts "Remove source caches for packages no longer installed."
+		show.usage( "fix" )
 	
 	when "purge-logs"
 	  puts "Remove log files for packages no longer installed."
+		show.usage( "fix" )
 	
 	when "verify-files"  
 		if ( ARGV.length == 2 )
 			options['package'] = ARGV[1]
 			puts "Installed files verified for package : " + options['package']
 		else
-			show.usage
+			show.usage( "fix" )
 			exit
 		end
 	
@@ -264,7 +319,7 @@ case ARGV[0]
 		options['package'] = ARGV[1]
 		puts "Symlinks verified for package : " + options['package']
 	else
-		show.usage
+		show.usage( "fix" )
 		exit
 	end
 
@@ -273,7 +328,7 @@ case ARGV[0]
 			options['package'] = ARGV[1]
 			puts "Symlinks verified for package : " + options['package']
 		else
-			show.usage
+			show.usage( "fix" )
 			exit
 		end
 	    
@@ -282,7 +337,7 @@ case ARGV[0]
 			options['package'] = ARGV[1]
 			puts "Verifiy the integrity of installed files for package : " + options['package']
 		else
-			show.usage
+			show.usage( "fix" )
 			exit
 		end
 
@@ -291,7 +346,7 @@ case ARGV[0]
 			options['package'] = ARGV[1]
 			puts "Package : " + options['package'] + " is verified and checked if needed."
 		else
-			show.usage
+			show.usage( "fix" )
 			exit
 		end
 	
@@ -300,7 +355,7 @@ case ARGV[0]
 			options['buildHost'] = ARGV[1]
 			puts "Sets global location for retrieving cached build packages to : " + options['buildHost']
 		else
-			show.usage
+			show.usage( "maintenance" )
 			exit
 		end
 
@@ -318,12 +373,12 @@ case ARGV[0]
 	      if ( ARGV[1] == "list" )
 					options['repoAction'] = ARGV[1]
 	      else
-	        show.usage
+					show.usage( "maintenance" )
 	        exit
 	      end
 	
 	    else
-	      show.usage
+				show.usage( "maintenance" )
 	      exit		    
 		end # case ARGV.length.
 		
@@ -340,7 +395,7 @@ case ARGV[0]
 	    	puts "Display listing of package repositories."
 	    
 			else
-	    	show.usage
+				show.usage( "maintenance" )
 	    	exit  
 		end # case repoAction.
 end # case ARGV[0].
