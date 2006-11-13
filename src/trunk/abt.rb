@@ -1,4 +1,4 @@
-#!/usr/bin/ruby -w
+#!/usr/bin/ruby -wI/home/erics/workspace/abtapi/packages
 
 ##
 # abt.rb 
@@ -6,7 +6,7 @@
 # The central package manager script to run all ABout Time Linux tasks. 
 # 
 # Created by Eric D. Schabell <erics@abtlinux.org>
-# Copyright 2006, GPL.
+# Copyright July 2006, GPL.
 #
 # This file is part of AbTLinux.
 #
@@ -155,8 +155,8 @@ case ARGV[0]
 			puts "Display details for package : " + options['package']
 
 			# TODO: make this work!
-			#require "AbtFortune"
-			#package = AbtFortune.new
+			#require options['package']
+			#package = Fortune.new
 			#puts package.details
 			#exit
 		else

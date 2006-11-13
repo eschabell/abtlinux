@@ -1,7 +1,8 @@
 #!/usr/bin/ruby -w
 
+require "AbtPackage"
 ##
-# AbtFortune.rb 
+# fortune.rb 
 #
 # AbtFortune package.
 #
@@ -25,7 +26,7 @@
 # St, Fifth Floor, Boston, MA 02110-1301  USA
 ##
 
-class AbtFortune < AbtPackage
+class Fortune < AbtPackage
   
 protected
   
