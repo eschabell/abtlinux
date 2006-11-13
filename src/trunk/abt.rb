@@ -1,4 +1,4 @@
-#!/usr/bin/ruby -wI/home/erics/workspace/abtapi/packages
+#!/usr/bin/ruby -I/home/erics/workspace/abtapi/packages
 
 ##
 # abt.rb 
@@ -152,13 +152,10 @@ case ARGV[0]
 	when "show-details"  
 		if ( ARGV.length == 2 )
 			options['package'] = ARGV[1]
-			puts "Display details for package : " + options['package']
 
-			# TODO: make this work!
-			#require options['package']
-			#package = Fortune.new
-			#puts package.details
-			#exit
+			require options['package']
+			package = Fortune.new
+			puts package.details
 		else
 			show.usage
 			exit
