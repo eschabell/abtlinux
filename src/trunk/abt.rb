@@ -29,6 +29,7 @@ require 'AbtLogManager'
 require 'AbtReportManager'
 require 'AbtDownloadManager'
 require 'AbtUsage'
+require 'fileutils'
 require 'optparse'
 
 $PACKAGE_PATH				= "./packages/"
@@ -208,16 +209,19 @@ case ARGV[0]
 	when "download", "-d"  
 		if ( ARGV.length == 2 && File.exist?( $PACKAGE_PATH + ARGV[1] + ".rb" ) )
 			options['package'] = ARGV[1]
-			puts "Retrieve sources for package : " + options['package']
+
 			if ( !File.directory?( $SOURCES_REPOSITORY ) )
-				FileUtils.mkdir_p $SOURCES_REPOSITORY  # initialize directory.
+				FileUtils.mkdir_p( $SOURCES_REPOSITORY ) # initialize directory.
 			end
+
 			manager = AbtDownloadManager.new
-			if ( manager.retrievePackageSource( options['package'] ) )
-					puts "\nDownloading of package " + options['package'] + " sources completed, see " + $SOURCES_REPOSITORY
+
+			if ( manager.retrievePackageSource( options['package'], $SOURCES_REPOSITORY ) )
+					puts "\nDownloading of " + options['package'] + " to " + $SOURCES_REPOSITORY + " completed.\n\n"
 			else
-					puts "\nDOWNLOADING - failed to download source for " + options['package']
+					puts "\nDOWNLOADING - failed to download source for " + options['package'] + "\n\n"
 			end
+
 		else
 			show.usage( "downloads" )
 			exit

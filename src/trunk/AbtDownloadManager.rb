@@ -1,4 +1,4 @@
-#!/usr/bin/ruby -w
+#!/usr/bin/ruby 
 
 ##
 # AbtDownloadManager.rb 
@@ -42,15 +42,30 @@ public
   end
   
   ##
-  # Downloads a given package source.
+  # Downloads a given package source. If the file already exists, returns
+	# true as if download completed.
   #
   # <b>PARAM</b> <i>String</i> - the name of the package for which the source
   # is to be downloaded.
+  # <b>PARAM</b> <i>String</i> - the path to the download destination.
   #
   # <b>RETURN</b> <i>boolean</i> - True if the package source has been
   # downloaded, otherwise false.
   ##
-  def retrievePackageSource( packageName )
+  def retrievePackageSource( packageName, destination )
+
+		require packageName
+		package = eval( packageName.capitalize + '.new' )
+		
+		if ( File.exist?( destination + "/" + File.basename( package.srcUrl ) ) )
+			return true
+		end
+
+		if ( system( "cd " + destination + "; wget " +  package.srcUrl ) )  # TODO: rm system call?
+			return true
+		end
+
+		return false  # download failed.
   end
   
   ##
