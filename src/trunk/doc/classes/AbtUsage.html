@@ -1,0 +1,316 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+  <head>
+    <title>Class: AbtUsage</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+    <link rel="stylesheet" href=".././rdoc-style.css" type="text/css" media="screen" />
+
+    <script language="JavaScript" type="text/javascript">
+    // <![CDATA[
+
+        function toggleSource( id )
+        {
+          var elem
+          var link
+
+          if( document.getElementById )
+          {
+            elem = document.getElementById( id )
+            link = document.getElementById( "l_" + id )
+          }
+          else if ( document.all )
+          {
+            elem = eval( "document.all." + id )
+            link = eval( "document.all.l_" + id )
+          }
+          else
+            return false;
+
+          if( elem.style.display == "block" )
+          {
+            elem.style.display = "none"
+            link.innerHTML = "show source"
+          }
+          else
+          {
+            elem.style.display = "block"
+            link.innerHTML = "hide source"
+          }
+        }
+
+        function openCode( url )
+        {
+          window.open( url, "SOURCE_CODE", "width=400,height=400,scrollbars=yes" )
+        }
+      // ]]>
+    </script>
+  </head>
+
+  <body>
+  <table width="100%" border='0' cellpadding='0' cellspacing='0' class='banner'><tr>
+  <td class="file-title"><span class="file-title-prefix">Class</span><br />AbtUsage</td>
+  <td align="right">
+    <table cellspacing=0 cellpadding=2>
+      <tr valign="top">
+        <td>In:</td>
+        <td>
+<a href="../files/AbtUsage_rb.html">AbtUsage.rb</a>
+        </td>
+      </tr>
+    <tr>
+      <td>Parent:</td>
+      <td>
+Object
+     </td>
+   </tr>
+         </table>
+        </td>
+        </tr>
+      </table>
+ <!-- banner header -->
+
+  <div id="bodyContent">
+      <div id="content">
+  <table cellpadding='0' cellspacing='0' border='0' width="100%"><tr><td align="center">
+    <map id="map" name="map">
+  <area shape="RECT" coords="27,50,107,98"      href="AbtUsage.html" alt="AbtUsage">
+</map>
+<img src="../dot/f_8.png" usemap="#map" border=0 alt="TopLevel">
+  </td></tr></table>
+
+  <div class="description"><p>
+AbtUsage.rb
+</p>
+<p>
+The usage reporting class for AbTLinux.
+</p>
+<p>
+Created by Eric D. Schabell &lt;erics@abtlinux.org&gt; Copyright November
+2006, GPL.
+</p>
+<p>
+This file is part of AbTLinux.
+</p>
+<p>
+AbTLinux is free software; you can redistribute it and/or modify it under
+the terms of the GNU General Public License as published by the Free
+Software Foundation; either version 2 of the License, or (at your option)
+any later version.
+</p>
+<p>
+AbTLinux is distributed in the hope that it will be useful, but WITHOUT ANY
+WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
+details.
+</p>
+<p>
+You should have received a copy of the GNU General Public License along
+with AbTLinux; if not, write to the Free Software Foundation, Inc., 51
+Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
+</p>
+</div>
+
+
+
+  <div class="sectiontitle">Methods</div>
+  <ul>
+  <li><a href="#M000031">usage</a></li>
+  <li><a href="#M000035">usageDownloads</a></li>
+  <li><a href="#M000036">usageFix</a></li>
+  <li><a href="#M000034">usageGeneration</a></li>
+  <li><a href="#M000037">usageMaintenance</a></li>
+  <li><a href="#M000032">usagePackages</a></li>
+  <li><a href="#M000033">usageQueries</a></li>
+  </ul>
+
+
+
+
+
+
+<div class="sectiontitle">Public Instance methods</div>
+<div class="method">
+  <div class="title">
+    <a name="M000031"></a><b>usage</b>( section )
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000031_source')" id="l_M000031_source">show source</a> ]</p>
+  <div id="M000031_source" class="dyn-source">
+<pre>
+    <span class="ruby-comment cmt"># File AbtUsage.rb, line 29</span>
+29:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">usage</span>( <span class="ruby-identifier">section</span> )
+30:                 <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;Usage: abt.rb [options]\n\n&quot;</span>
+31: 
+32:                 <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">section</span>
+33: 
+34:                 <span class="ruby-keyword kw">when</span> <span class="ruby-value str">&quot;packages&quot;</span>
+35:                         <span class="ruby-identifier">usagePackages</span>
+36:                 
+37:                 <span class="ruby-keyword kw">when</span> <span class="ruby-value str">&quot;queries&quot;</span>
+38:                         <span class="ruby-identifier">usageQueries</span>
+39: 
+40:                 <span class="ruby-keyword kw">when</span> <span class="ruby-value str">&quot;generation&quot;</span>
+41:                         <span class="ruby-identifier">usageGeneration</span>
+42: 
+43:                 <span class="ruby-keyword kw">when</span> <span class="ruby-value str">&quot;downloads&quot;</span>
+44:                         <span class="ruby-identifier">usageDownloads</span>
+45: 
+46:                 <span class="ruby-keyword kw">when</span> <span class="ruby-value str">&quot;fix&quot;</span>
+47:                         <span class="ruby-identifier">usageFix</span>
+48: 
+49:                 <span class="ruby-keyword kw">when</span> <span class="ruby-value str">&quot;maintenance&quot;</span>
+50:                         <span class="ruby-identifier">usageMaintenance</span>
+51:                 
+52:                 <span class="ruby-keyword kw">else</span>
+53:                         <span class="ruby-identifier">usagePackages</span>
+54:                         <span class="ruby-identifier">usageQueries</span>
+55:                         <span class="ruby-identifier">usageGeneration</span>
+56:                         <span class="ruby-identifier">usageDownloads</span>
+57:                         <span class="ruby-identifier">usageFix</span>
+58:                         <span class="ruby-identifier">usageMaintenance</span>
+59:                 <span class="ruby-keyword kw">end</span>
+60:         <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000035"></a><b>usageDownloads</b>()
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000035_source')" id="l_M000035_source">show source</a> ]</p>
+  <div id="M000035_source" class="dyn-source">
+<pre>
+    <span class="ruby-comment cmt"># File AbtUsage.rb, line 94</span>
+94:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">usageDownloads</span>
+95:     <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;\ndownloads:&quot;</span>
+96:     <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;  -d,  download     [package]\t\tRetrieve given package sources.&quot;</span>
+97:     <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;  -u,  update       [package]|[tree]\tUpdate given package or tree from AbTLinux repository.&quot;</span>
+98:     <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;  -n,  news\t\t\t\tDisplays newsfeed from AbTLinux website.\n&quot;</span>
+99:         <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000036"></a><b>usageFix</b>()
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000036_source')" id="l_M000036_source">show source</a> ]</p>
+  <div id="M000036_source" class="dyn-source">
+<pre>
+     <span class="ruby-comment cmt"># File AbtUsage.rb, line 101</span>
+101:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">usageFix</span>
+102:     <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;\nfix:&quot;</span>
+103:     <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;  purge-src\t\t\t\tRemove source caches for packages no longer installed.&quot;</span>
+104:     <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;  purge-logs\t\t\t\tRemove log files for packages no longer installed.&quot;</span>
+105:     <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;  verify-files      [package]\t\tInstalled files are verified for given package.&quot;</span>
+106:     <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;  verify-symlinks   [package]\t\tSymlinks verified for given package.&quot;</span>
+107:     <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;  verify-deps       [package]\t\tDependency tree is verified for given package.&quot;</span>
+108:     <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;  verify-integrity  [package]\t\tVerify integrity of installed files for given package.&quot;</span>
+109:     <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;  fix               [package]\t\tGiven package is verified and fixed if needed.\n&quot;</span>
+110:         <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000034"></a><b>usageGeneration</b>()
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000034_source')" id="l_M000034_source">show source</a> ]</p>
+  <div id="M000034_source" class="dyn-source">
+<pre>
+    <span class="ruby-comment cmt"># File AbtUsage.rb, line 87</span>
+87:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">usageGeneration</span>
+88:                 <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;\ngeneration:&quot;</span>
+89:                 <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;  show-updates\t\tShow a package listing with available update versions.&quot;</span>
+90:                 <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;  html\t\t\tGenerate HTML page from installed packages:&quot;</span>
+91:     <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;  \t\t\t\t(package name with hyperlink to package website and version installed)\n&quot;</span>
+92:         <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000037"></a><b>usageMaintenance</b>()
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000037_source')" id="l_M000037_source">show source</a> ]</p>
+  <div id="M000037_source" class="dyn-source">
+<pre>
+     <span class="ruby-comment cmt"># File AbtUsage.rb, line 112</span>
+112:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">usageMaintenance</span>
+113:     <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;\nmaintenance:&quot;</span>
+114:     <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;  build-location    [host]\t\tSets global location (default: localhost) for retrieving cached package builds.&quot;</span>
+115:     <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;  package-repo      [add|remove|list] [URI]&quot;</span>
+116:     <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;                                        add    - add package repository to list.&quot;</span>
+117:     <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;                                        remove - remove a package repository from list.&quot;</span>
+118:     <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;                                        list   - display current repository list.\n&quot;</span>
+119:         <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000032"></a><b>usagePackages</b>()
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000032_source')" id="l_M000032_source">show source</a> ]</p>
+  <div id="M000032_source" class="dyn-source">
+<pre>
+    <span class="ruby-comment cmt"># File AbtUsage.rb, line 62</span>
+62:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">usagePackages</span>
+63:     <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;\npackages:&quot;</span>
+64:                 <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;  -i,  install     [package]\t\tInstall given package.&quot;</span>
+65:                 <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;  -ri, reinstall   [package]\t\tReinstall given package.&quot;</span>
+66:                 <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;  -r,  remove      [package]\t\tRemove given package.&quot;</span>
+67:                 <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;  -dg, downgrade   [version] [package]\tDowngrade given package to given version.&quot;</span>
+68:                 <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;  -f,  freeze      [package]\t\tHolds given package at current version, prevents upgrades.\n&quot;</span>
+69:         <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000033"></a><b>usageQueries</b>()
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000033_source')" id="l_M000033_source">show source</a> ]</p>
+  <div id="M000033_source" class="dyn-source">
+<pre>
+    <span class="ruby-comment cmt"># File AbtUsage.rb, line 71</span>
+71:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">usageQueries</span>
+72:                 <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;\nqueries:&quot;</span>
+73:                 <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;  -s,  search      [string | regexp ]\tSearch package descriptions for given input.&quot;</span>
+74:                 <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;  show-details     [package]\t\tShow give package details.&quot;</span>
+75:                 <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;  show-build       [package]\t\tShow build log of given package.&quot;</span>
+76:                 <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;  show-depends     [package]\t\tShow the dependency tree of given package.&quot;</span>
+77:                 <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;  show-files       [package]\t\tShow all installed files from given package.&quot;</span>
+78:                 <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;  show-owner       [file]\t\tShow the package owning given file.&quot;</span>
+79:     <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;  show-installed\t\t\tShow list of all installed packages.&quot;</span>
+80:                 <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;  show-frozen\t\t\t\tShow list of all frozen packages.&quot;</span>
+81:                 <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;  show-untracked\t\t\tShow all files on system not tracked by AbTLinux.&quot;</span>
+82:                 <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;  show-journal\t\t\t\tShow the system journal.&quot;</span>
+83:                 <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;  show-iqueue\t\t\t\tShow the contents of the install queue.&quot;</span>
+84:                 <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;  show-patches\t\t\t\tShow the current available patches for installed package tree.\n&quot;</span>
+85:         <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+</div>
+
+  </div>
+
+    </body>
+</html>
