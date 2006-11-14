@@ -1,4 +1,4 @@
-#!/usr/bin/ruby -I/home/erics/workspace/abtapi/packages
+#!/usr/bin/ruby -I./packages
 
 ##
 # abt.rb 
@@ -27,104 +27,12 @@
 require 'AbtPackageManager'
 require 'AbtLogManager'
 require 'AbtReportManager'
+require 'AbtDownloadManager'
+require 'AbtUsage'
 require 'optparse'
 
-class AbtUsage
-
-	$PACKAGE_PATH = "./packages/"
-
-	def usage( section )
-		puts "Usage: abt.rb [options]\n\n"
-
-		case section
-
-		when "packages"
-			usagePackages
-		
-		when "queries"
-			usageQueries
-
-		when "generation"
-			usageGeneration
-
-		when "downloads"
-			usageDownloads
-
-		when "fix"
-			usageFix
-
-		when "maintenance"
-			usageMaintenance
-		
-		else
-			usagePackages
-			usageQueries
-			usageGeneration
-			usageDownloads
-			usageFix
-			usageMaintenance
-		end
-	end
-
-	def usagePackages
-    puts "\npackages:"
-		puts "  -i,  install     [package]\t\tInstall given package."
-		puts "  -ri, reinstall   [package]\t\tReinstall given package."
-		puts "  -r,  remove      [package]\t\tRemove given package."
-		puts "  -dg, downgrade   [version] [package]\tDowngrade given package to given version."
-		puts "  -f,  freeze      [package]\t\tHolds given package at current version, prevents upgrades.\n"
-	end
-
-	def usageQueries
-		puts "\nqueries:"
-		puts "  -s,  search      [string | regexp ]\tSearch package descriptions for given input."
-		puts "  show-details     [package]\t\tShow give package details."
-		puts "  show-build       [package]\t\tShow build log of given package."
-		puts "  show-depends     [package]\t\tShow the dependency tree of given package."
-		puts "  show-files       [package]\t\tShow all installed files from given package."
-		puts "  show-owner       [file]\t\tShow the package owning given file."
-    puts "  show-installed\t\t\tShow list of all installed packages."
-		puts "  show-frozen\t\t\t\tShow list of all frozen packages."
-		puts "  show-untracked\t\t\tShow all files on system not tracked by AbTLinux."
-		puts "  show-journal\t\t\t\tShow the system journal."
-		puts "  show-iqueue\t\t\t\tShow the contents of the install queue."
-		puts "  show-patches\t\t\t\tShow the current available patches for installed package tree.\n"
-	end
-
-	def usageGeneration
-		puts "\ngeneration:"
-		puts "  show-updates\t\tShow a package listing with available update versions."
-		puts "  html\t\t\tGenerate HTML page from installed packages:"
-    puts "  \t\t\t\t(package name with hyperlink to package website and version installed)\n"
-	end
-
-	def usageDownloads
-    puts "\ndownloads:"
-    puts "  -d,  download     [package]\t\tRetrieve given package sources."
-    puts "  -u,  update       [package]|[tree]\tUpdate given package or tree from AbTLinux repository."
-    puts "  -n,  news\t\t\t\tDisplays newsfeed from AbTLinux website.\n"
-	end
-
-	def usageFix
-    puts "\nfix:"
-    puts "  purge-src\t\t\t\tRemove source caches for packages no longer installed."
-    puts "  purge-logs\t\t\t\tRemove log files for packages no longer installed."
-    puts "  verify-files      [package]\t\tInstalled files are verified for given package."
-    puts "  verify-symlinks   [package]\t\tSymlinks verified for given package."
-    puts "  verify-deps       [package]\t\tDependency tree is verified for given package."
-    puts "  verify-integrity  [package]\t\tVerify integrity of installed files for given package."
-    puts "  fix               [package]\t\tGiven package is verified and fixed if needed.\n"
-	end
-
-	def usageMaintenance
-    puts "\nmaintenance:"
-    puts "  build-location    [host]\t\tSets global location (default: localhost) for retrieving cached package builds."
-    puts "  package-repo      [add|remove|list] [URI]"
-    puts "                                        add    - add package repository to list."
-    puts "                                        remove - remove a package repository from list."
-    puts "                                        list   - display current repository list.\n"
-	end
-end
+$PACKAGE_PATH				= "./packages/"
+$SOURCES_REPOSITORY	= "/var/spool/abt/sources"
 
 ##
 # Parsing our options.
@@ -194,15 +102,33 @@ case ARGV[0]
 		end
 	
 	when "show-details"  
-		if ( ARGV.length == 2 && FileTest.exist?( $PACKAGE_PATH + ARGV[1] + ".rb" ) )
+		if ( ARGV.length == 2 && File.exist?( $PACKAGE_PATH + ARGV[1] + ".rb" ) )
 			options['package'] = ARGV[1]
+			
+			require options['package']  # pickup the package data.
+			package = Fortune.new       # TODO: change this to dynamic naming.
+			details = package.details
 
-			require options['package']
-			package = Fortune.new
-			puts package.details
+			puts "**************************************"
+			puts "Package name     : " + details['name']
+			puts "Executable       : " + details['execName']
+			puts "Version          : " + details['version']
+			puts "Source directory : " + details['srcDir']
+			puts "Homepage         : " + details['homepage']
+			puts "Source location  : " + details['srcUrl']
+			puts "Depends On       : " + details['dependsOn']
+			puts "Relies On        : " + details['reliesOn']
+			puts "Optional DO      : " + details['optionalDO']
+			puts "Optional RO      : " + details['optionalRO']
+			puts "Security hash    : " + details['hashCheck']
+			puts "Patches          : " + details['patches']
+			puts "Patches hash     : " + details['patchesHashCheck']
+			puts "Mirror           : " + details['mirrorPath']
+			puts "License          : " + details['license']
+			puts "Description      : " + details['description']
+			puts "**************************************"
 		else
 			show.usage( "queries" )
-			exit
 		end
 	
 	when "show-build"  
@@ -280,9 +206,18 @@ case ARGV[0]
 	show.usage( "downloads" )
             
 	when "download", "-d"  
-		if ( ARGV.length == 2 )
+		if ( ARGV.length == 2 && File.exist?( $PACKAGE_PATH + ARGV[1] + ".rb" ) )
 			options['package'] = ARGV[1]
 			puts "Retrieve sources for package : " + options['package']
+			if ( !File.directory?( $SOURCES_REPOSITORY ) )
+				FileUtils.mkdir_p $SOURCES_REPOSITORY  # initialize directory.
+			end
+			manager = AbtDownloadManager.new()
+			if ( manager.retrievePackageSource( options['package'] ) )
+					puts "\nDownloading of package " + options['package'] + " sources completed, see " + $SOURCES_REPOSITORY
+			else
+					puts "\nDOWNLOADING - failed to download source for " + options['package']
+			end
 		else
 			show.usage( "downloads" )
 			exit
