@@ -1,4 +1,4 @@
-#!/usr/bin/ruby -I./packages
+#!/usr/bin/ruby -wI./packages
 
 ##
 # abt.rb 
@@ -32,6 +32,7 @@ require 'AbtUsage'
 require 'fileutils'
 require 'optparse'
 
+
 $PACKAGE_PATH				= "./packages/"
 $SOURCES_REPOSITORY	= "/var/spool/abt/sources"
 
@@ -43,6 +44,12 @@ show = AbtUsage.new();
 
 if ( ARGV.length == 0 )
 	show.usage( "all" )
+end
+
+# TODO: provide root login here?
+if ( Process.uid != 0 )
+	puts "\nYou need to run abt as root.\n\n"
+	exit
 end
 
 case ARGV[0]
