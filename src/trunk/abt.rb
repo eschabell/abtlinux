@@ -105,8 +105,8 @@ case ARGV[0]
 		if ( ARGV.length == 2 && File.exist?( $PACKAGE_PATH + ARGV[1] + ".rb" ) )
 			options['package'] = ARGV[1]
 			
-			require options['package']  # pickup the package data.
-			package = Fortune.new       # TODO: change this to dynamic naming.
+			require options['package']                                # pickup called package class.
+			package = eval( options['package'].capitalize + '.new' )  # evaluates package.new methode dynamically.
 			details = package.details
 
 			puts "**************************************"
@@ -212,7 +212,7 @@ case ARGV[0]
 			if ( !File.directory?( $SOURCES_REPOSITORY ) )
 				FileUtils.mkdir_p $SOURCES_REPOSITORY  # initialize directory.
 			end
-			manager = AbtDownloadManager.new()
+			manager = AbtDownloadManager.new
 			if ( manager.retrievePackageSource( options['package'] ) )
 					puts "\nDownloading of package " + options['package'] + " sources completed, see " + $SOURCES_REPOSITORY
 			else
