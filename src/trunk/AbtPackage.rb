@@ -91,7 +91,6 @@ public
   #
   ##
   def initialize( data )
-    
     @name = data['name']
     @execName = data['execName']
     @version = data['version']
@@ -108,7 +107,6 @@ public
     @mirrorPath = data['mirrorPath']
     @license = data['license']
     @description = data['description']
-	
   end
 		
   ##
@@ -117,24 +115,24 @@ public
   # <b>RETURNS:</b>  <i>hash</i> - Contains all AbtPackage attributes (constants).
   ##
   def details
-		puts "**************************************"
-		puts "Package name     : " + @name
-		puts "Executable       : " + @execName
-		puts "Version          : " + @version
-		puts "Source directory : " + @srcDir
-		puts "Homepage         : " + @homepage
-		puts "Source location  : " + @srcUrl
-		puts "Depends On       : " + @dependsOn
-		puts "Relies On        : " + @reliesOn
-		puts "Optional DO      : " + @optionalDO
-		puts "Optional RO      : " + @optionalRO
-		puts "Security hash    : " + @hashCheck
-		puts "Patches          : " + @patches
-		puts "Patches hash     : " + @patchesHashCheck
-		puts "Mirror           : " + @mirrorPath
-		puts "License          : " + @license
-		puts "Description      : " + @description
-		puts "**************************************"
+		return {
+			"name" 							=> @name,
+			"execName"					=> @execName,
+			"version"						=> @version,
+			"srcDir"						=> @srcDir,
+			"homepage"					=> @homepage,
+			"srcUrl"						=> @srcUrl,
+			"dependsOn"					=> @dependsOn,
+			"reliesOn"					=> @reliesOn,
+			"optionalDO"				=> @optionalDO,
+			"optionalRO"				=> @optionalRO,
+			"hashCheck"					=> @hashCheck,
+			"patches"						=> @patches,
+			"patchesHashCheck"	=> @patchesHashCheck,
+			"mirrorPath"				=> @mirrorPath,
+			"license"						=> @license,
+			"description"				=> @description
+		}
   end
   
   ##
@@ -190,5 +188,4 @@ public
   ##
   def post
   end
-  
 end
