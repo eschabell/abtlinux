@@ -42,7 +42,7 @@ private
     'version'						=> $version,
     'srcDir'						=> $srcDir,
     'homepage'					=> "http://www.ibiblio.org/pub/Linux/games/amusements/#{$name.downcase}/",
-    'srcUrl'						=> "http://www.ibiblio.org/pub/Linux/games/amusements/#{$srcDir}.tar.gz",
+    'srcUrl'						=> "http://www.ibiblio.org/pub/Linux/games/amusements/#{$name.downcase}/#{$srcDir}.tar.gz",
     'dependsOn'					=> "",
     'reliesOn'					=> "",
     'optionalDO'				=> "",
