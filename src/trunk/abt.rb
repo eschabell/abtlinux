@@ -40,8 +40,9 @@ $SOURCES_REPOSITORY	= "/var/spool/abt/sources"
 # Setup for parsing arguments.
 ##
 manager = AbtPackageManager.new
+logger  = AbtLogManager.new
 options = Hash.new()
-show = AbtUsage.new();
+show    = AbtUsage.new();
 
 # deal with usage request.
 if ( ARGV.length == 0 )
@@ -112,6 +113,7 @@ case ARGV[0]
 	when "show-details"  
 		if ( ARGV.length == 2 && File.exist?( $PACKAGE_PATH + ARGV[1] + ".rb" ) )
 			options['package'] = ARGV[1]
+			logger.logToJournal( "Starting to show details for " + options['package'] )
 			
 			require options['package']                                # pickup called package class.
 			package = eval( options['package'].capitalize + '.new' )  # evaluates package.new methode dynamically.
@@ -135,6 +137,7 @@ case ARGV[0]
 			puts "License          : " + details['license']
 			puts "Description      : " + details['description']
 			puts "**************************************"
+			logger.logToJournal( "Completed show details for " + options['package'] )
 		else
 			show.usage( "queries" )
 		end
@@ -216,17 +219,21 @@ case ARGV[0]
 	when "download", "-d"  
 		if ( ARGV.length == 2 && File.exist?( $PACKAGE_PATH + ARGV[1] + ".rb" ) )
 			options['package'] = ARGV[1]
+			logger.logToJournal( "Starting to download " + options['package'] )
 
 			if ( !File.directory?( $SOURCES_REPOSITORY ) )
 				FileUtils.mkdir_p( $SOURCES_REPOSITORY ) # initialize directory.
+				logger.logToJournal( "Had to initialize directory - " + $SOURCES_REPOSITORY )
 			end
 
 			manager = AbtDownloadManager.new
 
 			if ( manager.retrievePackageSource( options['package'], $SOURCES_REPOSITORY ) )
-					puts "\nDownloading of " + options['package'] + " to " + $SOURCES_REPOSITORY + " completed.\n\n"
+				logger.logToJournal( "Finished download for " + options['package'] )
+				puts "\nDownloading of " + options['package'] + " to " + $SOURCES_REPOSITORY + " completed.\n\n"
 			else
-					puts "\nDOWNLOADING - failed to download source for " + options['package'] + "\n\n"
+				logger.logToJournal( "FAILURE to download " + options['package'] )
+				puts "\nDOWNLOADING - failed to download source for " + options['package'] + "\n\n"
 			end
 
 		else

@@ -55,13 +55,16 @@ public
   def retrievePackageSource( packageName, destination )
 
 		require packageName
+		logger = AbtLogManager.new
 		package = eval( packageName.capitalize + '.new' )
 		
 		if ( File.exist?( destination + "/" + File.basename( package.srcUrl ) ) )
+			logger.logToJournal( "Download not needed, existing source found for " + packageName )
 			return true
 		end
 
 		if ( system( "cd " + destination + "; wget " +  package.srcUrl ) )  # TODO: rm system call?
+			logger.logToJournal( "Download completed for " + packageName )
 			return true
 		end
 

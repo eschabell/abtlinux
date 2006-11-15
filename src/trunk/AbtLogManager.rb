@@ -27,6 +27,9 @@
 ##
 class AbtLogManager
 
+	$LOG_PATH = "/var/log/abt"
+	$JOURNAL  = "/var/log/abt/journal.log"
+
 protected
  
   ##
@@ -53,6 +56,7 @@ public
   # <b>RETURN</b> <i>AbtLogManager</i> - an initialized AbtLogManager object. 
   ##
   def initialize
+	  
   end
 
   ##
@@ -97,10 +101,16 @@ public
   # 
   # <b>PARAM</b> <i>String</i> - Message to be added to the log.
   # 
-  # <b>RETURN</b> <i>boolean</i> - True if message logged successfully,
-  # otherwise false.
+  # <b>RETURN</b> <i>void</i>
   ##
   def logToJournal( message )
+	  require 'date'
+
+	  if ( !File.directory?( $LOG_PATH ) )
+		  FileUtils.mkdir_p( $LOG_PATH )  # initialize logs.
+	  end
+	  
+	  log = File.new($JOURNAL, File::WRONLY|File::APPEND|File::CREAT, 0644)
+	  log.puts DateTime::now.to_s + ' : ' + message 
   end
-  
 end

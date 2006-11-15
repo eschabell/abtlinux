@@ -41,7 +41,7 @@ class TestAbtDownloadManager < Test::Unit::TestCase
   # Test method for 'AbtDownloadManager.testRetrievePackageSource()'
   ## 
   def testRetrievePackageSource()
-    assert( @download.retrievePackageSource( "dummy" ), "testRetrievePackageSource()" )
+    assert( @download.retrievePackageSource( "fortune", "/tmp" ), "testRetrievePackageSource()" )
   end
   
   ##
