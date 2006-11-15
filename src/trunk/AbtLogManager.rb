@@ -101,7 +101,7 @@ public
   # 
   # <b>PARAM</b> <i>String</i> - Message to be added to the log.
   # 
-  # <b>RETURN</b> <i>void</i>
+  # <b>RETURN</b> <i>boolean</i> True if logged, otherwise false.
   ##
   def logToJournal( message )
 	  require 'date'
@@ -112,5 +112,6 @@ public
 	  
 	  log = File.new($JOURNAL, File::WRONLY|File::APPEND|File::CREAT, 0644)
 	  log.puts DateTime::now.to_s + ' : ' + message 
+	  return true
   end
 end
