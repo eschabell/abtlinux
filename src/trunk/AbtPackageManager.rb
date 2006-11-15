@@ -98,5 +98,26 @@ public
   ##
   def freezePackage( package )
   end
-  
+
+  ##
+  # Provides for a log through for root access using su.
+  #
+  # <b>PARAM</b> <i>Array</i> - the arguments passed to abt.
+  # 
+  # <b>RETURN</b> <i>void</i>
+  ##
+  def rootLogin( arguments )
+	  if ( Process.uid != 0 )
+		  args = ""
+		  puts "\nEnter root password:"
+
+		  for i in 0...ARGV.length
+			  args = args + " " + ARGV[i]
+		  end
+
+		  # TODO: remove the ./abt call on deployment.
+		  system( 'su -c "./abt ' + args + '" root' )
+		  exit
+	  end
+  end
 end

@@ -37,31 +37,21 @@ $PACKAGE_PATH				= "./packages/"
 $SOURCES_REPOSITORY	= "/var/spool/abt/sources"
 
 ##
-# Parsing our options.
+# Setup for parsing arguments.
 ##
+manager = AbtPackageManager.new
 options = Hash.new()
 show = AbtUsage.new();
 
+# deal with usage request.
 if ( ARGV.length == 0 )
 	show.usage( "all" )
 end
 
-# from here on out, need root access.
-if ( Process.uid != 0 )
-	args = ""
-	
-	puts "\nEnter root password:"
-	
-	for i in 0...ARGV.length
-		args = args + " " + ARGV[i]
-	end
+# login as root for the rest.
+manager.rootLogin( ARGV )
 
-	# TODO: remove the ./abt call on deployment.
-	system( 'su -c "./abt ' + args + '" root' )
-	exit
-end
-
-
+# parse arguments.
 case ARGV[0]
 
 	when "install", "-i"
