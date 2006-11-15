@@ -46,11 +46,21 @@ if ( ARGV.length == 0 )
 	show.usage( "all" )
 end
 
-# TODO: provide root login here?
+# from here on out, need root access.
 if ( Process.uid != 0 )
-	puts "\nYou need to run abt as root.\n\n"
+	args = ""
+	
+	puts "\nEnter root password:"
+	
+	for i in 0...ARGV.length
+		args = args + " " + ARGV[i]
+	end
+
+	# TODO: remove the ./abt call on deployment.
+	system( 'su -c "./abt ' + args + '" root' )
 	exit
 end
+
 
 case ARGV[0]
 
