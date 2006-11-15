@@ -192,8 +192,11 @@ case ARGV[0]
 		show.usage( "queries" )
 
 	when "show-journal"  
-		puts "Display system log with AbTLinux activity."
-		show.usage( "queries" )
+		if ( File.exist?( $JOURNAL ) )
+			system( 'less ' + $JOURNAL )
+		else
+			puts "AbTLinux journal is empty at this time."
+		end
 	
 	when "show-iqueue"  
 		puts "Display contents of install queue."
