@@ -124,6 +124,7 @@ Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
   <li><a href="#M000038">new</a></li>
   <li><a href="#M000040">reinstallPackage</a></li>
   <li><a href="#M000041">removePackage</a></li>
+  <li><a href="#M000044">rootLogin</a></li>
   </ul>
 
 
@@ -293,6 +294,44 @@ false.
     <span class="ruby-comment cmt"># File AbtPackageManager.rb, line 74</span>
 74:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">removePackage</span>( <span class="ruby-identifier">package</span> )
 75:   <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000044"></a><b>rootLogin</b>( arguments )
+  </div>
+  <div class="description">
+  <p>
+Provides for a log through for root access using su.
+</p>
+<p>
+<b>PARAM</b> <em>Array</em> - the arguments passed to abt.
+</p>
+<p>
+<b>RETURN</b> <em>void</em>
+</p>
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000044_source')" id="l_M000044_source">show source</a> ]</p>
+  <div id="M000044_source" class="dyn-source">
+<pre>
+     <span class="ruby-comment cmt"># File AbtPackageManager.rb, line 109</span>
+109:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">rootLogin</span>( <span class="ruby-identifier">arguments</span> )
+110:           <span class="ruby-keyword kw">if</span> ( <span class="ruby-constant">Process</span>.<span class="ruby-identifier">uid</span> <span class="ruby-operator">!=</span> <span class="ruby-value">0</span> )
+111:                   <span class="ruby-identifier">args</span> = <span class="ruby-value str">&quot;&quot;</span>
+112:                   <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;\nEnter root password:&quot;</span>
+113: 
+114:                   <span class="ruby-keyword kw">for</span> <span class="ruby-identifier">i</span> <span class="ruby-keyword kw">in</span> <span class="ruby-value">0</span><span class="ruby-operator">...</span><span class="ruby-constant">ARGV</span>.<span class="ruby-identifier">length</span>
+115:                           <span class="ruby-identifier">args</span> = <span class="ruby-identifier">args</span> <span class="ruby-operator">+</span> <span class="ruby-value str">&quot; &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-constant">ARGV</span>[<span class="ruby-identifier">i</span>]
+116:                   <span class="ruby-keyword kw">end</span>
+117: 
+118:                   <span class="ruby-comment cmt"># TODO: remove the ./abt call on deployment.</span>
+119:                   <span class="ruby-identifier">system</span>( <span class="ruby-value str">'su -c &quot;./abt '</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">args</span> <span class="ruby-operator">+</span> <span class="ruby-value str">'&quot; root'</span> )
+120:                   <span class="ruby-identifier">exit</span>
+121:           <span class="ruby-keyword kw">end</span>
+122:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>
