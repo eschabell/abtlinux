@@ -148,10 +148,10 @@ initialized <a href="AbtLogManager.html">AbtLogManager</a> object.
   <p class="source-link">[ <a href="javascript:toggleSource('M000059_source')" id="l_M000059_source">show source</a> ]</p>
   <div id="M000059_source" class="dyn-source">
 <pre>
-    <span class="ruby-comment cmt"># File AbtLogManager.rb, line 58</span>
-58:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>
-59:           
-60:   <span class="ruby-keyword kw">end</span>
+    <span class="ruby-comment cmt"># File AbtLogManager.rb, line 55</span>
+55:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>
+56:           
+57:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>
@@ -178,9 +178,9 @@ successfully, otherwise false.
   <p class="source-link">[ <a href="javascript:toggleSource('M000062_source')" id="l_M000062_source">show source</a> ]</p>
   <div id="M000062_source" class="dyn-source">
 <pre>
-    <span class="ruby-comment cmt"># File AbtLogManager.rb, line 95</span>
-95:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">cachePackage</span>( <span class="ruby-identifier">package</span> )
-96:   <span class="ruby-keyword kw">end</span>
+    <span class="ruby-comment cmt"># File AbtLogManager.rb, line 92</span>
+92:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">cachePackage</span>( <span class="ruby-identifier">package</span> )
+93:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>
@@ -206,9 +206,9 @@ otherwise false.
   <p class="source-link">[ <a href="javascript:toggleSource('M000061_source')" id="l_M000061_source">show source</a> ]</p>
   <div id="M000061_source" class="dyn-source">
 <pre>
-    <span class="ruby-comment cmt"># File AbtLogManager.rb, line 83</span>
-83:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">logPackageBuild</span>( <span class="ruby-identifier">package</span> )
-84:   <span class="ruby-keyword kw">end</span>
+    <span class="ruby-comment cmt"># File AbtLogManager.rb, line 80</span>
+80:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">logPackageBuild</span>( <span class="ruby-identifier">package</span> )
+81:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>
@@ -234,9 +234,9 @@ otherwise false.
   <p class="source-link">[ <a href="javascript:toggleSource('M000060_source')" id="l_M000060_source">show source</a> ]</p>
   <div id="M000060_source" class="dyn-source">
 <pre>
-    <span class="ruby-comment cmt"># File AbtLogManager.rb, line 71</span>
-71:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">logPackageInstall</span>( <span class="ruby-identifier">package</span> )
-72:   <span class="ruby-keyword kw">end</span>
+    <span class="ruby-comment cmt"># File AbtLogManager.rb, line 68</span>
+68:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">logPackageInstall</span>( <span class="ruby-identifier">package</span> )
+69:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>
@@ -261,18 +261,18 @@ with date timestamp.
   <p class="source-link">[ <a href="javascript:toggleSource('M000063_source')" id="l_M000063_source">show source</a> ]</p>
   <div id="M000063_source" class="dyn-source">
 <pre>
-     <span class="ruby-comment cmt"># File AbtLogManager.rb, line 106</span>
-106:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">logToJournal</span>( <span class="ruby-identifier">message</span> )
-107:           <span class="ruby-identifier">require</span> <span class="ruby-value str">'date'</span>
-108: 
-109:           <span class="ruby-keyword kw">if</span> ( <span class="ruby-operator">!</span><span class="ruby-constant">File</span>.<span class="ruby-identifier">directory?</span>( <span class="ruby-identifier">$LOG_PATH</span> ) )
-110:                   <span class="ruby-constant">FileUtils</span>.<span class="ruby-identifier">mkdir_p</span>( <span class="ruby-identifier">$LOG_PATH</span> )  <span class="ruby-comment cmt"># initialize logs.</span>
-111:           <span class="ruby-keyword kw">end</span>
-112:           
-113:           <span class="ruby-identifier">log</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">$JOURNAL</span>, <span class="ruby-constant">File</span><span class="ruby-operator">::</span><span class="ruby-constant">WRONLY</span><span class="ruby-operator">|</span><span class="ruby-constant">File</span><span class="ruby-operator">::</span><span class="ruby-constant">APPEND</span><span class="ruby-operator">|</span><span class="ruby-constant">File</span><span class="ruby-operator">::</span><span class="ruby-constant">CREAT</span>, <span class="ruby-value">0644</span>)
-114:           <span class="ruby-identifier">log</span>.<span class="ruby-identifier">puts</span> <span class="ruby-constant">DateTime</span><span class="ruby-operator">::</span><span class="ruby-identifier">now</span>.<span class="ruby-identifier">to_s</span> <span class="ruby-operator">+</span> <span class="ruby-value str">' : '</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">message</span> 
-115:           <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">true</span>
-116:   <span class="ruby-keyword kw">end</span>
+     <span class="ruby-comment cmt"># File AbtLogManager.rb, line 103</span>
+103:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">logToJournal</span>( <span class="ruby-identifier">message</span> )
+104:           <span class="ruby-identifier">require</span> <span class="ruby-value str">'date'</span>
+105: 
+106:           <span class="ruby-keyword kw">if</span> ( <span class="ruby-operator">!</span><span class="ruby-constant">File</span>.<span class="ruby-identifier">directory?</span>( <span class="ruby-identifier">$JOURNAL_PATH</span> ) )
+107:                   <span class="ruby-constant">FileUtils</span>.<span class="ruby-identifier">mkdir_p</span>( <span class="ruby-identifier">$JOURNAL_PATH</span> )  <span class="ruby-comment cmt"># initialize logs.</span>
+108:           <span class="ruby-keyword kw">end</span>
+109:           
+110:           <span class="ruby-identifier">log</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">$JOURNAL</span>, <span class="ruby-constant">File</span><span class="ruby-operator">::</span><span class="ruby-constant">WRONLY</span><span class="ruby-operator">|</span><span class="ruby-constant">File</span><span class="ruby-operator">::</span><span class="ruby-constant">APPEND</span><span class="ruby-operator">|</span><span class="ruby-constant">File</span><span class="ruby-operator">::</span><span class="ruby-constant">CREAT</span>, <span class="ruby-value">0644</span>)
+111:           <span class="ruby-identifier">log</span>.<span class="ruby-identifier">puts</span> <span class="ruby-constant">DateTime</span><span class="ruby-operator">::</span><span class="ruby-identifier">now</span>.<span class="ruby-identifier">to_s</span> <span class="ruby-operator">+</span> <span class="ruby-value str">' : '</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">message</span> 
+112:           <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">true</span>
+113:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>
@@ -300,9 +300,9 @@ successfully, otherwise false.
   <p class="source-link">[ <a href="javascript:toggleSource('M000058_source')" id="l_M000058_source">show source</a> ]</p>
   <div id="M000058_source" class="dyn-source">
 <pre>
-    <span class="ruby-comment cmt"># File AbtLogManager.rb, line 45</span>
-45:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">logPackageIntegrity</span>( <span class="ruby-identifier">package</span> )
-46:   <span class="ruby-keyword kw">end</span>
+    <span class="ruby-comment cmt"># File AbtLogManager.rb, line 42</span>
+42:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">logPackageIntegrity</span>( <span class="ruby-identifier">package</span> )
+43:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>
