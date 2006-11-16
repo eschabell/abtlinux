@@ -27,9 +27,6 @@
 ##
 class AbtLogManager
 
-	$LOG_PATH = "/var/log/abt"
-	$JOURNAL  = "/var/log/abt/journal.log"
-
 protected
  
   ##
@@ -106,8 +103,8 @@ public
   def logToJournal( message )
 	  require 'date'
 
-	  if ( !File.directory?( $LOG_PATH ) )
-		  FileUtils.mkdir_p( $LOG_PATH )  # initialize logs.
+	  if ( !File.directory?( $JOURNAL_PATH ) )
+		  FileUtils.mkdir_p( $JOURNAL_PATH )  # initialize logs.
 	  end
 	  
 	  log = File.new($JOURNAL, File::WRONLY|File::APPEND|File::CREAT, 0644)

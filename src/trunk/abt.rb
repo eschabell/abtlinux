@@ -40,6 +40,9 @@ require 'optparse'
 $PACKAGE_PATH				= "./packages/"
 $SOURCES_REPOSITORY	= "/var/spool/abt/sources"
 $ABTNEWS            = "http://abtlinux.org/e107_plugins/rss_menu/rss.php?1.2"
+$JOURNAL_PATH       = "/var/log/abt"
+$JOURNAL            = "#{$JOURNAL_PATH}/journal.log"
+
 
 ##
 # Setup for parsing arguments.
@@ -224,7 +227,10 @@ case ARGV[0]
 	  puts "  (package name with hyperlink to package website and version installed)"
 		show.usage( "generation" )
 	
+	# abt news | -n
 	when "news", "-n"
+		logger.logToJournal( "Starting to retrieve AbTLinux news." )
+
 		# pick up the abtlinux.org news feed.
 		news = Net::HTTP.get( URI.parse( $ABTNEWS ) )
 
@@ -233,7 +239,7 @@ case ARGV[0]
 		begin
 			rss = RSS::Parser.parse(news, false)
 			rescue RSS::Error
-		end
+		end 
 
 		if ( rss.nil? )
 			puts $ABTNEWS + " is not RSS 1.0/2.0."
@@ -249,7 +255,9 @@ case ARGV[0]
 				puts "SUBJECT: #{item.description}\n"
 			end
 		end
+		logger.logToJournal( "Completed the retrieval of AbTLinux news." )
             
+	# abt [-d | download ] <package>
 	when "download", "-d"  
 		if ( ARGV.length == 2 && File.exist?( $PACKAGE_PATH + ARGV[1] + ".rb" ) )
 			options['package'] = ARGV[1]
