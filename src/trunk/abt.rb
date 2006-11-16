@@ -30,11 +30,16 @@ require 'AbtReportManager'
 require 'AbtDownloadManager'
 require 'AbtUsage'
 require 'fileutils'
+require 'net/http'
+require 'uri'
+require 'rss/1.0'
+require 'rss/2.0'
 require 'optparse'
 
 
 $PACKAGE_PATH				= "./packages/"
 $SOURCES_REPOSITORY	= "/var/spool/abt/sources"
+$ABTNEWS            = "http://abtlinux.org/e107_plugins/rss_menu/rss.php?1.2"
 
 ##
 # Setup for parsing arguments.
@@ -220,8 +225,28 @@ case ARGV[0]
 		show.usage( "generation" )
 	
 	when "news", "-n"
-  puts "Display AbTLinux website newsfeed."
-	show.usage( "downloads" )
+		# pick up the abtlinux.org news feed.
+		news = Net::HTTP.get( URI.parse( $ABTNEWS ) )
+
+		# display the feed neatly.
+		rss = nil
+		begin
+			rss = RSS::Parser.parse(news, false)
+			rescue RSS::Error
+		end
+
+		if ( rss.nil? )
+			puts $ABTNEWS + " is not RSS 1.0/2.0."
+		else
+			i = 0
+			rss.items.each do |item|
+				i = i + 1
+				puts "\nNews item number #{i}:"
+				puts "========================="
+				puts "TITLE: #{item.title}\n"
+				puts "SUBJECT: #{item.description}\n"
+			end
+		end
             
 	when "download", "-d"  
 		if ( ARGV.length == 2 && File.exist?( $PACKAGE_PATH + ARGV[1] + ".rb" ) )
