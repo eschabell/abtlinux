@@ -238,6 +238,8 @@ case ARGV[0]
 		if ( rss.nil? )
 			puts $ABTNEWS + " is not RSS 1.0/2.0."
 		else
+			puts "\n\nThe latest and greatest news from AbTLinux:"
+			puts "==========================================="
 			i = 0
 			rss.items.each do |item|
 				i = i + 1
