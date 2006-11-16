@@ -193,7 +193,11 @@ case ARGV[0]
 
 	when "show-journal"  
 		if ( File.exist?( $JOURNAL ) )
-			system( 'less ' + $JOURNAL )
+			puts "\n\nAbTLinux journal:"
+			puts "================="
+			log = IO.readlines( $JOURNAL )
+			log.each{ |line| puts line }
+			puts "\n\n"
 		else
 			puts "AbTLinux journal is empty at this time."
 		end
