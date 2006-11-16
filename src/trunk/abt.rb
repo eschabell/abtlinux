@@ -40,7 +40,8 @@ require 'optparse'
 
 
 ##
-# Setup for parsing arguments.
+# Setup needed classes and get ready 
+# to parse arguments.
 ##
 manager = AbtPackageManager.new
 logger  = AbtLogManager.new
