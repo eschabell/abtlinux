@@ -70,7 +70,7 @@ class TestAbtLogManager < Test::Unit::TestCase
   # Test method for 'AbtLogManager.testLogToJournal()'
   ## 
   def testLogToJournal()
-    assert( @log.logToJournal( "Test message." ), "testLogToJournal()" )
+    assert( @log.logToJournal( "Test message from AbtTestSuite." ), "testLogToJournal()" )
   end
 
 end

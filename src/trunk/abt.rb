@@ -24,6 +24,7 @@
 # AbTLinux; if not, write to the Free Software Foundation, Inc., 51 Franklin
 # St, Fifth Floor, Boston, MA 02110-1301  USA
 ##
+require 'abtConfig'
 require 'AbtPackageManager'
 require 'AbtLogManager'
 require 'AbtReportManager'
@@ -36,12 +37,6 @@ require 'rss/1.0'
 require 'rss/2.0'
 require 'optparse'
 
-
-$PACKAGE_PATH				= "./packages/"
-$SOURCES_REPOSITORY	= "/var/spool/abt/sources"
-$ABTNEWS            = "http://abtlinux.org/e107_plugins/rss_menu/rss.php?1.2"
-$JOURNAL_PATH       = "/var/log/abt"
-$JOURNAL            = "#{$JOURNAL_PATH}/journal.log"
 
 
 ##
