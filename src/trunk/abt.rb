@@ -242,13 +242,18 @@ case ARGV[0]
 		else
 			puts "\n\nThe latest and greatest news from AbTLinux:"
 			puts "==========================================="
-			i = 0
-			rss.items.each do |item|
-				i = i + 1
-				puts "\nNews item number #{i}:"
-				puts "========================="
-				puts "TITLE: #{item.title}\n"
-				puts "SUBJECT: #{item.description}\n"
+			
+			rss.items.reverse.each do |item|
+				title = "News item : #{item.title}"
+				puts "\n#{title}"
+
+				for i in 0...title.length
+					print "="
+				end
+
+				stripped = item.description.sub( '[/html]', '' )
+				stripped = stripped.sub( '[click here]', ' ' )
+				puts "\n#{stripped}\n\n"
 			end
 		end
 		logger.logToJournal( "Completed the retrieval of AbTLinux news." )
