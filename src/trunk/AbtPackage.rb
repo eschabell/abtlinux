@@ -116,22 +116,22 @@ public
   ##
   def details
 		return {
-			"name" 							=> @name,
-			"execName"					=> @execName,
-			"version"						=> @version,
-			"srcDir"						=> @srcDir,
-			"homepage"					=> @homepage,
-			"srcUrl"						=> @srcUrl,
-			"dependsOn"					=> @dependsOn,
-			"reliesOn"					=> @reliesOn,
-			"optionalDO"				=> @optionalDO,
-			"optionalRO"				=> @optionalRO,
-			"hashCheck"					=> @hashCheck,
-			"patches"						=> @patches,
-			"patchesHashCheck"	=> @patchesHashCheck,
-			"mirrorPath"				=> @mirrorPath,
-			"license"						=> @license,
-			"description"				=> @description
+			"Package name"			=> @name,
+			"Executable"				=> @execName,
+			"Version"						=> @version,
+			"Source location"		=> @srcDir,
+			"Homepage"					=> @homepage,
+			"Source uri"				=> @srcUrl,
+			"Depends On"				=> @dependsOn,
+			"Relies On"					=> @reliesOn,
+			"Optional DO"				=> @optionalDO,
+			"Optional RO"				=> @optionalRO,
+			"Security hash"			=> @hashCheck,
+			"Patches"						=> @patches,
+			"Patches hash"			=> @patchesHashCheck,
+			"Mirror"						=> @mirrorPath,
+			"License"						=> @license,
+			"Description"				=> @description
 		}
   end
   

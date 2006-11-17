@@ -123,24 +123,31 @@ case ARGV[0]
 			package = eval( options['package'].capitalize + '.new' )  # evaluates package.new methode dynamically.
 			details = package.details
 
-			puts "**************************************"
-			puts "Package name     : " + details['name']
-			puts "Executable       : " + details['execName']
-			puts "Version          : " + details['version']
-			puts "Source directory : " + details['srcDir']
-			puts "Homepage         : " + details['homepage']
-			puts "Source location  : " + details['srcUrl']
-			puts "Depends On       : " + details['dependsOn']
-			puts "Relies On        : " + details['reliesOn']
-			puts "Optional DO      : " + details['optionalDO']
-			puts "Optional RO      : " + details['optionalRO']
-			puts "Security hash    : " + details['hashCheck']
-			puts "Patches          : " + details['patches']
-			puts "Patches hash     : " + details['patchesHashCheck']
-			puts "Mirror           : " + details['mirrorPath']
-			puts "License          : " + details['license']
-			puts "Description      : " + details['description']
-			puts "**************************************"
+			puts "|====================================="
+			puts "| Package name\t:#{details['Package name']}"
+			details.delete( "Package name" )
+			puts "| Version\t: #{details['Version']}"
+			details.delete( "Version" )
+			puts "| Homepage\t: #{details['Homepage']}"
+			details.delete( "Homepage" )
+			puts "| Executable\t: #{details['Executable']}"
+			details.delete( "Executable" )
+			puts "| Source uri\t: #{details['Source uri']}"
+			details.delete( "Source uri" )
+			puts "| Description\t: #{details['Description']}"
+			details.delete( "Description" )
+			puts "|====================================="
+			puts "|====================================="
+
+			details.each do |name, value| 
+				print "| #{name}\t"
+				if ( name.length < 14 )
+					print "\t"
+				end
+				puts ": #{value}"
+			end
+
+			puts "|====================================="
 			logger.logToJournal( "Completed show details for " + options['package'] )
 		else
 			show.usage( "queries" )
