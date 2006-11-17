@@ -124,7 +124,7 @@ case ARGV[0]
 			details = package.details
 
 			puts "|====================================="
-			puts "| Package name\t:#{details['Package name']}"
+			puts "| Package name\t: #{details['Package name']}"
 			details.delete( "Package name" )
 			puts "| Version\t: #{details['Version']}"
 			details.delete( "Version" )
