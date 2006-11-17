@@ -43,10 +43,10 @@ require 'optparse'
 # Setup needed classes and get ready 
 # to parse arguments.
 ##
-manager = AbtPackageManager.new
-logger  = AbtLogManager.new
-options = Hash.new()
-show    = AbtUsage.new();
+manager     = AbtPackageManager.new
+logger      = AbtLogManager.new
+options     = Hash.new()
+show        = AbtUsage.new()
 
 # deal with usage request.
 if ( ARGV.length == 0 )
@@ -240,20 +240,28 @@ case ARGV[0]
 		if ( rss.nil? )
 			puts $ABTNEWS + " is not RSS 1.0/2.0."
 		else
-			puts "\n\nThe latest and greatest news from AbTLinux:"
-			puts "==========================================="
+			puts "\n\n"
+			puts "======================="
+			puts "= News from AbTLinux: ="
+			puts "======================="
+			puts "\n"
 			
-			rss.items.reverse.each do |item|
-				title = "News item : #{item.title}"
-				puts "\n#{title}"
-
-				for i in 0...title.length
-					print "="
+			itemCount = 0  # only printing three items.
+			rss.items.each do |item|
+				itemCount += 1
+				if ( itemCount <= $MAX_NEWS_ITEMS )
+					# format some of the item data.
+					author      = item.author.split( '<' )
+					description = item.description.sub( '[/html]', '' )
+				
+					puts "************************************"
+					puts "Date   : #{item.date}"
+					puts "Author : #{author[0]}"
+					puts "Link   : #{item.link}"
+					puts "Title  : #{item.title}"
+					puts "\n#{description}"
+					puts "************************************\n\n"
 				end
-
-				stripped = item.description.sub( '[/html]', '' )
-				stripped = stripped.sub( '[click here]', ' ' )
-				puts "\n#{stripped}\n\n"
 			end
 		end
 		logger.logToJournal( "Completed the retrieval of AbTLinux news." )

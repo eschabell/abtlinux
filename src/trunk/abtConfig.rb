@@ -29,3 +29,4 @@ $SOURCES_REPOSITORY	= "/var/spool/abt/sources"
 $ABTNEWS            = "http://abtlinux.org/e107_plugins/rss_menu/rss.php?1.2"
 $JOURNAL_PATH       = "/var/log/abt"
 $JOURNAL            = "#{$JOURNAL_PATH}/journal.log"
+$MAX_NEWS_ITEMS     = 3
