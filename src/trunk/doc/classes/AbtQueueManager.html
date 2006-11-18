@@ -117,8 +117,8 @@ Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
 
   <div class="sectiontitle">Methods</div>
   <ul>
-  <li><a href="#M000083">addPackageToQueue</a></li>
-  <li><a href="#M000082">new</a></li>
+  <li><a href="#M000085">addPackageToQueue</a></li>
+  <li><a href="#M000084">new</a></li>
   </ul>
 
 
@@ -129,7 +129,7 @@ Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
 <div class="sectiontitle">Public Class methods</div>
 <div class="method">
   <div class="title">
-    <a name="M000082"></a><b>new</b>()
+    <a name="M000084"></a><b>new</b>()
   </div>
   <div class="description">
   <p>
@@ -142,8 +142,8 @@ an initialized <a href="AbtQueueManager.html">AbtQueueManager</a> object.
 </p>
   </div>
 <div class="sourcecode">
-  <p class="source-link">[ <a href="javascript:toggleSource('M000082_source')" id="l_M000082_source">show source</a> ]</p>
-  <div id="M000082_source" class="dyn-source">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000084_source')" id="l_M000084_source">show source</a> ]</p>
+  <div id="M000084_source" class="dyn-source">
 <pre>
     <span class="ruby-comment cmt"># File AbtQueueManager.rb, line 40</span>
 40:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>
@@ -158,7 +158,7 @@ an initialized <a href="AbtQueueManager.html">AbtQueueManager</a> object.
 <div class="sectiontitle">Public Instance methods</div>
 <div class="method">
   <div class="title">
-    <a name="M000083"></a><b>addPackageToQueue</b>( package, queue )
+    <a name="M000085"></a><b>addPackageToQueue</b>( package, queue )
   </div>
   <div class="description">
   <p>
@@ -175,8 +175,8 @@ queue, otherwise false.
 </p>
   </div>
 <div class="sourcecode">
-  <p class="source-link">[ <a href="javascript:toggleSource('M000083_source')" id="l_M000083_source">show source</a> ]</p>
-  <div id="M000083_source" class="dyn-source">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000085_source')" id="l_M000085_source">show source</a> ]</p>
+  <div id="M000085_source" class="dyn-source">
 <pre>
     <span class="ruby-comment cmt"># File AbtQueueManager.rb, line 57</span>
 57:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">addPackageToQueue</span>( <span class="ruby-identifier">package</span>, <span class="ruby-identifier">queue</span> )
@@ -208,8 +208,9 @@ queue, otherwise false.
 83:                         <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">true</span>
 84:                 <span class="ruby-keyword kw">end</span>
 85: 
-86:                 <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">false</span>
-87:         <span class="ruby-keyword kw">end</span>
+86:                 <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">logToJournal</span>( <span class="ruby-node">&quot;Failed to open #{queueFile}.&quot;</span> )
+87:                 <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">false</span>
+88:         <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>

@@ -118,13 +118,13 @@ Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
 
   <div class="sectiontitle">Methods</div>
   <ul>
-  <li><a href="#M000042">downgradePackage</a></li>
-  <li><a href="#M000043">freezePackage</a></li>
-  <li><a href="#M000039">installPackage</a></li>
-  <li><a href="#M000038">new</a></li>
-  <li><a href="#M000040">reinstallPackage</a></li>
-  <li><a href="#M000041">removePackage</a></li>
-  <li><a href="#M000044">rootLogin</a></li>
+  <li><a href="#M000044">downgradePackage</a></li>
+  <li><a href="#M000045">freezePackage</a></li>
+  <li><a href="#M000041">installPackage</a></li>
+  <li><a href="#M000040">new</a></li>
+  <li><a href="#M000042">reinstallPackage</a></li>
+  <li><a href="#M000043">removePackage</a></li>
+  <li><a href="#M000046">rootLogin</a></li>
   </ul>
 
 
@@ -135,7 +135,7 @@ Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
 <div class="sectiontitle">Public Class methods</div>
 <div class="method">
   <div class="title">
-    <a name="M000038"></a><b>new</b>()
+    <a name="M000040"></a><b>new</b>()
   </div>
   <div class="description">
   <p>
@@ -148,8 +148,8 @@ href="AbtPackageManager.html">AbtPackageManager</a></em> - an initialized
 </p>
   </div>
 <div class="sourcecode">
-  <p class="source-link">[ <a href="javascript:toggleSource('M000038_source')" id="l_M000038_source">show source</a> ]</p>
-  <div id="M000038_source" class="dyn-source">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000040_source')" id="l_M000040_source">show source</a> ]</p>
+  <div id="M000040_source" class="dyn-source">
 <pre>
     <span class="ruby-comment cmt"># File AbtPackageManager.rb, line 41</span>
 41:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>
@@ -161,7 +161,7 @@ href="AbtPackageManager.html">AbtPackageManager</a></em> - an initialized
 <div class="sectiontitle">Public Instance methods</div>
 <div class="method">
   <div class="title">
-    <a name="M000042"></a><b>downgradePackage</b>( package, version )
+    <a name="M000044"></a><b>downgradePackage</b>( package, version )
   </div>
   <div class="description">
   <p>
@@ -179,19 +179,19 @@ otherwise false.
 </p>
   </div>
 <div class="sourcecode">
-  <p class="source-link">[ <a href="javascript:toggleSource('M000042_source')" id="l_M000042_source">show source</a> ]</p>
-  <div id="M000042_source" class="dyn-source">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000044_source')" id="l_M000044_source">show source</a> ]</p>
+  <div id="M000044_source" class="dyn-source">
 <pre>
-    <span class="ruby-comment cmt"># File AbtPackageManager.rb, line 87</span>
-87:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">downgradePackage</span>( <span class="ruby-identifier">package</span>, <span class="ruby-identifier">version</span> )
-88:   <span class="ruby-keyword kw">end</span>
+     <span class="ruby-comment cmt"># File AbtPackageManager.rb, line 122</span>
+122:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">downgradePackage</span>( <span class="ruby-identifier">package</span>, <span class="ruby-identifier">version</span> )
+123:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>
 </div>
 <div class="method">
   <div class="title">
-    <a name="M000043"></a><b>freezePackage</b>( package )
+    <a name="M000045"></a><b>freezePackage</b>( package )
   </div>
   <div class="description">
   <p>
@@ -207,19 +207,19 @@ false.
 </p>
   </div>
 <div class="sourcecode">
-  <p class="source-link">[ <a href="javascript:toggleSource('M000043_source')" id="l_M000043_source">show source</a> ]</p>
-  <div id="M000043_source" class="dyn-source">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000045_source')" id="l_M000045_source">show source</a> ]</p>
+  <div id="M000045_source" class="dyn-source">
 <pre>
-     <span class="ruby-comment cmt"># File AbtPackageManager.rb, line 99</span>
- 99:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">freezePackage</span>( <span class="ruby-identifier">package</span> )
-100:   <span class="ruby-keyword kw">end</span>
+     <span class="ruby-comment cmt"># File AbtPackageManager.rb, line 134</span>
+134:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">freezePackage</span>( <span class="ruby-identifier">package</span> )
+135:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>
 </div>
 <div class="method">
   <div class="title">
-    <a name="M000039"></a><b>installPackage</b>( package )
+    <a name="M000041"></a><b>installPackage</b>( package )
   </div>
   <div class="description">
   <p>
@@ -234,19 +234,54 @@ otherwise false.
 </p>
   </div>
 <div class="sourcecode">
-  <p class="source-link">[ <a href="javascript:toggleSource('M000039_source')" id="l_M000039_source">show source</a> ]</p>
-  <div id="M000039_source" class="dyn-source">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000041_source')" id="l_M000041_source">show source</a> ]</p>
+  <div id="M000041_source" class="dyn-source">
 <pre>
     <span class="ruby-comment cmt"># File AbtPackageManager.rb, line 52</span>
 52:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">installPackage</span>( <span class="ruby-identifier">package</span> )
-53:   <span class="ruby-keyword kw">end</span>
+53:                 <span class="ruby-identifier">require</span> <span class="ruby-identifier">package</span>
+54:                 <span class="ruby-identifier">sw</span> = <span class="ruby-identifier">eval</span>( <span class="ruby-node">&quot;#{package.capitalize}.new&quot;</span> )
+55: 
+56:                 <span class="ruby-identifier">queuer</span> = <span class="ruby-constant">AbtQueueManager</span>.<span class="ruby-identifier">new</span>
+57:                 <span class="ruby-identifier">logger</span> = <span class="ruby-constant">AbtLogManager</span>.<span class="ruby-identifier">new</span>
+58:   
+59:                 <span class="ruby-comment cmt"># get package details.</span>
+60:                 <span class="ruby-identifier">details</span> = <span class="ruby-identifier">sw</span>.<span class="ruby-identifier">details</span>
+61: 
+62:                 <span class="ruby-comment cmt"># TODO:  check deps</span>
+63:                 
+64:                 <span class="ruby-comment cmt"># add to install queue.</span>
+65:                 <span class="ruby-keyword kw">if</span> ( <span class="ruby-operator">!</span><span class="ruby-identifier">queuer</span>.<span class="ruby-identifier">addPackageToQueue</span>( <span class="ruby-identifier">package</span>, <span class="ruby-value str">&quot;install&quot;</span> ) )
+66:                         <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">logToJournal</span>( <span class="ruby-node">&quot;Failed to add #{package} to install queue.&quot;</span> )
+67:                         <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">false</span>
+68:                 <span class="ruby-keyword kw">end</span>
+69: 
+70:                 <span class="ruby-keyword kw">if</span> ( <span class="ruby-operator">!</span><span class="ruby-identifier">sw</span>.<span class="ruby-identifier">pre</span> )
+71:                         <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">logToJournal</span>( <span class="ruby-node">&quot;Failed to process pre-section in the package description of #{package}.&quot;</span> )
+72:                         <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">false</span>
+73:                 <span class="ruby-keyword kw">end</span>
+74: 
+75:                 <span class="ruby-keyword kw">if</span> ( <span class="ruby-operator">!</span><span class="ruby-identifier">sw</span>.<span class="ruby-identifier">removeBuildSources</span> )
+76:                         <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">logToJournal</span>( <span class="ruby-node">&quot;Failed to remove the build sources for #{package}.&quot;</span> )
+77:                         <span class="ruby-comment cmt">#return false  # commented out as this is not a reason to fail.</span>
+78:                 <span class="ruby-keyword kw">end</span>
+79: 
+80:                 <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">true</span>
+81:     <span class="ruby-comment cmt"># TODO: finish up the following steps per install scenario:</span>
+82:                 <span class="ruby-comment cmt">#</span>
+83:                 <span class="ruby-comment cmt"># configure section</span>
+84:                 <span class="ruby-comment cmt"># build section</span>
+85:                 <span class="ruby-comment cmt"># pre install section</span>
+86:                 <span class="ruby-comment cmt"># install section</span>
+87:                 <span class="ruby-comment cmt"># post section</span>
+88:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>
 </div>
 <div class="method">
   <div class="title">
-    <a name="M000040"></a><b>reinstallPackage</b>( package )
+    <a name="M000042"></a><b>reinstallPackage</b>( package )
   </div>
   <div class="description">
   <p>
@@ -261,19 +296,19 @@ otherwise false.
 </p>
   </div>
 <div class="sourcecode">
-  <p class="source-link">[ <a href="javascript:toggleSource('M000040_source')" id="l_M000040_source">show source</a> ]</p>
-  <div id="M000040_source" class="dyn-source">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000042_source')" id="l_M000042_source">show source</a> ]</p>
+  <div id="M000042_source" class="dyn-source">
 <pre>
-    <span class="ruby-comment cmt"># File AbtPackageManager.rb, line 63</span>
-63:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">reinstallPackage</span>( <span class="ruby-identifier">package</span> )
-64:   <span class="ruby-keyword kw">end</span>
+    <span class="ruby-comment cmt"># File AbtPackageManager.rb, line 98</span>
+98:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">reinstallPackage</span>( <span class="ruby-identifier">package</span> )
+99:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>
 </div>
 <div class="method">
   <div class="title">
-    <a name="M000041"></a><b>removePackage</b>( package )
+    <a name="M000043"></a><b>removePackage</b>( package )
   </div>
   <div class="description">
   <p>
@@ -288,19 +323,19 @@ false.
 </p>
   </div>
 <div class="sourcecode">
-  <p class="source-link">[ <a href="javascript:toggleSource('M000041_source')" id="l_M000041_source">show source</a> ]</p>
-  <div id="M000041_source" class="dyn-source">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000043_source')" id="l_M000043_source">show source</a> ]</p>
+  <div id="M000043_source" class="dyn-source">
 <pre>
-    <span class="ruby-comment cmt"># File AbtPackageManager.rb, line 74</span>
-74:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">removePackage</span>( <span class="ruby-identifier">package</span> )
-75:   <span class="ruby-keyword kw">end</span>
+     <span class="ruby-comment cmt"># File AbtPackageManager.rb, line 109</span>
+109:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">removePackage</span>( <span class="ruby-identifier">package</span> )
+110:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>
 </div>
 <div class="method">
   <div class="title">
-    <a name="M000044"></a><b>rootLogin</b>( arguments )
+    <a name="M000046"></a><b>rootLogin</b>( arguments )
   </div>
   <div class="description">
   <p>
@@ -314,23 +349,23 @@ Provides for a log through for root access using su.
 </p>
   </div>
 <div class="sourcecode">
-  <p class="source-link">[ <a href="javascript:toggleSource('M000044_source')" id="l_M000044_source">show source</a> ]</p>
-  <div id="M000044_source" class="dyn-source">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000046_source')" id="l_M000046_source">show source</a> ]</p>
+  <div id="M000046_source" class="dyn-source">
 <pre>
-     <span class="ruby-comment cmt"># File AbtPackageManager.rb, line 109</span>
-109:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">rootLogin</span>( <span class="ruby-identifier">arguments</span> )
-110:           <span class="ruby-keyword kw">if</span> ( <span class="ruby-constant">Process</span>.<span class="ruby-identifier">uid</span> <span class="ruby-operator">!=</span> <span class="ruby-value">0</span> )
-111:                   <span class="ruby-identifier">args</span> = <span class="ruby-value str">&quot;&quot;</span>
-112:                   <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;\nEnter root password:&quot;</span>
-113: 
-114:                   <span class="ruby-keyword kw">for</span> <span class="ruby-identifier">i</span> <span class="ruby-keyword kw">in</span> <span class="ruby-value">0</span><span class="ruby-operator">...</span><span class="ruby-constant">ARGV</span>.<span class="ruby-identifier">length</span>
-115:                           <span class="ruby-identifier">args</span> = <span class="ruby-identifier">args</span> <span class="ruby-operator">+</span> <span class="ruby-value str">&quot; &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-constant">ARGV</span>[<span class="ruby-identifier">i</span>]
-116:                   <span class="ruby-keyword kw">end</span>
-117: 
-118:                   <span class="ruby-identifier">system</span>( <span class="ruby-value str">'su -c &quot;./abt '</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">args</span> <span class="ruby-operator">+</span> <span class="ruby-value str">'&quot; root'</span> )  <span class="ruby-comment cmt"># TODO: replace system call?</span>
-119:                   <span class="ruby-identifier">exit</span>
-120:           <span class="ruby-keyword kw">end</span>
-121:   <span class="ruby-keyword kw">end</span>
+     <span class="ruby-comment cmt"># File AbtPackageManager.rb, line 144</span>
+144:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">rootLogin</span>( <span class="ruby-identifier">arguments</span> )
+145:           <span class="ruby-keyword kw">if</span> ( <span class="ruby-constant">Process</span>.<span class="ruby-identifier">uid</span> <span class="ruby-operator">!=</span> <span class="ruby-value">0</span> )
+146:                   <span class="ruby-identifier">args</span> = <span class="ruby-value str">&quot;&quot;</span>
+147:                   <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;\nEnter root password:&quot;</span>
+148: 
+149:                   <span class="ruby-keyword kw">for</span> <span class="ruby-identifier">i</span> <span class="ruby-keyword kw">in</span> <span class="ruby-value">0</span><span class="ruby-operator">...</span><span class="ruby-constant">ARGV</span>.<span class="ruby-identifier">length</span>
+150:                           <span class="ruby-identifier">args</span> = <span class="ruby-identifier">args</span> <span class="ruby-operator">+</span> <span class="ruby-value str">&quot; &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-constant">ARGV</span>[<span class="ruby-identifier">i</span>]
+151:                   <span class="ruby-keyword kw">end</span>
+152: 
+153:                   <span class="ruby-identifier">system</span>( <span class="ruby-value str">'su -c &quot;./abt '</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">args</span> <span class="ruby-operator">+</span> <span class="ruby-value str">'&quot; root'</span> )  <span class="ruby-comment cmt"># TODO: replace system call?</span>
+154:                   <span class="ruby-identifier">exit</span>
+155:           <span class="ruby-keyword kw">end</span>
+156:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>
