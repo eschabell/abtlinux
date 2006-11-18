@@ -259,11 +259,7 @@ case ARGV[0]
 			
 				rss.items.each_with_index do |item, itemCount|
 					itemCount += 1
-					if ( itemCount <= $MAX_NEWS_ITEMS )
-						# format some of the item data.
-						description = item.description.sub( '[/html]', '' )
-						puts "#{itemCount}  #{item.link}  #{item.title}" 
-					end
+					puts "#{itemCount}  #{item.link}  #{item.title}" 
 				end
 			end
 		end

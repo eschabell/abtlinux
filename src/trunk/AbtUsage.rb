@@ -122,7 +122,7 @@ class AbtUsage
 		puts "\ndownloads:"
 		puts "  -d,  download     [package]\t\tRetrieve given package sources."
 		puts "  -u,  update       [package]|[tree]\tUpdate given package or tree from AbTLinux repository."
-		puts "  -n,  news\t\t\t\tDisplays newsfeed from AbTLinux website.\n"
+		puts "  -n,  news\t\t\t\tDisplays newsfeeds from AbTLinux website.\n"
 	end
 
 	##
