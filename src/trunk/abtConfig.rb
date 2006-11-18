@@ -26,6 +26,7 @@
 ##
 $PACKAGE_PATH				= "./packages/"
 $SOURCES_REPOSITORY	= "/var/spool/abt/sources"
+$BUILD_LOCATION     = "/usr/src"
 
 $ABTNEWS            = "http://abtlinux.org/e107_plugins/rss_menu/rss.php?1.2"
 $ABTNEWS_THREADS    = "http://abtlinux.org/e107_plugins/rss_menu/rss.php?6.2"
