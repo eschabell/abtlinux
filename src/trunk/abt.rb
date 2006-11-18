@@ -46,7 +46,6 @@ require 'optparse'
 ##
 manager  = AbtPackageManager.new
 logger   = AbtLogManager.new
-queuer   = AbtQueueManager.new
 reporter = AbtReportManager.new
 options  = Hash.new
 show     = AbtUsage.new
@@ -67,39 +66,14 @@ case ARGV[0]
 			options['package'] = ARGV[1]
 			logger.logToJournal( "Starting to install #{options['package']}" )
 			
-			require options['package']                                # pickup called package class.
-			package = eval( "#{options['package'].capitalize}.new" )  # evaluates package.new methode dynamically.
-			details = package.details
+			if ( manager.installPackage( options['package'] ) )
+				puts "Completed install of #{options['package']}."
+				logger.logToJournal( "Completed install of #{options['package']}." ) 
+			else
+				puts "#{options['package'].capitalize} install failed, see journal for possible reasons."
+			end
 
-			queuer.addPackageToQueue( options['package'], "install" )
-			
-			# Reached point where pkg in install queue
-			reporter.showQueue( "install" );  
-			
-			# TODO: finish up the following steps per install scenario:
-			#
-			# check deps
-			# add missing deps to install queue
-			# get details
-			# pre section
-			#   download
-			#   unpack
-			# configure section
-			#   set install location 
-			#   ./configure
-			#   save package.configure
-			# build section
-			#   make
-			#   save package.build
-			# pre install section
-			# install section
-			#   make install
-			#   save pacakge.install
-			#   save package.integrity
-			# post section
-			# clean source build directory
-			# notify user
-			
+			reporter.showQueue( "install" ); # DEBUG. 
 		else
 			show.usage( "packages" )
 			exit
@@ -406,4 +380,7 @@ case ARGV[0]
 				show.usage( "maintenance" )
 	    	exit  
 		end # case repoAction.
+
+	else
+		show.usage( "all" )
 end # case ARGV[0].

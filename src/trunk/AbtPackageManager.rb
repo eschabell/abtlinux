@@ -28,9 +28,9 @@
 class AbtPackageManager
 
 protected
-  
+
 private
-  
+
 public
 
   ##
@@ -50,6 +50,34 @@ public
   # false.
   ##
   def installPackage( package )
+		require package
+		packager = eval( "#{package.capitalize}.new" )
+
+		queuer = AbtQueueManager.new
+		logger = AbtLogManager.new
+  
+		# get package details.
+		details = packager.details
+
+		# add to install queue.
+		if ( !queuer.addPackageToQueue( package, "install" ) )
+			logger.logToJournal( "Failed to add #{package} to install queue." )
+			return false
+		end
+
+		return true
+    # TODO: finish up the following steps per install scenario:
+		#
+		# check deps
+		# add missing deps to install queue
+		# get details
+		# pre section
+		# configure section
+		# build section
+		# pre install section
+		# install section
+		# post section
+		# clean source build directory
   end
   
   ##
