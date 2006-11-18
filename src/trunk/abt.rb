@@ -29,6 +29,7 @@ require 'AbtPackageManager'
 require 'AbtLogManager'
 require 'AbtReportManager'
 require 'AbtDownloadManager'
+require 'AbtQueueManager'
 require 'AbtUsage'
 require 'fileutils'
 require 'net/http'
@@ -43,10 +44,12 @@ require 'optparse'
 # Setup needed classes and get ready 
 # to parse arguments.
 ##
-manager     = AbtPackageManager.new
-logger      = AbtLogManager.new
-options     = Hash.new()
-show        = AbtUsage.new()
+manager  = AbtPackageManager.new
+logger   = AbtLogManager.new
+queuer   = AbtQueueManager.new
+reporter = AbtReportManager.new
+options  = Hash.new
+show     = AbtUsage.new
 
 # deal with usage request.
 if ( ARGV.length == 0 )
@@ -60,9 +63,43 @@ manager.rootLogin( ARGV )
 case ARGV[0]
 
 	when "install", "-i"
-		if ( ARGV.length == 2 )
+		if ( ARGV.length == 2 && File.exist?( "#{$PACKAGE_PATH}#{ARGV[1]}.rb" ) )
 			options['package'] = ARGV[1]
-			puts "Installing package : " + options['package']
+			logger.logToJournal( "Starting to install #{options['package']}" )
+			
+			require options['package']                                # pickup called package class.
+			package = eval( "#{options['package'].capitalize}.new" )  # evaluates package.new methode dynamically.
+			details = package.details
+
+			queuer.addPackageToQueue( options['package'], "install" )
+			
+			# Reached point where pkg in install queue
+			reporter.showQueue( "install" );  
+			
+			# TODO: finish up the following steps per install scenario:
+			#
+			# check deps
+			# add missing deps to install queue
+			# get details
+			# pre section
+			#   download
+			#   unpack
+			# configure section
+			#   set install location 
+			#   ./configure
+			#   save package.configure
+			# build section
+			#   make
+			#   save package.build
+			# pre install section
+			# install section
+			#   make install
+			#   save pacakge.install
+			#   save package.integrity
+			# post section
+			# clean source build directory
+			# notify user
+			
 		else
 			show.usage( "packages" )
 			exit
@@ -119,36 +156,11 @@ case ARGV[0]
 			options['package'] = ARGV[1]
 			logger.logToJournal( "Starting to show details for " + options['package'] )
 			
-			require options['package']                                # pickup called package class.
-			package = eval( options['package'].capitalize + '.new' )  # evaluates package.new methode dynamically.
-			details = package.details
-
-			puts "|====================================="
-			puts "| Package name\t: #{details['Package name']}"
-			details.delete( "Package name" )
-			puts "| Version\t: #{details['Version']}"
-			details.delete( "Version" )
-			puts "| Homepage\t: #{details['Homepage']}"
-			details.delete( "Homepage" )
-			puts "| Executable\t: #{details['Executable']}"
-			details.delete( "Executable" )
-			puts "| Source uri\t: #{details['Source uri']}"
-			details.delete( "Source uri" )
-			puts "| Description\t: #{details['Description']}"
-			details.delete( "Description" )
-			puts "|====================================="
-			puts "|====================================="
-
-			details.each do |name, value| 
-				print "| #{name}\t"
-				if ( name.length < 14 )
-					print "\t"
-				end
-				puts ": #{value}"
+			if ( reporter.showPackageDetails( options['package'] ) )
+				logger.logToJournal( "Completed show details for " + options['package'] )
+			else
+				puts "Problems processing the details for #{options['package']}."
 			end
-
-			puts "|====================================="
-			logger.logToJournal( "Completed show details for " + options['package'] )
 		else
 			show.usage( "queries" )
 		end
@@ -203,15 +215,7 @@ case ARGV[0]
 		show.usage( "queries" )
 
 	when "show-journal"  
-		if ( File.exist?( $JOURNAL ) )
-			puts "\n\nAbTLinux journal:"
-			puts "================="
-			log = IO.readlines( $JOURNAL )
-			log.each{ |line| puts line }
-			puts "\n\n"
-		else
-			puts "AbTLinux journal is empty at this time."
-		end
+		reporter.showJournal
 	
 	when "show-iqueue"  
 		puts "Display contents of install queue."

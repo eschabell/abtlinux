@@ -31,5 +31,7 @@ $ABTNEWS            = "http://abtlinux.org/e107_plugins/rss_menu/rss.php?1.2"
 $ABTNEWS_THREADS    = "http://abtlinux.org/e107_plugins/rss_menu/rss.php?6.2"
 $ABTNEWS_POSTS      = "http://abtlinux.org/e107_plugins/rss_menu/rss.php?7.2"
 
-$JOURNAL_PATH       = "/var/log/abt"
-$JOURNAL            = "#{$JOURNAL_PATH}/journal.log"
+$ABT_LOGS           = "/var/log/abt"
+$JOURNAL            = "#{$ABT_LOGS}/journal.log"
+
+$TIMESTAMP          = Time.now.strftime( "%Y-%m-%d %H:%M:%S (%Z)" )
