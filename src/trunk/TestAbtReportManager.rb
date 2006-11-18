@@ -41,7 +41,7 @@ class TestAbtReportManager < Test::Unit::TestCase
   # Test method for 'AbtReportManager.testShowPackageDetails()'
   ## 
   def testShowPackageDetails
-    assert( @report.showPackageDetails( "dummy" ), "testShowPackageDetails()" )
+    assert( @report.showPackageDetails( "fortune" ), "testShowPackageDetails()" )
   end
 
   ##
@@ -55,9 +55,9 @@ class TestAbtReportManager < Test::Unit::TestCase
   # Test method for 'AbtReportManager.testShowPackageLog()'
   ## 
   def testShowPackageLog
-    assert( @report.showPackageLog( "dummy", "install" ), "testShowPackageLog()" )
-    assert( @report.showPackageLog( "dummy", "build" ), "testShowPackageLog()" )
-    assert( @report.showPackageLog( "dummy", "integrity" ), "testShowPackageLog()" )
+    assert( @report.showPackageLog( "fortune", "install" ), "testShowPackageLog()" )
+    assert( @report.showPackageLog( "fortune", "build" ), "testShowPackageLog()" )
+    assert( @report.showPackageLog( "fortune", "integrity" ), "testShowPackageLog()" )
   end
 
   ##
@@ -71,7 +71,7 @@ class TestAbtReportManager < Test::Unit::TestCase
   # Test method for 'AbtReportManager.testShowPackageDependencies()'
   ## 
   def testShowPackageDependencies
-    #assert( @report.showPackageDependencies( "dummy" ), "testShowPackageDependencies()" )
+    #assert( @report.showPackageDependencies( "fortune" ), "testShowPackageDependencies()" )
     assert( false, "testShowPackageDependencies()" )
   end
 
@@ -93,7 +93,7 @@ class TestAbtReportManager < Test::Unit::TestCase
   # Test method for 'AbtReportManager.testShowFileOwner()'
   ## 
   def testShowFileOwner
-    assert( @report.showFileOwner( "dummyFile" ), "testShowFileOwner()" )
+    assert( @report.showFileOwner( "fortuneFile" ), "testShowFileOwner()" )
   end
 
   ##
@@ -114,7 +114,7 @@ class TestAbtReportManager < Test::Unit::TestCase
   # Test method for 'AbtReportManager.testShowUpdates()'
   ## 
   def testShowUpdates
-    assert( @report.showUpdates( "dummy" ), "testShowUpdates()" )
+    assert( @report.showUpdates( "fortune" ), "testShowUpdates()" )
   end
 
   ##

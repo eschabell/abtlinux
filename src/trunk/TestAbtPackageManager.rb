@@ -41,35 +41,35 @@ class TestAbtPackageManager < Test::Unit::TestCase
   # Test method for 'AbtPackageManager.testInstallPackage()'
   ## 
   def testInstallPackage
-    assert( @pkgMgr.installPackage( "dummy" ), "testInstallPackage()" )
+    assert( @pkgMgr.installPackage( "fortune" ), "testInstallPackage()" )
   end
 
   ##
   # Test method for 'AbtPackageManager.testReinstallPackage()'
   ## 
   def testReinstallPackage
-    assert( @pkgMgr.reinstallPackage( "dummy" ), "testReinstallPackage()" )
+    assert( @pkgMgr.reinstallPackage( "fortune" ), "testReinstallPackage()" )
   end
 
   ##
   # Test method for 'AbtPackageManager.testRemovePackage()'
   ## 
   def testRemovePackage
-    assert( @pkgMgr.removePackage( "dummy" ), "testRemovePackage()" )
+    assert( @pkgMgr.removePackage( "fortune" ), "testRemovePackage()" )
   end
 
   ##
   # Test method for 'AbtPackageManager.testDowngradePackage()'
   ## 
   def testDowngradePackage
-    assert( @pkgMgr.downgradePackage( "dummy", "1.2" ), "testDowngradePackage()" )
+    assert( @pkgMgr.downgradePackage( "fortune", "1.2" ), "testDowngradePackage()" )
   end
 
   ##
   # Test method for 'AbtPackageManager.testFreezePackage()'
   ## 
   def testFreezePackage
-    assert( @pkgMgr.freezePackage( "dummy" ), "testFreezePackage()" )
+    assert( @pkgMgr.freezePackage( "fortune" ), "testFreezePackage()" )
   end
 
 end
