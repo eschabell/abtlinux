@@ -26,7 +26,11 @@
 ##
 $PACKAGE_PATH				= "./packages/"
 $SOURCES_REPOSITORY	= "/var/spool/abt/sources"
+
 $ABTNEWS            = "http://abtlinux.org/e107_plugins/rss_menu/rss.php?1.2"
+$ABTNEWS_THREADS    = "http://abtlinux.org/e107_plugins/rss_menu/rss.php?6.2"
+$ABTNEWS_POSTS      = "http://abtlinux.org/e107_plugins/rss_menu/rss.php?7.2"
+$MAX_NEWS_ITEMS     = 10  # shows last 10 items
+
 $JOURNAL_PATH       = "/var/log/abt"
 $JOURNAL            = "#{$JOURNAL_PATH}/journal.log"
-$MAX_NEWS_ITEMS     = 3

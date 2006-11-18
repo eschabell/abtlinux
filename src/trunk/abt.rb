@@ -235,42 +235,39 @@ case ARGV[0]
 		logger.logToJournal( "Starting to retrieve AbTLinux news." )
 
 		# pick up the abtlinux.org news feed.
-		news = Net::HTTP.get( URI.parse( $ABTNEWS ) )
+		news    = Net::HTTP.get( URI.parse( $ABTNEWS ) )
+		threads = Net::HTTP.get( URI.parse( $ABTNEWS_THREADS ) )
+		posts   = Net::HTTP.get( URI.parse( $ABTNEWS_POSTS ) )
 
-		# display the feed neatly.
-		rss = nil
-		begin
-			rss = RSS::Parser.parse(news, false)
+		newsArray = [ news, threads, posts ]
+
+		# display the feeds.
+		newsArray.each_with_index do |feed, i|
+			rss = nil
+			begin
+				rss  = RSS::Parser.parse(feed, false)
 			rescue RSS::Error
-		end 
+			end 
 
-		if ( rss.nil? )
-			puts $ABTNEWS + " is not RSS 1.0/2.0."
-		else
-			puts "\n\n"
-			puts "======================="
-			puts "= News from AbTLinux: ="
-			puts "======================="
-			puts "\n"
+		
+			if ( rss.nil? )
+				puts "Feed #{i} is not RSS 1.0/2.0."
+				logger.logToJournal( "Failed to display news feed as feed #{i} is not RSS 1.0/2.0." )
+			else
+				puts "\n\n"
+				puts "*** #{rss.channel.title} ***"
 			
-			itemCount = 0  # only printing three items.
-			rss.items.each do |item|
-				itemCount += 1
-				if ( itemCount <= $MAX_NEWS_ITEMS )
-					# format some of the item data.
-					author      = item.author.split( '<' )
-					description = item.description.sub( '[/html]', '' )
-				
-					puts "************************************"
-					puts "Date   : #{item.date}"
-					puts "Author : #{author[0]}"
-					puts "Link   : #{item.link}"
-					puts "Title  : #{item.title}"
-					puts "\n#{description}"
-					puts "************************************\n\n"
+				rss.items.each_with_index do |item, itemCount|
+					itemCount += 1
+					if ( itemCount <= $MAX_NEWS_ITEMS )
+						# format some of the item data.
+						description = item.description.sub( '[/html]', '' )
+						puts "#{itemCount}  #{item.link}  #{item.title}" 
+					end
 				end
 			end
 		end
+			
 		logger.logToJournal( "Completed the retrieval of AbTLinux news." )
             
 	# abt [-d | download ] <package>
