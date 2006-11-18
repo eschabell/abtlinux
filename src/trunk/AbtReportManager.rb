@@ -50,6 +50,43 @@ public
   # false.
   ##
   def showPackageDetails( package )
+		require package
+
+		if ( package = eval( "#{package.capitalize}.new" ) )
+			details = package.details
+
+			puts "|====================================="
+			puts "| Package name\t: #{details['Package name']}"
+			details.delete( "Package name" )
+			puts "| Version\t: #{details['Version']}"
+			details.delete( "Version" )
+			puts "| Homepage\t: #{details['Homepage']}"
+			details.delete( "Homepage" )
+			puts "| Executable\t: #{details['Executable']}"
+			details.delete( "Executable" )
+			puts "| Source uri\t: #{details['Source uri']}"
+			details.delete( "Source uri" )
+			puts "| Description\t: #{details['Description']}"
+			details.delete( "Description" )
+			puts "|====================================="
+			puts "|====================================="
+
+			details.each do |name, value| 
+				print "| #{name}\t"
+				
+				if ( name.length < 14 )
+					print "\t"
+				end
+
+				puts ": #{value}"
+			end
+
+			puts "|====================================="
+			return true
+		end
+
+		logger.logToJournal( "[AbtReportManger::showPackageDetails] - failed to show details for ${package}." )
+		return false
   end
 
   ##
@@ -113,6 +150,18 @@ public
   # <b>RETURN</b> <i>void.</i> 
   ##
   def showJournal
+		if ( File.exist?( $JOURNAL ) )
+			puts "\n\n"
+			puts "AbTLinux journal:"
+			puts "================="
+			log = IO.readlines( $JOURNAL )
+			log.each{ |entry| puts entry }
+			puts "\n\n"
+		else
+			puts "\n\n"
+			puts "AbtLinux journal is empty at this time."
+			puts "\n\n"
+		end
   end
   
   ##
@@ -146,6 +195,26 @@ public
   # <b>RETURN</b> <i>void.</i>
   ##
   def showQueue( queueType )
+		queueFile = "#{$ABT_LOGS}/#{queueType}.log"
+		case queueType
+
+		when "install"
+			if ( File.exist?( queueFile ) )
+				puts "\n\n"
+				puts "AbTLinux #{queueType} queue:"
+				puts "======================="
+				queue = IO.readlines( queueFile )
+				queue.each{ |entry| puts entry }
+				puts "\n\n"
+			else
+				puts "\n\n"
+				puts "AbtLinux  #{queueType} is empty at this time."
+				puts "\n\n"
+			end
+
+		else
+			puts "#{queueType.capitalize} is not an AbTLinux queue."
+		end
   end
 
   ##
