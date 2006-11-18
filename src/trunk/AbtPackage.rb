@@ -142,6 +142,22 @@ public
   # <b>RETURNS:</b>  <i>boolean</i> - True if completes sucessfully, otherwise false.
   ##
   def pre
+		downloader = AbtDownloadManager.new
+
+		# download sources.
+		if ( !downloader.retrievePackageSource( @name.downcase, $SOURCES_REPOSITORY ) )
+			return false
+		end
+
+		# unpack sources.
+		if ( !unpackSources )
+			return false
+		end
+
+		# TODO: retrieve patches?
+		# TODO: apply patches?
+		
+		return true
   end
   
   ##
@@ -188,4 +204,42 @@ public
   ##
   def post
   end
+
+	##
+	# Unpacks this packages source file into the standard build location.
+	#
+  # <b>RETURNS:</b>  <i>boolean</i> - True if the completes sucessfully, otherwise false.
+	##
+	def unpackSources
+		sourcesToUnpack    = "#{$SOURCES_REPOSITORY}/#{File.basename( srcUrl )}"
+
+		if ( !File.exist?( sourcesToUnpack ) )
+			return false
+		end 
+
+		# TODO: system call removal?
+		if ( !system( "cd #{$BUILD_LOCATION}; tar xzvf #{sourcesToUnpack}" ) )
+			return false
+		end
+
+		return true
+	end
+
+	##
+	# Cleans up this packages source build directory.
+	#
+  # <b>RETURNS:</b>  <i>boolean</i> - True if the completes sucessfully, otherwise false.
+	##
+	def removeBuildSources
+		buildSourcesLocation = "#{$BUILD_LOCATION}/#{srcDir}"
+
+		if ( !File.directory?( buildSourcesLocation ) )
+			return true
+		end
+
+		# TODO: system call removal?
+		if ( !FileUtils.rm_rf buildSourcesLocation, :verbose => true  )
+			return false
+		end
+	end
 end
