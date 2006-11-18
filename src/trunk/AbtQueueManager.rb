@@ -83,6 +83,7 @@ public
 			return true
 		end
 
+		logger.logToJournal( "Failed to open #{queueFile}." )
 		return false
 	end
 end
