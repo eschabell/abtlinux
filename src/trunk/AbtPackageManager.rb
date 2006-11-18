@@ -51,33 +51,40 @@ public
   ##
   def installPackage( package )
 		require package
-		packager = eval( "#{package.capitalize}.new" )
+		sw = eval( "#{package.capitalize}.new" )
 
 		queuer = AbtQueueManager.new
 		logger = AbtLogManager.new
   
 		# get package details.
-		details = packager.details
+		details = sw.details
 
+		# TODO:  check deps
+		
 		# add to install queue.
 		if ( !queuer.addPackageToQueue( package, "install" ) )
 			logger.logToJournal( "Failed to add #{package} to install queue." )
 			return false
 		end
 
+		if ( !sw.pre )
+			logger.logToJournal( "Failed to process pre-section in the package description of #{package}." )
+			return false
+		end
+
+		if ( !sw.removeBuildSources )
+			logger.logToJournal( "Failed to remove the build sources for #{package}." )
+			#return false  # commented out as this is not a reason to fail.
+		end
+
 		return true
     # TODO: finish up the following steps per install scenario:
 		#
-		# check deps
-		# add missing deps to install queue
-		# get details
-		# pre section
 		# configure section
 		# build section
 		# pre install section
 		# install section
 		# post section
-		# clean source build directory
   end
   
   ##
