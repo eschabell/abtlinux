@@ -270,7 +270,7 @@ with date timestamp.
 108:           <span class="ruby-keyword kw">end</span>
 109:           
 110:           <span class="ruby-identifier">log</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">$JOURNAL</span>, <span class="ruby-constant">File</span><span class="ruby-operator">::</span><span class="ruby-constant">WRONLY</span><span class="ruby-operator">|</span><span class="ruby-constant">File</span><span class="ruby-operator">::</span><span class="ruby-constant">APPEND</span><span class="ruby-operator">|</span><span class="ruby-constant">File</span><span class="ruby-operator">::</span><span class="ruby-constant">CREAT</span>, <span class="ruby-value">0644</span>)
-111:           <span class="ruby-identifier">log</span>.<span class="ruby-identifier">puts</span> <span class="ruby-constant">DateTime</span><span class="ruby-operator">::</span><span class="ruby-identifier">now</span>.<span class="ruby-identifier">to_s</span> <span class="ruby-operator">+</span> <span class="ruby-value str">' : '</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">message</span> 
+111:           <span class="ruby-identifier">log</span>.<span class="ruby-identifier">puts</span> <span class="ruby-constant">Time</span>.<span class="ruby-identifier">now</span>.<span class="ruby-identifier">strftime</span>( <span class="ruby-value str">&quot;%Y-%m-%d %H:%M:%S (%Z)&quot;</span> ) <span class="ruby-operator">+</span> <span class="ruby-node">&quot; : #{message}&quot;</span> 
 112:           <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">true</span>
 113:   <span class="ruby-keyword kw">end</span>
 </pre>
