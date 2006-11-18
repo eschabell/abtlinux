@@ -115,8 +115,7 @@ public
 			  args = args + " " + ARGV[i]
 		  end
 
-		  # TODO: remove the ./abt call on deployment.
-		  system( 'su -c "./abt ' + args + '" root' )
+		  system( 'su -c "./abt ' + args + '" root' )  # TODO: replace system call?
 		  exit
 	  end
   end
