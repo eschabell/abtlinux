@@ -53,7 +53,9 @@ public
   # <b>RETURN</b> <i>AbtLogManager</i> - an initialized AbtLogManager object. 
   ##
   def initialize
-	  
+	  if ( !File.directory?( $ABT_LOGS ) )
+		  FileUtils.mkdir_p( $ABT_LOGS )  # initialize logs.
+	  end
   end
 
   ##
@@ -101,14 +103,12 @@ public
   # <b>RETURN</b> <i>boolean</i> True if logged, otherwise false.
   ##
   def logToJournal( message )
-	  require 'date'
+	  if ( log = File.new( $JOURNAL, File::WRONLY|File::APPEND|File::CREAT, 0644 ) )
+			log.puts "#{$TIMESTAMP} : #{message}" 
+			log.close
+			return true
+		end
 
-	  if ( !File.directory?( $JOURNAL_PATH ) )
-		  FileUtils.mkdir_p( $JOURNAL_PATH )  # initialize logs.
-	  end
-	  
-	  log = File.new($JOURNAL, File::WRONLY|File::APPEND|File::CREAT, 0644)
-	  log.puts Time.now.strftime( "%Y-%m-%d %H:%M:%S (%Z)" ) + " : #{message}" 
-	  return true
+		return false
   end
 end
