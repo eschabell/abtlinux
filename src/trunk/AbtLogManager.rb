@@ -108,7 +108,7 @@ public
 	  end
 	  
 	  log = File.new($JOURNAL, File::WRONLY|File::APPEND|File::CREAT, 0644)
-	  log.puts DateTime::now.to_s + ' : ' + message 
+	  log.puts Time.now.strftime( "%Y-%m-%d %H:%M:%S (%Z)" ) + " : #{message}" 
 	  return true
   end
 end
