@@ -67,4 +67,13 @@ public
   def initialize()
       super( $packageData )
   end
+
+	##
+	# Overriding configure.
+	#
+	# <b>RETURN</b> <i>boolean</i> - returns true.
+	##
+	def configure 
+		return true  # nothing to do, standard makefile is fine.
+	end
 end
