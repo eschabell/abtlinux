@@ -55,7 +55,7 @@ class TestAbtDownloadManager < Test::Unit::TestCase
   # Test method for 'AbtDownloadManager.testRetrieveNewsFeed()'
   ## 
   def testRetrieveNewsFeed()
-    assert( @download.retrieveNewsFeed(), "testRetrieveNewsFeed()" )
+    assert( @download.retrieveNewsFeed( $ABTNEWS ), "testRetrieveNewsFeed()" )
   end
 
   ##
