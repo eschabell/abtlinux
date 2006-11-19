@@ -36,3 +36,7 @@ $ABT_LOGS           = "/var/log/abt"
 $JOURNAL            = "#{$ABT_LOGS}/journal.log"
 
 $TIMESTAMP          = Time.now.strftime( "%Y-%m-%d %H:%M:%S (%Z)" )
+
+# default config options.
+#
+$removeBuildSources = false

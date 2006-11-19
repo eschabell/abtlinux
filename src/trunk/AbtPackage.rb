@@ -30,7 +30,64 @@
 class AbtPackage
   
 protected
-  
+	
+ 	##
+	# Unpacks this packages source file into the standard build location.
+	#
+  # <b>RETURNS:</b>  <i>boolean</i> - True if the completes sucessfully, otherwise false.
+	##
+	def unpackSources
+		srcFile = File.basename( srcUrl )
+		sourcesToUnpack = "#{$SOURCES_REPOSITORY}/#{srcFile}"
+		unpackTool      = ""
+
+		# check for existing file in source repo.
+		if ( !File.exist?( sourcesToUnpack ) )
+			return false
+		end 
+
+		# check if possible existing sources in build directory.
+		if ( File.directory?( "#{$BUILD_LOCATION}/#{@srcDir}" ) )
+			return true
+		end
+
+		# determine which supported compression used [gz, tar, tgz, bz2, zip].
+		compressionType = srcFile.split( '.' )
+
+		case compressionType.last
+
+		when "gz"
+			unpackTool = "tar xzvf"
+
+		when "tar"
+			unpackTool = "tar xvf"
+
+		when "bz2"
+			unpackTool = "tar xjvf"
+
+		when "tgz" 
+			unpackTool = "tar xzvf"
+		
+		when "zip"
+			unpackTool = "unizp"
+
+		else
+			# unsupported format.
+			return false
+		end
+		
+		# DEBUG:
+		#logger = AbtLogManager.new
+		#logger.logToJournal( "DEBUG: unpack tool will be '#{unpackTool}'." )
+
+		# TODO: system call removal?
+		if ( !system( "cd #{$BUILD_LOCATION}; #{unpackTool} #{sourcesToUnpack}" ) )
+			return false
+		end
+
+		return true
+	end
+
 private
   
 public
@@ -206,70 +263,24 @@ public
   end
 
 	##
-	# Unpacks this packages source file into the standard build location.
-	#
-  # <b>RETURNS:</b>  <i>boolean</i> - True if the completes sucessfully, otherwise false.
-	##
-	def unpackSources
-		srcFile = File.basename( srcUrl )
-		sourcesToUnpack = "#{$SOURCES_REPOSITORY}/#{srcFile}"
-		unpackTool      = ""
-		logger = AbtLogManager.new
-
-		if ( !File.exist?( sourcesToUnpack ) )
-			return false
-		end 
-
-		# determine which supported compression used [gz, tar, tgz, bz2, zip].
-		compressionType = srcFile.split( '.' )
-
-		case compressionType.last
-
-		when "gz"
-			unpackTool = "tar xzvf"
-
-		when "tar"
-			unpackTool = "tar xvf"
-
-		when "bz2"
-			unpackTool = "tar xjvf"
-
-		when "tgz" 
-			unpackTool = "tar xzvf"
-		
-		when "zip"
-			unpackTool = "unizp"
-
-		else
-			# unsupported format.
-			return false
-		end
-		
-		#logger.logToJournal( "DEBUG: unpack tool will be '#{unpackTool}'." )
-
-		# TODO: system call removal?
-		if ( !system( "cd #{$BUILD_LOCATION}; #{unpackTool} #{sourcesToUnpack}" ) )
-			return false
-		end
-
-		return true
-	end
-
-	##
 	# Cleans up this packages source build directory.
 	#
   # <b>RETURNS:</b>  <i>boolean</i> - True if the completes sucessfully, otherwise false.
 	##
 	def removeBuildSources
-		buildSourcesLocation = "#{$BUILD_LOCATION}/#{srcDir}"
+		if ( $removeBuildSources )
+			buildSourcesLocation = "#{$BUILD_LOCATION}/#{srcDir}"
 
-		if ( !File.directory?( buildSourcesLocation ) )
-			return true
+			if ( !File.directory?( buildSourcesLocation ) )
+				return true
+			end
+
+			# TODO: system call removal?
+			if ( !FileUtils.rm_rf buildSourcesLocation, :verbose => true  )
+				return false
+			end
 		end
 
-		# TODO: system call removal?
-		if ( !FileUtils.rm_rf buildSourcesLocation, :verbose => true  )
-			return false
-		end
+		return true
 	end
 end
