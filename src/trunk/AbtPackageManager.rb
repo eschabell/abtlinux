@@ -67,24 +67,32 @@ public
 			return false
 		end
 
+		# pre section.
 		if ( !sw.pre )
 			logger.logToJournal( "Failed to process pre-section in the package description of #{package}." )
 			return false
 		end
 
+		# configure section.
+		if ( !sw.configure )
+			logger.logToJournal( "Failed to process configure section in the package description of #{package}." )
+			return false
+		end
+
+    # TODO: finish up the following steps per install scenario:
+		#
+		# build section
+		# pre install section
+		# install section
+		# post section
+		# remove build sources.
+		#
 		if ( !sw.removeBuildSources )
 			logger.logToJournal( "Failed to remove the build sources for #{package}." )
 			#return false  # commented out as this is not a reason to fail.
 		end
 
 		return true
-    # TODO: finish up the following steps per install scenario:
-		#
-		# configure section
-		# build section
-		# pre install section
-		# install section
-		# post section
   end
   
   ##
