@@ -211,14 +211,44 @@ public
   # <b>RETURNS:</b>  <i>boolean</i> - True if the completes sucessfully, otherwise false.
 	##
 	def unpackSources
-		sourcesToUnpack    = "#{$SOURCES_REPOSITORY}/#{File.basename( srcUrl )}"
+		srcFile = File.basename( srcUrl )
+		sourcesToUnpack = "#{$SOURCES_REPOSITORY}/#{srcFile}"
+		unpackTool      = ""
+		logger = AbtLogManager.new
 
 		if ( !File.exist?( sourcesToUnpack ) )
 			return false
 		end 
 
+		# determine which supported compression used [gz, tar, tgz, bz2, zip].
+		compressionType = srcFile.split( '.' )
+
+		case compressionType.last
+
+		when "gz"
+			unpackTool = "tar xzvf"
+
+		when "tar"
+			unpackTool = "tar xvf"
+
+		when "bz2"
+			unpackTool = "tar xjvf"
+
+		when "tgz" 
+			unpackTool = "tar xzvf"
+		
+		when "zip"
+			unpackTool = "unizp"
+
+		else
+			# unsupported format.
+			return false
+		end
+		
+		#logger.logToJournal( "DEBUG: unpack tool will be '#{unpackTool}'." )
+
 		# TODO: system call removal?
-		if ( !system( "cd #{$BUILD_LOCATION}; tar xzvf #{sourcesToUnpack}" ) )
+		if ( !system( "cd #{$BUILD_LOCATION}; #{unpackTool} #{sourcesToUnpack}" ) )
 			return false
 		end
 
