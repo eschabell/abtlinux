@@ -1,7 +1,7 @@
 #!/usr/bin/ruby -w
 
 ##
-# abtConfig.rb 
+# abtconfig.rb 
 #
 # The system configuration for the abt package manager.
 # 
@@ -24,8 +24,8 @@
 # AbTLinux; if not, write to the Free Software Foundation, Inc., 51 Franklin
 # St, Fifth Floor, Boston, MA 02110-1301  USA
 ##
-$PACKAGE_PATH				= "./packages/"
-$SOURCES_REPOSITORY	= "/var/spool/abt/sources"
+$PACKAGE_PATH       = "./packages/"
+$SOURCES_REPOSITORY = "/var/spool/abt/sources"
 $BUILD_LOCATION     = "/usr/src"
 
 $ABTNEWS            = "http://abtlinux.org/e107_plugins/rss_menu/rss.php?1.2"

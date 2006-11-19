@@ -83,12 +83,44 @@ public
   end
   
   ##
-  # Retrieves the AbTLinux news feed.
+  # Retrieves the given feed and displays the news items.
   #
+	# <b>PARAM</b> <i>String</i> - the uri of the rss news feed to be retrieved.
   # <b>RETURN</b> <i>boolean</i> - True if the AbTLinux news feed has been
   # retrieved, otherwise false.
   ##
-  def retrieveNewsFeed
+  def retrieveNewsFeed( uri )
+		require 'net/http'
+		require 'uri'
+		require 'rss/1.0'
+		require 'rss/2.0'
+		
+		# pick up the abtlinux.org news feed.
+		if ( !news = Net::HTTP.get( URI.parse( uri ) ) )
+			logger.logToJournal( "Failed to retrieve news feed #{uri}." )
+			return false
+		end
+
+		# display the feeds.
+		rss = nil
+		begin
+			rss  = RSS::Parser.parse(news, false)
+		rescue RSS::Error
+		end 
+		
+		if ( rss.nil? )
+			logger.logToJournal( "Failed to display news feed as feed #{uri} is not RSS 1.0/2.0." )
+			return false
+		else
+			puts "*** #{rss.channel.title} ***"
+			
+			rss.items.each_with_index do |item, itemCount|
+				itemCount += 1
+				puts "#{itemCount}  #{item.link}  #{item.title}" 
+			end
+		end
+
+		return true
   end
   
   ##

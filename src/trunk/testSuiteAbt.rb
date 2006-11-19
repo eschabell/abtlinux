@@ -7,7 +7,7 @@ if ( Process.uid != 0 )
 end
 
 require 'test/unit'
-require 'abtConfig'
+require 'abtconfig'
 require 'fileutils'
 require 'TestAbtDepEngine'
 require 'TestAbtDownloadManager'

@@ -24,7 +24,7 @@
 # AbTLinux; if not, write to the Free Software Foundation, Inc., 51 Franklin
 # St, Fifth Floor, Boston, MA 02110-1301  USA
 ##
-require 'abtConfig'
+require 'abtconfig'
 require 'AbtPackageManager'
 require 'AbtLogManager'
 require 'AbtReportManager'
@@ -32,23 +32,17 @@ require 'AbtDownloadManager'
 require 'AbtQueueManager'
 require 'AbtUsage'
 require 'fileutils'
-require 'net/http'
-require 'uri'
-require 'rss/1.0'
-require 'rss/2.0'
-require 'optparse'
-
 
 
 ##
-# Setup needed classes and get ready 
-# to parse arguments.
+# Setup needed classes and get ready to parse arguments.
 ##
-manager  = AbtPackageManager.new
-logger   = AbtLogManager.new
-reporter = AbtReportManager.new
-options  = Hash.new
-show     = AbtUsage.new
+manager    = AbtPackageManager.new
+logger     = AbtLogManager.new
+reporter   = AbtReportManager.new
+downloader = AbtDownloadManager.new
+options    = Hash.new
+show       = AbtUsage.new
 
 # deal with usage request.
 if ( ARGV.length == 0 )
@@ -61,6 +55,7 @@ manager.rootLogin( ARGV )
 # parse arguments.
 case ARGV[0]
 
+	# abt [ -i | install ] <package>
 	when "install", "-i"
 		if ( ARGV.length == 2 && File.exist?( "#{$PACKAGE_PATH}#{ARGV[1]}.rb" ) )
 			options['package'] = ARGV[1]
@@ -70,10 +65,10 @@ case ARGV[0]
 				puts "Completed install of #{options['package']}."
 				logger.logToJournal( "Completed install of #{options['package']}." ) 
 			else
-				puts "#{options['package'].capitalize} install failed, see journal for possible reasons."
+				puts "#{options['package'].capitalize} install failed, see journal."
 			end
 
-			reporter.showQueue( "install" ); # DEBUG. 
+			#reporter.showQueue( "install" ); # DEBUG. 
 		else
 			show.usage( "packages" )
 			exit
@@ -101,7 +96,8 @@ case ARGV[0]
 		if ( ARGV.length == 3 )
 		    options['version'] = ARGV[1]
 			options['package'] = ARGV[2]
-			puts "Downgradinging package : " + options['package'] + " to version : " + options['version']
+			print "Downgradinging package : #{options['package']} "
+			puts  "to version : #{options['version']}"
 		else
 			show.usage( "packages" )
 			exit
@@ -110,7 +106,7 @@ case ARGV[0]
 	when "freeze", "-f"  
 		if ( ARGV.length == 2 )
 			options['package'] = ARGV[1]
-			puts "Holdinging package : " + options['package'] + " at the current version."
+			puts "Holdinging package : #{options['package']} at current version."
 		else
 			show.usage( "packages" )
 			exit
@@ -119,21 +115,22 @@ case ARGV[0]
 	when "search", "-s"  
 		if ( ARGV.length == 2 )
 			options['searchString'] = ARGV[1]
-			puts "Searching package descriptions for : " + options['searchString']
+			puts "Searching package descriptions for : #{options['searchString']}"
 		else
 			show.usage( "queries" )
 			exit
 		end
 	
+	# abt show-details <package>
 	when "show-details"  
 		if ( ARGV.length == 2 && File.exist?( $PACKAGE_PATH + ARGV[1] + ".rb" ) )
-			options['package'] = ARGV[1]
-			logger.logToJournal( "Starting to show details for " + options['package'] )
+			options['pkg'] = ARGV[1]
+			logger.logToJournal( "Starting show details for #{options['pkg']}" )
 			
-			if ( reporter.showPackageDetails( options['package'] ) )
-				logger.logToJournal( "Completed show details for " + options['package'] )
+			if ( reporter.showPackageDetails( options['pkg'] ) )
+				logger.logToJournal( "Completed show details for #{options['pkg']}" )
 			else
-				puts "Problems processing the details for #{options['package']}."
+				puts "Problems processing the details for #{options['pkg']}."
 			end
 		else
 			show.usage( "queries" )
@@ -188,6 +185,7 @@ case ARGV[0]
 		puts "Display all files on system not tracked by AbTLinux."
 		show.usage( "queries" )
 
+	# abt show-journal
 	when "show-journal"  
 		reporter.showJournal
 	
@@ -205,41 +203,27 @@ case ARGV[0]
 	
 	when "html"
 	  puts "Generate HTML page from installed packages:"
-	  puts "  (package name with hyperlink to package website and version installed)"
+	  puts "  (package name with link to package website/version installed)"
 		show.usage( "generation" )
 	
 	# abt news | -n
 	when "news", "-n"
 		logger.logToJournal( "Starting to retrieve AbTLinux news." )
 
-		# pick up the abtlinux.org news feed.
-		news    = Net::HTTP.get( URI.parse( $ABTNEWS ) )
-		threads = Net::HTTP.get( URI.parse( $ABTNEWS_THREADS ) )
-		posts   = Net::HTTP.get( URI.parse( $ABTNEWS_POSTS ) )
+		# abtlinux.org news feeds.
+		puts "\n"
+		if ( !downloader.retrieveNewsFeed( $ABTNEWS ) )
+			puts "Failed to retrieve the AbTLinux news feed."
+		end
 
-		newsArray = [ news, threads, posts ]
-
-		# display the feeds.
-		newsArray.each_with_index do |feed, i|
-			rss = nil
-			begin
-				rss  = RSS::Parser.parse(feed, false)
-			rescue RSS::Error
-			end 
-
+		puts "\n"
+		if ( !downloader.retrieveNewsFeed( $ABTNEWS_THREADS ) )
+			puts "Failed to retrieve the AbTLinux forum threads news feed."
+		end
 		
-			if ( rss.nil? )
-				puts "Feed #{i} is not RSS 1.0/2.0."
-				logger.logToJournal( "Failed to display news feed as feed #{i} is not RSS 1.0/2.0." )
-			else
-				puts "\n\n"
-				puts "*** #{rss.channel.title} ***"
-			
-				rss.items.each_with_index do |item, itemCount|
-					itemCount += 1
-					puts "#{itemCount}  #{item.link}  #{item.title}" 
-				end
-			end
+		puts "\n"
+		if ( !downloader.retrieveNewsFeed( $ABTNEWS_POSTS ) )
+			puts "Failed to retrieve the AbTLinux new posts news feed."
 		end
 			
 		logger.logToJournal( "Completed the retrieval of AbTLinux news." )
@@ -247,24 +231,28 @@ case ARGV[0]
 	# abt [-d | download ] <package>
 	when "download", "-d"  
 		if ( ARGV.length == 2 && File.exist?( $PACKAGE_PATH + ARGV[1] + ".rb" ) )
-			options['package'] = ARGV[1]
-			logger.logToJournal( "Starting to download " + options['package'] )
+			options['pkg'] = ARGV[1]
+			logger.logToJournal( "Starting to download " + options['pkg'] )
 
 			if ( !File.directory?( $SOURCES_REPOSITORY ) )
 				FileUtils.mkdir_p( $SOURCES_REPOSITORY ) # initialize directory.
-				logger.logToJournal( "Had to initialize directory - " + $SOURCES_REPOSITORY )
+				logger.logToJournal( "Created directory - " + $SOURCES_REPOSITORY )
 			end
 
 			manager = AbtDownloadManager.new
 
-			if ( manager.retrievePackageSource( options['package'], $SOURCES_REPOSITORY ) )
-				logger.logToJournal( "Finished download for " + options['package'] )
-				puts "\nDownloading of " + options['package'] + " to " + $SOURCES_REPOSITORY + " completed.\n\n"
+			if ( manager.retrievePackageSource( options['pkg'], $SOURCES_REPOSITORY ) )
+				logger.logToJournal( "Finished download for " + options['pkg'] )
+				puts  "\n";
+				print "Downloading of #{options['pkg']} to #{$SOURCES_REPOSITORY} "
+				puts  "completed."
+				puts  "\n\n"
 			else
-				logger.logToJournal( "FAILURE to download " + options['package'] )
-				puts "\nDOWNLOADING - failed to download source for " + options['package'] + "\n\n"
+				logger.logToJournal( "FAILURE to download " + options['pkg'] )
+				puts  "\n"
+				puts "DOWNLOADING - failed to download source for #{options['pkg']}"
+				puts "\n\n"
 			end
-
 		else
 			show.usage( "downloads" )
 			exit
@@ -273,7 +261,7 @@ case ARGV[0]
 	when "update", "-u"  
 		if ( ARGV.length == 2 )
 			options['updateItem'] = ARGV[1]
-			puts "Updating this item (either package or a package tree : " + options['updateItem']
+			puts "Updating item : #{options['updateItem']}"
 		else
 			show.usage( "downloads" )
 			exit
@@ -316,8 +304,9 @@ case ARGV[0]
 	    
 	when "verify-integrity"  
 		if ( ARGV.length == 2 )
-			options['package'] = ARGV[1]
-			puts "Verifiy the integrity of installed files for package : " + options['package']
+			options['pkg'] = ARGV[1]
+			print "Verifiy integrity of installed files for "
+			puts  "package : #{options['pkg']}"
 		else
 			show.usage( "fix" )
 			exit
@@ -325,8 +314,8 @@ case ARGV[0]
 
 	when "fix"  
 		if ( ARGV.length == 2 )
-			options['package'] = ARGV[1]
-			puts "Package : " + options['package'] + " is verified and checked if needed."
+			options['pkg'] = ARGV[1]
+			puts "Package : #{options['pkg']} is verified and checked if needed."
 		else
 			show.usage( "fix" )
 			exit
@@ -335,7 +324,8 @@ case ARGV[0]
 	when "build-location"  
 		if ( ARGV.length == 2 )
 			options['buildHost'] = ARGV[1]
-			puts "Sets global location for retrieving cached build packages to : " + options['buildHost']
+			print "Sets global location for retrieving cached build packages "
+			puts  "to : #{options['buildHost']}"
 		else
 			show.usage( "maintenance" )
 			exit
