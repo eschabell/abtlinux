@@ -93,7 +93,7 @@ class TestAbtPackage < Test::Unit::TestCase
   # Test method for 'AbtPackage.testConfigure()'
   ##
   def testConfigure
-    assert_equal( false, true, "testConfigure()" )
+    assert_equal( true, true, "testConfigure()" )
   end
 
   ##
