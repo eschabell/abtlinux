@@ -160,24 +160,56 @@ href="AbtDownloadManager.html">AbtDownloadManager</a></em> - an initialized
 <div class="sectiontitle">Public Instance methods</div>
 <div class="method">
   <div class="title">
-    <a name="M000014"></a><b>retrieveNewsFeed</b>()
+    <a name="M000014"></a><b>retrieveNewsFeed</b>( uri )
   </div>
   <div class="description">
   <p>
-Retrieves the AbTLinux news feed.
+Retrieves the given feed and displays the news items.
 </p>
 <p>
-<b>RETURN</b> <em>boolean</em> - True if the AbTLinux news feed has been
-retrieved, otherwise false.
+<b>PARAM</b> <em>String</em> - the uri of the rss news feed to be
+retrieved. <b>RETURN</b> <em>boolean</em> - True if the AbTLinux news feed
+has been retrieved, otherwise false.
 </p>
   </div>
 <div class="sourcecode">
   <p class="source-link">[ <a href="javascript:toggleSource('M000014_source')" id="l_M000014_source">show source</a> ]</p>
   <div id="M000014_source" class="dyn-source">
 <pre>
-    <span class="ruby-comment cmt"># File AbtDownloadManager.rb, line 91</span>
-91:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">retrieveNewsFeed</span>
-92:   <span class="ruby-keyword kw">end</span>
+     <span class="ruby-comment cmt"># File AbtDownloadManager.rb, line 92</span>
+ 92:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">retrieveNewsFeed</span>( <span class="ruby-identifier">uri</span> )
+ 93:                 <span class="ruby-identifier">require</span> <span class="ruby-value str">'net/http'</span>
+ 94:                 <span class="ruby-identifier">require</span> <span class="ruby-value str">'uri'</span>
+ 95:                 <span class="ruby-identifier">require</span> <span class="ruby-value str">'rss/1.0'</span>
+ 96:                 <span class="ruby-identifier">require</span> <span class="ruby-value str">'rss/2.0'</span>
+ 97:                 
+ 98:                 <span class="ruby-comment cmt"># pick up the abtlinux.org news feed.</span>
+ 99:                 <span class="ruby-keyword kw">if</span> ( <span class="ruby-operator">!</span><span class="ruby-identifier">news</span> = <span class="ruby-constant">Net</span><span class="ruby-operator">::</span><span class="ruby-constant">HTTP</span>.<span class="ruby-identifier">get</span>( <span class="ruby-constant">URI</span>.<span class="ruby-identifier">parse</span>( <span class="ruby-identifier">uri</span> ) ) )
+100:                         <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">logToJournal</span>( <span class="ruby-node">&quot;Failed to retrieve news feed #{uri}.&quot;</span> )
+101:                         <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">false</span>
+102:                 <span class="ruby-keyword kw">end</span>
+103: 
+104:                 <span class="ruby-comment cmt"># display the feeds.</span>
+105:                 <span class="ruby-identifier">rss</span> = <span class="ruby-keyword kw">nil</span>
+106:                 <span class="ruby-keyword kw">begin</span>
+107:                         <span class="ruby-identifier">rss</span>  = <span class="ruby-constant">RSS</span><span class="ruby-operator">::</span><span class="ruby-constant">Parser</span>.<span class="ruby-identifier">parse</span>(<span class="ruby-identifier">news</span>, <span class="ruby-keyword kw">false</span>)
+108:                 <span class="ruby-keyword kw">rescue</span> <span class="ruby-constant">RSS</span><span class="ruby-operator">::</span><span class="ruby-constant">Error</span>
+109:                 <span class="ruby-keyword kw">end</span> 
+110:                 
+111:                 <span class="ruby-keyword kw">if</span> ( <span class="ruby-identifier">rss</span>.<span class="ruby-identifier">nil?</span> )
+112:                         <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">logToJournal</span>( <span class="ruby-node">&quot;Failed to display news feed as feed #{uri} is not RSS 1.0/2.0.&quot;</span> )
+113:                         <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">false</span>
+114:                 <span class="ruby-keyword kw">else</span>
+115:                         <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;*** #{rss.channel.title} ***&quot;</span>
+116:                         
+117:                         <span class="ruby-identifier">rss</span>.<span class="ruby-identifier">items</span>.<span class="ruby-identifier">each_with_index</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">item</span>, <span class="ruby-identifier">itemCount</span><span class="ruby-operator">|</span>
+118:                                 <span class="ruby-identifier">itemCount</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>
+119:                                 <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;#{itemCount}  #{item.link}  #{item.title}&quot;</span> 
+120:                         <span class="ruby-keyword kw">end</span>
+121:                 <span class="ruby-keyword kw">end</span>
+122: 
+123:                 <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">true</span>
+124:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>
@@ -276,9 +308,9 @@ updated, otherwise false.
   <p class="source-link">[ <a href="javascript:toggleSource('M000015_source')" id="l_M000015_source">show source</a> ]</p>
   <div id="M000015_source" class="dyn-source">
 <pre>
-     <span class="ruby-comment cmt"># File AbtDownloadManager.rb, line 102</span>
-102:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">updatePackage</span>
-103:   <span class="ruby-keyword kw">end</span>
+     <span class="ruby-comment cmt"># File AbtDownloadManager.rb, line 134</span>
+134:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">updatePackage</span>
+135:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>
@@ -300,9 +332,9 @@ otherwise false.
   <p class="source-link">[ <a href="javascript:toggleSource('M000016_source')" id="l_M000016_source">show source</a> ]</p>
   <div id="M000016_source" class="dyn-source">
 <pre>
-     <span class="ruby-comment cmt"># File AbtDownloadManager.rb, line 111</span>
-111:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">updatePackageTree</span>
-112:   <span class="ruby-keyword kw">end</span>
+     <span class="ruby-comment cmt"># File AbtDownloadManager.rb, line 143</span>
+143:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">updatePackageTree</span>
+144:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>

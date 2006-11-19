@@ -573,19 +573,19 @@ otherwise false.
   <p class="source-link">[ <a href="javascript:toggleSource('M000032_source')" id="l_M000032_source">show source</a> ]</p>
   <div id="M000032_source" class="dyn-source">
 <pre>
-     <span class="ruby-comment cmt"># File AbtPackage.rb, line 233</span>
-233:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">removeBuildSources</span>
-234:                 <span class="ruby-identifier">buildSourcesLocation</span> = <span class="ruby-node">&quot;#{$BUILD_LOCATION}/#{srcDir}&quot;</span>
-235: 
-236:                 <span class="ruby-keyword kw">if</span> ( <span class="ruby-operator">!</span><span class="ruby-constant">File</span>.<span class="ruby-identifier">directory?</span>( <span class="ruby-identifier">buildSourcesLocation</span> ) )
-237:                         <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">true</span>
-238:                 <span class="ruby-keyword kw">end</span>
-239: 
-240:                 <span class="ruby-comment cmt"># TODO: system call removal?</span>
-241:                 <span class="ruby-keyword kw">if</span> ( <span class="ruby-operator">!</span><span class="ruby-constant">FileUtils</span>.<span class="ruby-identifier">rm_rf</span> <span class="ruby-identifier">buildSourcesLocation</span>, <span class="ruby-identifier">:verbose</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword kw">true</span>  )
-242:                         <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">false</span>
-243:                 <span class="ruby-keyword kw">end</span>
-244:         <span class="ruby-keyword kw">end</span>
+     <span class="ruby-comment cmt"># File AbtPackage.rb, line 263</span>
+263:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">removeBuildSources</span>
+264:                 <span class="ruby-identifier">buildSourcesLocation</span> = <span class="ruby-node">&quot;#{$BUILD_LOCATION}/#{srcDir}&quot;</span>
+265: 
+266:                 <span class="ruby-keyword kw">if</span> ( <span class="ruby-operator">!</span><span class="ruby-constant">File</span>.<span class="ruby-identifier">directory?</span>( <span class="ruby-identifier">buildSourcesLocation</span> ) )
+267:                         <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">true</span>
+268:                 <span class="ruby-keyword kw">end</span>
+269: 
+270:                 <span class="ruby-comment cmt"># TODO: system call removal?</span>
+271:                 <span class="ruby-keyword kw">if</span> ( <span class="ruby-operator">!</span><span class="ruby-constant">FileUtils</span>.<span class="ruby-identifier">rm_rf</span> <span class="ruby-identifier">buildSourcesLocation</span>, <span class="ruby-identifier">:verbose</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword kw">true</span>  )
+272:                         <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">false</span>
+273:                 <span class="ruby-keyword kw">end</span>
+274:         <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>
@@ -609,19 +609,49 @@ otherwise false.
 <pre>
      <span class="ruby-comment cmt"># File AbtPackage.rb, line 213</span>
 213:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">unpackSources</span>
-214:                 <span class="ruby-identifier">sourcesToUnpack</span>    = <span class="ruby-node">&quot;#{$SOURCES_REPOSITORY}/#{File.basename( srcUrl )}&quot;</span>
-215: 
-216:                 <span class="ruby-keyword kw">if</span> ( <span class="ruby-operator">!</span><span class="ruby-constant">File</span>.<span class="ruby-identifier">exist?</span>( <span class="ruby-identifier">sourcesToUnpack</span> ) )
-217:                         <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">false</span>
-218:                 <span class="ruby-keyword kw">end</span> 
-219: 
-220:                 <span class="ruby-comment cmt"># TODO: system call removal?</span>
-221:                 <span class="ruby-keyword kw">if</span> ( <span class="ruby-operator">!</span><span class="ruby-identifier">system</span>( <span class="ruby-node">&quot;cd #{$BUILD_LOCATION}; tar xzvf #{sourcesToUnpack}&quot;</span> ) )
-222:                         <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">false</span>
-223:                 <span class="ruby-keyword kw">end</span>
-224: 
-225:                 <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">true</span>
-226:         <span class="ruby-keyword kw">end</span>
+214:                 <span class="ruby-identifier">srcFile</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">basename</span>( <span class="ruby-identifier">srcUrl</span> )
+215:                 <span class="ruby-identifier">sourcesToUnpack</span> = <span class="ruby-node">&quot;#{$SOURCES_REPOSITORY}/#{srcFile}&quot;</span>
+216:                 <span class="ruby-identifier">unpackTool</span>      = <span class="ruby-value str">&quot;&quot;</span>
+217:                 <span class="ruby-identifier">logger</span> = <span class="ruby-constant">AbtLogManager</span>.<span class="ruby-identifier">new</span>
+218: 
+219:                 <span class="ruby-keyword kw">if</span> ( <span class="ruby-operator">!</span><span class="ruby-constant">File</span>.<span class="ruby-identifier">exist?</span>( <span class="ruby-identifier">sourcesToUnpack</span> ) )
+220:                         <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">false</span>
+221:                 <span class="ruby-keyword kw">end</span> 
+222: 
+223:                 <span class="ruby-comment cmt"># determine which supported compression used [gz, tar, tgz, bz2, zip].</span>
+224:                 <span class="ruby-identifier">compressionType</span> = <span class="ruby-identifier">srcFile</span>.<span class="ruby-identifier">split</span>( <span class="ruby-value str">'.'</span> )
+225: 
+226:                 <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">compressionType</span>.<span class="ruby-identifier">last</span>
+227: 
+228:                 <span class="ruby-keyword kw">when</span> <span class="ruby-value str">&quot;gz&quot;</span>
+229:                         <span class="ruby-identifier">unpackTool</span> = <span class="ruby-value str">&quot;tar xzvf&quot;</span>
+230: 
+231:                 <span class="ruby-keyword kw">when</span> <span class="ruby-value str">&quot;tar&quot;</span>
+232:                         <span class="ruby-identifier">unpackTool</span> = <span class="ruby-value str">&quot;tar xvf&quot;</span>
+233: 
+234:                 <span class="ruby-keyword kw">when</span> <span class="ruby-value str">&quot;bz2&quot;</span>
+235:                         <span class="ruby-identifier">unpackTool</span> = <span class="ruby-value str">&quot;tar xjvf&quot;</span>
+236: 
+237:                 <span class="ruby-keyword kw">when</span> <span class="ruby-value str">&quot;tgz&quot;</span> 
+238:                         <span class="ruby-identifier">unpackTool</span> = <span class="ruby-value str">&quot;tar xzvf&quot;</span>
+239:                 
+240:                 <span class="ruby-keyword kw">when</span> <span class="ruby-value str">&quot;zip&quot;</span>
+241:                         <span class="ruby-identifier">unpackTool</span> = <span class="ruby-value str">&quot;unizp&quot;</span>
+242: 
+243:                 <span class="ruby-keyword kw">else</span>
+244:                         <span class="ruby-comment cmt"># unsupported format.</span>
+245:                         <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">false</span>
+246:                 <span class="ruby-keyword kw">end</span>
+247:                 
+248:                 <span class="ruby-comment cmt">#logger.logToJournal( &quot;DEBUG: unpack tool will be '#{unpackTool}'.&quot; )</span>
+249: 
+250:                 <span class="ruby-comment cmt"># TODO: system call removal?</span>
+251:                 <span class="ruby-keyword kw">if</span> ( <span class="ruby-operator">!</span><span class="ruby-identifier">system</span>( <span class="ruby-node">&quot;cd #{$BUILD_LOCATION}; #{unpackTool} #{sourcesToUnpack}&quot;</span> ) )
+252:                         <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">false</span>
+253:                 <span class="ruby-keyword kw">end</span>
+254: 
+255:                 <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">true</span>
+256:         <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>
