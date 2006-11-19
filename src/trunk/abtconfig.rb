@@ -40,3 +40,4 @@ $TIMESTAMP          = Time.now.strftime( "%Y-%m-%d %H:%M:%S (%Z)" )
 # default config options.
 #
 $removeBuildSources = false
+$defaultPrefix      = "/usr/local"
