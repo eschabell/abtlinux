@@ -207,10 +207,12 @@ public
 		end
 
 		# unpack sources.
-		if ( !unpackSources )
+		if ( !self.unpackSources )
 			return false
 		end
 
+		# TODO: create_group?
+		# TODO: create_user?
 		# TODO: retrieve patches?
 		# TODO: apply patches?
 		
@@ -227,6 +229,14 @@ public
   # <b>RETURNS:</b>  <i>boolean</i> - True if the completes sucessfully, otherwise false.
   ##
   def configure
+		require 'open3'
+		buildSite = "#{$BUILD_LOCATION}/#{@srcDir}" 
+
+		if ( !system( "cd #{buildSite}; make ./configure --prefix=#{$defaultPrefix}" ) )
+			return false
+		end
+
+		return true
   end
   
   ##
