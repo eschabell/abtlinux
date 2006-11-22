@@ -42,7 +42,7 @@ private
     'version'						=> $version,
     'srcDir'						=> $srcDir,
     'homepage'					=> "http://isotopatcalc.sourceforge.net/",
-    'srcUrl'						=> "http://osdn.dl.sourceforge.net/sourceforge/isotopatcalc/#{$srcdir}.tar.gz",
+    'srcUrl'						=> "http://osdn.dl.sourceforge.net/sourceforge/isotopatcalc/#{$srcDir}.tar.gz",
     'dependsOn'					=> "",
     'reliesOn'					=> "",
     'optionalDO'				=> "",
@@ -67,13 +67,4 @@ public
   def initialize()
       super( $packageData )
   end
-
-	##
-	# Overriding configure.
-	#
-	# <b>RETURN</b> <i>boolean</i> - returns true.
-	##
-	def configure 
-		return true  # nothing to do, standard makefile is fine.
-	end
 end
