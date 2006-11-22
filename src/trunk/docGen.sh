@@ -33,6 +33,8 @@ FILES="AbtDepEngine.rb
 		TestAbtQueueManager.rb
 		TestAbtReportManager.rb
 		TestAbtSystemManager.rb
+		packages/fortune.rb
+		packages/ipc.rb
 		";
 
 # run the actual doc generation.
