@@ -62,7 +62,9 @@ case ARGV[0]
 			logger.logToJournal( "Starting to install #{options['package']}" )
 			
 			if ( manager.installPackage( options['package'] ) )
+				puts "\n\n"
 				puts "Completed install of #{options['package']}."
+				puts "\n\n"
 				logger.logToJournal( "Completed install of #{options['package']}." ) 
 			else
 				puts "#{options['package'].capitalize} install failed, see journal."
