@@ -229,10 +229,12 @@ public
   # <b>RETURNS:</b>  <i>boolean</i> - True if the completes sucessfully, otherwise false.
   ##
   def configure
-		require 'open3'
+		#logger = AbtLogManager.new
 		buildSite = "#{$BUILD_LOCATION}/#{@srcDir}" 
+		#logger.logToJournal( "DEBUG: calling system - cd #{buildSite}; ./configure --prefix=#{$defaultPrefix}" )
 
-		if ( !system( "cd #{buildSite}; make ./configure --prefix=#{$defaultPrefix}" ) )
+		# TODO: system call removal?
+		if ( !system( "cd #{buildSite}; ./configure --prefix=#{$defaultPrefix}" ) )
 			return false
 		end
 
