@@ -3,7 +3,7 @@
 require "AbtPackage"
 
 ##
-# time.rb 
+# ipc.rb 
 #
 # AbtFortune package.
 #
@@ -27,22 +27,22 @@ require "AbtPackage"
 # St, Fifth Floor, Boston, MA 02110-1301  USA
 ##
 
-class Time < AbtPackage
+class Ipc < AbtPackage
   
 protected
   
 private
   
-  $name					= "Time"
-  $version			= "1.7"
+  $name					= "Ipc"
+  $version			= "1.4"
   $srcDir				= "#{$name.downcase}-#{$version}"
   $packageData	= {
     'name'							=> $name,
     'execName'					=> $name.downcase,
     'version'						=> $version,
     'srcDir'						=> $srcDir,
-    'homepage'					=> "ftp://www.gnu.org/directory/GNU/time.html",
-    'srcUrl'						=> "ftp://ftp.nluug.nl/pub/gnu/#{$name.downcase}/#{$srcdir}",
+    'homepage'					=> "http://isotopatcalc.sourceforge.net/",
+    'srcUrl'						=> "http://osdn.dl.sourceforge.net/sourceforge/isotopatcalc/#{$srcdir}.tar.gz",
     'dependsOn'					=> "",
     'reliesOn'					=> "",
     'optionalDO'				=> "",
@@ -52,7 +52,7 @@ private
     'patchesHashCheck'	=> "",
     'mirrorPath'				=> "",
     'license'						=> "GPL",
-    'description'				=> "The 'time' command runs another program, then displays information about the resources used by that program, collected by the system while the program was running. You can select which information is reported and the format in which it is shown, or have 'time' save the information in a file instead of displaying it on the screen."
+    'description'				=> "IPC is a program that calculates the isotopic distribution of a given chemical formula."
   }
 
   
