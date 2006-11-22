@@ -71,12 +71,16 @@ public
 		if ( !sw.pre )
 			logger.logToJournal( "Failed to process pre-section in the package description of #{package}." )
 			return false
+		else
+			logger.logToJournal( "DEBUG: finished #{package} pre section." )
 		end
 
 		# configure section.
 		if ( !sw.configure )
 			logger.logToJournal( "Failed to process configure section in the package description of #{package}." )
 			return false
+		else
+			logger.logToJournal( "DEBUG: finished #{package} configure section." )
 		end
 
     # TODO: finish up the following steps per install scenario:
