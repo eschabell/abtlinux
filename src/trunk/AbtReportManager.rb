@@ -147,19 +147,21 @@ public
   ##
   # Display the AbTLinux journal file.
   #
+	# <b> PARAM</b> <i>string</i> The complete path of the file to display.
+	#
   # <b>RETURN</b> <i>void.</i> 
   ##
-  def showJournal
-		if ( File.exist?( $JOURNAL ) )
+  def showJournal( fileName )
+		if ( File.exist?( fileName ) )
 			puts "\n\n"
-			puts "AbTLinux journal:"
-			puts "================="
-			log = IO.readlines( $JOURNAL )
+			puts "AbTLinux log:"
+			puts "============="
+			log = IO.readlines( fileName )
 			log.each{ |entry| puts entry }
 			puts "\n\n"
 		else
 			puts "\n\n"
-			puts "AbtLinux journal is empty at this time."
+			puts "AbtLinux log ( #{fileName.basename} ) is empty at this time."
 			puts "\n\n"
 		end
   end
