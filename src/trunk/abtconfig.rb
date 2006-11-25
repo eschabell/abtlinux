@@ -26,11 +26,12 @@
 ##
 
 # default paths / locations.
+$ABT_LOGS           = "/var/log/abt"
+$ABTNEWS_LOG        = "#{$ABT_LOGS}/news.log"
+$BUILD_LOCATION     = "/usr/src"
+$JOURNAL            = "#{$ABT_LOGS}/journal.log"
 $PACKAGE_PATH       = "./packages/"
 $SOURCES_REPOSITORY = "/var/spool/abt/sources"
-$BUILD_LOCATION     = "/usr/src"
-$ABT_LOGS           = "/var/log/abt"
-$JOURNAL            = "#{$ABT_LOGS}/journal.log"
 
 
 # default config options.
