@@ -86,15 +86,25 @@ public
   # Retrieves the given feed and displays the news items.
   #
 	# <b>PARAM</b> <i>String</i> - the uri of the rss news feed to be retrieved.
+	# <b>PARAM</b> <i>String</i> - pass the value 'true' to empty the log file,
+	# otherwise it will be appended.
   # <b>RETURN</b> <i>boolean</i> - True if the AbTLinux news feed has been
   # retrieved, otherwise false.
   ##
-  def retrieveNewsFeed( uri )
+  def retrieveNewsFeed( uri, cleanLog = "false" )
 		require 'net/http'
 		require 'uri'
 		require 'rss/1.0'
 		require 'rss/2.0'
-		
+		newsLog = ""
+
+		# ensure we have our news logfile.
+		if ( cleanLog == "true" )
+			newsLog = File.new( $ABTNEWS_LOG, File::WRONLY|File::TRUNC|File::CREAT, 644 ) 
+		else
+			newsLog = File.new( $ABTNEWS_LOG, File::WRONLY|File::APPEND|File::CREAT, 644 )
+		end
+			
 		# pick up the abtlinux.org news feed.
 		if ( !news = Net::HTTP.get( URI.parse( uri ) ) )
 			logger.logToJournal( "Failed to retrieve news feed #{uri}." )
@@ -112,15 +122,18 @@ public
 			logger.logToJournal( "Failed to display news feed as feed #{uri} is not RSS 1.0/2.0." )
 			return false
 		else
-			puts "*** #{rss.channel.title} ***"
-			
+			newsLog.puts "*** #{rss.channel.title} ***"
+		
 			rss.items.each_with_index do |item, itemCount|
 				itemCount += 1
-				puts "#{itemCount}  #{item.link}  #{item.title}" 
+				newsLog.puts "#{itemCount}  #{item.link}  #{item.title}" 
 			end
 		end
 
+		newsLog.puts "\n"
+		newsLog.close
 		return true
+
   end
   
   ##
