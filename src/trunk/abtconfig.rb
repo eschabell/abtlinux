@@ -24,20 +24,37 @@
 # AbTLinux; if not, write to the Free Software Foundation, Inc., 51 Franklin
 # St, Fifth Floor, Boston, MA 02110-1301  USA
 ##
+
+# default paths / locations.
 $PACKAGE_PATH       = "./packages/"
 $SOURCES_REPOSITORY = "/var/spool/abt/sources"
 $BUILD_LOCATION     = "/usr/src"
-
-$ABTNEWS            = "http://abtlinux.org/e107_plugins/rss_menu/rss.php?1.2"
-$ABTNEWS_THREADS    = "http://abtlinux.org/e107_plugins/rss_menu/rss.php?6.2"
-$ABTNEWS_POSTS      = "http://abtlinux.org/e107_plugins/rss_menu/rss.php?7.2"
-
 $ABT_LOGS           = "/var/log/abt"
 $JOURNAL            = "#{$ABT_LOGS}/journal.log"
 
-$TIMESTAMP          = Time.now.strftime( "%Y-%m-%d %H:%M:%S (%Z)" )
 
 # default config options.
 #
-$removeBuildSources = false
-$defaultPrefix      = "/usr/local"
+$ABT_VERSION           = "0.1"
+$BUILD_ARCHITECTURE    = "x86_64"
+$BUILD_OPTIMIZATIONS   = "strip"
+$DEFAULT_PREFIX        = "/usr/local"
+$REMOVE_BUILD_SOURCES  = false
+$TIMESTAMP             = Time.now.strftime( "%Y-%m-%d %H:%M:%S (%Z)" )
+$PAGER_DEFAULT         = "less -R -E -X -f"
+
+
+# default URL listing.
+#
+$ABTNEWS            = "http://abtlinux.org/e107_plugins/rss_menu/rss.php?1.2"
+$ABTNEWS_POSTS      = "http://abtlinux.org/e107_plugins/rss_menu/rss.php?7.2"
+$ABTNEWS_THREADS    = "http://abtlinux.org/e107_plugins/rss_menu/rss.php?6.2"
+
+$APACHE_URL         = "http://www.ibiblio.org/pub/mirrors/apache"
+$CTAN_URL           = "ftp://tug.ctan.org/tex-archive"
+$GNOME_URL          = "ftp://ftp.gnome.org/pub/GNOME"
+$GNU_URL            = "ftp://ftp.gnu.org/pub/gnu"
+$KDE_URL            = "ftp://ftp.kde.org/pub/kde"
+$KERNEL_URL         = "ftp://ftp.kernel.org"
+$SOURCEFORGE_URL    = "http://osdn.dl.sourceforge.net/sourceforge"
+$XFREE86_URL        = "ftp://ftp.xfree86.org/pub/XFree86"
