@@ -91,7 +91,7 @@ public
 		# post section
 		# remove build sources.
 		#
-		if ( !sw.removeBuildSources )
+		if ( !sw.removeBuild )
 			logger.logToJournal( "Failed to remove the build sources for #{package}." )
 			#return false  # commented out as this is not a reason to fail.
 		end

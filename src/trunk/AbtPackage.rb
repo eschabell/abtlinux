@@ -231,10 +231,10 @@ public
   def configure
 		#logger = AbtLogManager.new
 		buildSite = "#{$BUILD_LOCATION}/#{@srcDir}" 
-		#logger.logToJournal( "DEBUG: calling system - cd #{buildSite}; ./configure --prefix=#{$defaultPrefix}" )
+		#logger.logToJournal( "DEBUG: calling system - cd #{buildSite}; ./configure --prefix=#{$DEFAULT_PREFIX}" )
 
 		# TODO: system call removal?
-		if ( !system( "cd #{buildSite}; ./configure --prefix=#{$defaultPrefix}" ) )
+		if ( !system( "cd #{buildSite}; ./configure --prefix=#{$DEFAULT_PREFEX}" ) )
 			return false
 		end
 
@@ -279,8 +279,8 @@ public
 	#
   # <b>RETURNS:</b>  <i>boolean</i> - True if the completes sucessfully, otherwise false.
 	##
-	def removeBuildSources
-		if ( $removeBuildSources )
+	def removeBuild
+		if ( $REMOVE_BUILD_SOURCES )
 			buildSourcesLocation = "#{$BUILD_LOCATION}/#{srcDir}"
 
 			if ( !File.directory?( buildSourcesLocation ) )
