@@ -198,7 +198,7 @@ case ARGV[0]
 
 	# abt show-journal
 	when "show-journal"  
-		reporter.showJournal
+		reporter.showJournal( $JOURNAL )
 	
 	when "show-iqueue"  
 		puts "Display contents of install queue."
@@ -223,7 +223,7 @@ case ARGV[0]
 
 		# abtlinux.org news feeds.
 		puts "\n"
-		if ( !downloader.retrieveNewsFeed( $ABTNEWS ) )
+		if ( !downloader.retrieveNewsFeed( $ABTNEWS , "true" ) )
 			puts "Failed to retrieve the AbTLinux news feed."
 		end
 
@@ -236,6 +236,9 @@ case ARGV[0]
 		if ( !downloader.retrieveNewsFeed( $ABTNEWS_POSTS ) )
 			puts "Failed to retrieve the AbTLinux new posts news feed."
 		end
+
+		# display the file contents.
+		reporter.showJournal( $ABTNEWS_LOG )
 			
 		logger.logToJournal( "Completed the retrieval of AbTLinux news." )
             
