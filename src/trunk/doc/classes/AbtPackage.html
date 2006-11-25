@@ -129,7 +129,7 @@ Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
   <li><a href="#M000031">post</a></li>
   <li><a href="#M000026">pre</a></li>
   <li><a href="#M000029">preinstall</a></li>
-  <li><a href="#M000032">removeBuildSources</a></li>
+  <li><a href="#M000032">removeBuild</a></li>
   <li><a href="#M000023">unpackSources</a></li>
   </ul>
 
@@ -394,10 +394,10 @@ otherwise false.
 231:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">configure</span>
 232:                 <span class="ruby-comment cmt">#logger = AbtLogManager.new</span>
 233:                 <span class="ruby-identifier">buildSite</span> = <span class="ruby-node">&quot;#{$BUILD_LOCATION}/#{@srcDir}&quot;</span> 
-234:                 <span class="ruby-comment cmt">#logger.logToJournal( &quot;DEBUG: calling system - cd #{buildSite}; ./configure --prefix=#{$defaultPrefix}&quot; )</span>
+234:                 <span class="ruby-comment cmt">#logger.logToJournal( &quot;DEBUG: calling system - cd #{buildSite}; ./configure --prefix=#{$DEFAULT_PREFIX}&quot; )</span>
 235: 
 236:                 <span class="ruby-comment cmt"># TODO: system call removal?</span>
-237:                 <span class="ruby-keyword kw">if</span> ( <span class="ruby-operator">!</span><span class="ruby-identifier">system</span>( <span class="ruby-node">&quot;cd #{buildSite}; ./configure --prefix=#{$defaultPrefix}&quot;</span> ) )
+237:                 <span class="ruby-keyword kw">if</span> ( <span class="ruby-operator">!</span><span class="ruby-identifier">system</span>( <span class="ruby-node">&quot;cd #{buildSite}; ./configure --prefix=#{$DEFAULT_PREFEX}&quot;</span> ) )
 238:                         <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">false</span>
 239:                 <span class="ruby-keyword kw">end</span>
 240: 
@@ -570,7 +570,7 @@ otherwise false.
 </div>
 <div class="method">
   <div class="title">
-    <a name="M000032"></a><b>removeBuildSources</b>()
+    <a name="M000032"></a><b>removeBuild</b>()
   </div>
   <div class="description">
   <p>
@@ -586,8 +586,8 @@ otherwise false.
   <div id="M000032_source" class="dyn-source">
 <pre>
      <span class="ruby-comment cmt"># File AbtPackage.rb, line 282</span>
-282:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">removeBuildSources</span>
-283:                 <span class="ruby-keyword kw">if</span> ( <span class="ruby-identifier">$removeBuildSources</span> )
+282:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">removeBuild</span>
+283:                 <span class="ruby-keyword kw">if</span> ( <span class="ruby-identifier">$REMOVE_BUILD_SOURCES</span> )
 284:                         <span class="ruby-identifier">buildSourcesLocation</span> = <span class="ruby-node">&quot;#{$BUILD_LOCATION}/#{srcDir}&quot;</span>
 285: 
 286:                         <span class="ruby-keyword kw">if</span> ( <span class="ruby-operator">!</span><span class="ruby-constant">File</span>.<span class="ruby-identifier">directory?</span>( <span class="ruby-identifier">buildSourcesLocation</span> ) )

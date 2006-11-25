@@ -280,7 +280,7 @@ otherwise false.
  91:                 <span class="ruby-comment cmt"># post section</span>
  92:                 <span class="ruby-comment cmt"># remove build sources.</span>
  93:                 <span class="ruby-comment cmt">#</span>
- 94:                 <span class="ruby-keyword kw">if</span> ( <span class="ruby-operator">!</span><span class="ruby-identifier">sw</span>.<span class="ruby-identifier">removeBuildSources</span> )
+ 94:                 <span class="ruby-keyword kw">if</span> ( <span class="ruby-operator">!</span><span class="ruby-identifier">sw</span>.<span class="ruby-identifier">removeBuild</span> )
  95:                         <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">logToJournal</span>( <span class="ruby-node">&quot;Failed to remove the build sources for #{package}.&quot;</span> )
  96:                         <span class="ruby-comment cmt">#return false  # commented out as this is not a reason to fail.</span>
  97:                 <span class="ruby-keyword kw">end</span>
