@@ -123,6 +123,15 @@ case ARGV[0]
 			exit
 		end
 	
+	# abt -v | --version
+	when "-v", "--version"
+		if ( ARGV.length == 1 )
+			puts "Abt Package Manager version is : #{$ABT_VERSION}"
+		else
+			show.usage( "queries" )
+			exit
+		end
+
 	# abt show-details <package>
 	when "show-details"  
 		if ( ARGV.length == 2 && File.exist?( $PACKAGE_PATH + ARGV[1] + ".rb" ) )
