@@ -42,7 +42,7 @@ private
     'version'						=> $version,
     'srcDir'						=> $srcDir,
     'homepage'					=> "http://isotopatcalc.sourceforge.net/",
-    'srcUrl'						=> "http://osdn.dl.sourceforge.net/sourceforge/isotopatcalc/#{$srcDir}.tar.gz",
+    'srcUrl'						=> "#{$SOURCEFORGE_URL}/isotopatcalc/#{$srcDir}.tar.gz",
     'dependsOn'					=> "",
     'reliesOn'					=> "",
     'optionalDO'				=> "",
