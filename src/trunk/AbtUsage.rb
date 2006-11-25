@@ -88,6 +88,7 @@ class AbtUsage
 	def usageQueries
 		puts "\nqueries:"
 		puts "  -s,  search      [string | regexp ]\tSearch package descriptions for given input."
+		puts "  -v,  --version\t\t\tShow abt package manager version." 
 		puts "  show-details     [package]\t\tShow give package details."
 		puts "  show-build       [package]\t\tShow build log of given package."
 		puts "  show-depends     [package]\t\tShow the dependency tree of given package."
