@@ -39,7 +39,7 @@ require 'fileutils'
 # Setup needed classes and get ready to parse arguments.
 ##
 manager    = AbtPackageManager.new
-logger     = AbtLogManager.new
+logger     = AbtLogManager.new   # initialized all needed paths.
 reporter   = AbtReportManager.new
 downloader = AbtDownloadManager.new
 options    = Hash.new
@@ -248,11 +248,6 @@ case ARGV[0]
 		if ( ARGV.length == 2 && File.exist?( $PACKAGE_PATH + ARGV[1] + ".rb" ) )
 			options['pkg'] = ARGV[1]
 			logger.logToJournal( "Starting to download " + options['pkg'] )
-
-			if ( !File.directory?( $SOURCES_REPOSITORY ) )
-				FileUtils.mkdir_p( $SOURCES_REPOSITORY ) # initialize directory.
-				logger.logToJournal( "Created directory - " + $SOURCES_REPOSITORY )
-			end
 
 			manager = AbtDownloadManager.new
 

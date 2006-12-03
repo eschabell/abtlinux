@@ -38,9 +38,6 @@ public
   # <b>RETURN</b> <i>AbtQueueManager</i> - an initialized AbtQueueManager object. 
   ##
   def initialize
-		if ( !File.directory?( $ABT_LOGS ) )
-			FileUtils.mkdir_p( $ABT_LOGS )  # initialize logs.
-		end
   end
   
 	##
