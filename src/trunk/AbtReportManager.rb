@@ -161,7 +161,7 @@ public
 			puts "\n\n"
 		else
 			puts "\n\n"
-			puts "AbtLinux log ( #{fileName.basename} ) is empty at this time."
+			puts "AbtLinux log ( #{File.basename( fileName )} ) is empty at this time."
 			puts "\n\n"
 		end
   end
