@@ -154,6 +154,8 @@ public
   # <b>RETURN</b> <i>void</i>
   ##
   def rootLogin( arguments )
+		systemMgr = AbtSystemManager.new
+
 	  if ( Process.uid != 0 )
 		  args = ""
 		  puts "\nEnter root password:"
@@ -162,7 +164,7 @@ public
 			  args = args + " " + ARGV[i]
 		  end
 
-		  system( 'su -c "./abt ' + args + '" root' )  # TODO: replace system call?
+		  systemMgr.runSystemCall( 'su -c "./abt ' + args + '" root' )
 		  exit
 	  end
   end

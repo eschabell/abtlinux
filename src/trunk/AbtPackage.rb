@@ -37,9 +37,10 @@ protected
   # <b>RETURNS:</b>  <i>boolean</i> - True if the completes sucessfully, otherwise false.
 	##
 	def unpackSources
-		srcFile = File.basename( srcUrl )
+		systemMgr				= AbtSystemManager.new
+		srcFile					= File.basename( srcUrl )
 		sourcesToUnpack = "#{$SOURCES_REPOSITORY}/#{srcFile}"
-		unpackTool      = ""
+		unpackTool			= ""
 
 		# check for existing file in source repo.
 		if ( !File.exist?( sourcesToUnpack ) )
@@ -80,8 +81,7 @@ protected
 		#logger = AbtLogManager.new
 		#logger.logToJournal( "DEBUG: unpack tool will be '#{unpackTool}'." )
 
-		# TODO: system call removal?
-		if ( !system( "cd #{$BUILD_LOCATION}; #{unpackTool} #{sourcesToUnpack}" ) )
+		if ( !systemMgr.runSystemCall( "cd #{$BUILD_LOCATION}; #{unpackTool} #{sourcesToUnpack}" ) )
 			return false
 		end
 
@@ -287,7 +287,6 @@ public
 				return true
 			end
 
-			# TODO: system call removal?
 			if ( !FileUtils.rm_rf buildSourcesLocation, :verbose => true  )
 				return false
 			end

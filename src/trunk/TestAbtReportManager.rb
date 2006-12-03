@@ -86,7 +86,7 @@ class TestAbtReportManager < Test::Unit::TestCase
   # Test method for 'AbtReportManager.testShowJournal()'
   ## 
   def testShowJournal
-    assert( @report.showJournal(), "testShowJournal()" )
+    assert( @report.showJournal( $JOURNAL ), "testShowJournal()" )
   end
 
   ##

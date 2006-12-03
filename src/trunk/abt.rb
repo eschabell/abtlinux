@@ -25,11 +25,12 @@
 # St, Fifth Floor, Boston, MA 02110-1301  USA
 ##
 require 'abtconfig'
-require 'AbtPackageManager'
-require 'AbtLogManager'
-require 'AbtReportManager'
 require 'AbtDownloadManager'
+require 'AbtLogManager'
+require 'AbtPackageManager'
 require 'AbtQueueManager'
+require 'AbtReportManager'
+require 'AbtSystemManager'
 require 'AbtUsage'
 require 'fileutils'
 

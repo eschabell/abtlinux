@@ -149,7 +149,7 @@ public
   #
 	# <b> PARAM</b> <i>string</i> The complete path of the file to display.
 	#
-  # <b>RETURN</b> <i>void.</i> 
+  # <b>RETURN</b> <i>iboolean</i> True if journal shown, otherwise false.
   ##
   def showJournal( fileName )
 		if ( File.exist?( fileName ) )
@@ -164,6 +164,8 @@ public
 			puts "AbtLinux log ( #{File.basename( fileName )} ) is empty at this time."
 			puts "\n\n"
 		end
+
+		return true
   end
   
   ##
