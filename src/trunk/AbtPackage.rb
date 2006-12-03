@@ -38,7 +38,7 @@ protected
 	##
 	def unpackSources
 		systemMgr				= AbtSystemManager.new
-		srcFile					= File.basename( srcUrl )
+		srcFile					= File.basename( @srcUrl )
 		sourcesToUnpack = "#{$SOURCES_REPOSITORY}/#{srcFile}"
 		unpackTool			= ""
 
@@ -229,12 +229,14 @@ public
   # <b>RETURNS:</b>  <i>boolean</i> - True if the completes sucessfully, otherwise false.
   ##
   def configure
-		#logger = AbtLogManager.new
-		buildSite = "#{$BUILD_LOCATION}/#{@srcDir}" 
-		#logger.logToJournal( "DEBUG: calling system - cd #{buildSite}; ./configure --prefix=#{$DEFAULT_PREFIX}" )
+		systemMgr	= AbtSystemManager.new
+		buildSite	= "#{$BUILD_LOCATION}/#{@srcDir}" 
 
-		# TODO: system call removal?
-		if ( !system( "cd #{buildSite}; ./configure --prefix=#{$DEFAULT_PREFIX}" ) )
+		# TODO: this should not use tee, but in wrapper deal with stdout to file.
+		#       also need to expand directory with @srcDir/@srcDir.configure.
+		command		= "cd #{buildSite}; ./configure --prefix=#{$DEFAULT_PREFIX} | tee #{$PACKAGE_INSTALLED}/{@srcDir}.configure"
+
+		if ( !systemMgr.runSystemCall( command ) )
 			return false
 		end
 
