@@ -117,12 +117,12 @@ Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
 
   <div class="sectiontitle">Methods</div>
   <ul>
-  <li><a href="#M000011">new</a></li>
-  <li><a href="#M000014">retrieveNewsFeed</a></li>
-  <li><a href="#M000012">retrievePackageSource</a></li>
-  <li><a href="#M000013">retrievePackageTree</a></li>
-  <li><a href="#M000015">updatePackage</a></li>
-  <li><a href="#M000016">updatePackageTree</a></li>
+  <li><a href="#M000012">new</a></li>
+  <li><a href="#M000015">retrieveNewsFeed</a></li>
+  <li><a href="#M000013">retrievePackageSource</a></li>
+  <li><a href="#M000014">retrievePackageTree</a></li>
+  <li><a href="#M000016">updatePackage</a></li>
+  <li><a href="#M000017">updatePackageTree</a></li>
   </ul>
 
 
@@ -133,7 +133,7 @@ Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
 <div class="sectiontitle">Public Class methods</div>
 <div class="method">
   <div class="title">
-    <a name="M000011"></a><b>new</b>()
+    <a name="M000012"></a><b>new</b>()
   </div>
   <div class="description">
   <p>
@@ -147,8 +147,8 @@ href="AbtDownloadManager.html">AbtDownloadManager</a></em> - an initialized
 </p>
   </div>
 <div class="sourcecode">
-  <p class="source-link">[ <a href="javascript:toggleSource('M000011_source')" id="l_M000011_source">show source</a> ]</p>
-  <div id="M000011_source" class="dyn-source">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000012_source')" id="l_M000012_source">show source</a> ]</p>
+  <div id="M000012_source" class="dyn-source">
 <pre>
     <span class="ruby-comment cmt"># File AbtDownloadManager.rb, line 41</span>
 41:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>
@@ -160,7 +160,7 @@ href="AbtDownloadManager.html">AbtDownloadManager</a></em> - an initialized
 <div class="sectiontitle">Public Instance methods</div>
 <div class="method">
   <div class="title">
-    <a name="M000014"></a><b>retrieveNewsFeed</b>( uri, cleanLog = &quot;false&quot; )
+    <a name="M000015"></a><b>retrieveNewsFeed</b>( uri, cleanLog = &quot;false&quot; )
   </div>
   <div class="description">
   <p>
@@ -175,8 +175,8 @@ otherwise false.
 </p>
   </div>
 <div class="sourcecode">
-  <p class="source-link">[ <a href="javascript:toggleSource('M000014_source')" id="l_M000014_source">show source</a> ]</p>
-  <div id="M000014_source" class="dyn-source">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000015_source')" id="l_M000015_source">show source</a> ]</p>
+  <div id="M000015_source" class="dyn-source">
 <pre>
      <span class="ruby-comment cmt"># File AbtDownloadManager.rb, line 94</span>
  94:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">retrieveNewsFeed</span>( <span class="ruby-identifier">uri</span>, <span class="ruby-identifier">cleanLog</span> = <span class="ruby-value str">&quot;false&quot;</span> )
@@ -229,7 +229,7 @@ otherwise false.
 </div>
 <div class="method">
   <div class="title">
-    <a name="M000012"></a><b>retrievePackageSource</b>( packageName, destination )
+    <a name="M000013"></a><b>retrievePackageSource</b>( packageName, destination )
   </div>
   <div class="description">
   <p>
@@ -247,22 +247,22 @@ downloaded, otherwise false.
 </p>
   </div>
 <div class="sourcecode">
-  <p class="source-link">[ <a href="javascript:toggleSource('M000012_source')" id="l_M000012_source">show source</a> ]</p>
-  <div id="M000012_source" class="dyn-source">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000013_source')" id="l_M000013_source">show source</a> ]</p>
+  <div id="M000013_source" class="dyn-source">
 <pre>
     <span class="ruby-comment cmt"># File AbtDownloadManager.rb, line 55</span>
 55:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">retrievePackageSource</span>( <span class="ruby-identifier">packageName</span>, <span class="ruby-identifier">destination</span> )
-56: 
-57:                 <span class="ruby-identifier">require</span> <span class="ruby-identifier">packageName</span>
-58:                 <span class="ruby-identifier">logger</span> = <span class="ruby-constant">AbtLogManager</span>.<span class="ruby-identifier">new</span>
-59:                 <span class="ruby-identifier">package</span> = <span class="ruby-identifier">eval</span>( <span class="ruby-identifier">packageName</span>.<span class="ruby-identifier">capitalize</span> <span class="ruby-operator">+</span> <span class="ruby-value str">'.new'</span> )
+56:                 <span class="ruby-identifier">require</span> <span class="ruby-identifier">packageName</span>
+57:                 <span class="ruby-identifier">logger</span>                = <span class="ruby-constant">AbtLogManager</span>.<span class="ruby-identifier">new</span>
+58:                 <span class="ruby-identifier">systemMgr</span>     = <span class="ruby-constant">AbtSystemManager</span>.<span class="ruby-identifier">new</span>
+59:                 <span class="ruby-identifier">package</span>               = <span class="ruby-identifier">eval</span>( <span class="ruby-identifier">packageName</span>.<span class="ruby-identifier">capitalize</span> <span class="ruby-operator">+</span> <span class="ruby-value str">'.new'</span> )
 60:                 
 61:                 <span class="ruby-keyword kw">if</span> ( <span class="ruby-constant">File</span>.<span class="ruby-identifier">exist?</span>( <span class="ruby-identifier">destination</span> <span class="ruby-operator">+</span> <span class="ruby-value str">&quot;/&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">basename</span>( <span class="ruby-identifier">package</span>.<span class="ruby-identifier">srcUrl</span> ) ) )
 62:                         <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">logToJournal</span>( <span class="ruby-value str">&quot;Download not needed, existing source found for &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">packageName</span> )
 63:                         <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">true</span>
 64:                 <span class="ruby-keyword kw">end</span>
 65: 
-66:                 <span class="ruby-keyword kw">if</span> ( <span class="ruby-identifier">system</span>( <span class="ruby-value str">&quot;cd &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">destination</span> <span class="ruby-operator">+</span> <span class="ruby-value str">&quot;; wget &quot;</span> <span class="ruby-operator">+</span>  <span class="ruby-identifier">package</span>.<span class="ruby-identifier">srcUrl</span> ) )  <span class="ruby-comment cmt"># TODO: rm system call?</span>
+66:                 <span class="ruby-keyword kw">if</span> ( <span class="ruby-identifier">systemMgr</span>.<span class="ruby-identifier">runSystemCall</span>( <span class="ruby-value str">&quot;cd &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">destination</span> <span class="ruby-operator">+</span> <span class="ruby-value str">&quot;; wget &quot;</span> <span class="ruby-operator">+</span>  <span class="ruby-identifier">package</span>.<span class="ruby-identifier">srcUrl</span> ) )
 67:                         <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">logToJournal</span>( <span class="ruby-value str">&quot;Download completed for &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">packageName</span> )
 68:                         <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">true</span>
 69:                 <span class="ruby-keyword kw">end</span>
@@ -275,7 +275,7 @@ downloaded, otherwise false.
 </div>
 <div class="method">
   <div class="title">
-    <a name="M000013"></a><b>retrievePackageTree</b>( packageTreeName )
+    <a name="M000014"></a><b>retrievePackageTree</b>( packageTreeName )
   </div>
   <div class="description">
   <p>
@@ -291,8 +291,8 @@ otherwise false.
 </p>
   </div>
 <div class="sourcecode">
-  <p class="source-link">[ <a href="javascript:toggleSource('M000013_source')" id="l_M000013_source">show source</a> ]</p>
-  <div id="M000013_source" class="dyn-source">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000014_source')" id="l_M000014_source">show source</a> ]</p>
+  <div id="M000014_source" class="dyn-source">
 <pre>
     <span class="ruby-comment cmt"># File AbtDownloadManager.rb, line 82</span>
 82:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">retrievePackageTree</span>( <span class="ruby-identifier">packageTreeName</span> )
@@ -303,7 +303,7 @@ otherwise false.
 </div>
 <div class="method">
   <div class="title">
-    <a name="M000015"></a><b>updatePackage</b>()
+    <a name="M000016"></a><b>updatePackage</b>()
   </div>
   <div class="description">
   <p>
@@ -318,8 +318,8 @@ updated, otherwise false.
 </p>
   </div>
 <div class="sourcecode">
-  <p class="source-link">[ <a href="javascript:toggleSource('M000015_source')" id="l_M000015_source">show source</a> ]</p>
-  <div id="M000015_source" class="dyn-source">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000016_source')" id="l_M000016_source">show source</a> ]</p>
+  <div id="M000016_source" class="dyn-source">
 <pre>
      <span class="ruby-comment cmt"># File AbtDownloadManager.rb, line 147</span>
 147:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">updatePackage</span>
@@ -330,7 +330,7 @@ updated, otherwise false.
 </div>
 <div class="method">
   <div class="title">
-    <a name="M000016"></a><b>updatePackageTree</b>()
+    <a name="M000017"></a><b>updatePackageTree</b>()
   </div>
   <div class="description">
   <p>
@@ -342,8 +342,8 @@ otherwise false.
 </p>
   </div>
 <div class="sourcecode">
-  <p class="source-link">[ <a href="javascript:toggleSource('M000016_source')" id="l_M000016_source">show source</a> ]</p>
-  <div id="M000016_source" class="dyn-source">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000017_source')" id="l_M000017_source">show source</a> ]</p>
+  <div id="M000017_source" class="dyn-source">
 <pre>
      <span class="ruby-comment cmt"># File AbtDownloadManager.rb, line 156</span>
 156:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">updatePackageTree</span>
