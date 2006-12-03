@@ -48,13 +48,34 @@ private
 public
 
   ##
-  # Constructor for the AbtLogManager.
+  # Constructor for the AbtLogManager. It ensures all needed logs paths are 
+  # initialized.
+  #  
   #
   # <b>RETURN</b> <i>AbtLogManager</i> - an initialized AbtLogManager object. 
   ##
   def initialize
 	  if ( !File.directory?( $ABT_LOGS ) )
-		  FileUtils.mkdir_p( $ABT_LOGS )  # initialize logs.
+		  FileUtils.mkdir_p( $ABT_LOGS )  
+		  self.logToJournal( "Created directory: #{$ABT_LOGS}." )
+	  end
+
+	  if ( !File.directory?( $ABT_CACHES ) )
+		  FileUtils.mkdir_p( $ABT_CACHES )
+		  self.logToJournal( "Created directory: #{$ABT_CACHES}." )
+	  end
+
+	  if ( !File.directory?( $BUILD_LOCATION ) )
+		  FileUtils.mkdir_p( $BUILD_LOCATION )
+		  self.logToJournal( "Created directory: #{$BUILD_LOCATION}." )
+	  end
+	  if ( !File.directory?( $PACKAGE_INSTALLED ) )
+		  FileUtils.mkdir_p( $PACKAGE_INSTALLED )
+		  self.logToJournal( "Created directory: #{$PACKAGE_INSTALLED}." )
+	  end
+	  if ( !File.directory?( $SOURCES_REPOSITORY ) )
+		  FileUtils.mkdir_p( $SOURCES_REPOSITORY )
+		  self.logToJournal( "Created directory: #{$SOURCES_REPOSITORY}." )
 	  end
   end
 
