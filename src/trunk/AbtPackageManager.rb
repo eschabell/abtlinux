@@ -52,9 +52,13 @@ public
   def installPackage( package )
 		require package
 		sw = eval( "#{package.capitalize}.new" )
-
 		queuer = AbtQueueManager.new
 		logger = AbtLogManager.new
+
+		# TODO: initialize pkg install directory ($PACKAGE_INSTALLED/@srcDir),
+		#       should this fail we have to clean this dir up, move to failure
+		#       location? 
+		#       On success, need to cache contents in cache dir.
   
 		# get package details.
 		details = sw.details
