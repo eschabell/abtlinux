@@ -234,7 +234,7 @@ public
 		#logger.logToJournal( "DEBUG: calling system - cd #{buildSite}; ./configure --prefix=#{$DEFAULT_PREFIX}" )
 
 		# TODO: system call removal?
-		if ( !system( "cd #{buildSite}; ./configure --prefix=#{$DEFAULT_PREFEX}" ) )
+		if ( !system( "cd #{buildSite}; ./configure --prefix=#{$DEFAULT_PREFIX}" ) )
 			return false
 		end
 
