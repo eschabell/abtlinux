@@ -235,13 +235,29 @@ public
 
 		# TODO: this should not use tee, but in wrapper deal with stdout to file.
 		#       also need to expand directory with @srcDir/@srcDir.configure.
-		command		= "./configure --prefix=#{$DEFAULT_PREFIX} | tee #{$PACKAGE_INSTALLED}/{@srcDir}.configure"
+		#command		= "./configure --prefix=#{$DEFAULT_PREFIX} | tee #{$PACKAGE_INSTALLED}/{@srcDir}.configure"
+		command		= "./configure --prefix=#{$DEFAULT_PREFIX}"
 
 		Dir.chdir( buildSite )
-		if ( !systemMgr.runSystemCall( command ) )
-			return false
-		end
+		stdin, stdout, stderr = Open3.popen3( command )
 
+		# check for errors.
+		if ( !stderr.eof )
+			puts "DEBUG: [AbtPackage.configure] - stderr:"
+			puts stderr.read
+			return false
+		else
+			puts "DEBUG: [AbtPackage.configure] - nothing in stderr."
+		end
+	
+		# check for output.
+		if ( !stdout.eof )
+			puts "DEBUG: [AbtPackage.configure] - stdout:"
+			puts stdout.read
+		else
+			puts "DEBUG: [AbtPackage.configure] - nothing in stdout."
+		end
+	
 		return true
   end
   

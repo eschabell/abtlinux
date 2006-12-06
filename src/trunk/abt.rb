@@ -33,6 +33,7 @@ require 'AbtReportManager'
 require 'AbtSystemManager'
 require 'AbtUsage'
 require 'fileutils'
+require 'open3'
 
 
 ##
