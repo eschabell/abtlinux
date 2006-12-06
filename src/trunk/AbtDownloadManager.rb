@@ -63,7 +63,8 @@ public
 			return true
 		end
 
-		if ( systemMgr.runSystemCall( "cd " + destination + "; wget " +  package.srcUrl ) )
+		Dir.chdir( destination )
+		if ( systemMgr.runSystemCall( "wget #{package.srcUrl}" ) )
 			logger.logToJournal( "Download completed for " + packageName )
 			return true
 		end

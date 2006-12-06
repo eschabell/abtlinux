@@ -81,7 +81,8 @@ protected
 		#logger = AbtLogManager.new
 		#logger.logToJournal( "DEBUG: unpack tool will be '#{unpackTool}'." )
 
-		if ( !systemMgr.runSystemCall( "cd #{$BUILD_LOCATION}; #{unpackTool} #{sourcesToUnpack}" ) )
+		Dir.chdir( $BUILD_LOCATION )
+		if ( !systemMgr.runSystemCall( "#{unpackTool} #{sourcesToUnpack}" ) )
 			return false
 		end
 
@@ -234,8 +235,9 @@ public
 
 		# TODO: this should not use tee, but in wrapper deal with stdout to file.
 		#       also need to expand directory with @srcDir/@srcDir.configure.
-		command		= "cd #{buildSite}; ./configure --prefix=#{$DEFAULT_PREFIX} | tee #{$PACKAGE_INSTALLED}/{@srcDir}.configure"
+		command		= "./configure --prefix=#{$DEFAULT_PREFIX} | tee #{$PACKAGE_INSTALLED}/{@srcDir}.configure"
 
+		Dir.chdir( buildSite )
 		if ( !systemMgr.runSystemCall( command ) )
 			return false
 		end
