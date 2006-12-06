@@ -55,30 +55,16 @@ public
   # <b>RETURN</b> <i>AbtLogManager</i> - an initialized AbtLogManager object. 
   ##
   def initialize
-	  if ( !File.directory?( $ABT_LOGS ) )
-		  FileUtils.mkdir_p( $ABT_LOGS )  
-		  self.logToJournal( "Created directory: #{$ABT_LOGS}." )
-	  end
-
-	  if ( !File.directory?( $ABT_CACHES ) )
-		  FileUtils.mkdir_p( $ABT_CACHES )
-		  self.logToJournal( "Created directory: #{$ABT_CACHES}." )
-	  end
-
-	  if ( !File.directory?( $BUILD_LOCATION ) )
-		  FileUtils.mkdir_p( $BUILD_LOCATION )
-		  self.logToJournal( "Created directory: #{$BUILD_LOCATION}." )
-	  end
-	  if ( !File.directory?( $PACKAGE_INSTALLED ) )
-		  FileUtils.mkdir_p( $PACKAGE_INSTALLED )
-		  self.logToJournal( "Created directory: #{$PACKAGE_INSTALLED}." )
-	  end
-	  if ( !File.directory?( $SOURCES_REPOSITORY ) )
-		  FileUtils.mkdir_p( $SOURCES_REPOSITORY )
-		  self.logToJournal( "Created directory: #{$SOURCES_REPOSITORY}." )
-	  end
-  end
-
+	  [$ABT_LOGS, $ABT_CACHES, $BUILD_LOCATION, $PACKAGE_INSTALLED, 
+			$SOURCES_REPOSITORY].each { |dir| 
+			
+			if ( ! File.directory?( dir ) )
+				FileUtils.mkdir_p( dir )
+				self.logToJournal( "Created directory: #{dir}." )
+			end
+		}
+	end
+	  
   ##
   # Provides logging of all files installed by given package. Should be called
   # as part of the install phase of the build.
