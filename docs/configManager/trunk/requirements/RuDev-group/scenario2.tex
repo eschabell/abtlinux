@@ -1,0 +1,40 @@
+
+\begin{tabularx}{\linewidth}{|l|X|}
+\hline
+\textbf{Use Case Name:} & \textbf{Upgrade Configuration} \\
+\hline
+\textbf{Use Case Steps:} & 
+\begin{minipage}{\linewidth} 
+  \vspace{0.05em}
+  \begin{enumerate}
+	\item configManager retrieves a request for upgrading the current configuration of foo1 v.3.1 with a the new configuration foo1 v.3.2
+	\item configManager opens list of configurations
+	\item configManager searches the path path1 of current version of foo1 v.3.1
+	\item configManager opens config file foo1 v.3.1 at path path1
+	\item configManager compares variables from current config file foo1 v.3.1 with the new config file foo1 v.3.2
+	\item configManager makes backup of current config file foo1 v.3.1 with path path 1
+	\item configManager sends request to AbT to add the variables var12, var13 from the linenumbers ln12, ln13 of the new config file foo1 v.3.2 to the current config file foo1 v.3.1
+	\item configManager sends request to AbT to delete the linenumbers ln18, ln19 with the variables var18, var19 from the current config file foo1 v.3.1
+	\item configManager sends request to AbT to update the version number of foo1 v.3.1 to version number foo1 v.3.2
+  \end{enumerate}
+  \vspace{0.05em}
+\end{minipage}
+\\
+\hline 
+\textbf{Alternative Path:} &
+\begin{minipage}{\linewidth}
+  \vspace{0.05em} 
+  \begin{enumerate}
+	\item configManager retrieves a request for upgrading the current configuration of foo1 v.3.1 with a the new configuration foo1 v.3.2
+	\item configManager opens list of configurations
+	\item configManager searches the path path1 of previous version of foo1 v.3.1
+	\item configManager opens config file foo1 v.3.1 at path path1
+	\item current config file foo1 v.3.1 is equal with the new config file foo1 v.3.2
+  \end{enumerate}
+  \vspace{0.05em} 
+\end{minipage}
+\\
+\hline
+\end{tabularx}
+
+

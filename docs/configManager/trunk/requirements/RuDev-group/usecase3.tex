@@ -1,0 +1,55 @@
+\begin{tabularx}{\linewidth}{|l|X|}
+\hline
+\textbf{Use Case Name:} & \textbf{Backup Configuration} \\
+\hline
+\textbf{Authors:} & RuDev \\
+\hline
+\textbf{Dates:} & 04-12-2006 \\
+\hline
+\textbf{Iteration:} & Focused \\
+\hline
+\textbf{Description:} & Backup the current config file to a safe location\\
+\hline
+\textbf{Actors:} & AbT \\
+\hline
+\textbf{Preconditions:} & Configuration file to backup exists \newline configManager has generated a list of all configuration files  \\
+\hline
+\textbf{Triggers:} & AbT submits a request for backup a configfile with given identifiers. \\
+\hline
+\textbf{Basic Course of Events:} & 
+\begin{minipage}{\linewidth} 
+  \vspace{0.05em}
+  \begin{enumerate}
+   \item AbT submits a request for backup a configfile with given identifiers.
+   \item Open list of all configuration files
+   \item Search the path of the configuration file with given identifiers
+   \item Send request to AbT to store the configuration file, from the path given at step 3, to the backup location
+  \end{enumerate}
+  \vspace{0.05em}
+\end{minipage}
+\\
+\hline 
+\textbf{Alternative Path:} & None \\
+\hline
+\textbf{Exceptions:} & Path of Configuration File is not found \newline a. Return ERROR \newline \newline List of Configuration could not be opened \newline b. Return ERROR \\
+\hline
+\textbf{Assumptions:} & \begin{enumerate} 
+							\item AbT logs every action.
+							\item AbT gives valid identifiers for the configuration file.
+						\end{enumerate} \\
+\hline
+\textbf{Postconditions:} & 
+  \begin{minipage}{\linewidth}
+  \vspace{0.05em}
+  \begin{enumerate}
+    \item Backup made of Configuration file
+  \end{enumerate}
+  \vspace{0.05em}
+\end{minipage}
+\\
+\hline
+\textbf{Related business rules:} & - \\
+\hline
+\end{tabularx}
+
+

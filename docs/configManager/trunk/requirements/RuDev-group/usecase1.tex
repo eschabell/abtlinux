@@ -1,0 +1,57 @@
+\begin{tabularx}{\linewidth}{|l|X|}
+\hline
+\textbf{Use Case Name:} & \textbf{Install Configuration} \\
+\hline
+\textbf{Authors:} & RuDev \\
+\hline
+\textbf{Dates:} & 04-12-2006 \\
+\hline
+\textbf{Iteration:} & Focused \\
+\hline
+\textbf{Description:} & A package containing a new configuration file will be installed. \\
+\hline
+\textbf{Actors:} & AbT \\
+\hline
+\textbf{Preconditions:} & configManager has access to the package configuration file. \newline configManager has generated a list of all configuration files \\
+\hline
+\textbf{Triggers:} & AbT submits a request for installing a configfile from a package. \\
+\hline
+\textbf{Basic Course of Events:} & 
+\begin{minipage}{\linewidth} 
+  \vspace{0.05em}
+  \begin{enumerate}
+   \item AbT submits a request for installing a configfile from a package
+   \item Open list of all configuration files 
+   \item Search the list for the path of the last version of the configfile
+   \item Send request to AbT to backup and remove the old configfile at the path given at step 3
+   \item Send request to AbT to store the new configfile at the path given at step 3
+  \end{enumerate}
+  \vspace{0.05em}
+\end{minipage}
+\\
+\hline 
+\textbf{Alternative Path:} & At Step 3: If no last version is found of the configfile \newline a. Continue with step 5 with a path given from AbT  \\
+\hline
+\textbf{Exceptions:} & If configuration file could not be accesed in a package \newline a. Return ERROR \newline\newline List of Configuration could not be opened \newline b. Return ERROR \\
+\hline
+\textbf{Assumptions:} & \begin{enumerate} 
+							\item AbT logs every action.
+							\item The package to install contains a configfile
+						\end{enumerate} \\
+\hline
+\textbf{Postconditions:} & 
+  \begin{minipage}{\linewidth}
+  \vspace{0.05em}
+  \begin{enumerate}
+    \item Installed configuration file from the package
+	\item The old configuration file is backuped
+  \end{enumerate}
+  \vspace{0.05em}
+\end{minipage}
+\\
+\hline
+\textbf{Related business rules:} & - \\
+\hline
+\end{tabularx}
+
+

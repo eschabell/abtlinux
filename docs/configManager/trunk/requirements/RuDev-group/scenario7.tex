@@ -1,0 +1,29 @@
+
+\begin{tabularx}{\linewidth}{|l|X|}
+\hline
+\textbf{Use Case Name:} & \textbf{Generate List of Configurations} \\
+\hline
+\textbf{Use Case Steps:} & 
+\begin{minipage}{\linewidth} 
+  \vspace{0.05em}
+  \begin{enumerate}
+	\item configManager retrieves a request to generate list lst1 of all config files
+	\item configManager searche file system for config files
+	\item configManager adds name foo1, version v.3.1, path path1 and name foo1, version v.3.2, path path2 to list lst1
+	\item configManager groups name foo1, version v.3.1, path path1 and name foo1, version v.3.2, path path2 in list lst1
+	\item configManager returns list lst1 to AbT 
+  \end{enumerate}
+  \vspace{0.05em}
+\end{minipage}
+\\
+\hline 
+\textbf{Alternative Path:} &
+\begin{minipage}{\linewidth}
+  \vspace{0.05em} 
+  \vspace{0.05em} 
+\end{minipage}
+\\
+\hline
+\end{tabularx}
+
+
