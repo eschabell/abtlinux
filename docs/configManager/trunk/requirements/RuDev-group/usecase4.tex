@@ -8,31 +8,31 @@
 \hline
 \textbf{Iteration:} & Focused \\
 \hline
-\textbf{Description:} & Restore a backup version of your configuration file. \\
+\textbf{Description:} & Restore a backup version of your configuration. \\
 \hline
 \textbf{Actors:} & AbT \\
 \hline
-\textbf{Preconditions:} & Configuration file to restore exists and is specified by identifiers \\
+\textbf{Preconditions:} & Configuration to restore exists and is specified by identifiers and a timestamp \\
 \hline
-\textbf{Triggers:} & AbT submits a request for restore a configuration file with given identifiers \\
+\textbf{Triggers:} & AbT submits a request for restore a configuration with given identifiers and timestamp \\
 \hline
 \textbf{Basic Course of Events:} & 
 \begin{minipage}{\linewidth} 
   \vspace{0.05em}
   \begin{enumerate}
-   \item AbT submits a request for restore a configuration file with given identifiers
+   \item AbT submits a request for restore a configuration with given identifiers and timestamp
    \item Open list of all configuration files
-   \item Search the list for path of the configuration file with the given identifiers
-   \item Check the list if there is a newer configuration file that already exists.
-   \item Send request to AbT to move the configuration file from the backup location to the new location.
+   \item Search the list for the backup paths of the configurations with the given identifiers
+   \item Determine path of the configuration with the newest timestamp before the given timestamp.
+   \item Send request to AbT to move the configuration specified at step 4 from the backup location to the current location.
   \end{enumerate}
   \vspace{0.05em}
 \end{minipage}
 \\
 \hline 
-\textbf{Alternative Path:} & At Step 4: Configuration File already exists\newline a. Send request to AbT to backup and remove the existing configuration file and continue with the next steps.  \\
+\textbf{Alternative Path:} &  \\
 \hline
-\textbf{Exceptions:} & The backuped configuration file is not found \newline a. Return ERROR \newline\newline List of Configuration could not be opened \newline b. Return ERROR \\
+\textbf{Exceptions:} & The backuped configuration is not found \newline a. Return ERROR \newline\newline List of Configuration could not be opened \newline b. Return ERROR \\
 \hline
 \textbf{Assumptions:} & \begin{enumerate} 
 							\item AbT logs every action.
@@ -43,7 +43,7 @@
   \begin{minipage}{\linewidth}
   \vspace{0.05em}
   \begin{enumerate}
-    \item Configuration file restored
+    \item Configuration is restored
   \end{enumerate}
   \vspace{0.05em}
 \end{minipage}

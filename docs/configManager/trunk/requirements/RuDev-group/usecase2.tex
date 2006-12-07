@@ -12,31 +12,30 @@
 \hline
 \textbf{Actors:} & AbT \\
 \hline
-\textbf{Preconditions:} & a. configManager has access to the package new configuration file. \newline b. configManager has generatad a list of all configuration files \\
+\textbf{Preconditions:} & a. configManager has access to the package new configuration file(s). \newline b. configManager has generatad a list of all configuration files \\
 \hline
-\textbf{Triggers:} & AbT submits a requests to upgrade the current configuration file with a new one from the package. \\
+\textbf{Triggers:} & AbT submits a requests to upgrade the current configuration with a new one from the package. \\
 \hline
 \textbf{Basic Course of Events:} & 
 \begin{minipage}{\linewidth} 
   \vspace{0.05em}
   \begin{enumerate}
-   \item AbT submits a requests to upgrade the current configuration file with a new one from the package.
+   \item AbT submits a requests to upgrade the current configuration with a new one from the package.
    \item Open list of all configfiles.
-   \item Search in the list for the path of the current version of the configfile.
-   \item Open the current configuration file from the path given at step 3
+   \item Search in the list for the path of the current version of the configuration.
+   \item Open the current configuration from the path given at step 3
    \item Compare the configuration variables from the current file given at step 4 with the variables from the new configuration file
    \item Backup the current configuration
-   \item Return to AbT the linenumbers of the variables which needed to be added from the new configuration file to the current.
-   \item Return to AbT the linenumbers of the variables, which no longer exist in the new configuration file, to delete them. 
-   \item Return to AbT a request for updating version number
+   \item Return to AbT a request for updating the configuration with the differences found at step 5
+   \item Return to AbT a request for updating version number.
   \end{enumerate}
   \vspace{0.05em}
 \end{minipage}
 \\
 \hline 
-\textbf{Alternative Path:} & At Step 5: The configuration files are equal \newline a. Skip steps 6,7,8,9  \\
+\textbf{Alternative Path:} & At Step 5: The configurations are equal \newline a. Skip steps 6,7,8  \\
 \hline
-\textbf{Exceptions:} & Current configuration file could not be found \newline a. Return ERROR \newline\newline List of Configuration could not be opened \newline b. Return ERROR\\
+\textbf{Exceptions:} & Current configuration could not be found \newline a. Return ERROR \newline\newline List of Configuration could not be opened \newline b. Return ERROR\\
 \hline
 \end{tabularx}
 \newpage
@@ -44,16 +43,16 @@
 \hline
 \textbf{Assumptions:} & \begin{enumerate} 
 							\item AbT logs every action.
-							\item The package for the upgrade process contains a configfile
-							\item configManager has access to read configuration files
+							\item The package for the upgrade process contains configuration file(s)
+							\item configManager has access to read configuration file(s)
 						\end{enumerate} \\
 \hline
 \textbf{Postconditions:} & 
   \begin{minipage}{\linewidth}
   \vspace{0.05em}
   \begin{enumerate}
-    \item Current configuration file is upgraded with the variables from the upgrade package.
-	\item The old configuration file is backuped
+    \item Current configuration is upgraded with the variables from the upgrade package.
+	\item The old configuration is backuped
   \end{enumerate}
   \vspace{0.05em}
 \end{minipage}

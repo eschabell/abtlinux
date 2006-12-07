@@ -8,25 +8,25 @@
 \hline
 \textbf{Iteration:} & Focused \\
 \hline
-\textbf{Description:} & Edit variables in a current configuration file\\
+\textbf{Description:} & Edit variables in a current configuration\\
 \hline
 \textbf{Actors:} & AbT \\
 \hline
-\textbf{Preconditions:} & Configuration file to be edited is specified \newline Variables to be edited are specified \newline configManager has generated a list of all configuration files \\
+\textbf{Preconditions:} & Configuration to be edited is specified \newline Variables to be edited are specified \newline configManager has generated a list of all configuration files \\
 \hline
-\textbf{Triggers:} & AbT submits a request for editing a value within a specified configuration file \\
+\textbf{Triggers:} & AbT submits a request for editing a value within a specified configuration \\
 \hline
 \textbf{Basic Course of Events:} & 
 \begin{minipage}{\linewidth} 
   \vspace{0.05em}
   \begin{enumerate}
-   \item AbT submits a request for editing a value within a specified configuration file
+   \item AbT submits a request for editing a value within a specified configuration
    \item Open list of all configuration files
-   \item Search the path of the configuration file with given identifiers
-   \item Open the configuration file from the path given at step 3
+   \item Search the path of the configuration with given identifiers
+   \item Open the configuration from the path given at step 3
    \item Search for the variables keys
-   \item Return request to AbT with the linenumbers from step 5 to edit the variables
-   \item Return request to Abt to store the configuration file
+   \item Return request to AbT with the information from step 5 to edit the variables
+   \item Return request to Abt to store the configuration.
   \end{enumerate}
   \vspace{0.05em}
 \end{minipage}
@@ -34,19 +34,24 @@
 \hline 
 \textbf{Alternative Path:} & None  \\
 \hline
-\textbf{Exceptions:} & Configuration File not found \newline a. Return ERROR \newline\newline Key of a variable in configuration file is not found. \newline b. Return ERROR \newline\newline List of Configuration could not be opened \newline c. Return ERROR \\
+\textbf{Exceptions:} & Configuration not found \newline a. Return ERROR \newline\newline Key of a variable in configuration is not found. \newline b. Return ERROR \newline\newline List of Configuration could not be opened \newline c. Return ERROR \\
+\hline
+\end{tabularx}
+\newpage
+\begin{tabularx}{\linewidth}{|l|X|}
 \hline
 \textbf{Assumptions:} & \begin{enumerate} 
 							\item Keys and values are valid specified.
 							\item AbT logs every action.
-							\item AbT has access to filesystem to read and write the configuration file
+							\item AbT has access to filesystem to read and write the configuration
+							\item AbT takes care of any backup processes if necessary
 						\end{enumerate} \\
 \hline
 \textbf{Postconditions:} & 
   \begin{minipage}{\linewidth}
   \vspace{0.05em}
   \begin{enumerate}
-    \item Configuration file edited
+    \item Configuration edited
   \end{enumerate}
   \vspace{0.05em}
 \end{minipage}

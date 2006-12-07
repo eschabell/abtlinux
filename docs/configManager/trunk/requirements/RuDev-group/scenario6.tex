@@ -9,11 +9,11 @@
   \begin{enumerate}
 	\item configManager retrieves a request for editing the variable var15 of the configuration foo1 v.3.2
 	\item configManager opens list of configurations
-	\item configManager searches the path path1 of config file of foo1 v.3.2
-	\item configManager opens config file foo1 v.3.2 at path path1
-	\item configManager retrieves linenumber ln15 for the key key15 of variable var15
-	\item configManager sends request to AbT to edit variable var15 at linenumber ln15 for config file foo1 v.3.2 with path path1
-	\item configManager sends request to AbT to store the config file foo1 v.3.2 
+	\item configManager searches the path path1 of configuration of foo1 v.3.2
+	\item configManager opens configuration foo1 v.3.2 at path path1
+	\item configManager searches for the key key15 of variable var15
+	\item configManager sends request to AbT to edit variable var15 for configuration foo1 v.3.2 at path path1
+	\item configManager sends request to AbT to store the configuration foo1 v.3.2 
   \end{enumerate}
   \vspace{0.05em}
 \end{minipage}
@@ -21,7 +21,16 @@
 \hline 
 \textbf{Alternative Path:} &
 \begin{minipage}{\linewidth}
-  \vspace{0.05em} 
+  \vspace{0.05em}
+  \begin{enumerate}
+	\item configManager retrieves a request for editing the variable var15, variable var 18 and variable var 19 of the configuration foo1 v.3.2
+	\item configManager opens list of configurations
+	\item configManager searches the path path1 of configuration of foo1 v.3.2
+	\item configManager opens configuration foo1 v.3.2 at path path1
+	\item configManager searches for the key key15 of variable var15, the key key18 of variable var18 and the key key19 of variable var19
+	\item configManager sends request to AbT to edit variables var15, var18 and var19 for configuration foo1 v.3.2 at path path1
+	\item configManager sends request to AbT to store the configuration foo1 v.3.2 
+  \end{enumerate}
   \vspace{0.05em} 
 \end{minipage}
 \\

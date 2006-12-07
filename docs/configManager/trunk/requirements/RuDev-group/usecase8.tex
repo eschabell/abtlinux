@@ -8,21 +8,21 @@
 \hline
 \textbf{Iteration:} & Focused \\
 \hline
-\textbf{Description:} & Search the entire system for a configuration file identified by identifiers given by AbT \\
+\textbf{Description:} & Search the entire system for a configuration identified by identifiers given by AbT \\
 \hline
 \textbf{Actors:} & AbT \\
 \hline
-\textbf{Preconditions:} & Configuration file to be generated specified \\
+\textbf{Preconditions:} & configManager has generatad a list of all configuration files \\
 \hline
-\textbf{Triggers:} & AbT submits a request for searching a configfile containing the given identifiers \\
+\textbf{Triggers:} & AbT submits a request for searching a configuration containing the given identifiers \\
 \hline
 \textbf{Basic Course of Events:} & 
 \begin{minipage}{\linewidth} 
   \vspace{0.05em}
   \begin{enumerate}
-   \item AbT submits a request for searching a configuration file containing the given identifiers.
+   \item AbT submits a request for searching a configuration containing the given identifiers.
    \item Open list of all configuration files.
-   \item Search in the list for the configuration file with the given identifiers.
+   \item Search in the list for the configuration with the given identifiers.
    \item Return AbT the path of the configuration file.
   \end{enumerate}
   \vspace{0.05em}
@@ -31,7 +31,7 @@
 \hline 
 \textbf{Alternative Path:} & None \\
 \hline
-\textbf{Exceptions:} & List of Configuration could not be opened \newline a. Return ERROR \newline\newline If configfile is not found \newline a. Return ERROR \\
+\textbf{Exceptions:} & List of Configuration could not be opened \newline a. Return ERROR \newline\newline Configuration is not found \newline a. Return ERROR \\
 \hline
 \textbf{Assumptions:} & \begin{enumerate}
 							\item AbT logs every action.
@@ -42,7 +42,7 @@
   \begin{minipage}{\linewidth}
   \vspace{0.05em}
   \begin{enumerate}
-    \item The path of the configuration file matching the identifiers is returned.
+    \item The path of the configuration matching the identifiers is returned.
   \end{enumerate}
   \vspace{0.05em}
 \end{minipage}

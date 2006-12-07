@@ -9,9 +9,9 @@
   \begin{enumerate}
     \item configManager retrieves a request for installing the configuration of foo1 v.3.2.
     \item configManager opens list of configurations
-    \item configManager searches the path path1 of previous version of foo1 v3.1
-    \item configManager sends request to AbT to backup the old config file foo1 v.3.1 with the path path1 and then remove it from its current location.
-    \item configManager sends request to AbT to store the new config file foo1 v.3.2 at path path1
+    \item configManager searches the path path1 of last version of foo1 v3.1
+    \item configManager sends request to AbT to backup the old configuration foo1 v.3.1 with the path path1
+    \item configManager sends request to AbT to store the new configuration foo1 v.3.2 at path path1
   \end{enumerate}
   \vspace{0.05em}
 \end{minipage}
@@ -23,8 +23,8 @@
   \begin{enumerate}
     \item configManager retrieves a request for installing the configuration of foo1 v.3.2.
     \item configManager opens list of configurations
-    \item configManager can’t find previous version of foo1 v.3.2
-    \item configManager sends request to AbT to store the new config file foo1 v.3.2 with  path path1 determined by AbT
+    \item configManager can’t find last version of foo1 v.3.2
+    \item configManager sends request to AbT to store the new configuration foo1 v.3.2 at path given from AbT
   \end{enumerate}
   \vspace{0.05em} 
 \end{minipage}
