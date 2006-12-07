@@ -1,7 +1,7 @@
 #!/usr/bin/ruby -w
 
 ##
-# AbtQueueManager.rb 
+# AbtQueueManager.rb
 #
 # AbtQueueManager class handles all AbTLinux queue interaction.
 #
@@ -19,7 +19,7 @@
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
 # FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more
 # details.
-#																    
+#
 # You should have received a copy of the GNU General Public License along with
 # AbTLinux; if not, write to the Free Software Foundation, Inc., 51 Franklin
 # St, Fifth Floor, Boston, MA 02110-1301  USA
@@ -27,60 +27,60 @@
 class AbtQueueManager
 
 protected
-  
+
 private
-  
+
 public
 
   ##
   # Constructor for the AbtQueueManager class.
   #
-  # <b>RETURN</b> <i>AbtQueueManager</i> - an initialized AbtQueueManager object. 
+  # <b>RETURN</b> <i>AbtQueueManager</i> - an initialized AbtQueueManager object.
   ##
   def initialize
   end
-  
-	##
-	# Add a given package to the given queue. If package already in
-	# the queue then it will not be added twice and return a positive 
-	# answer.
-	#
-	# <b>PARAM</b> <i>String</i> - the package to be added to the queue.
-	# <b>PARAM</b> <i>String</i> - the queue to add the package to.
-	#
-	# <b>RETURN</b> <i>boolean</i> - true if package added/exists to/in install 
-	# queue, otherwise false.
-	##
-	def addPackageToQueue( package, queue )
-		queueFile = "#{$ABT_LOGS}/#{queue}.log"
-		logger = AbtLogManager.new
 
-		if ( log = File.new( queueFile, File::WRONLY|File::APPEND|File::CREAT, 0644 ) )
-			# pickup queue contents to ensure no duplicates.
-			checkingQueue = IO.readlines( queueFile )
+  ##
+  # Add a given package to the given queue. If package already in
+  # the queue then it will not be added twice and return a positive
+  # answer.
+  #
+  # <b>PARAM</b> <i>String</i> - the package to be added to the queue.
+  # <b>PARAM</b> <i>String</i> - the queue to add the package to.
+  #
+  # <b>RETURN</b> <i>boolean</i> - true if package added/exists to/in install
+  # queue, otherwise false.
+  ##
+  def addPackageToQueue( package, queue )
+    queueFile = "#{$ABT_LOGS}/#{queue}.log"
+    logger = AbtLogManager.new
 
-			# endsure no duplicates.
-			matched = false
-			checkingQueue.each do |entry|
-				entryName = entry.split( '|' )
-				if ( entryName[0] == package )
-					matched = true
-				end
-			end
-			
-			# check if package exists, otherwise add.
-			if ( !matched )
-				log.puts "#{package}|#{$TIMESTAMP}"
-				logger.logToJournal( "Added #{package} to #{queue} queue." )
-			else
-				logger.logToJournal( "Did not add #{package} to #{queue}, already exists." )
-			end
-			
-			log.close
-			return true
-		end
+    if ( log = File.new( queueFile, File::WRONLY|File::APPEND|File::CREAT, 0644 ) )
+      # pickup queue contents to ensure no duplicates.
+      checkingQueue = IO.readlines( queueFile )
 
-		logger.logToJournal( "Failed to open #{queueFile}." )
-		return false
-	end
+      # endsure no duplicates.
+      matched = false
+      checkingQueue.each do |entry|
+        entryName = entry.split( '|' )
+        if ( entryName[0] == package )
+          matched = true
+        end
+      end
+
+      # check if package exists, otherwise add.
+      if ( !matched )
+        log.puts "#{package}|#{$TIMESTAMP}"
+        logger.logToJournal( "Added #{package} to #{queue} queue." )
+      else
+        logger.logToJournal( "Did not add #{package} to #{queue}, already exists." )
+      end
+
+      log.close
+      return true
+    end
+
+    logger.logToJournal( "Failed to open #{queueFile}." )
+    return false
+  end
 end

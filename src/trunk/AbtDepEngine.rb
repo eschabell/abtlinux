@@ -1,7 +1,7 @@
 #!/usr/bin/ruby -w
 
 ##
-# AbtDepEngine.rb 
+# AbtDepEngine.rb
 #
 # AbtDepEngine class handles all dependency aspects of the AbTLinux system. It is
 # part of a sub-project with it's own requirements document.
@@ -20,7 +20,7 @@
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
 # FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more
 # details.
-#																    
+#
 # You should have received a copy of the GNU General Public License along with
 # AbTLinux; if not, write to the Free Software Foundation, Inc., 51 Franklin
 # St, Fifth Floor, Boston, MA 02110-1301  USA
@@ -28,17 +28,17 @@
 class AbtDepEngine
 
 protected
-  
+
 private
-  
+
 public
 
   ##
   # Constructor for the AbtDepEngine class.
   #
-  # <b>RETURN</b> <i>AbtDepEngine</i> - an initialized AbtDepEngine object. 
+  # <b>RETURN</b> <i>AbtDepEngine</i> - an initialized AbtDepEngine object.
   ##
   def initialize
   end
-  
+
 end

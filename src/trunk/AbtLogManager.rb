@@ -1,7 +1,7 @@
 #!/usr/bin/ruby -w
 
 ##
-# AbtLogManager.rb 
+# AbtLogManager.rb
 #
 # AbtLogManager class handles all aspects of logging and access to existing logs
 # within the AbTLinux system.
@@ -20,7 +20,7 @@
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
 # FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more
 # details.
-#																    
+#
 # You should have received a copy of the GNU General Public License along with
 # AbTLinux; if not, write to the Free Software Foundation, Inc., 51 Franklin
 # St, Fifth Floor, Boston, MA 02110-1301  USA
@@ -28,49 +28,49 @@
 class AbtLogManager
 
 protected
- 
+
   ##
   # Provides logging of the integrity of all installed files for the given
   # package. Will be called as part of the logging done during the install
   # phase.
-  # 
+  #
   # <b>PARAM</b> <i>String</i> - Package name.
-  # 
+  #
   # <b>RETURN</b> <i>boolean</i> - True if integrity log created successfully,
   # otherwise false.
   ##
   def logPackageIntegrity( package )
   end
- 
-	
+
+
 private
 
 public
 
   ##
-  # Constructor for the AbtLogManager. It ensures all needed logs paths are 
+  # Constructor for the AbtLogManager. It ensures all needed logs paths are
   # initialized.
-  #  
   #
-  # <b>RETURN</b> <i>AbtLogManager</i> - an initialized AbtLogManager object. 
+  #
+  # <b>RETURN</b> <i>AbtLogManager</i> - an initialized AbtLogManager object.
   ##
   def initialize
-	  [$ABT_LOGS, $ABT_CACHES, $BUILD_LOCATION, $PACKAGE_INSTALLED, 
-			$SOURCES_REPOSITORY].each { |dir| 
-			
-			if ( ! File.directory?( dir ) )
-				FileUtils.mkdir_p( dir )
-				self.logToJournal( "Created directory: #{dir}." )
-			end
-		}
-	end
-	  
+    [$ABT_LOGS, $ABT_CACHES, $BUILD_LOCATION, $PACKAGE_INSTALLED,
+      $SOURCES_REPOSITORY].each { |dir|
+
+      if ( ! File.directory?( dir ) )
+        FileUtils.mkdir_p( dir )
+        self.logToJournal( "Created directory: #{dir}." )
+      end
+    }
+  end
+
   ##
   # Provides logging of all files installed by given package. Should be called
   # as part of the install phase of the build.
-  # 
+  #
   # <b>PARAM</b> <i>String</i> - Package name.
-  # 
+  #
   # <b>RETURN</b> <i>boolean</i> - True if install log created successfully,
   # otherwise false.
   ##
@@ -80,9 +80,9 @@ public
   ##
   # Provides logging of all output produced during the build phase of the
   # given package. Should be called as part of the install phase of the build.
-  # 
+  #
   # <b>PARAM</b> <i>String</i> - Package name.
-  # 
+  #
   # <b>RETURN</b> <i>boolean</i> - True if build log created successfully,
   # otherwise false.
   ##
@@ -92,9 +92,9 @@ public
   ##
   # Provides a complete log of the given packages build. Includes everything
   # needed to duplicate the build at a later date.
-  # 
+  #
   # <b>PARAM</b> <i>String</i> - Package name.
-  # 
+  #
   # <b>RETURN</b> <i>boolean</i> - True if package cache created successfully,
   # otherwise false.
   ##
@@ -104,18 +104,18 @@ public
   ##
   # Provides logging of given message to the AbTLinux journal. Message logged
   # with date timestamp.
-  # 
+  #
   # <b>PARAM</b> <i>String</i> - Message to be added to the log.
-  # 
+  #
   # <b>RETURN</b> <i>boolean</i> True if logged, otherwise false.
   ##
   def logToJournal( message )
-	  if ( log = File.new( $JOURNAL, File::WRONLY|File::APPEND|File::CREAT, 0644 ) )
-			log.puts "#{$TIMESTAMP} : #{message}" 
-			log.close
-			return true
-		end
+    if ( log = File.new( $JOURNAL, File::WRONLY|File::APPEND|File::CREAT, 0644 ) )
+      log.puts "#{$TIMESTAMP} : #{message}"
+      log.close
+      return true
+    end
 
-		return false
+    return false
   end
 end

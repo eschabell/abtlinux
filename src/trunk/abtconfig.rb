@@ -1,10 +1,10 @@
 #!/usr/bin/ruby -w
 
 ##
-# abtconfig.rb 
+# abtconfig.rb
 #
 # The system configuration for the abt package manager.
-# 
+#
 # Created by Eric D. Schabell <erics@abtlinux.org>
 # Copyright July 2006, GPL.
 #
@@ -19,21 +19,21 @@
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
 # FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more
 # details.
-#																    
+#
 # You should have received a copy of the GNU General Public License along with
 # AbTLinux; if not, write to the Free Software Foundation, Inc., 51 Franklin
 # St, Fifth Floor, Boston, MA 02110-1301  USA
 ##
 
 # default paths / locations.
-$ABT_LOGS			= "/var/log/abt"
-$ABT_CACHES			= "/var/spool/abt"
-$ABTNEWS_LOG		= "#{$ABT_LOGS}/news.log"
-$BUILD_LOCATION		= "/usr/src"
-$JOURNAL			= "#{$ABT_LOGS}/journal.log"
-$PACKAGE_INSTALLED	= "#{$ABT_CACHES}/installed"
-$PACKAGE_PATH		= "./packages/"
-$SOURCES_REPOSITORY	= "#{$ABT_CACHES}/sources"
+$ABT_LOGS           = "/var/log/abt"
+$ABT_CACHES         = "/var/spool/abt"
+$ABTNEWS_LOG        = "#{$ABT_LOGS}/news.log"
+$BUILD_LOCATION		  = "/usr/src"
+$JOURNAL			      = "#{$ABT_LOGS}/journal.log"
+$PACKAGE_INSTALLED  = "#{$ABT_CACHES}/installed"
+$PACKAGE_PATH       = "./packages/"
+$SOURCES_REPOSITORY = "#{$ABT_CACHES}/sources"
 
 
 # default config options.

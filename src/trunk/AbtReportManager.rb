@@ -1,7 +1,7 @@
 #!/usr/bin/ruby -w
 
 ##
-# AbtReportManager.rb 
+# AbtReportManager.rb
 #
 # AbtReportManager class handles all sort of report and query generation within
 # the AbTLinux system.
@@ -20,7 +20,7 @@
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
 # FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more
 # details.
-#																    
+#
 # You should have received a copy of the GNU General Public License along with
 # AbTLinux; if not, write to the Free Software Foundation, Inc., 51 Franklin
 # St, Fifth Floor, Boston, MA 02110-1301  USA
@@ -28,15 +28,15 @@
 class AbtReportManager
 
 protected
-  
+
 private
-  
+
 public
 
   ##
   # Constructor for the AbtReportManager.
   #
-  # <b>RETURN</b> <i>AbtReportManager</i> - an initialized Report1Manager object. 
+  # <b>RETURN</b> <i>AbtReportManager</i> - an initialized Report1Manager object.
   ##
   def initialize
   end
@@ -50,43 +50,43 @@ public
   # false.
   ##
   def showPackageDetails( package )
-		require package
+    require package
 
-		if ( package = eval( "#{package.capitalize}.new" ) )
-			details = package.details
+    if ( package = eval( "#{package.capitalize}.new" ) )
+      details = package.details
 
-			puts "|====================================="
-			puts "| Package name\t: #{details['Package name']}"
-			details.delete( "Package name" )
-			puts "| Version\t: #{details['Version']}"
-			details.delete( "Version" )
-			puts "| Homepage\t: #{details['Homepage']}"
-			details.delete( "Homepage" )
-			puts "| Executable\t: #{details['Executable']}"
-			details.delete( "Executable" )
-			puts "| Source uri\t: #{details['Source uri']}"
-			details.delete( "Source uri" )
-			puts "| Description\t: #{details['Description']}"
-			details.delete( "Description" )
-			puts "|====================================="
-			puts "|====================================="
+      puts "|====================================="
+      puts "| Package name\t: #{details['Package name']}"
+      details.delete( "Package name" )
+      puts "| Version\t: #{details['Version']}"
+      details.delete( "Version" )
+      puts "| Homepage\t: #{details['Homepage']}"
+      details.delete( "Homepage" )
+      puts "| Executable\t: #{details['Executable']}"
+      details.delete( "Executable" )
+      puts "| Source uri\t: #{details['Source uri']}"
+      details.delete( "Source uri" )
+      puts "| Description\t: #{details['Description']}"
+      details.delete( "Description" )
+      puts "|====================================="
+      puts "|====================================="
 
-			details.each do |name, value| 
-				print "| #{name}\t"
-				
-				if ( name.length < 14 )
-					print "\t"
-				end
+      details.each do |name, value|
+        print "| #{name}\t"
 
-				puts ": #{value}"
-			end
+        if ( name.length < 14 )
+          print "\t"
+        end
 
-			puts "|====================================="
-			return true
-		end
+        puts ": #{value}"
+      end
 
-		logger.logToJournal( "[AbtReportManger::showPackageDetails] - failed to show details for ${package}." )
-		return false
+      puts "|====================================="
+      return true
+    end
+
+    logger.logToJournal( "[AbtReportManger::showPackageDetails] - failed to show details for ${package}." )
+    return false
   end
 
   ##
@@ -108,9 +108,9 @@ public
   # <b>RETURN</b> <i>void.</i>
   ##
   def showPackageLog( package, logType )
-  	# install log
-  	# build log
-  	# integrity log
+    # install log
+    # build log
+    # integrity log
   end
 
   ##
@@ -131,7 +131,7 @@ public
   # <b>RETURN</b> <i>hash</i> - Empty hash if no problems found, otherwise
   # hash of problem files and their encountered errors.
   ##
-  def showPackageDependencies( package ) 
+  def showPackageDependencies( package )
   end
 
   ##
@@ -143,31 +143,31 @@ public
   ##
   def showUntrackedFiles
   end
-	
+
   ##
   # Display the AbTLinux journal file.
   #
-	# <b> PARAM</b> <i>string</i> The complete path of the file to display.
-	#
+  # <b> PARAM</b> <i>string</i> The complete path of the file to display.
+  #
   # <b>RETURN</b> <i>iboolean</i> True if journal shown, otherwise false.
   ##
   def showJournal( fileName )
-		if ( File.exist?( fileName ) )
-			puts "\n\n"
-			puts "AbTLinux log:"
-			puts "============="
-			log = IO.readlines( fileName )
-			log.each{ |entry| puts entry }
-			puts "\n\n"
-		else
-			puts "\n\n"
-			puts "AbtLinux log ( #{File.basename( fileName )} ) is empty at this time."
-			puts "\n\n"
-		end
+    if ( File.exist?( fileName ) )
+      puts "\n\n"
+      puts "AbTLinux log:"
+      puts "============="
+      log = IO.readlines( fileName )
+      log.each{ |entry| puts entry }
+      puts "\n\n"
+    else
+      puts "\n\n"
+      puts "AbtLinux log ( #{File.basename( fileName )} ) is empty at this time."
+      puts "\n\n"
+    end
 
-		return true
+    return true
   end
-  
+
   ##
   # Display the name of the package(s) that own the given file.
   #
@@ -177,11 +177,11 @@ public
   ##
   def showFileOwner( file )
   end
-  
+
   ##
   # Searches the installed package trees package descriptions for matching
   # occurrances of the given search text.
-  # 
+  #
   # <b>PARAM</b> <i>String</i> - a search text.
   #
   # <b>RETURN</b> <i>hash</i> - a hash of the search results, keys are package
@@ -192,39 +192,39 @@ public
 
   ##
   # Displays the contents of the current queue based on the given queue.
-  # 
+  #
   # <b>PARAM</b> <i>String</i> - the type of queue to display such as install
   # queue.
   #
   # <b>RETURN</b> <i>void.</i>
   ##
   def showQueue( queueType )
-		queueFile = "#{$ABT_LOGS}/#{queueType}.log"
-		case queueType
+    queueFile = "#{$ABT_LOGS}/#{queueType}.log"
+    case queueType
 
-		when "install"
-			if ( File.exist?( queueFile ) )
-				puts "\n\n"
-				puts "AbTLinux #{queueType} queue:"
-				puts "======================="
-				queue = IO.readlines( queueFile )
-				queue.each{ |entry| puts entry }
-				puts "\n\n"
-			else
-				puts "\n\n"
-				puts "AbtLinux  #{queueType} is empty at this time."
-				puts "\n\n"
-			end
+    when "install"
+      if ( File.exist?( queueFile ) )
+        puts "\n\n"
+        puts "AbTLinux #{queueType} queue:"
+        puts "======================="
+        queue = IO.readlines( queueFile )
+        queue.each{ |entry| puts entry }
+        puts "\n\n"
+      else
+        puts "\n\n"
+        puts "AbtLinux  #{queueType} is empty at this time."
+        puts "\n\n"
+      end
 
-		else
-			puts "#{queueType.capitalize} is not an AbTLinux queue."
-		end
+    else
+      puts "#{queueType.capitalize} is not an AbTLinux queue."
+    end
   end
 
   ##
   # Reports available updates for a given package or package tree based on the
   # current system.
-  # 
+  #
   # <b>PARAM</b> <i>String</i> - the target of the update check, either a
   # package name or a package tree name.
   #
@@ -233,10 +233,10 @@ public
   ##
   def showUpdates( target )
   end
-	
+
   ##
   # Generates an HTML page of installed packages from installed packages list.
-  # 
+  #
   # <b>RETURN</b> <i>void.</i>
   ##
   def generateHTMLPackageListing
