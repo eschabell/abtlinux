@@ -121,16 +121,16 @@ Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
 
   <div class="sectiontitle">Methods</div>
   <ul>
-  <li><a href="#M000029">build</a></li>
-  <li><a href="#M000028">configure</a></li>
-  <li><a href="#M000026">details</a></li>
-  <li><a href="#M000031">install</a></li>
-  <li><a href="#M000025">new</a></li>
-  <li><a href="#M000032">post</a></li>
-  <li><a href="#M000027">pre</a></li>
-  <li><a href="#M000030">preinstall</a></li>
-  <li><a href="#M000033">removeBuild</a></li>
-  <li><a href="#M000024">unpackSources</a></li>
+  <li><a href="#M000028">build</a></li>
+  <li><a href="#M000027">configure</a></li>
+  <li><a href="#M000025">details</a></li>
+  <li><a href="#M000030">install</a></li>
+  <li><a href="#M000024">new</a></li>
+  <li><a href="#M000031">post</a></li>
+  <li><a href="#M000026">pre</a></li>
+  <li><a href="#M000029">preinstall</a></li>
+  <li><a href="#M000032">removeBuild</a></li>
+  <li><a href="#M000023">unpackSources</a></li>
   </ul>
 
 
@@ -304,7 +304,7 @@ the package version number.
 <div class="sectiontitle">Public Class methods</div>
 <div class="method">
   <div class="title">
-    <a name="M000025"></a><b>new</b>( data )
+    <a name="M000024"></a><b>new</b>( data )
   </div>
   <div class="description">
   <p>
@@ -316,28 +316,28 @@ the packge details.
 </p>
   </div>
 <div class="sourcecode">
-  <p class="source-link">[ <a href="javascript:toggleSource('M000025_source')" id="l_M000025_source">show source</a> ]</p>
-  <div id="M000025_source" class="dyn-source">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000024_source')" id="l_M000024_source">show source</a> ]</p>
+  <div id="M000024_source" class="dyn-source">
 <pre>
-     <span class="ruby-comment cmt"># File AbtPackage.rb, line 151</span>
-151:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>( <span class="ruby-identifier">data</span> )
-152:     <span class="ruby-ivar">@name</span> = <span class="ruby-identifier">data</span>[<span class="ruby-value str">'name'</span>]
-153:     <span class="ruby-ivar">@execName</span> = <span class="ruby-identifier">data</span>[<span class="ruby-value str">'execName'</span>]
-154:     <span class="ruby-ivar">@version</span> = <span class="ruby-identifier">data</span>[<span class="ruby-value str">'version'</span>]
-155:     <span class="ruby-ivar">@srcDir</span> = <span class="ruby-identifier">data</span>[<span class="ruby-value str">'srcDir'</span>]
-156:     <span class="ruby-ivar">@homepage</span> = <span class="ruby-identifier">data</span>[<span class="ruby-value str">'homepage'</span>]
-157:     <span class="ruby-ivar">@srcUrl</span> = <span class="ruby-identifier">data</span>[<span class="ruby-value str">'srcUrl'</span>]
-158:     <span class="ruby-ivar">@dependsOn</span> = <span class="ruby-identifier">data</span>[<span class="ruby-value str">'dependsOn'</span>]
-159:     <span class="ruby-ivar">@reliesOn</span> = <span class="ruby-identifier">data</span>[<span class="ruby-value str">'reliesOn'</span>]
-160:     <span class="ruby-ivar">@optionalDO</span> = <span class="ruby-identifier">data</span>[<span class="ruby-value str">'optionalDO'</span>]
-161:     <span class="ruby-ivar">@optionalRO</span> = <span class="ruby-identifier">data</span>[<span class="ruby-value str">'optionalRO'</span>]
-162:     <span class="ruby-ivar">@hashCheck</span> = <span class="ruby-identifier">data</span>[<span class="ruby-value str">'hashCheck'</span>]
-163:     <span class="ruby-ivar">@patches</span> = <span class="ruby-identifier">data</span>[<span class="ruby-value str">'patches'</span>]
-164:     <span class="ruby-ivar">@patchesHashCheck</span> = <span class="ruby-identifier">data</span>[<span class="ruby-value str">'patchesHashCheck'</span>]
-165:     <span class="ruby-ivar">@mirrorPath</span> = <span class="ruby-identifier">data</span>[<span class="ruby-value str">'mirrorPath'</span>]
-166:     <span class="ruby-ivar">@license</span> = <span class="ruby-identifier">data</span>[<span class="ruby-value str">'license'</span>]
-167:     <span class="ruby-ivar">@description</span> = <span class="ruby-identifier">data</span>[<span class="ruby-value str">'description'</span>]
-168:   <span class="ruby-keyword kw">end</span>
+     <span class="ruby-comment cmt"># File AbtPackage.rb, line 150</span>
+150:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>( <span class="ruby-identifier">data</span> )
+151:     <span class="ruby-ivar">@name</span>             = <span class="ruby-identifier">data</span>[<span class="ruby-value str">'name'</span>]
+152:     <span class="ruby-ivar">@execName</span>         = <span class="ruby-identifier">data</span>[<span class="ruby-value str">'execName'</span>]
+153:     <span class="ruby-ivar">@version</span>          = <span class="ruby-identifier">data</span>[<span class="ruby-value str">'version'</span>]
+154:     <span class="ruby-ivar">@srcDir</span>           = <span class="ruby-identifier">data</span>[<span class="ruby-value str">'srcDir'</span>]
+155:     <span class="ruby-ivar">@homepage</span>         = <span class="ruby-identifier">data</span>[<span class="ruby-value str">'homepage'</span>]
+156:     <span class="ruby-ivar">@srcUrl</span>           = <span class="ruby-identifier">data</span>[<span class="ruby-value str">'srcUrl'</span>]
+157:     <span class="ruby-ivar">@dependsOn</span>        = <span class="ruby-identifier">data</span>[<span class="ruby-value str">'dependsOn'</span>]
+158:     <span class="ruby-ivar">@reliesOn</span>         = <span class="ruby-identifier">data</span>[<span class="ruby-value str">'reliesOn'</span>]
+159:     <span class="ruby-ivar">@optionalDO</span>       = <span class="ruby-identifier">data</span>[<span class="ruby-value str">'optionalDO'</span>]
+160:     <span class="ruby-ivar">@optionalRO</span>       = <span class="ruby-identifier">data</span>[<span class="ruby-value str">'optionalRO'</span>]
+161:     <span class="ruby-ivar">@hashCheck</span>        = <span class="ruby-identifier">data</span>[<span class="ruby-value str">'hashCheck'</span>]
+162:     <span class="ruby-ivar">@patches</span>          = <span class="ruby-identifier">data</span>[<span class="ruby-value str">'patches'</span>]
+163:     <span class="ruby-ivar">@patchesHashCheck</span> = <span class="ruby-identifier">data</span>[<span class="ruby-value str">'patchesHashCheck'</span>]
+164:     <span class="ruby-ivar">@mirrorPath</span>       = <span class="ruby-identifier">data</span>[<span class="ruby-value str">'mirrorPath'</span>]
+165:     <span class="ruby-ivar">@license</span>          = <span class="ruby-identifier">data</span>[<span class="ruby-value str">'license'</span>]
+166:     <span class="ruby-ivar">@description</span>      = <span class="ruby-identifier">data</span>[<span class="ruby-value str">'description'</span>]
+167:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>
@@ -345,7 +345,7 @@ the packge details.
 <div class="sectiontitle">Public Instance methods</div>
 <div class="method">
   <div class="title">
-    <a name="M000029"></a><b>build</b>()
+    <a name="M000028"></a><b>build</b>()
   </div>
   <div class="description">
   <p>
@@ -358,19 +358,19 @@ otherwise false.
 </p>
   </div>
 <div class="sourcecode">
-  <p class="source-link">[ <a href="javascript:toggleSource('M000029_source')" id="l_M000029_source">show source</a> ]</p>
-  <div id="M000029_source" class="dyn-source">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000028_source')" id="l_M000028_source">show source</a> ]</p>
+  <div id="M000028_source" class="dyn-source">
 <pre>
-     <span class="ruby-comment cmt"># File AbtPackage.rb, line 269</span>
-269:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">build</span>
-270:   <span class="ruby-keyword kw">end</span>
+     <span class="ruby-comment cmt"># File AbtPackage.rb, line 268</span>
+268:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">build</span>
+269:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>
 </div>
 <div class="method">
   <div class="title">
-    <a name="M000028"></a><b>configure</b>()
+    <a name="M000027"></a><b>configure</b>()
   </div>
   <div class="description">
   <p>
@@ -387,48 +387,48 @@ otherwise false.
 </p>
   </div>
 <div class="sourcecode">
-  <p class="source-link">[ <a href="javascript:toggleSource('M000028_source')" id="l_M000028_source">show source</a> ]</p>
-  <div id="M000028_source" class="dyn-source">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000027_source')" id="l_M000027_source">show source</a> ]</p>
+  <div id="M000027_source" class="dyn-source">
 <pre>
-     <span class="ruby-comment cmt"># File AbtPackage.rb, line 232</span>
-232:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">configure</span>
-233:                 <span class="ruby-identifier">systemMgr</span>     = <span class="ruby-constant">AbtSystemManager</span>.<span class="ruby-identifier">new</span>
-234:                 <span class="ruby-identifier">buildSite</span>     = <span class="ruby-node">&quot;#{$BUILD_LOCATION}/#{@srcDir}&quot;</span> 
-235: 
-236:                 <span class="ruby-comment cmt"># TODO: this should not use tee, but in wrapper deal with stdout to file.</span>
-237:                 <span class="ruby-comment cmt">#       also need to expand directory with @srcDir/@srcDir.configure.</span>
-238:                 <span class="ruby-comment cmt">#command              = &quot;./configure --prefix=#{$DEFAULT_PREFIX} | tee #{$PACKAGE_INSTALLED}/{@srcDir}.configure&quot;</span>
-239:                 <span class="ruby-identifier">command</span>               = <span class="ruby-node">&quot;./configure --prefix=#{$DEFAULT_PREFIX}&quot;</span>
+     <span class="ruby-comment cmt"># File AbtPackage.rb, line 231</span>
+231:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">configure</span>
+232:     <span class="ruby-identifier">buildSite</span>   = <span class="ruby-node">&quot;#{$BUILD_LOCATION}/#{@srcDir}&quot;</span>
+233: 
+234:     <span class="ruby-comment cmt"># TODO: this should not use tee, but in wrapper deal with stdout to file.</span>
+235:     <span class="ruby-comment cmt">#       also need to expand directory with @srcDir/@srcDir.configure.</span>
+236:     <span class="ruby-comment cmt">#command            = &quot;./configure --prefix=#{$DEFAULT_PREFIX} | tee #{$PACKAGE_INSTALLED}/{@srcDir}.configure&quot;</span>
+237:     <span class="ruby-constant">Dir</span>.<span class="ruby-identifier">chdir</span>( <span class="ruby-identifier">buildSite</span> )
+238:     <span class="ruby-identifier">stdin</span>, <span class="ruby-identifier">stdout</span>, <span class="ruby-identifier">stderr</span> =
+239:       <span class="ruby-constant">Open3</span>.<span class="ruby-identifier">popen3</span>( <span class="ruby-node">&quot;./configure --prefix=#{$DEFAULT_PREFIX}&quot;</span> )
 240: 
-241:                 <span class="ruby-constant">Dir</span>.<span class="ruby-identifier">chdir</span>( <span class="ruby-identifier">buildSite</span> )
-242:                 <span class="ruby-identifier">stdin</span>, <span class="ruby-identifier">stdout</span>, <span class="ruby-identifier">stderr</span> = <span class="ruby-constant">Open3</span>.<span class="ruby-identifier">popen3</span>( <span class="ruby-identifier">command</span> )
-243: 
-244:                 <span class="ruby-comment cmt"># check for errors.</span>
-245:                 <span class="ruby-keyword kw">if</span> ( <span class="ruby-operator">!</span><span class="ruby-identifier">stderr</span>.<span class="ruby-identifier">eof</span> )
-246:                         <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;DEBUG: [AbtPackage.configure] - stderr:&quot;</span>
-247:                         <span class="ruby-identifier">puts</span> <span class="ruby-identifier">stderr</span>.<span class="ruby-identifier">read</span>
-248:                         <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">false</span>
-249:                 <span class="ruby-keyword kw">else</span>
-250:                         <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;DEBUG: [AbtPackage.configure] - nothing in stderr.&quot;</span>
-251:                 <span class="ruby-keyword kw">end</span>
-252:         
-253:                 <span class="ruby-comment cmt"># check for output.</span>
-254:                 <span class="ruby-keyword kw">if</span> ( <span class="ruby-operator">!</span><span class="ruby-identifier">stdout</span>.<span class="ruby-identifier">eof</span> )
-255:                         <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;DEBUG: [AbtPackage.configure] - stdout:&quot;</span>
-256:                         <span class="ruby-identifier">puts</span> <span class="ruby-identifier">stdout</span>.<span class="ruby-identifier">read</span>
-257:                 <span class="ruby-keyword kw">else</span>
-258:                         <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;DEBUG: [AbtPackage.configure] - nothing in stdout.&quot;</span>
-259:                 <span class="ruby-keyword kw">end</span>
-260:         
-261:                 <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">true</span>
-262:   <span class="ruby-keyword kw">end</span>
+241:     <span class="ruby-comment cmt"># check for errors.</span>
+242:     <span class="ruby-keyword kw">if</span> ( <span class="ruby-operator">!</span><span class="ruby-identifier">stderr</span>.<span class="ruby-identifier">eof</span> )
+243:       <span class="ruby-comment cmt"># TODO: put this in failure file.</span>
+244:       <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;DEBUG: [AbtPackage.configure] - stderr:&quot;</span>
+245:       <span class="ruby-identifier">puts</span> <span class="ruby-identifier">stderr</span>.<span class="ruby-identifier">read</span>
+246:       <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">false</span>
+247:     <span class="ruby-keyword kw">else</span>
+248:       <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;DEBUG: [AbtPackage.configure] - nothing in stderr.&quot;</span>
+249:     <span class="ruby-keyword kw">end</span>
+250: 
+251:     <span class="ruby-comment cmt"># check for output.</span>
+252:     <span class="ruby-keyword kw">if</span> ( <span class="ruby-operator">!</span><span class="ruby-identifier">stdout</span>.<span class="ruby-identifier">eof</span> )
+253:       <span class="ruby-comment cmt"># TODO: put this in #{$PACKAGE_INSTALLED}/{@srcDir}.configure.</span>
+254:       <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;DEBUG: [AbtPackage.configure] - stdout:&quot;</span>
+255:       <span class="ruby-identifier">puts</span> <span class="ruby-identifier">stdout</span>.<span class="ruby-identifier">read</span>
+256:     <span class="ruby-keyword kw">else</span>
+257:       <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;DEBUG: [AbtPackage.configure] - nothing in stdout.&quot;</span>
+258:     <span class="ruby-keyword kw">end</span>
+259: 
+260:     <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">true</span>
+261:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>
 </div>
 <div class="method">
   <div class="title">
-    <a name="M000026"></a><b>details</b>()
+    <a name="M000025"></a><b>details</b>()
   </div>
   <div class="description">
   <p>
@@ -441,37 +441,37 @@ href="AbtPackage.html">AbtPackage</a> attributes (constants).
 </p>
   </div>
 <div class="sourcecode">
-  <p class="source-link">[ <a href="javascript:toggleSource('M000026_source')" id="l_M000026_source">show source</a> ]</p>
-  <div id="M000026_source" class="dyn-source">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000025_source')" id="l_M000025_source">show source</a> ]</p>
+  <div id="M000025_source" class="dyn-source">
 <pre>
-     <span class="ruby-comment cmt"># File AbtPackage.rb, line 175</span>
-175:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">details</span>
-176:                 <span class="ruby-keyword kw">return</span> {
-177:                         <span class="ruby-value str">&quot;Package name&quot;</span>                       =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@name</span>,
-178:                         <span class="ruby-value str">&quot;Executable&quot;</span>                         =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@execName</span>,
-179:                         <span class="ruby-value str">&quot;Version&quot;</span>                                            =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@version</span>,
-180:                         <span class="ruby-value str">&quot;Source location&quot;</span>            =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@srcDir</span>,
-181:                         <span class="ruby-value str">&quot;Homepage&quot;</span>                                   =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@homepage</span>,
-182:                         <span class="ruby-value str">&quot;Source uri&quot;</span>                         =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@srcUrl</span>,
-183:                         <span class="ruby-value str">&quot;Depends On&quot;</span>                         =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@dependsOn</span>,
-184:                         <span class="ruby-value str">&quot;Relies On&quot;</span>                                  =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@reliesOn</span>,
-185:                         <span class="ruby-value str">&quot;Optional DO&quot;</span>                                =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@optionalDO</span>,
-186:                         <span class="ruby-value str">&quot;Optional RO&quot;</span>                                =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@optionalRO</span>,
-187:                         <span class="ruby-value str">&quot;Security hash&quot;</span>                      =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@hashCheck</span>,
-188:                         <span class="ruby-value str">&quot;Patches&quot;</span>                                            =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@patches</span>,
-189:                         <span class="ruby-value str">&quot;Patches hash&quot;</span>                       =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@patchesHashCheck</span>,
-190:                         <span class="ruby-value str">&quot;Mirror&quot;</span>                                             =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@mirrorPath</span>,
-191:                         <span class="ruby-value str">&quot;License&quot;</span>                                            =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@license</span>,
-192:                         <span class="ruby-value str">&quot;Description&quot;</span>                                =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@description</span>
-193:                 }
-194:   <span class="ruby-keyword kw">end</span>
+     <span class="ruby-comment cmt"># File AbtPackage.rb, line 174</span>
+174:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">details</span>
+175:     <span class="ruby-keyword kw">return</span> {
+176:       <span class="ruby-value str">&quot;Package name&quot;</span>                    =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@name</span>,
+177:       <span class="ruby-value str">&quot;Executable&quot;</span>                              =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@execName</span>,
+178:       <span class="ruby-value str">&quot;Version&quot;</span>                                         =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@version</span>,
+179:       <span class="ruby-value str">&quot;Source location&quot;</span>         =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@srcDir</span>,
+180:       <span class="ruby-value str">&quot;Homepage&quot;</span>                                        =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@homepage</span>,
+181:       <span class="ruby-value str">&quot;Source uri&quot;</span>                              =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@srcUrl</span>,
+182:       <span class="ruby-value str">&quot;Depends On&quot;</span>                              =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@dependsOn</span>,
+183:       <span class="ruby-value str">&quot;Relies On&quot;</span>                                       =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@reliesOn</span>,
+184:       <span class="ruby-value str">&quot;Optional DO&quot;</span>                             =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@optionalDO</span>,
+185:       <span class="ruby-value str">&quot;Optional RO&quot;</span>                             =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@optionalRO</span>,
+186:       <span class="ruby-value str">&quot;Security hash&quot;</span>                   =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@hashCheck</span>,
+187:       <span class="ruby-value str">&quot;Patches&quot;</span>                                         =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@patches</span>,
+188:       <span class="ruby-value str">&quot;Patches hash&quot;</span>                    =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@patchesHashCheck</span>,
+189:       <span class="ruby-value str">&quot;Mirror&quot;</span>                                          =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@mirrorPath</span>,
+190:       <span class="ruby-value str">&quot;License&quot;</span>                                         =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@license</span>,
+191:       <span class="ruby-value str">&quot;Description&quot;</span>                             =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@description</span>
+192:     }
+193:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>
 </div>
 <div class="method">
   <div class="title">
-    <a name="M000031"></a><b>install</b>()
+    <a name="M000030"></a><b>install</b>()
   </div>
   <div class="description">
   <p>
@@ -483,19 +483,19 @@ otherwise false.
 </p>
   </div>
 <div class="sourcecode">
-  <p class="source-link">[ <a href="javascript:toggleSource('M000031_source')" id="l_M000031_source">show source</a> ]</p>
-  <div id="M000031_source" class="dyn-source">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000030_source')" id="l_M000030_source">show source</a> ]</p>
+  <div id="M000030_source" class="dyn-source">
 <pre>
-     <span class="ruby-comment cmt"># File AbtPackage.rb, line 286</span>
-286:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">install</span>
-287:   <span class="ruby-keyword kw">end</span>
+     <span class="ruby-comment cmt"># File AbtPackage.rb, line 285</span>
+285:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">install</span>
+286:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>
 </div>
 <div class="method">
   <div class="title">
-    <a name="M000032"></a><b>post</b>()
+    <a name="M000031"></a><b>post</b>()
   </div>
   <div class="description">
   <p>
@@ -508,19 +508,19 @@ otherwise false.
 </p>
   </div>
 <div class="sourcecode">
-  <p class="source-link">[ <a href="javascript:toggleSource('M000032_source')" id="l_M000032_source">show source</a> ]</p>
-  <div id="M000032_source" class="dyn-source">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000031_source')" id="l_M000031_source">show source</a> ]</p>
+  <div id="M000031_source" class="dyn-source">
 <pre>
-     <span class="ruby-comment cmt"># File AbtPackage.rb, line 294</span>
-294:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">post</span>
-295:   <span class="ruby-keyword kw">end</span>
+     <span class="ruby-comment cmt"># File AbtPackage.rb, line 293</span>
+293:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">post</span>
+294:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>
 </div>
 <div class="method">
   <div class="title">
-    <a name="M000027"></a><b>pre</b>()
+    <a name="M000026"></a><b>pre</b>()
   </div>
   <div class="description">
   <p>
@@ -533,37 +533,37 @@ false.
 </p>
   </div>
 <div class="sourcecode">
-  <p class="source-link">[ <a href="javascript:toggleSource('M000027_source')" id="l_M000027_source">show source</a> ]</p>
-  <div id="M000027_source" class="dyn-source">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000026_source')" id="l_M000026_source">show source</a> ]</p>
+  <div id="M000026_source" class="dyn-source">
 <pre>
-     <span class="ruby-comment cmt"># File AbtPackage.rb, line 202</span>
-202:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">pre</span>
-203:                 <span class="ruby-identifier">downloader</span> = <span class="ruby-constant">AbtDownloadManager</span>.<span class="ruby-identifier">new</span>
-204: 
-205:                 <span class="ruby-comment cmt"># download sources.</span>
-206:                 <span class="ruby-keyword kw">if</span> ( <span class="ruby-operator">!</span><span class="ruby-identifier">downloader</span>.<span class="ruby-identifier">retrievePackageSource</span>( <span class="ruby-ivar">@name</span>.<span class="ruby-identifier">downcase</span>, <span class="ruby-identifier">$SOURCES_REPOSITORY</span> ) )
-207:                         <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">false</span>
-208:                 <span class="ruby-keyword kw">end</span>
-209: 
-210:                 <span class="ruby-comment cmt"># unpack sources.</span>
-211:                 <span class="ruby-keyword kw">if</span> ( <span class="ruby-operator">!</span><span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">unpackSources</span> )
-212:                         <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">false</span>
-213:                 <span class="ruby-keyword kw">end</span>
-214: 
-215:                 <span class="ruby-comment cmt"># TODO: create_group?</span>
-216:                 <span class="ruby-comment cmt"># TODO: create_user?</span>
-217:                 <span class="ruby-comment cmt"># TODO: retrieve patches?</span>
-218:                 <span class="ruby-comment cmt"># TODO: apply patches?</span>
-219:                 
-220:                 <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">true</span>
-221:   <span class="ruby-keyword kw">end</span>
+     <span class="ruby-comment cmt"># File AbtPackage.rb, line 201</span>
+201:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">pre</span>
+202:     <span class="ruby-identifier">downloader</span> = <span class="ruby-constant">AbtDownloadManager</span>.<span class="ruby-identifier">new</span>
+203: 
+204:     <span class="ruby-comment cmt"># download sources.</span>
+205:     <span class="ruby-keyword kw">if</span> ( <span class="ruby-operator">!</span><span class="ruby-identifier">downloader</span>.<span class="ruby-identifier">retrievePackageSource</span>( <span class="ruby-ivar">@name</span>.<span class="ruby-identifier">downcase</span>, <span class="ruby-identifier">$SOURCES_REPOSITORY</span> ) )
+206:       <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">false</span>
+207:     <span class="ruby-keyword kw">end</span>
+208: 
+209:     <span class="ruby-comment cmt"># unpack sources.</span>
+210:     <span class="ruby-keyword kw">if</span> ( <span class="ruby-operator">!</span><span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">unpackSources</span> )
+211:       <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">false</span>
+212:     <span class="ruby-keyword kw">end</span>
+213: 
+214:     <span class="ruby-comment cmt"># TODO: create_group?</span>
+215:     <span class="ruby-comment cmt"># TODO: create_user?</span>
+216:     <span class="ruby-comment cmt"># TODO: retrieve patches?</span>
+217:     <span class="ruby-comment cmt"># TODO: apply patches?</span>
+218: 
+219:     <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">true</span>
+220:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>
 </div>
 <div class="method">
   <div class="title">
-    <a name="M000030"></a><b>preinstall</b>()
+    <a name="M000029"></a><b>preinstall</b>()
   </div>
   <div class="description">
   <p>
@@ -577,19 +577,19 @@ otherwise false.
 </p>
   </div>
 <div class="sourcecode">
-  <p class="source-link">[ <a href="javascript:toggleSource('M000030_source')" id="l_M000030_source">show source</a> ]</p>
-  <div id="M000030_source" class="dyn-source">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000029_source')" id="l_M000029_source">show source</a> ]</p>
+  <div id="M000029_source" class="dyn-source">
 <pre>
-     <span class="ruby-comment cmt"># File AbtPackage.rb, line 278</span>
-278:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">preinstall</span>
-279:   <span class="ruby-keyword kw">end</span>
+     <span class="ruby-comment cmt"># File AbtPackage.rb, line 277</span>
+277:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">preinstall</span>
+278:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>
 </div>
 <div class="method">
   <div class="title">
-    <a name="M000033"></a><b>removeBuild</b>()
+    <a name="M000032"></a><b>removeBuild</b>()
   </div>
   <div class="description">
   <p>
@@ -601,25 +601,25 @@ otherwise false.
 </p>
   </div>
 <div class="sourcecode">
-  <p class="source-link">[ <a href="javascript:toggleSource('M000033_source')" id="l_M000033_source">show source</a> ]</p>
-  <div id="M000033_source" class="dyn-source">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000032_source')" id="l_M000032_source">show source</a> ]</p>
+  <div id="M000032_source" class="dyn-source">
 <pre>
-     <span class="ruby-comment cmt"># File AbtPackage.rb, line 302</span>
-302:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">removeBuild</span>
-303:                 <span class="ruby-keyword kw">if</span> ( <span class="ruby-identifier">$REMOVE_BUILD_SOURCES</span> )
-304:                         <span class="ruby-identifier">buildSourcesLocation</span> = <span class="ruby-node">&quot;#{$BUILD_LOCATION}/#{srcDir}&quot;</span>
-305: 
-306:                         <span class="ruby-keyword kw">if</span> ( <span class="ruby-operator">!</span><span class="ruby-constant">File</span>.<span class="ruby-identifier">directory?</span>( <span class="ruby-identifier">buildSourcesLocation</span> ) )
-307:                                 <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">true</span>
-308:                         <span class="ruby-keyword kw">end</span>
-309: 
-310:                         <span class="ruby-keyword kw">if</span> ( <span class="ruby-operator">!</span><span class="ruby-constant">FileUtils</span>.<span class="ruby-identifier">rm_rf</span> <span class="ruby-identifier">buildSourcesLocation</span>, <span class="ruby-identifier">:verbose</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword kw">true</span>  )
-311:                                 <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">false</span>
-312:                         <span class="ruby-keyword kw">end</span>
-313:                 <span class="ruby-keyword kw">end</span>
-314: 
-315:                 <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">true</span>
-316:         <span class="ruby-keyword kw">end</span>
+     <span class="ruby-comment cmt"># File AbtPackage.rb, line 301</span>
+301:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">removeBuild</span>
+302:     <span class="ruby-keyword kw">if</span> ( <span class="ruby-identifier">$REMOVE_BUILD_SOURCES</span> )
+303:       <span class="ruby-identifier">buildSourcesLocation</span> = <span class="ruby-node">&quot;#{$BUILD_LOCATION}/#{srcDir}&quot;</span>
+304: 
+305:       <span class="ruby-keyword kw">if</span> ( <span class="ruby-operator">!</span><span class="ruby-constant">File</span>.<span class="ruby-identifier">directory?</span>( <span class="ruby-identifier">buildSourcesLocation</span> ) )
+306:         <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">true</span>
+307:       <span class="ruby-keyword kw">end</span>
+308: 
+309:       <span class="ruby-keyword kw">if</span> ( <span class="ruby-operator">!</span><span class="ruby-constant">FileUtils</span>.<span class="ruby-identifier">rm_rf</span> <span class="ruby-identifier">buildSourcesLocation</span>, <span class="ruby-identifier">:verbose</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword kw">true</span>  )
+310:         <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">false</span>
+311:       <span class="ruby-keyword kw">end</span>
+312:     <span class="ruby-keyword kw">end</span>
+313: 
+314:     <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">true</span>
+315:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>
@@ -627,7 +627,7 @@ otherwise false.
 <div class="sectiontitle">Protected Instance methods</div>
 <div class="method">
   <div class="title">
-    <a name="M000024"></a><b>unpackSources</b>()
+    <a name="M000023"></a><b>unpackSources</b>()
   </div>
   <div class="description">
   <p>
@@ -639,62 +639,61 @@ otherwise false.
 </p>
   </div>
 <div class="sourcecode">
-  <p class="source-link">[ <a href="javascript:toggleSource('M000024_source')" id="l_M000024_source">show source</a> ]</p>
-  <div id="M000024_source" class="dyn-source">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000023_source')" id="l_M000023_source">show source</a> ]</p>
+  <div id="M000023_source" class="dyn-source">
 <pre>
     <span class="ruby-comment cmt"># File AbtPackage.rb, line 39</span>
-39:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">unpackSources</span>
-40:                 <span class="ruby-identifier">systemMgr</span>                             = <span class="ruby-constant">AbtSystemManager</span>.<span class="ruby-identifier">new</span>
-41:                 <span class="ruby-identifier">srcFile</span>                                       = <span class="ruby-constant">File</span>.<span class="ruby-identifier">basename</span>( <span class="ruby-ivar">@srcUrl</span> )
-42:                 <span class="ruby-identifier">sourcesToUnpack</span> = <span class="ruby-node">&quot;#{$SOURCES_REPOSITORY}/#{srcFile}&quot;</span>
-43:                 <span class="ruby-identifier">unpackTool</span>                    = <span class="ruby-value str">&quot;&quot;</span>
-44: 
-45:                 <span class="ruby-comment cmt"># check for existing file in source repo.</span>
-46:                 <span class="ruby-keyword kw">if</span> ( <span class="ruby-operator">!</span><span class="ruby-constant">File</span>.<span class="ruby-identifier">exist?</span>( <span class="ruby-identifier">sourcesToUnpack</span> ) )
-47:                         <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">false</span>
-48:                 <span class="ruby-keyword kw">end</span> 
-49: 
-50:                 <span class="ruby-comment cmt"># check if possible existing sources in build directory.</span>
-51:                 <span class="ruby-keyword kw">if</span> ( <span class="ruby-constant">File</span>.<span class="ruby-identifier">directory?</span>( <span class="ruby-node">&quot;#{$BUILD_LOCATION}/#{@srcDir}&quot;</span> ) )
-52:                         <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">true</span>
-53:                 <span class="ruby-keyword kw">end</span>
-54: 
-55:                 <span class="ruby-comment cmt"># determine which supported compression used [gz, tar, tgz, bz2, zip].</span>
-56:                 <span class="ruby-identifier">compressionType</span> = <span class="ruby-identifier">srcFile</span>.<span class="ruby-identifier">split</span>( <span class="ruby-value str">'.'</span> )
-57: 
-58:                 <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">compressionType</span>.<span class="ruby-identifier">last</span>
-59: 
-60:                 <span class="ruby-keyword kw">when</span> <span class="ruby-value str">&quot;gz&quot;</span>
-61:                         <span class="ruby-identifier">unpackTool</span> = <span class="ruby-value str">&quot;tar xzvf&quot;</span>
-62: 
-63:                 <span class="ruby-keyword kw">when</span> <span class="ruby-value str">&quot;tar&quot;</span>
-64:                         <span class="ruby-identifier">unpackTool</span> = <span class="ruby-value str">&quot;tar xvf&quot;</span>
-65: 
-66:                 <span class="ruby-keyword kw">when</span> <span class="ruby-value str">&quot;bz2&quot;</span>
-67:                         <span class="ruby-identifier">unpackTool</span> = <span class="ruby-value str">&quot;tar xjvf&quot;</span>
-68: 
-69:                 <span class="ruby-keyword kw">when</span> <span class="ruby-value str">&quot;tgz&quot;</span> 
-70:                         <span class="ruby-identifier">unpackTool</span> = <span class="ruby-value str">&quot;tar xzvf&quot;</span>
-71:                 
-72:                 <span class="ruby-keyword kw">when</span> <span class="ruby-value str">&quot;zip&quot;</span>
-73:                         <span class="ruby-identifier">unpackTool</span> = <span class="ruby-value str">&quot;unizp&quot;</span>
-74: 
-75:                 <span class="ruby-keyword kw">else</span>
-76:                         <span class="ruby-comment cmt"># unsupported format.</span>
-77:                         <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">false</span>
-78:                 <span class="ruby-keyword kw">end</span>
-79:                 
-80:                 <span class="ruby-comment cmt"># DEBUG:</span>
-81:                 <span class="ruby-comment cmt">#logger = AbtLogManager.new</span>
-82:                 <span class="ruby-comment cmt">#logger.logToJournal( &quot;DEBUG: unpack tool will be '#{unpackTool}'.&quot; )</span>
-83: 
-84:                 <span class="ruby-constant">Dir</span>.<span class="ruby-identifier">chdir</span>( <span class="ruby-identifier">$BUILD_LOCATION</span> )
-85:                 <span class="ruby-keyword kw">if</span> ( <span class="ruby-operator">!</span><span class="ruby-identifier">systemMgr</span>.<span class="ruby-identifier">runSystemCall</span>( <span class="ruby-node">&quot;#{unpackTool} #{sourcesToUnpack}&quot;</span> ) )
-86:                         <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">false</span>
-87:                 <span class="ruby-keyword kw">end</span>
-88: 
-89:                 <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">true</span>
-90:         <span class="ruby-keyword kw">end</span>
+39:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">unpackSources</span>
+40:     <span class="ruby-identifier">srcFile</span>                                     = <span class="ruby-constant">File</span>.<span class="ruby-identifier">basename</span>( <span class="ruby-ivar">@srcUrl</span> )
+41:     <span class="ruby-identifier">sourcesToUnpack</span> = <span class="ruby-node">&quot;#{$SOURCES_REPOSITORY}/#{srcFile}&quot;</span>
+42:     <span class="ruby-identifier">unpackTool</span>                  = <span class="ruby-value str">&quot;&quot;</span>
+43: 
+44:     <span class="ruby-comment cmt"># check for existing file in source repo.</span>
+45:     <span class="ruby-keyword kw">if</span> ( <span class="ruby-operator">!</span><span class="ruby-constant">File</span>.<span class="ruby-identifier">exist?</span>( <span class="ruby-identifier">sourcesToUnpack</span> ) )
+46:       <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">false</span>
+47:     <span class="ruby-keyword kw">end</span>
+48: 
+49:     <span class="ruby-comment cmt"># check if possible existing sources in build directory.</span>
+50:     <span class="ruby-keyword kw">if</span> ( <span class="ruby-constant">File</span>.<span class="ruby-identifier">directory?</span>( <span class="ruby-node">&quot;#{$BUILD_LOCATION}/#{@srcDir}&quot;</span> ) )
+51:       <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">true</span>
+52:     <span class="ruby-keyword kw">end</span>
+53: 
+54:     <span class="ruby-comment cmt"># determine which supported compression used [gz, tar, tgz, bz2, zip].</span>
+55:     <span class="ruby-identifier">compressionType</span> = <span class="ruby-identifier">srcFile</span>.<span class="ruby-identifier">split</span>( <span class="ruby-value str">'.'</span> )
+56: 
+57:     <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">compressionType</span>.<span class="ruby-identifier">last</span>
+58: 
+59:     <span class="ruby-keyword kw">when</span> <span class="ruby-value str">&quot;gz&quot;</span>
+60:       <span class="ruby-identifier">unpackTool</span> = <span class="ruby-value str">&quot;tar xzvf&quot;</span>
+61: 
+62:     <span class="ruby-keyword kw">when</span> <span class="ruby-value str">&quot;tar&quot;</span>
+63:       <span class="ruby-identifier">unpackTool</span> = <span class="ruby-value str">&quot;tar xvf&quot;</span>
+64: 
+65:     <span class="ruby-keyword kw">when</span> <span class="ruby-value str">&quot;bz2&quot;</span>
+66:       <span class="ruby-identifier">unpackTool</span> = <span class="ruby-value str">&quot;tar xjvf&quot;</span>
+67: 
+68:     <span class="ruby-keyword kw">when</span> <span class="ruby-value str">&quot;tgz&quot;</span>
+69:       <span class="ruby-identifier">unpackTool</span> = <span class="ruby-value str">&quot;tar xzvf&quot;</span>
+70: 
+71:     <span class="ruby-keyword kw">when</span> <span class="ruby-value str">&quot;zip&quot;</span>
+72:       <span class="ruby-identifier">unpackTool</span> = <span class="ruby-value str">&quot;unizp&quot;</span>
+73: 
+74:     <span class="ruby-keyword kw">else</span>
+75:       <span class="ruby-comment cmt"># unsupported format.</span>
+76:       <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">false</span>
+77:     <span class="ruby-keyword kw">end</span>
+78: 
+79:     <span class="ruby-comment cmt"># DEBUG:</span>
+80:     <span class="ruby-comment cmt">#logger = AbtLogManager.new</span>
+81:     <span class="ruby-comment cmt">#logger.logToJournal( &quot;DEBUG: unpack tool will be '#{unpackTool}'.&quot; )</span>
+82: 
+83:     <span class="ruby-constant">Dir</span>.<span class="ruby-identifier">chdir</span>( <span class="ruby-identifier">$BUILD_LOCATION</span> )
+84:     <span class="ruby-keyword kw">if</span> ( <span class="ruby-operator">!</span><span class="ruby-identifier">system</span>( <span class="ruby-node">&quot;#{unpackTool} #{sourcesToUnpack}&quot;</span> ) )
+85:       <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">false</span>
+86:     <span class="ruby-keyword kw">end</span>
+87: 
+88:     <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">true</span>
+89:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>
