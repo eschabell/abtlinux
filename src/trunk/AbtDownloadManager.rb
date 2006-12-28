@@ -54,8 +54,9 @@ public
   ##
   def retrievePackageSource( packageName, destination )
     require packageName
+		require "shell"
+		Shell.def_system_command "wget"
     logger		= AbtLogManager.new
-    systemMgr	= AbtSystemManager.new
     package		= eval( packageName.capitalize + '.new' )
 
     if ( File.exist?( destination + "/" + File.basename( package.srcUrl ) ) )
@@ -63,8 +64,8 @@ public
       return true
     end
 
-    Dir.chdir( destination )
-    if ( systemMgr.runSystemCall( "wget #{package.srcUrl}" ) )
+		retrieve = Shell.cd( destination )
+    if ( retrieve.wget( package.srcUrl ) )
       logger.logToJournal( "Download completed for " + packageName )
       return true
     end
