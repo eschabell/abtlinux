@@ -37,7 +37,6 @@ class AbtPackage
   # <b>RETURNS:</b>  <i>boolean</i> - True if the completes sucessfully, otherwise false.
   ##
   def unpackSources
-    systemMgr				= AbtSystemManager.new
     srcFile					= File.basename( @srcUrl )
     sourcesToUnpack = "#{$SOURCES_REPOSITORY}/#{srcFile}"
     unpackTool			= ""
@@ -82,7 +81,7 @@ class AbtPackage
     #logger.logToJournal( "DEBUG: unpack tool will be '#{unpackTool}'." )
 
     Dir.chdir( $BUILD_LOCATION )
-    if ( !systemMgr.runSystemCall( "#{unpackTool} #{sourcesToUnpack}" ) )
+    if ( !system( "#{unpackTool} #{sourcesToUnpack}" ) )
       return false
     end
 
@@ -230,7 +229,6 @@ class AbtPackage
   # <b>RETURNS:</b>  <i>boolean</i> - True if the completes sucessfully, otherwise false.
   ##
   def configure
-    systemMgr	= AbtSystemManager.new
     buildSite	= "#{$BUILD_LOCATION}/#{@srcDir}"
 
     # TODO: this should not use tee, but in wrapper deal with stdout to file.

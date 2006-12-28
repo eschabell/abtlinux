@@ -1,7 +1,7 @@
 #!/usr/bin/ruby -w
 
 ##
-# AbtDownloadManager.rb
+# AbtDownloadManager.rb 
 #
 # AbtDownloadManager class handles all downloading of components needed for
 # AbTLinux.
@@ -20,7 +20,7 @@
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
 # FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more
 # details.
-#
+#																    
 # You should have received a copy of the GNU General Public License along with
 # AbTLinux; if not, write to the Free Software Foundation, Inc., 51 Franklin
 # St, Fifth Floor, Boston, MA 02110-1301  USA
@@ -28,22 +28,22 @@
 class AbtDownloadManager
 
 protected
-
+  
 private
-
+  
 public
 
   ##
   # Constructor for the AbtDownloadManager class.
   #
-  # <b>RETURN</b> <i>AbtDownloadManager</i> - an initialized AbtDownloadManager object.
+  # <b>RETURN</b> <i>AbtDownloadManager</i> - an initialized AbtDownloadManager object. 
   ##
   def initialize
   end
-
+  
   ##
   # Downloads a given package source. If the file already exists, returns
-  # true as if download completed.
+	# true as if download completed.
   #
   # <b>PARAM</b> <i>String</i> - the name of the package for which the source
   # is to be downloaded.
@@ -53,26 +53,24 @@ public
   # downloaded, otherwise false.
   ##
   def retrievePackageSource( packageName, destination )
-    require packageName
-		require "shell"
-		Shell.def_system_command "wget"
-    logger		= AbtLogManager.new
-    package		= eval( packageName.capitalize + '.new' )
+		require packageName
+		logger		= AbtLogManager.new
+		package		= eval( packageName.capitalize + '.new' )
+		
+		if ( File.exist?( destination + "/" + File.basename( package.srcUrl ) ) )
+			logger.logToJournal( "Download not needed, existing source found for " + packageName )
+			return true
+		end
 
-    if ( File.exist?( destination + "/" + File.basename( package.srcUrl ) ) )
-      logger.logToJournal( "Download not needed, existing source found for " + packageName )
-      return true
-    end
+		Dir.chdir( destination )
+		if ( system( "wget #{package.srcUrl}" ) )
+			logger.logToJournal( "Download completed for " + packageName )
+			return true
+		end
 
-		retrieve = Shell.cd( destination )
-    if ( retrieve.wget( package.srcUrl ) )
-      logger.logToJournal( "Download completed for " + packageName )
-      return true
-    end
-
-    return false  # download failed.
+		return false  # download failed.
   end
-
+  
   ##
   # Downloads a given pacakge tree.
   #
@@ -83,61 +81,61 @@ public
   ##
   def retrievePackageTree( packageTreeName )
   end
-
+  
   ##
   # Retrieves the given feed and displays the news items.
   #
-  # <b>PARAM</b> <i>String</i> - the uri of the rss news feed to be retrieved.
-  # <b>PARAM</b> <i>String</i> - pass the value 'true' to empty the log file,
-  # otherwise it will be appended.
+	# <b>PARAM</b> <i>String</i> - the uri of the rss news feed to be retrieved.
+	# <b>PARAM</b> <i>String</i> - pass the value 'true' to empty the log file,
+	# otherwise it will be appended.
   # <b>RETURN</b> <i>boolean</i> - True if the AbTLinux news feed has been
   # retrieved, otherwise false.
   ##
   def retrieveNewsFeed( uri, cleanLog = "false" )
-    require 'net/http'
-    require 'uri'
-    require 'rss/1.0'
-    require 'rss/2.0'
-    newsLog = ""
+		require 'net/http'
+		require 'uri'
+		require 'rss/1.0'
+		require 'rss/2.0'
+		newsLog = ""
 
-    # ensure we have our news logfile.
-    if ( cleanLog == "true" )
-      newsLog = File.new( $ABTNEWS_LOG, File::WRONLY|File::TRUNC|File::CREAT, 644 )
-    else
-      newsLog = File.new( $ABTNEWS_LOG, File::WRONLY|File::APPEND|File::CREAT, 644 )
-    end
+		# ensure we have our news logfile.
+		if ( cleanLog == "true" )
+			newsLog = File.new( $ABTNEWS_LOG, File::WRONLY|File::TRUNC|File::CREAT, 644 ) 
+		else
+			newsLog = File.new( $ABTNEWS_LOG, File::WRONLY|File::APPEND|File::CREAT, 644 )
+		end
+			
+		# pick up the abtlinux.org news feed.
+		if ( !news = Net::HTTP.get( URI.parse( uri ) ) )
+			logger.logToJournal( "Failed to retrieve news feed #{uri}." )
+			return false
+		end
 
-    # pick up the abtlinux.org news feed.
-    if ( !news = Net::HTTP.get( URI.parse( uri ) ) )
-      logger.logToJournal( "Failed to retrieve news feed #{uri}." )
-      return false
-    end
+		# display the feeds.
+		rss = nil
+		begin
+			rss  = RSS::Parser.parse(news, false)
+		rescue RSS::Error
+		end 
+		
+		if ( rss.nil? )
+			logger.logToJournal( "Failed to display news feed as feed #{uri} is not RSS 1.0/2.0." )
+			return false
+		else
+			newsLog.puts "*** #{rss.channel.title} ***"
+		
+			rss.items.each_with_index do |item, itemCount|
+				itemCount += 1
+				newsLog.puts "#{itemCount}  #{item.link}  #{item.title}" 
+			end
+		end
 
-    # display the feeds.
-    rss = nil
-    begin
-      rss  = RSS::Parser.parse(news, false)
-    rescue RSS::Error
-    end
-
-    if ( rss.nil? )
-      logger.logToJournal( "Failed to display news feed as feed #{uri} is not RSS 1.0/2.0." )
-      return false
-    else
-      newsLog.puts "*** #{rss.channel.title} ***"
-
-      rss.items.each_with_index do |item, itemCount|
-        itemCount += 1
-        newsLog.puts "#{itemCount}  #{item.link}  #{item.title}"
-      end
-    end
-
-    newsLog.puts "\n"
-    newsLog.close
-    return true
+		newsLog.puts "\n"
+		newsLog.close
+		return true
 
   end
-
+  
   ##
   # Updates a given package with available patches (version updates).
   #
@@ -148,7 +146,7 @@ public
   ##
   def updatePackage
   end
-
+  
   ##
   # Updates the package tree.
   #
@@ -157,5 +155,5 @@ public
   ##
   def updatePackageTree
   end
-
+  
 end

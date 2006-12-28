@@ -139,22 +139,4 @@ public
   ##
   def setPackageTreeLocation( location )
   end
-
-  ##
-  # Our in house system call wrapper. Used to control any system calls made in
-  # abt. Need to sort out tracking of stderr, stdout, stdin with open3?
-  # Eventually replace any need for system here.
-  #
-  # <b>PARAM</b> <i>String</i> - the call to pass to system.
-  #
-  # <b>RETURN</b> <i>boolean</i> - True if system call successful, otherwise
-  # false.
-  ##
-  def runSystemCall( command )
-    if ( !system( command ) )
-      return false
-    end
-
-    return true
-  end
 end
