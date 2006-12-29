@@ -199,15 +199,15 @@ public
   # <b>RETURN</b> <i>void.</i>
   ##
   def showQueue( queueType )
-    queueFile = "#{$ABT_LOGS}/#{queueType}.log"
+    
     case queueType
 
     when "install"
-      if ( File.exist?( queueFile ) )
+      if ( File.exist?( "#{$ABT_LOGS}/#{queueType}.queue" ) )
         puts "\n\n"
         puts "AbTLinux #{queueType} queue:"
         puts "======================="
-        queue = IO.readlines( queueFile )
+        queue = IO.readlines( "#{$ABT_LOGS}/#{queueType}.queue" )
         queue.each{ |entry| puts entry }
         puts "\n\n"
       else
@@ -215,7 +215,6 @@ public
         puts "AbtLinux  #{queueType} is empty at this time."
         puts "\n\n"
       end
-
     else
       puts "#{queueType.capitalize} is not an AbTLinux queue."
     end
