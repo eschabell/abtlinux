@@ -175,10 +175,10 @@ Test method for
   <p class="source-link">[ <a href="javascript:toggleSource('M000059_source')" id="l_M000059_source">show source</a> ]</p>
   <div id="M000059_source" class="dyn-source">
 <pre>
-     <span class="ruby-comment cmt"># File TestAbtReportManager.rb, line 123</span>
-123:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">testGenerateHTMLPackageListing</span>
-124:     <span class="ruby-identifier">assert</span>( <span class="ruby-ivar">@report</span>.<span class="ruby-identifier">generateHTMLPackageListing</span>(), <span class="ruby-value str">&quot;testGenerateHTMLPackageListing()&quot;</span> )
-125:   <span class="ruby-keyword kw">end</span>
+     <span class="ruby-comment cmt"># File TestAbtReportManager.rb, line 127</span>
+127:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">testGenerateHTMLPackageListing</span>
+128:     <span class="ruby-identifier">assert</span>( <span class="ruby-ivar">@report</span>.<span class="ruby-identifier">generateHTMLPackageListing</span>(), <span class="ruby-value str">&quot;testGenerateHTMLPackageListing()&quot;</span> )
+129:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>
@@ -371,8 +371,12 @@ Test method for &#8216;AbtReportManager.testShowQueue()&#8217;
 <pre>
      <span class="ruby-comment cmt"># File TestAbtReportManager.rb, line 109</span>
 109:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">testShowQueue</span>
-110:     <span class="ruby-identifier">assert</span>( <span class="ruby-ivar">@report</span>.<span class="ruby-identifier">showQueue</span>( <span class="ruby-value str">&quot;install&quot;</span> ), <span class="ruby-value str">&quot;testShowQueue()&quot;</span> )
-111:   <span class="ruby-keyword kw">end</span>
+110:                 <span class="ruby-keyword kw">if</span> ( <span class="ruby-ivar">@report</span>.<span class="ruby-identifier">showQueue</span>( <span class="ruby-value str">&quot;install&quot;</span> ) )
+111:                         <span class="ruby-identifier">assert</span> ( <span class="ruby-keyword kw">false</span>, <span class="ruby-value str">&quot;testShowQueue()&quot;</span> )
+112:                 <span class="ruby-keyword kw">else</span>
+113:                         <span class="ruby-identifier">assert</span> ( <span class="ruby-keyword kw">true</span>, <span class="ruby-value str">&quot;testShowQueue()&quot;</span> )
+114:                 <span class="ruby-keyword kw">end</span>
+115:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>
@@ -411,10 +415,10 @@ Test method for &#8216;AbtReportManager.testShowUpdates()&#8217;
   <p class="source-link">[ <a href="javascript:toggleSource('M000058_source')" id="l_M000058_source">show source</a> ]</p>
   <div id="M000058_source" class="dyn-source">
 <pre>
-     <span class="ruby-comment cmt"># File TestAbtReportManager.rb, line 116</span>
-116:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">testShowUpdates</span>
-117:     <span class="ruby-identifier">assert</span>( <span class="ruby-ivar">@report</span>.<span class="ruby-identifier">showUpdates</span>( <span class="ruby-value str">&quot;fortune&quot;</span> ), <span class="ruby-value str">&quot;testShowUpdates()&quot;</span> )
-118:   <span class="ruby-keyword kw">end</span>
+     <span class="ruby-comment cmt"># File TestAbtReportManager.rb, line 120</span>
+120:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">testShowUpdates</span>
+121:     <span class="ruby-identifier">assert</span>( <span class="ruby-ivar">@report</span>.<span class="ruby-identifier">showUpdates</span>( <span class="ruby-value str">&quot;fortune&quot;</span> ), <span class="ruby-value str">&quot;testShowUpdates()&quot;</span> )
+122:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>
