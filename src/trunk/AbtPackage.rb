@@ -173,22 +173,22 @@ class AbtPackage
   ##
   def details
     return {
-      "Package name"			=> @name,
-      "Executable"				=> @execName,
-      "Version"						=> @version,
-      "Source location"		=> @srcDir,
-      "Homepage"					=> @homepage,
-      "Source uri"				=> @srcUrl,
-      "Depends On"				=> @dependsOn,
-      "Relies On"					=> @reliesOn,
-      "Optional DO"				=> @optionalDO,
-      "Optional RO"				=> @optionalRO,
-      "Security hash"			=> @hashCheck,
-      "Patches"						=> @patches,
-      "Patches hash"			=> @patchesHashCheck,
-      "Mirror"						=> @mirrorPath,
-      "License"						=> @license,
-      "Description"				=> @description
+      "Package name"    => @name,
+      "Executable"		=> @execName,
+      "Version"			=> @version,
+      "Source location"	=> @srcDir,
+      "Homepage"		=> @homepage,
+      "Source uri"		=> @srcUrl,
+      "Depends On"		=> @dependsOn,
+      "Relies On"		=> @reliesOn,
+      "Optional DO"		=> @optionalDO,
+      "Optional RO"		=> @optionalRO,
+      "Security hash"	=> @hashCheck,
+      "Patches"			=> @patches,
+      "Patches hash"	=> @patchesHashCheck,
+      "Mirror"			=> @mirrorPath,
+      "License"			=> @license,
+      "Description"		=> @description
     }
   end
 
