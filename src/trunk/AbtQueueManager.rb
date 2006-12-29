@@ -59,17 +59,8 @@ public
       # pickup queue contents to ensure no duplicates.
       checkingQueue = IO.readlines( queueFile )
 
-      # endsure no duplicates.
-      matched = false
-      checkingQueue.each do |entry|
-        entryName = entry.split( '|' )
-        if ( entryName[0] == package )
-          matched = true
-        end
-      end
-
       # check if package exists, otherwise add.
-      if ( !matched )
+      if ( ! checkingQueue.collect{ |i| i.split( '|' )[0] }.include?( package ) )
         log.puts "#{package}|#{$TIMESTAMP}"
         logger.logToJournal( "Added #{package} to #{queue} queue." )
       else
