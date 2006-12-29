@@ -38,10 +38,10 @@ class TestAbtQueueManager < Test::Unit::TestCase
   end
   
   ##
-  # Test method for 'AbtQueueManager.testQueueMananger()'
+  # Test method for 'AbtQueueManager.addPackageToQueue()'
   ## 
-  def testQueueManager
-    assert_equal( false, true, "testQueueManager()" )
+  def testAddPackageToQueue
+    assert( @queue.addPackageToQueue( "fortune", "install" ), "testQueueManager()" )
   end
 
 end
