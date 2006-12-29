@@ -1,4 +1,4 @@
-#!/usr/bin/ruby -w
+#!/usr/bin/ruby -wI./packages 
 
 require 'test/unit/testcase'
 require 'test/unit/autorunner'
@@ -107,7 +107,11 @@ class TestAbtReportManager < Test::Unit::TestCase
   # Test method for 'AbtReportManager.testShowQueue()'
   ## 
   def testShowQueue
-    assert( @report.showQueue( "install" ), "testShowQueue()" )
+		if ( @report.showQueue( "install" ) )
+			assert ( false, "testShowQueue()" )
+		else
+			assert ( true, "testShowQueue()" )
+		end
   end
 
   ##

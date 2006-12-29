@@ -203,8 +203,7 @@ case ARGV[0]
     reporter.showJournal( $JOURNAL )
 
   when "show-iqueue"
-    puts "Display contents of install queue."
-    show.usage( "queries" )
+		reporter.showQueue( "install" )
 
   when "show-patches"
     puts "Display currently available patches for installed package tree."
