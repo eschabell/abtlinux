@@ -64,22 +64,22 @@ class TestAbtPackage < Test::Unit::TestCase
   # Test method for 'AbtPackage.testDetails()'
   ## 
   def testDetails
-    assert_equal( $data['name'], @fortune.details['name'], "testDetails()" )
-    assert_equal( $data['execName'], @fortune.details['execName'], "testDetails()" )
-    assert_equal( $data['version'], @fortune.details['version'], "testDetails()" )
-    assert_equal( $data['srcDir'], @fortune.details['srcDir'], "testDetails()" )
-    assert_equal( $data['homepage'], @fortune.details['homepage'], "testDetails()" )
-    assert_equal( $data['srcUrl'], @fortune.details['srcUrl'], "testDetails()" )
-    assert_equal( $data['dependsOn'], @fortune.details['dependsOn'], "testDetails()" )
-    assert_equal( $data['reliesOn'], @fortune.details['reliesOn'], "testDetails()" )
-    assert_equal( $data['optionalDO'], @fortune.details['optionalDO'], "testDetails()" )
-    assert_equal( $data['optionalRO'], @fortune.details['optionalRO'], "testDetails()" )
-    assert_equal( $data['hashCheck'], @fortune.details['hashCheck'], "testDetails()" )
-    assert_equal( $data['patches'], @fortune.details['patches'], "testDetails()" )
-    assert_equal( $data['patchesHashCheck'], @fortune.details['patchesHashCheck'], "testDetails()" )
-    assert_equal( $data['mirrorPath'], @fortune.details['mirrorPath'], "testDetails()" )
-    assert_equal( $data['license'], @fortune.details['license'], "testDetails()" )
-    assert_equal( $data['description'], @fortune.details['description'], "testDetails()" )
+    assert_equal( $data['name'], @fortune.details['Package name'], "testDetails()" )
+    assert_equal( $data['execName'], @fortune.details['Executable'], "testDetails()" )
+    assert_equal( $data['version'], @fortune.details['Version'], "testDetails()" )
+    assert_equal( $data['srcDir'], @fortune.details['Source location'], "testDetails()" )
+    assert_equal( $data['homepage'], @fortune.details['Homepage'], "testDetails()" )
+    assert_equal( $data['srcUrl'], @fortune.details['Source uri'], "testDetails()" )
+    assert_equal( $data['dependsOn'], @fortune.details['Depends On'], "testDetails()" )
+    assert_equal( $data['reliesOn'], @fortune.details['Relies On'], "testDetails()" )
+    assert_equal( $data['optionalDO'], @fortune.details['Optional DO'], "testDetails()" )
+    assert_equal( $data['optionalRO'], @fortune.details['Optional RO'], "testDetails()" )
+    assert_equal( $data['hashCheck'], @fortune.details['Security hash'], "testDetails()" )
+    assert_equal( $data['patches'], @fortune.details['Patches'], "testDetails()" )
+    assert_equal( $data['patchesHashCheck'], @fortune.details['Patches hash'], "testDetails()" )
+    assert_equal( $data['mirrorPath'], @fortune.details['Mirror'], "testDetails()" )
+    assert_equal( $data['license'], @fortune.details['License'], "testDetails()" )
+    assert_equal( $data['description'], @fortune.details['Description'], "testDetails()" )
   end
   
   ##
