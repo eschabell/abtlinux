@@ -118,7 +118,7 @@ Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
   <div class="sectiontitle">Methods</div>
   <ul>
   <li><a href="#M000076">setup</a></li>
-  <li><a href="#M000077">testQueueManager</a></li>
+  <li><a href="#M000077">testAddPackageToQueue</a></li>
   </ul>
 
 
@@ -151,11 +151,12 @@ href="AbtQueueManager.html">AbtQueueManager</a>.
 </div>
 <div class="method">
   <div class="title">
-    <a name="M000077"></a><b>testQueueManager</b>()
+    <a name="M000077"></a><b>testAddPackageToQueue</b>()
   </div>
   <div class="description">
   <p>
-Test method for &#8216;AbtQueueManager.testQueueMananger()&#8217;
+Test method for &#8216;<a
+href="AbtQueueManager.html#M000085">AbtQueueManager.addPackageToQueue</a>()&#8217;
 </p>
   </div>
 <div class="sourcecode">
@@ -163,8 +164,8 @@ Test method for &#8216;AbtQueueManager.testQueueMananger()&#8217;
   <div id="M000077_source" class="dyn-source">
 <pre>
     <span class="ruby-comment cmt"># File TestAbtQueueManager.rb, line 43</span>
-43:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">testQueueManager</span>
-44:     <span class="ruby-identifier">assert_equal</span>( <span class="ruby-keyword kw">false</span>, <span class="ruby-keyword kw">true</span>, <span class="ruby-value str">&quot;testQueueManager()&quot;</span> )
+43:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">testAddPackageToQueue</span>
+44:     <span class="ruby-identifier">assert</span>( <span class="ruby-ivar">@queue</span>.<span class="ruby-identifier">addPackageToQueue</span>( <span class="ruby-value str">&quot;fortune&quot;</span>, <span class="ruby-value str">&quot;install&quot;</span> ), <span class="ruby-value str">&quot;testQueueManager()&quot;</span> )
 45:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
