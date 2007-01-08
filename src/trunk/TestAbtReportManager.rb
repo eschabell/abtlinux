@@ -108,9 +108,9 @@ class TestAbtReportManager < Test::Unit::TestCase
   ## 
   def testShowQueue
 		if ( @report.showQueue( "install" ) )
-			assert ( false, "testShowQueue()" )
+			assert(false, "testShowQueue()")
 		else
-			assert ( true, "testShowQueue()" )
+			assert(true, "testShowQueue()")
 		end
   end
 
