@@ -235,28 +235,14 @@ class AbtPackage
     #       also need to expand directory with @srcDir/@srcDir.configure.
     #command		= "./configure --prefix=#{$DEFAULT_PREFIX} | tee #{$PACKAGE_INSTALLED}/{@srcDir}.configure"
     Dir.chdir( buildSite )
-    stdin, stdout, stderr =
-      Open3.popen3( "./configure --prefix=#{$DEFAULT_PREFIX}" )
-
-    # check for errors.
-    if ( !stderr.eof )
+		
+		if ( !system( "./configure --prefix=#{$DEFAULT_PREFIX} | tee #{$PACKAGE_INSTALLED}/#{@srcDir}.configure" ) )
       # TODO: put this in failure file.
-      puts "DEBUG: [AbtPackage.configure] - stderr:"
-      puts stderr.read
+      puts "DEBUG: [AbtPackage.configure] - unable to configure."
       return false
-    else
-      puts "DEBUG: [AbtPackage.configure] - nothing in stderr."
     end
 
-    # check for output.
-    if ( !stdout.eof )
-      # TODO: put this in #{$PACKAGE_INSTALLED}/{@srcDir}.configure.
-      puts "DEBUG: [AbtPackage.configure] - stdout:"
-      puts stdout.read
-    else
-      puts "DEBUG: [AbtPackage.configure] - nothing in stdout."
-    end
-
+		puts "DEBUG: [AbtPackage.configure] - configure went fine!"
     return true
   end
 
