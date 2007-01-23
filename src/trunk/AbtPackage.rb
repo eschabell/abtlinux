@@ -233,7 +233,6 @@ class AbtPackage
 
     # TODO: this should not use tee, but in wrapper deal with stdout to file.
     #       also need to expand directory with @srcDir/@srcDir.configure.
-    #command		= "./configure --prefix=#{$DEFAULT_PREFIX} | tee #{$PACKAGE_INSTALLED}/{@srcDir}.configure"
     Dir.chdir( buildSite )
 		
 		if ( !system( "./configure --prefix=#{$DEFAULT_PREFIX} | tee #{$PACKAGE_INSTALLED}/#{@srcDir}.configure" ) )
