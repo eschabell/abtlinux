@@ -361,9 +361,9 @@ otherwise false.
   <p class="source-link">[ <a href="javascript:toggleSource('M000028_source')" id="l_M000028_source">show source</a> ]</p>
   <div id="M000028_source" class="dyn-source">
 <pre>
-     <span class="ruby-comment cmt"># File AbtPackage.rb, line 268</span>
-268:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">build</span>
-269:   <span class="ruby-keyword kw">end</span>
+     <span class="ruby-comment cmt"># File AbtPackage.rb, line 253</span>
+253:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">build</span>
+254:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>
@@ -396,32 +396,17 @@ otherwise false.
 233: 
 234:     <span class="ruby-comment cmt"># TODO: this should not use tee, but in wrapper deal with stdout to file.</span>
 235:     <span class="ruby-comment cmt">#       also need to expand directory with @srcDir/@srcDir.configure.</span>
-236:     <span class="ruby-comment cmt">#command            = &quot;./configure --prefix=#{$DEFAULT_PREFIX} | tee #{$PACKAGE_INSTALLED}/{@srcDir}.configure&quot;</span>
-237:     <span class="ruby-constant">Dir</span>.<span class="ruby-identifier">chdir</span>( <span class="ruby-identifier">buildSite</span> )
-238:     <span class="ruby-identifier">stdin</span>, <span class="ruby-identifier">stdout</span>, <span class="ruby-identifier">stderr</span> =
-239:       <span class="ruby-constant">Open3</span>.<span class="ruby-identifier">popen3</span>( <span class="ruby-node">&quot;./configure --prefix=#{$DEFAULT_PREFIX}&quot;</span> )
-240: 
-241:     <span class="ruby-comment cmt"># check for errors.</span>
-242:     <span class="ruby-keyword kw">if</span> ( <span class="ruby-operator">!</span><span class="ruby-identifier">stderr</span>.<span class="ruby-identifier">eof</span> )
-243:       <span class="ruby-comment cmt"># TODO: put this in failure file.</span>
-244:       <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;DEBUG: [AbtPackage.configure] - stderr:&quot;</span>
-245:       <span class="ruby-identifier">puts</span> <span class="ruby-identifier">stderr</span>.<span class="ruby-identifier">read</span>
-246:       <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">false</span>
-247:     <span class="ruby-keyword kw">else</span>
-248:       <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;DEBUG: [AbtPackage.configure] - nothing in stderr.&quot;</span>
-249:     <span class="ruby-keyword kw">end</span>
-250: 
-251:     <span class="ruby-comment cmt"># check for output.</span>
-252:     <span class="ruby-keyword kw">if</span> ( <span class="ruby-operator">!</span><span class="ruby-identifier">stdout</span>.<span class="ruby-identifier">eof</span> )
-253:       <span class="ruby-comment cmt"># TODO: put this in #{$PACKAGE_INSTALLED}/{@srcDir}.configure.</span>
-254:       <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;DEBUG: [AbtPackage.configure] - stdout:&quot;</span>
-255:       <span class="ruby-identifier">puts</span> <span class="ruby-identifier">stdout</span>.<span class="ruby-identifier">read</span>
-256:     <span class="ruby-keyword kw">else</span>
-257:       <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;DEBUG: [AbtPackage.configure] - nothing in stdout.&quot;</span>
-258:     <span class="ruby-keyword kw">end</span>
-259: 
-260:     <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">true</span>
-261:   <span class="ruby-keyword kw">end</span>
+236:     <span class="ruby-constant">Dir</span>.<span class="ruby-identifier">chdir</span>( <span class="ruby-identifier">buildSite</span> )
+237:                 
+238:                 <span class="ruby-keyword kw">if</span> ( <span class="ruby-operator">!</span><span class="ruby-identifier">system</span>( <span class="ruby-node">&quot;./configure --prefix=#{$DEFAULT_PREFIX} | tee #{$PACKAGE_INSTALLED}/#{@srcDir}.configure&quot;</span> ) )
+239:       <span class="ruby-comment cmt"># TODO: put this in failure file.</span>
+240:       <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;DEBUG: [AbtPackage.configure] - unable to configure.&quot;</span>
+241:       <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">false</span>
+242:     <span class="ruby-keyword kw">end</span>
+243: 
+244:                 <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;DEBUG: [AbtPackage.configure] - configure went fine!&quot;</span>
+245:     <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">true</span>
+246:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>
@@ -486,9 +471,9 @@ otherwise false.
   <p class="source-link">[ <a href="javascript:toggleSource('M000030_source')" id="l_M000030_source">show source</a> ]</p>
   <div id="M000030_source" class="dyn-source">
 <pre>
-     <span class="ruby-comment cmt"># File AbtPackage.rb, line 285</span>
-285:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">install</span>
-286:   <span class="ruby-keyword kw">end</span>
+     <span class="ruby-comment cmt"># File AbtPackage.rb, line 270</span>
+270:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">install</span>
+271:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>
@@ -511,9 +496,9 @@ otherwise false.
   <p class="source-link">[ <a href="javascript:toggleSource('M000031_source')" id="l_M000031_source">show source</a> ]</p>
   <div id="M000031_source" class="dyn-source">
 <pre>
-     <span class="ruby-comment cmt"># File AbtPackage.rb, line 293</span>
-293:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">post</span>
-294:   <span class="ruby-keyword kw">end</span>
+     <span class="ruby-comment cmt"># File AbtPackage.rb, line 278</span>
+278:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">post</span>
+279:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>
@@ -580,9 +565,9 @@ otherwise false.
   <p class="source-link">[ <a href="javascript:toggleSource('M000029_source')" id="l_M000029_source">show source</a> ]</p>
   <div id="M000029_source" class="dyn-source">
 <pre>
-     <span class="ruby-comment cmt"># File AbtPackage.rb, line 277</span>
-277:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">preinstall</span>
-278:   <span class="ruby-keyword kw">end</span>
+     <span class="ruby-comment cmt"># File AbtPackage.rb, line 262</span>
+262:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">preinstall</span>
+263:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>
@@ -604,22 +589,22 @@ otherwise false.
   <p class="source-link">[ <a href="javascript:toggleSource('M000032_source')" id="l_M000032_source">show source</a> ]</p>
   <div id="M000032_source" class="dyn-source">
 <pre>
-     <span class="ruby-comment cmt"># File AbtPackage.rb, line 301</span>
-301:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">removeBuild</span>
-302:     <span class="ruby-keyword kw">if</span> ( <span class="ruby-identifier">$REMOVE_BUILD_SOURCES</span> )
-303:       <span class="ruby-identifier">buildSourcesLocation</span> = <span class="ruby-node">&quot;#{$BUILD_LOCATION}/#{srcDir}&quot;</span>
-304: 
-305:       <span class="ruby-keyword kw">if</span> ( <span class="ruby-operator">!</span><span class="ruby-constant">File</span>.<span class="ruby-identifier">directory?</span>( <span class="ruby-identifier">buildSourcesLocation</span> ) )
-306:         <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">true</span>
-307:       <span class="ruby-keyword kw">end</span>
-308: 
-309:       <span class="ruby-keyword kw">if</span> ( <span class="ruby-operator">!</span><span class="ruby-constant">FileUtils</span>.<span class="ruby-identifier">rm_rf</span> <span class="ruby-identifier">buildSourcesLocation</span>, <span class="ruby-identifier">:verbose</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword kw">true</span>  )
-310:         <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">false</span>
-311:       <span class="ruby-keyword kw">end</span>
-312:     <span class="ruby-keyword kw">end</span>
-313: 
-314:     <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">true</span>
-315:   <span class="ruby-keyword kw">end</span>
+     <span class="ruby-comment cmt"># File AbtPackage.rb, line 286</span>
+286:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">removeBuild</span>
+287:     <span class="ruby-keyword kw">if</span> ( <span class="ruby-identifier">$REMOVE_BUILD_SOURCES</span> )
+288:       <span class="ruby-identifier">buildSourcesLocation</span> = <span class="ruby-node">&quot;#{$BUILD_LOCATION}/#{srcDir}&quot;</span>
+289: 
+290:       <span class="ruby-keyword kw">if</span> ( <span class="ruby-operator">!</span><span class="ruby-constant">File</span>.<span class="ruby-identifier">directory?</span>( <span class="ruby-identifier">buildSourcesLocation</span> ) )
+291:         <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">true</span>
+292:       <span class="ruby-keyword kw">end</span>
+293: 
+294:       <span class="ruby-keyword kw">if</span> ( <span class="ruby-operator">!</span><span class="ruby-constant">FileUtils</span>.<span class="ruby-identifier">rm_rf</span> <span class="ruby-identifier">buildSourcesLocation</span>, <span class="ruby-identifier">:verbose</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword kw">true</span>  )
+295:         <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">false</span>
+296:       <span class="ruby-keyword kw">end</span>
+297:     <span class="ruby-keyword kw">end</span>
+298: 
+299:     <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">true</span>
+300:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>
