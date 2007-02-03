@@ -231,8 +231,7 @@ class AbtPackage
   def configure
     buildSite	= "#{$BUILD_LOCATION}/#{@srcDir}"
 
-    # TODO: this should not use tee, but in wrapper deal with stdout to file.
-    #       also need to expand directory with @srcDir/@srcDir.configure.
+    # TODO: not some better way to deal with this than system and tee?
     Dir.chdir( buildSite )
 		
 		if ( !system( "./configure --prefix=#{$DEFAULT_PREFIX} | tee #{$PACKAGE_INSTALLED}/#{@srcDir}.configure" ) )
