@@ -229,11 +229,9 @@ class AbtPackage
   # <b>RETURNS:</b>  <i>boolean</i> - True if the completes sucessfully, otherwise false.
   ##
   def configure
-    buildSite	= "#{$BUILD_LOCATION}/#{@srcDir}"
-
-    # TODO: not some better way to deal with this than system and tee?
-    Dir.chdir( buildSite )
+    Dir.chdir( "#{$BUILD_LOCATION}/#{@srcDir}" )
 		
+    # TODO: not some better way to deal with this than system and tee?
 		if ( !system( "./configure --prefix=#{$DEFAULT_PREFIX} | tee #{$PACKAGE_INSTALLED}/#{@srcDir}.configure" ) )
       # TODO: put this in failure file.
       puts "DEBUG: [AbtPackage.configure] - unable to configure."
@@ -250,6 +248,17 @@ class AbtPackage
   # <b>RETURNS:</b>  <i>boolean</i> - True if the completes sucessfully, otherwise false.
   ##
   def build
+    Dir.chdir( "#{$BUILD_LOCATION}/#{@srcDir}" )
+
+    # TODO: not some better way to deal with this than system and tee?
+		if( !system( "make | tee #{$PACKAGE_INSTALLED}/#{@srcDir}.build" ) )
+      # TODO: put this in failure file.
+      puts "DEBUG: [AbtPackage.build] - unable to build."
+      return false
+		end
+
+		puts "DEBUG: [AbtPackage.build] - build went fine!"
+    return true
   end
 
   ##

@@ -87,9 +87,17 @@ public
       logger.logToJournal( "DEBUG: finished #{package} configure section." )
     end
 
+    # build section
+		if ( !sw.build )
+      logger.logToJournal( "Failed to process build section in the package description of #{package}." )
+      return false
+    else
+      logger.logToJournal( "DEBUG: finished #{package} build section." )
+    end
+
+
     # TODO: finish up the following steps per install scenario:
     #
-    # build section
     # pre install section
     # install section
     # post section
