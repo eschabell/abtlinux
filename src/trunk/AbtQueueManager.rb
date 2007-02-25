@@ -53,13 +53,13 @@ public
   ##
   def addPackageToQueue( package, queue )
     logger = AbtLogManager.new
-
-		# want to name install queue differently from log files.
-		if ( queue == 'install' ) 
-			queueFile = "#{$ABT_LOGS}/#{queue}.queue"
-		else
+    
+    # want to name install queue differently from log files.
+	if ( queue == 'install' ) 
+		queueFile = "#{$ABT_LOGS}/#{queue}.queue"
+	else
     	queueFile = "#{$ABT_LOGS}/#{queue}.log"
-		end
+	end
 
     if ( log = File.new( queueFile, File::WRONLY|File::APPEND|File::CREAT, 0644 ) )
       # pickup queue contents to ensure no duplicates.

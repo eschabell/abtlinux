@@ -2,7 +2,9 @@
 
 require 'test/unit/testcase'
 require 'test/unit/autorunner'
+require 'abtconfig'
 require 'AbtQueueManager'
+require 'AbtLogManager'
 
 ##
 # TestAbtQueueManager.rb 
