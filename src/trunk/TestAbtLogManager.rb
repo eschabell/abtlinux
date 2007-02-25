@@ -2,6 +2,7 @@
 
 require 'test/unit/testcase'
 require 'test/unit/autorunner'
+require 'abtconfig'
 require 'AbtLogManager'
 
 ##
