@@ -76,9 +76,9 @@ Object
       <div id="content">
   <table cellpadding='0' cellspacing='0' border='0' width="100%"><tr><td align="center">
     <map id="map" name="map">
-  <area shape="RECT" coords="27,50,147,98"      href="AbtQueueManager.html" alt="AbtQueueManager">
+  <area shape="rect" coords="27,50,160,98"      href="AbtQueueManager.html" alt="AbtQueueManager" />
 </map>
-<img src="../dot/f_5.png" usemap="#map" border=0 alt="TopLevel">
+<img src="../dot/f_5.png" usemap="#map" border="0" alt="dot/f_5.png">
   </td></tr></table>
 
   <div class="description"><p>
@@ -178,13 +178,13 @@ queue, otherwise false.
     <span class="ruby-comment cmt"># File AbtQueueManager.rb, line 54</span>
 54:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">addPackageToQueue</span>( <span class="ruby-identifier">package</span>, <span class="ruby-identifier">queue</span> )
 55:     <span class="ruby-identifier">logger</span> = <span class="ruby-constant">AbtLogManager</span>.<span class="ruby-identifier">new</span>
-56: 
-57:                 <span class="ruby-comment cmt"># want to name install queue differently from log files.</span>
-58:                 <span class="ruby-keyword kw">if</span> ( <span class="ruby-identifier">queue</span> <span class="ruby-operator">==</span> <span class="ruby-value str">'install'</span> ) 
-59:                         <span class="ruby-identifier">queueFile</span> = <span class="ruby-node">&quot;#{$ABT_LOGS}/#{queue}.queue&quot;</span>
-60:                 <span class="ruby-keyword kw">else</span>
+56:     
+57:     <span class="ruby-comment cmt"># want to name install queue differently from log files.</span>
+58:         <span class="ruby-keyword kw">if</span> ( <span class="ruby-identifier">queue</span> <span class="ruby-operator">==</span> <span class="ruby-value str">'install'</span> ) 
+59:                 <span class="ruby-identifier">queueFile</span> = <span class="ruby-node">&quot;#{$ABT_LOGS}/#{queue}.queue&quot;</span>
+60:         <span class="ruby-keyword kw">else</span>
 61:         <span class="ruby-identifier">queueFile</span> = <span class="ruby-node">&quot;#{$ABT_LOGS}/#{queue}.log&quot;</span>
-62:                 <span class="ruby-keyword kw">end</span>
+62:         <span class="ruby-keyword kw">end</span>
 63: 
 64:     <span class="ruby-keyword kw">if</span> ( <span class="ruby-identifier">log</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">new</span>( <span class="ruby-identifier">queueFile</span>, <span class="ruby-constant">File</span><span class="ruby-operator">::</span><span class="ruby-constant">WRONLY</span><span class="ruby-operator">|</span><span class="ruby-constant">File</span><span class="ruby-operator">::</span><span class="ruby-constant">APPEND</span><span class="ruby-operator">|</span><span class="ruby-constant">File</span><span class="ruby-operator">::</span><span class="ruby-constant">CREAT</span>, <span class="ruby-value">0644</span> ) )
 65:       <span class="ruby-comment cmt"># pickup queue contents to ensure no duplicates.</span>

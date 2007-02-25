@@ -76,9 +76,9 @@ Object
       <div id="content">
   <table cellpadding='0' cellspacing='0' border='0' width="100%"><tr><td align="center">
     <map id="map" name="map">
-  <area shape="RECT" coords="27,50,115,98"      href="AbtPackage.html" alt="AbtPackage">
+  <area shape="rect" coords="27,50,120,98"      href="AbtPackage.html" alt="AbtPackage" />
 </map>
-<img src="../dot/f_3.png" usemap="#map" border=0 alt="TopLevel">
+<img src="../dot/f_3.png" usemap="#map" border="0" alt="dot/f_3.png">
   </td></tr></table>
 
   <div class="description"><p>
@@ -90,7 +90,8 @@ href="AbtPackage.html">AbtPackage</a> creation within AbTLinux. By
 inheriting from this class (class Fortune &lt; <a
 href="AbtPackage.html">AbtPackage</a>) one picks up all supported standard
 functions for the abt <a href="AbtPackage.html">AbtPackage</a> manager to
-make use of the new <a href="AbtPackage.html">AbtPackage</a>.
+make use of the <a href="AbtPackage.html#M000024">new</a> <a
+href="AbtPackage.html">AbtPackage</a>.
 </p>
 <p>
 Created by Eric D. Schabell &lt;erics@abtlinux.org&gt; Copyright 2006, GPL.
@@ -107,8 +108,8 @@ any later version.
 <p>
 AbTLinux is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
-FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
-details.
+FOR A PARTICULAR PURPOSE. See the GNU General Public License for more <a
+href="AbtPackage.html#M000025">details</a>.
 </p>
 <p>
 You should have received a copy of the GNU General Public License along
@@ -309,7 +310,7 @@ the package version number.
   <div class="description">
   <p>
 Constructor for an <a href="AbtPackage.html">AbtPackage</a>, requires all
-the packge details.
+the packge <a href="AbtPackage.html#M000025">details</a>.
 </p>
 <p>
 <b>PARAM</b> <em>Hash</em> - hash containing all package data.
@@ -385,12 +386,13 @@ otherwise false.
   </div>
   <div class="description">
   <p>
-Here we manage the ./configure step (or equivalent). We need to give
-./configure (or autogen.sh, or whatever) the correct options so files are
-to be placed later in the right directories, so doc files and man pages are
-all in the same common location, etc. Don&#8216;t forget too that
-it&#8217;s here where we interact with the user in case there are optionnal
-dependencies.
+Here we manage the ./<a href="AbtPackage.html#M000027">configure</a> step
+(or equivalent). We need to give ./<a
+href="AbtPackage.html#M000027">configure</a> (or autogen.sh, or whatever)
+the correct options so files are to be placed later in the right
+directories, so doc files and man pages are all in the same common
+location, etc. Don&#8216;t forget too that it&#8216;s here where we
+interact with the user in case there are optionnal dependencies.
 </p>
 <p>
 <b>RETURNS:</b> <em>boolean</em> - True if the completes sucessfully,
@@ -561,8 +563,8 @@ false.
   <div class="description">
   <p>
 Any actions needed before the installation can occur will happen here, such
-as creating new user accounts, dealing with existing configuration files,
-etc.
+as creating <a href="AbtPackage.html#M000024">new</a> user accounts,
+dealing with existing configuration files, etc.
 </p>
 <p>
 <b>RETURNS:</b> <em>boolean</em> - True if the completes sucessfully,
@@ -586,7 +588,8 @@ otherwise false.
   </div>
   <div class="description">
   <p>
-Cleans up this packages source build directory.
+Cleans up this packages source <a href="AbtPackage.html#M000028">build</a>
+directory.
 </p>
 <p>
 <b>RETURNS:</b> <em>boolean</em> - True if the completes sucessfully,
@@ -624,7 +627,8 @@ otherwise false.
   </div>
   <div class="description">
   <p>
-Unpacks this packages source file into the standard build location.
+Unpacks this packages source file into the standard <a
+href="AbtPackage.html#M000028">build</a> location.
 </p>
 <p>
 <b>RETURNS:</b> <em>boolean</em> - True if the completes sucessfully,
@@ -637,9 +641,9 @@ otherwise false.
 <pre>
     <span class="ruby-comment cmt"># File AbtPackage.rb, line 39</span>
 39:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">unpackSources</span>
-40:     <span class="ruby-identifier">srcFile</span>                                     = <span class="ruby-constant">File</span>.<span class="ruby-identifier">basename</span>( <span class="ruby-ivar">@srcUrl</span> )
+40:     <span class="ruby-identifier">srcFile</span>                     = <span class="ruby-constant">File</span>.<span class="ruby-identifier">basename</span>( <span class="ruby-ivar">@srcUrl</span> )
 41:     <span class="ruby-identifier">sourcesToUnpack</span> = <span class="ruby-node">&quot;#{$SOURCES_REPOSITORY}/#{srcFile}&quot;</span>
-42:     <span class="ruby-identifier">unpackTool</span>                  = <span class="ruby-value str">&quot;&quot;</span>
+42:     <span class="ruby-identifier">unpackTool</span>          = <span class="ruby-value str">&quot;&quot;</span>
 43: 
 44:     <span class="ruby-comment cmt"># check for existing file in source repo.</span>
 45:     <span class="ruby-keyword kw">if</span> ( <span class="ruby-operator">!</span><span class="ruby-constant">File</span>.<span class="ruby-identifier">exist?</span>( <span class="ruby-identifier">sourcesToUnpack</span> ) )
