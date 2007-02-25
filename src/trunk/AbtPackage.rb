@@ -210,9 +210,7 @@ class AbtPackage
     if ( !self.unpackSources )
       return false
     end
-
-    # TODO: create_group?
-    # TODO: create_user?
+    
     # TODO: retrieve patches?
     # TODO: apply patches?
 
@@ -268,6 +266,9 @@ class AbtPackage
   # <b>RETURNS:</b>  <i>boolean</i> - True if the completes sucessfully, otherwise false.
   ##
   def preinstall
+    # TODO: create_group?
+    # TODO: create_user?
+    return true;
   end
 
   ##

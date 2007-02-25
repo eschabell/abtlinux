@@ -86,7 +86,7 @@ class TestAbtPackage < Test::Unit::TestCase
   # Test method for 'AbtPackage.testPre()'
   ## 
   def testPre
-    assert_equal( false, true, "testPre()" )
+    assert( @fortune.pre(), "testPre()" )
   end
 
   ##
