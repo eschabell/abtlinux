@@ -1,7 +1,8 @@
-#!/usr/bin/ruby -wI./packages 
+#!/usr/bin/ruby -w
 
 require 'test/unit/testcase'
 require 'test/unit/autorunner'
+require 'abtconfig'
 require 'AbtReportManager'
 
 ##
