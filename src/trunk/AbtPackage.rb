@@ -37,9 +37,9 @@ class AbtPackage
   # <b>RETURNS:</b>  <i>boolean</i> - True if the completes sucessfully, otherwise false.
   ##
   def unpackSources
-    srcFile					= File.basename( @srcUrl )
+    srcFile			= File.basename( @srcUrl )
     sourcesToUnpack = "#{$SOURCES_REPOSITORY}/#{srcFile}"
-    unpackTool			= ""
+    unpackTool		= ""
 
     # check for existing file in source repo.
     if ( !File.exist?( sourcesToUnpack ) )
