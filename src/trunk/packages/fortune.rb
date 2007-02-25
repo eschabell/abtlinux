@@ -33,25 +33,25 @@ protected
   
 private
   
-  $name					= "Fortune"
+  $name				= "Fortune"
   $version			= "mod-9708"
-  $srcDir				= "#{$name.downcase}-#{$version}"
-  $packageData	= {
-    'name'							=> $name,
+  $srcDir			= "#{$name.downcase}-#{$version}"
+  $packageData	    = {
+    'name'						=> $name,
     'execName'					=> $name.downcase,
-    'version'						=> $version,
-    'srcDir'						=> $srcDir,
+    'version'					=> $version,
+    'srcDir'					=> $srcDir,
     'homepage'					=> "http://www.ibiblio.org/pub/Linux/games/amusements/#{$name.downcase}/",
-    'srcUrl'						=> "http://www.ibiblio.org/pub/Linux/games/amusements/#{$name.downcase}/#{$srcDir}.tar.gz",
+    'srcUrl'					=> "http://www.ibiblio.org/pub/Linux/games/amusements/#{$name.downcase}/#{$srcDir}.tar.gz",
     'dependsOn'					=> "",
     'reliesOn'					=> "",
     'optionalDO'				=> "",
     'optionalRO'				=> "",
     'hashCheck'					=> "sha512:80c5b71d84eeb3092b2dfe483f0dad8ed42e2efeaa1f8791c2",
-    'patches'						=> "http://patches.abtlinux.org/#{$srcDir}-patches-1.tar.gz",
-    'patchesHashCheck'	=> "",
+    'patches'					=> "http://patches.abtlinux.org/#{$srcDir}-patches-1.tar.gz",
+    'patchesHashCheck'          => "",
     'mirrorPath'				=> "http://mirror.abtlinux.org/#{$srcDir}.tar.gz",
-    'license'						=> "GPL",
+    'license'					=> "GPL",
     'description'				=> "Prints a random, hopefully interesting, adage." 
   }
 
