@@ -2,7 +2,10 @@
 
 require 'test/unit/testcase'
 require 'test/unit/autorunner'
+require 'abtconfig'
 require 'AbtDownloadManager'
+require 'AbtLogManager'
+#require 'packages/fortune'
 
 ##
 # TestAbtDownloadManager.rb 
