@@ -5,7 +5,6 @@ require 'test/unit/autorunner'
 require 'abtconfig'
 require 'AbtDownloadManager'
 require 'AbtLogManager'
-#require 'packages/fortune'
 
 ##
 # TestAbtDownloadManager.rb 
@@ -44,7 +43,7 @@ class TestAbtDownloadManager < Test::Unit::TestCase
   # Test method for 'AbtDownloadManager.testRetrievePackageSource()'
   ## 
   def testRetrievePackageSource()
-    assert( @download.retrievePackageSource( "fortune", "/tmp" ), "testRetrievePackageSource()" )
+    assert( @download.retrievePackageSource( "ipc", "/tmp" ), "testRetrievePackageSource()" )
   end
   
   ##
@@ -74,6 +73,4 @@ class TestAbtDownloadManager < Test::Unit::TestCase
   def testUpdatePackageTree()
     assert( @download.updatePackageTree(), "testUpdatePackageTree()" )
   end
-
-  
 end

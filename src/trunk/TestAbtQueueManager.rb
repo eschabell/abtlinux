@@ -43,7 +43,7 @@ class TestAbtQueueManager < Test::Unit::TestCase
   # Test method for 'AbtQueueManager.addPackageToQueue()'
   ## 
   def testAddPackageToQueue
-    assert( @queue.addPackageToQueue( "fortune", "install" ), "testQueueManager()" )
+    assert( @queue.addPackageToQueue( "ipc", "install" ), "testQueueManager()" )
   end
 
 end

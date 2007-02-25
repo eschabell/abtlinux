@@ -37,7 +37,7 @@ class TestAbtPackage < Test::Unit::TestCase
   $versionTest  = "1.4"
   $srcDirTest   = "#{$nameTest.downcase}-#{$versionTest}"
 
-  $data = {
+  $dataTest = {
     'name'              => $nameTest,
     'execName'          => $nameTest.downcase,
     'version'           => $versionTest,
@@ -49,55 +49,55 @@ class TestAbtPackage < Test::Unit::TestCase
   # setup method for testing AbtPackage.
   ## 
   def setup
-    @sw = Ipc.new
+    @ipc = Ipc.new
   end
 
   ##
   # Test method for 'AbtPackage.testDetails()'
   ## 
   def testDetails
-    assert_equal( $data['name'], @sw.details['Package name'], "testDetails()" )
-    assert_equal( $data['execName'], @sw.details['Executable'], "testDetails()" )
-    assert_equal( $data['version'], @sw.details['Version'], "testDetails()" )
-    assert_equal( $data['srcDir'], @sw.details['Source location'], "testDetails()" )
-    assert_equal( $data['homepage'], @sw.details['Homepage'], "testDetails()" )
+    assert_equal( $dataTest['name'], @ipc.details['Package name'], "testDetails()" )
+    assert_equal( $dataTest['execName'], @ipc.details['Executable'], "testDetails()" )
+    assert_equal( $dataTest['version'], @ipc.details['Version'], "testDetails()" )
+    assert_equal( $dataTest['srcDir'], @ipc.details['Source location'], "testDetails()" )
+    assert_equal( $dataTest['homepage'], @ipc.details['Homepage'], "testDetails()" )
   end
   
   ##
   # Test method for 'AbtPackage.testPre()'
   ## 
   def testPre
-    assert( @sw.pre(), "testPre()" )
+    assert( @ipc.pre(), "testPre()" )
   end
 
   ##
   # Test method for 'AbtPackage.testConfigure()'
   ##
   def testConfigure
-    if ( !@sw.pre() ) 
+    if ( !@ipc.pre() ) 
       assert_equals( true, false, "testConfigure()" )
     end
-    assert( @sw.configure(), "testConfigure()" )
+    assert( @ipc.configure(), "testConfigure()" )
   end
 
   ##
   # Test method for 'AbtPackage.testBuild()'
   ##
   def testBuild
-    if ( !@sw.pre() ) 
+    if ( !@ipc.pre() ) 
       assert_equals( true, false, "testConfigure()" )
     end
-    if ( !@sw.configure() ) 
+    if ( !@ipc.configure() ) 
       assert_equals( true, false, "testConfigure()" )
     end
-    assert( @sw.build(), "testBuild()" )
+    assert( @ipc.build(), "testBuild()" )
   end
 
   ##
   # Test method for 'AbtPackage.testPreinstall()'
   ##
   def testPreinstall
-    assert( @sw.preinstall(), "testPreinstall()" )
+    assert( @ipc.preinstall(), "testPreinstall()" )
   end
 
   ##
@@ -111,7 +111,7 @@ class TestAbtPackage < Test::Unit::TestCase
   # Test method for 'AbtPackage.testPost()'
   ##
   def testPost
-    assert( @sw.post(), "testPost()" )
+    assert( @ipc.post(), "testPost()" )
   end
 
 end

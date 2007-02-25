@@ -42,7 +42,7 @@ class TestAbtReportManager < Test::Unit::TestCase
   # Test method for 'AbtReportManager.testShowPackageDetails()'
   ## 
   def testShowPackageDetails
-    assert( @report.showPackageDetails( "fortune" ), "testShowPackageDetails()" )
+    assert( @report.showPackageDetails( "ipc" ), "testShowPackageDetails()" )
   end
 
   ##
@@ -56,9 +56,9 @@ class TestAbtReportManager < Test::Unit::TestCase
   # Test method for 'AbtReportManager.testShowPackageLog()'
   ## 
   def testShowPackageLog
-    assert( @report.showPackageLog( "fortune", "install" ), "testShowPackageLog()" )
-    assert( @report.showPackageLog( "fortune", "build" ), "testShowPackageLog()" )
-    assert( @report.showPackageLog( "fortune", "integrity" ), "testShowPackageLog()" )
+    assert( @report.showPackageLog( "ipc", "install" ), "testShowPackageLog()" )
+    assert( @report.showPackageLog( "ipc", "build" ), "testShowPackageLog()" )
+    assert( @report.showPackageLog( "ipc", "integrity" ), "testShowPackageLog()" )
   end
 
   ##
@@ -72,7 +72,6 @@ class TestAbtReportManager < Test::Unit::TestCase
   # Test method for 'AbtReportManager.testShowPackageDependencies()'
   ## 
   def testShowPackageDependencies
-    #assert( @report.showPackageDependencies( "fortune" ), "testShowPackageDependencies()" )
     assert( false, "testShowPackageDependencies()" )
   end
 
@@ -94,7 +93,7 @@ class TestAbtReportManager < Test::Unit::TestCase
   # Test method for 'AbtReportManager.testShowFileOwner()'
   ## 
   def testShowFileOwner
-    assert( @report.showFileOwner( "fortuneFile" ), "testShowFileOwner()" )
+    assert( @report.showFileOwner( "ipcFile" ), "testShowFileOwner()" )
   end
 
   ##
@@ -119,7 +118,7 @@ class TestAbtReportManager < Test::Unit::TestCase
   # Test method for 'AbtReportManager.testShowUpdates()'
   ## 
   def testShowUpdates
-    assert( @report.showUpdates( "fortune" ), "testShowUpdates()" )
+    assert( @report.showUpdates( "ipc" ), "testShowUpdates()" )
   end
 
   ##
