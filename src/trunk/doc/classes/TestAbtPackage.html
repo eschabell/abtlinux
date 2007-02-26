@@ -171,10 +171,10 @@ Test method for &#8216;AbtPackage.testBuild()&#8217;
     <span class="ruby-comment cmt"># File TestAbtPackage.rb, line 86</span>
 86:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">testBuild</span>
 87:     <span class="ruby-keyword kw">if</span> ( <span class="ruby-operator">!</span><span class="ruby-ivar">@ipc</span>.<span class="ruby-identifier">pre</span>() ) 
-88:       <span class="ruby-identifier">assert_equals</span>( <span class="ruby-keyword kw">true</span>, <span class="ruby-keyword kw">false</span>, <span class="ruby-value str">&quot;testConfigure()&quot;</span> )
+88:       <span class="ruby-identifier">assert_equals</span>( <span class="ruby-keyword kw">true</span>, <span class="ruby-keyword kw">false</span>, <span class="ruby-value str">&quot;testBuild()&quot;</span> )
 89:     <span class="ruby-keyword kw">end</span>
 90:     <span class="ruby-keyword kw">if</span> ( <span class="ruby-operator">!</span><span class="ruby-ivar">@ipc</span>.<span class="ruby-identifier">configure</span>() ) 
-91:       <span class="ruby-identifier">assert_equals</span>( <span class="ruby-keyword kw">true</span>, <span class="ruby-keyword kw">false</span>, <span class="ruby-value str">&quot;testConfigure()&quot;</span> )
+91:       <span class="ruby-identifier">assert_equals</span>( <span class="ruby-keyword kw">true</span>, <span class="ruby-keyword kw">false</span>, <span class="ruby-value str">&quot;testBuild()&quot;</span> )
 92:     <span class="ruby-keyword kw">end</span>
 93:     <span class="ruby-identifier">assert</span>( <span class="ruby-ivar">@ipc</span>.<span class="ruby-identifier">build</span>(), <span class="ruby-value str">&quot;testBuild()&quot;</span> )
 94:   <span class="ruby-keyword kw">end</span>
@@ -246,8 +246,20 @@ Test method for &#8216;AbtPackage.testInstall()&#8217;
 <pre>
      <span class="ruby-comment cmt"># File TestAbtPackage.rb, line 106</span>
 106:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">testInstall</span>
-107:     <span class="ruby-identifier">assert_equal</span>( <span class="ruby-keyword kw">false</span>, <span class="ruby-keyword kw">true</span>, <span class="ruby-value str">&quot;testInstall()&quot;</span> )
-108:   <span class="ruby-keyword kw">end</span>
+107:      <span class="ruby-keyword kw">if</span> ( <span class="ruby-operator">!</span><span class="ruby-ivar">@ipc</span>.<span class="ruby-identifier">pre</span>() ) 
+108:       <span class="ruby-identifier">assert_equals</span>( <span class="ruby-keyword kw">true</span>, <span class="ruby-keyword kw">false</span>, <span class="ruby-value str">&quot;testInstall()&quot;</span> )
+109:     <span class="ruby-keyword kw">end</span>
+110:     <span class="ruby-keyword kw">if</span> ( <span class="ruby-operator">!</span><span class="ruby-ivar">@ipc</span>.<span class="ruby-identifier">configure</span>() ) 
+111:       <span class="ruby-identifier">assert_equals</span>( <span class="ruby-keyword kw">true</span>, <span class="ruby-keyword kw">false</span>, <span class="ruby-value str">&quot;testInstall()&quot;</span> )
+112:     <span class="ruby-keyword kw">end</span>
+113:     <span class="ruby-keyword kw">if</span> ( <span class="ruby-operator">!</span><span class="ruby-ivar">@ipc</span>.<span class="ruby-identifier">build</span>() ) 
+114:       <span class="ruby-identifier">assert_equals</span>( <span class="ruby-keyword kw">true</span>, <span class="ruby-keyword kw">false</span>, <span class="ruby-value str">&quot;testInstall()&quot;</span> )
+115:     <span class="ruby-keyword kw">end</span>
+116:     <span class="ruby-keyword kw">if</span> ( <span class="ruby-operator">!</span><span class="ruby-ivar">@ipc</span>.<span class="ruby-identifier">preinstall</span>() ) 
+117:       <span class="ruby-identifier">assert_equals</span>( <span class="ruby-keyword kw">true</span>, <span class="ruby-keyword kw">false</span>, <span class="ruby-value str">&quot;testInstall()&quot;</span> )
+118:     <span class="ruby-keyword kw">end</span>
+119:     <span class="ruby-identifier">assert</span>( <span class="ruby-ivar">@ipc</span>.<span class="ruby-identifier">install</span>(), <span class="ruby-value str">&quot;testInstall()&quot;</span> )
+120:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>
@@ -265,10 +277,25 @@ Test method for &#8216;AbtPackage.testPost()&#8217;
   <p class="source-link">[ <a href="javascript:toggleSource('M000094_source')" id="l_M000094_source">show source</a> ]</p>
   <div id="M000094_source" class="dyn-source">
 <pre>
-     <span class="ruby-comment cmt"># File TestAbtPackage.rb, line 113</span>
-113:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">testPost</span>
-114:     <span class="ruby-identifier">assert</span>( <span class="ruby-ivar">@ipc</span>.<span class="ruby-identifier">post</span>(), <span class="ruby-value str">&quot;testPost()&quot;</span> )
-115:   <span class="ruby-keyword kw">end</span>
+     <span class="ruby-comment cmt"># File TestAbtPackage.rb, line 125</span>
+125:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">testPost</span>
+126:     <span class="ruby-keyword kw">if</span> ( <span class="ruby-operator">!</span><span class="ruby-ivar">@ipc</span>.<span class="ruby-identifier">pre</span>() ) 
+127:       <span class="ruby-identifier">assert_equals</span>( <span class="ruby-keyword kw">true</span>, <span class="ruby-keyword kw">false</span>, <span class="ruby-value str">&quot;testPost()&quot;</span> )
+128:     <span class="ruby-keyword kw">end</span>
+129:     <span class="ruby-keyword kw">if</span> ( <span class="ruby-operator">!</span><span class="ruby-ivar">@ipc</span>.<span class="ruby-identifier">configure</span>() ) 
+130:       <span class="ruby-identifier">assert_equals</span>( <span class="ruby-keyword kw">true</span>, <span class="ruby-keyword kw">false</span>, <span class="ruby-value str">&quot;testPost()&quot;</span> )
+131:     <span class="ruby-keyword kw">end</span>
+132:     <span class="ruby-keyword kw">if</span> ( <span class="ruby-operator">!</span><span class="ruby-ivar">@ipc</span>.<span class="ruby-identifier">build</span>() ) 
+133:       <span class="ruby-identifier">assert_equals</span>( <span class="ruby-keyword kw">true</span>, <span class="ruby-keyword kw">false</span>, <span class="ruby-value str">&quot;testPost()&quot;</span> )
+134:     <span class="ruby-keyword kw">end</span>
+135:     <span class="ruby-keyword kw">if</span> ( <span class="ruby-operator">!</span><span class="ruby-ivar">@ipc</span>.<span class="ruby-identifier">preinstall</span>() ) 
+136:       <span class="ruby-identifier">assert_equals</span>( <span class="ruby-keyword kw">true</span>, <span class="ruby-keyword kw">false</span>, <span class="ruby-value str">&quot;testPost()&quot;</span> )
+137:     <span class="ruby-keyword kw">end</span>
+138:     <span class="ruby-keyword kw">if</span> ( <span class="ruby-operator">!</span><span class="ruby-ivar">@ipc</span>.<span class="ruby-identifier">install</span>() ) 
+139:       <span class="ruby-identifier">assert_equals</span>( <span class="ruby-keyword kw">true</span>, <span class="ruby-keyword kw">false</span>, <span class="ruby-value str">&quot;testPost()&quot;</span> )
+140:     <span class="ruby-keyword kw">end</span>  
+141:     <span class="ruby-identifier">assert</span>( <span class="ruby-ivar">@ipc</span>.<span class="ruby-identifier">post</span>(), <span class="ruby-value str">&quot;testPost()&quot;</span> )
+142:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>
