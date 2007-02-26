@@ -55,23 +55,20 @@ class AbtPackageManager
     queuer = AbtQueueManager.new
     logger = AbtLogManager.new
     
-    # TODO: initialize pkg install directory ($PACKAGE_INSTALLED/@srcDir),
-    #       should this fail we have to clean this dir up, move to failure
-    #       location?
-    #       On success, need to cache contents in cache dir.
-    
     # get package details.
     details = sw.details
     
     # TODO:  check deps
     
     # add to install queue.
+    puts "\n*** Adding #{package} to the INSTALL QUEUE. ***"
     if ( !queuer.addPackageToQueue( package, "install" ) )
       logger.logToJournal( "Failed to add #{package} to install queue." )
       return false
     end
     
     # pre section.
+    puts "\n*** Processing the PRE section for #{package}. ***"
     if ( !sw.pre )
       logger.logToJournal( "Failed to process pre-section in the package description of #{package}." )
       return false
@@ -80,6 +77,7 @@ class AbtPackageManager
     end
     
     # configure section.
+    puts "\n*** Processing the CONFIGURE section for #{package}. ***"
     if ( !sw.configure )
       logger.logToJournal( "Failed to process configure section in the package description of #{package}." )
       return false
@@ -88,6 +86,7 @@ class AbtPackageManager
     end
     
     # build section.
+    puts "\n*** Processing the BUILD section for #{package}. ***"
     if ( !sw.build )
       logger.logToJournal( "Failed to process build section in the package description of #{package}." )
       return false
@@ -96,6 +95,7 @@ class AbtPackageManager
     end
     
     # preinstall section.
+    puts "\n*** Processing the PREINSTALL section for #{package}. ***"
     if ( !sw.preinstall )
       logger.logToJournal( "Failed to process preinstall section in the package description of #{package}." )
       return false
@@ -104,6 +104,7 @@ class AbtPackageManager
     end
     
     # install section.
+    puts "\n*** Processing the INSTALL section for #{package}. ***"
     if ( !sw.install )
       logger.logToJournal( "Failed to process install section in the package description of #{package}." )
       return false
@@ -118,6 +119,7 @@ class AbtPackageManager
     # post section
     # remove build sources.
     #
+    puts "\n*** Cleaning up the sources for #{package}. ***"
     if ( !sw.removeBuild )
       logger.logToJournal( "Failed to remove the build sources for #{package}." )
       #return false  # commented out as this is not a reason to fail.
