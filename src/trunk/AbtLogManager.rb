@@ -55,8 +55,8 @@ class AbtLogManager
   # <b>RETURN</b> <i>AbtLogManager</i> - an initialized AbtLogManager object.
   ##
   def initialize
-    [$ABT_LOGS, $ABT_CACHES, $BUILD_LOCATION, $PACKAGE_INSTALLED,
-    $SOURCES_REPOSITORY].each { |dir|
+    [$ABT_LOGS, $ABT_CACHES, $ABT_STATE, $BUILD_LOCATION, $PACKAGE_INSTALLED,
+     $PACKAGE_CACHED, $ABT_TMP, $SOURCES_REPOSITORY].each { |dir|
       
       if ( ! File.directory?( dir ) )
         FileUtils.mkdir_p( dir )
@@ -75,7 +75,8 @@ class AbtLogManager
   # otherwise false.
   ##
   def logPackageInstall( package )
-    excludedDirs = "/dev /proc /tmp /var/tmp /usr/src /sys"
+    # some dirs we will not add to an install log.
+    excluded_pattern = Regexp.new( "^(/dev|/proc|/tmp|/var/tmp|/usr/src|/sys)+" )
     
     require package
     sw = eval( "#{package.capitalize}.new" )
@@ -83,8 +84,8 @@ class AbtLogManager
     badLine = false  # used to mark excluded lines from installwatch log.
     
     # our log locations.
-    installLog = "#{$PACKAGE_INSTALLED}/#{details['Source location']}.install"
-    tmpInstallLog = "/tmp/#{details['Source location']}.watch"
+    installLog = "#{$PACKAGE_INSTALLED}/#{details['Source location']}/#{details['Source location']}.install"
+    tmpInstallLog = "#{$ABT_TMP}/#{details['Source location']}.watch"
     
     # get the installed files from the tmp file
     # into our install log.
@@ -97,12 +98,13 @@ class AbtLogManager
       #      GIVEN LINE, MATCH MEANS WE DO NOT LOG IT!
       IO.foreach( tmpInstallLog ) do |line|
         if ( line.split[1] == 'open' )
-          self.logToJournal( "DEBUG: checking: #{line.split[2]} against #{excludedDirs}." )
-          if ( line.split[2].match( excludedDirs ) )
+          self.logToJournal( "DEBUG: checking: #{line.split[2]} against #{excluded_pattern}." )
+          if ( line.split[2] =~ excluded_pattern )
             self.logToJournal( "DEBUG: Found bad logLine!" )
             badLine = true
           else
-            self.logToJournal( "DEBUG: #{excludedDirs} not matching #{line.split[2]}")
+            badLine = false
+            self.logToJournal( "DEBUG: #{excluded_pattern} not matching #{line.split[2]}")
           end
           
           if ( !badLine )
@@ -117,6 +119,8 @@ class AbtLogManager
       installFile.close
     end
     
+    # cleanup the tmp files.
+    File.delete( tmpInstallLog )
     return true;
   end
   
