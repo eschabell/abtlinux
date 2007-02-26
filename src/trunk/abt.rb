@@ -64,11 +64,11 @@ case ARGV[0]
 
       if ( manager.installPackage( options['package'] ) )
         puts "\n\n"
-        puts "Completed install of #{options['package']}."
+        puts "*** Completed install of #{options['package']}. ***"
         puts "\n\n"
         logger.logToJournal( "Completed install of #{options['package']}." )
       else
-        puts "#{options['package'].capitalize} install failed, see journal."
+        puts "*** #{options['package'].capitalize} install failed, see journal. ***"
       end
 
       #reporter.showQueue( "install" ); # DEBUG.
