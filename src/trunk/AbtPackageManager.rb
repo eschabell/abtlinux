@@ -26,13 +26,13 @@
 # St, Fifth Floor, Boston, MA 02110-1301  USA
 ##
 class AbtPackageManager
-
-protected
-
-private
-
-public
-
+  
+  protected
+  
+  private
+  
+  public
+  
   ##
   # Constructor for AbtPackageManager.
   #
@@ -40,7 +40,7 @@ public
   ##
   def initialize
   end
-
+  
   ##
   # Installs a given package.
   #
@@ -54,23 +54,23 @@ public
     sw = eval( "#{package.capitalize}.new" )
     queuer = AbtQueueManager.new
     logger = AbtLogManager.new
-
+    
     # TODO: initialize pkg install directory ($PACKAGE_INSTALLED/@srcDir),
     #       should this fail we have to clean this dir up, move to failure
     #       location?
     #       On success, need to cache contents in cache dir.
-
+    
     # get package details.
     details = sw.details
-
+    
     # TODO:  check deps
-
+    
     # add to install queue.
     if ( !queuer.addPackageToQueue( package, "install" ) )
       logger.logToJournal( "Failed to add #{package} to install queue." )
       return false
     end
-
+    
     # pre section.
     if ( !sw.pre )
       logger.logToJournal( "Failed to process pre-section in the package description of #{package}." )
@@ -78,7 +78,7 @@ public
     else
       logger.logToJournal( "DEBUG: finished #{package} pre section." )
     end
-
+    
     # configure section.
     if ( !sw.configure )
       logger.logToJournal( "Failed to process configure section in the package description of #{package}." )
@@ -86,15 +86,15 @@ public
     else
       logger.logToJournal( "DEBUG: finished #{package} configure section." )
     end
-
+    
     # build section.
-	if ( !sw.build )
+    if ( !sw.build )
       logger.logToJournal( "Failed to process build section in the package description of #{package}." )
       return false
     else
       logger.logToJournal( "DEBUG: finished #{package} build section." )
     end
-
+    
     # preinstall section.
     if ( !sw.preinstall )
       logger.logToJournal( "Failed to process preinstall section in the package description of #{package}." )
@@ -103,10 +103,18 @@ public
       logger.logToJournal( "DEBUG: finished #{package} preinstall section." )
     end
     
-
+    # install section.
+    if ( !sw.install )
+      logger.logToJournal( "Failed to process install section in the package description of #{package}." )
+      return false
+    else
+      logger.logPackageInstall( "ipc" )
+      logger.logToJournal( "DEBUG: finished #{package} install section." )
+    end
+    
+    
     # TODO: finish up the following steps per install scenario:
     #
-    # install section
     # post section
     # remove build sources.
     #
@@ -114,10 +122,10 @@ public
       logger.logToJournal( "Failed to remove the build sources for #{package}." )
       #return false  # commented out as this is not a reason to fail.
     end
-
+    
     return true
   end
-
+  
   ##
   # Reinstalls a given package.
   #
@@ -128,7 +136,7 @@ public
   ##
   def reinstallPackage( package )
   end
-
+  
   ##
   # Removes a given package.
   #
@@ -139,7 +147,7 @@ public
   ##
   def removePackage( package )
   end
-
+  
   ##
   # Downgrades a given package.
   #
@@ -152,7 +160,7 @@ public
   ##
   def downgradePackage( package, version )
   end
-
+  
   ##
   # Freezes a given package. If successful will add give package to the frozen
   # list.
@@ -164,7 +172,7 @@ public
   ##
   def freezePackage( package )
   end
-
+  
   ##
   # Provides for a log through for root access using su.
   #
@@ -176,11 +184,11 @@ public
     if ( Process.uid != 0 )
       args = ""
       puts "\nEnter root password:"
-
+      
       for i in 0...ARGV.length
         args = args + " " + ARGV[i]
       end
-
+      
       system( 'su -c "./abt ' + args + '" root' )
       exit
     end

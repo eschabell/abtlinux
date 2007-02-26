@@ -26,9 +26,9 @@
 # St, Fifth Floor, Boston, MA 02110-1301  USA
 ##
 class AbtLogManager
-
-protected
-
+  
+  protected
+  
   ##
   # Provides logging of the integrity of all installed files for the given
   # package. Will be called as part of the logging done during the install
@@ -41,12 +41,12 @@ protected
   ##
   def logPackageIntegrity( package )
   end
-
-
-private
-
-public
-
+  
+  
+  private
+  
+  public
+  
   ##
   # Constructor for the AbtLogManager. It ensures all needed logs paths are
   # initialized.
@@ -56,15 +56,15 @@ public
   ##
   def initialize
     [$ABT_LOGS, $ABT_CACHES, $BUILD_LOCATION, $PACKAGE_INSTALLED,
-      $SOURCES_REPOSITORY].each { |dir|
-
+    $SOURCES_REPOSITORY].each { |dir|
+      
       if ( ! File.directory?( dir ) )
         FileUtils.mkdir_p( dir )
         self.logToJournal( "Created directory: #{dir}." )
       end
     }
   end
-
+  
   ##
   # Provides logging of all files installed by given package. Should be called
   # as part of the install phase of the build.
@@ -75,8 +75,51 @@ public
   # otherwise false.
   ##
   def logPackageInstall( package )
+    excludedDirs = "/dev /proc /tmp /var/tmp /usr/src /sys"
+    
+    require package
+    sw = eval( "#{package.capitalize}.new" )
+    details = sw.details
+    badLine = false  # used to mark excluded lines from installwatch log.
+    
+    # our log locations.
+    installLog = "#{$PACKAGE_INSTALLED}/#{details['Source location']}.install"
+    tmpInstallLog = "/tmp/#{details['Source location']}.watch"
+    
+    # get the installed files from the tmp file
+    # into our install log.
+    if ( File.exist?( tmpInstallLog ) )
+      installFile = open( installLog, 'w')
+      
+      # include only the file names from open calls
+      # and not part of the excluded range of directories.
+      #TODO: FIX THIS, NEEDS TO MATCH EACH LINE.SPLIT[2] TO THE 
+      #      GIVEN LINE, MATCH MEANS WE DO NOT LOG IT!
+      IO.foreach( tmpInstallLog ) do |line|
+        if ( line.split[1] == 'open' )
+          self.logToJournal( "DEBUG: checking: #{line.split[2]} against #{excludedDirs}." )
+          if ( line.split[2].match( excludedDirs ) )
+            self.logToJournal( "DEBUG: Found bad logLine!" )
+            badLine = true
+          else
+            self.logToJournal( "DEBUG: #{excludedDirs} not matching #{line.split[2]}")
+          end
+          
+          if ( !badLine )
+            self.logToJournal( "DEBUG: adding line to installFile!")
+            installFile.puts line.split[2]
+          else
+            self.logToJournal( "DEBUG: found a badLine, not adding #{line.split[2]}")
+          end
+        end 
+      end
+      
+      installFile.close
+    end
+    
+    return true;
   end
-
+  
   ##
   # Provides logging of all output produced during the build phase of the
   # given package. Should be called as part of the install phase of the build.
@@ -88,7 +131,7 @@ public
   ##
   def logPackageBuild( package )
   end
-
+  
   ##
   # Provides a complete log of the given packages build. Includes everything
   # needed to duplicate the build at a later date.
@@ -100,7 +143,7 @@ public
   ##
   def cachePackage( package )
   end
-
+  
   ##
   # Provides logging of given message to the AbTLinux journal. Message logged
   # with date timestamp.
@@ -115,7 +158,7 @@ public
       log.close
       return true
     end
-
+    
     return false
   end
 end
