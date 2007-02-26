@@ -186,9 +186,9 @@ successfully, otherwise false.
   <p class="source-link">[ <a href="javascript:toggleSource('M000064_source')" id="l_M000064_source">show source</a> ]</p>
   <div id="M000064_source" class="dyn-source">
 <pre>
-     <span class="ruby-comment cmt"># File AbtLogManager.rb, line 148</span>
-148:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">cachePackage</span>( <span class="ruby-identifier">package</span> )
-149:   <span class="ruby-keyword kw">end</span>
+     <span class="ruby-comment cmt"># File AbtLogManager.rb, line 146</span>
+146:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">cachePackage</span>( <span class="ruby-identifier">package</span> )
+147:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>
@@ -214,9 +214,9 @@ otherwise false.
   <p class="source-link">[ <a href="javascript:toggleSource('M000063_source')" id="l_M000063_source">show source</a> ]</p>
   <div id="M000063_source" class="dyn-source">
 <pre>
-     <span class="ruby-comment cmt"># File AbtLogManager.rb, line 136</span>
-136:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">logPackageBuild</span>( <span class="ruby-identifier">package</span> )
-137:   <span class="ruby-keyword kw">end</span>
+     <span class="ruby-comment cmt"># File AbtLogManager.rb, line 134</span>
+134:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">logPackageBuild</span>( <span class="ruby-identifier">package</span> )
+135:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>
@@ -263,35 +263,33 @@ otherwise false.
  94:       
  95:       <span class="ruby-comment cmt"># include only the file names from open calls</span>
  96:       <span class="ruby-comment cmt"># and not part of the excluded range of directories.</span>
- 97:       <span class="ruby-comment cmt">#TODO: FIX THIS, NEEDS TO MATCH EACH LINE.SPLIT[2] TO THE </span>
- 98:       <span class="ruby-comment cmt">#      GIVEN LINE, MATCH MEANS WE DO NOT LOG IT!</span>
- 99:       <span class="ruby-constant">IO</span>.<span class="ruby-identifier">foreach</span>( <span class="ruby-identifier">tmpInstallLog</span> ) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">line</span><span class="ruby-operator">|</span>
-100:         <span class="ruby-keyword kw">if</span> ( <span class="ruby-identifier">line</span>.<span class="ruby-identifier">split</span>[<span class="ruby-value">1</span>] <span class="ruby-operator">==</span> <span class="ruby-value str">'open'</span> )
-101:           <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">logToJournal</span>( <span class="ruby-node">&quot;DEBUG: checking: #{line.split[2]} against #{excluded_pattern}.&quot;</span> )
-102:           <span class="ruby-keyword kw">if</span> ( <span class="ruby-identifier">line</span>.<span class="ruby-identifier">split</span>[<span class="ruby-value">2</span>] <span class="ruby-operator">=~</span> <span class="ruby-identifier">excluded_pattern</span> )
-103:             <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">logToJournal</span>( <span class="ruby-value str">&quot;DEBUG: Found bad logLine!&quot;</span> )
-104:             <span class="ruby-identifier">badLine</span> = <span class="ruby-keyword kw">true</span>
-105:           <span class="ruby-keyword kw">else</span>
-106:             <span class="ruby-identifier">badLine</span> = <span class="ruby-keyword kw">false</span>
-107:             <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">logToJournal</span>( <span class="ruby-node">&quot;DEBUG: #{excluded_pattern} not matching #{line.split[2]}&quot;</span>)
-108:           <span class="ruby-keyword kw">end</span>
-109:           
-110:           <span class="ruby-keyword kw">if</span> ( <span class="ruby-operator">!</span><span class="ruby-identifier">badLine</span> )
-111:             <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">logToJournal</span>( <span class="ruby-value str">&quot;DEBUG: adding line to installFile!&quot;</span>)
-112:             <span class="ruby-identifier">installFile</span>.<span class="ruby-identifier">puts</span> <span class="ruby-identifier">line</span>.<span class="ruby-identifier">split</span>[<span class="ruby-value">2</span>]
-113:           <span class="ruby-keyword kw">else</span>
-114:             <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">logToJournal</span>( <span class="ruby-node">&quot;DEBUG: found a badLine, not adding #{line.split[2]}&quot;</span>)
-115:           <span class="ruby-keyword kw">end</span>
-116:         <span class="ruby-keyword kw">end</span> 
-117:       <span class="ruby-keyword kw">end</span>
-118:       
-119:       <span class="ruby-identifier">installFile</span>.<span class="ruby-identifier">close</span>
-120:     <span class="ruby-keyword kw">end</span>
-121:     
-122:     <span class="ruby-comment cmt"># cleanup the tmp files.</span>
-123:     <span class="ruby-constant">File</span>.<span class="ruby-identifier">delete</span>( <span class="ruby-identifier">tmpInstallLog</span> )
-124:     <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">true</span>;
-125:   <span class="ruby-keyword kw">end</span>
+ 97:       <span class="ruby-constant">IO</span>.<span class="ruby-identifier">foreach</span>( <span class="ruby-identifier">tmpInstallLog</span> ) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">line</span><span class="ruby-operator">|</span>
+ 98:         <span class="ruby-keyword kw">if</span> ( <span class="ruby-identifier">line</span>.<span class="ruby-identifier">split</span>[<span class="ruby-value">1</span>] <span class="ruby-operator">==</span> <span class="ruby-value str">'open'</span> )
+ 99:           <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">logToJournal</span>( <span class="ruby-node">&quot;DEBUG: checking: #{line.split[2]} against #{excluded_pattern}.&quot;</span> )
+100:           <span class="ruby-keyword kw">if</span> ( <span class="ruby-identifier">line</span>.<span class="ruby-identifier">split</span>[<span class="ruby-value">2</span>] <span class="ruby-operator">=~</span> <span class="ruby-identifier">excluded_pattern</span> )
+101:             <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">logToJournal</span>( <span class="ruby-value str">&quot;DEBUG: Found bad logLine!&quot;</span> )
+102:             <span class="ruby-identifier">badLine</span> = <span class="ruby-keyword kw">true</span>
+103:           <span class="ruby-keyword kw">else</span>
+104:             <span class="ruby-identifier">badLine</span> = <span class="ruby-keyword kw">false</span>
+105:             <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">logToJournal</span>( <span class="ruby-node">&quot;DEBUG: #{excluded_pattern} not matching #{line.split[2]}&quot;</span>)
+106:           <span class="ruby-keyword kw">end</span>
+107:           
+108:           <span class="ruby-keyword kw">if</span> ( <span class="ruby-operator">!</span><span class="ruby-identifier">badLine</span> )
+109:             <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">logToJournal</span>( <span class="ruby-value str">&quot;DEBUG: adding line to installFile!&quot;</span>)
+110:             <span class="ruby-identifier">installFile</span>.<span class="ruby-identifier">puts</span> <span class="ruby-identifier">line</span>.<span class="ruby-identifier">split</span>[<span class="ruby-value">2</span>]
+111:           <span class="ruby-keyword kw">else</span>
+112:             <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">logToJournal</span>( <span class="ruby-node">&quot;DEBUG: found a badLine, not adding #{line.split[2]}&quot;</span>)
+113:           <span class="ruby-keyword kw">end</span>
+114:         <span class="ruby-keyword kw">end</span> 
+115:       <span class="ruby-keyword kw">end</span>
+116:       
+117:       <span class="ruby-identifier">installFile</span>.<span class="ruby-identifier">close</span>
+118:     <span class="ruby-keyword kw">end</span>
+119:     
+120:     <span class="ruby-comment cmt"># cleanup the tmp files.</span>
+121:     <span class="ruby-constant">File</span>.<span class="ruby-identifier">delete</span>( <span class="ruby-identifier">tmpInstallLog</span> )
+122:     <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">true</span>;
+123:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>
@@ -316,16 +314,16 @@ with date timestamp.
   <p class="source-link">[ <a href="javascript:toggleSource('M000065_source')" id="l_M000065_source">show source</a> ]</p>
   <div id="M000065_source" class="dyn-source">
 <pre>
-     <span class="ruby-comment cmt"># File AbtLogManager.rb, line 159</span>
-159:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">logToJournal</span>( <span class="ruby-identifier">message</span> )
-160:     <span class="ruby-keyword kw">if</span> ( <span class="ruby-identifier">log</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">new</span>( <span class="ruby-identifier">$JOURNAL</span>, <span class="ruby-constant">File</span><span class="ruby-operator">::</span><span class="ruby-constant">WRONLY</span><span class="ruby-operator">|</span><span class="ruby-constant">File</span><span class="ruby-operator">::</span><span class="ruby-constant">APPEND</span><span class="ruby-operator">|</span><span class="ruby-constant">File</span><span class="ruby-operator">::</span><span class="ruby-constant">CREAT</span>, <span class="ruby-value">0644</span> ) )
-161:       <span class="ruby-identifier">log</span>.<span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;#{$TIMESTAMP} : #{message}&quot;</span>
-162:       <span class="ruby-identifier">log</span>.<span class="ruby-identifier">close</span>
-163:       <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">true</span>
-164:     <span class="ruby-keyword kw">end</span>
-165:     
-166:     <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">false</span>
-167:   <span class="ruby-keyword kw">end</span>
+     <span class="ruby-comment cmt"># File AbtLogManager.rb, line 157</span>
+157:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">logToJournal</span>( <span class="ruby-identifier">message</span> )
+158:     <span class="ruby-keyword kw">if</span> ( <span class="ruby-identifier">log</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">new</span>( <span class="ruby-identifier">$JOURNAL</span>, <span class="ruby-constant">File</span><span class="ruby-operator">::</span><span class="ruby-constant">WRONLY</span><span class="ruby-operator">|</span><span class="ruby-constant">File</span><span class="ruby-operator">::</span><span class="ruby-constant">APPEND</span><span class="ruby-operator">|</span><span class="ruby-constant">File</span><span class="ruby-operator">::</span><span class="ruby-constant">CREAT</span>, <span class="ruby-value">0644</span> ) )
+159:       <span class="ruby-identifier">log</span>.<span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;#{$TIMESTAMP} : #{message}&quot;</span>
+160:       <span class="ruby-identifier">log</span>.<span class="ruby-identifier">close</span>
+161:       <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">true</span>
+162:     <span class="ruby-keyword kw">end</span>
+163:     
+164:     <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">false</span>
+165:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>
