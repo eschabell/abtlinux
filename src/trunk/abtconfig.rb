@@ -29,6 +29,7 @@
 $ABT_LOGS           = "/var/log/abt"
 $ABT_CACHES         = "/var/spool/abt"
 $ABT_STATE          = "/var/state/abt"
+$ABT_TMP            = "/tmp/abt"
 $ABTNEWS_LOG        = "#{$ABT_LOGS}/news.log"
 $BUILD_LOCATION		= "/usr/src"
 $JOURNAL			= "#{$ABT_LOGS}/journal.log"
