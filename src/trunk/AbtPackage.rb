@@ -211,6 +211,11 @@ class AbtPackage
       return false
     end
     
+    # ensure we have an installed directory to use.
+    if ( ! File.directory?( "#{$PACKAGE_INSTALLED}/#{@srcDir}" ) )
+      FileUtils.mkdir_p( "#{$PACKAGE_INSTALLED}/#{@srcDir}" )
+    end
+    
     # TODO: retrieve patches?
     # TODO: apply patches?
     
@@ -230,7 +235,7 @@ class AbtPackage
     Dir.chdir( "#{$BUILD_LOCATION}/#{@srcDir}" )
     
     # TODO: not some better way to deal with this than system and tee?
-    if ( !system( "./configure --prefix=#{$DEFAULT_PREFIX} | tee #{$PACKAGE_INSTALLED}/#{@srcDir}.configure" ) )
+    if ( !system( "./configure --prefix=#{$DEFAULT_PREFIX} | tee #{$PACKAGE_INSTALLED}/#{@srcDir}/#{@srcDir}.configure" ) )
       puts "DEBUG: [AbtPackage.configure] - configure section failed."
       return false
     end
@@ -248,7 +253,7 @@ class AbtPackage
     Dir.chdir( "#{$BUILD_LOCATION}/#{@srcDir}" )
     
     # TODO: not some better way to deal with this than system and tee?
-    if( !system( "make | tee #{$PACKAGE_INSTALLED}/#{@srcDir}.build" ) )
+    if( !system( "make | tee #{$PACKAGE_INSTALLED}/#{@srcDir}/#{@srcDir}.build" ) )
       puts "DEBUG: [AbtPackage.build] - build section failed."
       return false
     end
@@ -263,7 +268,7 @@ class AbtPackage
   #
   # <b>RETURNS:</b>  <i>boolean</i> - True if the completes sucessfully, otherwise false.
   ##
-  def preinstall
+  def preinstall    
     # TODO: create_group?
     # TODO: create_user?
     return true;
@@ -279,7 +284,7 @@ class AbtPackage
     Dir.chdir( "#{$BUILD_LOCATION}/#{@srcDir}" )
     
     # TODO: can this be done without installwatch?
-    if( !system( "installwatch --transl=no --backup=no --exclude=/dev,/proc,/tmp,/var/tmp,/usr/src,/sys --logfile=/tmp/#{@srcDir}.watch make install" ) )
+    if( !system( "installwatch --transl=no --backup=no --exclude=/dev,/proc,/tmp,/var/tmp,/usr/src,/sys --logfile=#{$ABT_TMP}/#{@srcDir}.watch make install" ) )
       puts "DEBUG: [AbtPackage.install] - install section failed."
       # TODO: rollback any installed files (use install log).
       return false
