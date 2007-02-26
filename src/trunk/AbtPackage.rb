@@ -277,6 +277,8 @@ class AbtPackage
   # <b>RETURNS:</b>  <i>boolean</i> - True if the completes sucessfully, otherwise false.
   ##
   def install
+    # TODO: implement.
+    return true;
   end
 
   ##

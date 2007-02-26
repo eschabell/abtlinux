@@ -85,10 +85,10 @@ class TestAbtPackage < Test::Unit::TestCase
   ##
   def testBuild
     if ( !@ipc.pre() ) 
-      assert_equals( true, false, "testConfigure()" )
+      assert_equals( true, false, "testBuild()" )
     end
     if ( !@ipc.configure() ) 
-      assert_equals( true, false, "testConfigure()" )
+      assert_equals( true, false, "testBuild()" )
     end
     assert( @ipc.build(), "testBuild()" )
   end
@@ -104,13 +104,40 @@ class TestAbtPackage < Test::Unit::TestCase
   # Test method for 'AbtPackage.testInstall()'
   ##
   def testInstall
-    assert_equal( false, true, "testInstall()" )
+     if ( !@ipc.pre() ) 
+      assert_equals( true, false, "testInstall()" )
+    end
+    if ( !@ipc.configure() ) 
+      assert_equals( true, false, "testInstall()" )
+    end
+    if ( !@ipc.build() ) 
+      assert_equals( true, false, "testInstall()" )
+    end
+    if ( !@ipc.preinstall() ) 
+      assert_equals( true, false, "testInstall()" )
+    end
+    assert( @ipc.install(), "testInstall()" )
   end
 
   ##
   # Test method for 'AbtPackage.testPost()'
   ##
   def testPost
+    if ( !@ipc.pre() ) 
+      assert_equals( true, false, "testPost()" )
+    end
+    if ( !@ipc.configure() ) 
+      assert_equals( true, false, "testPost()" )
+    end
+    if ( !@ipc.build() ) 
+      assert_equals( true, false, "testPost()" )
+    end
+    if ( !@ipc.preinstall() ) 
+      assert_equals( true, false, "testPost()" )
+    end
+    if ( !@ipc.install() ) 
+      assert_equals( true, false, "testPost()" )
+    end  
     assert( @ipc.post(), "testPost()" )
   end
 

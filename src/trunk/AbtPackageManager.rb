@@ -87,18 +87,25 @@ public
       logger.logToJournal( "DEBUG: finished #{package} configure section." )
     end
 
-    # build section
-		if ( !sw.build )
+    # build section.
+	if ( !sw.build )
       logger.logToJournal( "Failed to process build section in the package description of #{package}." )
       return false
     else
       logger.logToJournal( "DEBUG: finished #{package} build section." )
     end
 
+    # preinstall section.
+    if ( !sw.preinstall )
+      logger.logToJournal( "Failed to process preinstall section in the package description of #{package}." )
+      return false
+    else
+      logger.logToJournal( "DEBUG: finished #{package} preinstall section." )
+    end
+    
 
     # TODO: finish up the following steps per install scenario:
     #
-    # pre install section
     # install section
     # post section
     # remove build sources.
