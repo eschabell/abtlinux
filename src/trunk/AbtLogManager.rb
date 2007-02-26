@@ -94,8 +94,6 @@ class AbtLogManager
       
       # include only the file names from open calls
       # and not part of the excluded range of directories.
-      #TODO: FIX THIS, NEEDS TO MATCH EACH LINE.SPLIT[2] TO THE 
-      #      GIVEN LINE, MATCH MEANS WE DO NOT LOG IT!
       IO.foreach( tmpInstallLog ) do |line|
         if ( line.split[1] == 'open' )
           self.logToJournal( "DEBUG: checking: #{line.split[2]} against #{excluded_pattern}." )
