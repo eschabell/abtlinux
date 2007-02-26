@@ -28,10 +28,12 @@
 # default paths / locations.
 $ABT_LOGS           = "/var/log/abt"
 $ABT_CACHES         = "/var/spool/abt"
+$ABT_STATE          = "/var/state/abt"
 $ABTNEWS_LOG        = "#{$ABT_LOGS}/news.log"
 $BUILD_LOCATION		= "/usr/src"
 $JOURNAL			= "#{$ABT_LOGS}/journal.log"
-$PACKAGE_INSTALLED  = "#{$ABT_CACHES}/installed"
+$PACKAGE_INSTALLED  = "#{$ABT_STATE}/installed"
+$PACKAGE_CACHED     = "#{$ABT_STATE}/cached"
 $PACKAGE_PATH       = "./packages/"
 $SOURCES_REPOSITORY = "#{$ABT_CACHES}/sources"
 
@@ -39,7 +41,7 @@ $SOURCES_REPOSITORY = "#{$ABT_CACHES}/sources"
 # default config options.
 #
 $ABT_VERSION           = "0.1"
-$BUILD_ARCHITECTURE    = "x86_64"
+$BUILD_ARCHITECTURE    = "i686"
 $BUILD_OPTIMIZATIONS   = "strip"
 $DEFAULT_PREFIX        = "/usr/local"
 $REMOVE_BUILD_SOURCES  = false
