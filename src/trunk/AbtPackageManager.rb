@@ -62,7 +62,7 @@ class AbtPackageManager
     
     # add to install queue.
     puts "\n*** Adding #{package} to the INSTALL QUEUE. ***"
-    if ( !queuer.addPackageToQueue( package, "install" ) )
+    if ( !queuer.actionPackageQueue( package, "install", "add" ) )
       logger.logToJournal( "Failed to add #{package} to install queue." )
       return false
     end
@@ -114,22 +114,32 @@ class AbtPackageManager
       return false
     else
       logger.logPackageInstall( sw.name.downcase )
+      # TODO: logger.logPackageIntegrity( sw.name.downcase )
       logger.logToJournal( "DEBUG: finished #{package} install section." )
     end
-    
-    
-    # TODO: finish up the following steps per install scenario:
-    #
-    # post section
-    # remove build sources.
-    #
+
+    # post section.
+    puts "\n*** Processing the POST section for #{package}. ***"
+    if ( !sw.post )
+      logger.logToJournal( "Failed to process post section in the package description of #{package}." )
+      return false
+    else
+      logger.logToJournal( "DEBUG: finished #{package} post section." )
+    end
+
+    # clean out build sources.        
     puts "\n*** Cleaning up the sources for #{package}. ***"
     if ( !sw.removeBuild )
       logger.logToJournal( "Failed to remove the build sources for #{package}." )
       #return false  # commented out as this is not a reason to fail.
     end
+   
+    # remove pacakge from install queue.
+    if ( !queuer.actionPackageQueue( sw.name.downcase, "install", "remove" ) )
+      logger.logToJournal( "Failed to remove #{sw.name.donwcase} from install queue." )
+    end
     
-    return true
+    return true # install completed!
   end
   
   ##

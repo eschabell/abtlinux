@@ -41,43 +41,68 @@ public
   end
 
   ##
-  # Add a given package to the given queue. If package already in
-  # the queue then it will not be added twice and return a positive
-  # answer.
+  # Add/Remove a given package to the given queue. 
+  # If adding a package already in the queue then it will not
+  # be added twice and return succes.
   #
-  # <b>PARAM</b> <i>String</i> - the package to be added to the queue.
-  # <b>PARAM</b> <i>String</i> - the queue to add the package to.
+  # <b>PARAM</b> <i>String</i> - the package to be added/removed.
+  # <b>PARAM</b> <i>String</i> - the queue.
   #
-  # <b>RETURN</b> <i>boolean</i> - true if package added/exists to/in install
-  # queue, otherwise false.
+  # <b>RETURN</b> <i>boolean</i> - true if action succeeds, otherwise false.
   ##
-  def addPackageToQueue( package, queue )
+  def actionPackageQueue( package, queue, action="add" )
+    require 'fileutils'
     logger = AbtLogManager.new
-    
+    queueFile = ""  # used to hold the queue location.
+
     # want to name install queue differently from log files.
-	if ( queue == 'install' ) 
-		queueFile = "#{$ABT_LOGS}/#{queue}.queue"
-	else
-    	queueFile = "#{$ABT_LOGS}/#{queue}.log"
-	end
-
-    if ( log = File.new( queueFile, File::WRONLY|File::APPEND|File::CREAT, 0644 ) )
-      # pickup queue contents to ensure no duplicates.
-      checkingQueue = IO.readlines( queueFile )
-
-      # check if package exists, otherwise add.
-      if ( ! checkingQueue.collect{ |i| i.split( '|' )[0] }.include?( package ) )
-        log.puts "#{package}|#{$TIMESTAMP}"
-        logger.logToJournal( "Added #{package} to #{queue} queue." )
-      else
-        logger.logToJournal( "Did not add #{package} to #{queue}, already exists." )
+    if ( queue == 'install' )
+      queueFile = "#{$ABT_LOGS}/#{queue}.queue"
+    else
+      queueFile = "#{$ABT_LOGS}/#{queue}.log"
+    end
+    
+    if ( action == "add")
+      if ( log = File.new( queueFile, File::WRONLY|File::APPEND|File::CREAT, 0644 ) )
+        # pickup queue contents to ensure no duplicates.
+        checkingQueue = IO.readlines( queueFile )
+    
+        # check if package exists, otherwise add.
+        if ( ! checkingQueue.collect{ |i| i.split( '|' )[0] }.include?( package ) )
+          log.puts "#{package}|#{$TIMESTAMP}"
+          logger.logToJournal( "Added #{package} to #{queue} queue." )
+        else
+          logger.logToJournal( "Did not add #{package} to #{queue}, already exists." )
+        end
+   
+        log.close
+        return true
       end
+    end
 
+    if ( action == "remove" )
+      # remove entry from given queue.
+      if ( log = File.new( queueFile, File::WRONLY|File::APPEND|File::CREAT, 0644 ) )
+        # use temp file to filter out entry to be removed.
+        temp = File.new(queueFile + ".tmp", "a+")
+        
+        # now check for line to be removed.
+        IO.foreach( queueFile ) do |line|
+          entryName = line.split( '|' )[0]
+          if ( entryName != package.downcase )
+            temp.puts line
+          end
+        end
+        
+        temp.close
+        FileUtils.mv( temp.path, queueFile )
+      end
+      
       log.close
       return true
     end
-
+    
     logger.logToJournal( "Failed to open #{queueFile}." )
     return false
-  end
+  end  
 end
