@@ -300,7 +300,7 @@ class AbtPackage
   # <b>RETURNS:</b>  <i>boolean</i> - True if the completes sucessfully, otherwise false.
   ##
   def post
-    # TODO: implement me!
+    # TODO: install init scripts service
     return true
   end
   
