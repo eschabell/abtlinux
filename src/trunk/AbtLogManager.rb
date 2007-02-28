@@ -40,6 +40,7 @@ class AbtLogManager
   # otherwise false.
   ##
   def logPackageIntegrity( package )
+    # TODO: implement logPackageIntegrity.
   end
   
   
@@ -96,20 +97,18 @@ class AbtLogManager
       # and not part of the excluded range of directories.
       IO.foreach( tmpInstallLog ) do |line|
         if ( line.split[1] == 'open' )
-          self.logToJournal( "DEBUG: checking: #{line.split[2]} against #{excluded_pattern}." )
+          #self.logToJournal( "DEBUG: checking: #{line.split[2]} against #{excluded_pattern}." )
           if ( line.split[2] =~ excluded_pattern )
-            self.logToJournal( "DEBUG: Found bad logLine!" )
+            #self.logToJournal( "DEBUG: Found bad logLine!" )
             badLine = true
           else
             badLine = false
-            self.logToJournal( "DEBUG: #{excluded_pattern} not matching #{line.split[2]}")
+            #self.logToJournal( "DEBUG: #{excluded_pattern} not matching #{line.split[2]}")
           end
           
           if ( !badLine )
-            self.logToJournal( "DEBUG: adding line to installFile!")
+            #self.logToJournal( "DEBUG: adding line to installFile!")
             installFile.puts line.split[2]
-          else
-            self.logToJournal( "DEBUG: found a badLine, not adding #{line.split[2]}")
           end
         end 
       end
@@ -132,6 +131,18 @@ class AbtLogManager
   # otherwise false.
   ##
   def logPackageBuild( package )
+    require package
+    sw        = eval( "#{package.capitalize}.new" )
+    details   = sw.details
+    buildFile = "#{$PACKAGE_INSTALLED}/#{details['Source location']}/#{details['Source location']}.build"
+    #self.logToJournal( "DEBUG: buildFile is - #{buildFile}" )
+    
+    # make sure the build file exists.
+    if ( !File.exist?( buildFile ) )
+      return false
+    end
+    
+    return true
   end
   
   ##

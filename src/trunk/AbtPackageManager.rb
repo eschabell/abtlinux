@@ -91,6 +91,10 @@ class AbtPackageManager
       logger.logToJournal( "Failed to process build section in the package description of #{package}." )
       return false
     else
+      if ( !logger.logPackageBuild( sw.name.downcase ) ) 
+        logger.logToJournal( "Failed to create a package build log." )
+        return false
+      end
       logger.logToJournal( "DEBUG: finished #{package} build section." )
     end
     
@@ -109,7 +113,7 @@ class AbtPackageManager
       logger.logToJournal( "Failed to process install section in the package description of #{package}." )
       return false
     else
-      logger.logPackageInstall( "ipc" )
+      logger.logPackageInstall( sw.name.downcase )
       logger.logToJournal( "DEBUG: finished #{package} install section." )
     end
     
