@@ -40,6 +40,12 @@ class TestAbtDownloadManager < Test::Unit::TestCase
   end
   
   ##
+  # teardown method to cleanup after testing.
+  ##
+  def teardown
+  end
+  
+  ##
   # Test method for 'AbtDownloadManager.testRetrievePackageSource()'
   ## 
   def testRetrievePackageSource()

@@ -155,6 +155,13 @@ class AbtLogManager
   # otherwise false.
   ##
   def cachePackage( package )
+    # TODO: collect package source.
+    # TODO: collect package install log. 
+    # TODO: collect package build log. 
+    # TODO: collect package configure log. 
+    # TODO: collect package integrity log.
+    # TODO: collect package description (class file).
+    # TODO: tar and bzip this directory (package-cache-version.tar.bz2) 
   end
   
   ##

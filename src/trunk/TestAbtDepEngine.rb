@@ -38,6 +38,12 @@ class TestAbtDepEngine < Test::Unit::TestCase
   end
   
   ##
+  # teardown method to cleanup after testing.
+  ##
+  def teardown
+  end
+  
+  ##
   # Test method for 'AbtDepEngine.testDepEngine()'
   ## 
   def testDepEngine
