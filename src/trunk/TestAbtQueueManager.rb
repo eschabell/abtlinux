@@ -31,7 +31,7 @@ require 'AbtLogManager'
 # St, Fifth Floor, Boston, MA 02110-1301  USA
 ##
 class TestAbtQueueManager < Test::Unit::TestCase
-
+  
   ##
   # setup method for testing AbtQueueManager.
   ## 
@@ -49,7 +49,8 @@ class TestAbtQueueManager < Test::Unit::TestCase
   # Test method for 'AbtQueueManager.actionPackageQueue()'
   ## 
   def testActionPackageQueue
-    assert( @queue.actionPackageQueue( "ipc", "install", "add" ), "testQueueManager()" )
+    assert( @queue.actionPackageQueue( "ipc", "install", "add" ), 
+                                                "testQueueManager()" )
   end
-
+  
 end

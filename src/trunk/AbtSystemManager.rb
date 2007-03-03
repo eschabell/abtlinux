@@ -27,21 +27,22 @@
 # St, Fifth Floor, Boston, MA 02110-1301  USA
 ##
 class AbtSystemManager
-
-protected
-
-private
-
-public
-
+  
+  protected
+  
+  private
+  
+  public
+  
   ##
   # Constructor for the System manager
   #
-  # <b>RETURN</b> <i>AbtSystemManager</i> - an initialized AbtSystemManager object.
+  # <b>RETURN</b> <i>AbtSystemManager</i> - an initialized 
+  # AbtSystemManager object.
   ##
   def initialize
   end
-
+  
   ##
   # Removes all sources for packages that are not currently installed. Makes
   # use of install listing to determine package sources to keep.
@@ -51,7 +52,7 @@ public
   ##
   def cleanupPackageSources
   end
-
+  
   ##
   # All logs for packages not in install list are cleaned off the system.
   #
@@ -60,29 +61,29 @@ public
   ##
   def cleanupLogs
   end
-
+  
   ##
   # Checks if files from given package install list are actually installed.
   #
   # <b>PARAM</b> <i>String</i> - Package name.
   #
-  # <b>RETURN</b> <i>boolean</i> - True if no installed files are missing, otherwise
-  # false.
+  # <b>RETURN</b> <i>boolean</i> - True if no installed files are missing, 
+  # otherwise false.
   ##
   def verifyInstalledFiles( package )
   end
-
+  
   ##
   # Checks if given packages installed symlinks are broken or missing.
   #
   # <b>PARAM</b> <i>String</i> - Package name.
   #
-  # <b>RETURN</b> <i>boolean</i> - True if no symlinks found missing or broken, otherwise
-  # false.
+  # <b>RETURN</b> <i>boolean</i> - True if no symlinks found missing 
+  # or broken, otherwise false.
   ##
   def verifySymlinks( package )
   end
-
+  
   ##
   # Checks the given packages dependencies for missing or broken dependencies.
   #
@@ -93,7 +94,7 @@ public
   ##
   def verifyPackageDepends( package )
   end
-
+  
   ##
   # Checks the given packages installed files against the integrity log for
   # changes to installed files.
@@ -105,7 +106,7 @@ public
   ##
   def verifyPackageIntegrity( package )
   end
-
+  
   ##
   # Fixes the given package.
   #
@@ -116,7 +117,7 @@ public
   ##
   def fixPackage( package )
   end
-
+  
   ##
   # Sets the URI of a central repository for pre-compiled packages.
   #
@@ -127,7 +128,7 @@ public
   ##
   def setCentralRepo( uri )
   end
-
+  
   ##
   # Sets the location where the package tree is to be downloaded from, can be
   # set to a local location.

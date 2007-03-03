@@ -30,7 +30,7 @@ require 'AbtLogManager'
 # St, Fifth Floor, Boston, MA 02110-1301  USA
 ##
 class TestAbtLogManager < Test::Unit::TestCase
-
+  
   ##
   # setup method for testing AbtLogManager.
   ## 
@@ -59,26 +59,27 @@ class TestAbtLogManager < Test::Unit::TestCase
   #def testLogPackageInstall()
   #  assert( @log.logPackageInstall( "ipc" ), "testLogPackageInstall()" )
   #end
-
+  
   ##
   # Test method for 'AbtLogManager.testLogPackageBuild()'
   ## 
   def testLogPackageBuild()
     assert( @log.logPackageBuild( "ipc" ), "testLogPackageBuild()" )
   end
-
+  
   ##
   # Test method for 'AbtLogManager.testCachePackage()'
   ## 
   def testCachePackage()
     assert( @log.cachePackage( "ipc" ), "testCachePackage()" )
   end
-
+  
   ##
   # Test method for 'AbtLogManager.testLogToJournal()'
   ## 
   def testLogToJournal()
-    assert( @log.logToJournal( "Test message from AbtTestSuite." ), "testLogToJournal()" )
+    assert( @log.logToJournal( "Test message from AbtTestSuite." ), 
+                                                  "testLogToJournal()" )
   end
-
+  
 end

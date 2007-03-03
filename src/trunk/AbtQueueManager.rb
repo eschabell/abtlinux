@@ -25,21 +25,22 @@
 # St, Fifth Floor, Boston, MA 02110-1301  USA
 ##
 class AbtQueueManager
-
-protected
-
-private
-
-public
-
+  
+  protected
+  
+  private
+  
+  public
+  
   ##
   # Constructor for the AbtQueueManager class.
   #
-  # <b>RETURN</b> <i>AbtQueueManager</i> - an initialized AbtQueueManager object.
+  # <b>RETURN</b> <i>AbtQueueManager</i> - an initialized 
+  # AbtQueueManager object.
   ##
   def initialize
   end
-
+  
   ##
   # Add/Remove a given package to the given queue. 
   # If adding a package already in the queue then it will not
@@ -54,7 +55,7 @@ public
     require 'fileutils'
     logger = AbtLogManager.new
     queueFile = ""  # used to hold the queue location.
-
+    
     # want to name install queue differently from log files.
     if ( queue == 'install' )
       queueFile = "#{$ABT_LOGS}/#{queue}.queue"
@@ -63,26 +64,33 @@ public
     end
     
     if ( action == "add")
-      if ( log = File.new( queueFile, File::WRONLY|File::APPEND|File::CREAT, 0644 ) )
+      if ( 
+          log = File.new( 
+                     queueFile, File::WRONLY|File::APPEND|File::CREAT, 0644 ) )
         # pickup queue contents to ensure no duplicates.
         checkingQueue = IO.readlines( queueFile )
-    
+        
         # check if package exists, otherwise add.
-        if ( ! checkingQueue.collect{ |i| i.split( '|' )[0] }.include?( package ) )
+        if ( 
+            !checkingQueue.collect{ |i| i.split( '|' )[0] }.include?( 
+                                                                 package ) )
           log.puts "#{package}|#{$TIMESTAMP}"
           logger.logToJournal( "Added #{package} to #{queue} queue." )
         else
-          logger.logToJournal( "Did not add #{package} to #{queue}, already exists." )
+          logger.logToJournal( 
+            "Did not add #{package} to #{queue}, already exists." )
         end
-   
+        
         log.close
         return true
       end
     end
-
+    
     if ( action == "remove" )
       # remove entry from given queue.
-      if ( log = File.new( queueFile, File::WRONLY|File::APPEND|File::CREAT, 0644 ) )
+      if ( 
+          log = File.new( 
+                     queueFile, File::WRONLY|File::APPEND|File::CREAT, 0644 ) )
         # use temp file to filter out entry to be removed.
         temp = File.new(queueFile + ".tmp", "a+")
         

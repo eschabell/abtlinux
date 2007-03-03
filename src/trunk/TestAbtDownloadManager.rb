@@ -31,7 +31,7 @@ require 'AbtLogManager'
 # St, Fifth Floor, Boston, MA 02110-1301  USA
 ##
 class TestAbtDownloadManager < Test::Unit::TestCase
-
+  
   ##
   # setup method for testing AbtDownloadManager.
   ## 
@@ -49,30 +49,32 @@ class TestAbtDownloadManager < Test::Unit::TestCase
   # Test method for 'AbtDownloadManager.testRetrievePackageSource()'
   ## 
   def testRetrievePackageSource()
-    assert( @download.retrievePackageSource( "ipc", "/tmp" ), "testRetrievePackageSource()" )
+    assert( @download.retrievePackageSource( "ipc", "/tmp" ), 
+                                    "testRetrievePackageSource()" )
   end
   
   ##
   # Test method for 'AbtDownloadManager.testRetrievePackageTree()'
   ## 
   def testRetrievePackageTree()
-    assert( @download.retrievePackageTree( "dummy" ), "testRetrievePackageTree()" )
+    assert( @download.retrievePackageTree( "dummy" ), 
+                                      "testRetrievePackageTree()" )
   end
-
+  
   ##
   # Test method for 'AbtDownloadManager.testRetrieveNewsFeed()'
   ## 
   def testRetrieveNewsFeed()
     assert( @download.retrieveNewsFeed( $ABTNEWS ), "testRetrieveNewsFeed()" )
   end
-
+  
   ##
   # Test method for 'AbtDownloadManager.testUpdatePackage()'
   ## 
   def testUpdatePackage()
     assert( @download.updatePackage(), "testUpdatePackage()" )
   end
-
+  
   ##
   # Test method for 'AbtDownloadManager.testUpdatePackageTree()'
   ## 

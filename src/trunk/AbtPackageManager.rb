@@ -36,7 +36,8 @@ class AbtPackageManager
   ##
   # Constructor for AbtPackageManager.
   #
-  # <b>RETURN</b> <i>AbtPackageManager</i> - an initialized AbtPackageManager object.
+  # <b>RETURN</b> <i>AbtPackageManager</i> - an initialized 
+  # AbtPackageManager object.
   ##
   def initialize
   end
@@ -70,7 +71,8 @@ class AbtPackageManager
     # pre section.
     puts "\n*** Processing the PRE section for #{package}. ***"
     if ( !sw.pre )
-      logger.logToJournal( "Failed to process pre-section in the package description of #{package}." )
+      logger.logToJournal( "Failed to process pre-section in the " + 
+        "package description of #{package}." )
       return false
     else
       logger.logToJournal( "DEBUG: finished #{package} pre section." )
@@ -79,7 +81,8 @@ class AbtPackageManager
     # configure section.
     puts "\n*** Processing the CONFIGURE section for #{package}. ***"
     if ( !sw.configure )
-      logger.logToJournal( "Failed to process configure section in the package description of #{package}." )
+      logger.logToJournal( "Failed to process configure section in the " + 
+        "package description of #{package}." )
       return false
     else
       logger.logToJournal( "DEBUG: finished #{package} configure section." )
@@ -88,7 +91,8 @@ class AbtPackageManager
     # build section.
     puts "\n*** Processing the BUILD section for #{package}. ***"
     if ( !sw.build )
-      logger.logToJournal( "Failed to process build section in the package description of #{package}." )
+      logger.logToJournal( "Failed to process build section in the " + 
+        "package description of #{package}." )
       return false
     else
       if ( !logger.logPackageBuild( sw.name.downcase ) ) 
@@ -101,7 +105,8 @@ class AbtPackageManager
     # preinstall section.
     puts "\n*** Processing the PREINSTALL section for #{package}. ***"
     if ( !sw.preinstall )
-      logger.logToJournal( "Failed to process preinstall section in the package description of #{package}." )
+      logger.logToJournal( "Failed to process preinstall section in the " + 
+        "package description of #{package}." )
       return false
     else
       logger.logToJournal( "DEBUG: finished #{package} preinstall section." )
@@ -110,33 +115,37 @@ class AbtPackageManager
     # install section.
     puts "\n*** Processing the INSTALL section for #{package}. ***"
     if ( !sw.install )
-      logger.logToJournal( "Failed to process install section in the package description of #{package}." )
+      logger.logToJournal( "Failed to process install section in the " + 
+        "package description of #{package}." )
       return false
     else
       logger.logPackageInstall( sw.name.downcase )
       # TODO: logger.logPackageIntegrity( sw.name.downcase )
       logger.logToJournal( "DEBUG: finished #{package} install section." )
     end
-
+    
     # post section.
     puts "\n*** Processing the POST section for #{package}. ***"
     if ( !sw.post )
-      logger.logToJournal( "Failed to process post section in the package description of #{package}." )
+      logger.logToJournal( "Failed to process post section in the " + 
+        "package description of #{package}." )
       return false
     else
       logger.logToJournal( "DEBUG: finished #{package} post section." )
     end
-
+    
     # clean out build sources.        
     puts "\n*** Cleaning up the sources for #{package}. ***"
     if ( !sw.removeBuild )
-      logger.logToJournal( "Failed to remove the build sources for #{package}." )
+      logger.logToJournal( "Failed to remove the build sources for " + 
+        "#{package}." )
       #return false  # commented out as this is not a reason to fail.
     end
-   
+    
     # remove pacakge from install queue.
     if ( !queuer.actionPackageQueue( sw.name.downcase, "install", "remove" ) )
-      logger.logToJournal( "Failed to remove #{sw.name.donwcase} from install queue." )
+      logger.logToJournal( "Failed to remove #{sw.name.donwcase} " + 
+        "from install queue." )
     end
     
     return true # install completed!
@@ -147,8 +156,8 @@ class AbtPackageManager
   #
   # <b>PARAM</b> <i>String</i> - the name of the package to be reinstalled.
   #
-  # <b>RETURN</b> <i>boolean</i> - True if the package is reinstalled, otherwise
-  # false.
+  # <b>RETURN</b> <i>boolean</i> - True if the package is reinstalled, 
+  # otherwise false.
   ##
   def reinstallPackage( package )
   end

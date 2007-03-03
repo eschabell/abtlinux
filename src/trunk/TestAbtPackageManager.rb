@@ -29,14 +29,14 @@ require 'AbtPackageManager'
 # St, Fifth Floor, Boston, MA 02110-1301  USA
 ##
 class TestAbtPackageManager < Test::Unit::TestCase
-
+  
   ##
   # setup method for testing AbtPackageManager.
   ## 
   def setup
     @pkgMgr = AbtPackageManager.new()
   end
-
+  
   ##
   # teardown method to cleanup after testing.
   ##
@@ -49,33 +49,33 @@ class TestAbtPackageManager < Test::Unit::TestCase
   def testInstallPackage
     assert( @pkgMgr.installPackage( "ipc" ), "testInstallPackage()" )
   end
-
+  
   ##
   # Test method for 'AbtPackageManager.testReinstallPackage()'
   ## 
   def testReinstallPackage
     assert( @pkgMgr.reinstallPackage( "ipc" ), "testReinstallPackage()" )
   end
-
+  
   ##
   # Test method for 'AbtPackageManager.testRemovePackage()'
   ## 
   def testRemovePackage
     assert( @pkgMgr.removePackage( "ipc" ), "testRemovePackage()" )
   end
-
+  
   ##
   # Test method for 'AbtPackageManager.testDowngradePackage()'
   ## 
   def testDowngradePackage
     assert( @pkgMgr.downgradePackage( "ipc", "1.2" ), "testDowngradePackage()" )
   end
-
+  
   ##
   # Test method for 'AbtPackageManager.testFreezePackage()'
   ## 
   def testFreezePackage
     assert( @pkgMgr.freezePackage( "ipc" ), "testFreezePackage()" )
   end
-
+  
 end

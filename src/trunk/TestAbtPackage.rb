@@ -32,11 +32,11 @@ require 'packages/ipc'
 # St, Fifth Floor, Boston, MA 02110-1301  USA
 ##
 class TestAbtPackage < Test::Unit::TestCase
-
+  
   $nameTest     = "Ipc"
   $versionTest  = "1.4"
   $srcDirTest   = "#{$nameTest.downcase}-#{$versionTest}"
-
+  
   $dataTest = {
     'name'              => $nameTest,
     'execName'          => $nameTest.downcase,
@@ -44,14 +44,14 @@ class TestAbtPackage < Test::Unit::TestCase
     'srcDir'            => $srcDirTest,
     'homepage'          => "http://isotopatcalc.sourceforge.net/"
   }
-
+  
   ##
   # setup method for testing AbtPackage.
   ## 
   def setup
     @ipc = Ipc.new
   end
-
+  
   ##
   # teardown method to cleanup after testing.
   ##
@@ -62,11 +62,16 @@ class TestAbtPackage < Test::Unit::TestCase
   # Test method for 'AbtPackage.testDetails()'
   ## 
   def testDetails
-    assert_equal( $dataTest['name'], @ipc.details['Package name'], "testDetails()" )
-    assert_equal( $dataTest['execName'], @ipc.details['Executable'], "testDetails()" )
-    assert_equal( $dataTest['version'], @ipc.details['Version'], "testDetails()" )
-    assert_equal( $dataTest['srcDir'], @ipc.details['Source location'], "testDetails()" )
-    assert_equal( $dataTest['homepage'], @ipc.details['Homepage'], "testDetails()" )
+    assert_equal( $dataTest['name'], @ipc.details['Package name'], 
+                                                          "testDetails()" )
+    assert_equal( $dataTest['execName'], @ipc.details['Executable'], 
+                                                          "testDetails()" )
+    assert_equal( $dataTest['version'], @ipc.details['Version'], 
+                                                          "testDetails()" )
+    assert_equal( $dataTest['srcDir'], @ipc.details['Source location'], 
+                                                          "testDetails()" )
+    assert_equal( $dataTest['homepage'], @ipc.details['Homepage'], 
+                                                          "testDetails()" )
   end
   
   ##
@@ -75,7 +80,7 @@ class TestAbtPackage < Test::Unit::TestCase
   def testPre
     assert( @ipc.pre(), "testPre()" )
   end
-
+  
   ##
   # Test method for 'AbtPackage.testConfigure()'
   ##
@@ -85,7 +90,7 @@ class TestAbtPackage < Test::Unit::TestCase
     end
     assert( @ipc.configure(), "testConfigure()" )
   end
-
+  
   ##
   # Test method for 'AbtPackage.testBuild()'
   ##
@@ -98,19 +103,19 @@ class TestAbtPackage < Test::Unit::TestCase
     end
     assert( @ipc.build(), "testBuild()" )
   end
-
+  
   ##
   # Test method for 'AbtPackage.testPreinstall()'
   ##
   def testPreinstall
     assert( @ipc.preinstall(), "testPreinstall()" )
   end
-
+  
   ##
   # Test method for 'AbtPackage.testInstall()'
   ##
   def testInstall
-     if ( !@ipc.pre() ) 
+    if ( !@ipc.pre() ) 
       assert_equals( true, false, "testInstall()" )
     end
     if ( !@ipc.configure() ) 
@@ -124,7 +129,7 @@ class TestAbtPackage < Test::Unit::TestCase
     end
     assert( @ipc.install(), "testInstall()" )
   end
-
+  
   ##
   # Test method for 'AbtPackage.testPost()'
   ##
@@ -146,5 +151,5 @@ class TestAbtPackage < Test::Unit::TestCase
     end  
     assert( @ipc.post(), "testPost()" )
   end
-
+  
 end

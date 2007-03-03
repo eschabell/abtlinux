@@ -57,7 +57,7 @@ class AbtLogManager
   ##
   def initialize
     [$ABT_LOGS, $ABT_CACHES, $ABT_STATE, $BUILD_LOCATION, $PACKAGE_INSTALLED,
-     $PACKAGE_CACHED, $ABT_TMP, $SOURCES_REPOSITORY].each { |dir|
+    $PACKAGE_CACHED, $ABT_TMP, $SOURCES_REPOSITORY].each { |dir|
       
       if ( ! File.directory?( dir ) )
         FileUtils.mkdir_p( dir )
@@ -77,7 +77,8 @@ class AbtLogManager
   ##
   def logPackageInstall( package )
     # some dirs we will not add to an install log.
-    excluded_pattern = Regexp.new( "^(/dev|/proc|/tmp|/var/tmp|/usr/src|/sys)+" )
+    excluded_pattern = 
+    Regexp.new( "^(/dev|/proc|/tmp|/var/tmp|/usr/src|/sys)+" )
     
     require package
     sw = eval( "#{package.capitalize}.new" )
@@ -85,7 +86,8 @@ class AbtLogManager
     badLine = false  # used to mark excluded lines from installwatch log.
     
     # our log locations.
-    installLog = "#{$PACKAGE_INSTALLED}/#{details['Source location']}/#{details['Source location']}.install"
+    installLog = "#{$PACKAGE_INSTALLED}/#{details['Source location']}" + 
+      "/#{details['Source location']}.install"
     tmpInstallLog = "#{$ABT_TMP}/#{details['Source location']}.watch"
     
     # get the installed files from the tmp file
@@ -97,13 +99,11 @@ class AbtLogManager
       # and not part of the excluded range of directories.
       IO.foreach( tmpInstallLog ) do |line|
         if ( line.split[1] == 'open' )
-          #self.logToJournal( "DEBUG: checking: #{line.split[2]} against #{excluded_pattern}." )
           if ( line.split[2] =~ excluded_pattern )
             #self.logToJournal( "DEBUG: Found bad logLine!" )
             badLine = true
           else
             badLine = false
-            #self.logToJournal( "DEBUG: #{excluded_pattern} not matching #{line.split[2]}")
           end
           
           if ( !badLine )
@@ -134,7 +134,8 @@ class AbtLogManager
     require package
     sw        = eval( "#{package.capitalize}.new" )
     details   = sw.details
-    buildFile = "#{$PACKAGE_INSTALLED}/#{details['Source location']}/#{details['Source location']}.build"
+    buildFile = "#{$PACKAGE_INSTALLED}/#{details['Source location']}" + 
+      "/#{details['Source location']}.build"
     #self.logToJournal( "DEBUG: buildFile is - #{buildFile}" )
     
     # make sure the build file exists.
@@ -173,7 +174,9 @@ class AbtLogManager
   # <b>RETURN</b> <i>boolean</i> True if logged, otherwise false.
   ##
   def logToJournal( message )
-    if ( log = File.new( $JOURNAL, File::WRONLY|File::APPEND|File::CREAT, 0644 ) )
+    if ( 
+        log = File.new( 
+                   $JOURNAL, File::WRONLY|File::APPEND|File::CREAT, 0644 ) )
       log.puts "#{$TIMESTAMP} : #{message}"
       log.close
       return true

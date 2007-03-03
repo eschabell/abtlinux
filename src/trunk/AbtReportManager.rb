@@ -26,35 +26,36 @@
 # St, Fifth Floor, Boston, MA 02110-1301  USA
 ##
 class AbtReportManager
-
-protected
-
-private
-
-public
-
+  
+  protected
+  
+  private
+  
+  public
+  
   ##
   # Constructor for the AbtReportManager.
   #
-  # <b>RETURN</b> <i>AbtReportManager</i> - an initialized Report1Manager object.
+  # <b>RETURN</b> <i>AbtReportManager</i> - an initialized 
+  # Report1Manager object.
   ##
   def initialize
   end
-
+  
   ##
   # Display all data for a given package.
   #
   # <b>PARAM</b> <i>String</i> - Package name.
   #
-  # <b>RETURN</b> <i>boolean</i> - True if completes without error, otherwise
-  # false.
+  # <b>RETURN</b> <i>boolean</i> - True if completes without error, 
+  # otherwise false.
   ##
   def showPackageDetails( package )
     require package
-
+    
     if ( package = eval( "#{package.capitalize}.new" ) )
       details = package.details
-
+      
       puts "|====================================="
       puts "| Package name\t: #{details['Package name']}"
       details.delete( "Package name" )
@@ -70,25 +71,26 @@ public
       details.delete( "Description" )
       puts "|====================================="
       puts "|====================================="
-
+      
       details.each do |name, value|
         print "| #{name}\t"
-
+        
         if ( name.length < 14 )
           print "\t"
         end
-
+        
         puts ": #{value}"
       end
-
+      
       puts "|====================================="
       return true
     end
-
-    logger.logToJournal( "[AbtReportManger::showPackageDetails] - failed to show details for ${package}." )
+    
+    logger.logToJournal( "[AbtReportManger::showPackageDetails] - failed" +
+      "to show details for ${package}." )
     return false
   end
-
+  
   ##
   # Display all packages installed and tracked by AbTLinux.
   #
@@ -96,7 +98,7 @@ public
   ##
   def showInstalledPackages
   end
-
+  
   ##
   # Display the contents of the requested log for a given package. Possible
   # log types are; install, build and integrity.
@@ -112,7 +114,7 @@ public
     # build log
     # integrity log
   end
-
+  
   ##
   # Display a list of the packages found in the frozen list.
   #
@@ -120,7 +122,7 @@ public
   ##
   def showFrozenPackages
   end
-
+  
   ##
   # Provides access to dependency checking via the AbTLinux DepEngine. (This
   # portal to the DepEngine will be expanded in apart sub-project, more
@@ -133,7 +135,7 @@ public
   ##
   def showPackageDependencies( package )
   end
-
+  
   ##
   # Display all files not part of any installed AbTLinux package. This
   # delivers a list of files that are not tracked by AbTLinux package
@@ -143,7 +145,7 @@ public
   ##
   def showUntrackedFiles
   end
-
+  
   ##
   # Display the AbTLinux journal file.
   #
@@ -161,13 +163,14 @@ public
       puts "\n\n"
     else
       puts "\n\n"
-      puts "AbtLinux log ( #{File.basename( fileName )} ) is empty at this time."
+      puts "AbtLinux log ( #{File.basename( fileName )} ) " + 
+           "is empty at this time."
       puts "\n\n"
     end
-
+    
     return true
   end
-
+  
   ##
   # Display the name of the package(s) that own the given file.
   #
@@ -177,7 +180,7 @@ public
   ##
   def showFileOwner( file )
   end
-
+  
   ##
   # Searches the installed package trees package descriptions for matching
   # occurrances of the given search text.
@@ -189,7 +192,7 @@ public
   ##
   def searchPackageDescriptions( searchText )
   end
-
+  
   ##
   # Displays the contents of the current queue based on the given queue.
   #
@@ -201,7 +204,7 @@ public
   def showQueue( queueType )
     
     case queueType
-
+      
     when "install"
       if ( File.exist?( "#{$ABT_LOGS}/#{queueType}.queue" ) )
         puts "\n\n"
@@ -219,7 +222,7 @@ public
       puts "#{queueType.capitalize} is not an AbTLinux queue."
     end
   end
-
+  
   ##
   # Reports available updates for a given package or package tree based on the
   # current system.
@@ -232,7 +235,7 @@ public
   ##
   def showUpdates( target )
   end
-
+  
   ##
   # Generates an HTML page of installed packages from installed packages list.
   #
@@ -240,5 +243,5 @@ public
   ##
   def generateHTMLPackageListing
   end
-
+  
 end

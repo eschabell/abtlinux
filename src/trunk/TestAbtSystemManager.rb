@@ -29,81 +29,83 @@ require 'AbtSystemManager'
 # St, Fifth Floor, Boston, MA 02110-1301  USA
 ##
 class TestAbtSystemManager < Test::Unit::TestCase
-
+  
   ##
   # setup method for testing AbtSystemManager.
   ## 
   def setup
     @sys = AbtSystemManager.new()
   end
-
+  
   ##
   # teardown method to cleanup after testing.
   ##
   def teardown
   end
-
+  
   ##
   # Test method for 'AbtSystemManager.testCleanupPackageSources()'
   ## 
   def testCleanupPackageSources
     assert( @sys.cleanupPackageSources(), "testCleanupPackageSources()" )
   end
-
+  
   ##
   # Test method for 'AbtSystemManager.testCleanupLogs()'
   ## 
   def testCleanupLogs
     assert( @sys.cleanupLogs(), "testCleanupLogs()" )
   end
-
+  
   ##
   # Test method for 'AbtSystemManager.testVerifyInstalledFiles()'
   ## 
   def testVerifyInstalledFiles
     assert( @sys.verifyInstalledFiles( "dummy" ), "testVerifyInstalledFiles()" )
   end
-
+  
   ##
   # Test method for 'AbtSystemManager.testVerifySymlinks()'
   ## 
   def testVerifySymlinks
     assert( @sys.verifySymlinks( "dummy" ), "testVerifySymlinks()" )
   end
-
+  
   ##
   # Test method for 'AbtSystemManager.testVerifyPackageDepends()'
   ## 
   def testVerifyPackageDepends
     assert( @sys.verifyPackageDepends( "dummy" ), "testVerifyPackageDepends()" )
   end
-
+  
   ##
   # Test method for 'AbtSystemManager.testVerifyPackageIntegrity()'
   ## 
   def testVerifyPackageIntegrity
-    assert( @sys.verifyPackageIntegrity( "dummy" ), "testVerifyPackageIntegrity()" )
+    assert( @sys.verifyPackageIntegrity( "dummy" ), 
+                      "testVerifyPackageIntegrity()" )
   end
-
+  
   ##
   # Test method for 'AbtSystemManager.testFixPackage()'
   ## 
   def testFixPackage
     assert( @sys.fixPackage( "dummy" ), "testFixPackage()" )
   end
-
+  
   ##
   # Test method for 'AbtSystemManager.testSetCentralRepo()'
   ## 
   def testSetCentralRepo
     assert( @sys.setCentralRepo( "http://localhost" ), "testSetCentralRepo()" )
   end
-
+  
   ##
   # Test method for 'AbtSystemManager.testSetPackageTreeLocation()'
   ## 
   def testSetPackageTreeLocation
-    assert( @sys.setPackageTreeLocation( "/var/lib/ericsPackages" ), "testSetPackageTreeLocation()" )
+    assert( @sys.setPackageTreeLocation( "/var/lib/ericsPackages" ), 
+                                      "testSetPackageTreeLocation()" )
   end
-
+  
 end

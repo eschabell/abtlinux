@@ -26,13 +26,13 @@
 # St, Fifth Floor, Boston, MA 02110-1301  USA
 ##
 class AbtDepEngine
-
-protected
-
-private
-
-public
-
+  
+  protected
+  
+  private
+  
+  public
+  
   ##
   # Constructor for the AbtDepEngine class.
   #
@@ -40,5 +40,5 @@ public
   ##
   def initialize
   end
-
+  
 end
