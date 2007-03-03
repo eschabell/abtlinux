@@ -3,10 +3,10 @@
 ##
 # AbtPackage.rb
 #
-# AbtPackage class provides an interface to AbtPackage creation within AbTLinux. By
-# inheriting from this class (class Fortune < AbtPackage) one picks up all
-# supported standard functions for the abt AbtPackage manager to make use of the
-# new AbtPackage.
+# AbtPackage class provides an interface to AbtPackage creation within
+# AbTLinux. By inheriting from this class (class Fortune < AbtPackage) one 
+# picks up all supported standard functions for the abt AbtPackage manager
+# to make use of the new AbtPackage.
 #
 # Created by Eric D. Schabell <erics@abtlinux.org>
 # Copyright 2006, GPL.
@@ -34,7 +34,8 @@ class AbtPackage
   ##
   # Unpacks this packages source file into the standard build location.
   #
-  # <b>RETURNS:</b>  <i>boolean</i> - True if the completes sucessfully, otherwise false.
+  # <b>RETURNS:</b> <i>boolean</i> - True if the completes sucessfully, 
+  # otherwise false.
   ##
   def unpackSources
     srcFile			= File.basename( @srcUrl )
@@ -169,7 +170,8 @@ class AbtPackage
   ##
   # Provides all the data needed for this AbtPackage.
   #
-  # <b>RETURNS:</b>  <i>hash</i> - Contains all AbtPackage attributes (constants).
+  # <b>RETURNS:</b>  <i>hash</i> - Contains all AbtPackage 
+  # attributes (constants).
   ##
   def details
     return {
@@ -196,13 +198,16 @@ class AbtPackage
   # Preliminary work will happen here such as downloading the tarball,
   # unpacking it, downloading and applying patches.
   #
-  # <b>RETURNS:</b>  <i>boolean</i> - True if completes sucessfully, otherwise false.
+  # <b>RETURNS:</b>  <i>boolean</i> - True if completes sucessfully, 
+  # otherwise false.
   ##
   def pre
     downloader = AbtDownloadManager.new
     
     # download sources.
-    if ( !downloader.retrievePackageSource( @name.downcase, $SOURCES_REPOSITORY ) )
+    if ( 
+        !downloader.retrievePackageSource( 
+                                      @name.downcase, $SOURCES_REPOSITORY ) )
       return false
     end
     
@@ -216,26 +221,28 @@ class AbtPackage
       FileUtils.mkdir_p( "#{$PACKAGE_INSTALLED}/#{@srcDir}" )
     end
     
-    # TODO: retrieve patches?
-    # TODO: apply patches?
+    # TODO: implement pre section retrieve patches?
+    # TODO: implement pre section apply patches?
     
     return true
   end
   
   ##
-  # Here we manage the ./configure step (or equivalent). We need to give ./configure
-  # (or autogen.sh, or whatever) the correct options so files are to be placed later in the
-  # right directories, so doc files and man pages are all in the same common location, etc.
-  # Don't forget too that it's here where we interact with the user in case there are optionnal
-  # dependencies.
+  # Here we manage the ./configure step (or equivalent). We need 
+  # to give ./configure (or autogen.sh, or whatever) the correct options 
+  # so files are to be placed later in the right directories, so doc files 
+  # and man pages are all in the same common location, etc.
+  # Don't forget too that it's here where we interact with the user in 
+  # case there are optionnal dependencies.
   #
-  # <b>RETURNS:</b>  <i>boolean</i> - True if the completes sucessfully, otherwise false.
+  # <b>RETURNS:</b>  <i>boolean</i> - True if the completes sucessfully, 
+  # otherwise false.
   ##
   def configure
     Dir.chdir( "#{$BUILD_LOCATION}/#{@srcDir}" )
     
-    # TODO: not some better way to deal with this than system and tee?
-    if ( !system( "./configure --prefix=#{$DEFAULT_PREFIX} | tee #{$PACKAGE_INSTALLED}/#{@srcDir}/#{@srcDir}.configure" ) )
+    if ( !system( "./configure --prefix=#{$DEFAULT_PREFIX} | tee " +
+        "#{$PACKAGE_INSTALLED}/#{@srcDir}/#{@srcDir}.configure" ) )
       puts "DEBUG: [AbtPackage.configure] - configure section failed."
       return false
     end
@@ -245,15 +252,17 @@ class AbtPackage
   end
   
   ##
-  # Here is where the actual builing of the software starts, for example running 'make'.
+  # Here is where the actual builing of the software starts, 
+  # for example running 'make'.
   #
-  # <b>RETURNS:</b>  <i>boolean</i> - True if the completes sucessfully, otherwise false.
+  # <b>RETURNS:</b>  <i>boolean</i> - True if the completes sucessfully, 
+  # otherwise false.
   ##
   def build
     Dir.chdir( "#{$BUILD_LOCATION}/#{@srcDir}" )
     
-    # TODO: not some better way to deal with this than system and tee?
-    if( !system( "make | tee #{$PACKAGE_INSTALLED}/#{@srcDir}/#{@srcDir}.build" ) )
+    if( !system( 
+      "make | tee #{$PACKAGE_INSTALLED}/#{@srcDir}/#{@srcDir}.build" ) )
       puts "DEBUG: [AbtPackage.build] - build section failed."
       return false
     end
@@ -263,30 +272,34 @@ class AbtPackage
   end
   
   ##
-  # Any actions needed before the installation can occur will happen here, such as creating
-  # new user accounts, dealing with existing configuration files, etc.
+  # Any actions needed before the installation can occur will happen here, 
+  # such as creating new user accounts, dealing with existing configuration 
+  # files, etc.
   #
-  # <b>RETURNS:</b>  <i>boolean</i> - True if the completes sucessfully, otherwise false.
+  # <b>RETURNS:</b>  <i>boolean</i> - True if the completes sucessfully, 
+  # otherwise false.
   ##
   def preinstall    
-    # TODO: create_group?
-    # TODO: create_user?
+    # TODO: preinstall section create_group?
+    # TODO: preinstall section create_user?
     return true;
   end
   
   ##
   # All files to be installed are installed here.
   #
-  # <b>RETURNS:</b>  <i>boolean</i> - True if the completes sucessfully, otherwise false.
+  # <b>RETURNS:</b>  <i>boolean</i> - True if the completes sucessfully, 
+  # otherwise false.
   ##
   def install
-    # TODO: implement.
     Dir.chdir( "#{$BUILD_LOCATION}/#{@srcDir}" )
     
-    # TODO: can this be done without installwatch?
-    if( !system( "installwatch --transl=no --backup=no --exclude=/dev,/proc,/tmp,/var/tmp,/usr/src,/sys --logfile=#{$ABT_TMP}/#{@srcDir}.watch make install" ) )
+    # TODO: install section, can this be done without installwatch?
+    if( !system( "installwatch --transl=no --backup=no " +
+          "--exclude=/dev,/proc,/tmp,/var/tmp,/usr/src,/sys " +
+          "--logfile=#{$ABT_TMP}/#{@srcDir}.watch make install" ) )
       puts "DEBUG: [AbtPackage.install] - install section failed."
-      # TODO: rollback any installed files (use install log).
+      # TODO: install section, rollback any installed files (use install log).
       return false
     end
     
@@ -295,19 +308,22 @@ class AbtPackage
   end
   
   ##
-  # Last bits of installation. adding the service for automatic start in init.d for example.
+  # Last bits of installation. adding the service for automatic 
+  # start in init.d for example.
   #
-  # <b>RETURNS:</b>  <i>boolean</i> - True if the completes sucessfully, otherwise false.
+  # <b>RETURNS:</b>  <i>boolean</i> - True if the completes sucessfully, 
+  # otherwise false.
   ##
   def post
-    # TODO: install init scripts service
+    # TODO: implement post section install init scripts service
     return true
   end
   
   ##
   # Cleans up this packages source build directory.
   #
-  # <b>RETURNS:</b>  <i>boolean</i> - True if the completes sucessfully, otherwise false.
+  # <b>RETURNS:</b>  <i>boolean</i> - True if the completes sucessfully, 
+  # otherwise false.
   ##
   def removeBuild
     if ( $REMOVE_BUILD_SOURCES )
