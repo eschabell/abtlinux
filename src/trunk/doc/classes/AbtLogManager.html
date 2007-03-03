@@ -117,12 +117,12 @@ Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
 
   <div class="sectiontitle">Methods</div>
   <ul>
-  <li><a href="#M000064">cachePackage</a></li>
-  <li><a href="#M000063">logPackageBuild</a></li>
-  <li><a href="#M000062">logPackageInstall</a></li>
-  <li><a href="#M000060">logPackageIntegrity</a></li>
-  <li><a href="#M000065">logToJournal</a></li>
-  <li><a href="#M000061">new</a></li>
+  <li><a href="#M000066">cachePackage</a></li>
+  <li><a href="#M000065">logPackageBuild</a></li>
+  <li><a href="#M000064">logPackageInstall</a></li>
+  <li><a href="#M000062">logPackageIntegrity</a></li>
+  <li><a href="#M000067">logToJournal</a></li>
+  <li><a href="#M000063">new</a></li>
   </ul>
 
 
@@ -133,7 +133,7 @@ Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
 <div class="sectiontitle">Public Class methods</div>
 <div class="method">
   <div class="title">
-    <a name="M000061"></a><b>new</b>()
+    <a name="M000063"></a><b>new</b>()
   </div>
   <div class="description">
   <p>
@@ -146,13 +146,13 @@ initialized <a href="AbtLogManager.html">AbtLogManager</a> object.
 </p>
   </div>
 <div class="sourcecode">
-  <p class="source-link">[ <a href="javascript:toggleSource('M000061_source')" id="l_M000061_source">show source</a> ]</p>
-  <div id="M000061_source" class="dyn-source">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000063_source')" id="l_M000063_source">show source</a> ]</p>
+  <div id="M000063_source" class="dyn-source">
 <pre>
     <span class="ruby-comment cmt"># File AbtLogManager.rb, line 58</span>
 58:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>
 59:     [<span class="ruby-identifier">$ABT_LOGS</span>, <span class="ruby-identifier">$ABT_CACHES</span>, <span class="ruby-identifier">$ABT_STATE</span>, <span class="ruby-identifier">$BUILD_LOCATION</span>, <span class="ruby-identifier">$PACKAGE_INSTALLED</span>,
-60:      <span class="ruby-identifier">$PACKAGE_CACHED</span>, <span class="ruby-identifier">$ABT_TMP</span>, <span class="ruby-identifier">$SOURCES_REPOSITORY</span>].<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">dir</span><span class="ruby-operator">|</span>
+60:     <span class="ruby-identifier">$PACKAGE_CACHED</span>, <span class="ruby-identifier">$ABT_TMP</span>, <span class="ruby-identifier">$SOURCES_REPOSITORY</span>].<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">dir</span><span class="ruby-operator">|</span>
 61:       
 62:       <span class="ruby-keyword kw">if</span> ( <span class="ruby-operator">!</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">directory?</span>( <span class="ruby-identifier">dir</span> ) )
 63:         <span class="ruby-constant">FileUtils</span>.<span class="ruby-identifier">mkdir_p</span>( <span class="ruby-identifier">dir</span> )
@@ -167,7 +167,7 @@ initialized <a href="AbtLogManager.html">AbtLogManager</a> object.
 <div class="sectiontitle">Public Instance methods</div>
 <div class="method">
   <div class="title">
-    <a name="M000064"></a><b>cachePackage</b>( package )
+    <a name="M000066"></a><b>cachePackage</b>( package )
   </div>
   <div class="description">
   <p>
@@ -183,19 +183,26 @@ successfully, otherwise false.
 </p>
   </div>
 <div class="sourcecode">
-  <p class="source-link">[ <a href="javascript:toggleSource('M000064_source')" id="l_M000064_source">show source</a> ]</p>
-  <div id="M000064_source" class="dyn-source">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000066_source')" id="l_M000066_source">show source</a> ]</p>
+  <div id="M000066_source" class="dyn-source">
 <pre>
-     <span class="ruby-comment cmt"># File AbtLogManager.rb, line 157</span>
-157:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">cachePackage</span>( <span class="ruby-identifier">package</span> )
-158:   <span class="ruby-keyword kw">end</span>
+     <span class="ruby-comment cmt"># File AbtLogManager.rb, line 158</span>
+158:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">cachePackage</span>( <span class="ruby-identifier">package</span> )
+159:     <span class="ruby-comment cmt"># TODO: collect package source.</span>
+160:     <span class="ruby-comment cmt"># TODO: collect package install log. </span>
+161:     <span class="ruby-comment cmt"># TODO: collect package build log. </span>
+162:     <span class="ruby-comment cmt"># TODO: collect package configure log. </span>
+163:     <span class="ruby-comment cmt"># TODO: collect package integrity log.</span>
+164:     <span class="ruby-comment cmt"># TODO: collect package description (class file).</span>
+165:     <span class="ruby-comment cmt"># TODO: tar and bzip this directory (package-cache-version.tar.bz2) </span>
+166:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>
 </div>
 <div class="method">
   <div class="title">
-    <a name="M000063"></a><b>logPackageBuild</b>( package )
+    <a name="M000065"></a><b>logPackageBuild</b>( package )
   </div>
   <div class="description">
   <p>
@@ -211,31 +218,32 @@ otherwise false.
 </p>
   </div>
 <div class="sourcecode">
-  <p class="source-link">[ <a href="javascript:toggleSource('M000063_source')" id="l_M000063_source">show source</a> ]</p>
-  <div id="M000063_source" class="dyn-source">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000065_source')" id="l_M000065_source">show source</a> ]</p>
+  <div id="M000065_source" class="dyn-source">
 <pre>
      <span class="ruby-comment cmt"># File AbtLogManager.rb, line 133</span>
 133:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">logPackageBuild</span>( <span class="ruby-identifier">package</span> )
 134:     <span class="ruby-identifier">require</span> <span class="ruby-identifier">package</span>
 135:     <span class="ruby-identifier">sw</span>        = <span class="ruby-identifier">eval</span>( <span class="ruby-node">&quot;#{package.capitalize}.new&quot;</span> )
 136:     <span class="ruby-identifier">details</span>   = <span class="ruby-identifier">sw</span>.<span class="ruby-identifier">details</span>
-137:     <span class="ruby-identifier">buildFile</span> = <span class="ruby-node">&quot;#{$PACKAGE_INSTALLED}/#{details['Source location']}/#{details['Source location']}.build&quot;</span>
-138:     <span class="ruby-comment cmt">#self.logToJournal( &quot;DEBUG: buildFile is - #{buildFile}&quot; )</span>
-139:     
-140:     <span class="ruby-comment cmt"># make sure the build file exists.</span>
-141:     <span class="ruby-keyword kw">if</span> ( <span class="ruby-operator">!</span><span class="ruby-constant">File</span>.<span class="ruby-identifier">exist?</span>( <span class="ruby-identifier">buildFile</span> ) )
-142:       <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">false</span>
-143:     <span class="ruby-keyword kw">end</span>
-144:     
-145:     <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">true</span>
-146:   <span class="ruby-keyword kw">end</span>
+137:     <span class="ruby-identifier">buildFile</span> = <span class="ruby-node">&quot;#{$PACKAGE_INSTALLED}/#{details['Source location']}&quot;</span> <span class="ruby-operator">+</span> 
+138:       <span class="ruby-node">&quot;/#{details['Source location']}.build&quot;</span>
+139:     <span class="ruby-comment cmt">#self.logToJournal( &quot;DEBUG: buildFile is - #{buildFile}&quot; )</span>
+140:     
+141:     <span class="ruby-comment cmt"># make sure the build file exists.</span>
+142:     <span class="ruby-keyword kw">if</span> ( <span class="ruby-operator">!</span><span class="ruby-constant">File</span>.<span class="ruby-identifier">exist?</span>( <span class="ruby-identifier">buildFile</span> ) )
+143:       <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">false</span>
+144:     <span class="ruby-keyword kw">end</span>
+145:     
+146:     <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">true</span>
+147:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>
 </div>
 <div class="method">
   <div class="title">
-    <a name="M000062"></a><b>logPackageInstall</b>( package )
+    <a name="M000064"></a><b>logPackageInstall</b>( package )
   </div>
   <div class="description">
   <p>
@@ -251,39 +259,39 @@ otherwise false.
 </p>
   </div>
 <div class="sourcecode">
-  <p class="source-link">[ <a href="javascript:toggleSource('M000062_source')" id="l_M000062_source">show source</a> ]</p>
-  <div id="M000062_source" class="dyn-source">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000064_source')" id="l_M000064_source">show source</a> ]</p>
+  <div id="M000064_source" class="dyn-source">
 <pre>
      <span class="ruby-comment cmt"># File AbtLogManager.rb, line 78</span>
  78:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">logPackageInstall</span>( <span class="ruby-identifier">package</span> )
  79:     <span class="ruby-comment cmt"># some dirs we will not add to an install log.</span>
- 80:     <span class="ruby-identifier">excluded_pattern</span> = <span class="ruby-constant">Regexp</span>.<span class="ruby-identifier">new</span>( <span class="ruby-value str">&quot;^(/dev|/proc|/tmp|/var/tmp|/usr/src|/sys)+&quot;</span> )
- 81:     
- 82:     <span class="ruby-identifier">require</span> <span class="ruby-identifier">package</span>
- 83:     <span class="ruby-identifier">sw</span> = <span class="ruby-identifier">eval</span>( <span class="ruby-node">&quot;#{package.capitalize}.new&quot;</span> )
- 84:     <span class="ruby-identifier">details</span> = <span class="ruby-identifier">sw</span>.<span class="ruby-identifier">details</span>
- 85:     <span class="ruby-identifier">badLine</span> = <span class="ruby-keyword kw">false</span>  <span class="ruby-comment cmt"># used to mark excluded lines from installwatch log.</span>
- 86:     
- 87:     <span class="ruby-comment cmt"># our log locations.</span>
- 88:     <span class="ruby-identifier">installLog</span> = <span class="ruby-node">&quot;#{$PACKAGE_INSTALLED}/#{details['Source location']}/#{details['Source location']}.install&quot;</span>
- 89:     <span class="ruby-identifier">tmpInstallLog</span> = <span class="ruby-node">&quot;#{$ABT_TMP}/#{details['Source location']}.watch&quot;</span>
- 90:     
- 91:     <span class="ruby-comment cmt"># get the installed files from the tmp file</span>
- 92:     <span class="ruby-comment cmt"># into our install log.</span>
- 93:     <span class="ruby-keyword kw">if</span> ( <span class="ruby-constant">File</span>.<span class="ruby-identifier">exist?</span>( <span class="ruby-identifier">tmpInstallLog</span> ) )
- 94:       <span class="ruby-identifier">installFile</span> = <span class="ruby-identifier">open</span>( <span class="ruby-identifier">installLog</span>, <span class="ruby-value str">'w'</span>)
- 95:       
- 96:       <span class="ruby-comment cmt"># include only the file names from open calls</span>
- 97:       <span class="ruby-comment cmt"># and not part of the excluded range of directories.</span>
- 98:       <span class="ruby-constant">IO</span>.<span class="ruby-identifier">foreach</span>( <span class="ruby-identifier">tmpInstallLog</span> ) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">line</span><span class="ruby-operator">|</span>
- 99:         <span class="ruby-keyword kw">if</span> ( <span class="ruby-identifier">line</span>.<span class="ruby-identifier">split</span>[<span class="ruby-value">1</span>] <span class="ruby-operator">==</span> <span class="ruby-value str">'open'</span> )
-100:           <span class="ruby-comment cmt">#self.logToJournal( &quot;DEBUG: checking: #{line.split[2]} against #{excluded_pattern}.&quot; )</span>
-101:           <span class="ruby-keyword kw">if</span> ( <span class="ruby-identifier">line</span>.<span class="ruby-identifier">split</span>[<span class="ruby-value">2</span>] <span class="ruby-operator">=~</span> <span class="ruby-identifier">excluded_pattern</span> )
-102:             <span class="ruby-comment cmt">#self.logToJournal( &quot;DEBUG: Found bad logLine!&quot; )</span>
-103:             <span class="ruby-identifier">badLine</span> = <span class="ruby-keyword kw">true</span>
-104:           <span class="ruby-keyword kw">else</span>
-105:             <span class="ruby-identifier">badLine</span> = <span class="ruby-keyword kw">false</span>
-106:             <span class="ruby-comment cmt">#self.logToJournal( &quot;DEBUG: #{excluded_pattern} not matching #{line.split[2]}&quot;)</span>
+ 80:     <span class="ruby-identifier">excluded_pattern</span> = 
+ 81:     <span class="ruby-constant">Regexp</span>.<span class="ruby-identifier">new</span>( <span class="ruby-value str">&quot;^(/dev|/proc|/tmp|/var/tmp|/usr/src|/sys)+&quot;</span> )
+ 82:     
+ 83:     <span class="ruby-identifier">require</span> <span class="ruby-identifier">package</span>
+ 84:     <span class="ruby-identifier">sw</span> = <span class="ruby-identifier">eval</span>( <span class="ruby-node">&quot;#{package.capitalize}.new&quot;</span> )
+ 85:     <span class="ruby-identifier">details</span> = <span class="ruby-identifier">sw</span>.<span class="ruby-identifier">details</span>
+ 86:     <span class="ruby-identifier">badLine</span> = <span class="ruby-keyword kw">false</span>  <span class="ruby-comment cmt"># used to mark excluded lines from installwatch log.</span>
+ 87:     
+ 88:     <span class="ruby-comment cmt"># our log locations.</span>
+ 89:     <span class="ruby-identifier">installLog</span> = <span class="ruby-node">&quot;#{$PACKAGE_INSTALLED}/#{details['Source location']}&quot;</span> <span class="ruby-operator">+</span> 
+ 90:       <span class="ruby-node">&quot;/#{details['Source location']}.install&quot;</span>
+ 91:     <span class="ruby-identifier">tmpInstallLog</span> = <span class="ruby-node">&quot;#{$ABT_TMP}/#{details['Source location']}.watch&quot;</span>
+ 92:     
+ 93:     <span class="ruby-comment cmt"># get the installed files from the tmp file</span>
+ 94:     <span class="ruby-comment cmt"># into our install log.</span>
+ 95:     <span class="ruby-keyword kw">if</span> ( <span class="ruby-constant">File</span>.<span class="ruby-identifier">exist?</span>( <span class="ruby-identifier">tmpInstallLog</span> ) )
+ 96:       <span class="ruby-identifier">installFile</span> = <span class="ruby-identifier">open</span>( <span class="ruby-identifier">installLog</span>, <span class="ruby-value str">'w'</span>)
+ 97:       
+ 98:       <span class="ruby-comment cmt"># include only the file names from open calls</span>
+ 99:       <span class="ruby-comment cmt"># and not part of the excluded range of directories.</span>
+100:       <span class="ruby-constant">IO</span>.<span class="ruby-identifier">foreach</span>( <span class="ruby-identifier">tmpInstallLog</span> ) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">line</span><span class="ruby-operator">|</span>
+101:         <span class="ruby-keyword kw">if</span> ( <span class="ruby-identifier">line</span>.<span class="ruby-identifier">split</span>[<span class="ruby-value">1</span>] <span class="ruby-operator">==</span> <span class="ruby-value str">'open'</span> )
+102:           <span class="ruby-keyword kw">if</span> ( <span class="ruby-identifier">line</span>.<span class="ruby-identifier">split</span>[<span class="ruby-value">2</span>] <span class="ruby-operator">=~</span> <span class="ruby-identifier">excluded_pattern</span> )
+103:             <span class="ruby-comment cmt">#self.logToJournal( &quot;DEBUG: Found bad logLine!&quot; )</span>
+104:             <span class="ruby-identifier">badLine</span> = <span class="ruby-keyword kw">true</span>
+105:           <span class="ruby-keyword kw">else</span>
+106:             <span class="ruby-identifier">badLine</span> = <span class="ruby-keyword kw">false</span>
 107:           <span class="ruby-keyword kw">end</span>
 108:           
 109:           <span class="ruby-keyword kw">if</span> ( <span class="ruby-operator">!</span><span class="ruby-identifier">badLine</span> )
@@ -306,7 +314,7 @@ otherwise false.
 </div>
 <div class="method">
   <div class="title">
-    <a name="M000065"></a><b>logToJournal</b>( message )
+    <a name="M000067"></a><b>logToJournal</b>( message )
   </div>
   <div class="description">
   <p>
@@ -321,19 +329,21 @@ with date timestamp.
 </p>
   </div>
 <div class="sourcecode">
-  <p class="source-link">[ <a href="javascript:toggleSource('M000065_source')" id="l_M000065_source">show source</a> ]</p>
-  <div id="M000065_source" class="dyn-source">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000067_source')" id="l_M000067_source">show source</a> ]</p>
+  <div id="M000067_source" class="dyn-source">
 <pre>
-     <span class="ruby-comment cmt"># File AbtLogManager.rb, line 168</span>
-168:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">logToJournal</span>( <span class="ruby-identifier">message</span> )
-169:     <span class="ruby-keyword kw">if</span> ( <span class="ruby-identifier">log</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">new</span>( <span class="ruby-identifier">$JOURNAL</span>, <span class="ruby-constant">File</span><span class="ruby-operator">::</span><span class="ruby-constant">WRONLY</span><span class="ruby-operator">|</span><span class="ruby-constant">File</span><span class="ruby-operator">::</span><span class="ruby-constant">APPEND</span><span class="ruby-operator">|</span><span class="ruby-constant">File</span><span class="ruby-operator">::</span><span class="ruby-constant">CREAT</span>, <span class="ruby-value">0644</span> ) )
-170:       <span class="ruby-identifier">log</span>.<span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;#{$TIMESTAMP} : #{message}&quot;</span>
-171:       <span class="ruby-identifier">log</span>.<span class="ruby-identifier">close</span>
-172:       <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">true</span>
-173:     <span class="ruby-keyword kw">end</span>
-174:     
-175:     <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">false</span>
-176:   <span class="ruby-keyword kw">end</span>
+     <span class="ruby-comment cmt"># File AbtLogManager.rb, line 176</span>
+176:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">logToJournal</span>( <span class="ruby-identifier">message</span> )
+177:     <span class="ruby-keyword kw">if</span> ( 
+178:         <span class="ruby-identifier">log</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">new</span>( 
+179:                    <span class="ruby-identifier">$JOURNAL</span>, <span class="ruby-constant">File</span><span class="ruby-operator">::</span><span class="ruby-constant">WRONLY</span><span class="ruby-operator">|</span><span class="ruby-constant">File</span><span class="ruby-operator">::</span><span class="ruby-constant">APPEND</span><span class="ruby-operator">|</span><span class="ruby-constant">File</span><span class="ruby-operator">::</span><span class="ruby-constant">CREAT</span>, <span class="ruby-value">0644</span> ) )
+180:       <span class="ruby-identifier">log</span>.<span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;#{$TIMESTAMP} : #{message}&quot;</span>
+181:       <span class="ruby-identifier">log</span>.<span class="ruby-identifier">close</span>
+182:       <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">true</span>
+183:     <span class="ruby-keyword kw">end</span>
+184:     
+185:     <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">false</span>
+186:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>
@@ -341,7 +351,7 @@ with date timestamp.
 <div class="sectiontitle">Protected Instance methods</div>
 <div class="method">
   <div class="title">
-    <a name="M000060"></a><b>logPackageIntegrity</b>( package )
+    <a name="M000062"></a><b>logPackageIntegrity</b>( package )
   </div>
   <div class="description">
   <p>
@@ -358,8 +368,8 @@ successfully, otherwise false.
 </p>
   </div>
 <div class="sourcecode">
-  <p class="source-link">[ <a href="javascript:toggleSource('M000060_source')" id="l_M000060_source">show source</a> ]</p>
-  <div id="M000060_source" class="dyn-source">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000062_source')" id="l_M000062_source">show source</a> ]</p>
+  <div id="M000062_source" class="dyn-source">
 <pre>
     <span class="ruby-comment cmt"># File AbtLogManager.rb, line 42</span>
 42:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">logPackageIntegrity</span>( <span class="ruby-identifier">package</span> )

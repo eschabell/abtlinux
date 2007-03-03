@@ -118,12 +118,13 @@ Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
 
   <div class="sectiontitle">Methods</div>
   <ul>
-  <li><a href="#M000078">setup</a></li>
-  <li><a href="#M000081">testRetrieveNewsFeed</a></li>
-  <li><a href="#M000079">testRetrievePackageSource</a></li>
-  <li><a href="#M000080">testRetrievePackageTree</a></li>
-  <li><a href="#M000082">testUpdatePackage</a></li>
-  <li><a href="#M000083">testUpdatePackageTree</a></li>
+  <li><a href="#M000082">setup</a></li>
+  <li><a href="#M000083">teardown</a></li>
+  <li><a href="#M000086">testRetrieveNewsFeed</a></li>
+  <li><a href="#M000084">testRetrievePackageSource</a></li>
+  <li><a href="#M000085">testRetrievePackageTree</a></li>
+  <li><a href="#M000087">testUpdatePackage</a></li>
+  <li><a href="#M000088">testUpdatePackageTree</a></li>
   </ul>
 
 
@@ -134,17 +135,17 @@ Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
 <div class="sectiontitle">Public Instance methods</div>
 <div class="method">
   <div class="title">
-    <a name="M000078"></a><b>setup</b>()
+    <a name="M000082"></a><b>setup</b>()
   </div>
   <div class="description">
   <p>
-<a href="TestAbtDownloadManager.html#M000078">setup</a> method for testing
+<a href="TestAbtDownloadManager.html#M000082">setup</a> method for testing
 <a href="AbtDownloadManager.html">AbtDownloadManager</a>.
 </p>
   </div>
 <div class="sourcecode">
-  <p class="source-link">[ <a href="javascript:toggleSource('M000078_source')" id="l_M000078_source">show source</a> ]</p>
-  <div id="M000078_source" class="dyn-source">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000082_source')" id="l_M000082_source">show source</a> ]</p>
+  <div id="M000082_source" class="dyn-source">
 <pre>
     <span class="ruby-comment cmt"># File TestAbtDownloadManager.rb, line 38</span>
 38:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">setup</span>
@@ -156,7 +157,28 @@ Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
 </div>
 <div class="method">
   <div class="title">
-    <a name="M000081"></a><b>testRetrieveNewsFeed</b>()
+    <a name="M000083"></a><b>teardown</b>()
+  </div>
+  <div class="description">
+  <p>
+<a href="TestAbtDownloadManager.html#M000083">teardown</a> method to
+cleanup after testing.
+</p>
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000083_source')" id="l_M000083_source">show source</a> ]</p>
+  <div id="M000083_source" class="dyn-source">
+<pre>
+    <span class="ruby-comment cmt"># File TestAbtDownloadManager.rb, line 45</span>
+45:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">teardown</span>
+46:   <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000086"></a><b>testRetrieveNewsFeed</b>()
   </div>
   <div class="description">
   <p>
@@ -164,20 +186,20 @@ Test method for &#8216;AbtDownloadManager.testRetrieveNewsFeed()&#8217;
 </p>
   </div>
 <div class="sourcecode">
-  <p class="source-link">[ <a href="javascript:toggleSource('M000081_source')" id="l_M000081_source">show source</a> ]</p>
-  <div id="M000081_source" class="dyn-source">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000086_source')" id="l_M000086_source">show source</a> ]</p>
+  <div id="M000086_source" class="dyn-source">
 <pre>
-    <span class="ruby-comment cmt"># File TestAbtDownloadManager.rb, line 59</span>
-59:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">testRetrieveNewsFeed</span>()
-60:     <span class="ruby-identifier">assert</span>( <span class="ruby-ivar">@download</span>.<span class="ruby-identifier">retrieveNewsFeed</span>( <span class="ruby-identifier">$ABTNEWS</span> ), <span class="ruby-value str">&quot;testRetrieveNewsFeed()&quot;</span> )
-61:   <span class="ruby-keyword kw">end</span>
+    <span class="ruby-comment cmt"># File TestAbtDownloadManager.rb, line 67</span>
+67:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">testRetrieveNewsFeed</span>()
+68:     <span class="ruby-identifier">assert</span>( <span class="ruby-ivar">@download</span>.<span class="ruby-identifier">retrieveNewsFeed</span>( <span class="ruby-identifier">$ABTNEWS</span> ), <span class="ruby-value str">&quot;testRetrieveNewsFeed()&quot;</span> )
+69:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>
 </div>
 <div class="method">
   <div class="title">
-    <a name="M000079"></a><b>testRetrievePackageSource</b>()
+    <a name="M000084"></a><b>testRetrievePackageSource</b>()
   </div>
   <div class="description">
   <p>
@@ -186,33 +208,13 @@ Test method for
 </p>
   </div>
 <div class="sourcecode">
-  <p class="source-link">[ <a href="javascript:toggleSource('M000079_source')" id="l_M000079_source">show source</a> ]</p>
-  <div id="M000079_source" class="dyn-source">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000084_source')" id="l_M000084_source">show source</a> ]</p>
+  <div id="M000084_source" class="dyn-source">
 <pre>
-    <span class="ruby-comment cmt"># File TestAbtDownloadManager.rb, line 45</span>
-45:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">testRetrievePackageSource</span>()
-46:     <span class="ruby-identifier">assert</span>( <span class="ruby-ivar">@download</span>.<span class="ruby-identifier">retrievePackageSource</span>( <span class="ruby-value str">&quot;ipc&quot;</span>, <span class="ruby-value str">&quot;/tmp&quot;</span> ), <span class="ruby-value str">&quot;testRetrievePackageSource()&quot;</span> )
-47:   <span class="ruby-keyword kw">end</span>
-</pre>
-  </div>
-</div>
-</div>
-<div class="method">
-  <div class="title">
-    <a name="M000080"></a><b>testRetrievePackageTree</b>()
-  </div>
-  <div class="description">
-  <p>
-Test method for &#8216;AbtDownloadManager.testRetrievePackageTree()&#8217;
-</p>
-  </div>
-<div class="sourcecode">
-  <p class="source-link">[ <a href="javascript:toggleSource('M000080_source')" id="l_M000080_source">show source</a> ]</p>
-  <div id="M000080_source" class="dyn-source">
-<pre>
-    <span class="ruby-comment cmt"># File TestAbtDownloadManager.rb, line 52</span>
-52:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">testRetrievePackageTree</span>()
-53:     <span class="ruby-identifier">assert</span>( <span class="ruby-ivar">@download</span>.<span class="ruby-identifier">retrievePackageTree</span>( <span class="ruby-value str">&quot;dummy&quot;</span> ), <span class="ruby-value str">&quot;testRetrievePackageTree()&quot;</span> )
+    <span class="ruby-comment cmt"># File TestAbtDownloadManager.rb, line 51</span>
+51:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">testRetrievePackageSource</span>()
+52:     <span class="ruby-identifier">assert</span>( <span class="ruby-ivar">@download</span>.<span class="ruby-identifier">retrievePackageSource</span>( <span class="ruby-value str">&quot;ipc&quot;</span>, <span class="ruby-value str">&quot;/tmp&quot;</span> ), 
+53:                                     <span class="ruby-value str">&quot;testRetrievePackageSource()&quot;</span> )
 54:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
@@ -220,7 +222,29 @@ Test method for &#8216;AbtDownloadManager.testRetrievePackageTree()&#8217;
 </div>
 <div class="method">
   <div class="title">
-    <a name="M000082"></a><b>testUpdatePackage</b>()
+    <a name="M000085"></a><b>testRetrievePackageTree</b>()
+  </div>
+  <div class="description">
+  <p>
+Test method for &#8216;AbtDownloadManager.testRetrievePackageTree()&#8217;
+</p>
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000085_source')" id="l_M000085_source">show source</a> ]</p>
+  <div id="M000085_source" class="dyn-source">
+<pre>
+    <span class="ruby-comment cmt"># File TestAbtDownloadManager.rb, line 59</span>
+59:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">testRetrievePackageTree</span>()
+60:     <span class="ruby-identifier">assert</span>( <span class="ruby-ivar">@download</span>.<span class="ruby-identifier">retrievePackageTree</span>( <span class="ruby-value str">&quot;dummy&quot;</span> ), 
+61:                                       <span class="ruby-value str">&quot;testRetrievePackageTree()&quot;</span> )
+62:   <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000087"></a><b>testUpdatePackage</b>()
   </div>
   <div class="description">
   <p>
@@ -228,20 +252,20 @@ Test method for &#8216;AbtDownloadManager.testUpdatePackage()&#8217;
 </p>
   </div>
 <div class="sourcecode">
-  <p class="source-link">[ <a href="javascript:toggleSource('M000082_source')" id="l_M000082_source">show source</a> ]</p>
-  <div id="M000082_source" class="dyn-source">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000087_source')" id="l_M000087_source">show source</a> ]</p>
+  <div id="M000087_source" class="dyn-source">
 <pre>
-    <span class="ruby-comment cmt"># File TestAbtDownloadManager.rb, line 66</span>
-66:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">testUpdatePackage</span>()
-67:     <span class="ruby-identifier">assert</span>( <span class="ruby-ivar">@download</span>.<span class="ruby-identifier">updatePackage</span>(), <span class="ruby-value str">&quot;testUpdatePackage()&quot;</span> )
-68:   <span class="ruby-keyword kw">end</span>
+    <span class="ruby-comment cmt"># File TestAbtDownloadManager.rb, line 74</span>
+74:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">testUpdatePackage</span>()
+75:     <span class="ruby-identifier">assert</span>( <span class="ruby-ivar">@download</span>.<span class="ruby-identifier">updatePackage</span>(), <span class="ruby-value str">&quot;testUpdatePackage()&quot;</span> )
+76:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>
 </div>
 <div class="method">
   <div class="title">
-    <a name="M000083"></a><b>testUpdatePackageTree</b>()
+    <a name="M000088"></a><b>testUpdatePackageTree</b>()
   </div>
   <div class="description">
   <p>
@@ -249,13 +273,13 @@ Test method for &#8216;AbtDownloadManager.testUpdatePackageTree()&#8217;
 </p>
   </div>
 <div class="sourcecode">
-  <p class="source-link">[ <a href="javascript:toggleSource('M000083_source')" id="l_M000083_source">show source</a> ]</p>
-  <div id="M000083_source" class="dyn-source">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000088_source')" id="l_M000088_source">show source</a> ]</p>
+  <div id="M000088_source" class="dyn-source">
 <pre>
-    <span class="ruby-comment cmt"># File TestAbtDownloadManager.rb, line 73</span>
-73:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">testUpdatePackageTree</span>()
-74:     <span class="ruby-identifier">assert</span>( <span class="ruby-ivar">@download</span>.<span class="ruby-identifier">updatePackageTree</span>(), <span class="ruby-value str">&quot;testUpdatePackageTree()&quot;</span> )
-75:   <span class="ruby-keyword kw">end</span>
+    <span class="ruby-comment cmt"># File TestAbtDownloadManager.rb, line 81</span>
+81:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">testUpdatePackageTree</span>()
+82:     <span class="ruby-identifier">assert</span>( <span class="ruby-ivar">@download</span>.<span class="ruby-identifier">updatePackageTree</span>(), <span class="ruby-value str">&quot;testUpdatePackageTree()&quot;</span> )
+83:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>

@@ -118,19 +118,20 @@ Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
 
   <div class="sectiontitle">Methods</div>
   <ul>
-  <li><a href="#M000047">setup</a></li>
-  <li><a href="#M000059">testGenerateHTMLPackageListing</a></li>
-  <li><a href="#M000056">testSearchPackageDescriptions</a></li>
-  <li><a href="#M000055">testShowFileOwner</a></li>
-  <li><a href="#M000051">testShowFrozenPackages</a></li>
-  <li><a href="#M000049">testShowInstalledPackages</a></li>
-  <li><a href="#M000054">testShowJournal</a></li>
-  <li><a href="#M000052">testShowPackageDependencies</a></li>
-  <li><a href="#M000048">testShowPackageDetails</a></li>
-  <li><a href="#M000050">testShowPackageLog</a></li>
-  <li><a href="#M000057">testShowQueue</a></li>
-  <li><a href="#M000053">testShowUntrackedFiles</a></li>
-  <li><a href="#M000058">testShowUpdates</a></li>
+  <li><a href="#M000048">setup</a></li>
+  <li><a href="#M000049">teardown</a></li>
+  <li><a href="#M000061">testGenerateHTMLPackageListing</a></li>
+  <li><a href="#M000058">testSearchPackageDescriptions</a></li>
+  <li><a href="#M000057">testShowFileOwner</a></li>
+  <li><a href="#M000053">testShowFrozenPackages</a></li>
+  <li><a href="#M000051">testShowInstalledPackages</a></li>
+  <li><a href="#M000056">testShowJournal</a></li>
+  <li><a href="#M000054">testShowPackageDependencies</a></li>
+  <li><a href="#M000050">testShowPackageDetails</a></li>
+  <li><a href="#M000052">testShowPackageLog</a></li>
+  <li><a href="#M000059">testShowQueue</a></li>
+  <li><a href="#M000055">testShowUntrackedFiles</a></li>
+  <li><a href="#M000060">testShowUpdates</a></li>
   </ul>
 
 
@@ -141,17 +142,17 @@ Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
 <div class="sectiontitle">Public Instance methods</div>
 <div class="method">
   <div class="title">
-    <a name="M000047"></a><b>setup</b>()
+    <a name="M000048"></a><b>setup</b>()
   </div>
   <div class="description">
   <p>
-<a href="TestAbtReportManager.html#M000047">setup</a> method for testing <a
+<a href="TestAbtReportManager.html#M000048">setup</a> method for testing <a
 href="AbtReportManager.html">AbtReportManager</a>.
 </p>
   </div>
 <div class="sourcecode">
-  <p class="source-link">[ <a href="javascript:toggleSource('M000047_source')" id="l_M000047_source">show source</a> ]</p>
-  <div id="M000047_source" class="dyn-source">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000048_source')" id="l_M000048_source">show source</a> ]</p>
+  <div id="M000048_source" class="dyn-source">
 <pre>
     <span class="ruby-comment cmt"># File TestAbtReportManager.rb, line 37</span>
 37:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">setup</span>
@@ -163,7 +164,28 @@ href="AbtReportManager.html">AbtReportManager</a>.
 </div>
 <div class="method">
   <div class="title">
-    <a name="M000059"></a><b>testGenerateHTMLPackageListing</b>()
+    <a name="M000049"></a><b>teardown</b>()
+  </div>
+  <div class="description">
+  <p>
+<a href="TestAbtReportManager.html#M000049">teardown</a> method to cleanup
+after testing.
+</p>
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000049_source')" id="l_M000049_source">show source</a> ]</p>
+  <div id="M000049_source" class="dyn-source">
+<pre>
+    <span class="ruby-comment cmt"># File TestAbtReportManager.rb, line 44</span>
+44:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">teardown</span>
+45:   <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000061"></a><b>testGenerateHTMLPackageListing</b>()
   </div>
   <div class="description">
   <p>
@@ -172,20 +194,21 @@ Test method for
 </p>
   </div>
 <div class="sourcecode">
-  <p class="source-link">[ <a href="javascript:toggleSource('M000059_source')" id="l_M000059_source">show source</a> ]</p>
-  <div id="M000059_source" class="dyn-source">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000061_source')" id="l_M000061_source">show source</a> ]</p>
+  <div id="M000061_source" class="dyn-source">
 <pre>
-     <span class="ruby-comment cmt"># File TestAbtReportManager.rb, line 127</span>
-127:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">testGenerateHTMLPackageListing</span>
-128:     <span class="ruby-identifier">assert</span>( <span class="ruby-ivar">@report</span>.<span class="ruby-identifier">generateHTMLPackageListing</span>(), <span class="ruby-value str">&quot;testGenerateHTMLPackageListing()&quot;</span> )
-129:   <span class="ruby-keyword kw">end</span>
+     <span class="ruby-comment cmt"># File TestAbtReportManager.rb, line 136</span>
+136:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">testGenerateHTMLPackageListing</span>
+137:     <span class="ruby-identifier">assert</span>( <span class="ruby-ivar">@report</span>.<span class="ruby-identifier">generateHTMLPackageListing</span>(), 
+138:                           <span class="ruby-value str">&quot;testGenerateHTMLPackageListing()&quot;</span> )
+139:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>
 </div>
 <div class="method">
   <div class="title">
-    <a name="M000056"></a><b>testSearchPackageDescriptions</b>()
+    <a name="M000058"></a><b>testSearchPackageDescriptions</b>()
   </div>
   <div class="description">
   <p>
@@ -194,20 +217,21 @@ Test method for
 </p>
   </div>
 <div class="sourcecode">
-  <p class="source-link">[ <a href="javascript:toggleSource('M000056_source')" id="l_M000056_source">show source</a> ]</p>
-  <div id="M000056_source" class="dyn-source">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000058_source')" id="l_M000058_source">show source</a> ]</p>
+  <div id="M000058_source" class="dyn-source">
 <pre>
-     <span class="ruby-comment cmt"># File TestAbtReportManager.rb, line 102</span>
-102:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">testSearchPackageDescriptions</span>
-103:     <span class="ruby-identifier">assert</span>( <span class="ruby-ivar">@report</span>.<span class="ruby-identifier">searchPackageDescriptions</span>( <span class="ruby-value str">&quot;Special text&quot;</span> ), <span class="ruby-value str">&quot;testSearchPackageDescriptions()&quot;</span> )
-104:   <span class="ruby-keyword kw">end</span>
+     <span class="ruby-comment cmt"># File TestAbtReportManager.rb, line 110</span>
+110:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">testSearchPackageDescriptions</span>
+111:     <span class="ruby-identifier">assert</span>( <span class="ruby-ivar">@report</span>.<span class="ruby-identifier">searchPackageDescriptions</span>( <span class="ruby-value str">&quot;Special text&quot;</span> ), 
+112:                                   <span class="ruby-value str">&quot;testSearchPackageDescriptions()&quot;</span> )
+113:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>
 </div>
 <div class="method">
   <div class="title">
-    <a name="M000055"></a><b>testShowFileOwner</b>()
+    <a name="M000057"></a><b>testShowFileOwner</b>()
   </div>
   <div class="description">
   <p>
@@ -215,20 +239,20 @@ Test method for &#8216;AbtReportManager.testShowFileOwner()&#8217;
 </p>
   </div>
 <div class="sourcecode">
-  <p class="source-link">[ <a href="javascript:toggleSource('M000055_source')" id="l_M000055_source">show source</a> ]</p>
-  <div id="M000055_source" class="dyn-source">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000057_source')" id="l_M000057_source">show source</a> ]</p>
+  <div id="M000057_source" class="dyn-source">
 <pre>
-    <span class="ruby-comment cmt"># File TestAbtReportManager.rb, line 95</span>
-95:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">testShowFileOwner</span>
-96:     <span class="ruby-identifier">assert</span>( <span class="ruby-ivar">@report</span>.<span class="ruby-identifier">showFileOwner</span>( <span class="ruby-value str">&quot;ipcFile&quot;</span> ), <span class="ruby-value str">&quot;testShowFileOwner()&quot;</span> )
-97:   <span class="ruby-keyword kw">end</span>
+     <span class="ruby-comment cmt"># File TestAbtReportManager.rb, line 103</span>
+103:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">testShowFileOwner</span>
+104:     <span class="ruby-identifier">assert</span>( <span class="ruby-ivar">@report</span>.<span class="ruby-identifier">showFileOwner</span>( <span class="ruby-value str">&quot;ipcFile&quot;</span> ), <span class="ruby-value str">&quot;testShowFileOwner()&quot;</span> )
+105:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>
 </div>
 <div class="method">
   <div class="title">
-    <a name="M000051"></a><b>testShowFrozenPackages</b>()
+    <a name="M000053"></a><b>testShowFrozenPackages</b>()
   </div>
   <div class="description">
   <p>
@@ -236,20 +260,20 @@ Test method for &#8216;AbtReportManager.testShowFrozenPackages()&#8217;
 </p>
   </div>
 <div class="sourcecode">
-  <p class="source-link">[ <a href="javascript:toggleSource('M000051_source')" id="l_M000051_source">show source</a> ]</p>
-  <div id="M000051_source" class="dyn-source">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000053_source')" id="l_M000053_source">show source</a> ]</p>
+  <div id="M000053_source" class="dyn-source">
 <pre>
-    <span class="ruby-comment cmt"># File TestAbtReportManager.rb, line 67</span>
-67:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">testShowFrozenPackages</span>
-68:     <span class="ruby-identifier">assert</span>( <span class="ruby-ivar">@report</span>.<span class="ruby-identifier">showFrozenPackages</span>(), <span class="ruby-value str">&quot;testShowFrozenPackages()&quot;</span> )
-69:   <span class="ruby-keyword kw">end</span>
+    <span class="ruby-comment cmt"># File TestAbtReportManager.rb, line 75</span>
+75:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">testShowFrozenPackages</span>
+76:     <span class="ruby-identifier">assert</span>( <span class="ruby-ivar">@report</span>.<span class="ruby-identifier">showFrozenPackages</span>(), <span class="ruby-value str">&quot;testShowFrozenPackages()&quot;</span> )
+77:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>
 </div>
 <div class="method">
   <div class="title">
-    <a name="M000049"></a><b>testShowInstalledPackages</b>()
+    <a name="M000051"></a><b>testShowInstalledPackages</b>()
   </div>
   <div class="description">
   <p>
@@ -257,20 +281,20 @@ Test method for &#8216;AbtReportManager.testShowInstalledPackages()&#8217;
 </p>
   </div>
 <div class="sourcecode">
-  <p class="source-link">[ <a href="javascript:toggleSource('M000049_source')" id="l_M000049_source">show source</a> ]</p>
-  <div id="M000049_source" class="dyn-source">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000051_source')" id="l_M000051_source">show source</a> ]</p>
+  <div id="M000051_source" class="dyn-source">
 <pre>
-    <span class="ruby-comment cmt"># File TestAbtReportManager.rb, line 51</span>
-51:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">testShowInstalledPackages</span>
-52:     <span class="ruby-identifier">assert</span>( <span class="ruby-ivar">@report</span>.<span class="ruby-identifier">showInstalledPackages</span>(), <span class="ruby-value str">&quot;testShowInstalledPackages()&quot;</span> )
-53:   <span class="ruby-keyword kw">end</span>
+    <span class="ruby-comment cmt"># File TestAbtReportManager.rb, line 57</span>
+57:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">testShowInstalledPackages</span>
+58:     <span class="ruby-identifier">assert</span>( <span class="ruby-ivar">@report</span>.<span class="ruby-identifier">showInstalledPackages</span>(), <span class="ruby-value str">&quot;testShowInstalledPackages()&quot;</span> )
+59:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>
 </div>
 <div class="method">
   <div class="title">
-    <a name="M000054"></a><b>testShowJournal</b>()
+    <a name="M000056"></a><b>testShowJournal</b>()
   </div>
   <div class="description">
   <p>
@@ -278,20 +302,20 @@ Test method for &#8216;AbtReportManager.testShowJournal()&#8217;
 </p>
   </div>
 <div class="sourcecode">
-  <p class="source-link">[ <a href="javascript:toggleSource('M000054_source')" id="l_M000054_source">show source</a> ]</p>
-  <div id="M000054_source" class="dyn-source">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000056_source')" id="l_M000056_source">show source</a> ]</p>
+  <div id="M000056_source" class="dyn-source">
 <pre>
-    <span class="ruby-comment cmt"># File TestAbtReportManager.rb, line 88</span>
-88:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">testShowJournal</span>
-89:     <span class="ruby-identifier">assert</span>( <span class="ruby-ivar">@report</span>.<span class="ruby-identifier">showJournal</span>( <span class="ruby-identifier">$JOURNAL</span> ), <span class="ruby-value str">&quot;testShowJournal()&quot;</span> )
-90:   <span class="ruby-keyword kw">end</span>
+    <span class="ruby-comment cmt"># File TestAbtReportManager.rb, line 96</span>
+96:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">testShowJournal</span>
+97:     <span class="ruby-identifier">assert</span>( <span class="ruby-ivar">@report</span>.<span class="ruby-identifier">showJournal</span>( <span class="ruby-identifier">$JOURNAL</span> ), <span class="ruby-value str">&quot;testShowJournal()&quot;</span> )
+98:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>
 </div>
 <div class="method">
   <div class="title">
-    <a name="M000052"></a><b>testShowPackageDependencies</b>()
+    <a name="M000054"></a><b>testShowPackageDependencies</b>()
   </div>
   <div class="description">
   <p>
@@ -300,20 +324,20 @@ Test method for
 </p>
   </div>
 <div class="sourcecode">
-  <p class="source-link">[ <a href="javascript:toggleSource('M000052_source')" id="l_M000052_source">show source</a> ]</p>
-  <div id="M000052_source" class="dyn-source">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000054_source')" id="l_M000054_source">show source</a> ]</p>
+  <div id="M000054_source" class="dyn-source">
 <pre>
-    <span class="ruby-comment cmt"># File TestAbtReportManager.rb, line 74</span>
-74:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">testShowPackageDependencies</span>
-75:     <span class="ruby-identifier">assert</span>( <span class="ruby-keyword kw">false</span>, <span class="ruby-value str">&quot;testShowPackageDependencies()&quot;</span> )
-76:   <span class="ruby-keyword kw">end</span>
+    <span class="ruby-comment cmt"># File TestAbtReportManager.rb, line 82</span>
+82:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">testShowPackageDependencies</span>
+83:     <span class="ruby-identifier">assert</span>( <span class="ruby-keyword kw">false</span>, <span class="ruby-value str">&quot;testShowPackageDependencies()&quot;</span> )
+84:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>
 </div>
 <div class="method">
   <div class="title">
-    <a name="M000048"></a><b>testShowPackageDetails</b>()
+    <a name="M000050"></a><b>testShowPackageDetails</b>()
   </div>
   <div class="description">
   <p>
@@ -321,20 +345,20 @@ Test method for &#8216;AbtReportManager.testShowPackageDetails()&#8217;
 </p>
   </div>
 <div class="sourcecode">
-  <p class="source-link">[ <a href="javascript:toggleSource('M000048_source')" id="l_M000048_source">show source</a> ]</p>
-  <div id="M000048_source" class="dyn-source">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000050_source')" id="l_M000050_source">show source</a> ]</p>
+  <div id="M000050_source" class="dyn-source">
 <pre>
-    <span class="ruby-comment cmt"># File TestAbtReportManager.rb, line 44</span>
-44:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">testShowPackageDetails</span>
-45:     <span class="ruby-identifier">assert</span>( <span class="ruby-ivar">@report</span>.<span class="ruby-identifier">showPackageDetails</span>( <span class="ruby-value str">&quot;ipc&quot;</span> ), <span class="ruby-value str">&quot;testShowPackageDetails()&quot;</span> )
-46:   <span class="ruby-keyword kw">end</span>
+    <span class="ruby-comment cmt"># File TestAbtReportManager.rb, line 50</span>
+50:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">testShowPackageDetails</span>
+51:     <span class="ruby-identifier">assert</span>( <span class="ruby-ivar">@report</span>.<span class="ruby-identifier">showPackageDetails</span>( <span class="ruby-value str">&quot;ipc&quot;</span> ), <span class="ruby-value str">&quot;testShowPackageDetails()&quot;</span> )
+52:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>
 </div>
 <div class="method">
   <div class="title">
-    <a name="M000050"></a><b>testShowPackageLog</b>()
+    <a name="M000052"></a><b>testShowPackageLog</b>()
   </div>
   <div class="description">
   <p>
@@ -342,22 +366,24 @@ Test method for &#8216;AbtReportManager.testShowPackageLog()&#8217;
 </p>
   </div>
 <div class="sourcecode">
-  <p class="source-link">[ <a href="javascript:toggleSource('M000050_source')" id="l_M000050_source">show source</a> ]</p>
-  <div id="M000050_source" class="dyn-source">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000052_source')" id="l_M000052_source">show source</a> ]</p>
+  <div id="M000052_source" class="dyn-source">
 <pre>
-    <span class="ruby-comment cmt"># File TestAbtReportManager.rb, line 58</span>
-58:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">testShowPackageLog</span>
-59:     <span class="ruby-identifier">assert</span>( <span class="ruby-ivar">@report</span>.<span class="ruby-identifier">showPackageLog</span>( <span class="ruby-value str">&quot;ipc&quot;</span>, <span class="ruby-value str">&quot;install&quot;</span> ), <span class="ruby-value str">&quot;testShowPackageLog()&quot;</span> )
-60:     <span class="ruby-identifier">assert</span>( <span class="ruby-ivar">@report</span>.<span class="ruby-identifier">showPackageLog</span>( <span class="ruby-value str">&quot;ipc&quot;</span>, <span class="ruby-value str">&quot;build&quot;</span> ), <span class="ruby-value str">&quot;testShowPackageLog()&quot;</span> )
-61:     <span class="ruby-identifier">assert</span>( <span class="ruby-ivar">@report</span>.<span class="ruby-identifier">showPackageLog</span>( <span class="ruby-value str">&quot;ipc&quot;</span>, <span class="ruby-value str">&quot;integrity&quot;</span> ), <span class="ruby-value str">&quot;testShowPackageLog()&quot;</span> )
-62:   <span class="ruby-keyword kw">end</span>
+    <span class="ruby-comment cmt"># File TestAbtReportManager.rb, line 64</span>
+64:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">testShowPackageLog</span>
+65:     <span class="ruby-identifier">assert</span>( <span class="ruby-ivar">@report</span>.<span class="ruby-identifier">showPackageLog</span>( <span class="ruby-value str">&quot;ipc&quot;</span>, <span class="ruby-value str">&quot;install&quot;</span> ), 
+66:                                     <span class="ruby-value str">&quot;testShowPackageLog()&quot;</span> )
+67:     <span class="ruby-identifier">assert</span>( <span class="ruby-ivar">@report</span>.<span class="ruby-identifier">showPackageLog</span>( <span class="ruby-value str">&quot;ipc&quot;</span>, <span class="ruby-value str">&quot;build&quot;</span> ), <span class="ruby-value str">&quot;testShowPackageLog()&quot;</span> )
+68:     <span class="ruby-identifier">assert</span>( <span class="ruby-ivar">@report</span>.<span class="ruby-identifier">showPackageLog</span>( <span class="ruby-value str">&quot;ipc&quot;</span>, <span class="ruby-value str">&quot;integrity&quot;</span> ), 
+69:                                      <span class="ruby-value str">&quot;testShowPackageLog()&quot;</span> )
+70:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>
 </div>
 <div class="method">
   <div class="title">
-    <a name="M000057"></a><b>testShowQueue</b>()
+    <a name="M000059"></a><b>testShowQueue</b>()
   </div>
   <div class="description">
   <p>
@@ -365,24 +391,24 @@ Test method for &#8216;AbtReportManager.testShowQueue()&#8217;
 </p>
   </div>
 <div class="sourcecode">
-  <p class="source-link">[ <a href="javascript:toggleSource('M000057_source')" id="l_M000057_source">show source</a> ]</p>
-  <div id="M000057_source" class="dyn-source">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000059_source')" id="l_M000059_source">show source</a> ]</p>
+  <div id="M000059_source" class="dyn-source">
 <pre>
-     <span class="ruby-comment cmt"># File TestAbtReportManager.rb, line 109</span>
-109:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">testShowQueue</span>
-110:                 <span class="ruby-keyword kw">if</span> ( <span class="ruby-ivar">@report</span>.<span class="ruby-identifier">showQueue</span>( <span class="ruby-value str">&quot;install&quot;</span> ) )
-111:                         <span class="ruby-identifier">assert</span>(<span class="ruby-keyword kw">false</span>, <span class="ruby-value str">&quot;testShowQueue()&quot;</span>)
-112:                 <span class="ruby-keyword kw">else</span>
-113:                         <span class="ruby-identifier">assert</span>(<span class="ruby-keyword kw">true</span>, <span class="ruby-value str">&quot;testShowQueue()&quot;</span>)
-114:                 <span class="ruby-keyword kw">end</span>
-115:   <span class="ruby-keyword kw">end</span>
+     <span class="ruby-comment cmt"># File TestAbtReportManager.rb, line 118</span>
+118:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">testShowQueue</span>
+119:     <span class="ruby-keyword kw">if</span> ( <span class="ruby-ivar">@report</span>.<span class="ruby-identifier">showQueue</span>( <span class="ruby-value str">&quot;install&quot;</span> ) )
+120:       <span class="ruby-identifier">assert</span>(<span class="ruby-keyword kw">false</span>, <span class="ruby-value str">&quot;testShowQueue()&quot;</span>)
+121:     <span class="ruby-keyword kw">else</span>
+122:       <span class="ruby-identifier">assert</span>(<span class="ruby-keyword kw">true</span>, <span class="ruby-value str">&quot;testShowQueue()&quot;</span>)
+123:     <span class="ruby-keyword kw">end</span>
+124:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>
 </div>
 <div class="method">
   <div class="title">
-    <a name="M000053"></a><b>testShowUntrackedFiles</b>()
+    <a name="M000055"></a><b>testShowUntrackedFiles</b>()
   </div>
   <div class="description">
   <p>
@@ -390,20 +416,20 @@ Test method for &#8216;AbtReportManager.testShowUntrackedFiles()&#8217;
 </p>
   </div>
 <div class="sourcecode">
-  <p class="source-link">[ <a href="javascript:toggleSource('M000053_source')" id="l_M000053_source">show source</a> ]</p>
-  <div id="M000053_source" class="dyn-source">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000055_source')" id="l_M000055_source">show source</a> ]</p>
+  <div id="M000055_source" class="dyn-source">
 <pre>
-    <span class="ruby-comment cmt"># File TestAbtReportManager.rb, line 81</span>
-81:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">testShowUntrackedFiles</span>
-82:     <span class="ruby-identifier">assert</span>( <span class="ruby-ivar">@report</span>.<span class="ruby-identifier">showUntrackedFiles</span>(), <span class="ruby-value str">&quot;testShowUntrackedFiles()&quot;</span> )
-83:   <span class="ruby-keyword kw">end</span>
+    <span class="ruby-comment cmt"># File TestAbtReportManager.rb, line 89</span>
+89:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">testShowUntrackedFiles</span>
+90:     <span class="ruby-identifier">assert</span>( <span class="ruby-ivar">@report</span>.<span class="ruby-identifier">showUntrackedFiles</span>(), <span class="ruby-value str">&quot;testShowUntrackedFiles()&quot;</span> )
+91:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>
 </div>
 <div class="method">
   <div class="title">
-    <a name="M000058"></a><b>testShowUpdates</b>()
+    <a name="M000060"></a><b>testShowUpdates</b>()
   </div>
   <div class="description">
   <p>
@@ -411,13 +437,13 @@ Test method for &#8216;AbtReportManager.testShowUpdates()&#8217;
 </p>
   </div>
 <div class="sourcecode">
-  <p class="source-link">[ <a href="javascript:toggleSource('M000058_source')" id="l_M000058_source">show source</a> ]</p>
-  <div id="M000058_source" class="dyn-source">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000060_source')" id="l_M000060_source">show source</a> ]</p>
+  <div id="M000060_source" class="dyn-source">
 <pre>
-     <span class="ruby-comment cmt"># File TestAbtReportManager.rb, line 120</span>
-120:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">testShowUpdates</span>
-121:     <span class="ruby-identifier">assert</span>( <span class="ruby-ivar">@report</span>.<span class="ruby-identifier">showUpdates</span>( <span class="ruby-value str">&quot;ipc&quot;</span> ), <span class="ruby-value str">&quot;testShowUpdates()&quot;</span> )
-122:   <span class="ruby-keyword kw">end</span>
+     <span class="ruby-comment cmt"># File TestAbtReportManager.rb, line 129</span>
+129:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">testShowUpdates</span>
+130:     <span class="ruby-identifier">assert</span>( <span class="ruby-ivar">@report</span>.<span class="ruby-identifier">showUpdates</span>( <span class="ruby-value str">&quot;ipc&quot;</span> ), <span class="ruby-value str">&quot;testShowUpdates()&quot;</span> )
+131:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>
