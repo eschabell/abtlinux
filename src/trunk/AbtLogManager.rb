@@ -134,12 +134,12 @@ class AbtLogManager
     require package
     sw        = eval( "#{package.capitalize}.new" )
     details   = sw.details
-    buildFile = "#{$PACKAGE_INSTALLED}/#{details['Source location']}" + 
+    buildLog = "#{$PACKAGE_INSTALLED}/#{details['Source location']}" + 
       "/#{details['Source location']}.build"
     #self.logToJournal( "DEBUG: buildFile is - #{buildFile}" )
     
     # make sure the build file exists.
-    if ( !File.exist?( buildFile ) )
+    if ( !File.exist?( buildLog ) )
       return false
     end
     
