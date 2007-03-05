@@ -40,7 +40,7 @@ class AbtLogManager
   # otherwise false.
   ##
   def logPackageIntegrity( package )
-    # TODO: implement logPackageIntegrity.
+    # FIXME: implement logPackageIntegrity.
   end
   
   

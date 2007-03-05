@@ -55,7 +55,7 @@ class TestAbtLogManager < Test::Unit::TestCase
   ## 
   # Test method for 'AbtLogManager.testLogPackageInstall()'
   ##
-  # TODO: sort out a setup for this test. 
+  # FIXME: sort out a setup for this test. 
   #def testLogPackageInstall()
   #  assert( @log.logPackageInstall( "ipc" ), "testLogPackageInstall()" )
   #end

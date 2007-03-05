@@ -117,10 +117,11 @@ class AbtPackageManager
     if ( !sw.install )
       logger.logToJournal( "Failed to process install section in the " + 
         "package description of #{package}." )
+      # FIXME: APM rollback any installed files (use install log).
       return false
     else
       logger.logPackageInstall( sw.name.downcase )
-      # TODO: logger.logPackageIntegrity( sw.name.downcase )
+      # FIXME: logger.logPackageIntegrity( sw.name.downcase ).
       logger.logToJournal( "DEBUG: finished #{package} install section." )
     end
     

@@ -294,12 +294,10 @@ class AbtPackage
   def install
     Dir.chdir( "#{$BUILD_LOCATION}/#{@srcDir}" )
     
-    # TODO: install section, can this be done without installwatch?
     if( !system( "installwatch --transl=no --backup=no " +
           "--exclude=/dev,/proc,/tmp,/var/tmp,/usr/src,/sys " +
           "--logfile=#{$ABT_TMP}/#{@srcDir}.watch make install" ) )
       puts "DEBUG: [AbtPackage.install] - install section failed."
-      # TODO: install section, rollback any installed files (use install log).
       return false
     end
     
