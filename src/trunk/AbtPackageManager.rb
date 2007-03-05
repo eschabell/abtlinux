@@ -63,8 +63,8 @@ class AbtPackageManager
       # cleanup install log as it is incomplete.
       File.delete( logFile )
     else
-      puts "DEBUG: attempt to use APM:rollBack( type ) incorrectly, "
-        + "unsupported type?"
+      puts "DEBUG: attempt to use APM:rollBack( type ) incorrectly, " +
+        "unsupported type?"
       return false
     end
     
