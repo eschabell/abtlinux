@@ -31,6 +31,47 @@ class AbtPackageManager
   
   private
   
+  ##
+  # Attempts to roll back a type of action. Current supported types are
+  # install. Removes installed files and logs as needed.
+  #
+  # <b>PARAM</b> <i>String</i> - the type of rollback option to attempt.
+  # <b>PARAM</b> <i>Array</i> - The details of the package for which the
+  # rollback action is being called.
+  #
+  # <b>RETURN</b> <i>boolean</i> - True if the action rolls back, otherwise
+  # false.
+  ##
+  def rollBack( type, details )
+    logFile = "#{$PACKAGE_INSTALLED}/#{details['Source location']}/"
+    
+    case type
+    when "install"
+      logFile = logFile + "#{details['Source location']}.install"
+      
+      file = File.new( logFile, "r" )
+      while ( line = file.gets )
+        #puts "DEBUG: about to remove ***#{line.chomp}***"
+        if ( File.file?( line.chomp ) )
+          File.delete( line.chomp )
+        else
+          puts "DEBUG: file not exist? ***#{File.basename( line.chomp )}***"
+        end
+      end
+      file.close
+      
+      # cleanup install log as it is incomplete.
+      File.delete( logFile )
+    else
+      puts "DEBUG: attempt to use APM:rollBack( type ) incorrectly, "
+        + "unsupported type?"
+      return false
+    end
+    
+    return true
+  end
+
+
   public
   
   ##
@@ -115,9 +156,13 @@ class AbtPackageManager
     # install section.
     puts "\n*** Processing the INSTALL section for #{package}. ***"
     if ( !sw.install )
+      # rollback installed files if any and remove install log.
       logger.logToJournal( "Failed to process install section in the " + 
         "package description of #{package}." )
-      # FIXME: APM rollback any installed files (use install log).
+      logger.logPackageInstall( sw.name.downcase )
+      logger.logToJournal( 
+        "***Starting rollback of #{package} install and removing install log." )
+      self.rollBack( "install", details )
       return false
     else
       logger.logPackageInstall( sw.name.downcase )
