@@ -116,8 +116,6 @@ class AbtLogManager
       installFile.close
     end
     
-    # cleanup the tmp files.
-    File.delete( tmpInstallLog )
     return true;
   end
   

@@ -166,7 +166,11 @@ class AbtPackageManager
       return false
     else
       logger.logPackageInstall( sw.name.downcase )
-      # FIXME: logger.logPackageIntegrity( sw.name.downcase ).
+      # FIXME: logger.logPackageIntegrity( sw.name.downcase )
+      
+      # cleanup tmp files from installwatch.
+      File.delete( "#{$ABT_TMP}/#{details['Source location']}.watch" )
+
       logger.logToJournal( "DEBUG: finished #{package} install section." )
     end
     
