@@ -29,21 +29,6 @@ class AbtLogManager
   
   protected
   
-  ##
-  # Provides logging of the integrity of all installed files for the given
-  # package. Will be called as part of the logging done during the install
-  # phase.
-  #
-  # <b>PARAM</b> <i>String</i> - Package name.
-  #
-  # <b>RETURN</b> <i>boolean</i> - True if integrity log created successfully,
-  # otherwise false.
-  ##
-  def logPackageIntegrity( package )
-    # FIXME: implement logPackageIntegrity.
-  end
-  
-  
   private
   
   public
@@ -64,6 +49,49 @@ class AbtLogManager
         self.logToJournal( "Created directory: #{dir}." )
       end
     }
+  end
+  
+  ##
+  # Provides logging of the integrity of all installed files for the given
+  # package. Will be called as part of the logging done during the install
+  # phase.
+  #
+  # <b>PARAM</b> <i>String</i> - Package name.
+  #
+  # <b>RETURN</b> <i>boolean</i> - True if integrity log created successfully,
+  # otherwise false.
+  ##
+  def logPackageIntegrity( package )
+    require package
+    sw = eval( "#{package.capitalize}.new" )
+    details = sw.details
+    
+    # our log locations.
+    installLog = "#{$PACKAGE_INSTALLED}/#{details['Source location']}" + 
+      "/#{details['Source location']}.install"
+    integrityLog = "#{$PACKAGE_INSTALLED}/#{details['Source location']}" + 
+      "/#{details['Source location']}.integrity"
+    
+    # get the installed files from the tmp file
+    # into our install log.
+    if ( File.exist?( installLog ) )
+      installFile   = open( installLog, 'r' )
+      integrityFile = open( integrityLog, 'w' )
+
+      # get the integrity for each file, initially just permissions.      
+      IO.foreach( installLog ) do |line|
+        status = File.stat( line.chomp )
+        octal  = sprintf( "%o", status.mode )
+        integrityFile.puts "#{line.chomp}:#{octal}"
+      end
+      
+      installFile.close
+      integrityFile.close
+    else
+      return false  # no install log!
+    end
+    
+    return true;
   end
   
   ##
