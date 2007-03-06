@@ -48,8 +48,7 @@ class TestAbtLogManager < Test::Unit::TestCase
   # Test method for 'AbtLogManager.testLogPackageIntegrity()'
   ## 
   def testLogPackageIntegrity()
-    #assert( @log.logPackageIntegrity( "ipc" ), "testLogPackageIntegrity()" )
-    assert( false, "testLogPackageIntegrity()" )
+    assert( @log.logPackageIntegrity( "ipc" ), "testLogPackageIntegrity()" )
   end
   
   ## 
