@@ -87,11 +87,13 @@ class AbtPackageManager
   # Installs a given package.
   #
   # <b>PARAM</b> <i>String</i> - the name of the package to be installed.
+  # <b>PARAM</b> <i>boolean</i> - true for verbose output from the process,
+  # otherwise false. Default is true.
   #
   # <b>RETURN</b> <i>boolean</i> - True if the package is installed, otherwise
   # false.
   ##
-  def installPackage( package )
+  def installPackage( package, verbose=true )
     require package
     sw = eval( "#{package.capitalize}.new" )
     queuer = AbtQueueManager.new
@@ -103,14 +105,16 @@ class AbtPackageManager
     # TODO:  check deps
     
     # add to install queue.
-    puts "\n*** Adding #{package} to the INSTALL QUEUE. ***"
+    puts "\n*** Adding #{package} to the INSTALL QUEUE. ***" if ( verbose )
+    
     if ( !queuer.actionPackageQueue( package, "install", "add" ) )
       logger.logToJournal( "Failed to add #{package} to install queue." )
       return false
     end
     
     # pre section.
-    puts "\n*** Processing the PRE section for #{package}. ***"
+    puts "\n*** Processing the PRE section for #{package}. ***" if (verbose )
+    
     if ( !sw.pre )
       logger.logToJournal( "Failed to process pre-section in the " + 
         "package description of #{package}." )
@@ -120,8 +124,9 @@ class AbtPackageManager
     end
     
     # configure section.
-    puts "\n*** Processing the CONFIGURE section for #{package}. ***"
-    if ( !sw.configure )
+    puts "\n*** Processing the CONFIGURE section for #{package}. ***" if ( verbose )
+    
+    if ( !sw.configure( verbose ) )
       logger.logToJournal( "Failed to process configure section in the " + 
         "package description of #{package}." )
       return false
@@ -130,8 +135,9 @@ class AbtPackageManager
     end
     
     # build section.
-    puts "\n*** Processing the BUILD section for #{package}. ***"
-    if ( !sw.build )
+    puts "\n*** Processing the BUILD section for #{package}. ***" if ( verbose )
+    
+    if ( !sw.build( verbose ) )
       logger.logToJournal( "Failed to process build section in the " + 
         "package description of #{package}." )
       return false
@@ -144,7 +150,8 @@ class AbtPackageManager
     end
     
     # preinstall section.
-    puts "\n*** Processing the PREINSTALL section for #{package}. ***"
+    puts "\n*** Processing the PREINSTALL section for #{package}. ***" if ( verbose )
+    
     if ( !sw.preinstall )
       logger.logToJournal( "Failed to process preinstall section in the " + 
         "package description of #{package}." )
@@ -154,7 +161,8 @@ class AbtPackageManager
     end
     
     # install section.
-    puts "\n*** Processing the INSTALL section for #{package}. ***"
+    puts "\n*** Processing the INSTALL section for #{package}. ***" if ( verbose )
+
     if ( !sw.install )
       # rollback installed files if any and remove install log.
       logger.logToJournal( "Failed to process install section in the " + 
@@ -175,7 +183,8 @@ class AbtPackageManager
     end
     
     # post section.
-    puts "\n*** Processing the POST section for #{package}. ***"
+    puts "\n*** Processing the POST section for #{package}. ***" if ( verbose )
+    
     if ( !sw.post )
       logger.logToJournal( "Failed to process post section in the " + 
         "package description of #{package}." )
@@ -185,7 +194,8 @@ class AbtPackageManager
     end
     
     # clean out build sources.        
-    puts "\n*** Cleaning up the sources for #{package}. ***"
+    puts "\n*** Cleaning up the sources for #{package}. ***" if ( verbose )
+    
     if ( !sw.removeBuild )
       logger.logToJournal( "Failed to remove the build sources for " + 
         "#{package}." )

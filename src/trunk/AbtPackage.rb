@@ -198,10 +198,13 @@ class AbtPackage
   # Preliminary work will happen here such as downloading the tarball,
   # unpacking it, downloading and applying patches.
   #
+  # <b>PARAM</b> <i>boolean</i> - true if you want to see the verbose output,
+  # otherwise false. Defaults to true.
+  # 
   # <b>RETURNS:</b>  <i>boolean</i> - True if completes sucessfully, 
   # otherwise false.
   ##
-  def pre
+  def pre( verbose=true )
     downloader = AbtDownloadManager.new
     
     # download sources.
@@ -235,19 +238,29 @@ class AbtPackage
   # Don't forget too that it's here where we interact with the user in 
   # case there are optionnal dependencies.
   #
+  # <b>PARAM</b> <i>boolean</i> - true if you want to see the verbose output,
+  # otherwise false. Defaults to true.
+  # 
   # <b>RETURNS:</b>  <i>boolean</i> - True if the completes sucessfully, 
   # otherwise false.
   ##
-  def configure
+  def configure( verbose=true )
+    if ( verbose )
+      command = "./configure --prefix=#{$DEFAULT_PREFIX} | tee " +
+        "#{$PACKAGE_INSTALLED}/#{@srcDir}/#{@srcDir}.configure"
+    else
+      command = "./configure --prefix=#{$DEFAULT_PREFIX} 1> " +
+        "#{$PACKAGE_INSTALLED}/#{@srcDir}/#{@srcDir}.configure 2>&1"
+    end 
+    
     Dir.chdir( "#{$BUILD_LOCATION}/#{@srcDir}" )
     
-    if ( !system( "./configure --prefix=#{$DEFAULT_PREFIX} | tee " +
-        "#{$PACKAGE_INSTALLED}/#{@srcDir}/#{@srcDir}.configure" ) )
+    if ( !system( command ) )
       puts "DEBUG: [AbtPackage.configure] - configure section failed."
       return false
     end
     
-    puts "DEBUG: [AbtPackage.configure] - configure section completed!"
+    puts "\nDEBUG: [AbtPackage.configure] - configure section completed!" if (verbose )
     return true
   end
   
@@ -255,19 +268,27 @@ class AbtPackage
   # Here is where the actual builing of the software starts, 
   # for example running 'make'.
   #
+  # <b>PARAM</b> <i>boolean</i> - true if you want to see the verbose output,
+  # otherwise false. Defaults to true.
+  # 
   # <b>RETURNS:</b>  <i>boolean</i> - True if the completes sucessfully, 
   # otherwise false.
   ##
-  def build
+  def build( verbose=true )
+    if ( verbose )
+      command = "make | tee #{$PACKAGE_INSTALLED}/#{@srcDir}/#{@srcDir}.build"
+    else
+      command = "make > #{$PACKAGE_INSTALLED}/#{@srcDir}/#{@srcDir}.build 2>&1"
+    end 
+
     Dir.chdir( "#{$BUILD_LOCATION}/#{@srcDir}" )
     
-    if( !system( 
-      "make | tee #{$PACKAGE_INSTALLED}/#{@srcDir}/#{@srcDir}.build" ) )
+    if( !system( command ) )
       puts "DEBUG: [AbtPackage.build] - build section failed."
       return false
     end
     
-    puts "DEBUG: [AbtPackage.build] - build section completed!"
+    puts "DEBUG: [AbtPackage.build] - build section completed!" if ( verbose )
     return true
   end
   
@@ -276,10 +297,13 @@ class AbtPackage
   # such as creating new user accounts, dealing with existing configuration 
   # files, etc.
   #
+  # <b>PARAM</b> <i>boolean</i> - true if you want to see the verbose output,
+  # otherwise false. Defaults to true.
+  # 
   # <b>RETURNS:</b>  <i>boolean</i> - True if the completes sucessfully, 
   # otherwise false.
   ##
-  def preinstall    
+  def preinstall( verbose=true )
     # TODO: preinstall section create_group?
     # TODO: preinstall section create_user?
     return true;
@@ -288,20 +312,31 @@ class AbtPackage
   ##
   # All files to be installed are installed here.
   #
+  # <b>PARAM</b> <i>boolean</i> - true if you want to see the verbose output,
+  # otherwise false. Defaults to true.
+  # 
   # <b>RETURNS:</b>  <i>boolean</i> - True if the completes sucessfully, 
   # otherwise false.
   ##
-  def install
+  def install( verbose=true )
+    if ( verbose )
+      command = "installwatch --transl=no --backup=no " +
+          "--exclude=/dev,/proc,/tmp,/var/tmp,/usr/src,/sys " +
+          "--logfile=#{$ABT_TMP}/#{@srcDir}.watch make install"
+    else
+      command = "installwatch --transl=no --backup=no " +
+          "--exclude=/dev,/proc,/tmp,/var/tmp,/usr/src,/sys " +
+          "--logfile=#{$ABT_TMP}/#{@srcDir}.watch make install >/dev/null"
+    end 
+  
     Dir.chdir( "#{$BUILD_LOCATION}/#{@srcDir}" )
     
-    if( !system( "installwatch --transl=no --backup=no " +
-          "--exclude=/dev,/proc,/tmp,/var/tmp,/usr/src,/sys " +
-          "--logfile=#{$ABT_TMP}/#{@srcDir}.watch make install" ) )
+    if( !system( command ) )
       puts "DEBUG: [AbtPackage.install] - install section failed."
       return false
     end
     
-    puts "DEBUG: [AbtPackage.install] - install section completed!"
+    puts "DEBUG: [AbtPackage.install] - install section completed!" if ( verbose )
     return true
   end
   
@@ -309,10 +344,13 @@ class AbtPackage
   # Last bits of installation. adding the service for automatic 
   # start in init.d for example.
   #
+  # <b>PARAM</b> <i>boolean</i> - true if you want to see the verbose output,
+  # otherwise false. Defaults to true.
+  # 
   # <b>RETURNS:</b>  <i>boolean</i> - True if the completes sucessfully, 
   # otherwise false.
   ##
-  def post
+  def post( verbose=true )
     # TODO: implement post section install init scripts service
     return true
   end
@@ -324,6 +362,7 @@ class AbtPackage
   # otherwise false.
   ##
   def removeBuild
+    puts "Removings build..."
     if ( $REMOVE_BUILD_SOURCES )
       buildSourcesLocation = "#{$BUILD_LOCATION}/#{srcDir}"
       
@@ -335,7 +374,7 @@ class AbtPackage
         return false
       end
     end
-    
+ 
     return true
   end
 end

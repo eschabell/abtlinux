@@ -35,6 +35,7 @@ class TestAbtPackage < Test::Unit::TestCase
   
   $nameTest     = "Ipc"
   $versionTest  = "1.4"
+  $verbose      = false
   $srcDirTest   = "#{$nameTest.downcase}-#{$versionTest}"
   
   $dataTest = {
@@ -78,78 +79,69 @@ class TestAbtPackage < Test::Unit::TestCase
   # Test method for 'AbtPackage.testPre()'
   ## 
   def testPre
-    assert( @ipc.pre(), "testPre()" )
+    assert( @ipc.pre( $verbose ), "testPre()" )
   end
   
   ##
   # Test method for 'AbtPackage.testConfigure()'
   ##
   def testConfigure
-    if ( !@ipc.pre() ) 
+    if ( !@ipc.pre( $verbose ) ) 
       assert_equals( true, false, "testConfigure()" )
     end
-    assert( @ipc.configure(), "testConfigure()" )
+    assert( @ipc.configure( $verbose ), "testConfigure()" )
   end
   
   ##
   # Test method for 'AbtPackage.testBuild()'
   ##
   def testBuild
-    if ( !@ipc.pre() ) 
+    if ( !@ipc.pre( $verbose ) ) 
       assert_equals( true, false, "testBuild()" )
     end
-    if ( !@ipc.configure() ) 
+    if ( !@ipc.configure( $verbose ) ) 
       assert_equals( true, false, "testBuild()" )
     end
-    assert( @ipc.build(), "testBuild()" )
+    assert( @ipc.build( $verbose ), "testBuild()" )
   end
   
   ##
   # Test method for 'AbtPackage.testPreinstall()'
   ##
   def testPreinstall
-    assert( @ipc.preinstall(), "testPreinstall()" )
+    assert( @ipc.preinstall( $verbose ), "testPreinstall()" )
   end
   
   ##
   # Test method for 'AbtPackage.testInstall()'
   ##
   def testInstall
-    if ( !@ipc.pre() ) 
+  
+    if ( !@ipc.pre( $verbose ) ) 
       assert_equals( true, false, "testInstall()" )
     end
-    if ( !@ipc.configure() ) 
+    if ( !@ipc.configure( $verbose ) ) 
       assert_equals( true, false, "testInstall()" )
     end
-    if ( !@ipc.build() ) 
+    if ( !@ipc.build( $verbose ) ) 
       assert_equals( true, false, "testInstall()" )
     end
-    if ( !@ipc.preinstall() ) 
+    if ( !@ipc.preinstall( $verbose ) ) 
       assert_equals( true, false, "testInstall()" )
     end
-    assert( @ipc.install(), "testInstall()" )
+    assert( @ipc.install( $verbose ), "testInstall()" )
   end
   
   ##
   # Test method for 'AbtPackage.testPost()'
   ##
   def testPost
-    if ( !@ipc.pre() ) 
-      assert_equals( true, false, "testPost()" )
-    end
-    if ( !@ipc.configure() ) 
-      assert_equals( true, false, "testPost()" )
-    end
-    if ( !@ipc.build() ) 
-      assert_equals( true, false, "testPost()" )
-    end
-    if ( !@ipc.preinstall() ) 
-      assert_equals( true, false, "testPost()" )
-    end
-    if ( !@ipc.install() ) 
-      assert_equals( true, false, "testPost()" )
-    end  
-    assert( @ipc.post(), "testPost()" )
+    assert_equals( true, false, "testPost()" ) if ( !@ipc.pre( $verbose ) ) 
+    assert_equals( true, false, "testPost()" ) if ( !@ipc.configure( $verbose ) ) 
+    assert_equals( true, false, "testPost()" ) if ( !@ipc.build( $verbose ) ) 
+    assert_equals( true, false, "testPost()" ) if ( !@ipc.preinstall( $verbose ) ) 
+    assert_equals( true, false, "testPost()" ) if ( !@ipc.install( $verbose ) ) 
+    assert( @ipc.post( $verbose ), "testPost()" )
   end
   
 end

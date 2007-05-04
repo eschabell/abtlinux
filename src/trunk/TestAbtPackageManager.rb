@@ -29,6 +29,8 @@ require 'AbtPackageManager'
 # St, Fifth Floor, Boston, MA 02110-1301  USA
 ##
 class TestAbtPackageManager < Test::Unit::TestCase
+
+  $verbose = false;  # quiets testing output.
   
   ##
   # setup method for testing AbtPackageManager.
@@ -47,7 +49,7 @@ class TestAbtPackageManager < Test::Unit::TestCase
   # Test method for 'AbtPackageManager.testInstallPackage()'
   ## 
   def testInstallPackage
-    assert( @pkgMgr.installPackage( "ipc" ), "testInstallPackage()" )
+    assert( @pkgMgr.installPackage( "ipc", $verbose ), "testInstallPackage()" )
   end
   
   ##
