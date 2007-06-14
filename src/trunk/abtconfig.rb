@@ -25,6 +25,17 @@
 # St, Fifth Floor, Boston, MA 02110-1301  USA
 ##
 
+# global requires.
+require 'AbtDownloadManager'
+require 'AbtLogManager'
+require 'AbtPackageManager'
+require 'AbtQueueManager'
+require 'AbtReportManager'
+require 'AbtSystemManager'
+require 'AbtUsage'
+
+require 'fileutils'
+
 # default paths / locations.
 $ABT_LOGS           = "/var/log/abt"
 $ABT_CACHES         = "/var/spool/abt"

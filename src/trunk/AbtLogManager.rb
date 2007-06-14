@@ -62,7 +62,7 @@ class AbtLogManager
   # otherwise false.
   ##
   def logPackageIntegrity( package )
-    require package
+    require "packages/#{package}"
     sw = eval( "#{package.capitalize}.new" )
     details = sw.details
     
@@ -108,7 +108,7 @@ class AbtLogManager
     excluded_pattern = 
     Regexp.new( "^(/dev|/proc|/tmp|/var/tmp|/usr/src|/sys)+" )
     
-    require package
+    require "packages/#{package}"
     sw = eval( "#{package.capitalize}.new" )
     details = sw.details
     badLine = false  # used to mark excluded lines from installwatch log.
@@ -157,7 +157,7 @@ class AbtLogManager
   # otherwise false.
   ##
   def logPackageBuild( package )
-    require package
+    require "packages/#{package}"
     sw        = eval( "#{package.capitalize}.new" )
     details   = sw.details
     buildLog = "#{$PACKAGE_INSTALLED}/#{details['Source location']}" + 

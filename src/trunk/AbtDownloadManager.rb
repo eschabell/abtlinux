@@ -54,7 +54,7 @@ class AbtDownloadManager
   # downloaded, otherwise false.
   ##
   def retrievePackageSource( packageName, destination )
-    require packageName
+    require "packages/#{packageName}"
     logger		= AbtLogManager.new
     package		= eval( packageName.capitalize + '.new' )
     

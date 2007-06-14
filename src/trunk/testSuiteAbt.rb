@@ -8,7 +8,7 @@ end
 
 require 'test/unit'
 require 'abtconfig'
-require 'fileutils'
+
 require 'TestAbtDepEngine'
 require 'TestAbtDownloadManager'
 require 'TestAbtLogManager'

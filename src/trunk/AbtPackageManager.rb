@@ -94,7 +94,7 @@ class AbtPackageManager
   # false.
   ##
   def installPackage( package, verbose=true )
-    require package
+    require "packages/#{package}"
     sw = eval( "#{package.capitalize}.new" )
     queuer = AbtQueueManager.new
     logger = AbtLogManager.new
