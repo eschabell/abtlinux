@@ -6,3 +6,5 @@ gem install flexmock
 I am trying to use this to mock up package objects to prevent downloading,
 actual configure, build and install runs while providing unit testing for
 these methods.
+
+For information on usage and such, see http://onestepback.org/software/flexmock/
