@@ -9,11 +9,11 @@ end
 require 'test/unit'
 require 'abtconfig'
 
-require 'TestAbtDepEngine'
+require 'TestAbtLogManager'  # test this first ensures all dirs created.
 require 'TestAbtDownloadManager'
-require 'TestAbtLogManager'
 require 'TestAbtPackage'
 require 'TestAbtPackageManager'
 require 'TestAbtQueueManager'
 require 'TestAbtReportManager'
 require 'TestAbtSystemManager'
+require 'TestAbtDepEngine'
