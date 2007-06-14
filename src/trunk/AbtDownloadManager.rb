@@ -89,25 +89,24 @@ class AbtDownloadManager
   # Retrieves the given feed and displays the news items.
   #
   # <b>PARAM</b> <i>String</i> - the uri of the rss news feed to be retrieved.
-  # <b>PARAM</b> <i>String</i> - pass the value 'true' to empty the log file,
-  # otherwise it will be appended.
+  # <b>PARAM</b> <i>boolean</i> - default is to emplty the log file,
+  # passing 'false' will append to news file.
   # <b>RETURN</b> <i>boolean</i> - True if the AbTLinux news feed has been
   # retrieved, otherwise false.
   ##
-  def retrieveNewsFeed( uri, cleanLog = "false" )
+  def retrieveNewsFeed( uri, cleanLog=true )
     require 'net/http'
     require 'uri'
     require 'rss/1.0'
     require 'rss/2.0'
     newsLog = ""
+    logger	= AbtLogManager.new
     
     # ensure we have our news logfile.
-    if ( cleanLog == "true" )
-      newsLog = 
-      File.new( $ABTNEWS_LOG, File::WRONLY|File::TRUNC|File::CREAT, 644 ) 
+    if ( cleanLog )
+      newsLog = File.new( $ABTNEWS_LOG, "w+" )
     else
-      newsLog = 
-      File.new( $ABTNEWS_LOG, File::WRONLY|File::APPEND|File::CREAT, 644 )
+      newsLog = File.new( $ABTNEWS_LOG, "a+" )
     end
     
     # pick up the abtlinux.org news feed.

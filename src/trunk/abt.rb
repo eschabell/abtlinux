@@ -228,17 +228,17 @@ when "news", "-n"
   
   # abtlinux.org news feeds.
   puts "\n"
-  if ( !downloader.retrieveNewsFeed( $ABTNEWS , "true" ) )
+  if ( !downloader.retrieveNewsFeed( $ABTNEWS ) )
     puts "Failed to retrieve the AbTLinux news feed."
   end
   
   puts "\n"
-  if ( !downloader.retrieveNewsFeed( $ABTNEWS_THREADS ) )
+  if ( !downloader.retrieveNewsFeed( $ABTNEWS_THREADS, false ) )
     puts "Failed to retrieve the AbTLinux forum threads news feed."
   end
   
   puts "\n"
-  if ( !downloader.retrieveNewsFeed( $ABTNEWS_POSTS ) )
+  if ( !downloader.retrieveNewsFeed( $ABTNEWS_POSTS, false ) )
     puts "Failed to retrieve the AbTLinux new posts news feed."
   end
   

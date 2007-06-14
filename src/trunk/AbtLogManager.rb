@@ -200,9 +200,7 @@ class AbtLogManager
   # <b>RETURN</b> <i>boolean</i> True if logged, otherwise false.
   ##
   def logToJournal( message )
-    if ( 
-        log = File.new( 
-                   $JOURNAL, File::WRONLY|File::APPEND|File::CREAT, 0644 ) )
+    if ( log = File.new( $JOURNAL, "a+" ) )
       log.puts "#{$TIMESTAMP} : #{message}"
       log.close
       return true
