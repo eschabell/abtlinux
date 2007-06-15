@@ -94,6 +94,14 @@ class AbtPackageManager
   # false.
   ##
   def installPackage( package, verbose=true )
+    
+    # first check if installed.
+    system = AbtSystemManager.new
+    if ( system.packageInstalled( package ) )
+      puts "\nPackage #{package} is installed, might want to try reinstall?"
+      return true
+    end
+
     require "packages/#{package}"
     sw = eval( "#{package.capitalize}.new" )
     queuer = AbtQueueManager.new
