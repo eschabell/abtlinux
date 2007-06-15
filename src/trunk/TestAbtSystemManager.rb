@@ -2,7 +2,7 @@
 
 require 'test/unit/testcase'
 require 'test/unit/autorunner'
-require 'AbtSystemManager'
+require 'abtconfig'
 
 ##
 # TestAbtSystemManager.rb 
@@ -106,6 +106,13 @@ class TestAbtSystemManager < Test::Unit::TestCase
   def testSetPackageTreeLocation
     assert( @sys.setPackageTreeLocation( "/var/lib/ericsPackages" ), 
                                       "testSetPackageTreeLocation()" )
+  end
+    
+  ##
+  # Test method for 'AbtSystemManager.testPackageInstalled()'
+  ## 
+  def testPackageInstalled
+    assert( @sys.packageInstalled( "ipc" ), "testPackageInstalled()" )
   end
   
 end

@@ -32,6 +32,31 @@ class AbtSystemManager
   
   private
   
+  ##
+  # Determines if given file is in given directory.
+  # 
+  # <b>PARAM</b> <i>String</i> - directory path to search.
+  # <b>PARAM</b> <i>String</i> - entry we are looking for in given directory.
+  #
+  # <b>RETURN</b> <i>boolean</i> - True if entry found in given directory, 
+  # otherwise false.
+  ##
+  def foundEntry( directory, name )
+    Find.find( directory ) do |path|
+      
+      Find.prune if [".", ".."].include? path
+      case name
+        when String
+          return true if File.basename( path ) == name
+      else
+        raise ArgumentError
+      end
+      
+    end
+    
+    return false  # match not found.  
+  end
+  
   public
   
   ##
@@ -140,4 +165,27 @@ class AbtSystemManager
   ##
   def setPackageTreeLocation( location )
   end
+    
+  ##
+  # Checks if the given package is installed by checking for entry in the
+  # installed directory.
+  #
+  # <b>PARAM</b> <i>String</i> - Package name.
+  #
+  # <b>RETURN</b> <i>boolean</i> - True if package installed, otherwise
+  # false.
+  ##
+  def packageInstalled( package )
+    require "packages/#{package}"
+    sw = eval( "#{package.capitalize}.new" )
+    details = sw.details
+    
+    if ( foundEntry( $PACKAGE_INSTALLED, sw.srcDir ) )
+      return true
+    end
+    
+    
+    return false
+  end
+ 
 end

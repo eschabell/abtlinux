@@ -35,6 +35,7 @@ require 'AbtSystemManager'
 require 'AbtUsage'
 
 require 'fileutils'
+require 'find'
 
 # default paths / locations.
 $ABT_LOGS           = "/var/log/abt"
