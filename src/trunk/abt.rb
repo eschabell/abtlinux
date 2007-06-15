@@ -54,27 +54,28 @@ when "install", "-i"
     logger.logToJournal( "Starting to install #{options['package']}" )
     
     # return if already installed.
-    require options['package']
+    require "packages/#{options['package']}"
     sw = eval( "#{options['package'].capitalize}.new" )
-    
-    if ( File.directory?( 
-      "#{$PACKAGE_INSTALLED}/#{sw.details['Source location']}" ) )
-      puts "\n\n"
-      puts "*** Package #{options['package']} already installed, " +
-        "try 'abt reinstall #{options['package']}' ***"
-      puts "\n\n"
-      exit 
-    end
     
     if ( manager.installPackage( options['package'] ) )
       puts "\n\n"
       puts "*** Completed install of #{options['package']}. ***"
       puts "\n\n"
       logger.logToJournal( "Completed install of #{options['package']}." )
+      
+      if ( logger.cachePackage( options['package'] ) )
+        puts "\n\n"
+        puts "*** Completed caching of package #{options['package']}. ***"
+        puts "\n\n"
+        logger.logToJournal( "\nCaching completed for package #{options['package']}." )
+      else
+        logger.logToJournal( "\nCaching of package #{options['package']} failed.")
+      end
     else
       puts "*** #{options['package'].capitalize} install failed, " +
           "see journal. ***"
     end
+    
     
     #reporter.showQueue( "install" ); # DEBUG.
   else

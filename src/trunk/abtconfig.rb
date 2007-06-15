@@ -47,7 +47,7 @@ $BUILD_LOCATION		= "/usr/src"
 $JOURNAL			= "#{$ABT_LOGS}/journal.log"
 $PACKAGE_INSTALLED  = "#{$ABT_STATE}/installed"
 $PACKAGE_CACHED     = "#{$ABT_STATE}/cached"
-$PACKAGE_PATH       = "./packages/"
+$PACKAGE_PATH       = "#{$ABT_CACHES}/packages/"
 $SOURCES_REPOSITORY = "#{$ABT_CACHES}/sources"
 
 

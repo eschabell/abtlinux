@@ -98,7 +98,8 @@ class AbtPackageManager
     # first check if installed.
     system = AbtSystemManager.new
     if ( system.packageInstalled( package ) )
-      puts "\nPackage #{package} is installed, might want to try reinstall?"
+      puts "\n*** Package #{package} is installed, might want to try reinstall? ***"
+      puts "'abt reinstall #{package}'"
       return true
     end
 

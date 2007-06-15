@@ -211,26 +211,75 @@ class AbtLogManager
     system = AbtSystemManager.new
     
     if ( system.packageInstalled( package ) )
-      require "packages/#{package}"
-      sw       = eval( "#{package.capitalize}.new" )
-      details  = sw.details
+      sw           = eval( "#{package.capitalize}.new" )
+      cachedDir    = $PACKAGE_CACHED + "/" + sw.srcDir
+      sourcePath   = $SOURCES_REPOSITORY + "/" + File.basename( sw.srcUrl )
+      sourceFile   = File.basename( sw.srcUrl )
+      installLog   = getLog( package, 'install' )
+      buildLog     = getLog( package, 'install' )
+      configureLog = getLog( package, 'install' )
+      integrityLog = getLog( package, 'install' )
+      packageFile  = "#{$PACKAGE_PATH}#{package}.rb"
       
-      # TODO: collect package source.
-      FileTest::exists?("#{$PACKAGE_INSTALLED}/#{details['Source location']}" + 
-      "/#{details['Source location']}.install" )
-      # TODO: collect package install log. 
       
-      # TODO: collect package build log. 
+      FileUtils.mkdir_p( cachedDir )
+
+      # collect package source.
+      if ( FileTest::exist?( sourcePath ) )
+        FileUtils.copy_file( sourcePath, "#{cachedDir}/#{sourceFile}" )
+        puts "\nCaching copy of #{package} source."
+      else
+        puts "\nUnable to cache copy of #{package} source."
+      end
+        
+      # collect package install log. 
+      if ( FileTest::exist?( installLog ) )
+        FileUtils.copy_file( installLog, "#{cachedDir}/#{sw.srcDir}.install" )
+        puts "\nCaching copy of #{package} install log."
+      else
+        puts "\nUnable to cache copy of #{package} install log."
+      end
       
-      # TODO: collect package configure log. 
+      # collect package build log. 
+      if ( FileTest::exist?( buildLog ) )
+        FileUtils.copy_file( buildLog, "#{cachedDir}/#{sw.srcDir}.build" )
+        puts "\nCaching copy of #{package} build log."
+      else
+        puts "\nUnable to cache copy of #{package} build log."
+      end
       
-      # TODO: collect package integrity log.
+      # collect package configure log. 
+      if ( FileTest::exist?( configureLog ) )
+        FileUtils.copy_file( configureLog, "#{cachedDir}/#{sw.srcDir}.configure" )
+        puts "\nCaching copy of #{package} configure log."
+      else
+        puts "\nUnable to cache copy of #{package} configure log."
+      end
+
+      # collect package integrity log.
+      if ( FileTest::exist?( integrityLog ) )
+        FileUtils.copy_file( integrityLog, "#{cachedDir}/#{sw.srcDir}.integrity" )
+        puts "\nCaching copy of #{package} integrity log."
+      else
+        puts "\nUnable to cache copy of #{package} integrity log."
+      end
       
-      # TODO: collect package description (class file).
+      # collect package description (class file).
+      if ( FileTest::exist?( packageFile ) )
+        FileUtils.copy_file( packageFile, "#{cachedDir}/#{package}.rb" )
+        puts "\nCaching copy of #{package} package description."
+      else
+        puts "\nUnable to cache copy of #{package} package description, from location #{packageFile}"
+      end
       
-      # TODO: tar and bzip this directory (package-cache-version.tar.bz2) 
-      
-      return false # for now, once imlemented, need true
+      # tar and bzip this directory (package-cache-version.tar.bz2) 
+      Dir.chdir( $PACKAGE_CACHED )
+      if ( system( "tar -cf #{sw.srcDir}.tar #{sw.srcDir}" ) &&
+            system( "bzip2 -f #{sw.srcDir}.tar" ) )
+        # last but not least, remove our tarball directory
+        FileUtils.rm_rf( cachedDir )
+        return true
+      end
     end
     
     return false  # package not installed, can't cache it.
