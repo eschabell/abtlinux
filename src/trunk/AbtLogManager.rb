@@ -31,6 +31,44 @@ class AbtLogManager
   
   private
   
+  ##
+  # Returns the path to given packages install log.
+  # 
+  # <b>PARAM</b> <i>String</i> - Package name.
+  #
+  # <b>RETURN</b> <i>String</i> - Full path to install log.
+  ##
+  def getLog( package, type )
+    require "packages/#{package}"
+    sw         = eval( "#{package.capitalize}.new" )
+    details    = sw.details
+    
+    case type
+      
+      when 'install'
+        log = "#{$PACKAGE_INSTALLED}/#{details['Source location']}" + 
+          "/#{details['Source location']}.install"
+      
+      when 'integrity'
+        log = "#{$PACKAGE_INSTALLED}/#{details['Source location']}" + 
+          "/#{details['Source location']}.integrity"
+          
+      when 'tmpinstall'
+        log = "#{$ABT_TMP}/#{details['Source location']}.watch"
+
+      when 'build'
+        log = "#{$PACKAGE_INSTALLED}/#{details['Source location']}" + 
+          "/#{details['Source location']}.build"
+          
+      else
+        log = ""
+        
+    end        
+        
+    return log
+  end
+
+
   public
   
   ##
@@ -62,15 +100,13 @@ class AbtLogManager
   # otherwise false.
   ##
   def logPackageIntegrity( package )
-    require "packages/#{package}"
-    sw = eval( "#{package.capitalize}.new" )
-    details = sw.details
+    #require "packages/#{package}"
+    #sw = eval( "#{package.capitalize}.new" )
+    #details = sw.details
     
     # our log locations.
-    installLog = "#{$PACKAGE_INSTALLED}/#{details['Source location']}" + 
-      "/#{details['Source location']}.install"
-    integrityLog = "#{$PACKAGE_INSTALLED}/#{details['Source location']}" + 
-      "/#{details['Source location']}.integrity"
+    installLog = getLog( package, 'install' )
+    integrityLog = getLog( package, 'integrity' )
     
     # get the installed files from the tmp file
     # into our install log.
@@ -106,17 +142,12 @@ class AbtLogManager
   def logPackageInstall( package )
     # some dirs we will not add to an install log.
     excluded_pattern = 
-    Regexp.new( "^(/dev|/proc|/tmp|/var/tmp|/usr/src|/sys)+" )
-    
-    require "packages/#{package}"
-    sw = eval( "#{package.capitalize}.new" )
-    details = sw.details
+      Regexp.new( "^(/dev|/proc|/tmp|/var/tmp|/usr/src|/sys)+" )
     badLine = false  # used to mark excluded lines from installwatch log.
     
     # our log locations.
-    installLog = "#{$PACKAGE_INSTALLED}/#{details['Source location']}" + 
-      "/#{details['Source location']}.install"
-    tmpInstallLog = "#{$ABT_TMP}/#{details['Source location']}.watch"
+    installLog = getLog( package, 'install' )
+    tmpInstallLog = getLog( package, 'tmpinstall' )
     
     # get the installed files from the tmp file
     # into our install log.
@@ -157,12 +188,7 @@ class AbtLogManager
   # otherwise false.
   ##
   def logPackageBuild( package )
-    require "packages/#{package}"
-    sw        = eval( "#{package.capitalize}.new" )
-    details   = sw.details
-    buildLog = "#{$PACKAGE_INSTALLED}/#{details['Source location']}" + 
-      "/#{details['Source location']}.build"
-    #self.logToJournal( "DEBUG: buildFile is - #{buildFile}" )
+    buildLog = getLog( package, 'build' )
     
     # make sure the build file exists.
     if ( !File.exist?( buildLog ) )
@@ -182,13 +208,32 @@ class AbtLogManager
   # otherwise false.
   ##
   def cachePackage( package )
-    # TODO: collect package source.
-    # TODO: collect package install log. 
-    # TODO: collect package build log. 
-    # TODO: collect package configure log. 
-    # TODO: collect package integrity log.
-    # TODO: collect package description (class file).
-    # TODO: tar and bzip this directory (package-cache-version.tar.bz2) 
+    system = AbtSystemManager.new
+    
+    if ( system.packageInstalled( package ) )
+      require "packages/#{package}"
+      sw       = eval( "#{package.capitalize}.new" )
+      details  = sw.details
+      
+      # TODO: collect package source.
+      FileTest::exists?("#{$PACKAGE_INSTALLED}/#{details['Source location']}" + 
+      "/#{details['Source location']}.install" )
+      # TODO: collect package install log. 
+      
+      # TODO: collect package build log. 
+      
+      # TODO: collect package configure log. 
+      
+      # TODO: collect package integrity log.
+      
+      # TODO: collect package description (class file).
+      
+      # TODO: tar and bzip this directory (package-cache-version.tar.bz2) 
+      
+      return false # for now, once imlemented, need true
+    end
+    
+    return false  # package not installed, can't cache it.
   end
   
   ##
