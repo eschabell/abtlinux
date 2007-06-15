@@ -1,4 +1,4 @@
-#!/usr/bin/ruby -wI./packages
+#!/usr/bin/ruby -w
 
 if ( Process.uid != 0 )
   puts "Enter root password:"
@@ -9,10 +9,23 @@ end
 require 'test/unit'
 require 'abtconfig'
 
-require 'TestAbtLogManager'  # test this first ensures all dirs created.
+# By ensuring an install of the test package ipc
+# is done prior to running unit tests, we are able
+# to ensure that all needed directories, logs, etc 
+# are created prior to running the tests. If ipc is
+# already installed, this process is not repleated. 
+# 
+# This speeds up the test suit by more than 10 sec
+# on my machine. I get avg runs of around 17,5 sec.
+#
+logger = AbtLogManager.new
+manager = AbtPackageManager.new
+manager.installPackage( "ipc" )
+
+require 'TestAbtPackageManager'
+require 'TestAbtLogManager'
 require 'TestAbtDownloadManager'
 require 'TestAbtPackage'
-require 'TestAbtPackageManager'
 require 'TestAbtQueueManager'
 require 'TestAbtReportManager'
 require 'TestAbtSystemManager'

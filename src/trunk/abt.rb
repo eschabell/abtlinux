@@ -1,4 +1,4 @@
-#!/usr/bin/ruby -wI./packages
+#!/usr/bin/ruby -w
 
 ##
 # abt.rb
