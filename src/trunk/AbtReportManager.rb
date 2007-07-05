@@ -51,7 +51,7 @@ class AbtReportManager
   # otherwise false.
   ##
   def showPackageDetails( package )
-    require "packages/#{package}"
+    require "#{$PACKAGE_PATH}#{package}"
     
     if ( package = eval( "#{package.capitalize}.new" ) )
       details = package.details

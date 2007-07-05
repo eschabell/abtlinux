@@ -176,7 +176,7 @@ class AbtSystemManager
   # false.
   ##
   def packageInstalled( package )
-    require "packages/#{package}"
+    require "#{$PACKAGE_PATH}#{package}"
     sw = eval( "#{package.capitalize}.new" )
     details = sw.details
     

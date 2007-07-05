@@ -39,7 +39,7 @@ class AbtLogManager
   # <b>RETURN</b> <i>String</i> - Full path to install log.
   ##
   def getLog( package, type )
-    require "packages/#{package}"
+    require "#{$PACKAGE_PATH}#{package}"
     sw         = eval( "#{package.capitalize}.new" )
     details    = sw.details
     
@@ -100,7 +100,7 @@ class AbtLogManager
   # otherwise false.
   ##
   def logPackageIntegrity( package )
-    #require "packages/#{package}"
+    #require "#{$PACKAGE_PATH}#{package}"
     #sw = eval( "#{package.capitalize}.new" )
     #details = sw.details
     

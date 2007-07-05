@@ -1,11 +1,11 @@
 #!/usr/bin/ruby -w
 
-require 'test/unit/testcase'
-require 'test/unit/autorunner'
-require 'abtconfig'
-require 'AbtPackage'
-require 'AbtDownloadManager'
-require 'packages/ipc'
+require "test/unit/testcase"
+require "test/unit/autorunner"
+require "abtconfig"
+require "AbtPackage"
+require "AbtDownloadManager"
+require "#{$PACKAGE_PATH}ipc"
 
 ##
 # TestAbtPackage.rb 

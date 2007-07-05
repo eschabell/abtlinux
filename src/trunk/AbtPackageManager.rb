@@ -103,7 +103,7 @@ class AbtPackageManager
       return true
     end
 
-    require "packages/#{package}"
+    require "#{$PACKAGE_PATH}#{package}"
     sw = eval( "#{package.capitalize}.new" )
     queuer = AbtQueueManager.new
     logger = AbtLogManager.new

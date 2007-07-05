@@ -54,7 +54,7 @@ when "install", "-i"
     logger.logToJournal( "Starting to install #{options['package']}" )
     
     # return if already installed.
-    require "packages/#{options['package']}"
+    require "#{$PACKAGE_PATH}#{options['package']}"
     sw = eval( "#{options['package'].capitalize}.new" )
     
     if ( manager.installPackage( options['package'] ) )
