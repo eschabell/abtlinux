@@ -84,7 +84,7 @@ class AbtLogManager
       
       if ( ! File.directory?( dir ) )
         FileUtils.mkdir_p( dir )
-        self.logToJournal( "Created directory: #{dir}." )
+        self << logToJournal << "Created directory: #{dir}." 
       end
     }
   end
@@ -118,7 +118,7 @@ class AbtLogManager
       IO.foreach( installLog ) do |line|
         status = File.stat( line.chomp )
         octal  = sprintf( "%o", status.mode )
-        integrityFile.puts "#{line.chomp}:#{octal}"
+        integrityFile << "#{line.chomp}:#{octal}\n"
       end
       
       installFile.close
@@ -167,7 +167,7 @@ class AbtLogManager
           
           if ( !badLine )
             #self.logToJournal( "DEBUG: adding line to installFile!")
-            installFile.puts line.split[2]
+            installFile << "#{line.split[2]}\n"
           end
         end 
       end
@@ -295,7 +295,7 @@ class AbtLogManager
   ##
   def logToJournal( message )
     if ( log = File.new( $JOURNAL, "a+" ) )
-      log.puts "#{$TIMESTAMP} : #{message}"
+      log << "#{$TIMESTAMP} : #{message}\n"
       log.close
       return true
     end
