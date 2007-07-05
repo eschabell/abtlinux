@@ -208,9 +208,7 @@ class AbtPackage
     downloader = AbtDownloadManager.new
     
     # download sources.
-    if ( 
-        !downloader.retrievePackageSource( 
-                                      @name.downcase, $SOURCES_REPOSITORY ) )
+    if ( !downloader.retrievePackageSource( @name.downcase, $SOURCES_REPOSITORY ) )
       return false
     end
     
