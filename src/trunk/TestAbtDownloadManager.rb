@@ -49,7 +49,7 @@ class TestAbtDownloadManager < Test::Unit::TestCase
   # Test method for 'AbtDownloadManager.testRetrievePackageSource()'
   ## 
   def testRetrievePackageSource()
-    assert( @download.retrievePackageSource( "ipc", "/tmp" ), 
+    assert( @download.retrievePackageSource( "ipc", "#{$SOURCES_REPOSITORY}" ), 
                                     "testRetrievePackageSource()" )
   end
   

@@ -58,16 +58,14 @@ class AbtDownloadManager
     logger		= AbtLogManager.new
     package		= eval( packageName.capitalize + '.new' )
     
-    if ( File.exist?( 
-                     destination + "/" + File.basename( package.srcUrl ) ) )
-      logger.logToJournal( "Download not needed, existing source " + 
-        "found for " + packageName )
+    if ( File.exist?( "#{destination}/#{File.basename( package.srcUrl )}" ) )
+      logger.logToJournal( "Download not needed, existing source found for #{packageName}" )
       return true
     end
     
     Dir.chdir( destination )
     if ( system( "wget #{package.srcUrl}" ) )
-      logger.logToJournal( "Download completed for " + packageName )
+      logger.logToJournal( "Download completed for #{packageName}" )
       return true
     end
     
@@ -127,15 +125,15 @@ class AbtDownloadManager
         "is not RSS 1.0/2.0." )
       return false
     else
-      newsLog.puts "*** #{rss.channel.title} ***"
+      newsLog << "*** #{rss.channel.title} ***\n"
       
       rss.items.each_with_index do |item, itemCount|
         itemCount += 1
-        newsLog.puts "#{itemCount}  #{item.link}  #{item.title}" 
+        newsLog << "#{itemCount}  #{item.link}  #{item.title}\n" 
       end
     end
     
-    newsLog.puts "\n"
+    newsLog << "\n\n"
     newsLog.close
     return true
     
