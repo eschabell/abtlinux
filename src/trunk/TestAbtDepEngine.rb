@@ -2,7 +2,7 @@
 
 require 'test/unit/testcase'
 require 'test/unit/autorunner'
-require 'AbtDepEngine'
+require 'abtdepengine'
 
 ##
 # TestAbtDepEngine.rb 
