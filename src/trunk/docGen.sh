@@ -1,9 +1,9 @@
 #!/bin/bash
 #===============================================================================
 #
-#         FILE:  docGen.sh
+#         FILE:  docgen.sh
 #
-#        USAGE:  ./docGen.sh 
+#        USAGE:  ./docgen.sh 
 #
 #  DESCRIPTION:  Generates AbTLinux Package Manager API documentation.
 #
@@ -15,24 +15,24 @@
 #     REVISION:  ---
 #===============================================================================
 
-TEMPLATE="./abtTemplate.rb";
-FILES="AbtDepEngine.rb
-		AbtDownloadManager.rb
-		AbtLogManager.rb
-		AbtPackage.rb
-		AbtPackageManager.rb
-		AbtQueueManager.rb
-		AbtReportManager.rb
-		AbtSystemManager.rb
-		AbtUsage.rb
-		TestAbtDepEngine.rb
-		TestAbtDownloadManager.rb
-		TestAbtLogManager.rb
-		TestAbtPackage.rb
-		TestAbtPackageManager.rb
-		TestAbtQueueManager.rb
-		TestAbtReportManager.rb
-		TestAbtSystemManager.rb
+TEMPLATE="./abttemplate.rb";
+FILES="abtdepengine.rb
+		abtdownloadmanager.rb
+		abtlogmanager.rb
+		abtpackage.rb
+		abtpackagemanager.rb
+		abtqueuemanager.rb
+		abtreportmanager.rb
+		abtsystemmanager.rb
+		abtusage.rb
+		testabtdepengine.rb
+		testabtdownloadmanager.rb
+		testabtlogmanager.rb
+		testabtpackage.rb
+		testabtpackagemanager.rb
+		testabtqueuemanager.rb
+		testabtreportmanager.rb
+		testabtsystemmanager.rb
 		";
 
 # run the actual doc generation.
