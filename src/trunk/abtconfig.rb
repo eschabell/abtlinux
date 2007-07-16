@@ -29,6 +29,7 @@
 require 'abtdownloadmanager'
 require 'abtlogmanager'
 require 'abtpackagemanager'
+require 'abtpackage'
 require 'AbtQueueManager'
 require 'AbtReportManager'
 require 'AbtSystemManager'

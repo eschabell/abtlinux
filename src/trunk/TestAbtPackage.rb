@@ -3,7 +3,6 @@
 require "test/unit/testcase"
 require "test/unit/autorunner"
 require "abtconfig"
-require "AbtPackage"
 require "#{$PACKAGE_PATH}ipc"
 
 ##

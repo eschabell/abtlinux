@@ -1,7 +1,7 @@
 #!/usr/bin/ruby -w
 
 ##
-# AbtPackage.rb
+# abtpackage.rb
 #
 # AbtPackage class provides an interface to AbtPackage creation within
 # AbTLinux. By inheriting from this class (class Fortune < AbtPackage) one 
