@@ -3,7 +3,7 @@
 require 'test/unit/testcase'
 require 'test/unit/autorunner'
 require 'abtconfig'
-require 'AbtDownloadManager'
+require 'abtdownloadmanager'
 require 'AbtLogManager'
 
 ##
