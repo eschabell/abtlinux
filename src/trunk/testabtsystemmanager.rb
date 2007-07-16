@@ -44,75 +44,73 @@ class TestAbtSystemManager < Test::Unit::TestCase
   end
   
   ##
-  # Test method for 'AbtSystemManager.testCleanupPackageSources()'
+  # Test method for 'AbtSystemManager.test_cleanup_package_sources()'
   ## 
-  def testCleanupPackageSources
-    assert( @sys.cleanupPackageSources(), "testCleanupPackageSources()" )
+  def test_cleanup_package_sources
+    assert( @sys.cleanup_package_sources(), "test_cleanup_package_sources()" )
   end
   
   ##
-  # Test method for 'AbtSystemManager.testCleanupLogs()'
+  # Test method for 'AbtSystemManager.test_cleanup_logs()'
   ## 
-  def testCleanupLogs
-    assert( @sys.cleanupLogs(), "testCleanupLogs()" )
+  def test_cleanup_logs
+    assert( @sys.cleanup_logs(), "test_cleanup_logs()" )
   end
   
   ##
-  # Test method for 'AbtSystemManager.testVerifyInstalledFiles()'
+  # Test method for 'AbtSystemManager.test_verify_installed_files()'
   ## 
-  def testVerifyInstalledFiles
-    assert( @sys.verifyInstalledFiles( "dummy" ), "testVerifyInstalledFiles()" )
+  def test_verify_installed_files
+    assert( @sys.verify_installed_files( "dummy" ), "test_verify_installed_files()" )
   end
   
   ##
-  # Test method for 'AbtSystemManager.testVerifySymlinks()'
+  # Test method for 'AbtSystemManager.test_verify_symlinks()'
   ## 
-  def testVerifySymlinks
-    assert( @sys.verifySymlinks( "dummy" ), "testVerifySymlinks()" )
+  def test_verify_symlinks
+    assert( @sys.verify_symlinks( "dummy" ), "test_verify_symlinks()" )
   end
   
   ##
-  # Test method for 'AbtSystemManager.testVerifyPackageDepends()'
+  # Test method for 'AbtSystemManager.test_verify_package_depends()'
   ## 
-  def testVerifyPackageDepends
-    assert( @sys.verifyPackageDepends( "dummy" ), "testVerifyPackageDepends()" )
+  def test_verify_package_depends
+    assert( @sys.verify_package_depends( "dummy" ), "test_verify_package_depends()" )
   end
   
   ##
-  # Test method for 'AbtSystemManager.testVerifyPackageIntegrity()'
+  # Test method for 'AbtSystemManager.test_verify_package_integrity()'
   ## 
-  def testVerifyPackageIntegrity
-    assert( @sys.verifyPackageIntegrity( "dummy" ), 
-                      "testVerifyPackageIntegrity()" )
+  def test_verify_package_integrity
+    assert( @sys.verify_package_integrity( "dummy" ), "test_verify_package_integrity()" )
   end
   
   ##
-  # Test method for 'AbtSystemManager.testFixPackage()'
+  # Test method for 'AbtSystemManager.test_fix_package()'
   ## 
-  def testFixPackage
-    assert( @sys.fixPackage( "dummy" ), "testFixPackage()" )
+  def test_fix_package
+    assert( @sys.fix_package( "dummy" ), "test_fix_package()" )
   end
   
   ##
-  # Test method for 'AbtSystemManager.testSetCentralRepo()'
+  # Test method for 'AbtSystemManager.test_set_central_repo()'
   ## 
-  def testSetCentralRepo
-    assert( @sys.setCentralRepo( "http://localhost" ), "testSetCentralRepo()" )
+  def test_set_central_repo
+    assert( @sys.set_central_repo( "http://localhost" ), "test_set_central_repo()" )
   end
   
   ##
-  # Test method for 'AbtSystemManager.testSetPackageTreeLocation()'
+  # Test method for 'AbtSystemManager.test_set_package_tree_location()'
   ## 
-  def testSetPackageTreeLocation
-    assert( @sys.setPackageTreeLocation( "/var/lib/ericsPackages" ), 
-                                      "testSetPackageTreeLocation()" )
+  def test_set_package_tree_location
+    assert( @sys.set_package_tree_location( "/var/lib/ericsPackages" ), "test_set_package_tree_location()" )
   end
     
   ##
-  # Test method for 'AbtSystemManager.testPackageInstalled()'
+  # Test method for 'AbtSystemManager.test_package_installed()'
   ## 
-  def testPackageInstalled
-    assert( @sys.packageInstalled( "ipc" ), "testPackageInstalled()" )
+  def test_package_installed
+    assert( @sys.package_installed( "ipc" ), "test_package_installed()" )
   end
   
 end

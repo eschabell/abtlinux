@@ -21,8 +21,8 @@ require 'abtconfig'
 logger  = AbtLogManager.new
 manager = AbtPackageManager.new
 system  = AbtSystemManager.new
-if !system.packageInstalled( "ipc" )
-	manager.installPackage << "ipc"
+if !system.package_installed( "ipc" )
+	manager.install_package << "ipc"
 end
 
 require 'testabtpackagemanager'

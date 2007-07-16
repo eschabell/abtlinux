@@ -44,39 +44,38 @@ class TestAbtLogManager < Test::Unit::TestCase
   end
   
   ##
-  # Test method for 'AbtLogManager.testLogPackageIntegrity()'
+  # Test method for 'AbtLogManager.test_log_package_integrity()'
   ## 
-  def testLogPackageIntegrity()
-    assert( @log.logPackageIntegrity( "ipc" ), "testLogPackageIntegrity()" )
+  def test_log_package_integrity()
+    assert( @log.log_package_integrity( "ipc" ), "test_log_package_integrity()" )
   end
   
   ## 
-  # Test method for 'AbtLogManager.testLogPackageInstall()'
+  # Test method for 'AbtLogManager.test_log_package_install()'
   ##
-  def testLogPackageInstall()
-    assert( @log.logPackageInstall( "ipc" ), "testLogPackageInstall()" )
+  def test_log_package_install()
+    assert( @log.log_package_install( "ipc" ), "test_log_package_install()" )
   end
   
   ##
-  # Test method for 'AbtLogManager.testLogPackageBuild()'
+  # Test method for 'AbtLogManager.test_log_package_build()'
   ## 
-  def testLogPackageBuild()
-    assert( @log.logPackageBuild( "ipc" ), "testLogPackageBuild()" )
+  def test_log_package_build()
+    assert( @log.log_package_build( "ipc" ), "test_log_package_build()" )
   end
   
   ##
-  # Test method for 'AbtLogManager.testCachePackage()'
+  # Test method for 'AbtLogManager.test_cache_package()'
   ## 
-  def testCachePackage()
-    assert( @log.cachePackage( "ipc" ), "testCachePackage()" )
+  def test_cache_package()
+    assert( @log.cache_package( "ipc" ), "test_cache_package()" )
   end
   
   ##
-  # Test method for 'AbtLogManager.testLogToJournal()'
+  # Test method for 'AbtLogManager.test_to_journal()'
   ## 
-  def testLogToJournal()
-    assert( @log.logToJournal( "Test message from AbtTestSuite." ), 
-                                                  "testLogToJournal()" )
+  def test_to_journal()
+    assert( @log.to_journal( "Test message from AbtTestSuite." ), "test_to_journal()" )
   end
   
 end

@@ -44,11 +44,10 @@ class TestAbtQueueManager < Test::Unit::TestCase
   end
   
   ##
-  # Test method for 'AbtQueueManager.actionPackageQueue()'
+  # Test method for 'AbtQueueManager.action_package_queue()'
   ## 
-  def testActionPackageQueue
-    assert( @queue.actionPackageQueue( "ipc", "install", "add" ), 
-                                                "testQueueManager()" )
+  def test_action_package_queue
+    assert( @queue.action_package_queue( "ipc", "install", "add" ), "test_action_package_queue()" )
   end
   
 end

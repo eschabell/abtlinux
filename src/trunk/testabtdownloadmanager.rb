@@ -44,39 +44,38 @@ class TestAbtDownloadManager < Test::Unit::TestCase
   end
   
   ##
-  # Test method for 'AbtDownloadManager.testRetrievePackageSource()'
+  # Test method for 'AbtDownloadManager.test_retrieve_package_source()'
   ## 
-  def testRetrievePackageSource()
-    assert( @download.retrievePackageSource( "ipc", "#{$SOURCES_REPOSITORY}" ), 
-                                    "testRetrievePackageSource()" )
+  def test_retrieve_package_source()
+    assert( 
+      @download.retrieve_package_source( "ipc", "#{$SOURCES_REPOSITORY}" ), "test_retrieve_package_source()" )
   end
   
   ##
-  # Test method for 'AbtDownloadManager.testRetrievePackageTree()'
+  # Test method for 'AbtDownloadManager.test_retrieve_package_tree()'
   ## 
-  def testRetrievePackageTree()
-    assert( @download.retrievePackageTree( "dummy" ), 
-                                      "testRetrievePackageTree()" )
+  def test_retrieve_package_tree()
+    assert( @download.retrieve_package_tree( "dummy" ), "test_retrieve_package_tree()" )
   end
   
   ##
-  # Test method for 'AbtDownloadManager.testRetrieveNewsFeed()'
+  # Test method for 'AbtDownloadManager.test_retrieve_news_feed()'
   ## 
-  def testRetrieveNewsFeed()
-    assert( @download.retrieveNewsFeed( $ABTNEWS ), "testRetrieveNewsFeed()" )
+  def test_retrieve_news_feed()
+    assert( @download.retrieve_news_feed( $ABTNEWS ), "test_retrieve_news_feed()" )
   end
   
   ##
-  # Test method for 'AbtDownloadManager.testUpdatePackage()'
+  # Test method for 'AbtDownloadManager.test_update_package()'
   ## 
-  def testUpdatePackage()
-    assert( @download.updatePackage(), "testUpdatePackage()" )
+  def test_update_package()
+    assert( @download.update_package(), "test_update_package()" )
   end
   
   ##
-  # Test method for 'AbtDownloadManager.testUpdatePackageTree()'
+  # Test method for 'AbtDownloadManager.test_update_package_tree()'
   ## 
-  def testUpdatePackageTree()
-    assert( @download.updatePackageTree(), "testUpdatePackageTree()" )
+  def test_update_package_tree()
+    assert( @download.update_package_tree(), "test_update_package_tree()" )
   end
 end

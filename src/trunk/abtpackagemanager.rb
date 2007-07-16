@@ -42,7 +42,7 @@ class AbtPackageManager
   # <b>RETURN</b> <i>boolean</i> - True if the action rolls back, otherwise
   # false.
   ##
-  def rollBack( type, details )
+  def roll_back( type, details )
     logFile = "#{$PACKAGE_INSTALLED}/#{details['Source location']}/"
     
     case type
@@ -93,11 +93,11 @@ class AbtPackageManager
   # <b>RETURN</b> <i>boolean</i> - True if the package is installed, otherwise
   # false.
   ##
-  def installPackage( package, verbose=true )
+  def install_package( package, verbose=true )
     
     # first check if installed.
     system = AbtSystemManager.new
-    if ( system.packageInstalled( package ) )
+    if ( system.package_installed( package ) )
       puts "\n*** Package #{package} is installed, might want to try reinstall? ***"
       puts "'abt reinstall #{package}'"
       return true
@@ -116,8 +116,8 @@ class AbtPackageManager
     # add to install queue.
     puts "\n*** Adding #{package} to the INSTALL QUEUE. ***" if ( verbose )
     
-    if ( !queuer.actionPackageQueue( package, "install", "add" ) )
-      logger.logToJournal( "Failed to add #{package} to install queue." )
+    if ( !queuer.action_package_queue( package, "install", "add" ) )
+      logger.to_journal( "Failed to add #{package} to install queue." )
       return false
     end
     
@@ -125,48 +125,48 @@ class AbtPackageManager
     puts "\n*** Processing the PRE section for #{package}. ***" if (verbose )
     
     if ( !sw.pre )
-      logger.logToJournal( "Failed to process pre-section in the " + 
+      logger.to_journal( "Failed to process pre-section in the " + 
         "package description of #{package}." )
       return false
     else
-      logger.logToJournal( "DEBUG: finished #{package} pre section." )
+      logger.to_journal( "DEBUG: finished #{package} pre section." )
     end
     
     # configure section.
     puts "\n*** Processing the CONFIGURE section for #{package}. ***" if ( verbose )
     
     if ( !sw.configure( verbose ) )
-      logger.logToJournal( "Failed to process configure section in the " + 
+      logger.to_journal( "Failed to process configure section in the " + 
         "package description of #{package}." )
       return false
     else
-      logger.logToJournal( "DEBUG: finished #{package} configure section." )
+      logger.to_journal( "DEBUG: finished #{package} configure section." )
     end
     
     # build section.
     puts "\n*** Processing the BUILD section for #{package}. ***" if ( verbose )
     
     if ( !sw.build( verbose ) )
-      logger.logToJournal( "Failed to process build section in the " + 
+      logger.to_journal( "Failed to process build section in the " + 
         "package description of #{package}." )
       return false
     else
-      if ( !logger.logPackageBuild( sw.name.downcase ) ) 
-        logger.logToJournal( "Failed to create a package build log." )
+      if ( !logger.log_package_build( sw.name.downcase ) ) 
+        logger.to_journal( "Failed to create a package build log." )
         return false
       end
-      logger.logToJournal( "DEBUG: finished #{package} build section." )
+      logger.to_journal( "DEBUG: finished #{package} build section." )
     end
     
     # preinstall section.
     puts "\n*** Processing the PREINSTALL section for #{package}. ***" if ( verbose )
     
     if ( !sw.preinstall )
-      logger.logToJournal( "Failed to process preinstall section in the " + 
+      logger.to_journal( "Failed to process preinstall section in the " + 
         "package description of #{package}." )
       return false
     else
-      logger.logToJournal( "DEBUG: finished #{package} preinstall section." )
+      logger.to_journal( "DEBUG: finished #{package} preinstall section." )
     end
     
     # install section.
@@ -174,47 +174,43 @@ class AbtPackageManager
 
     if ( !sw.install )
       # rollback installed files if any and remove install log.
-      logger.logToJournal( "Failed to process install section in the " + 
+      logger.to_journal( "Failed to process install section in the " + 
         "package description of #{package}." )
-      logger.logPackageInstall( sw.name.downcase )
-      logger.logToJournal( 
-        "***Starting rollback of #{package} install and removing install log." )
-      self.rollBack( "install", details )
+      logger.log_package_install( sw.name.downcase )
+      logger.to_journal( "***Starting rollback of #{package} install and removing install log." )
+      roll_back( "install", details )
       return false
     else
-      logger.logPackageInstall( sw.name.downcase )
-      logger.logPackageIntegrity( sw.name.downcase )
+      logger.log_package_install( sw.name.downcase )
+      logger.log_package_integrity( sw.name.downcase )
       
       # cleanup tmp files from installwatch.
       File.delete( "#{$ABT_TMP}/#{details['Source location']}.watch" )
 
-      logger.logToJournal( "DEBUG: finished #{package} install section." )
+      logger.to_journal( "DEBUG: finished #{package} install section." )
     end
     
     # post section.
     puts "\n*** Processing the POST section for #{package}. ***" if ( verbose )
     
     if ( !sw.post )
-      logger.logToJournal( "Failed to process post section in the " + 
-        "package description of #{package}." )
+      logger.to_journal( "Failed to process post section in the package description of #{package}." )
       return false
     else
-      logger.logToJournal( "DEBUG: finished #{package} post section." )
+      logger.to_journal( "DEBUG: finished #{package} post section." )
     end
     
     # clean out build sources.        
     puts "\n*** Cleaning up the sources for #{package}. ***" if ( verbose )
     
-    if ( !sw.removeBuild )
-      logger.logToJournal( "Failed to remove the build sources for " + 
-        "#{package}." )
+    if ( !sw.remove_build )
+      logger.to_journal( "Failed to remove the build sources for #{package}." )
       #return false  # commented out as this is not a reason to fail.
     end
     
     # remove pacakge from install queue.
-    if ( !queuer.actionPackageQueue( sw.name.downcase, "install", "remove" ) )
-      logger.logToJournal( "Failed to remove #{sw.name.donwcase} " + 
-        "from install queue." )
+    if ( !queuer.action_package_queue( sw.name.downcase, "install", "remove" ) )
+      logger.to_journal( "Failed to remove #{sw.name.donwcase} from install queue." )
     end
     
     return true # install completed!
@@ -228,7 +224,7 @@ class AbtPackageManager
   # <b>RETURN</b> <i>boolean</i> - True if the package is reinstalled, 
   # otherwise false.
   ##
-  def reinstallPackage( package )
+  def reinstall_package( package )
   end
   
   ##
@@ -239,7 +235,7 @@ class AbtPackageManager
   # <b>RETURN</b> <i>boolean</i> - True if the package is removed, otherwise
   # false.
   ##
-  def removePackage( package )
+  def remove_package( package )
   end
   
   ##
@@ -252,7 +248,7 @@ class AbtPackageManager
   # <b>RETURN</b> <i>boolean</i> - True if the package is downgraded, otherwise
   # false.
   ##
-  def downgradePackage( package, version )
+  def downgrade_package( package, version )
   end
   
   ##
@@ -264,7 +260,7 @@ class AbtPackageManager
   # <b>RETURN</b> <i>boolean</i> - True if the package is frozen, otherwise
   # false.
   ##
-  def freezePackage( package )
+  def freeze_package( package )
   end
   
   ##
@@ -274,7 +270,7 @@ class AbtPackageManager
   #
   # <b>RETURN</b> <i>void</i>
   ##
-  def rootLogin( arguments )
+  def root_login( arguments )
     if ( Process.uid != 0 )
       args = ""
       puts "\nEnter root password:"

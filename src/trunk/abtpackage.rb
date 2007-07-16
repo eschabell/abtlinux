@@ -37,7 +37,7 @@ class AbtPackage
   # <b>RETURNS:</b> <i>boolean</i> - True if the completes sucessfully, 
   # otherwise false.
   ##
-  def unpackSources
+  def unpack_sources
     srcFile			= File.basename( @srcUrl )
     sourcesToUnpack = "#{$SOURCES_REPOSITORY}/#{srcFile}"
     unpackTool		= ""
@@ -76,11 +76,7 @@ class AbtPackage
       # unsupported format.
       return false
     end
-    
-    # DEBUG:
-    #logger = AbtLogManager.new
-    #logger.logToJournal( "DEBUG: unpack tool will be '#{unpackTool}'." )
-    
+        
     Dir.chdir( $BUILD_LOCATION )
     if ( !system( "#{unpackTool} #{sourcesToUnpack}" ) )
       return false
@@ -208,12 +204,12 @@ class AbtPackage
     downloader = AbtDownloadManager.new
     
     # download sources.
-    if ( !downloader.retrievePackageSource( @name.downcase, $SOURCES_REPOSITORY ) )
+    if ( !downloader.retrieve_package_source( @name.downcase, $SOURCES_REPOSITORY ) )
       return false
     end
     
     # unpack sources.
-    if ( !self.unpackSources )
+    if ( !unpack_sources )
       return false
     end
     
@@ -244,11 +240,9 @@ class AbtPackage
   ##
   def configure( verbose=true )
     if ( verbose )
-      command = "./configure --prefix=#{$DEFAULT_PREFIX} | tee " +
-        "#{$PACKAGE_INSTALLED}/#{@srcDir}/#{@srcDir}.configure"
+      command = "./configure --prefix=#{$DEFAULT_PREFIX} | tee #{$PACKAGE_INSTALLED}/#{@srcDir}/#{@srcDir}.configure"
     else
-      command = "./configure --prefix=#{$DEFAULT_PREFIX} 1> " +
-        "#{$PACKAGE_INSTALLED}/#{@srcDir}/#{@srcDir}.configure 2>&1"
+      command = "./configure --prefix=#{$DEFAULT_PREFIX} 1> #{$PACKAGE_INSTALLED}/#{@srcDir}/#{@srcDir}.configure 2>&1"
     end 
     
     Dir.chdir( "#{$BUILD_LOCATION}/#{@srcDir}" )
@@ -359,7 +353,7 @@ class AbtPackage
   # <b>RETURNS:</b>  <i>boolean</i> - True if the completes sucessfully, 
   # otherwise false.
   ##
-  def removeBuild
+  def remove_build
     puts "Removings build..."
     if ( $REMOVE_BUILD_SOURCES )
       buildSourcesLocation = "#{$BUILD_LOCATION}/#{srcDir}"

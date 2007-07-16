@@ -46,38 +46,38 @@ class TestAbtPackageManager < Test::Unit::TestCase
   end
   
   ##
-  # Test method for 'AbtPackageManager.testInstallPackage()'
+  # Test method for 'AbtPackageManager.test_install_package()'
   ## 
-  def testInstallPackage
-    assert( @pkgMgr.installPackage( "ipc", $verbose ), "testInstallPackage()" )
+  def test_install_package
+    assert( @pkgMgr.install_package( "ipc", $verbose ), "test_install_package()" )
   end
   
   ##
-  # Test method for 'AbtPackageManager.testReinstallPackage()'
+  # Test method for 'AbtPackageManager.test_reinstall_package()'
   ## 
-  def testReinstallPackage
-    assert( @pkgMgr.reinstallPackage( "ipc" ), "testReinstallPackage()" )
+  def test_reinstall_package
+    assert( @pkgMgr.reinstall_package( "ipc" ), "test_reinstall_package()" )
   end
   
   ##
-  # Test method for 'AbtPackageManager.testRemovePackage()'
+  # Test method for 'AbtPackageManager.test_remove_package()'
   ## 
-  def testRemovePackage
-    assert( @pkgMgr.removePackage( "ipc" ), "testRemovePackage()" )
+  def test_remove_package
+    assert( @pkgMgr.remove_package( "ipc" ), "test_remove_package()" )
   end
   
   ##
-  # Test method for 'AbtPackageManager.testDowngradePackage()'
+  # Test method for 'AbtPackageManager.test_downgrade_package()'
   ## 
-  def testDowngradePackage
-    assert( @pkgMgr.downgradePackage( "ipc", "1.2" ), "testDowngradePackage()" )
+  def test_downgrade_package
+    assert( @pkgMgr.downgrade_package( "ipc", "1.2" ), "test_downgrade_package()" )
   end
   
   ##
-  # Test method for 'AbtPackageManager.testFreezePackage()'
+  # Test method for 'AbtPackageManager.test_freeze_package()'
   ## 
-  def testFreezePackage
-    assert( @pkgMgr.freezePackage( "ipc" ), "testFreezePackage()" )
+  def test_freeze_package
+    assert( @pkgMgr.freeze_package( "ipc" ), "test_freeze_package()" )
   end
   
 end

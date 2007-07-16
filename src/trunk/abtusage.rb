@@ -39,30 +39,30 @@ class AbtUsage
     case section
 
     when "packages"
-      usagePackages
+      usage_packages
 
     when "queries"
-      usageQueries
+      usage_queries
 
     when "generation"
-      usageGeneration
+      usage_generation
 
     when "downloads"
-      usageDownloads
+      usage_downloads
 
     when "fix"
-      usageFix
+      usage_fix
 
     when "maintenance"
-      usageMaintenance
+      usage_maintenance
 
     else
-      usagePackages
-      usageQueries
-      usageGeneration
-      usageDownloads
-      usageFix
-      usageMaintenance
+      usage_packages
+      usage_queries
+      usage_generation
+      usage_downloads
+      usage_fix
+      usage_maintenance
     end
   end
 
@@ -71,7 +71,7 @@ class AbtUsage
   #
   # <b>RETURN</b> <i>void</i>
   ##
-  def usagePackages
+  def usage_packages
     puts "\npackages:"
     puts "  -i,  install     [package]\t\tInstall given package."
     puts "  -ri, reinstall   [package]\t\tReinstall given package."
@@ -85,7 +85,7 @@ class AbtUsage
   #
   # <b>RETURN</b> <i>void</i>
   ##
-  def usageQueries
+  def usage_queries
     puts "\nqueries:"
     puts "  -s,  search      [string | regexp ]\tSearch package descriptions for given input."
     puts "  -v,  --version\t\t\tShow abt package manager version."
@@ -107,7 +107,7 @@ class AbtUsage
   #
   # <b>RETURN</b> <i>void</i>
   ##
-  def usageGeneration
+  def usage_generation
     puts "\ngeneration:"
     puts "  show-updates\t\tShow a package listing with available update versions."
     puts "  html\t\t\tGenerate HTML page from installed packages:"
@@ -119,7 +119,7 @@ class AbtUsage
   #
   # <b>RETURN</b> <i>void</i>
   ##
-  def usageDownloads
+  def usage_downloads
     puts "\ndownloads:"
     puts "  -d,  download     [package]\t\tRetrieve given package sources."
     puts "  -u,  update       [package]|[tree]\tUpdate given package or tree from AbTLinux repository."
@@ -131,7 +131,7 @@ class AbtUsage
   #
   # <b>RETURN</b> <i>void</i>
   ##
-  def usageFix
+  def usage_fix
     puts "\nfix:"
     puts "  purge-src\t\t\t\tRemove source caches for packages no longer installed."
     puts "  purge-logs\t\t\t\tRemove log files for packages no longer installed."
@@ -147,7 +147,7 @@ class AbtUsage
   #
   # <b>RETURN</b> <i>void</i>
   ##
-  def usageMaintenance
+  def usage_maintenance
     puts "\nmaintenance:"
     puts "  build-location    [host]\t\tSets global location (default: localhost) for retrieving cached package builds."
     puts "  package-repo      [add|remove|list] [URI]"

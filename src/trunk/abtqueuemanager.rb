@@ -51,7 +51,7 @@ class AbtQueueManager
   #
   # <b>RETURN</b> <i>boolean</i> - true if action succeeds, otherwise false.
   ##
-  def actionPackageQueue( package, queue, action="add" )
+  def action_package_queue( package, queue, action="add" )
     require 'fileutils'
     logger = AbtLogManager.new
     queueFile = ""  # used to hold the queue location.
@@ -65,8 +65,7 @@ class AbtQueueManager
     
     if ( action == "add")
       if ( 
-          log = File.new( 
-                     queueFile, File::WRONLY|File::APPEND|File::CREAT, 0644 ) )
+          log = File.new( queueFile, File::WRONLY|File::APPEND|File::CREAT, 0644 ) )
         # pickup queue contents to ensure no duplicates.
         checkingQueue = IO.readlines( queueFile )
         
@@ -75,9 +74,9 @@ class AbtQueueManager
             !checkingQueue.collect{ |i| i.split( '|' )[0] }.include?( 
                                                                  package ) )
           log.puts "#{package}|#{$TIMESTAMP}"
-          logger.logToJournal( "Added #{package} to #{queue} queue." )
+          logger.to_journal( "Added #{package} to #{queue} queue." )
         else
-          logger.logToJournal( 
+          logger.to_journal( 
             "Did not add #{package} to #{queue}, already exists." )
         end
         
@@ -89,8 +88,7 @@ class AbtQueueManager
     if ( action == "remove" )
       # remove entry from given queue.
       if ( 
-          log = File.new( 
-                     queueFile, File::WRONLY|File::APPEND|File::CREAT, 0644 ) )
+          log = File.new( queueFile, File::WRONLY|File::APPEND|File::CREAT, 0644 ) )
         # use temp file to filter out entry to be removed.
         temp = File.new(queueFile + ".tmp", "a+")
         
@@ -110,7 +108,7 @@ class AbtQueueManager
       return true
     end
     
-    logger.logToJournal( "Failed to open #{queueFile}." )
+    logger.to_journal( "Failed to open #{queueFile}." )
     return false
   end  
 end

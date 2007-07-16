@@ -38,7 +38,7 @@ class AbtLogManager
   #
   # <b>RETURN</b> <i>String</i> - Full path to install log.
   ##
-  def getLog( package, type )
+  def get_log( package, type )
     require "#{$PACKAGE_PATH}#{package}"
     sw         = eval( "#{package.capitalize}.new" )
     details    = sw.details
@@ -84,7 +84,7 @@ class AbtLogManager
       
       if ( ! File.directory?( dir ) )
         FileUtils.mkdir_p( dir )
-        logToJournal << "Created directory: #{dir}." 
+        to_journal << "Created directory: #{dir}." 
       end
     }
   end
@@ -99,14 +99,14 @@ class AbtLogManager
   # <b>RETURN</b> <i>boolean</i> - True if integrity log created successfully,
   # otherwise false.
   ##
-  def logPackageIntegrity( package )
+  def log_package_integrity( package )
     #require "#{$PACKAGE_PATH}#{package}"
     #sw = eval( "#{package.capitalize}.new" )
     #details = sw.details
     
     # our log locations.
-    installLog = getLog( package, 'install' )
-    integrityLog = getLog( package, 'integrity' )
+    installLog = get_log( package, 'install' )
+    integrityLog = get_log( package, 'integrity' )
     
     # get the installed files from the tmp file
     # into our install log.
@@ -139,15 +139,14 @@ class AbtLogManager
   # <b>RETURN</b> <i>boolean</i> - True if install log created successfully,
   # otherwise false.
   ##
-  def logPackageInstall( package )
+  def log_package_install( package )
     # some dirs we will not add to an install log.
-    excluded_pattern = 
-      Regexp.new( "^(/dev|/proc|/tmp|/var/tmp|/usr/src|/sys)+" )
+    excluded_pattern = Regexp.new( "^(/dev|/proc|/tmp|/var/tmp|/usr/src|/sys)+" )
     badLine = false  # used to mark excluded lines from installwatch log.
     
     # our log locations.
-    installLog = getLog( package, 'install' )
-    tmpInstallLog = getLog( package, 'tmpinstall' )
+    installLog = get_log( package, 'install' )
+    tmpInstallLog = get_log( package, 'tmpinstall' )
     
     # get the installed files from the tmp file
     # into our install log.
@@ -166,7 +165,7 @@ class AbtLogManager
           end
           
           if ( !badLine )
-            #self.logToJournal( "DEBUG: adding line to installFile!")
+            #self.to_journal( "DEBUG: adding line to installFile!")
             installFile << "#{line.split[2]}\n"
           end
         end 
@@ -187,8 +186,8 @@ class AbtLogManager
   # <b>RETURN</b> <i>boolean</i> - True if build log created successfully,
   # otherwise false.
   ##
-  def logPackageBuild( package )
-    buildLog = getLog( package, 'build' )
+  def log_package_build( package )
+    buildLog = get_log( package, 'build' )
     
     # make sure the build file exists.
     if ( !File.exist?( buildLog ) )
@@ -207,18 +206,18 @@ class AbtLogManager
   # <b>RETURN</b> <i>boolean</i> - True if package cache created successfully,
   # otherwise false.
   ##
-  def cachePackage( package )
+  def cache_package( package )
     system = AbtSystemManager.new
     
-    if ( system.packageInstalled( package ) )
+    if ( system.package_installed( package ) )
       sw           = eval( "#{package.capitalize}.new" )
       cachedDir    = $PACKAGE_CACHED + "/" + sw.srcDir
       sourcePath   = $SOURCES_REPOSITORY + "/" + File.basename( sw.srcUrl )
       sourceFile   = File.basename( sw.srcUrl )
-      installLog   = getLog( package, 'install' )
-      buildLog     = getLog( package, 'install' )
-      configureLog = getLog( package, 'install' )
-      integrityLog = getLog( package, 'install' )
+      installLog   = get_log( package, 'install' )
+      buildLog     = get_log( package, 'install' )
+      configureLog = get_log( package, 'install' )
+      integrityLog = get_log( package, 'install' )
       packageFile  = "#{$PACKAGE_PATH}#{package}.rb"
       
       
@@ -293,7 +292,7 @@ class AbtLogManager
   #
   # <b>RETURN</b> <i>boolean</i> True if logged, otherwise false.
   ##
-  def logToJournal( message )
+  def to_journal( message )
     if ( log = File.new( $JOURNAL, "a+" ) )
       log << "#{$TIMESTAMP} : #{message}\n"
       log.close

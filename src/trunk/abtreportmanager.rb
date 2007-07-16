@@ -50,7 +50,7 @@ class AbtReportManager
   # <b>RETURN</b> <i>boolean</i> - True if completes without error, 
   # otherwise false.
   ##
-  def showPackageDetails( package )
+  def show_package_details( package )
     require "#{$PACKAGE_PATH}#{package}"
     
     if ( package = eval( "#{package.capitalize}.new" ) )
@@ -86,8 +86,7 @@ class AbtReportManager
       return true
     end
     
-    logger.logToJournal( "[AbtReportManger::showPackageDetails] - failed" +
-      "to show details for ${package}." )
+    logger.to_journal( "[AbtReportManger::showPackageDetails] - failed to show details for ${package}." )
     return false
   end
   
@@ -96,7 +95,7 @@ class AbtReportManager
   #
   # <b>RETURN</b> <i>void.</i>
   ##
-  def showInstalledPackages
+  def show_installed_packages
   end
   
   ##
@@ -109,7 +108,7 @@ class AbtReportManager
   #
   # <b>RETURN</b> <i>void.</i>
   ##
-  def showPackageLog( package, logType )
+  def show_package_log( package, logType )
     # install log
     # build log
     # integrity log
@@ -120,7 +119,7 @@ class AbtReportManager
   #
   # <b>RETURN</b> <i>void.</i>
   ##
-  def showFrozenPackages
+  def show_frozen_packages
   end
   
   ##
@@ -133,7 +132,7 @@ class AbtReportManager
   # <b>RETURN</b> <i>hash</i> - Empty hash if no problems found, otherwise
   # hash of problem files and their encountered errors.
   ##
-  def showPackageDependencies( package )
+  def show_package_dependencies( package )
   end
   
   ##
@@ -143,7 +142,7 @@ class AbtReportManager
   #
   # <b>RETURN</b> <i>void.</i>
   ##
-  def showUntrackedFiles
+  def show_untracked_files
   end
   
   ##
@@ -153,7 +152,7 @@ class AbtReportManager
   #
   # <b>RETURN</b> <i>iboolean</i> True if journal shown, otherwise false.
   ##
-  def showJournal( fileName )
+  def show_journal( fileName )
     if ( File.exist?( fileName ) )
       puts "\n\n"
       puts "AbTLinux log:"
@@ -178,7 +177,7 @@ class AbtReportManager
   #
   # <b>RETURN</b> <i>void.</i>
   ##
-  def showFileOwner( file )
+  def show_file_owner( file )
   end
   
   ##
@@ -190,7 +189,7 @@ class AbtReportManager
   # <b>RETURN</b> <i>hash</i> - a hash of the search results, keys are package
   # names and values are matching descriptions.
   ##
-  def searchPackageDescriptions( searchText )
+  def search_package_descriptions( searchText )
   end
   
   ##
@@ -201,7 +200,7 @@ class AbtReportManager
   #
   # <b>RETURN</b> <i>void.</i>
   ##
-  def showQueue( queueType )
+  def show_queue( queueType )
     
     case queueType
       
@@ -233,7 +232,7 @@ class AbtReportManager
   # <b>RETURN</b> <i>boolean</i> - True if completes without error, otherwise
   # false.
   ##
-  def showUpdates( target )
+  def show_updates( target )
   end
   
   ##
@@ -241,7 +240,6 @@ class AbtReportManager
   #
   # <b>RETURN</b> <i>void.</i>
   ##
-  def generateHTMLPackageListing
-  end
-  
+  def generate_HTML_package_listing
+  end  
 end

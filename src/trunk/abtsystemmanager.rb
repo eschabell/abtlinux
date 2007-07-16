@@ -41,7 +41,7 @@ class AbtSystemManager
   # <b>RETURN</b> <i>boolean</i> - True if entry found in given directory, 
   # otherwise false.
   ##
-  def foundEntry( directory, name )
+  def found_entry( directory, name )
     Find.find( directory ) do |path|
       
       Find.prune if [".", ".."].include? path
@@ -75,7 +75,7 @@ class AbtSystemManager
   # <b>RETURN</b> <i>boolean</i> - True if completes without error, otherwise
   # false.
   ##
-  def cleanupPackageSources
+  def cleanup_package_sources
   end
   
   ##
@@ -84,7 +84,7 @@ class AbtSystemManager
   # <b>RETURN</b> <i>boolean</i> - True if completes without error, otherwise
   # false.
   ##
-  def cleanupLogs
+  def cleanup_logs
   end
   
   ##
@@ -95,7 +95,7 @@ class AbtSystemManager
   # <b>RETURN</b> <i>boolean</i> - True if no installed files are missing, 
   # otherwise false.
   ##
-  def verifyInstalledFiles( package )
+  def verify_installed_files( package )
   end
   
   ##
@@ -106,7 +106,7 @@ class AbtSystemManager
   # <b>RETURN</b> <i>boolean</i> - True if no symlinks found missing 
   # or broken, otherwise false.
   ##
-  def verifySymlinks( package )
+  def verify_symlinks( package )
   end
   
   ##
@@ -117,7 +117,7 @@ class AbtSystemManager
   # <b>RETURN</b> <i>boolean</i> - True if dependencies intact, otherwise
   # false.
   ##
-  def verifyPackageDepends( package )
+  def verify_package_depends( package )
   end
   
   ##
@@ -129,7 +129,7 @@ class AbtSystemManager
   # <b>RETURN</b> <i>hash</i> - Empty hash if no problems found, otherwise
   # hash of problem files and their encountered errors.
   ##
-  def verifyPackageIntegrity( package )
+  def verify_package_integrity( package )
   end
   
   ##
@@ -140,7 +140,7 @@ class AbtSystemManager
   # <b>RETURN</b> <i>boolean</i> - True if completes without error, otherwise
   # false.
   ##
-  def fixPackage( package )
+  def fix_package( package )
   end
   
   ##
@@ -151,7 +151,7 @@ class AbtSystemManager
   #
   # <b>RETURN</b> <i>boolean</i> - True if the URI is set, otherwise false.
   ##
-  def setCentralRepo( uri )
+  def set_central_repo( uri )
   end
   
   ##
@@ -163,7 +163,7 @@ class AbtSystemManager
   # <b>RETURN</b> <i>boolean</i> - True if the package tree location is set,
   # otherwise false.
   ##
-  def setPackageTreeLocation( location )
+  def set_package_tree_location( location )
   end
     
   ##
@@ -175,12 +175,12 @@ class AbtSystemManager
   # <b>RETURN</b> <i>boolean</i> - True if package installed, otherwise
   # false.
   ##
-  def packageInstalled( package )
+  def package_installed( package )
     require "#{$PACKAGE_PATH}#{package}"
     sw = eval( "#{package.capitalize}.new" )
     details = sw.details
     
-    if ( foundEntry( $PACKAGE_INSTALLED, sw.srcDir ) )
+    if ( found_entry( $PACKAGE_INSTALLED, sw.srcDir ) )
       return true
     end
     

@@ -53,19 +53,19 @@ class AbtDownloadManager
   # <b>RETURN</b> <i>boolean</i> - True if the package source has been
   # downloaded, otherwise false.
   ##
-  def retrievePackageSource( packageName, destination )
+  def retrieve_package_source( packageName, destination )
     require "#{$PACKAGE_PATH}#{packageName}"
     logger		= AbtLogManager.new
     package		= eval( packageName.capitalize + '.new' )
     
     if ( File.exist?( "#{destination}/#{File.basename( package.srcUrl )}" ) )
-      logger.logToJournal( "Download not needed, existing source found for #{packageName}" )
+      logger.to_journal( "Download not needed, existing source found for #{packageName}" )
       return true
     end
     
     Dir.chdir( destination )
     if ( system( "wget #{package.srcUrl}" ) )
-      logger.logToJournal( "Download completed for #{packageName}" )
+      logger.to_journal( "Download completed for #{packageName}" )
       return true
     end
     
@@ -80,7 +80,7 @@ class AbtDownloadManager
   # <b>RETURN</b> <i>boolean</i> - True if the package tree is retrieved, 
   # otherwise false.
   ##
-  def retrievePackageTree( packageTreeName )
+  def retrieve_package_tree( packageTreeName )
   end
   
   ##
@@ -92,7 +92,7 @@ class AbtDownloadManager
   # <b>RETURN</b> <i>boolean</i> - True if the AbTLinux news feed has been
   # retrieved, otherwise false.
   ##
-  def retrieveNewsFeed( uri, cleanLog=true )
+  def retrieve_news_feed( uri, cleanLog=true )
     require 'net/http'
     require 'uri'
     require 'rss/1.0'
@@ -109,7 +109,7 @@ class AbtDownloadManager
     
     # pick up the abtlinux.org news feed.
     if ( !news = Net::HTTP.get( URI.parse( uri ) ) )
-      logger.logToJournal( "Failed to retrieve news feed #{uri}." )
+      logger.to_journal( "Failed to retrieve news feed #{uri}." )
       return false
     end
     
@@ -121,7 +121,7 @@ class AbtDownloadManager
     end 
     
     if ( rss.nil? )
-      logger.logToJournal( "Failed to display news feed as feed #{uri} " +
+      logger.to_journal( "Failed to display news feed as feed #{uri} " +
         "is not RSS 1.0/2.0." )
       return false
     else
@@ -147,7 +147,7 @@ class AbtDownloadManager
   # <b>RETURN</b> <i>boolean</i> - True if the given package has been updated,
   # otherwise false.
   ##
-  def updatePackage
+  def update_package
   end
   
   ##
@@ -156,7 +156,7 @@ class AbtDownloadManager
   # <b>RETURN</b> <i>boolean</i> - True if the package tree has been updated,
   # otherwise false.
   ##
-  def updatePackageTree
+  def update_package_tree
   end
   
 end

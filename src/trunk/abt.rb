@@ -42,7 +42,7 @@ if ( ARGV.length == 0 )
 end
 
 # login as root for the rest.
-manager.rootLogin( ARGV )
+manager.root_login( ARGV )
 
 # parse arguments.
 case ARGV[0]
@@ -51,25 +51,25 @@ case ARGV[0]
 when "install", "-i"
   if ( ARGV.length == 2 && File.exist?( "#{$PACKAGE_PATH}#{ARGV[1]}.rb" ) )
     options['package'] = ARGV[1]
-    logger.logToJournal( "Starting to install #{options['package']}" )
+    logger.to_journal( "Starting to install #{options['package']}" )
     
     # return if already installed.
     require "#{$PACKAGE_PATH}#{options['package']}"
     sw = eval( "#{options['package'].capitalize}.new" )
     
-    if ( manager.installPackage( options['package'] ) )
+    if ( manager.install_package( options['package'] ) )
       puts "\n\n"
       puts "*** Completed install of #{options['package']}. ***"
       puts "\n\n"
-      logger.logToJournal( "Completed install of #{options['package']}." )
+      logger.to_journal( "Completed install of #{options['package']}." )
       
-      if ( logger.cachePackage( options['package'] ) )
+      if ( logger.cache_package( options['package'] ) )
         puts "\n\n"
         puts "*** Completed caching of package #{options['package']}. ***"
         puts "\n\n"
-        logger.logToJournal( "\nCaching completed for package #{options['package']}." )
+        logger.to_ournal( "\nCaching completed for package #{options['package']}." )
       else
-        logger.logToJournal( "\nCaching of package #{options['package']} failed.")
+        logger.to_journal( "\nCaching of package #{options['package']} failed.")
       end
     else
       puts "*** #{options['package'].capitalize} install failed, " +
@@ -143,10 +143,10 @@ when "-v", "--version"
 when "show-details"
   if ( ARGV.length == 2 && File.exist?( $PACKAGE_PATH + ARGV[1] + ".rb" ) )
     options['pkg'] = ARGV[1]
-    logger.logToJournal( "Starting show details for #{options['pkg']}" )
+    logger.to_journal( "Starting show details for #{options['pkg']}" )
     
-    if ( reporter.showPackageDetails( options['pkg'] ) )
-      logger.logToJournal( "Completed show details for #{options['pkg']}" )
+    if ( reporter.show_package_details( options['pkg'] ) )
+      logger.to_journal( "Completed show details for #{options['pkg']}" )
     else
       puts "Problems processing the details for #{options['pkg']}."
     end
@@ -205,10 +205,10 @@ when "show-untracked"
   
   # abt show-journal
 when "show-journal"
-  reporter.showJournal( $JOURNAL )
+  reporter.show_journal( $JOURNAL )
   
 when "show-iqueue"
-  reporter.showQueue( "install" )
+  reporter.show_queue( "install" )
   
 when "show-patches"
   puts "Display currently available patches for installed package tree."
@@ -225,45 +225,45 @@ when "html"
   
   # abt news | -n
 when "news", "-n"
-  logger.logToJournal( "Starting to retrieve AbTLinux news." )
+  logger.to_journal( "Starting to retrieve AbTLinux news." )
   
   # abtlinux.org news feeds.
   puts "\n"
-  if ( !downloader.retrieveNewsFeed( $ABTNEWS ) )
+  if ( !downloader.retrieve_news_feed( $ABTNEWS ) )
     puts "Failed to retrieve the AbTLinux news feed."
   end
   
   puts "\n"
-  if ( !downloader.retrieveNewsFeed( $ABTNEWS_THREADS, false ) )
+  if ( !downloader.retrieve_news_feed( $ABTNEWS_THREADS, false ) )
     puts "Failed to retrieve the AbTLinux forum threads news feed."
   end
   
   puts "\n"
-  if ( !downloader.retrieveNewsFeed( $ABTNEWS_POSTS, false ) )
+  if ( !downloader.retrieve_news_feed( $ABTNEWS_POSTS, false ) )
     puts "Failed to retrieve the AbTLinux new posts news feed."
   end
   
   # display the file contents.
-  reporter.showJournal( $ABTNEWS_LOG )
+  reporter.show_journal( $ABTNEWS_LOG )
   
-  logger.logToJournal( "Completed the retrieval of AbTLinux news." )
+  logger.to_journal( "Completed the retrieval of AbTLinux news." )
   
   # abt [-d | download ] <package>
 when "download", "-d"
   if ( ARGV.length == 2 && File.exist?( $PACKAGE_PATH + ARGV[1] + ".rb" ) )
     options['pkg'] = ARGV[1]
-    logger.logToJournal( "Starting to download " + options['pkg'] )
+    logger.to_journal( "Starting to download " + options['pkg'] )
     
     manager = AbtDownloadManager.new
     
-    if ( manager.retrievePackageSource( options['pkg'], $SOURCES_REPOSITORY ) )
-      logger.logToJournal( "Finished download for " + options['pkg'] )
+    if ( manager.retrieve_package_source( options['pkg'], $SOURCES_REPOSITORY ) )
+      logger.to_journal( "Finished download for " + options['pkg'] )
       puts  "\n";
       print "Downloading of #{options['pkg']} to #{$SOURCES_REPOSITORY} "
       puts  "completed."
       puts  "\n\n"
     else
-      logger.logToJournal( "FAILURE to download " + options['pkg'] )
+      logger.to_journal( "FAILURE to download " + options['pkg'] )
       puts  "\n"
       puts "DOWNLOADING - failed to download source for #{options['pkg']}"
       puts "\n\n"

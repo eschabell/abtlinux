@@ -58,88 +58,83 @@ class TestAbtPackage < Test::Unit::TestCase
   end
   
   ##
-  # Test method for 'AbtPackage.testDetails()'
+  # Test method for 'AbtPackage.test_details()'
   ## 
-  def testDetails
-    assert_equal( $dataTest['name'], @ipc.details['Package name'], 
-                                                          "testDetails()" )
-    assert_equal( $dataTest['execName'], @ipc.details['Executable'], 
-                                                          "testDetails()" )
-    assert_equal( $dataTest['version'], @ipc.details['Version'], 
-                                                          "testDetails()" )
-    assert_equal( $dataTest['srcDir'], @ipc.details['Source location'], 
-                                                          "testDetails()" )
-    assert_equal( $dataTest['homepage'], @ipc.details['Homepage'], 
-                                                          "testDetails()" )
+  def test_details
+    assert_equal( $dataTest['name'], @ipc.details['Package name'], "test_details(name)" )
+    assert_equal( $dataTest['execName'], @ipc.details['Executable'], "test_details(execName)" )
+    assert_equal( $dataTest['version'], @ipc.details['Version'], "test_details(version)" )
+    assert_equal( $dataTest['srcDir'], @ipc.details['Source location'], "test_details(srcDir)" )
+    assert_equal( $dataTest['homepage'], @ipc.details['Homepage'], "test_details(homepage)" )
   end
   
   ##
-  # Test method for 'AbtPackage.testPre()'
+  # Test method for 'AbtPackage.test_pre()'
   ## 
-  def testPre
-    assert( @ipc.pre( $verbose ), "testPre()" )
+  def test_pre
+    assert( @ipc.pre( $verbose ), "test_pre()" )
   end
   
   ##
-  # Test method for 'AbtPackage.testConfigure()'
+  # Test method for 'AbtPackage.test_configure()'
   ##
-  def testConfigure
+  def test_configure
     if ( !@ipc.pre( $verbose ) ) 
-      assert_equals( true, false, "testConfigure()" )
+      assert_equals( true, false, "test_configure(pre)" )
     end
-    assert( @ipc.configure( $verbose ), "testConfigure()" )
+    assert( @ipc.configure( $verbose ), "test_configure(configure)" )
   end
   
   ##
-  # Test method for 'AbtPackage.testBuild()'
+  # Test method for 'AbtPackage.test_build()'
   ##
-  def testBuild
+  def test_build
     if ( !@ipc.pre( $verbose ) ) 
-      assert_equals( true, false, "testBuild()" )
+      assert_equals( true, false, "test_build(pre)" )
     end
     if ( !@ipc.configure( $verbose ) ) 
-      assert_equals( true, false, "testBuild()" )
+      assert_equals( true, false, "test_build(configure)" )
     end
-    assert( @ipc.build( $verbose ), "testBuild()" )
+    assert( @ipc.build( $verbose ), "test_build(build)" )
   end
   
   ##
-  # Test method for 'AbtPackage.testPreinstall()'
+  # Test method for 'AbtPackage.test_preinstall()'
   ##
-  def testPreinstall
-    assert( @ipc.preinstall( $verbose ), "testPreinstall()" )
+  def test_preinstall
+    assert( @ipc.preinstall( $verbose ), "test_preinstall()" )
   end
   
   ##
-  # Test method for 'AbtPackage.testInstall()'
+  # Test method for 'AbtPackage.test_install()'
   ##
-  def testInstall
+  def test_install
   
     if ( !@ipc.pre( $verbose ) ) 
-      assert_equals( true, false, "testInstall()" )
+      assert_equals( true, false, "test_install(pre)" )
     end
     if ( !@ipc.configure( $verbose ) ) 
-      assert_equals( true, false, "testInstall()" )
+      assert_equals( true, false, "test_install(configure)" )
     end
     if ( !@ipc.build( $verbose ) ) 
-      assert_equals( true, false, "testInstall()" )
+      assert_equals( true, false, "test_install(build)" )
     end
     if ( !@ipc.preinstall( $verbose ) ) 
-      assert_equals( true, false, "testInstall()" )
+      assert_equals( true, false, "test_install(install)" )
     end
-    assert( @ipc.install( $verbose ), "testInstall()" )
+    assert( @ipc.install( $verbose ), "test_install(install)" )
   end
   
   ##
-  # Test method for 'AbtPackage.testPost()'
+  # Test method for 'AbtPackage.test_post()'
   ##
-  def testPost
-    assert_equals( true, false, "testPost()" ) if ( !@ipc.pre( $verbose ) ) 
-    assert_equals( true, false, "testPost()" ) if ( !@ipc.configure( $verbose ) ) 
-    assert_equals( true, false, "testPost()" ) if ( !@ipc.build( $verbose ) ) 
-    assert_equals( true, false, "testPost()" ) if ( !@ipc.preinstall( $verbose ) ) 
-    assert_equals( true, false, "testPost()" ) if ( !@ipc.install( $verbose ) ) 
-    assert( @ipc.post( $verbose ), "testPost()" )
+  def test_post
+    assert_equals( true, false, "test_post(pre)" ) if ( !@ipc.pre( $verbose ) ) 
+    assert_equals( true, false, "test_post(configure)" ) if ( !@ipc.configure( $verbose ) ) 
+    assert_equals( true, false, "test_post(build)" ) if ( !@ipc.build( $verbose ) ) 
+    assert_equals( true, false, "test_post(preinstall)" ) if ( !@ipc.preinstall( $verbose ) ) 
+    assert_equals( true, false, "test_post(install)" ) if ( !@ipc.install( $verbose ) ) 
+    assert( @ipc.post( $verbose ), "test_post(post)" )
   end
   
 end

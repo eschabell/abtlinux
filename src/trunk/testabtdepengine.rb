@@ -44,10 +44,10 @@ class TestAbtDepEngine < Test::Unit::TestCase
   end
   
   ##
-  # Test method for 'AbtDepEngine.testDepEngine()'
+  # Test method for 'AbtDepEngine.test_dep_engine()'
   ## 
-  def testDepEngine
-    assert_equal( false, true, "testDepEngine()" )
+  def test_dep_engine
+    assert_equal( false, true, "test_dep_engine()" )
   end
   
 end
