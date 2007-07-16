@@ -5,7 +5,7 @@ require "abtpackage"
 ##
 # ipc.rb 
 #
-# AbtFortune package.
+# Ipc package.
 #
 # Created by Eric D. Schabell <erics@abtlinux.org>
 # Copyright 2006, GPL.

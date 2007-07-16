@@ -1,11 +1,11 @@
 #!/usr/bin/ruby -w
 
-require "AbtPackage"
+require "abtpackage"
 
 ##
 # fortune.rb 
 #
-# AbtFortune package.
+# Fortune package.
 #
 # Created by Eric D. Schabell <erics@abtlinux.org>
 # Copyright 2006, GPL.
