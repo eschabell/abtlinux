@@ -84,7 +84,7 @@ class AbtLogManager
       
       if ( ! File.directory?( dir ) )
         FileUtils.mkdir_p( dir )
-        self << logToJournal << "Created directory: #{dir}." 
+        logToJournal << "Created directory: #{dir}." 
       end
     }
   end
