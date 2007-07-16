@@ -33,7 +33,7 @@ require 'abtpackage'
 require 'abtdepengine'
 require 'abtqueuemanager'
 require 'abtreportmanager'
-require 'AbtSystemManager'
+require 'abtsystemmanager'
 require 'AbtUsage'
 
 require 'fileutils'

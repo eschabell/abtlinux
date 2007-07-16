@@ -1,7 +1,7 @@
 #!/usr/bin/ruby -w
 
 ##
-# AbtSystemManager.rb
+# abtsystemmanager.rb
 #
 # AbtSystemManager class handles all aspects of the AbTLinux system. It takes
 # care of such tasks as cleanup, fixing, verification and management of
