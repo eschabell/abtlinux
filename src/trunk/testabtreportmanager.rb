@@ -3,10 +3,9 @@
 require 'test/unit/testcase'
 require 'test/unit/autorunner'
 require 'abtconfig'
-require 'AbtReportManager'
 
 ##
-# TestAbtReportManager.rb 
+# testabtreportmanager.rb 
 #
 # Unit testing for AbtReportManager class.
 #

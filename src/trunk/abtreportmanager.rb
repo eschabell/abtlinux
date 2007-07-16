@@ -1,7 +1,7 @@
 #!/usr/bin/ruby -w
 
 ##
-# AbtReportManager.rb
+# abtreportmanager.rb
 #
 # AbtReportManager class handles all sort of report and query generation within
 # the AbTLinux system.

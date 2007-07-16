@@ -32,7 +32,7 @@ require 'abtpackagemanager'
 require 'abtpackage'
 require 'abtdepengine'
 require 'abtqueuemanager'
-require 'AbtReportManager'
+require 'abtreportmanager'
 require 'AbtSystemManager'
 require 'AbtUsage'
 
