@@ -3,11 +3,9 @@
 require 'test/unit/testcase'
 require 'test/unit/autorunner'
 require 'abtconfig'
-require 'abtdownloadmanager'
-require 'AbtLogManager'
 
 ##
-# TestAbtDownloadManager.rb 
+# testabtdownloadmanager.rb 
 #
 # Unit testing for AbtDownloadManager class.
 #

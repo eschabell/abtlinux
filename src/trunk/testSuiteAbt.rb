@@ -24,7 +24,7 @@ manager.installPackage( "ipc" )
 
 require 'TestAbtPackageManager'
 require 'TestAbtLogManager'
-require 'TestAbtDownloadManager'
+require 'testabtdownloadmanager'
 require 'TestAbtPackage'
 require 'TestAbtQueueManager'
 require 'TestAbtReportManager'
