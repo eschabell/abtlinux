@@ -1,6 +1,6 @@
 #!/usr/bin/ruby -w
 
-require "AbtPackage"
+require "abtpackage"
 
 ##
 # ipc.rb 

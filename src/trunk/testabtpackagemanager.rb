@@ -5,7 +5,7 @@ require 'test/unit/autorunner'
 require 'abtconfig'
 
 ##
-# TestAbtPackageManager.rb 
+# testabtpackagemanager.rb 
 #
 # Unit testing for AbtPackageManager class.
 #

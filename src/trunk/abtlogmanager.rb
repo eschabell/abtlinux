@@ -1,7 +1,7 @@
 #!/usr/bin/ruby -w
 
 ##
-# AbtLogManager.rb
+# abtlogmanager.rb
 #
 # AbtLogManager class handles all aspects of logging and access to existing logs
 # within the AbTLinux system.

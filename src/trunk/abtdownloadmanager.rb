@@ -1,7 +1,7 @@
 #!/usr/bin/ruby -w
 
 ##
-# AbtDownloadManager.rb 
+# abtdownloadmanager.rb 
 #
 # AbtDownloadManager class handles all downloading of components needed for
 # AbTLinux.

@@ -6,7 +6,7 @@ require "abtconfig"
 require "#{$PACKAGE_PATH}ipc"
 
 ##
-# TestAbtPackage.rb 
+# testabtpackage.rb 
 #
 # Unit testing for AbtPackage class.
 #

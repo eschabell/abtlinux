@@ -2,10 +2,10 @@
 
 require 'test/unit/testcase'
 require 'test/unit/autorunner'
-require 'abtdepengine'
+require 'abtconfig'
 
 ##
-# TestAbtDepEngine.rb 
+# testabtdepengine.rb 
 #
 # Unit testing for AbtDepEngine class.
 #

@@ -1,7 +1,7 @@
 #!/usr/bin/ruby -w
 
 ##
-# AbtPackageManager.rb
+# abtpackagemanager.rb
 #
 # AbtPackageManager class will take care of the installation, removal, updating,
 # downgrading and freezing of AbTLinux software packages.

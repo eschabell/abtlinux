@@ -1,7 +1,7 @@
 #!/usr/bin/ruby -w
 
 ##
-# AbtDepEngine.rb
+# abtdepengine.rb
 #
 # AbtDepEngine class handles all dependency aspects of the AbTLinux system. It is
 # part of a sub-project with it's own requirements document.
