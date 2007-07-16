@@ -2,7 +2,7 @@
 
 if ( Process.uid != 0 )
   puts "Enter root password:"
-  system( 'su -c ./testSuiteAbt.rb root' )
+  system( 'su -c ./testsuiteabt.rb root' )
   exit
 end
 
@@ -18,9 +18,12 @@ require 'abtconfig'
 # This speeds up the test suit by more than 10 sec
 # on my machine. I get avg runs of around 17,5 sec.
 #
-logger = AbtLogManager.new
+logger  = AbtLogManager.new
 manager = AbtPackageManager.new
-manager.installPackage( "ipc" )
+system  = AbtSystemManager.new
+if !system.packageInstalled( "ipc" )
+	manager.installPackage << "ipc"
+end
 
 require 'testabtpackagemanager'
 require 'testabtlogmanager'
