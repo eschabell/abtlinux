@@ -119,7 +119,7 @@ Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
   <ul>
   <li><a href="#M000081">setup</a></li>
   <li><a href="#M000082">teardown</a></li>
-  <li><a href="#M000083">testActionPackageQueue</a></li>
+  <li><a href="#M000083">test_action_package_queue</a></li>
   </ul>
 
 
@@ -173,12 +173,12 @@ after testing.
 </div>
 <div class="method">
   <div class="title">
-    <a name="M000083"></a><b>testActionPackageQueue</b>()
+    <a name="M000083"></a><b>test_action_package_queue</b>()
   </div>
   <div class="description">
   <p>
 Test method for &#8216;<a
-href="AbtQueueManager.html#M000092">AbtQueueManager.actionPackageQueue</a>()&#8217;
+href="AbtQueueManager.html#M000092">AbtQueueManager.action_package_queue</a>()&#8217;
 </p>
   </div>
 <div class="sourcecode">
@@ -186,10 +186,9 @@ href="AbtQueueManager.html#M000092">AbtQueueManager.actionPackageQueue</a>()&#82
   <div id="M000083_source" class="dyn-source">
 <pre>
     <span class="ruby-comment cmt"># File testabtqueuemanager.rb, line 49</span>
-49:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">testActionPackageQueue</span>
-50:     <span class="ruby-identifier">assert</span>( <span class="ruby-ivar">@queue</span>.<span class="ruby-identifier">actionPackageQueue</span>( <span class="ruby-value str">&quot;ipc&quot;</span>, <span class="ruby-value str">&quot;install&quot;</span>, <span class="ruby-value str">&quot;add&quot;</span> ), 
-51:                                                 <span class="ruby-value str">&quot;testQueueManager()&quot;</span> )
-52:   <span class="ruby-keyword kw">end</span>
+49:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">test_action_package_queue</span>
+50:     <span class="ruby-identifier">assert</span>( <span class="ruby-ivar">@queue</span>.<span class="ruby-identifier">action_package_queue</span>( <span class="ruby-value str">&quot;ipc&quot;</span>, <span class="ruby-value str">&quot;install&quot;</span>, <span class="ruby-value str">&quot;add&quot;</span> ), <span class="ruby-value str">&quot;test_action_package_queue()&quot;</span> )
+51:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>

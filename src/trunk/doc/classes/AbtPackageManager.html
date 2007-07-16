@@ -118,13 +118,13 @@ Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
 
   <div class="sectiontitle">Methods</div>
   <ul>
-  <li><a href="#M000046">downgradePackage</a></li>
-  <li><a href="#M000047">freezePackage</a></li>
-  <li><a href="#M000043">installPackage</a></li>
+  <li><a href="#M000046">downgrade_package</a></li>
+  <li><a href="#M000047">freeze_package</a></li>
+  <li><a href="#M000043">install_package</a></li>
   <li><a href="#M000042">new</a></li>
-  <li><a href="#M000044">reinstallPackage</a></li>
-  <li><a href="#M000045">removePackage</a></li>
-  <li><a href="#M000048">rootLogin</a></li>
+  <li><a href="#M000044">reinstall_package</a></li>
+  <li><a href="#M000045">remove_package</a></li>
+  <li><a href="#M000048">root_login</a></li>
   </ul>
 
 
@@ -161,7 +161,7 @@ href="AbtPackageManager.html">AbtPackageManager</a></em> - an initialized
 <div class="sectiontitle">Public Instance methods</div>
 <div class="method">
   <div class="title">
-    <a name="M000046"></a><b>downgradePackage</b>( package, version )
+    <a name="M000046"></a><b>downgrade_package</b>( package, version )
   </div>
   <div class="description">
   <p>
@@ -182,16 +182,16 @@ otherwise false.
   <p class="source-link">[ <a href="javascript:toggleSource('M000046_source')" id="l_M000046_source">show source</a> ]</p>
   <div id="M000046_source" class="dyn-source">
 <pre>
-     <span class="ruby-comment cmt"># File abtpackagemanager.rb, line 255</span>
-255:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">downgradePackage</span>( <span class="ruby-identifier">package</span>, <span class="ruby-identifier">version</span> )
-256:   <span class="ruby-keyword kw">end</span>
+     <span class="ruby-comment cmt"># File abtpackagemanager.rb, line 251</span>
+251:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">downgrade_package</span>( <span class="ruby-identifier">package</span>, <span class="ruby-identifier">version</span> )
+252:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>
 </div>
 <div class="method">
   <div class="title">
-    <a name="M000047"></a><b>freezePackage</b>( package )
+    <a name="M000047"></a><b>freeze_package</b>( package )
   </div>
   <div class="description">
   <p>
@@ -210,16 +210,16 @@ false.
   <p class="source-link">[ <a href="javascript:toggleSource('M000047_source')" id="l_M000047_source">show source</a> ]</p>
   <div id="M000047_source" class="dyn-source">
 <pre>
-     <span class="ruby-comment cmt"># File abtpackagemanager.rb, line 267</span>
-267:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">freezePackage</span>( <span class="ruby-identifier">package</span> )
-268:   <span class="ruby-keyword kw">end</span>
+     <span class="ruby-comment cmt"># File abtpackagemanager.rb, line 263</span>
+263:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">freeze_package</span>( <span class="ruby-identifier">package</span> )
+264:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>
 </div>
 <div class="method">
   <div class="title">
-    <a name="M000043"></a><b>installPackage</b>( package, verbose=true )
+    <a name="M000043"></a><b>install_package</b>( package, verbose=true )
   </div>
   <div class="description">
   <p>
@@ -240,11 +240,11 @@ otherwise false.
   <div id="M000043_source" class="dyn-source">
 <pre>
      <span class="ruby-comment cmt"># File abtpackagemanager.rb, line 96</span>
- 96:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">installPackage</span>( <span class="ruby-identifier">package</span>, <span class="ruby-identifier">verbose</span>=<span class="ruby-keyword kw">true</span> )
+ 96:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">install_package</span>( <span class="ruby-identifier">package</span>, <span class="ruby-identifier">verbose</span>=<span class="ruby-keyword kw">true</span> )
  97:     
  98:     <span class="ruby-comment cmt"># first check if installed.</span>
  99:     <span class="ruby-identifier">system</span> = <span class="ruby-constant">AbtSystemManager</span>.<span class="ruby-identifier">new</span>
-100:     <span class="ruby-keyword kw">if</span> ( <span class="ruby-identifier">system</span>.<span class="ruby-identifier">packageInstalled</span>( <span class="ruby-identifier">package</span> ) )
+100:     <span class="ruby-keyword kw">if</span> ( <span class="ruby-identifier">system</span>.<span class="ruby-identifier">package_installed</span>( <span class="ruby-identifier">package</span> ) )
 101:       <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;\n*** Package #{package} is installed, might want to try reinstall? ***&quot;</span>
 102:       <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;'abt reinstall #{package}'&quot;</span>
 103:       <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">true</span>
@@ -263,8 +263,8 @@ otherwise false.
 116:     <span class="ruby-comment cmt"># add to install queue.</span>
 117:     <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;\n*** Adding #{package} to the INSTALL QUEUE. ***&quot;</span> <span class="ruby-keyword kw">if</span> ( <span class="ruby-identifier">verbose</span> )
 118:     
-119:     <span class="ruby-keyword kw">if</span> ( <span class="ruby-operator">!</span><span class="ruby-identifier">queuer</span>.<span class="ruby-identifier">actionPackageQueue</span>( <span class="ruby-identifier">package</span>, <span class="ruby-value str">&quot;install&quot;</span>, <span class="ruby-value str">&quot;add&quot;</span> ) )
-120:       <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">logToJournal</span>( <span class="ruby-node">&quot;Failed to add #{package} to install queue.&quot;</span> )
+119:     <span class="ruby-keyword kw">if</span> ( <span class="ruby-operator">!</span><span class="ruby-identifier">queuer</span>.<span class="ruby-identifier">action_package_queue</span>( <span class="ruby-identifier">package</span>, <span class="ruby-value str">&quot;install&quot;</span>, <span class="ruby-value str">&quot;add&quot;</span> ) )
+120:       <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">to_journal</span>( <span class="ruby-node">&quot;Failed to add #{package} to install queue.&quot;</span> )
 121:       <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">false</span>
 122:     <span class="ruby-keyword kw">end</span>
 123:     
@@ -272,48 +272,48 @@ otherwise false.
 125:     <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;\n*** Processing the PRE section for #{package}. ***&quot;</span> <span class="ruby-keyword kw">if</span> (<span class="ruby-identifier">verbose</span> )
 126:     
 127:     <span class="ruby-keyword kw">if</span> ( <span class="ruby-operator">!</span><span class="ruby-identifier">sw</span>.<span class="ruby-identifier">pre</span> )
-128:       <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">logToJournal</span>( <span class="ruby-value str">&quot;Failed to process pre-section in the &quot;</span> <span class="ruby-operator">+</span> 
+128:       <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">to_journal</span>( <span class="ruby-value str">&quot;Failed to process pre-section in the &quot;</span> <span class="ruby-operator">+</span> 
 129:         <span class="ruby-node">&quot;package description of #{package}.&quot;</span> )
 130:       <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">false</span>
 131:     <span class="ruby-keyword kw">else</span>
-132:       <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">logToJournal</span>( <span class="ruby-node">&quot;DEBUG: finished #{package} pre section.&quot;</span> )
+132:       <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">to_journal</span>( <span class="ruby-node">&quot;DEBUG: finished #{package} pre section.&quot;</span> )
 133:     <span class="ruby-keyword kw">end</span>
 134:     
 135:     <span class="ruby-comment cmt"># configure section.</span>
 136:     <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;\n*** Processing the CONFIGURE section for #{package}. ***&quot;</span> <span class="ruby-keyword kw">if</span> ( <span class="ruby-identifier">verbose</span> )
 137:     
 138:     <span class="ruby-keyword kw">if</span> ( <span class="ruby-operator">!</span><span class="ruby-identifier">sw</span>.<span class="ruby-identifier">configure</span>( <span class="ruby-identifier">verbose</span> ) )
-139:       <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">logToJournal</span>( <span class="ruby-value str">&quot;Failed to process configure section in the &quot;</span> <span class="ruby-operator">+</span> 
+139:       <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">to_journal</span>( <span class="ruby-value str">&quot;Failed to process configure section in the &quot;</span> <span class="ruby-operator">+</span> 
 140:         <span class="ruby-node">&quot;package description of #{package}.&quot;</span> )
 141:       <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">false</span>
 142:     <span class="ruby-keyword kw">else</span>
-143:       <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">logToJournal</span>( <span class="ruby-node">&quot;DEBUG: finished #{package} configure section.&quot;</span> )
+143:       <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">to_journal</span>( <span class="ruby-node">&quot;DEBUG: finished #{package} configure section.&quot;</span> )
 144:     <span class="ruby-keyword kw">end</span>
 145:     
 146:     <span class="ruby-comment cmt"># build section.</span>
 147:     <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;\n*** Processing the BUILD section for #{package}. ***&quot;</span> <span class="ruby-keyword kw">if</span> ( <span class="ruby-identifier">verbose</span> )
 148:     
 149:     <span class="ruby-keyword kw">if</span> ( <span class="ruby-operator">!</span><span class="ruby-identifier">sw</span>.<span class="ruby-identifier">build</span>( <span class="ruby-identifier">verbose</span> ) )
-150:       <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">logToJournal</span>( <span class="ruby-value str">&quot;Failed to process build section in the &quot;</span> <span class="ruby-operator">+</span> 
+150:       <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">to_journal</span>( <span class="ruby-value str">&quot;Failed to process build section in the &quot;</span> <span class="ruby-operator">+</span> 
 151:         <span class="ruby-node">&quot;package description of #{package}.&quot;</span> )
 152:       <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">false</span>
 153:     <span class="ruby-keyword kw">else</span>
-154:       <span class="ruby-keyword kw">if</span> ( <span class="ruby-operator">!</span><span class="ruby-identifier">logger</span>.<span class="ruby-identifier">logPackageBuild</span>( <span class="ruby-identifier">sw</span>.<span class="ruby-identifier">name</span>.<span class="ruby-identifier">downcase</span> ) ) 
-155:         <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">logToJournal</span>( <span class="ruby-value str">&quot;Failed to create a package build log.&quot;</span> )
+154:       <span class="ruby-keyword kw">if</span> ( <span class="ruby-operator">!</span><span class="ruby-identifier">logger</span>.<span class="ruby-identifier">log_package_build</span>( <span class="ruby-identifier">sw</span>.<span class="ruby-identifier">name</span>.<span class="ruby-identifier">downcase</span> ) ) 
+155:         <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">to_journal</span>( <span class="ruby-value str">&quot;Failed to create a package build log.&quot;</span> )
 156:         <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">false</span>
 157:       <span class="ruby-keyword kw">end</span>
-158:       <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">logToJournal</span>( <span class="ruby-node">&quot;DEBUG: finished #{package} build section.&quot;</span> )
+158:       <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">to_journal</span>( <span class="ruby-node">&quot;DEBUG: finished #{package} build section.&quot;</span> )
 159:     <span class="ruby-keyword kw">end</span>
 160:     
 161:     <span class="ruby-comment cmt"># preinstall section.</span>
 162:     <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;\n*** Processing the PREINSTALL section for #{package}. ***&quot;</span> <span class="ruby-keyword kw">if</span> ( <span class="ruby-identifier">verbose</span> )
 163:     
 164:     <span class="ruby-keyword kw">if</span> ( <span class="ruby-operator">!</span><span class="ruby-identifier">sw</span>.<span class="ruby-identifier">preinstall</span> )
-165:       <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">logToJournal</span>( <span class="ruby-value str">&quot;Failed to process preinstall section in the &quot;</span> <span class="ruby-operator">+</span> 
+165:       <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">to_journal</span>( <span class="ruby-value str">&quot;Failed to process preinstall section in the &quot;</span> <span class="ruby-operator">+</span> 
 166:         <span class="ruby-node">&quot;package description of #{package}.&quot;</span> )
 167:       <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">false</span>
 168:     <span class="ruby-keyword kw">else</span>
-169:       <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">logToJournal</span>( <span class="ruby-node">&quot;DEBUG: finished #{package} preinstall section.&quot;</span> )
+169:       <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">to_journal</span>( <span class="ruby-node">&quot;DEBUG: finished #{package} preinstall section.&quot;</span> )
 170:     <span class="ruby-keyword kw">end</span>
 171:     
 172:     <span class="ruby-comment cmt"># install section.</span>
@@ -321,58 +321,54 @@ otherwise false.
 174: 
 175:     <span class="ruby-keyword kw">if</span> ( <span class="ruby-operator">!</span><span class="ruby-identifier">sw</span>.<span class="ruby-identifier">install</span> )
 176:       <span class="ruby-comment cmt"># rollback installed files if any and remove install log.</span>
-177:       <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">logToJournal</span>( <span class="ruby-value str">&quot;Failed to process install section in the &quot;</span> <span class="ruby-operator">+</span> 
+177:       <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">to_journal</span>( <span class="ruby-value str">&quot;Failed to process install section in the &quot;</span> <span class="ruby-operator">+</span> 
 178:         <span class="ruby-node">&quot;package description of #{package}.&quot;</span> )
-179:       <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">logPackageInstall</span>( <span class="ruby-identifier">sw</span>.<span class="ruby-identifier">name</span>.<span class="ruby-identifier">downcase</span> )
-180:       <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">logToJournal</span>( 
-181:         <span class="ruby-node">&quot;***Starting rollback of #{package} install and removing install log.&quot;</span> )
-182:       <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">rollBack</span>( <span class="ruby-value str">&quot;install&quot;</span>, <span class="ruby-identifier">details</span> )
-183:       <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">false</span>
-184:     <span class="ruby-keyword kw">else</span>
-185:       <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">logPackageInstall</span>( <span class="ruby-identifier">sw</span>.<span class="ruby-identifier">name</span>.<span class="ruby-identifier">downcase</span> )
-186:       <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">logPackageIntegrity</span>( <span class="ruby-identifier">sw</span>.<span class="ruby-identifier">name</span>.<span class="ruby-identifier">downcase</span> )
-187:       
-188:       <span class="ruby-comment cmt"># cleanup tmp files from installwatch.</span>
-189:       <span class="ruby-constant">File</span>.<span class="ruby-identifier">delete</span>( <span class="ruby-node">&quot;#{$ABT_TMP}/#{details['Source location']}.watch&quot;</span> )
-190: 
-191:       <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">logToJournal</span>( <span class="ruby-node">&quot;DEBUG: finished #{package} install section.&quot;</span> )
-192:     <span class="ruby-keyword kw">end</span>
-193:     
-194:     <span class="ruby-comment cmt"># post section.</span>
-195:     <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;\n*** Processing the POST section for #{package}. ***&quot;</span> <span class="ruby-keyword kw">if</span> ( <span class="ruby-identifier">verbose</span> )
-196:     
-197:     <span class="ruby-keyword kw">if</span> ( <span class="ruby-operator">!</span><span class="ruby-identifier">sw</span>.<span class="ruby-identifier">post</span> )
-198:       <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">logToJournal</span>( <span class="ruby-value str">&quot;Failed to process post section in the &quot;</span> <span class="ruby-operator">+</span> 
-199:         <span class="ruby-node">&quot;package description of #{package}.&quot;</span> )
-200:       <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">false</span>
-201:     <span class="ruby-keyword kw">else</span>
-202:       <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">logToJournal</span>( <span class="ruby-node">&quot;DEBUG: finished #{package} post section.&quot;</span> )
-203:     <span class="ruby-keyword kw">end</span>
-204:     
-205:     <span class="ruby-comment cmt"># clean out build sources.        </span>
-206:     <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;\n*** Cleaning up the sources for #{package}. ***&quot;</span> <span class="ruby-keyword kw">if</span> ( <span class="ruby-identifier">verbose</span> )
-207:     
-208:     <span class="ruby-keyword kw">if</span> ( <span class="ruby-operator">!</span><span class="ruby-identifier">sw</span>.<span class="ruby-identifier">removeBuild</span> )
-209:       <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">logToJournal</span>( <span class="ruby-value str">&quot;Failed to remove the build sources for &quot;</span> <span class="ruby-operator">+</span> 
-210:         <span class="ruby-node">&quot;#{package}.&quot;</span> )
-211:       <span class="ruby-comment cmt">#return false  # commented out as this is not a reason to fail.</span>
-212:     <span class="ruby-keyword kw">end</span>
-213:     
-214:     <span class="ruby-comment cmt"># remove pacakge from install queue.</span>
-215:     <span class="ruby-keyword kw">if</span> ( <span class="ruby-operator">!</span><span class="ruby-identifier">queuer</span>.<span class="ruby-identifier">actionPackageQueue</span>( <span class="ruby-identifier">sw</span>.<span class="ruby-identifier">name</span>.<span class="ruby-identifier">downcase</span>, <span class="ruby-value str">&quot;install&quot;</span>, <span class="ruby-value str">&quot;remove&quot;</span> ) )
-216:       <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">logToJournal</span>( <span class="ruby-node">&quot;Failed to remove #{sw.name.donwcase} &quot;</span> <span class="ruby-operator">+</span> 
-217:         <span class="ruby-value str">&quot;from install queue.&quot;</span> )
-218:     <span class="ruby-keyword kw">end</span>
-219:     
-220:     <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">true</span> <span class="ruby-comment cmt"># install completed!</span>
-221:   <span class="ruby-keyword kw">end</span>
+179:       <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">log_package_install</span>( <span class="ruby-identifier">sw</span>.<span class="ruby-identifier">name</span>.<span class="ruby-identifier">downcase</span> )
+180:       <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">to_journal</span>( <span class="ruby-node">&quot;***Starting rollback of #{package} install and removing install log.&quot;</span> )
+181:       <span class="ruby-identifier">roll_back</span>( <span class="ruby-value str">&quot;install&quot;</span>, <span class="ruby-identifier">details</span> )
+182:       <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">false</span>
+183:     <span class="ruby-keyword kw">else</span>
+184:       <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">log_package_install</span>( <span class="ruby-identifier">sw</span>.<span class="ruby-identifier">name</span>.<span class="ruby-identifier">downcase</span> )
+185:       <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">log_package_integrity</span>( <span class="ruby-identifier">sw</span>.<span class="ruby-identifier">name</span>.<span class="ruby-identifier">downcase</span> )
+186:       
+187:       <span class="ruby-comment cmt"># cleanup tmp files from installwatch.</span>
+188:       <span class="ruby-constant">File</span>.<span class="ruby-identifier">delete</span>( <span class="ruby-node">&quot;#{$ABT_TMP}/#{details['Source location']}.watch&quot;</span> )
+189: 
+190:       <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">to_journal</span>( <span class="ruby-node">&quot;DEBUG: finished #{package} install section.&quot;</span> )
+191:     <span class="ruby-keyword kw">end</span>
+192:     
+193:     <span class="ruby-comment cmt"># post section.</span>
+194:     <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;\n*** Processing the POST section for #{package}. ***&quot;</span> <span class="ruby-keyword kw">if</span> ( <span class="ruby-identifier">verbose</span> )
+195:     
+196:     <span class="ruby-keyword kw">if</span> ( <span class="ruby-operator">!</span><span class="ruby-identifier">sw</span>.<span class="ruby-identifier">post</span> )
+197:       <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">to_journal</span>( <span class="ruby-node">&quot;Failed to process post section in the package description of #{package}.&quot;</span> )
+198:       <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">false</span>
+199:     <span class="ruby-keyword kw">else</span>
+200:       <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">to_journal</span>( <span class="ruby-node">&quot;DEBUG: finished #{package} post section.&quot;</span> )
+201:     <span class="ruby-keyword kw">end</span>
+202:     
+203:     <span class="ruby-comment cmt"># clean out build sources.        </span>
+204:     <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;\n*** Cleaning up the sources for #{package}. ***&quot;</span> <span class="ruby-keyword kw">if</span> ( <span class="ruby-identifier">verbose</span> )
+205:     
+206:     <span class="ruby-keyword kw">if</span> ( <span class="ruby-operator">!</span><span class="ruby-identifier">sw</span>.<span class="ruby-identifier">remove_build</span> )
+207:       <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">to_journal</span>( <span class="ruby-node">&quot;Failed to remove the build sources for #{package}.&quot;</span> )
+208:       <span class="ruby-comment cmt">#return false  # commented out as this is not a reason to fail.</span>
+209:     <span class="ruby-keyword kw">end</span>
+210:     
+211:     <span class="ruby-comment cmt"># remove pacakge from install queue.</span>
+212:     <span class="ruby-keyword kw">if</span> ( <span class="ruby-operator">!</span><span class="ruby-identifier">queuer</span>.<span class="ruby-identifier">action_package_queue</span>( <span class="ruby-identifier">sw</span>.<span class="ruby-identifier">name</span>.<span class="ruby-identifier">downcase</span>, <span class="ruby-value str">&quot;install&quot;</span>, <span class="ruby-value str">&quot;remove&quot;</span> ) )
+213:       <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">to_journal</span>( <span class="ruby-node">&quot;Failed to remove #{sw.name.donwcase} from install queue.&quot;</span> )
+214:     <span class="ruby-keyword kw">end</span>
+215:     
+216:     <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">true</span> <span class="ruby-comment cmt"># install completed!</span>
+217:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>
 </div>
 <div class="method">
   <div class="title">
-    <a name="M000044"></a><b>reinstallPackage</b>( package )
+    <a name="M000044"></a><b>reinstall_package</b>( package )
   </div>
   <div class="description">
   <p>
@@ -390,16 +386,16 @@ otherwise false.
   <p class="source-link">[ <a href="javascript:toggleSource('M000044_source')" id="l_M000044_source">show source</a> ]</p>
   <div id="M000044_source" class="dyn-source">
 <pre>
-     <span class="ruby-comment cmt"># File abtpackagemanager.rb, line 231</span>
-231:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">reinstallPackage</span>( <span class="ruby-identifier">package</span> )
-232:   <span class="ruby-keyword kw">end</span>
+     <span class="ruby-comment cmt"># File abtpackagemanager.rb, line 227</span>
+227:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">reinstall_package</span>( <span class="ruby-identifier">package</span> )
+228:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>
 </div>
 <div class="method">
   <div class="title">
-    <a name="M000045"></a><b>removePackage</b>( package )
+    <a name="M000045"></a><b>remove_package</b>( package )
   </div>
   <div class="description">
   <p>
@@ -417,16 +413,16 @@ false.
   <p class="source-link">[ <a href="javascript:toggleSource('M000045_source')" id="l_M000045_source">show source</a> ]</p>
   <div id="M000045_source" class="dyn-source">
 <pre>
-     <span class="ruby-comment cmt"># File abtpackagemanager.rb, line 242</span>
-242:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">removePackage</span>( <span class="ruby-identifier">package</span> )
-243:   <span class="ruby-keyword kw">end</span>
+     <span class="ruby-comment cmt"># File abtpackagemanager.rb, line 238</span>
+238:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">remove_package</span>( <span class="ruby-identifier">package</span> )
+239:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>
 </div>
 <div class="method">
   <div class="title">
-    <a name="M000048"></a><b>rootLogin</b>( arguments )
+    <a name="M000048"></a><b>root_login</b>( arguments )
   </div>
   <div class="description">
   <p>
@@ -443,20 +439,20 @@ Provides for a log through for root access using su.
   <p class="source-link">[ <a href="javascript:toggleSource('M000048_source')" id="l_M000048_source">show source</a> ]</p>
   <div id="M000048_source" class="dyn-source">
 <pre>
-     <span class="ruby-comment cmt"># File abtpackagemanager.rb, line 277</span>
-277:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">rootLogin</span>( <span class="ruby-identifier">arguments</span> )
-278:     <span class="ruby-keyword kw">if</span> ( <span class="ruby-constant">Process</span>.<span class="ruby-identifier">uid</span> <span class="ruby-operator">!=</span> <span class="ruby-value">0</span> )
-279:       <span class="ruby-identifier">args</span> = <span class="ruby-value str">&quot;&quot;</span>
-280:       <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;\nEnter root password:&quot;</span>
+     <span class="ruby-comment cmt"># File abtpackagemanager.rb, line 273</span>
+273:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">root_login</span>( <span class="ruby-identifier">arguments</span> )
+274:     <span class="ruby-keyword kw">if</span> ( <span class="ruby-constant">Process</span>.<span class="ruby-identifier">uid</span> <span class="ruby-operator">!=</span> <span class="ruby-value">0</span> )
+275:       <span class="ruby-identifier">args</span> = <span class="ruby-value str">&quot;&quot;</span>
+276:       <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;\nEnter root password:&quot;</span>
+277:       
+278:       <span class="ruby-keyword kw">for</span> <span class="ruby-identifier">i</span> <span class="ruby-keyword kw">in</span> <span class="ruby-value">0</span><span class="ruby-operator">...</span><span class="ruby-constant">ARGV</span>.<span class="ruby-identifier">length</span>
+279:         <span class="ruby-identifier">args</span> = <span class="ruby-identifier">args</span> <span class="ruby-operator">+</span> <span class="ruby-value str">&quot; &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-constant">ARGV</span>[<span class="ruby-identifier">i</span>]
+280:       <span class="ruby-keyword kw">end</span>
 281:       
-282:       <span class="ruby-keyword kw">for</span> <span class="ruby-identifier">i</span> <span class="ruby-keyword kw">in</span> <span class="ruby-value">0</span><span class="ruby-operator">...</span><span class="ruby-constant">ARGV</span>.<span class="ruby-identifier">length</span>
-283:         <span class="ruby-identifier">args</span> = <span class="ruby-identifier">args</span> <span class="ruby-operator">+</span> <span class="ruby-value str">&quot; &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-constant">ARGV</span>[<span class="ruby-identifier">i</span>]
-284:       <span class="ruby-keyword kw">end</span>
-285:       
-286:       <span class="ruby-identifier">system</span>( <span class="ruby-value str">'su -c &quot;./abt '</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">args</span> <span class="ruby-operator">+</span> <span class="ruby-value str">'&quot; root'</span> )
-287:       <span class="ruby-identifier">exit</span>
-288:     <span class="ruby-keyword kw">end</span>
-289:   <span class="ruby-keyword kw">end</span>
+282:       <span class="ruby-identifier">system</span>( <span class="ruby-value str">'su -c &quot;./abt '</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">args</span> <span class="ruby-operator">+</span> <span class="ruby-value str">'&quot; root'</span> )
+283:       <span class="ruby-identifier">exit</span>
+284:     <span class="ruby-keyword kw">end</span>
+285:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>

@@ -118,12 +118,12 @@ Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
   <div class="sectiontitle">Methods</div>
   <ul>
   <li><a href="#M000035">usage</a></li>
-  <li><a href="#M000039">usageDownloads</a></li>
-  <li><a href="#M000040">usageFix</a></li>
-  <li><a href="#M000038">usageGeneration</a></li>
-  <li><a href="#M000041">usageMaintenance</a></li>
-  <li><a href="#M000036">usagePackages</a></li>
-  <li><a href="#M000037">usageQueries</a></li>
+  <li><a href="#M000039">usage_downloads</a></li>
+  <li><a href="#M000040">usage_fix</a></li>
+  <li><a href="#M000038">usage_generation</a></li>
+  <li><a href="#M000041">usage_maintenance</a></li>
+  <li><a href="#M000036">usage_packages</a></li>
+  <li><a href="#M000037">usage_queries</a></li>
   </ul>
 
 
@@ -159,30 +159,30 @@ a given section or all sections.
 39:     <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">section</span>
 40: 
 41:     <span class="ruby-keyword kw">when</span> <span class="ruby-value str">&quot;packages&quot;</span>
-42:       <span class="ruby-identifier">usagePackages</span>
+42:       <span class="ruby-identifier">usage_packages</span>
 43: 
 44:     <span class="ruby-keyword kw">when</span> <span class="ruby-value str">&quot;queries&quot;</span>
-45:       <span class="ruby-identifier">usageQueries</span>
+45:       <span class="ruby-identifier">usage_queries</span>
 46: 
 47:     <span class="ruby-keyword kw">when</span> <span class="ruby-value str">&quot;generation&quot;</span>
-48:       <span class="ruby-identifier">usageGeneration</span>
+48:       <span class="ruby-identifier">usage_generation</span>
 49: 
 50:     <span class="ruby-keyword kw">when</span> <span class="ruby-value str">&quot;downloads&quot;</span>
-51:       <span class="ruby-identifier">usageDownloads</span>
+51:       <span class="ruby-identifier">usage_downloads</span>
 52: 
 53:     <span class="ruby-keyword kw">when</span> <span class="ruby-value str">&quot;fix&quot;</span>
-54:       <span class="ruby-identifier">usageFix</span>
+54:       <span class="ruby-identifier">usage_fix</span>
 55: 
 56:     <span class="ruby-keyword kw">when</span> <span class="ruby-value str">&quot;maintenance&quot;</span>
-57:       <span class="ruby-identifier">usageMaintenance</span>
+57:       <span class="ruby-identifier">usage_maintenance</span>
 58: 
 59:     <span class="ruby-keyword kw">else</span>
-60:       <span class="ruby-identifier">usagePackages</span>
-61:       <span class="ruby-identifier">usageQueries</span>
-62:       <span class="ruby-identifier">usageGeneration</span>
-63:       <span class="ruby-identifier">usageDownloads</span>
-64:       <span class="ruby-identifier">usageFix</span>
-65:       <span class="ruby-identifier">usageMaintenance</span>
+60:       <span class="ruby-identifier">usage_packages</span>
+61:       <span class="ruby-identifier">usage_queries</span>
+62:       <span class="ruby-identifier">usage_generation</span>
+63:       <span class="ruby-identifier">usage_downloads</span>
+64:       <span class="ruby-identifier">usage_fix</span>
+65:       <span class="ruby-identifier">usage_maintenance</span>
 66:     <span class="ruby-keyword kw">end</span>
 67:   <span class="ruby-keyword kw">end</span>
 </pre>
@@ -191,7 +191,7 @@ a given section or all sections.
 </div>
 <div class="method">
   <div class="title">
-    <a name="M000039"></a><b>usageDownloads</b>()
+    <a name="M000039"></a><b>usage_downloads</b>()
   </div>
   <div class="description">
   <p>
@@ -207,7 +207,7 @@ commands.
   <div id="M000039_source" class="dyn-source">
 <pre>
      <span class="ruby-comment cmt"># File abtusage.rb, line 122</span>
-122:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">usageDownloads</span>
+122:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">usage_downloads</span>
 123:     <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;\ndownloads:&quot;</span>
 124:     <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;  -d,  download     [package]\t\tRetrieve given package sources.&quot;</span>
 125:     <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;  -u,  update       [package]|[tree]\tUpdate given package or tree from AbTLinux repository.&quot;</span>
@@ -219,7 +219,7 @@ commands.
 </div>
 <div class="method">
   <div class="title">
-    <a name="M000040"></a><b>usageFix</b>()
+    <a name="M000040"></a><b>usage_fix</b>()
   </div>
   <div class="description">
   <p>
@@ -235,7 +235,7 @@ commands.
   <div id="M000040_source" class="dyn-source">
 <pre>
      <span class="ruby-comment cmt"># File abtusage.rb, line 134</span>
-134:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">usageFix</span>
+134:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">usage_fix</span>
 135:     <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;\nfix:&quot;</span>
 136:     <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;  purge-src\t\t\t\tRemove source caches for packages no longer installed.&quot;</span>
 137:     <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;  purge-logs\t\t\t\tRemove log files for packages no longer installed.&quot;</span>
@@ -251,7 +251,7 @@ commands.
 </div>
 <div class="method">
   <div class="title">
-    <a name="M000038"></a><b>usageGeneration</b>()
+    <a name="M000038"></a><b>usage_generation</b>()
   </div>
   <div class="description">
   <p>
@@ -267,7 +267,7 @@ generation commands.
   <div id="M000038_source" class="dyn-source">
 <pre>
      <span class="ruby-comment cmt"># File abtusage.rb, line 110</span>
-110:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">usageGeneration</span>
+110:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">usage_generation</span>
 111:     <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;\ngeneration:&quot;</span>
 112:     <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;  show-updates\t\tShow a package listing with available update versions.&quot;</span>
 113:     <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;  html\t\t\tGenerate HTML page from installed packages:&quot;</span>
@@ -279,7 +279,7 @@ generation commands.
 </div>
 <div class="method">
   <div class="title">
-    <a name="M000041"></a><b>usageMaintenance</b>()
+    <a name="M000041"></a><b>usage_maintenance</b>()
   </div>
   <div class="description">
   <p>
@@ -295,7 +295,7 @@ maintenance commands.
   <div id="M000041_source" class="dyn-source">
 <pre>
      <span class="ruby-comment cmt"># File abtusage.rb, line 150</span>
-150:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">usageMaintenance</span>
+150:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">usage_maintenance</span>
 151:     <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;\nmaintenance:&quot;</span>
 152:     <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;  build-location    [host]\t\tSets global location (default: localhost) for retrieving cached package builds.&quot;</span>
 153:     <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;  package-repo      [add|remove|list] [URI]&quot;</span>
@@ -309,7 +309,7 @@ maintenance commands.
 </div>
 <div class="method">
   <div class="title">
-    <a name="M000036"></a><b>usagePackages</b>()
+    <a name="M000036"></a><b>usage_packages</b>()
   </div>
   <div class="description">
   <p>
@@ -325,7 +325,7 @@ commands.
   <div id="M000036_source" class="dyn-source">
 <pre>
     <span class="ruby-comment cmt"># File abtusage.rb, line 74</span>
-74:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">usagePackages</span>
+74:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">usage_packages</span>
 75:     <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;\npackages:&quot;</span>
 76:     <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;  -i,  install     [package]\t\tInstall given package.&quot;</span>
 77:     <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;  -ri, reinstall   [package]\t\tReinstall given package.&quot;</span>
@@ -339,7 +339,7 @@ commands.
 </div>
 <div class="method">
   <div class="title">
-    <a name="M000037"></a><b>usageQueries</b>()
+    <a name="M000037"></a><b>usage_queries</b>()
   </div>
   <div class="description">
   <p>
@@ -355,7 +355,7 @@ commands.
   <div id="M000037_source" class="dyn-source">
 <pre>
      <span class="ruby-comment cmt"># File abtusage.rb, line 88</span>
- 88:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">usageQueries</span>
+ 88:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">usage_queries</span>
  89:     <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;\nqueries:&quot;</span>
  90:     <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;  -s,  search      [string | regexp ]\tSearch package descriptions for given input.&quot;</span>
  91:     <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;  -v,  --version\t\t\tShow abt package manager version.&quot;</span>

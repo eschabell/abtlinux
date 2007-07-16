@@ -118,17 +118,17 @@ Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
 
   <div class="sectiontitle">Methods</div>
   <ul>
-  <li><a href="#M000003">cleanupLogs</a></li>
-  <li><a href="#M000002">cleanupPackageSources</a></li>
-  <li><a href="#M000008">fixPackage</a></li>
+  <li><a href="#M000003">cleanup_logs</a></li>
+  <li><a href="#M000002">cleanup_package_sources</a></li>
+  <li><a href="#M000008">fix_package</a></li>
   <li><a href="#M000001">new</a></li>
-  <li><a href="#M000011">packageInstalled</a></li>
-  <li><a href="#M000009">setCentralRepo</a></li>
-  <li><a href="#M000010">setPackageTreeLocation</a></li>
-  <li><a href="#M000004">verifyInstalledFiles</a></li>
-  <li><a href="#M000006">verifyPackageDepends</a></li>
-  <li><a href="#M000007">verifyPackageIntegrity</a></li>
-  <li><a href="#M000005">verifySymlinks</a></li>
+  <li><a href="#M000011">package_installed</a></li>
+  <li><a href="#M000009">set_central_repo</a></li>
+  <li><a href="#M000010">set_package_tree_location</a></li>
+  <li><a href="#M000004">verify_installed_files</a></li>
+  <li><a href="#M000006">verify_package_depends</a></li>
+  <li><a href="#M000007">verify_package_integrity</a></li>
+  <li><a href="#M000005">verify_symlinks</a></li>
   </ul>
 
 
@@ -165,7 +165,7 @@ object.
 <div class="sectiontitle">Public Instance methods</div>
 <div class="method">
   <div class="title">
-    <a name="M000003"></a><b>cleanupLogs</b>()
+    <a name="M000003"></a><b>cleanup_logs</b>()
   </div>
   <div class="description">
   <p>
@@ -181,7 +181,7 @@ false.
   <div id="M000003_source" class="dyn-source">
 <pre>
     <span class="ruby-comment cmt"># File abtsystemmanager.rb, line 87</span>
-87:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">cleanupLogs</span>
+87:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">cleanup_logs</span>
 88:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
@@ -189,7 +189,7 @@ false.
 </div>
 <div class="method">
   <div class="title">
-    <a name="M000002"></a><b>cleanupPackageSources</b>()
+    <a name="M000002"></a><b>cleanup_package_sources</b>()
   </div>
   <div class="description">
   <p>
@@ -206,7 +206,7 @@ false.
   <div id="M000002_source" class="dyn-source">
 <pre>
     <span class="ruby-comment cmt"># File abtsystemmanager.rb, line 78</span>
-78:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">cleanupPackageSources</span>
+78:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">cleanup_package_sources</span>
 79:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
@@ -214,7 +214,7 @@ false.
 </div>
 <div class="method">
   <div class="title">
-    <a name="M000008"></a><b>fixPackage</b>( package )
+    <a name="M000008"></a><b>fix_package</b>( package )
   </div>
   <div class="description">
   <p>
@@ -233,7 +233,7 @@ false.
   <div id="M000008_source" class="dyn-source">
 <pre>
      <span class="ruby-comment cmt"># File abtsystemmanager.rb, line 143</span>
-143:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">fixPackage</span>( <span class="ruby-identifier">package</span> )
+143:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">fix_package</span>( <span class="ruby-identifier">package</span> )
 144:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
@@ -241,7 +241,7 @@ false.
 </div>
 <div class="method">
   <div class="title">
-    <a name="M000011"></a><b>packageInstalled</b>( package )
+    <a name="M000011"></a><b>package_installed</b>( package )
   </div>
   <div class="description">
   <p>
@@ -261,12 +261,12 @@ false.
   <div id="M000011_source" class="dyn-source">
 <pre>
      <span class="ruby-comment cmt"># File abtsystemmanager.rb, line 178</span>
-178:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">packageInstalled</span>( <span class="ruby-identifier">package</span> )
+178:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">package_installed</span>( <span class="ruby-identifier">package</span> )
 179:     <span class="ruby-identifier">require</span> <span class="ruby-node">&quot;#{$PACKAGE_PATH}#{package}&quot;</span>
 180:     <span class="ruby-identifier">sw</span> = <span class="ruby-identifier">eval</span>( <span class="ruby-node">&quot;#{package.capitalize}.new&quot;</span> )
 181:     <span class="ruby-identifier">details</span> = <span class="ruby-identifier">sw</span>.<span class="ruby-identifier">details</span>
 182:     
-183:     <span class="ruby-keyword kw">if</span> ( <span class="ruby-identifier">foundEntry</span>( <span class="ruby-identifier">$PACKAGE_INSTALLED</span>, <span class="ruby-identifier">sw</span>.<span class="ruby-identifier">srcDir</span> ) )
+183:     <span class="ruby-keyword kw">if</span> ( <span class="ruby-identifier">found_entry</span>( <span class="ruby-identifier">$PACKAGE_INSTALLED</span>, <span class="ruby-identifier">sw</span>.<span class="ruby-identifier">srcDir</span> ) )
 184:       <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">true</span>
 185:     <span class="ruby-keyword kw">end</span>
 186:     
@@ -279,7 +279,7 @@ false.
 </div>
 <div class="method">
   <div class="title">
-    <a name="M000009"></a><b>setCentralRepo</b>( uri )
+    <a name="M000009"></a><b>set_central_repo</b>( uri )
   </div>
   <div class="description">
   <p>
@@ -298,7 +298,7 @@ located.
   <div id="M000009_source" class="dyn-source">
 <pre>
      <span class="ruby-comment cmt"># File abtsystemmanager.rb, line 154</span>
-154:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">setCentralRepo</span>( <span class="ruby-identifier">uri</span> )
+154:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">set_central_repo</span>( <span class="ruby-identifier">uri</span> )
 155:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
@@ -306,7 +306,7 @@ located.
 </div>
 <div class="method">
   <div class="title">
-    <a name="M000010"></a><b>setPackageTreeLocation</b>( location )
+    <a name="M000010"></a><b>set_package_tree_location</b>( location )
   </div>
   <div class="description">
   <p>
@@ -326,7 +326,7 @@ otherwise false.
   <div id="M000010_source" class="dyn-source">
 <pre>
      <span class="ruby-comment cmt"># File abtsystemmanager.rb, line 166</span>
-166:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">setPackageTreeLocation</span>( <span class="ruby-identifier">location</span> )
+166:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">set_package_tree_location</span>( <span class="ruby-identifier">location</span> )
 167:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
@@ -334,7 +334,7 @@ otherwise false.
 </div>
 <div class="method">
   <div class="title">
-    <a name="M000004"></a><b>verifyInstalledFiles</b>( package )
+    <a name="M000004"></a><b>verify_installed_files</b>( package )
   </div>
   <div class="description">
   <p>
@@ -353,7 +353,7 @@ otherwise false.
   <div id="M000004_source" class="dyn-source">
 <pre>
     <span class="ruby-comment cmt"># File abtsystemmanager.rb, line 98</span>
-98:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">verifyInstalledFiles</span>( <span class="ruby-identifier">package</span> )
+98:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">verify_installed_files</span>( <span class="ruby-identifier">package</span> )
 99:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
@@ -361,7 +361,7 @@ otherwise false.
 </div>
 <div class="method">
   <div class="title">
-    <a name="M000006"></a><b>verifyPackageDepends</b>( package )
+    <a name="M000006"></a><b>verify_package_depends</b>( package )
   </div>
   <div class="description">
   <p>
@@ -380,7 +380,7 @@ false.
   <div id="M000006_source" class="dyn-source">
 <pre>
      <span class="ruby-comment cmt"># File abtsystemmanager.rb, line 120</span>
-120:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">verifyPackageDepends</span>( <span class="ruby-identifier">package</span> )
+120:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">verify_package_depends</span>( <span class="ruby-identifier">package</span> )
 121:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
@@ -388,7 +388,7 @@ false.
 </div>
 <div class="method">
   <div class="title">
-    <a name="M000007"></a><b>verifyPackageIntegrity</b>( package )
+    <a name="M000007"></a><b>verify_package_integrity</b>( package )
   </div>
   <div class="description">
   <p>
@@ -408,7 +408,7 @@ hash of problem files and their encountered errors.
   <div id="M000007_source" class="dyn-source">
 <pre>
      <span class="ruby-comment cmt"># File abtsystemmanager.rb, line 132</span>
-132:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">verifyPackageIntegrity</span>( <span class="ruby-identifier">package</span> )
+132:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">verify_package_integrity</span>( <span class="ruby-identifier">package</span> )
 133:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
@@ -416,7 +416,7 @@ hash of problem files and their encountered errors.
 </div>
 <div class="method">
   <div class="title">
-    <a name="M000005"></a><b>verifySymlinks</b>( package )
+    <a name="M000005"></a><b>verify_symlinks</b>( package )
   </div>
   <div class="description">
   <p>
@@ -435,7 +435,7 @@ broken, otherwise false.
   <div id="M000005_source" class="dyn-source">
 <pre>
      <span class="ruby-comment cmt"># File abtsystemmanager.rb, line 109</span>
-109:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">verifySymlinks</span>( <span class="ruby-identifier">package</span> )
+109:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">verify_symlinks</span>( <span class="ruby-identifier">package</span> )
 110:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
