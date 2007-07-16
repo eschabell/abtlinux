@@ -23,7 +23,7 @@ manager = AbtPackageManager.new
 manager.installPackage( "ipc" )
 
 require 'TestAbtPackageManager'
-require 'TestAbtLogManager'
+require 'testabtlogmanager'
 require 'testabtdownloadmanager'
 require 'TestAbtPackage'
 require 'TestAbtQueueManager'
