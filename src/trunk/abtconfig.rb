@@ -28,7 +28,7 @@
 # global requires.
 require 'abtdownloadmanager'
 require 'abtlogmanager'
-require 'AbtPackageManager'
+require 'abtpackagemanager'
 require 'AbtQueueManager'
 require 'AbtReportManager'
 require 'AbtSystemManager'

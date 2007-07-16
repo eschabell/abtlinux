@@ -22,7 +22,7 @@ logger = AbtLogManager.new
 manager = AbtPackageManager.new
 manager.installPackage( "ipc" )
 
-require 'TestAbtPackageManager'
+require 'testabtpackagemanager'
 require 'testabtlogmanager'
 require 'testabtdownloadmanager'
 require 'TestAbtPackage'
