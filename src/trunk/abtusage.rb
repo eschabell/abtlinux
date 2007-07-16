@@ -1,7 +1,7 @@
 #!/usr/bin/ruby -I./packages
 
 ##
-# AbtUsage.rb
+# abtusage.rb
 #
 # The usage reporting class for AbTLinux.
 #

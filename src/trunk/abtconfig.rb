@@ -34,7 +34,7 @@ require 'abtdepengine'
 require 'abtqueuemanager'
 require 'abtreportmanager'
 require 'abtsystemmanager'
-require 'AbtUsage'
+require 'abtusage'
 
 require 'fileutils'
 require 'find'
