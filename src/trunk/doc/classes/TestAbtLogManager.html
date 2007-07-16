@@ -57,7 +57,7 @@
       <tr valign="top">
         <td>In:</td>
         <td>
-<a href="../files/TestAbtLogManager_rb.html">TestAbtLogManager.rb</a>
+<a href="../files/testabtlogmanager_rb.html">testabtlogmanager.rb</a>
         </td>
       </tr>
     <tr>
@@ -79,11 +79,11 @@ Test::Unit::TestCase
   <area shape="rect" coords="27,124,163,172"      href="TestAbtLogManager.html" alt="TestAbtLogManager" />
   <area shape="rect" coords="28,5,161,53"      href="Test/Unit/TestCase.html" alt="Test::Unit::TestCase" />
 </map>
-<img src="../dot/f_11.png" usemap="#map" border="0" alt="TopLevel" />
+<img src="../dot/f_11.png" usemap="#map" border="0" alt="dot/f_11.png">
   </td></tr></table>
 
   <div class="description"><p>
-TestAbtLogManager.rb
+testabtlogmanager.rb
 </p>
 <p>
 Unit testing for <a href="AbtLogManager.html">AbtLogManager</a> class.
@@ -117,12 +117,13 @@ Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
 
   <div class="sectiontitle">Methods</div>
   <ul>
-  <li><a href="#M000104">setup</a></li>
-  <li><a href="#M000105">teardown</a></li>
-  <li><a href="#M000108">testCachePackage</a></li>
-  <li><a href="#M000107">testLogPackageBuild</a></li>
-  <li><a href="#M000106">testLogPackageIntegrity</a></li>
-  <li><a href="#M000109">testLogToJournal</a></li>
+  <li><a href="#M000106">setup</a></li>
+  <li><a href="#M000107">teardown</a></li>
+  <li><a href="#M000111">testCachePackage</a></li>
+  <li><a href="#M000110">testLogPackageBuild</a></li>
+  <li><a href="#M000109">testLogPackageInstall</a></li>
+  <li><a href="#M000108">testLogPackageIntegrity</a></li>
+  <li><a href="#M000112">testLogToJournal</a></li>
   </ul>
 
 
@@ -133,48 +134,50 @@ Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
 <div class="sectiontitle">Public Instance methods</div>
 <div class="method">
   <div class="title">
-    <a name="M000104"></a><b>setup</b>()
+    <a name="M000106"></a><b>setup</b>()
   </div>
   <div class="description">
   <p>
-setup method for testing <a href="AbtLogManager.html">AbtLogManager</a>.
+<a href="TestAbtLogManager.html#M000106">setup</a> method for testing <a
+href="AbtLogManager.html">AbtLogManager</a>.
 </p>
   </div>
 <div class="sourcecode">
-  <p class="source-link">[ <a href="javascript:toggleSource('M000104_source')" id="l_M000104_source">show source</a> ]</p>
-  <div id="M000104_source" class="dyn-source">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000106_source')" id="l_M000106_source">show source</a> ]</p>
+  <div id="M000106_source" class="dyn-source">
 <pre>
-    <span class="ruby-comment cmt"># File TestAbtLogManager.rb, line 37</span>
-37:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">setup</span>
-38:     <span class="ruby-ivar">@log</span> = <span class="ruby-constant">AbtLogManager</span>.<span class="ruby-identifier">new</span>()
-39:   <span class="ruby-keyword kw">end</span>
+    <span class="ruby-comment cmt"># File testabtlogmanager.rb, line 36</span>
+36:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">setup</span>
+37:     <span class="ruby-ivar">@log</span> = <span class="ruby-constant">AbtLogManager</span>.<span class="ruby-identifier">new</span>()
+38:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>
 </div>
 <div class="method">
   <div class="title">
-    <a name="M000105"></a><b>teardown</b>()
+    <a name="M000107"></a><b>teardown</b>()
   </div>
   <div class="description">
   <p>
-teardown method to cleanup after testing.
+<a href="TestAbtLogManager.html#M000107">teardown</a> method to cleanup
+after testing.
 </p>
   </div>
 <div class="sourcecode">
-  <p class="source-link">[ <a href="javascript:toggleSource('M000105_source')" id="l_M000105_source">show source</a> ]</p>
-  <div id="M000105_source" class="dyn-source">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000107_source')" id="l_M000107_source">show source</a> ]</p>
+  <div id="M000107_source" class="dyn-source">
 <pre>
-    <span class="ruby-comment cmt"># File TestAbtLogManager.rb, line 44</span>
-44:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">teardown</span>
-45:   <span class="ruby-keyword kw">end</span>
+    <span class="ruby-comment cmt"># File testabtlogmanager.rb, line 43</span>
+43:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">teardown</span>
+44:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>
 </div>
 <div class="method">
   <div class="title">
-    <a name="M000108"></a><b>testCachePackage</b>()
+    <a name="M000111"></a><b>testCachePackage</b>()
   </div>
   <div class="description">
   <p>
@@ -182,20 +185,20 @@ Test method for &#8216;AbtLogManager.testCachePackage()&#8217;
 </p>
   </div>
 <div class="sourcecode">
-  <p class="source-link">[ <a href="javascript:toggleSource('M000108_source')" id="l_M000108_source">show source</a> ]</p>
-  <div id="M000108_source" class="dyn-source">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000111_source')" id="l_M000111_source">show source</a> ]</p>
+  <div id="M000111_source" class="dyn-source">
 <pre>
-    <span class="ruby-comment cmt"># File TestAbtLogManager.rb, line 72</span>
-72:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">testCachePackage</span>()
-73:     <span class="ruby-identifier">assert</span>( <span class="ruby-ivar">@log</span>.<span class="ruby-identifier">cachePackage</span>( <span class="ruby-value str">&quot;ipc&quot;</span> ), <span class="ruby-value str">&quot;testCachePackage()&quot;</span> )
-74:   <span class="ruby-keyword kw">end</span>
+    <span class="ruby-comment cmt"># File testabtlogmanager.rb, line 70</span>
+70:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">testCachePackage</span>()
+71:     <span class="ruby-identifier">assert</span>( <span class="ruby-ivar">@log</span>.<span class="ruby-identifier">cachePackage</span>( <span class="ruby-value str">&quot;ipc&quot;</span> ), <span class="ruby-value str">&quot;testCachePackage()&quot;</span> )
+72:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>
 </div>
 <div class="method">
   <div class="title">
-    <a name="M000107"></a><b>testLogPackageBuild</b>()
+    <a name="M000110"></a><b>testLogPackageBuild</b>()
   </div>
   <div class="description">
   <p>
@@ -203,20 +206,41 @@ Test method for &#8216;AbtLogManager.testLogPackageBuild()&#8217;
 </p>
   </div>
 <div class="sourcecode">
-  <p class="source-link">[ <a href="javascript:toggleSource('M000107_source')" id="l_M000107_source">show source</a> ]</p>
-  <div id="M000107_source" class="dyn-source">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000110_source')" id="l_M000110_source">show source</a> ]</p>
+  <div id="M000110_source" class="dyn-source">
 <pre>
-    <span class="ruby-comment cmt"># File TestAbtLogManager.rb, line 65</span>
-65:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">testLogPackageBuild</span>()
-66:     <span class="ruby-identifier">assert</span>( <span class="ruby-ivar">@log</span>.<span class="ruby-identifier">logPackageBuild</span>( <span class="ruby-value str">&quot;ipc&quot;</span> ), <span class="ruby-value str">&quot;testLogPackageBuild()&quot;</span> )
-67:   <span class="ruby-keyword kw">end</span>
+    <span class="ruby-comment cmt"># File testabtlogmanager.rb, line 63</span>
+63:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">testLogPackageBuild</span>()
+64:     <span class="ruby-identifier">assert</span>( <span class="ruby-ivar">@log</span>.<span class="ruby-identifier">logPackageBuild</span>( <span class="ruby-value str">&quot;ipc&quot;</span> ), <span class="ruby-value str">&quot;testLogPackageBuild()&quot;</span> )
+65:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>
 </div>
 <div class="method">
   <div class="title">
-    <a name="M000106"></a><b>testLogPackageIntegrity</b>()
+    <a name="M000109"></a><b>testLogPackageInstall</b>()
+  </div>
+  <div class="description">
+  <p>
+Test method for &#8216;AbtLogManager.testLogPackageInstall()&#8217;
+</p>
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000109_source')" id="l_M000109_source">show source</a> ]</p>
+  <div id="M000109_source" class="dyn-source">
+<pre>
+    <span class="ruby-comment cmt"># File testabtlogmanager.rb, line 56</span>
+56:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">testLogPackageInstall</span>()
+57:     <span class="ruby-identifier">assert</span>( <span class="ruby-ivar">@log</span>.<span class="ruby-identifier">logPackageInstall</span>( <span class="ruby-value str">&quot;ipc&quot;</span> ), <span class="ruby-value str">&quot;testLogPackageInstall()&quot;</span> )
+58:   <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000108"></a><b>testLogPackageIntegrity</b>()
   </div>
   <div class="description">
   <p>
@@ -224,20 +248,20 @@ Test method for &#8216;AbtLogManager.testLogPackageIntegrity()&#8217;
 </p>
   </div>
 <div class="sourcecode">
-  <p class="source-link">[ <a href="javascript:toggleSource('M000106_source')" id="l_M000106_source">show source</a> ]</p>
-  <div id="M000106_source" class="dyn-source">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000108_source')" id="l_M000108_source">show source</a> ]</p>
+  <div id="M000108_source" class="dyn-source">
 <pre>
-    <span class="ruby-comment cmt"># File TestAbtLogManager.rb, line 50</span>
-50:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">testLogPackageIntegrity</span>()
-51:     <span class="ruby-identifier">assert</span>( <span class="ruby-ivar">@log</span>.<span class="ruby-identifier">logPackageIntegrity</span>( <span class="ruby-value str">&quot;ipc&quot;</span> ), <span class="ruby-value str">&quot;testLogPackageIntegrity()&quot;</span> )
-52:   <span class="ruby-keyword kw">end</span>
+    <span class="ruby-comment cmt"># File testabtlogmanager.rb, line 49</span>
+49:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">testLogPackageIntegrity</span>()
+50:     <span class="ruby-identifier">assert</span>( <span class="ruby-ivar">@log</span>.<span class="ruby-identifier">logPackageIntegrity</span>( <span class="ruby-value str">&quot;ipc&quot;</span> ), <span class="ruby-value str">&quot;testLogPackageIntegrity()&quot;</span> )
+51:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>
 </div>
 <div class="method">
   <div class="title">
-    <a name="M000109"></a><b>testLogToJournal</b>()
+    <a name="M000112"></a><b>testLogToJournal</b>()
   </div>
   <div class="description">
   <p>
@@ -245,14 +269,14 @@ Test method for &#8216;AbtLogManager.testLogToJournal()&#8217;
 </p>
   </div>
 <div class="sourcecode">
-  <p class="source-link">[ <a href="javascript:toggleSource('M000109_source')" id="l_M000109_source">show source</a> ]</p>
-  <div id="M000109_source" class="dyn-source">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000112_source')" id="l_M000112_source">show source</a> ]</p>
+  <div id="M000112_source" class="dyn-source">
 <pre>
-    <span class="ruby-comment cmt"># File TestAbtLogManager.rb, line 79</span>
-79:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">testLogToJournal</span>()
-80:     <span class="ruby-identifier">assert</span>( <span class="ruby-ivar">@log</span>.<span class="ruby-identifier">logToJournal</span>( <span class="ruby-value str">&quot;Test message from AbtTestSuite.&quot;</span> ), 
-81:                                                   <span class="ruby-value str">&quot;testLogToJournal()&quot;</span> )
-82:   <span class="ruby-keyword kw">end</span>
+    <span class="ruby-comment cmt"># File testabtlogmanager.rb, line 77</span>
+77:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">testLogToJournal</span>()
+78:     <span class="ruby-identifier">assert</span>( <span class="ruby-ivar">@log</span>.<span class="ruby-identifier">logToJournal</span>( <span class="ruby-value str">&quot;Test message from AbtTestSuite.&quot;</span> ), 
+79:                                                   <span class="ruby-value str">&quot;testLogToJournal()&quot;</span> )
+80:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>

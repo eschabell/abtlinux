@@ -57,7 +57,7 @@
       <tr valign="top">
         <td>In:</td>
         <td>
-<a href="../files/AbtQueueManager_rb.html">AbtQueueManager.rb</a>
+<a href="../files/abtqueuemanager_rb.html">abtqueuemanager.rb</a>
         </td>
       </tr>
     <tr>
@@ -78,11 +78,11 @@ Object
     <map id="map" name="map">
   <area shape="rect" coords="27,50,157,98"      href="AbtQueueManager.html" alt="AbtQueueManager" />
 </map>
-<img src="../dot/f_5.png" usemap="#map" border="0" alt="TopLevel" />
+<img src="../dot/f_5.png" usemap="#map" border="0" alt="dot/f_5.png">
   </td></tr></table>
 
   <div class="description"><p>
-AbtQueueManager.rb
+abtqueuemanager.rb
 </p>
 <p>
 <a href="AbtQueueManager.html">AbtQueueManager</a> class handles all
@@ -117,8 +117,8 @@ Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
 
   <div class="sectiontitle">Methods</div>
   <ul>
-  <li><a href="#M000090">actionPackageQueue</a></li>
-  <li><a href="#M000089">new</a></li>
+  <li><a href="#M000092">actionPackageQueue</a></li>
+  <li><a href="#M000091">new</a></li>
   </ul>
 
 
@@ -129,7 +129,7 @@ Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
 <div class="sectiontitle">Public Class methods</div>
 <div class="method">
   <div class="title">
-    <a name="M000089"></a><b>new</b>()
+    <a name="M000091"></a><b>new</b>()
   </div>
   <div class="description">
   <p>
@@ -142,10 +142,10 @@ an initialized <a href="AbtQueueManager.html">AbtQueueManager</a> object.
 </p>
   </div>
 <div class="sourcecode">
-  <p class="source-link">[ <a href="javascript:toggleSource('M000089_source')" id="l_M000089_source">show source</a> ]</p>
-  <div id="M000089_source" class="dyn-source">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000091_source')" id="l_M000091_source">show source</a> ]</p>
+  <div id="M000091_source" class="dyn-source">
 <pre>
-    <span class="ruby-comment cmt"># File AbtQueueManager.rb, line 41</span>
+    <span class="ruby-comment cmt"># File abtqueuemanager.rb, line 41</span>
 41:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>
 42:   <span class="ruby-keyword kw">end</span>
 </pre>
@@ -155,7 +155,7 @@ an initialized <a href="AbtQueueManager.html">AbtQueueManager</a> object.
 <div class="sectiontitle">Public Instance methods</div>
 <div class="method">
   <div class="title">
-    <a name="M000090"></a><b>actionPackageQueue</b>( package, queue, action=&quot;add&quot; )
+    <a name="M000092"></a><b>actionPackageQueue</b>( package, queue, action=&quot;add&quot; )
   </div>
   <div class="description">
   <p>
@@ -171,10 +171,10 @@ in the queue then it will not be added twice and return succes.
 </p>
   </div>
 <div class="sourcecode">
-  <p class="source-link">[ <a href="javascript:toggleSource('M000090_source')" id="l_M000090_source">show source</a> ]</p>
-  <div id="M000090_source" class="dyn-source">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000092_source')" id="l_M000092_source">show source</a> ]</p>
+  <div id="M000092_source" class="dyn-source">
 <pre>
-     <span class="ruby-comment cmt"># File AbtQueueManager.rb, line 54</span>
+     <span class="ruby-comment cmt"># File abtqueuemanager.rb, line 54</span>
  54:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">actionPackageQueue</span>( <span class="ruby-identifier">package</span>, <span class="ruby-identifier">queue</span>, <span class="ruby-identifier">action</span>=<span class="ruby-value str">&quot;add&quot;</span> )
  55:     <span class="ruby-identifier">require</span> <span class="ruby-value str">'fileutils'</span>
  56:     <span class="ruby-identifier">logger</span> = <span class="ruby-constant">AbtLogManager</span>.<span class="ruby-identifier">new</span>

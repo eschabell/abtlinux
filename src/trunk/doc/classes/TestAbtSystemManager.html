@@ -57,7 +57,7 @@
       <tr valign="top">
         <td>In:</td>
         <td>
-<a href="../files/TestAbtSystemManager_rb.html">TestAbtSystemManager.rb</a>
+<a href="../files/testabtsystemmanager_rb.html">testabtsystemmanager.rb</a>
         </td>
       </tr>
     <tr>
@@ -79,11 +79,11 @@ Test::Unit::TestCase
   <area shape="rect" coords="27,124,184,172"      href="TestAbtSystemManager.html" alt="TestAbtSystemManager" />
   <area shape="rect" coords="39,5,172,53"      href="Test/Unit/TestCase.html" alt="Test::Unit::TestCase" />
 </map>
-<img src="../dot/f_16.png" usemap="#map" border="0" alt="TopLevel" />
+<img src="../dot/f_16.png" usemap="#map" border="0" alt="dot/f_16.png">
   </td></tr></table>
 
   <div class="description"><p>
-TestAbtSystemManager.rb
+testabtsystemmanager.rb
 </p>
 <p>
 Unit testing for <a href="AbtSystemManager.html">AbtSystemManager</a>
@@ -118,17 +118,18 @@ Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
 
   <div class="sectiontitle">Methods</div>
   <ul>
-  <li><a href="#M000068">setup</a></li>
-  <li><a href="#M000069">teardown</a></li>
-  <li><a href="#M000071">testCleanupLogs</a></li>
-  <li><a href="#M000070">testCleanupPackageSources</a></li>
-  <li><a href="#M000076">testFixPackage</a></li>
-  <li><a href="#M000077">testSetCentralRepo</a></li>
-  <li><a href="#M000078">testSetPackageTreeLocation</a></li>
-  <li><a href="#M000072">testVerifyInstalledFiles</a></li>
-  <li><a href="#M000074">testVerifyPackageDepends</a></li>
-  <li><a href="#M000075">testVerifyPackageIntegrity</a></li>
-  <li><a href="#M000073">testVerifySymlinks</a></li>
+  <li><a href="#M000069">setup</a></li>
+  <li><a href="#M000070">teardown</a></li>
+  <li><a href="#M000072">testCleanupLogs</a></li>
+  <li><a href="#M000071">testCleanupPackageSources</a></li>
+  <li><a href="#M000077">testFixPackage</a></li>
+  <li><a href="#M000080">testPackageInstalled</a></li>
+  <li><a href="#M000078">testSetCentralRepo</a></li>
+  <li><a href="#M000079">testSetPackageTreeLocation</a></li>
+  <li><a href="#M000073">testVerifyInstalledFiles</a></li>
+  <li><a href="#M000075">testVerifyPackageDepends</a></li>
+  <li><a href="#M000076">testVerifyPackageIntegrity</a></li>
+  <li><a href="#M000074">testVerifySymlinks</a></li>
   </ul>
 
 
@@ -139,19 +140,19 @@ Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
 <div class="sectiontitle">Public Instance methods</div>
 <div class="method">
   <div class="title">
-    <a name="M000068"></a><b>setup</b>()
+    <a name="M000069"></a><b>setup</b>()
   </div>
   <div class="description">
   <p>
-setup method for testing <a
+<a href="TestAbtSystemManager.html#M000069">setup</a> method for testing <a
 href="AbtSystemManager.html">AbtSystemManager</a>.
 </p>
   </div>
 <div class="sourcecode">
-  <p class="source-link">[ <a href="javascript:toggleSource('M000068_source')" id="l_M000068_source">show source</a> ]</p>
-  <div id="M000068_source" class="dyn-source">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000069_source')" id="l_M000069_source">show source</a> ]</p>
+  <div id="M000069_source" class="dyn-source">
 <pre>
-    <span class="ruby-comment cmt"># File TestAbtSystemManager.rb, line 36</span>
+    <span class="ruby-comment cmt"># File testabtsystemmanager.rb, line 36</span>
 36:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">setup</span>
 37:     <span class="ruby-ivar">@sys</span> = <span class="ruby-constant">AbtSystemManager</span>.<span class="ruby-identifier">new</span>()
 38:   <span class="ruby-keyword kw">end</span>
@@ -161,18 +162,19 @@ href="AbtSystemManager.html">AbtSystemManager</a>.
 </div>
 <div class="method">
   <div class="title">
-    <a name="M000069"></a><b>teardown</b>()
+    <a name="M000070"></a><b>teardown</b>()
   </div>
   <div class="description">
   <p>
-teardown method to cleanup after testing.
+<a href="TestAbtSystemManager.html#M000070">teardown</a> method to cleanup
+after testing.
 </p>
   </div>
 <div class="sourcecode">
-  <p class="source-link">[ <a href="javascript:toggleSource('M000069_source')" id="l_M000069_source">show source</a> ]</p>
-  <div id="M000069_source" class="dyn-source">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000070_source')" id="l_M000070_source">show source</a> ]</p>
+  <div id="M000070_source" class="dyn-source">
 <pre>
-    <span class="ruby-comment cmt"># File TestAbtSystemManager.rb, line 43</span>
+    <span class="ruby-comment cmt"># File testabtsystemmanager.rb, line 43</span>
 43:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">teardown</span>
 44:   <span class="ruby-keyword kw">end</span>
 </pre>
@@ -181,7 +183,7 @@ teardown method to cleanup after testing.
 </div>
 <div class="method">
   <div class="title">
-    <a name="M000071"></a><b>testCleanupLogs</b>()
+    <a name="M000072"></a><b>testCleanupLogs</b>()
   </div>
   <div class="description">
   <p>
@@ -189,10 +191,10 @@ Test method for &#8216;AbtSystemManager.testCleanupLogs()&#8217;
 </p>
   </div>
 <div class="sourcecode">
-  <p class="source-link">[ <a href="javascript:toggleSource('M000071_source')" id="l_M000071_source">show source</a> ]</p>
-  <div id="M000071_source" class="dyn-source">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000072_source')" id="l_M000072_source">show source</a> ]</p>
+  <div id="M000072_source" class="dyn-source">
 <pre>
-    <span class="ruby-comment cmt"># File TestAbtSystemManager.rb, line 56</span>
+    <span class="ruby-comment cmt"># File testabtsystemmanager.rb, line 56</span>
 56:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">testCleanupLogs</span>
 57:     <span class="ruby-identifier">assert</span>( <span class="ruby-ivar">@sys</span>.<span class="ruby-identifier">cleanupLogs</span>(), <span class="ruby-value str">&quot;testCleanupLogs()&quot;</span> )
 58:   <span class="ruby-keyword kw">end</span>
@@ -202,7 +204,7 @@ Test method for &#8216;AbtSystemManager.testCleanupLogs()&#8217;
 </div>
 <div class="method">
   <div class="title">
-    <a name="M000070"></a><b>testCleanupPackageSources</b>()
+    <a name="M000071"></a><b>testCleanupPackageSources</b>()
   </div>
   <div class="description">
   <p>
@@ -210,10 +212,10 @@ Test method for &#8216;AbtSystemManager.testCleanupPackageSources()&#8217;
 </p>
   </div>
 <div class="sourcecode">
-  <p class="source-link">[ <a href="javascript:toggleSource('M000070_source')" id="l_M000070_source">show source</a> ]</p>
-  <div id="M000070_source" class="dyn-source">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000071_source')" id="l_M000071_source">show source</a> ]</p>
+  <div id="M000071_source" class="dyn-source">
 <pre>
-    <span class="ruby-comment cmt"># File TestAbtSystemManager.rb, line 49</span>
+    <span class="ruby-comment cmt"># File testabtsystemmanager.rb, line 49</span>
 49:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">testCleanupPackageSources</span>
 50:     <span class="ruby-identifier">assert</span>( <span class="ruby-ivar">@sys</span>.<span class="ruby-identifier">cleanupPackageSources</span>(), <span class="ruby-value str">&quot;testCleanupPackageSources()&quot;</span> )
 51:   <span class="ruby-keyword kw">end</span>
@@ -223,7 +225,7 @@ Test method for &#8216;AbtSystemManager.testCleanupPackageSources()&#8217;
 </div>
 <div class="method">
   <div class="title">
-    <a name="M000076"></a><b>testFixPackage</b>()
+    <a name="M000077"></a><b>testFixPackage</b>()
   </div>
   <div class="description">
   <p>
@@ -231,10 +233,10 @@ Test method for &#8216;AbtSystemManager.testFixPackage()&#8217;
 </p>
   </div>
 <div class="sourcecode">
-  <p class="source-link">[ <a href="javascript:toggleSource('M000076_source')" id="l_M000076_source">show source</a> ]</p>
-  <div id="M000076_source" class="dyn-source">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000077_source')" id="l_M000077_source">show source</a> ]</p>
+  <div id="M000077_source" class="dyn-source">
 <pre>
-    <span class="ruby-comment cmt"># File TestAbtSystemManager.rb, line 92</span>
+    <span class="ruby-comment cmt"># File testabtsystemmanager.rb, line 92</span>
 92:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">testFixPackage</span>
 93:     <span class="ruby-identifier">assert</span>( <span class="ruby-ivar">@sys</span>.<span class="ruby-identifier">fixPackage</span>( <span class="ruby-value str">&quot;dummy&quot;</span> ), <span class="ruby-value str">&quot;testFixPackage()&quot;</span> )
 94:   <span class="ruby-keyword kw">end</span>
@@ -244,7 +246,28 @@ Test method for &#8216;AbtSystemManager.testFixPackage()&#8217;
 </div>
 <div class="method">
   <div class="title">
-    <a name="M000077"></a><b>testSetCentralRepo</b>()
+    <a name="M000080"></a><b>testPackageInstalled</b>()
+  </div>
+  <div class="description">
+  <p>
+Test method for &#8216;AbtSystemManager.testPackageInstalled()&#8217;
+</p>
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000080_source')" id="l_M000080_source">show source</a> ]</p>
+  <div id="M000080_source" class="dyn-source">
+<pre>
+     <span class="ruby-comment cmt"># File testabtsystemmanager.rb, line 114</span>
+114:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">testPackageInstalled</span>
+115:     <span class="ruby-identifier">assert</span>( <span class="ruby-ivar">@sys</span>.<span class="ruby-identifier">packageInstalled</span>( <span class="ruby-value str">&quot;ipc&quot;</span> ), <span class="ruby-value str">&quot;testPackageInstalled()&quot;</span> )
+116:   <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000078"></a><b>testSetCentralRepo</b>()
   </div>
   <div class="description">
   <p>
@@ -252,10 +275,10 @@ Test method for &#8216;AbtSystemManager.testSetCentralRepo()&#8217;
 </p>
   </div>
 <div class="sourcecode">
-  <p class="source-link">[ <a href="javascript:toggleSource('M000077_source')" id="l_M000077_source">show source</a> ]</p>
-  <div id="M000077_source" class="dyn-source">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000078_source')" id="l_M000078_source">show source</a> ]</p>
+  <div id="M000078_source" class="dyn-source">
 <pre>
-     <span class="ruby-comment cmt"># File TestAbtSystemManager.rb, line 99</span>
+     <span class="ruby-comment cmt"># File testabtsystemmanager.rb, line 99</span>
  99:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">testSetCentralRepo</span>
 100:     <span class="ruby-identifier">assert</span>( <span class="ruby-ivar">@sys</span>.<span class="ruby-identifier">setCentralRepo</span>( <span class="ruby-value str">&quot;http://localhost&quot;</span> ), <span class="ruby-value str">&quot;testSetCentralRepo()&quot;</span> )
 101:   <span class="ruby-keyword kw">end</span>
@@ -265,7 +288,7 @@ Test method for &#8216;AbtSystemManager.testSetCentralRepo()&#8217;
 </div>
 <div class="method">
   <div class="title">
-    <a name="M000078"></a><b>testSetPackageTreeLocation</b>()
+    <a name="M000079"></a><b>testSetPackageTreeLocation</b>()
   </div>
   <div class="description">
   <p>
@@ -273,10 +296,10 @@ Test method for &#8216;AbtSystemManager.testSetPackageTreeLocation()&#8217;
 </p>
   </div>
 <div class="sourcecode">
-  <p class="source-link">[ <a href="javascript:toggleSource('M000078_source')" id="l_M000078_source">show source</a> ]</p>
-  <div id="M000078_source" class="dyn-source">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000079_source')" id="l_M000079_source">show source</a> ]</p>
+  <div id="M000079_source" class="dyn-source">
 <pre>
-     <span class="ruby-comment cmt"># File TestAbtSystemManager.rb, line 106</span>
+     <span class="ruby-comment cmt"># File testabtsystemmanager.rb, line 106</span>
 106:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">testSetPackageTreeLocation</span>
 107:     <span class="ruby-identifier">assert</span>( <span class="ruby-ivar">@sys</span>.<span class="ruby-identifier">setPackageTreeLocation</span>( <span class="ruby-value str">&quot;/var/lib/ericsPackages&quot;</span> ), 
 108:                                       <span class="ruby-value str">&quot;testSetPackageTreeLocation()&quot;</span> )
@@ -287,7 +310,7 @@ Test method for &#8216;AbtSystemManager.testSetPackageTreeLocation()&#8217;
 </div>
 <div class="method">
   <div class="title">
-    <a name="M000072"></a><b>testVerifyInstalledFiles</b>()
+    <a name="M000073"></a><b>testVerifyInstalledFiles</b>()
   </div>
   <div class="description">
   <p>
@@ -295,10 +318,10 @@ Test method for &#8216;AbtSystemManager.testVerifyInstalledFiles()&#8217;
 </p>
   </div>
 <div class="sourcecode">
-  <p class="source-link">[ <a href="javascript:toggleSource('M000072_source')" id="l_M000072_source">show source</a> ]</p>
-  <div id="M000072_source" class="dyn-source">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000073_source')" id="l_M000073_source">show source</a> ]</p>
+  <div id="M000073_source" class="dyn-source">
 <pre>
-    <span class="ruby-comment cmt"># File TestAbtSystemManager.rb, line 63</span>
+    <span class="ruby-comment cmt"># File testabtsystemmanager.rb, line 63</span>
 63:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">testVerifyInstalledFiles</span>
 64:     <span class="ruby-identifier">assert</span>( <span class="ruby-ivar">@sys</span>.<span class="ruby-identifier">verifyInstalledFiles</span>( <span class="ruby-value str">&quot;dummy&quot;</span> ), <span class="ruby-value str">&quot;testVerifyInstalledFiles()&quot;</span> )
 65:   <span class="ruby-keyword kw">end</span>
@@ -308,7 +331,7 @@ Test method for &#8216;AbtSystemManager.testVerifyInstalledFiles()&#8217;
 </div>
 <div class="method">
   <div class="title">
-    <a name="M000074"></a><b>testVerifyPackageDepends</b>()
+    <a name="M000075"></a><b>testVerifyPackageDepends</b>()
   </div>
   <div class="description">
   <p>
@@ -316,10 +339,10 @@ Test method for &#8216;AbtSystemManager.testVerifyPackageDepends()&#8217;
 </p>
   </div>
 <div class="sourcecode">
-  <p class="source-link">[ <a href="javascript:toggleSource('M000074_source')" id="l_M000074_source">show source</a> ]</p>
-  <div id="M000074_source" class="dyn-source">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000075_source')" id="l_M000075_source">show source</a> ]</p>
+  <div id="M000075_source" class="dyn-source">
 <pre>
-    <span class="ruby-comment cmt"># File TestAbtSystemManager.rb, line 77</span>
+    <span class="ruby-comment cmt"># File testabtsystemmanager.rb, line 77</span>
 77:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">testVerifyPackageDepends</span>
 78:     <span class="ruby-identifier">assert</span>( <span class="ruby-ivar">@sys</span>.<span class="ruby-identifier">verifyPackageDepends</span>( <span class="ruby-value str">&quot;dummy&quot;</span> ), <span class="ruby-value str">&quot;testVerifyPackageDepends()&quot;</span> )
 79:   <span class="ruby-keyword kw">end</span>
@@ -329,7 +352,7 @@ Test method for &#8216;AbtSystemManager.testVerifyPackageDepends()&#8217;
 </div>
 <div class="method">
   <div class="title">
-    <a name="M000075"></a><b>testVerifyPackageIntegrity</b>()
+    <a name="M000076"></a><b>testVerifyPackageIntegrity</b>()
   </div>
   <div class="description">
   <p>
@@ -337,10 +360,10 @@ Test method for &#8216;AbtSystemManager.testVerifyPackageIntegrity()&#8217;
 </p>
   </div>
 <div class="sourcecode">
-  <p class="source-link">[ <a href="javascript:toggleSource('M000075_source')" id="l_M000075_source">show source</a> ]</p>
-  <div id="M000075_source" class="dyn-source">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000076_source')" id="l_M000076_source">show source</a> ]</p>
+  <div id="M000076_source" class="dyn-source">
 <pre>
-    <span class="ruby-comment cmt"># File TestAbtSystemManager.rb, line 84</span>
+    <span class="ruby-comment cmt"># File testabtsystemmanager.rb, line 84</span>
 84:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">testVerifyPackageIntegrity</span>
 85:     <span class="ruby-identifier">assert</span>( <span class="ruby-ivar">@sys</span>.<span class="ruby-identifier">verifyPackageIntegrity</span>( <span class="ruby-value str">&quot;dummy&quot;</span> ), 
 86:                       <span class="ruby-value str">&quot;testVerifyPackageIntegrity()&quot;</span> )
@@ -351,7 +374,7 @@ Test method for &#8216;AbtSystemManager.testVerifyPackageIntegrity()&#8217;
 </div>
 <div class="method">
   <div class="title">
-    <a name="M000073"></a><b>testVerifySymlinks</b>()
+    <a name="M000074"></a><b>testVerifySymlinks</b>()
   </div>
   <div class="description">
   <p>
@@ -359,10 +382,10 @@ Test method for &#8216;AbtSystemManager.testVerifySymlinks()&#8217;
 </p>
   </div>
 <div class="sourcecode">
-  <p class="source-link">[ <a href="javascript:toggleSource('M000073_source')" id="l_M000073_source">show source</a> ]</p>
-  <div id="M000073_source" class="dyn-source">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000074_source')" id="l_M000074_source">show source</a> ]</p>
+  <div id="M000074_source" class="dyn-source">
 <pre>
-    <span class="ruby-comment cmt"># File TestAbtSystemManager.rb, line 70</span>
+    <span class="ruby-comment cmt"># File testabtsystemmanager.rb, line 70</span>
 70:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">testVerifySymlinks</span>
 71:     <span class="ruby-identifier">assert</span>( <span class="ruby-ivar">@sys</span>.<span class="ruby-identifier">verifySymlinks</span>( <span class="ruby-value str">&quot;dummy&quot;</span> ), <span class="ruby-value str">&quot;testVerifySymlinks()&quot;</span> )
 72:   <span class="ruby-keyword kw">end</span>

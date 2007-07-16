@@ -57,7 +57,7 @@
       <tr valign="top">
         <td>In:</td>
         <td>
-<a href="../files/AbtSystemManager_rb.html">AbtSystemManager.rb</a>
+<a href="../files/abtsystemmanager_rb.html">abtsystemmanager.rb</a>
         </td>
       </tr>
     <tr>
@@ -78,11 +78,11 @@ Object
     <map id="map" name="map">
   <area shape="rect" coords="27,50,163,98"      href="AbtSystemManager.html" alt="AbtSystemManager" />
 </map>
-<img src="../dot/f_7.png" usemap="#map" border="0" alt="TopLevel" />
+<img src="../dot/f_7.png" usemap="#map" border="0" alt="dot/f_7.png">
   </td></tr></table>
 
   <div class="description"><p>
-AbtSystemManager.rb
+abtsystemmanager.rb
 </p>
 <p>
 <a href="AbtSystemManager.html">AbtSystemManager</a> class handles all
@@ -122,6 +122,7 @@ Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
   <li><a href="#M000002">cleanupPackageSources</a></li>
   <li><a href="#M000008">fixPackage</a></li>
   <li><a href="#M000001">new</a></li>
+  <li><a href="#M000011">packageInstalled</a></li>
   <li><a href="#M000009">setCentralRepo</a></li>
   <li><a href="#M000010">setPackageTreeLocation</a></li>
   <li><a href="#M000004">verifyInstalledFiles</a></li>
@@ -154,9 +155,9 @@ object.
   <p class="source-link">[ <a href="javascript:toggleSource('M000001_source')" id="l_M000001_source">show source</a> ]</p>
   <div id="M000001_source" class="dyn-source">
 <pre>
-    <span class="ruby-comment cmt"># File AbtSystemManager.rb, line 43</span>
-43:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>
-44:   <span class="ruby-keyword kw">end</span>
+    <span class="ruby-comment cmt"># File abtsystemmanager.rb, line 68</span>
+68:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>
+69:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>
@@ -179,9 +180,9 @@ false.
   <p class="source-link">[ <a href="javascript:toggleSource('M000003_source')" id="l_M000003_source">show source</a> ]</p>
   <div id="M000003_source" class="dyn-source">
 <pre>
-    <span class="ruby-comment cmt"># File AbtSystemManager.rb, line 62</span>
-62:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">cleanupLogs</span>
-63:   <span class="ruby-keyword kw">end</span>
+    <span class="ruby-comment cmt"># File abtsystemmanager.rb, line 87</span>
+87:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">cleanupLogs</span>
+88:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>
@@ -204,9 +205,9 @@ false.
   <p class="source-link">[ <a href="javascript:toggleSource('M000002_source')" id="l_M000002_source">show source</a> ]</p>
   <div id="M000002_source" class="dyn-source">
 <pre>
-    <span class="ruby-comment cmt"># File AbtSystemManager.rb, line 53</span>
-53:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">cleanupPackageSources</span>
-54:   <span class="ruby-keyword kw">end</span>
+    <span class="ruby-comment cmt"># File abtsystemmanager.rb, line 78</span>
+78:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">cleanupPackageSources</span>
+79:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>
@@ -231,9 +232,47 @@ false.
   <p class="source-link">[ <a href="javascript:toggleSource('M000008_source')" id="l_M000008_source">show source</a> ]</p>
   <div id="M000008_source" class="dyn-source">
 <pre>
-     <span class="ruby-comment cmt"># File AbtSystemManager.rb, line 118</span>
-118:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">fixPackage</span>( <span class="ruby-identifier">package</span> )
-119:   <span class="ruby-keyword kw">end</span>
+     <span class="ruby-comment cmt"># File abtsystemmanager.rb, line 143</span>
+143:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">fixPackage</span>( <span class="ruby-identifier">package</span> )
+144:   <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000011"></a><b>packageInstalled</b>( package )
+  </div>
+  <div class="description">
+  <p>
+Checks if the given package is installed by checking for entry in the
+installed directory.
+</p>
+<p>
+<b>PARAM</b> <em>String</em> - Package name.
+</p>
+<p>
+<b>RETURN</b> <em>boolean</em> - True if package installed, otherwise
+false.
+</p>
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000011_source')" id="l_M000011_source">show source</a> ]</p>
+  <div id="M000011_source" class="dyn-source">
+<pre>
+     <span class="ruby-comment cmt"># File abtsystemmanager.rb, line 178</span>
+178:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">packageInstalled</span>( <span class="ruby-identifier">package</span> )
+179:     <span class="ruby-identifier">require</span> <span class="ruby-node">&quot;#{$PACKAGE_PATH}#{package}&quot;</span>
+180:     <span class="ruby-identifier">sw</span> = <span class="ruby-identifier">eval</span>( <span class="ruby-node">&quot;#{package.capitalize}.new&quot;</span> )
+181:     <span class="ruby-identifier">details</span> = <span class="ruby-identifier">sw</span>.<span class="ruby-identifier">details</span>
+182:     
+183:     <span class="ruby-keyword kw">if</span> ( <span class="ruby-identifier">foundEntry</span>( <span class="ruby-identifier">$PACKAGE_INSTALLED</span>, <span class="ruby-identifier">sw</span>.<span class="ruby-identifier">srcDir</span> ) )
+184:       <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">true</span>
+185:     <span class="ruby-keyword kw">end</span>
+186:     
+187:     
+188:     <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">false</span>
+189:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>
@@ -258,9 +297,9 @@ located.
   <p class="source-link">[ <a href="javascript:toggleSource('M000009_source')" id="l_M000009_source">show source</a> ]</p>
   <div id="M000009_source" class="dyn-source">
 <pre>
-     <span class="ruby-comment cmt"># File AbtSystemManager.rb, line 129</span>
-129:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">setCentralRepo</span>( <span class="ruby-identifier">uri</span> )
-130:   <span class="ruby-keyword kw">end</span>
+     <span class="ruby-comment cmt"># File abtsystemmanager.rb, line 154</span>
+154:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">setCentralRepo</span>( <span class="ruby-identifier">uri</span> )
+155:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>
@@ -286,9 +325,9 @@ otherwise false.
   <p class="source-link">[ <a href="javascript:toggleSource('M000010_source')" id="l_M000010_source">show source</a> ]</p>
   <div id="M000010_source" class="dyn-source">
 <pre>
-     <span class="ruby-comment cmt"># File AbtSystemManager.rb, line 141</span>
-141:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">setPackageTreeLocation</span>( <span class="ruby-identifier">location</span> )
-142:   <span class="ruby-keyword kw">end</span>
+     <span class="ruby-comment cmt"># File abtsystemmanager.rb, line 166</span>
+166:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">setPackageTreeLocation</span>( <span class="ruby-identifier">location</span> )
+167:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>
@@ -313,9 +352,9 @@ otherwise false.
   <p class="source-link">[ <a href="javascript:toggleSource('M000004_source')" id="l_M000004_source">show source</a> ]</p>
   <div id="M000004_source" class="dyn-source">
 <pre>
-    <span class="ruby-comment cmt"># File AbtSystemManager.rb, line 73</span>
-73:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">verifyInstalledFiles</span>( <span class="ruby-identifier">package</span> )
-74:   <span class="ruby-keyword kw">end</span>
+    <span class="ruby-comment cmt"># File abtsystemmanager.rb, line 98</span>
+98:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">verifyInstalledFiles</span>( <span class="ruby-identifier">package</span> )
+99:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>
@@ -340,9 +379,9 @@ false.
   <p class="source-link">[ <a href="javascript:toggleSource('M000006_source')" id="l_M000006_source">show source</a> ]</p>
   <div id="M000006_source" class="dyn-source">
 <pre>
-    <span class="ruby-comment cmt"># File AbtSystemManager.rb, line 95</span>
-95:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">verifyPackageDepends</span>( <span class="ruby-identifier">package</span> )
-96:   <span class="ruby-keyword kw">end</span>
+     <span class="ruby-comment cmt"># File abtsystemmanager.rb, line 120</span>
+120:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">verifyPackageDepends</span>( <span class="ruby-identifier">package</span> )
+121:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>
@@ -368,9 +407,9 @@ hash of problem files and their encountered errors.
   <p class="source-link">[ <a href="javascript:toggleSource('M000007_source')" id="l_M000007_source">show source</a> ]</p>
   <div id="M000007_source" class="dyn-source">
 <pre>
-     <span class="ruby-comment cmt"># File AbtSystemManager.rb, line 107</span>
-107:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">verifyPackageIntegrity</span>( <span class="ruby-identifier">package</span> )
-108:   <span class="ruby-keyword kw">end</span>
+     <span class="ruby-comment cmt"># File abtsystemmanager.rb, line 132</span>
+132:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">verifyPackageIntegrity</span>( <span class="ruby-identifier">package</span> )
+133:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>
@@ -395,9 +434,9 @@ broken, otherwise false.
   <p class="source-link">[ <a href="javascript:toggleSource('M000005_source')" id="l_M000005_source">show source</a> ]</p>
   <div id="M000005_source" class="dyn-source">
 <pre>
-    <span class="ruby-comment cmt"># File AbtSystemManager.rb, line 84</span>
-84:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">verifySymlinks</span>( <span class="ruby-identifier">package</span> )
-85:   <span class="ruby-keyword kw">end</span>
+     <span class="ruby-comment cmt"># File abtsystemmanager.rb, line 109</span>
+109:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">verifySymlinks</span>( <span class="ruby-identifier">package</span> )
+110:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>

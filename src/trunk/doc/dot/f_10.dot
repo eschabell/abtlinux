@@ -3,7 +3,7 @@ digraph TopLevel {
     bgcolor = lightcyan1
     fontname = Arial
     fontsize = 8
-    label = "TestAbtDownloadManager.rb"
+    label = "TopLevel"
     node [
         fontname = Arial,
         fontsize = 8,
@@ -13,7 +13,7 @@ digraph TopLevel {
     subgraph cluster_11 {
         fontname = Arial
         color = red
-        label = "TestAbtDownloadManager.rb"
+        label = "testabtdownloadmanager.rb"
         TestAbtDownloadManager [
             fontcolor = black,
             URL = "classes/TestAbtDownloadManager.html",
