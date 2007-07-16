@@ -1,7 +1,7 @@
 #!/usr/bin/ruby -w
 
 ##
-# AbtQueueManager.rb
+# abtqueuemanager.rb
 #
 # AbtQueueManager class handles all AbTLinux queue interaction.
 #
