@@ -218,6 +218,7 @@ class AbtPackageManager
   # otherwise false.
   ##
   def reinstall_package( package )
+    return false
   end
   
   ##
@@ -235,9 +236,28 @@ class AbtPackageManager
     
     # get package details.
     details = sw.details
+    
+    # TODO: something with possible /etc or other configure files before removal, check maybe integrity for changes since install?
 
-    # 
-    puts "Removing #{package} now..."
+    # remove listings in install log.
+    installLog = logger.get_log( package, 'install' )
+
+    IO.foreach( installLog ) do |line|
+      if File.exist?( line.chomp )
+        FileUtils.rm( line.chomp )
+        logger.to_journal( "Removed file #{line.chomp} from #{package} install log.")
+      else
+        logger.to_journal( "Unable to remove #{line.chomp} from #{package} install log, does not exist.")
+        return false
+      end
+    end
+      
+    logger.to_journal( "Removed files from #{File.basename( installLog )} for #{package}." )
+          
+    # remove entry in install listing.
+    FileUtils.remove_dir( "#{$PACKAGE_INSTALLED}/#{details['Source location']}" )    
+    logger.to_journal( "Removed entry from installed packages." )
+    return true
   end
   
   ##
@@ -251,6 +271,7 @@ class AbtPackageManager
   # false.
   ##
   def downgrade_package( package, version )
+    return false
   end
   
   ##
@@ -263,6 +284,7 @@ class AbtPackageManager
   # false.
   ##
   def freeze_package( package )
+    return false
   end
   
   ##
