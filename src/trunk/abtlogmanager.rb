@@ -215,9 +215,9 @@ class AbtLogManager
       sourcePath   = $SOURCES_REPOSITORY + "/" + File.basename( sw.srcUrl )
       sourceFile   = File.basename( sw.srcUrl )
       installLog   = get_log( package, 'install' )
-      buildLog     = get_log( package, 'install' )
-      configureLog = get_log( package, 'install' )
-      integrityLog = get_log( package, 'install' )
+      buildLog     = get_log( package, 'build' )
+      configureLog = get_log( package, 'configure' )
+      integrityLog = get_log( package, 'integrity' )
       packageFile  = "#{$PACKAGE_PATH}#{package}.rb"
       
       
