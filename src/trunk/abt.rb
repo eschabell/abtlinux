@@ -72,7 +72,7 @@ when "install", "-i"
         puts "\n\n"
         puts "*** Completed caching of package #{options['package']}. ***"
         puts "\n\n"
-        logger.to_ournal( "\nCaching completed for package #{options['package']}." )
+        logger.to_journal( "\nCaching completed for package #{options['package']}." )
       else
         logger.to_journal( "\nCaching of package #{options['package']} failed.")
       end
