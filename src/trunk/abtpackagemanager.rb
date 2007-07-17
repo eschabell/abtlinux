@@ -95,14 +95,6 @@ class AbtPackageManager
   ##
   def install_package( package, verbose=true )
     
-    # first check if installed.
-    system = AbtSystemManager.new
-    if ( system.package_installed( package ) )
-      puts "\n*** Package #{package} is installed, might want to try reinstall? ***"
-      puts "'abt reinstall #{package}'"
-      return true
-    end
-
     require "#{$PACKAGE_PATH}#{package}"
     sw = eval( "#{package.capitalize}.new" )
     queuer = AbtQueueManager.new
@@ -236,6 +228,7 @@ class AbtPackageManager
   # false.
   ##
   def remove_package( package )
+    puts "Removing #{package} now..."
   end
   
   ##

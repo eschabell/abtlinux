@@ -30,9 +30,10 @@ require 'abtconfig'
 # Setup needed classes and get ready to parse arguments.
 ##
 manager    = AbtPackageManager.new
-logger     = AbtLogManager.new   # initialized all needed paths.
+logger     = AbtLogManager.new     # initializes all needed paths.
 reporter   = AbtReportManager.new
 downloader = AbtDownloadManager.new
+system     = AbtSystemManager.new
 options    = Hash.new
 show       = AbtUsage.new
 
@@ -54,8 +55,12 @@ when "install", "-i"
     logger.to_journal( "Starting to install #{options['package']}" )
     
     # return if already installed.
-    require "#{$PACKAGE_PATH}#{options['package']}"
-    sw = eval( "#{options['package'].capitalize}.new" )
+    if ( system.package_installed( options['package'] ) )
+      puts "\n*** Package #{options['package']} is installed, might want to try reinstall? ***"
+      puts "\n\tabt reinstall #{options['package']}\n\n"
+      logger.to_journal( "Completed install of #{options['package']}." )
+      exit
+    end
     
     if ( manager.install_package( options['package'] ) )
       puts "\n\n"
@@ -75,9 +80,6 @@ when "install", "-i"
       puts "*** #{options['package'].capitalize} install failed, " +
           "see journal. ***"
     end
-    
-    
-    #reporter.showQueue( "install" ); # DEBUG.
   else
     show.usage( "packages" )
     exit
@@ -95,7 +97,24 @@ when "reinstall", "-ri"
 when "remove", "-r"
   if ( ARGV.length == 2 )
     options['package'] = ARGV[1]
-    puts "Removing package : " + options['package']
+    logger.to_journal( "Starting to remove #{options['package']}" )
+    
+    # return if not installed.
+    if ( !( system.package_installed( options['package'] ) ) )
+      puts "\n\n"
+      puts "*** No need to remove #{options['package']}, it was not installed! ***"
+      puts "\n\n"
+      logger.to_journal( "Completed removal of #{options['package']}." )
+      exit
+    end
+
+    # is installed, remove package.
+    if ( manager.remove_package( options['package'] ) )
+      puts "\n\n"
+      puts "*** Completed removal of #{options['package']}. ***"
+      puts "\n\n"
+      logger.to_journal( "Completed removal of #{options['package']}." )
+    end  
   else
     show.usage( "packages" )
     exit
