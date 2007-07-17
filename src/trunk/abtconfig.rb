@@ -59,7 +59,7 @@ $ABT_VERSION           = "0.1"
 $BUILD_ARCHITECTURE    = "i686"
 $BUILD_OPTIMIZATIONS   = "strip"
 $DEFAULT_PREFIX        = "/usr/local"
-$REMOVE_BUILD_SOURCES  = false
+$REMOVE_BUILD_SOURCES  = true
 $TIMESTAMP             = Time.now.strftime( "%Y-%m-%d %H:%M:%S (%Z)" )
 $PAGER_DEFAULT         = "less -R -E -X -f"
 
