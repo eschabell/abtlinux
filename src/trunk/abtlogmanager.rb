@@ -30,6 +30,8 @@ class AbtLogManager
   protected
   
   private
+
+  public
   
   ##
   # Returns the path to given packages install log.
@@ -67,9 +69,6 @@ class AbtLogManager
         
     return log
   end
-
-
-  public
   
   ##
   # Constructor for the AbtLogManager. It ensures all needed logs paths are
