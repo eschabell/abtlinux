@@ -94,7 +94,6 @@ class AbtPackageManager
   # false.
   ##
   def install_package( package, verbose=true )
-    
     require "#{$PACKAGE_PATH}#{package}"
     sw = eval( "#{package.capitalize}.new" )
     queuer = AbtQueueManager.new
@@ -208,6 +207,8 @@ class AbtPackageManager
     return true # install completed!
   end
   
+  # TODO: add install_cached_package( package )
+  
   ##
   # Reinstalls a given package.
   #
@@ -228,6 +229,14 @@ class AbtPackageManager
   # false.
   ##
   def remove_package( package )
+    require "#{$PACKAGE_PATH}#{package}"
+    sw = eval( "#{package.capitalize}.new" )
+    logger = AbtLogManager.new
+    
+    # get package details.
+    details = sw.details
+
+    # 
     puts "Removing #{package} now..."
   end
   
