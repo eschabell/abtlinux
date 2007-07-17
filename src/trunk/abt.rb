@@ -72,9 +72,9 @@ when "install", "-i"
         puts "\n\n"
         puts "*** Completed caching of package #{options['package']}. ***"
         puts "\n\n"
-        logger.to_journal( "\nCaching completed for package #{options['package']}." )
+        logger.to_journal( "Caching completed for package #{options['package']}." )
       else
-        logger.to_journal( "\nCaching of package #{options['package']} failed.")
+        logger.to_journal( "Caching of package #{options['package']} failed.")
       end
     else
       puts "*** #{options['package'].capitalize} install failed, " +
@@ -97,7 +97,8 @@ when "reinstall", "-ri"
 when "remove", "-r"
   if ( ARGV.length == 2 )
     options['package'] = ARGV[1]
-    logger.to_journal( "Starting to remove #{options['package']}" )
+    puts "Starting to remove #{options['package']}."
+    logger.to_journal( "Starting to remove #{options['package']}." )
     
     # return if not installed.
     if ( !( system.package_installed( options['package'] ) ) )
