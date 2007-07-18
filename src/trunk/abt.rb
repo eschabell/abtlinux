@@ -77,8 +77,7 @@ when "install", "-i"
         logger.to_journal( "Caching of package #{options['package']} failed.")
       end
     else
-      puts "*** #{options['package'].capitalize} install failed, " +
-          "see journal. ***"
+      puts "*** #{options['package'].capitalize} install failed, see journal. ***"
     end
   else
     show.usage( "packages" )
@@ -86,9 +85,42 @@ when "install", "-i"
   end
   
 when "reinstall", "-ri"
-  if ( ARGV.length == 2 )
+  if ( ARGV.length == 2 && File.exist?( "#{$PACKAGE_PATH}#{ARGV[1]}.rb" ) )
     options['package'] = ARGV[1]
-    puts "Reinstalling package : " + options['package']
+    logger.to_journal( "Starting to reinstall #{options['package']}" )
+    
+    # check if already installed.
+    if ( system.package_installed( options['package'] ) )
+      puts "\n*** Package #{options['package']} is already installed! ***\n"
+      puts "Are you sure you want to proceed with a reinstall? (y/n)"
+      
+      while answer = STDIN.gets
+        answer.chomp!
+        if answer == "y"
+          break
+        elsif answer == "n"
+          exit
+        else 
+          puts "Are you sure you want to reinstall #{options['package']}? (y/n)"
+        end
+      end
+    else
+      puts "\n*** Package #{options['package']} is not installed, we will install it for you now! ***\n"
+      puts "Hit enter to continue..."
+      while continue = STDIN.gets
+        continue.chomp!
+        break
+      end
+    end
+    
+    if ( manager.reinstall_package( options['package'] ) )
+      puts "\n\n"
+      puts "*** Completed reinstall of #{options['package']}. ***"
+      puts "\n\n"
+      logger.to_journal( "Completed reinstall of #{options['package']}." )
+    else
+      puts "*** #{options['package'].capitalize} reinstall failed, see journal. ***"
+    end    
   else
     show.usage( "packages" )
     exit

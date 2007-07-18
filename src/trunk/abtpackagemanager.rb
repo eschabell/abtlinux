@@ -218,6 +218,25 @@ class AbtPackageManager
   # otherwise false.
   ##
   def reinstall_package( package )
+    logger = AbtLogManager.new
+    
+    if ( install_package( package ) )
+      puts "\n\n"
+      puts "*** Completed reinstall of #{package}. ***"
+      puts "\n\n"
+      logger.to_journal( "Completed reinstall of #{package}." )
+      
+      if ( logger.cache_package( package ) )
+        puts "\n\n"
+        puts "*** Completed caching of package #{package}. ***"
+        puts "\n\n"
+        logger.to_journal( "Caching completed for package #{package}." )
+        return true
+      else
+        logger.to_journal( "Caching of package #{package} failed.")
+      end
+    end
+      
     return false
   end
   
