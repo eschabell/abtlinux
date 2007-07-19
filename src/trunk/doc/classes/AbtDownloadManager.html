@@ -123,6 +123,7 @@ Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
   <li><a href="#M000014">retrieve_package_tree</a></li>
   <li><a href="#M000016">update_package</a></li>
   <li><a href="#M000017">update_package_tree</a></li>
+  <li><a href="#M000018">validated</a></li>
   </ul>
 
 
@@ -350,6 +351,46 @@ otherwise false.
      <span class="ruby-comment cmt"># File abtdownloadmanager.rb, line 159</span>
 159:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">update_package_tree</span>
 160:   <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000018"></a><b>validated</b>( hashvalue, path )
+  </div>
+  <div class="description">
+  <p>
+Validates the sources based on package hash value.
+</p>
+<p>
+<b>PARAM</b> <em>String</em> - security hash value from the packages
+description. <b>PARAM</b> <em>String</em> - source tarball location to be
+checked.
+</p>
+<p>
+<b>RETURNS:</b> <em>boolean</em> - True if the completes sucessfully,
+otherwise false.
+</p>
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000018_source')" id="l_M000018_source">show source</a> ]</p>
+  <div id="M000018_source" class="dyn-source">
+<pre>
+     <span class="ruby-comment cmt"># File abtdownloadmanager.rb, line 171</span>
+171:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">validated</span>( <span class="ruby-identifier">hashvalue</span>, <span class="ruby-identifier">path</span> )
+172:     <span class="ruby-identifier">logger</span> = <span class="ruby-constant">AbtLogManager</span>.<span class="ruby-identifier">new</span>
+173:     
+174:     <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">hashvalue</span> <span class="ruby-operator">==</span> <span class="ruby-constant">Digest</span><span class="ruby-operator">::</span><span class="ruby-constant">SHA1</span>.<span class="ruby-identifier">hexdigest</span>( <span class="ruby-identifier">path</span> )
+175:       <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;Source hash validated successfully...&quot;</span>
+176:       <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">to_journal</span>( <span class="ruby-value str">&quot;Validated sources successfully...&quot;</span> )
+177:       <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">true</span>
+178:     <span class="ruby-keyword kw">end</span>
+179: 
+180:     <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;Source hash failed validation...&quot;</span>
+181:     <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">to_journal</span>( <span class="ruby-value str">&quot;Validating sources failed...&quot;</span> )
+182:     <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">false</span>
+183:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>
