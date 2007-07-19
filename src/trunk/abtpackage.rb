@@ -208,6 +208,11 @@ class AbtPackage
       return false
     end
     
+    # validate sources sha1.
+    if ( !downloader.validated( @hashCheck, "#{$SOURCES_REPOSITORY}/#{File.basename( @srcUrl )}" ) )
+      return false
+    end
+    
     # unpack sources.
     if ( !unpack_sources )
       return false

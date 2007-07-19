@@ -69,7 +69,7 @@ class TestAbtDownloadManager < Test::Unit::TestCase
   # Test method for 'AbtDownloadManager.test_update_package()'
   ## 
   def test_update_package()
-    assert( @download.update_package(), "test_update_package()" )
+    assert( @download.update_package() , "test_update_package()" )
   end
   
   ##
@@ -77,5 +77,12 @@ class TestAbtDownloadManager < Test::Unit::TestCase
   ## 
   def test_update_package_tree()
     assert( @download.update_package_tree(), "test_update_package_tree()" )
+  end
+
+  ##
+  # Test method for 'AbtDownloadManager.test_validated()'
+  ##
+  def test_validated()
+    assert( @download.validated( 'e81278607b1d65dcb18c3613ec00fbf588b50319', "#{$SOURCES_REPOSITORY}/ipc-1.4.tar.gz" ), "test_validated" )
   end
 end

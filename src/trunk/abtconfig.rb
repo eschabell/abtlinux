@@ -38,6 +38,7 @@ require 'abtusage'
 
 require 'fileutils'
 require 'find'
+require 'digest/sha1'
 
 # default paths / locations.
 $ABT_LOGS           = "/var/log/abt"

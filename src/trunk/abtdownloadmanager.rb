@@ -159,4 +159,26 @@ class AbtDownloadManager
   def update_package_tree
   end
   
+  ##
+  # Validates the sources based on package hash value.
+  #
+  # <b>PARAM</b> <i>String</i> - security hash value from the packages description.
+  # <b>PARAM</b> <i>String</i> - source tarball location to be checked.
+  #
+  # <b>RETURNS:</b> <i>boolean</i> - True if the completes sucessfully, 
+  # otherwise false.
+  ##
+  def validated( hashvalue, path )
+    logger = AbtLogManager.new
+    
+    if hashvalue == Digest::SHA1.hexdigest( path )
+      puts "Source hash validated successfully..."
+      logger.to_journal( "Validated sources successfully..." )
+      return true
+    end
+
+    puts "Source hash failed validation..."
+    logger.to_journal( "Validating sources failed..." )
+    return false
+  end
 end
