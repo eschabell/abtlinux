@@ -261,17 +261,26 @@ class AbtPackageManager
     # remove listings in install log.
     installLog = logger.get_log( package, 'install' )
 
-    IO.foreach( installLog ) do |line|
-      if File.exist?( line.chomp )
-        FileUtils.rm( line.chomp )
-        logger.to_journal( "Removed file #{line.chomp} from #{package} install log.")
-      else
-        logger.to_journal( "Unable to remove #{line.chomp} from #{package} install log, does not exist.")
-        return false
+    # only process install log if it exists, continue on with 
+    # journal log warning.
+    if File.exist?( installLog )
+      IO.foreach( installLog ) do |line|
+        if File.exist?( line.chomp )
+          FileUtils.rm( line.chomp )
+          logger.to_journal( "Removed file #{line.chomp} from #{package} install log.")
+        else
+          logger.to_journal( "Unable to remove #{line.chomp} from #{package} install log, does not exist.")
+          # do not return false, removed is ok, just put warning in journal log.
+        end
       end
+      
+      logger.to_journal( "Removed files from #{File.basename( installLog )} for #{package}." )
+    else
+      puts "Install log missing for #{package}, see journal..."
+      logger.to_journal( "Install log was missing for #{package}..." )
+      logger.to_journal( "...continuing to remove package from install listing, but might have files still installed on system." )
     end
       
-    logger.to_journal( "Removed files from #{File.basename( installLog )} for #{package}." )
           
     # remove entry in install listing.
     FileUtils.remove_dir( "#{$PACKAGE_INSTALLED}/#{details['Source location']}" )    
