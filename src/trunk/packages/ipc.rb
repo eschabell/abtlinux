@@ -1,6 +1,6 @@
 #!/usr/bin/ruby -w
 
-require "abtpackage"
+require 'abtpackage'
 
 ##
 # ipc.rb 
@@ -33,26 +33,27 @@ protected
   
 private
   
-  $name				= "Ipc"
+  $name				  = "Ipc"
   $version			= "1.4"
-  $srcDir			= "#{$name.downcase}-#{$version}"
+  $srcDir			  = "#{$name.downcase}-#{$version}"
+  $srcFile      = "#{$srcDir}.tar.gz"
   $packageData	= {
-    'name'				=> $name,
-    'execName'			=> $name.downcase,
-    'version'			=> $version,
-    'srcDir'			=> $srcDir,
-    'homepage'			=> "http://isotopatcalc.sourceforge.net/",
-    'srcUrl'			=> "#{$SOURCEFORGE_URL}/isotopatcalc/#{$srcDir}.tar.gz",
-    'dependsOn'			=> "",
-    'reliesOn'			=> "",
-    'optionalDO'		=> "",
-    'optionalRO'		=> "",
-    'hashCheck'			=> "sha512:d759b651e343beddc0b3bd06af85881486b72319c979a2e7f752d5a34edd8b7c1c19391c5c7a2e8f6685746cc7a046bf2c8e082b31458a1dd043ed90a4cebcd1",
-    'patches'			=> "",
+    'name'				      => $name,
+    'execName'		      => $name.downcase,
+    'version'			      => $version,
+    'srcDir'			      => $srcDir,
+    'homepage'		      => "http://isotopatcalc.sourceforge.net/",
+    'srcUrl'			      => "#{$SOURCEFORGE_URL}/isotopatcalc/#{$srcFile}",
+    'dependsOn'			    => "",
+    'reliesOn'			    => "",
+    'optionalDO'		    => "",
+    'optionalRO'		    => "",
+    'hashCheck'			    => "e81278607b1d65dcb18c3613ec00fbf588b50319",
+    'patches'			      => "",
     'patchesHashCheck'	=> "",
-    'mirrorPath'		=> "",
-    'license'			=> "GPL",
-    'description'		=> "IPC is a program that calculates the isotopic distribution of a given chemical formula."
+    'mirrorPath'		    => "",
+    'license'			      => "GPL",
+    'description'		    => "IPC is a program that calculates the isotopic distribution of a given chemical formula."
   }
 
   
