@@ -244,8 +244,12 @@ when "show-owner"
   end
   
 when "show-installed"
-  puts "Display all installed packages."
-  show.usage( "queries" )
+  if ( ARGV.length == 1 )
+    reporter.show_installed_packages()
+  else
+    show.usage( "queries" )
+    exit
+  end
   
 when "show-frozen"
   puts "Display all packages frozen at current version."

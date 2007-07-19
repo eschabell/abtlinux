@@ -96,6 +96,14 @@ class AbtReportManager
   # <b>RETURN</b> <i>void.</i>
   ##
   def show_installed_packages
+    if ( Dir.entries( $PACKAGE_INSTALLED ) - [ '.', '..' ] ).empty?
+      puts "\nNo AbTLinux packages are listed as installed, is your #{$PACKAGE_INSTALLED} empty?\n\n"
+    else
+      puts "\nInstalled AbTLinux packages:"
+      puts "============================"
+      Dir.foreach( $PACKAGE_INSTALLED ) { |package| puts package if package != "." && package != ".." }
+      puts "\n"
+    end
   end
   
   ##

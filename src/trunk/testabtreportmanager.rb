@@ -54,7 +54,7 @@ class TestAbtReportManager < Test::Unit::TestCase
   # Test method for 'AbtReportManager.test_show_installed_packages()'
   ## 
   def test_show_installed_packages
-    assert( @report.show_installed_packages(), "test_show_installed_packages()" )
+    assert_nil( @report.show_installed_packages(), "test_show_installed_packages()" )
   end
   
   ##
