@@ -76,6 +76,7 @@ class AbtSystemManager
   # false.
   ##
   def cleanup_package_sources
+    return false
   end
   
   ##
@@ -85,6 +86,7 @@ class AbtSystemManager
   # false.
   ##
   def cleanup_logs
+    return false
   end
   
   ##
@@ -96,6 +98,30 @@ class AbtSystemManager
   # otherwise false.
   ##
   def verify_installed_files( package )
+    logger = AbtLogManager.new
+    system = AbtSystemManager.new
+    
+    if !system.package_installed( package )
+      logger.to_journal( "Unable to verify installed files for #{package}, it's not installed!")
+      return false
+    end
+    
+    if !File.exist?( logger.get_log( package, 'install' ) )
+      logger.to_journal( "Unable to verify installed files for #{package}, installed package but install log missing!" ) 
+      return false
+    end
+    
+    failure = false  # marker after checking all files to determine failure.
+    File.open( logger.get_log( package, "install" ) ).each { |line| 
+      if !File.exist?( line.chomp )
+        logger.to_journal( "The file : #{line.chomp} is missing for #{package}." )
+        failure = true
+      end
+    }
+    return false if failure
+    
+    # all files passed check.
+    return true
   end
   
   ##
@@ -107,6 +133,7 @@ class AbtSystemManager
   # or broken, otherwise false.
   ##
   def verify_symlinks( package )
+    return false
   end
   
   ##
@@ -118,6 +145,7 @@ class AbtSystemManager
   # false.
   ##
   def verify_package_depends( package )
+    return false
   end
   
   ##
@@ -130,6 +158,7 @@ class AbtSystemManager
   # hash of problem files and their encountered errors.
   ##
   def verify_package_integrity( package )
+    return false
   end
   
   ##
@@ -141,6 +170,7 @@ class AbtSystemManager
   # false.
   ##
   def fix_package( package )
+    return false
   end
   
   ##
@@ -152,6 +182,7 @@ class AbtSystemManager
   # <b>RETURN</b> <i>boolean</i> - True if the URI is set, otherwise false.
   ##
   def set_central_repo( uri )
+    return false
   end
   
   ##
@@ -164,6 +195,7 @@ class AbtSystemManager
   # otherwise false.
   ##
   def set_package_tree_location( location )
+    return false
   end
     
   ##
@@ -183,8 +215,7 @@ class AbtSystemManager
     if ( found_entry( $PACKAGE_INSTALLED, sw.srcDir ) )
       return true
     end
-    
-    
+     
     return false
   end
  

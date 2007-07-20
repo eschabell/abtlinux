@@ -61,7 +61,7 @@ class TestAbtSystemManager < Test::Unit::TestCase
   # Test method for 'AbtSystemManager.test_verify_installed_files()'
   ## 
   def test_verify_installed_files
-    assert( @sys.verify_installed_files( "dummy" ), "test_verify_installed_files()" )
+    assert( @sys.verify_installed_files( "ipc" ), "test_verify_installed_files()" )
   end
   
   ##

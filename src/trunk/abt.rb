@@ -403,7 +403,16 @@ when "purge-logs"
 when "verify-files"
   if ( ARGV.length == 2 )
     options['package'] = ARGV[1]
-    puts "Installed files verified for package : " + options['package']
+    logger.to_journal( "Starting verifcation of files for package : #{options['package']}.")
+
+    if system.verify_installed_files( options['package'] )
+      puts "/nInstalled files verified for package : #{options['package']}"
+      logger.to_journal( "Finished verifcation of files for package : #{options['package']}.")
+      exit
+    end
+    
+    logger.to_journal( "Finished verifcation of files for package : #{options['package']}.")
+    puts "/nInstalled files verification for package : #{options['package']} failed, see journal."
   else
     show.usage( "fix" )
     exit
