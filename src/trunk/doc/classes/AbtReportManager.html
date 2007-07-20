@@ -179,9 +179,9 @@ Generates an HTML page of installed packages from installed packages list.
   <p class="source-link">[ <a href="javascript:toggleSource('M000128_source')" id="l_M000128_source">show source</a> ]</p>
   <div id="M000128_source" class="dyn-source">
 <pre>
-     <span class="ruby-comment cmt"># File abtreportmanager.rb, line 251</span>
-251:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">generate_HTML_package_listing</span>
-252:   <span class="ruby-keyword kw">end</span>
+     <span class="ruby-comment cmt"># File abtreportmanager.rb, line 259</span>
+259:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">generate_HTML_package_listing</span>
+260:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>
@@ -207,9 +207,9 @@ package names and values are matching descriptions.
   <p class="source-link">[ <a href="javascript:toggleSource('M000125_source')" id="l_M000125_source">show source</a> ]</p>
   <div id="M000125_source" class="dyn-source">
 <pre>
-     <span class="ruby-comment cmt"># File abtreportmanager.rb, line 200</span>
-200:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">search_package_descriptions</span>( <span class="ruby-identifier">searchText</span> )
-201:   <span class="ruby-keyword kw">end</span>
+     <span class="ruby-comment cmt"># File abtreportmanager.rb, line 208</span>
+208:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">search_package_descriptions</span>( <span class="ruby-identifier">searchText</span> )
+209:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>
@@ -233,9 +233,9 @@ Display the name of the package(s) that own the given file.
   <p class="source-link">[ <a href="javascript:toggleSource('M000124_source')" id="l_M000124_source">show source</a> ]</p>
   <div id="M000124_source" class="dyn-source">
 <pre>
-     <span class="ruby-comment cmt"># File abtreportmanager.rb, line 188</span>
-188:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">show_file_owner</span>( <span class="ruby-identifier">file</span> )
-189:   <span class="ruby-keyword kw">end</span>
+     <span class="ruby-comment cmt"># File abtreportmanager.rb, line 196</span>
+196:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">show_file_owner</span>( <span class="ruby-identifier">file</span> )
+197:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>
@@ -256,9 +256,9 @@ Display a list of the packages found in the frozen list.
   <p class="source-link">[ <a href="javascript:toggleSource('M000120_source')" id="l_M000120_source">show source</a> ]</p>
   <div id="M000120_source" class="dyn-source">
 <pre>
-     <span class="ruby-comment cmt"># File abtreportmanager.rb, line 130</span>
-130:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">show_frozen_packages</span>
-131:   <span class="ruby-keyword kw">end</span>
+     <span class="ruby-comment cmt"># File abtreportmanager.rb, line 138</span>
+138:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">show_frozen_packages</span>
+139:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>
@@ -313,24 +313,24 @@ Display the AbTLinux journal file.
   <p class="source-link">[ <a href="javascript:toggleSource('M000123_source')" id="l_M000123_source">show source</a> ]</p>
   <div id="M000123_source" class="dyn-source">
 <pre>
-     <span class="ruby-comment cmt"># File abtreportmanager.rb, line 163</span>
-163:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">show_journal</span>( <span class="ruby-identifier">fileName</span> )
-164:     <span class="ruby-keyword kw">if</span> ( <span class="ruby-constant">File</span>.<span class="ruby-identifier">exist?</span>( <span class="ruby-identifier">fileName</span> ) )
-165:       <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;\n\n&quot;</span>
-166:       <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;AbTLinux log:&quot;</span>
-167:       <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;=============&quot;</span>
-168:       <span class="ruby-identifier">log</span> = <span class="ruby-constant">IO</span>.<span class="ruby-identifier">readlines</span>( <span class="ruby-identifier">fileName</span> )
-169:       <span class="ruby-identifier">log</span>.<span class="ruby-identifier">each</span>{ <span class="ruby-operator">|</span><span class="ruby-identifier">entry</span><span class="ruby-operator">|</span> <span class="ruby-identifier">puts</span> <span class="ruby-identifier">entry</span> }
-170:       <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;\n\n&quot;</span>
-171:     <span class="ruby-keyword kw">else</span>
-172:       <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;\n\n&quot;</span>
-173:       <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;AbtLinux log ( #{File.basename( fileName )} ) &quot;</span> <span class="ruby-operator">+</span> 
-174:            <span class="ruby-value str">&quot;is empty at this time.&quot;</span>
-175:       <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;\n\n&quot;</span>
-176:     <span class="ruby-keyword kw">end</span>
-177:     
-178:     <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">true</span>
-179:   <span class="ruby-keyword kw">end</span>
+     <span class="ruby-comment cmt"># File abtreportmanager.rb, line 171</span>
+171:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">show_journal</span>( <span class="ruby-identifier">fileName</span> )
+172:     <span class="ruby-keyword kw">if</span> ( <span class="ruby-constant">File</span>.<span class="ruby-identifier">exist?</span>( <span class="ruby-identifier">fileName</span> ) )
+173:       <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;\n\n&quot;</span>
+174:       <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;AbTLinux log:&quot;</span>
+175:       <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;=============&quot;</span>
+176:       <span class="ruby-identifier">log</span> = <span class="ruby-constant">IO</span>.<span class="ruby-identifier">readlines</span>( <span class="ruby-identifier">fileName</span> )
+177:       <span class="ruby-identifier">log</span>.<span class="ruby-identifier">each</span>{ <span class="ruby-operator">|</span><span class="ruby-identifier">entry</span><span class="ruby-operator">|</span> <span class="ruby-identifier">puts</span> <span class="ruby-identifier">entry</span> }
+178:       <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;\n\n&quot;</span>
+179:     <span class="ruby-keyword kw">else</span>
+180:       <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;\n\n&quot;</span>
+181:       <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;AbtLinux log ( #{File.basename( fileName )} ) &quot;</span> <span class="ruby-operator">+</span> 
+182:            <span class="ruby-value str">&quot;is empty at this time.&quot;</span>
+183:       <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;\n\n&quot;</span>
+184:     <span class="ruby-keyword kw">end</span>
+185:     
+186:     <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">true</span>
+187:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>
@@ -357,9 +357,9 @@ hash of problem files and their encountered errors.
   <p class="source-link">[ <a href="javascript:toggleSource('M000121_source')" id="l_M000121_source">show source</a> ]</p>
   <div id="M000121_source" class="dyn-source">
 <pre>
-     <span class="ruby-comment cmt"># File abtreportmanager.rb, line 143</span>
-143:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">show_package_dependencies</span>( <span class="ruby-identifier">package</span> )
-144:   <span class="ruby-keyword kw">end</span>
+     <span class="ruby-comment cmt"># File abtreportmanager.rb, line 151</span>
+151:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">show_package_dependencies</span>( <span class="ruby-identifier">package</span> )
+152:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>
@@ -435,7 +435,8 @@ false.
   <div class="description">
   <p>
 Display the contents of the requested log for a given package. Possible log
-types are; install, build and integrity.
+types are; configure, install, build and integrity. This method will return
+nothing if the package log is not installed.
 </p>
 <p>
 <b>PARAM</b> <em>String</em> - Package name.
@@ -451,12 +452,19 @@ types are; install, build and integrity.
   <p class="source-link">[ <a href="javascript:toggleSource('M000119_source')" id="l_M000119_source">show source</a> ]</p>
   <div id="M000119_source" class="dyn-source">
 <pre>
-     <span class="ruby-comment cmt"># File abtreportmanager.rb, line 119</span>
-119:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">show_package_log</span>( <span class="ruby-identifier">package</span>, <span class="ruby-identifier">logType</span> )
-120:     <span class="ruby-comment cmt"># install log</span>
-121:     <span class="ruby-comment cmt"># build log</span>
-122:     <span class="ruby-comment cmt"># integrity log</span>
-123:   <span class="ruby-keyword kw">end</span>
+     <span class="ruby-comment cmt"># File abtreportmanager.rb, line 120</span>
+120:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">show_package_log</span>( <span class="ruby-identifier">package</span>, <span class="ruby-identifier">logType</span> )
+121:     <span class="ruby-identifier">system</span> = <span class="ruby-constant">AbtSystemManager</span>.<span class="ruby-identifier">new</span>
+122:     <span class="ruby-identifier">logger</span> = <span class="ruby-constant">AbtLogManager</span>.<span class="ruby-identifier">new</span>
+123:     
+124:     <span class="ruby-comment cmt"># just return if package not installed, up to </span>
+125:     <span class="ruby-comment cmt"># caller to message the user about why.</span>
+126:     <span class="ruby-keyword kw">if</span> <span class="ruby-operator">!</span><span class="ruby-identifier">system</span>.<span class="ruby-identifier">package_installed</span>( <span class="ruby-identifier">package</span> )
+127:       <span class="ruby-keyword kw">return</span>
+128:     <span class="ruby-keyword kw">end</span>
+129:     
+130:     <span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span>( <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">get_log</span>( <span class="ruby-identifier">package</span>, <span class="ruby-identifier">logType</span> ) ).<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">line</span><span class="ruby-operator">|</span> <span class="ruby-identifier">puts</span> <span class="ruby-identifier">line</span> }
+131:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>
@@ -481,28 +489,28 @@ queue.
   <p class="source-link">[ <a href="javascript:toggleSource('M000126_source')" id="l_M000126_source">show source</a> ]</p>
   <div id="M000126_source" class="dyn-source">
 <pre>
-     <span class="ruby-comment cmt"># File abtreportmanager.rb, line 211</span>
-211:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">show_queue</span>( <span class="ruby-identifier">queueType</span> )
-212:     
-213:     <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">queueType</span>
-214:       
-215:     <span class="ruby-keyword kw">when</span> <span class="ruby-value str">&quot;install&quot;</span>
-216:       <span class="ruby-keyword kw">if</span> ( <span class="ruby-constant">File</span>.<span class="ruby-identifier">exist?</span>( <span class="ruby-node">&quot;#{$ABT_LOGS}/#{queueType}.queue&quot;</span> ) )
-217:         <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;\n\n&quot;</span>
-218:         <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;AbTLinux #{queueType} queue:&quot;</span>
-219:         <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;=======================&quot;</span>
-220:         <span class="ruby-identifier">queue</span> = <span class="ruby-constant">IO</span>.<span class="ruby-identifier">readlines</span>( <span class="ruby-node">&quot;#{$ABT_LOGS}/#{queueType}.queue&quot;</span> )
-221:         <span class="ruby-identifier">queue</span>.<span class="ruby-identifier">each</span>{ <span class="ruby-operator">|</span><span class="ruby-identifier">entry</span><span class="ruby-operator">|</span> <span class="ruby-identifier">puts</span> <span class="ruby-identifier">entry</span> }
-222:         <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;\n\n&quot;</span>
-223:       <span class="ruby-keyword kw">else</span>
-224:         <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;\n\n&quot;</span>
-225:         <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;AbtLinux  #{queueType} is empty at this time.&quot;</span>
-226:         <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;\n\n&quot;</span>
-227:       <span class="ruby-keyword kw">end</span>
-228:     <span class="ruby-keyword kw">else</span>
-229:       <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;#{queueType.capitalize} is not an AbTLinux queue.&quot;</span>
-230:     <span class="ruby-keyword kw">end</span>
-231:   <span class="ruby-keyword kw">end</span>
+     <span class="ruby-comment cmt"># File abtreportmanager.rb, line 219</span>
+219:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">show_queue</span>( <span class="ruby-identifier">queueType</span> )
+220:     
+221:     <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">queueType</span>
+222:       
+223:     <span class="ruby-keyword kw">when</span> <span class="ruby-value str">&quot;install&quot;</span>
+224:       <span class="ruby-keyword kw">if</span> ( <span class="ruby-constant">File</span>.<span class="ruby-identifier">exist?</span>( <span class="ruby-node">&quot;#{$ABT_LOGS}/#{queueType}.queue&quot;</span> ) )
+225:         <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;\n\n&quot;</span>
+226:         <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;AbTLinux #{queueType} queue:&quot;</span>
+227:         <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;=======================&quot;</span>
+228:         <span class="ruby-identifier">queue</span> = <span class="ruby-constant">IO</span>.<span class="ruby-identifier">readlines</span>( <span class="ruby-node">&quot;#{$ABT_LOGS}/#{queueType}.queue&quot;</span> )
+229:         <span class="ruby-identifier">queue</span>.<span class="ruby-identifier">each</span>{ <span class="ruby-operator">|</span><span class="ruby-identifier">entry</span><span class="ruby-operator">|</span> <span class="ruby-identifier">puts</span> <span class="ruby-identifier">entry</span> }
+230:         <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;\n\n&quot;</span>
+231:       <span class="ruby-keyword kw">else</span>
+232:         <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;\n\n&quot;</span>
+233:         <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;AbtLinux  #{queueType} is empty at this time.&quot;</span>
+234:         <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;\n\n&quot;</span>
+235:       <span class="ruby-keyword kw">end</span>
+236:     <span class="ruby-keyword kw">else</span>
+237:       <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;#{queueType.capitalize} is not an AbTLinux queue.&quot;</span>
+238:     <span class="ruby-keyword kw">end</span>
+239:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>
@@ -524,9 +532,9 @@ a list of files that are not tracked by AbTLinux package management.
   <p class="source-link">[ <a href="javascript:toggleSource('M000122_source')" id="l_M000122_source">show source</a> ]</p>
   <div id="M000122_source" class="dyn-source">
 <pre>
-     <span class="ruby-comment cmt"># File abtreportmanager.rb, line 153</span>
-153:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">show_untracked_files</span>
-154:   <span class="ruby-keyword kw">end</span>
+     <span class="ruby-comment cmt"># File abtreportmanager.rb, line 161</span>
+161:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">show_untracked_files</span>
+162:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>
@@ -553,9 +561,9 @@ false.
   <p class="source-link">[ <a href="javascript:toggleSource('M000127_source')" id="l_M000127_source">show source</a> ]</p>
   <div id="M000127_source" class="dyn-source">
 <pre>
-     <span class="ruby-comment cmt"># File abtreportmanager.rb, line 243</span>
-243:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">show_updates</span>( <span class="ruby-identifier">target</span> )
-244:   <span class="ruby-keyword kw">end</span>
+     <span class="ruby-comment cmt"># File abtreportmanager.rb, line 251</span>
+251:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">show_updates</span>( <span class="ruby-identifier">target</span> )
+252:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>

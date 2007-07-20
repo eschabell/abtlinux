@@ -297,20 +297,20 @@ Returns the path to given packages install log.
 48:     <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">type</span>
 49:       
 50:       <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'install'</span>
-51:         <span class="ruby-identifier">log</span> = <span class="ruby-node">&quot;#{$PACKAGE_INSTALLED}/#{details['Source location']}&quot;</span> <span class="ruby-operator">+</span> 
-52:           <span class="ruby-node">&quot;/#{details['Source location']}.install&quot;</span>
-53:       
-54:       <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'integrity'</span>
-55:         <span class="ruby-identifier">log</span> = <span class="ruby-node">&quot;#{$PACKAGE_INSTALLED}/#{details['Source location']}&quot;</span> <span class="ruby-operator">+</span> 
-56:           <span class="ruby-node">&quot;/#{details['Source location']}.integrity&quot;</span>
-57:           
-58:       <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'tmpinstall'</span>
-59:         <span class="ruby-identifier">log</span> = <span class="ruby-node">&quot;#{$ABT_TMP}/#{details['Source location']}.watch&quot;</span>
-60: 
-61:       <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'build'</span>
-62:         <span class="ruby-identifier">log</span> = <span class="ruby-node">&quot;#{$PACKAGE_INSTALLED}/#{details['Source location']}&quot;</span> <span class="ruby-operator">+</span> 
-63:           <span class="ruby-node">&quot;/#{details['Source location']}.build&quot;</span>
-64:           
+51:         <span class="ruby-identifier">log</span> = <span class="ruby-node">&quot;#{$PACKAGE_INSTALLED}/#{details['Source location']}/#{details['Source location']}.install&quot;</span>
+52:       
+53:       <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'integrity'</span>
+54:         <span class="ruby-identifier">log</span> = <span class="ruby-node">&quot;#{$PACKAGE_INSTALLED}/#{details['Source location']}/#{details['Source location']}.integrity&quot;</span>
+55:           
+56:       <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'tmpinstall'</span>
+57:         <span class="ruby-identifier">log</span> = <span class="ruby-node">&quot;#{$ABT_TMP}/#{details['Source location']}.watch&quot;</span>
+58: 
+59:       <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'build'</span>
+60:         <span class="ruby-identifier">log</span> = <span class="ruby-node">&quot;#{$PACKAGE_INSTALLED}/#{details['Source location']}/#{details['Source location']}.build&quot;</span>
+61:           
+62:       <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'configure'</span>
+63:         <span class="ruby-identifier">log</span> = <span class="ruby-node">&quot;#{$PACKAGE_INSTALLED}/#{details['Source location']}/#{details['Source location']}.configure&quot;</span>
+64: 
 65:       <span class="ruby-keyword kw">else</span>
 66:         <span class="ruby-identifier">log</span> = <span class="ruby-value str">&quot;&quot;</span>
 67:         
