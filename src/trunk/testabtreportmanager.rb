@@ -34,7 +34,13 @@ class TestAbtReportManager < Test::Unit::TestCase
   # setup method for testing AbtReportManager.
   ## 
   def setup
-    @report = AbtReportManager.new()
+    @report = AbtReportManager.new
+    @manager = AbtPackageManager.new
+    @system  = AbtSystemManager.new
+    
+    if !@system.package_installed( "ipc" )
+      @manager.install_package( "ipc" )
+    end
   end
   
   ##
