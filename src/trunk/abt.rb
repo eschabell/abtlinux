@@ -254,6 +254,22 @@ when "show-build"
     exit
   end
 
+  when "show-integrity"
+  if ( ARGV.length == 2 )
+    options['package'] = ARGV[1]
+    if !system.package_installed( options['package'] )
+      puts "\nThe package #{options['package']} is not installed, can't show the integrity log."
+      exit
+    end
+
+    puts "\nDisplay integrity log for package : #{options['package']}"
+    puts "===============================\n\n"
+    reporter.show_package_log( options['package'], "integrity" )
+  else
+    show.usage( "queries" )
+    exit
+  end
+
 when "show-depends"
   if ( ARGV.length == 2 )
     options['package'] = ARGV[1]

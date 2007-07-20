@@ -93,6 +93,7 @@ class AbtUsage
     puts "  show-config      [package]\t\tShow configure log of given package."
     puts "  show-build       [package]\t\tShow build log of given package."
     puts "  show-install     [package]\t\tShow install log of given package."
+    puts "  show-integrity   [package]\t\tShow integrity log of given package."
     puts "  show-depends     [package]\t\tShow the dependency tree of given package."
     puts "  show-files       [package]\t\tShow all installed files from given package."
     puts "  show-owner       [file]\t\tShow the package owning given file."
