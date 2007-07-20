@@ -206,16 +206,54 @@ when "show-details"
     show.usage( "queries" )
   end
   
-when "show-build"
+when "show-config"
   if ( ARGV.length == 2 )
     options['package'] = ARGV[1]
-    puts "Display build log for package : " + options['package']
+    if !system.package_installed( options['package'] )
+      puts "\nThe package #{options['package']} is not installed, can't show the configure log."
+      exit
+    end
+
+    puts "\nDisplay configure log for package : #{options['package']}"
+    puts "===============================\n\n"
+    reporter.show_package_log( options['package'], "configure" )
   else
     show.usage( "queries" )
     exit
   end
   
-  
+when "show-build"
+  if ( ARGV.length == 2 )
+    options['package'] = ARGV[1]
+    if !system.package_installed( options['package'] )
+      puts "\nThe package #{options['package']} is not installed, can't show the build log."
+      exit
+    end
+
+    puts "\nDisplay build log for package : #{options['package']}"
+    puts "===============================\n\n"
+    reporter.show_package_log( options['package'], "build" )
+  else
+    show.usage( "queries" )
+    exit
+  end
+
+  when "show-install"
+  if ( ARGV.length == 2 )
+    options['package'] = ARGV[1]
+    if !system.package_installed( options['package'] )
+      puts "\nThe package #{options['package']} is not installed, can't show the install log."
+      exit
+    end
+
+    puts "\nDisplay install log for package : #{options['package']}"
+    puts "===============================\n\n"
+    reporter.show_package_log( options['package'], "install" )
+  else
+    show.usage( "queries" )
+    exit
+  end
+
 when "show-depends"
   if ( ARGV.length == 2 )
     options['package'] = ARGV[1]
