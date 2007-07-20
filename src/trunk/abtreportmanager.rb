@@ -26,7 +26,7 @@
 # St, Fifth Floor, Boston, MA 02110-1301  USA
 ##
 class AbtReportManager
-  
+    
   protected
   
   private
@@ -108,7 +108,8 @@ class AbtReportManager
   
   ##
   # Display the contents of the requested log for a given package. Possible
-  # log types are; install, build and integrity.
+  # log types are; configure, install, build and integrity. This method will return nothing
+  # if the package log is not installed.
   #
   # <b>PARAM</b> <i>String</i> - Package name.
   #
@@ -117,9 +118,16 @@ class AbtReportManager
   # <b>RETURN</b> <i>void.</i>
   ##
   def show_package_log( package, logType )
-    # install log
-    # build log
-    # integrity log
+    system = AbtSystemManager.new
+    logger = AbtLogManager.new
+    
+    # just return if package not installed, up to 
+    # caller to message the user about why.
+    if !system.package_installed( package )
+      return
+    end
+    
+    File.open( logger.get_log( package, logType ) ).each { |line| puts line }
   end
   
   ##
