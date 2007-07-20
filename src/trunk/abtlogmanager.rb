@@ -48,20 +48,20 @@ class AbtLogManager
     case type
       
       when 'install'
-        log = "#{$PACKAGE_INSTALLED}/#{details['Source location']}" + 
-          "/#{details['Source location']}.install"
+        log = "#{$PACKAGE_INSTALLED}/#{details['Source location']}/#{details['Source location']}.install"
       
       when 'integrity'
-        log = "#{$PACKAGE_INSTALLED}/#{details['Source location']}" + 
-          "/#{details['Source location']}.integrity"
+        log = "#{$PACKAGE_INSTALLED}/#{details['Source location']}/#{details['Source location']}.integrity"
           
       when 'tmpinstall'
         log = "#{$ABT_TMP}/#{details['Source location']}.watch"
 
       when 'build'
-        log = "#{$PACKAGE_INSTALLED}/#{details['Source location']}" + 
-          "/#{details['Source location']}.build"
+        log = "#{$PACKAGE_INSTALLED}/#{details['Source location']}/#{details['Source location']}.build"
           
+      when 'configure'
+        log = "#{$PACKAGE_INSTALLED}/#{details['Source location']}/#{details['Source location']}.configure"
+
       else
         log = ""
         
