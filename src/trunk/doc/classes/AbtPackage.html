@@ -377,11 +377,11 @@ otherwise false.
 281:     <span class="ruby-constant">Dir</span>.<span class="ruby-identifier">chdir</span>( <span class="ruby-node">&quot;#{$BUILD_LOCATION}/#{@srcDir}&quot;</span> )
 282:     
 283:     <span class="ruby-keyword kw">if</span>( <span class="ruby-operator">!</span><span class="ruby-identifier">system</span>( <span class="ruby-identifier">command</span> ) )
-284:       <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;DEBUG: [AbtPackage.build] - build section failed.&quot;</span>
+284:       <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;[AbtPackage.build] - build section failed.&quot;</span>
 285:       <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">false</span>
 286:     <span class="ruby-keyword kw">end</span>
 287:     
-288:     <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;DEBUG: [AbtPackage.build] - build section completed!&quot;</span> <span class="ruby-keyword kw">if</span> ( <span class="ruby-identifier">verbose</span> )
+288:     <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;[AbtPackage.build] - build section completed!&quot;</span> <span class="ruby-keyword kw">if</span> ( <span class="ruby-identifier">verbose</span> )
 289:     <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">true</span>
 290:   <span class="ruby-keyword kw">end</span>
 </pre>
@@ -426,11 +426,11 @@ otherwise false.
 253:     <span class="ruby-constant">Dir</span>.<span class="ruby-identifier">chdir</span>( <span class="ruby-node">&quot;#{$BUILD_LOCATION}/#{@srcDir}&quot;</span> )
 254:     
 255:     <span class="ruby-keyword kw">if</span> ( <span class="ruby-operator">!</span><span class="ruby-identifier">system</span>( <span class="ruby-identifier">command</span> ) )
-256:       <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;DEBUG: [AbtPackage.configure] - configure section failed.&quot;</span>
+256:       <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;[AbtPackage.configure] - configure section failed.&quot;</span>
 257:       <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">false</span>
 258:     <span class="ruby-keyword kw">end</span>
 259:     
-260:     <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;\nDEBUG: [AbtPackage.configure] - configure section completed!&quot;</span> <span class="ruby-keyword kw">if</span> (<span class="ruby-identifier">verbose</span> )
+260:     <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;[AbtPackage.configure] - configure section completed!&quot;</span> <span class="ruby-keyword kw">if</span> (<span class="ruby-identifier">verbose</span> )
 261:     <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">true</span>
 262:   <span class="ruby-keyword kw">end</span>
 </pre>
@@ -516,11 +516,11 @@ otherwise false.
 329:     <span class="ruby-constant">Dir</span>.<span class="ruby-identifier">chdir</span>( <span class="ruby-node">&quot;#{$BUILD_LOCATION}/#{@srcDir}&quot;</span> )
 330:     
 331:     <span class="ruby-keyword kw">if</span>( <span class="ruby-operator">!</span><span class="ruby-identifier">system</span>( <span class="ruby-identifier">command</span> ) )
-332:       <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;DEBUG: [AbtPackage.install] - install section failed.&quot;</span>
+332:       <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;[AbtPackage.install] - install section failed.&quot;</span>
 333:       <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">false</span>
 334:     <span class="ruby-keyword kw">end</span>
 335:     
-336:     <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;DEBUG: [AbtPackage.install] - install section completed!&quot;</span> <span class="ruby-keyword kw">if</span> ( <span class="ruby-identifier">verbose</span> )
+336:     <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;[AbtPackage.install] - install section completed!&quot;</span> <span class="ruby-keyword kw">if</span> ( <span class="ruby-identifier">verbose</span> )
 337:     <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">true</span>
 338:   <span class="ruby-keyword kw">end</span>
 </pre>
