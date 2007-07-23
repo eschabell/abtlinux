@@ -51,11 +51,8 @@ class AbtPackageManager
       
       file = File.new( logFile, "r" )
       while ( line = file.gets )
-        #puts "DEBUG: about to remove ***#{line.chomp}***"
         if ( File.file?( line.chomp ) )
           File.delete( line.chomp )
-        else
-          puts "DEBUG: file not exist? ***#{File.basename( line.chomp )}***"
         end
       end
       file.close
@@ -63,8 +60,6 @@ class AbtPackageManager
       # cleanup install log as it is incomplete.
       File.delete( logFile )
     else
-      puts "DEBUG: attempt to use APM:rollBack( type ) incorrectly, " +
-        "unsupported type?"
       return false
     end
     
@@ -120,7 +115,7 @@ class AbtPackageManager
         "package description of #{package}." )
       return false
     else
-      logger.to_journal( "DEBUG: finished #{package} pre section." )
+      logger.to_journal( "Finished #{package} pre section." )
     end
     
     # configure section.
@@ -131,7 +126,7 @@ class AbtPackageManager
         "package description of #{package}." )
       return false
     else
-      logger.to_journal( "DEBUG: finished #{package} configure section." )
+      logger.to_journal( "Finished #{package} configure section." )
     end
     
     # build section.
@@ -146,7 +141,7 @@ class AbtPackageManager
         logger.to_journal( "Failed to create a package build log." )
         return false
       end
-      logger.to_journal( "DEBUG: finished #{package} build section." )
+      logger.to_journal( "Finished #{package} build section." )
     end
     
     # preinstall section.
@@ -157,7 +152,7 @@ class AbtPackageManager
         "package description of #{package}." )
       return false
     else
-      logger.to_journal( "DEBUG: finished #{package} preinstall section." )
+      logger.to_journal( "Finished #{package} preinstall section." )
     end
     
     # install section.
@@ -178,7 +173,7 @@ class AbtPackageManager
       # cleanup tmp files from installwatch.
       File.delete( "#{$ABT_TMP}/#{details['Source location']}.watch" )
 
-      logger.to_journal( "DEBUG: finished #{package} install section." )
+      logger.to_journal( "Finished #{package} install section." )
     end
     
     # post section.
@@ -188,7 +183,7 @@ class AbtPackageManager
       logger.to_journal( "Failed to process post section in the package description of #{package}." )
       return false
     else
-      logger.to_journal( "DEBUG: finished #{package} post section." )
+      logger.to_journal( "Finished #{package} post section." )
     end
     
     # clean out build sources.        

@@ -253,11 +253,11 @@ class AbtPackage
     Dir.chdir( "#{$BUILD_LOCATION}/#{@srcDir}" )
     
     if ( !system( command ) )
-      puts "DEBUG: [AbtPackage.configure] - configure section failed."
+      puts "[AbtPackage.configure] - configure section failed."
       return false
     end
     
-    puts "\nDEBUG: [AbtPackage.configure] - configure section completed!" if (verbose )
+    puts "[AbtPackage.configure] - configure section completed!" if (verbose )
     return true
   end
   
@@ -281,11 +281,11 @@ class AbtPackage
     Dir.chdir( "#{$BUILD_LOCATION}/#{@srcDir}" )
     
     if( !system( command ) )
-      puts "DEBUG: [AbtPackage.build] - build section failed."
+      puts "[AbtPackage.build] - build section failed."
       return false
     end
     
-    puts "DEBUG: [AbtPackage.build] - build section completed!" if ( verbose )
+    puts "[AbtPackage.build] - build section completed!" if ( verbose )
     return true
   end
   
@@ -329,11 +329,11 @@ class AbtPackage
     Dir.chdir( "#{$BUILD_LOCATION}/#{@srcDir}" )
     
     if( !system( command ) )
-      puts "DEBUG: [AbtPackage.install] - install section failed."
+      puts "[AbtPackage.install] - install section failed."
       return false
     end
     
-    puts "DEBUG: [AbtPackage.install] - install section completed!" if ( verbose )
+    puts "[AbtPackage.install] - install section completed!" if ( verbose )
     return true
   end
   

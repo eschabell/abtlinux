@@ -157,14 +157,12 @@ class AbtLogManager
       IO.foreach( tmpInstallLog ) do |line|
         if ( line.split[1] == 'open' )
           if ( line.split[2] =~ excluded_pattern )
-            #self.logToJournal( "DEBUG: Found bad logLine!" )
             badLine = true
           else
             badLine = false
           end
           
           if ( !badLine )
-            #self.to_journal( "DEBUG: adding line to installFile!")
             installFile << "#{line.split[2]}\n"
           end
         end 
