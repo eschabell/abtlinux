@@ -118,13 +118,13 @@ Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
 
   <div class="sectiontitle">Methods</div>
   <ul>
-  <li><a href="#M000047">downgrade_package</a></li>
-  <li><a href="#M000048">freeze_package</a></li>
-  <li><a href="#M000044">install_package</a></li>
-  <li><a href="#M000043">new</a></li>
-  <li><a href="#M000045">reinstall_package</a></li>
-  <li><a href="#M000046">remove_package</a></li>
-  <li><a href="#M000049">root_login</a></li>
+  <li><a href="#M000046">downgrade_package</a></li>
+  <li><a href="#M000047">freeze_package</a></li>
+  <li><a href="#M000043">install_package</a></li>
+  <li><a href="#M000042">new</a></li>
+  <li><a href="#M000044">reinstall_package</a></li>
+  <li><a href="#M000045">remove_package</a></li>
+  <li><a href="#M000048">root_login</a></li>
   </ul>
 
 
@@ -135,7 +135,7 @@ Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
 <div class="sectiontitle">Public Class methods</div>
 <div class="method">
   <div class="title">
-    <a name="M000043"></a><b>new</b>()
+    <a name="M000042"></a><b>new</b>()
   </div>
   <div class="description">
   <p>
@@ -148,8 +148,8 @@ href="AbtPackageManager.html">AbtPackageManager</a></em> - an initialized
 </p>
   </div>
 <div class="sourcecode">
-  <p class="source-link">[ <a href="javascript:toggleSource('M000043_source')" id="l_M000043_source">show source</a> ]</p>
-  <div id="M000043_source" class="dyn-source">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000042_source')" id="l_M000042_source">show source</a> ]</p>
+  <div id="M000042_source" class="dyn-source">
 <pre>
     <span class="ruby-comment cmt"># File abtpackagemanager.rb, line 78</span>
 78:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>
@@ -161,7 +161,7 @@ href="AbtPackageManager.html">AbtPackageManager</a></em> - an initialized
 <div class="sectiontitle">Public Instance methods</div>
 <div class="method">
   <div class="title">
-    <a name="M000047"></a><b>downgrade_package</b>( package, version )
+    <a name="M000046"></a><b>downgrade_package</b>( package, version )
   </div>
   <div class="description">
   <p>
@@ -179,8 +179,8 @@ otherwise false.
 </p>
   </div>
 <div class="sourcecode">
-  <p class="source-link">[ <a href="javascript:toggleSource('M000047_source')" id="l_M000047_source">show source</a> ]</p>
-  <div id="M000047_source" class="dyn-source">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000046_source')" id="l_M000046_source">show source</a> ]</p>
+  <div id="M000046_source" class="dyn-source">
 <pre>
      <span class="ruby-comment cmt"># File abtpackagemanager.rb, line 296</span>
 296:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">downgrade_package</span>( <span class="ruby-identifier">package</span>, <span class="ruby-identifier">version</span> )
@@ -192,7 +192,7 @@ otherwise false.
 </div>
 <div class="method">
   <div class="title">
-    <a name="M000048"></a><b>freeze_package</b>( package )
+    <a name="M000047"></a><b>freeze_package</b>( package )
   </div>
   <div class="description">
   <p>
@@ -208,8 +208,8 @@ false.
 </p>
   </div>
 <div class="sourcecode">
-  <p class="source-link">[ <a href="javascript:toggleSource('M000048_source')" id="l_M000048_source">show source</a> ]</p>
-  <div id="M000048_source" class="dyn-source">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000047_source')" id="l_M000047_source">show source</a> ]</p>
+  <div id="M000047_source" class="dyn-source">
 <pre>
      <span class="ruby-comment cmt"># File abtpackagemanager.rb, line 309</span>
 309:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">freeze_package</span>( <span class="ruby-identifier">package</span> )
@@ -221,7 +221,7 @@ false.
 </div>
 <div class="method">
   <div class="title">
-    <a name="M000044"></a><b>install_package</b>( package, verbose=true )
+    <a name="M000043"></a><b>install_package</b>( package, verbose=true )
   </div>
   <div class="description">
   <p>
@@ -238,8 +238,8 @@ otherwise false.
 </p>
   </div>
 <div class="sourcecode">
-  <p class="source-link">[ <a href="javascript:toggleSource('M000044_source')" id="l_M000044_source">show source</a> ]</p>
-  <div id="M000044_source" class="dyn-source">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000043_source')" id="l_M000043_source">show source</a> ]</p>
+  <div id="M000043_source" class="dyn-source">
 <pre>
      <span class="ruby-comment cmt"># File abtpackagemanager.rb, line 91</span>
  91:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">install_package</span>( <span class="ruby-identifier">package</span>, <span class="ruby-identifier">verbose</span>=<span class="ruby-keyword kw">true</span> )
@@ -361,7 +361,7 @@ otherwise false.
 </div>
 <div class="method">
   <div class="title">
-    <a name="M000045"></a><b>reinstall_package</b>( package )
+    <a name="M000044"></a><b>reinstall_package</b>( package )
   </div>
   <div class="description">
   <p>
@@ -376,8 +376,8 @@ otherwise false.
 </p>
   </div>
 <div class="sourcecode">
-  <p class="source-link">[ <a href="javascript:toggleSource('M000045_source')" id="l_M000045_source">show source</a> ]</p>
-  <div id="M000045_source" class="dyn-source">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000044_source')" id="l_M000044_source">show source</a> ]</p>
+  <div id="M000044_source" class="dyn-source">
 <pre>
      <span class="ruby-comment cmt"># File abtpackagemanager.rb, line 215</span>
 215:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">reinstall_package</span>( <span class="ruby-identifier">package</span> )
@@ -408,7 +408,7 @@ otherwise false.
 </div>
 <div class="method">
   <div class="title">
-    <a name="M000046"></a><b>remove_package</b>( package )
+    <a name="M000045"></a><b>remove_package</b>( package )
   </div>
   <div class="description">
   <p>
@@ -423,8 +423,8 @@ false.
 </p>
   </div>
 <div class="sourcecode">
-  <p class="source-link">[ <a href="javascript:toggleSource('M000046_source')" id="l_M000046_source">show source</a> ]</p>
-  <div id="M000046_source" class="dyn-source">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000045_source')" id="l_M000045_source">show source</a> ]</p>
+  <div id="M000045_source" class="dyn-source">
 <pre>
      <span class="ruby-comment cmt"># File abtpackagemanager.rb, line 246</span>
 246:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">remove_package</span>( <span class="ruby-identifier">package</span> )
@@ -472,7 +472,7 @@ false.
 </div>
 <div class="method">
   <div class="title">
-    <a name="M000049"></a><b>root_login</b>( arguments )
+    <a name="M000048"></a><b>root_login</b>( arguments )
   </div>
   <div class="description">
   <p>
@@ -486,8 +486,8 @@ Provides for a log through for root access using su.
 </p>
   </div>
 <div class="sourcecode">
-  <p class="source-link">[ <a href="javascript:toggleSource('M000049_source')" id="l_M000049_source">show source</a> ]</p>
-  <div id="M000049_source" class="dyn-source">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000048_source')" id="l_M000048_source">show source</a> ]</p>
+  <div id="M000048_source" class="dyn-source">
 <pre>
      <span class="ruby-comment cmt"># File abtpackagemanager.rb, line 320</span>
 320:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">root_login</span>( <span class="ruby-identifier">arguments</span> )
