@@ -49,14 +49,7 @@ class TestAbtSystemManager < Test::Unit::TestCase
   def test_cleanup_package_sources
     assert( @sys.cleanup_package_sources(), "test_cleanup_package_sources()" )
   end
-  
-  ##
-  # Test method for 'AbtSystemManager.test_cleanup_logs()'
-  ## 
-  def test_cleanup_logs
-    assert( @sys.cleanup_logs(), "test_cleanup_logs()" )
-  end
-  
+    
   ##
   # Test method for 'AbtSystemManager.test_verify_installed_files()'
   ## 
