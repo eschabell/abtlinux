@@ -157,6 +157,7 @@ when "downgrade", "-dg"
   if ( ARGV.length == 3 )
     options['version'] = ARGV[1]
     options['package'] = ARGV[2]
+    # FIXME: downgrade pkg implementation.
     print "Downgradinging package : #{options['package']} "
     puts  "to version : #{options['version']}"
   else
@@ -167,6 +168,7 @@ when "downgrade", "-dg"
 when "freeze", "-f"
   if ( ARGV.length == 2 )
     options['package'] = ARGV[1]
+    # FIXME : freeze package implementation.
     puts "Holdinging package : #{options['package']} at current version."
   else
     show.usage( "packages" )
@@ -285,6 +287,7 @@ when "show-build"
 when "show-depends"
   if ( ARGV.length == 2 )
     options['package'] = ARGV[1]
+    # FIXME : show package depends implementation.
     puts "Display dependency tree for package : " + options['package']
   else
     show.usage( "queries" )
@@ -294,6 +297,7 @@ when "show-depends"
 when "show-files"
   if ( ARGV.length == 2 )
     options['package'] = ARGV[1]
+    # FIXME : show pkg files implementation.
     puts "Display installed files from package : " + options['package']
   else
     show.usage( "queries" )
@@ -303,6 +307,7 @@ when "show-files"
 when "show-owner"
   if ( ARGV.length == 2 )
     options['fileName'] = ARGV[1]
+    # FIXME : display a file owner implementation.
     puts "Display owning package for file : " + options['fileName']
   else
     show.usage( "queries" )
@@ -318,10 +323,12 @@ when "show-installed"
   end
   
 when "show-frozen"
+  # FIXME : show frozen pkg's implementation.
   puts "Display all packages frozen at current version."
   show.usage( "queries" )
   
 when "show-untracked"
+  # FIXME : show untracked files implementation.
   puts "Display all files on system not tracked by AbTLinux."
   show.usage( "queries" )
   
@@ -333,14 +340,17 @@ when "show-iqueue"
   reporter.show_queue( "install" )
   
 when "show-patches"
+  # FIXME : show patches implementation.
   puts "Display currently available patches for installed package tree."
   show.usage( "queries" )
   
 when "show-updates"
+  # FIXME : show updates implementation.
   puts "Display package listing with available update versions."
   show.usage( "generation" )
   
 when "html"
+  # FIXME : generate html installed pkgs implementation.
   puts "Generate HTML page from installed packages:"
   puts "  (package name with link to package website/version installed)"
   show.usage( "generation" )
@@ -398,6 +408,7 @@ when "download", "-d"
 when "update", "-u"
   if ( ARGV.length == 2 )
     options['updateItem'] = ARGV[1]
+    # FIXME : update package implementation.
     puts "Updating item : #{options['updateItem']}"
   else
     show.usage( "downloads" )
@@ -405,10 +416,12 @@ when "update", "-u"
   end
   
 when "purge-src"
+  # FIXME : purge-src implementation.
   puts "Remove source caches for packages no longer installed."
   show.usage( "fix" )
   
 when "purge-logs"
+  # FIXME : purge-logs implementation.
   puts "Remove log files for packages no longer installed."
   show.usage( "fix" )
   
@@ -433,6 +446,7 @@ when "verify-files"
 when "verify-symlinks"
   if ( ARGV.length == 2 )
     options['package'] = ARGV[1]
+    # FIXME : verify symlinks for pkg implementation.
     puts "Symlinks verified for package : " + options['package']
   else
     show.usage( "fix" )
@@ -442,6 +456,7 @@ when "verify-symlinks"
 when "verify-deps"
   if ( ARGV.length == 2 )
     options['package'] = ARGV[1]
+    # FIXME : verify deps for pkg implementation.
     puts "Symlinks verified for package : " + options['package']
   else
     show.usage( "fix" )
@@ -451,6 +466,7 @@ when "verify-deps"
 when "verify-integrity"
   if ( ARGV.length == 2 )
     options['pkg'] = ARGV[1]
+    # FIXME : verify integrity of install pkg files implementation.
     print "Verifiy integrity of installed files for "
     puts  "package : #{options['pkg']}"
   else
@@ -461,6 +477,7 @@ when "verify-integrity"
 when "fix"
   if ( ARGV.length == 2 )
     options['pkg'] = ARGV[1]
+    # FIXME : fix package impelmentation.
     puts "Package : #{options['pkg']} is verified and checked if needed."
   else
     show.usage( "fix" )
@@ -470,6 +487,7 @@ when "fix"
 when "build-location"
   if ( ARGV.length == 2 )
     options['buildHost'] = ARGV[1]
+    # FIXME : set global cache build location implementation.
     print "Sets global location for retrieving cached build packages "
     puts  "to : #{options['buildHost']}"
   else
@@ -478,6 +496,7 @@ when "build-location"
   end
   
 when "package-repo"
+  # FIXME : packge repo implementation.
   # sort out that we have enough args.
   case ARGV.length
     
