@@ -136,6 +136,7 @@ class AbtReportManager
   # <b>RETURN</b> <i>void.</i>
   ##
   def show_frozen_packages
+    return false
   end
   
   ##
@@ -149,6 +150,7 @@ class AbtReportManager
   # hash of problem files and their encountered errors.
   ##
   def show_package_dependencies( package )
+    return false
   end
   
   ##
@@ -159,6 +161,7 @@ class AbtReportManager
   # <b>RETURN</b> <i>void.</i>
   ##
   def show_untracked_files
+    return false
   end
   
   ##
@@ -194,6 +197,7 @@ class AbtReportManager
   # <b>RETURN</b> <i>void.</i>
   ##
   def show_file_owner( file )
+    return false
   end
   
   ##
@@ -206,6 +210,39 @@ class AbtReportManager
   # names and values are matching descriptions.
   ##
   def search_package_descriptions( searchText )
+    packageHash = Hash.new  # has for values found.
+    
+    # TODO: get packages installed list
+    if ( Dir.entries( $PACKAGE_INSTALLED ) - [ '.', '..' ] ).empty?
+      return packageHash   # empty hash, no entries.
+    else
+      Dir.foreach( $PACKAGE_INSTALLED ) { |package| 
+        if ( package != "." && package != "..")
+          # split the installed entry into two parts,
+          # the package name and the version number.
+          packageArray = package.split( "-" )
+          packageName  = packageArray[0]
+          
+          # check for match to name and description if the package file exists.
+          if ( File.exist?( "#{$PACKAGE_PATH}#{packageName}.rb" ) )
+            require "#{$PACKAGE_PATH}#{packageName}" 
+            sw = eval( "#{packageName.capitalize}.new" )
+            
+            # add if matches name or description entries.
+            matchesArray = sw.description.scan( searchText )
+            matchesArray = matchesArray.concat( packageName.scan( searchText ) )
+            
+            if ( matchesArray.length > 0 )
+              # matches so add to hash.
+              packageHash = packageHash.merge( Hash[ "#{package}" => "#{sw.description}" ] )
+            end
+          end
+        end
+      }
+    end
+
+    # finished search results.
+    return packageHash 
   end
   
   ##
@@ -249,6 +286,7 @@ class AbtReportManager
   # false.
   ##
   def show_updates( target )
+    return false
   end
   
   ##
@@ -257,5 +295,6 @@ class AbtReportManager
   # <b>RETURN</b> <i>void.</i>
   ##
   def generate_HTML_package_listing
+    return false
   end  
 end

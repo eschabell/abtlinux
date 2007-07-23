@@ -111,7 +111,8 @@ class TestAbtReportManager < Test::Unit::TestCase
   # Test method for 'AbtReportManager.test_search_package_descriptions()'
   ## 
   def test_search_package_descriptions
-    assert( @report.search_package_descriptions( "Special text" ), "test_search_package_descriptions()" )
+    expectedHash = Hash[ "ipc-1.4" => "IPC is a program that calculates the isotopic distribution of a given chemical formula."]
+    assert_equal( @report.search_package_descriptions( "ipc" ), expectedHash, "test_search_package_descriptions()" )
   end
   
   ##

@@ -176,7 +176,19 @@ when "freeze", "-f"
 when "search", "-s"
   if ( ARGV.length == 2 )
     options['searchString'] = ARGV[1]
-    puts "Searching package descriptions for : #{options['searchString']}"
+    logger.to_journal( "Starting search of package descriptions for : #{options['searchString']}" )
+    searchResults = reporter.search_package_descriptions( options['searchString'].chomp )
+    if ( searchResults.empty? )
+      puts "\nNothing found matching your search query."
+      exit
+    else
+      # we have results hash!
+      puts "\nSearch results for : #{options['searchString']} "
+      puts "===================="
+      searchResults.each_pair { |name, description| puts "#{name} \t: #{description}"  }
+    end
+    
+    logger.to_journal( "Completed search of package descriptions for : #{options['searchString']}" )
   else
     show.usage( "queries" )
     exit
