@@ -80,16 +80,6 @@ class AbtSystemManager
   end
   
   ##
-  # All logs for packages not in install list are cleaned off the system.
-  #
-  # <b>RETURN</b> <i>boolean</i> - True if completes without error, otherwise
-  # false.
-  ##
-  def cleanup_logs
-    return false
-  end
-  
-  ##
   # Checks if files from given package install list are actually installed.
   #
   # <b>PARAM</b> <i>String</i> - Package name.
