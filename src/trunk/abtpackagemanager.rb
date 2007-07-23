@@ -196,7 +196,7 @@ class AbtPackageManager
     
     # remove pacakge from install queue.
     if ( !queuer.action_package_queue( sw.name.downcase, "install", "remove" ) )
-      logger.to_journal( "Failed to remove #{sw.name.donwcase} from install queue." )
+      logger.to_journal( "Failed to remove #{sw.name.downcase} from install queue." )
     end
     
     return true # install completed!
