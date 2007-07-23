@@ -137,7 +137,6 @@ class AbtUsage
   def usage_fix
     puts "\nfix:"
     puts "  purge-src\t\t\t\tRemove source caches for packages no longer installed."
-    puts "  purge-logs\t\t\t\tRemove log files for packages no longer installed."
     puts "  verify-files      [package]\t\tInstalled files are verified for given package."
     puts "  verify-symlinks   [package]\t\tSymlinks verified for given package."
     puts "  verify-deps       [package]\t\tDependency tree is verified for given package."

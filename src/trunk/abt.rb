@@ -420,11 +420,6 @@ when "purge-src"
   puts "Remove source caches for packages no longer installed."
   show.usage( "fix" )
   
-when "purge-logs"
-  # FIXME : purge-logs implementation.
-  puts "Remove log files for packages no longer installed."
-  show.usage( "fix" )
-  
 when "verify-files"
   if ( ARGV.length == 2 )
     options['package'] = ARGV[1]
