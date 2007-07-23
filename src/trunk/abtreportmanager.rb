@@ -212,7 +212,6 @@ class AbtReportManager
   def search_package_descriptions( searchText )
     packageHash = Hash.new  # has for values found.
     
-    # TODO: get packages installed list
     if ( Dir.entries( $PACKAGE_INSTALLED ) - [ '.', '..' ] ).empty?
       return packageHash   # empty hash, no entries.
     else

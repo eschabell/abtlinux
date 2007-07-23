@@ -416,9 +416,20 @@ when "update", "-u"
   end
   
 when "purge-src"
-  # FIXME : purge-src implementation.
-  puts "Remove source caches for packages no longer installed."
-  show.usage( "fix" )
+  if ( ARGV.length == 1 )
+    # FIXME : purge-src implementation.
+    logger.to_journal( "Starting to purge sources from packages that are not installed.")
+    if ( system.cleanup_package_sources )
+      puts "\nPurged sources from packages that are not installed."
+      logger.to_journal( "Finished purging sources from packages that are not installed.")
+    else
+      puts "\nUnable to complete a purge of sources from packages that are not installed, see journal."
+      logger.to_journal( "Cleanup of package sources encountered problems, see journal." )
+    end
+  else  
+    show.usage( "fix" )
+    exit
+  end
   
 when "verify-files"
   if ( ARGV.length == 2 )

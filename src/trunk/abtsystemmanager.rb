@@ -72,11 +72,55 @@ class AbtSystemManager
   # Removes all sources for packages that are not currently installed. Makes
   # use of install listing to determine package sources to keep.
   #
+  # <b>PARAM</b> <i>Boolean</i> - if false then removal of taballs done silently, default is 
+  # true and removes with verbose output.
+  # 
   # <b>RETURN</b> <i>boolean</i> - True if completes without error, otherwise
   # false.
   ##
-  def cleanup_package_sources
-    return false
+  def cleanup_package_sources( verbose=true)
+    logger       = AbtLogManager.new
+    sourcesArray = Array.new
+    
+    if ( Dir.entries( $PACKAGE_INSTALLED ) - [ '.', '..' ] ).empty?
+      FileUtils.remove Dir.glob( "#{$SOURCES_REPOSITORY}/*" ), :verbose => verbose, :force => true
+      logger.to_journal( "Cleanup of package sources done, encountered an empty installation listing?" )
+      return true
+    else
+      Dir.foreach( $PACKAGE_INSTALLED ) { |package| 
+        if ( package != "." && package != "..")
+          # split the installed entry into two parts,
+          # the package name and the version number.
+          packageArray = package.split( "-" )
+          packageName  = packageArray[0]
+          
+          # create an array of installed package tarball names.
+          if ( File.exist?( "#{$PACKAGE_PATH}#{packageName}.rb" ) )
+            require "#{$PACKAGE_PATH}#{packageName}" 
+            sw = eval( "#{packageName.capitalize}.new" )
+            sourcesArray.push( File.basename( sw.srcUrl ) )
+          end
+        end
+      }
+    end
+
+    if ( Dir.entries( $SOURCES_REPOSITORY ) - [ '.', '..' ] ).empty?
+      logger.to_journal( "Cleanup of package sources done, encountered an empty sources repository?" )
+      return false
+    else
+      if ( verbose )
+        puts "\nRemoving the following source files:"
+        puts "===================================="
+      end
+
+      Dir.foreach( $SOURCES_REPOSITORY ) { |file| FileUtils.remove( file, :verbose => verbose, :force => true ) if ( file != "." && file != ".." && !sourcesArray.include?( file ) ) }
+      
+      if ( verbose )
+        puts "====================================\n"
+      end
+    end
+
+    return true
   end
   
   ##
