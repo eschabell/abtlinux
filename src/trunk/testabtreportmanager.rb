@@ -38,15 +38,15 @@ class TestAbtReportManager < Test::Unit::TestCase
     @manager = AbtPackageManager.new
     @system  = AbtSystemManager.new
     
-    if !@system.package_installed( "ipc" )
-      @manager.install_package( "ipc" )
-    end
+    # ensure tarball available without downloading.
+    FileUtils.cp( "#{$PACKAGE_PATH}/ipc-1.4.tar.gz", "#{$SOURCES_REPOSITORY}", :verbose => true ) if !File.exist?( "#{$SOURCES_REPOSITORY}/ipc-1.4.tar.gz" )
   end
   
   ##
   # teardown method to cleanup after testing.
   ##
   def teardown
+    # TODO: if test package frozen, unfreeze it.
   end
   
   ##
@@ -60,6 +60,11 @@ class TestAbtReportManager < Test::Unit::TestCase
   # Test method for 'AbtReportManager.test_show_installed_packages()'
   ## 
   def test_show_installed_packages
+    # ensure test pacakge installed for listing.
+    if !@system.package_installed( "ipc" )
+      @manager.install_package( "ipc" )
+    end
+    
     assert_nil( @report.show_installed_packages(), "test_show_installed_packages()" )
   end
   
@@ -67,6 +72,10 @@ class TestAbtReportManager < Test::Unit::TestCase
   # Test method for 'AbtReportManager.test_show_package_log()'
   ## 
   def test_show_package_log
+    if !@system.package_installed( "ipc" )
+      @manager.install_package( "ipc" )
+    end
+    
     assert( @report.show_package_log( "ipc", "install" ), "test_show_package_log(install)" )
     assert( @report.show_package_log( "ipc", "build" ), "test_show_package_log(build)" )
     assert( @report.show_package_log( "ipc", "integrity" ), "test_show_package_log(integrity)" )
@@ -76,6 +85,13 @@ class TestAbtReportManager < Test::Unit::TestCase
   # Test method for 'AbtReportManager.test_show_frozen_packages()'
   ## 
   def test_show_frozen_packages
+    # ensure test package installed.
+    if !@system.package_installed( "ipc" )
+      @manager.install_package( "ipc" )
+    end
+    
+    # TODO: freeze test pacakge.
+
     assert( @report.show_frozen_packages(), "test_show_frozen_packages()" )
   end
   
@@ -104,6 +120,11 @@ class TestAbtReportManager < Test::Unit::TestCase
   # Test method for 'AbtReportManager.test_show_file_owner()'
   ## 
   def test_show_file_owner
+    # ensure package installed for testing file owner.
+    if !@system.package_installed( "ipc" )
+      @manager.install_package( "ipc" )
+    end
+    
     assert( @report.show_file_owner( "ipcFile" ), "test_show_file_owner()" )
   end
   
@@ -112,6 +133,7 @@ class TestAbtReportManager < Test::Unit::TestCase
   ## 
   def test_search_package_descriptions
     expectedHash = Hash[ "ipc-1.4" => "IPC is a program that calculates the isotopic distribution of a given chemical formula."]
+    
     assert_equal( @report.search_package_descriptions( "ipc" ), expectedHash, "test_search_package_descriptions()" )
   end
   
@@ -119,11 +141,7 @@ class TestAbtReportManager < Test::Unit::TestCase
   # Test method for 'AbtReportManager.test_show_queue()'
   ## 
   def test_show_queue
-    if ( @report.show_queue( "install" ) )
-      assert(false, "test_show_queue()")
-    else
-      assert(true, "test_show_queue()")
-    end
+    assert_nil( @report.show_queue( "install" ), "test_show_queue(install)" )
   end
   
   ##
@@ -137,6 +155,11 @@ class TestAbtReportManager < Test::Unit::TestCase
   # Test method for 'AbtReportManager.test_generate_HTML_package_listing()'
   ## 
   def test_generate_HTML_package_listing
+    # ensure at least one package is installed.
+    if !@system.package_installed( "ipc" )
+      @manager.install_package( "ipc" )
+    end
+    
     assert( @report.generate_HTML_package_listing(), "test_generate_HTML_package_listing()" )
   end
   
