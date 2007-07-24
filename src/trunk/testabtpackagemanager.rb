@@ -36,7 +36,9 @@ class TestAbtPackageManager < Test::Unit::TestCase
   # setup method for testing AbtPackageManager.
   ## 
   def setup
-    @pkgMgr = AbtPackageManager.new()
+    @pkgMgr  = AbtPackageManager.new
+    @manager = AbtPackageManager.new
+    @system  = AbtSystemManager.new
   end
   
   ##
@@ -49,6 +51,10 @@ class TestAbtPackageManager < Test::Unit::TestCase
   # Test method for 'AbtPackageManager.test_install_package()'
   ## 
   def test_install_package
+    if @system.package_installed( "ipc" )
+      @manager.remove_package( "ipc" )
+    end
+    
     assert( @pkgMgr.install_package( "ipc", $verbose ), "test_install_package()" )
   end
   
@@ -56,6 +62,10 @@ class TestAbtPackageManager < Test::Unit::TestCase
   # Test method for 'AbtPackageManager.test_reinstall_package()'
   ## 
   def test_reinstall_package
+    if !@system.package_installed( "ipc" )
+      @manager.install_package( "ipc" )
+    end
+    
     assert( @pkgMgr.reinstall_package( "ipc" ), "test_reinstall_package()" )
   end
   
@@ -63,6 +73,10 @@ class TestAbtPackageManager < Test::Unit::TestCase
   # Test method for 'AbtPackageManager.test_remove_package()'
   ## 
   def test_remove_package
+    if !@system.package_installed( "ipc" )
+      @manager.install_package( "ipc" )
+    end
+      
     assert( @pkgMgr.remove_package( "ipc" ), "test_remove_package()" )
   end
   
@@ -70,6 +84,10 @@ class TestAbtPackageManager < Test::Unit::TestCase
   # Test method for 'AbtPackageManager.test_downgrade_package()'
   ## 
   def test_downgrade_package
+    if !@system.package_installed( "ipc" )
+      @manager.install_package( "ipc" )
+    end
+    
     assert( @pkgMgr.downgrade_package( "ipc", "1.2" ), "test_downgrade_package()" )
   end
   
@@ -77,6 +95,10 @@ class TestAbtPackageManager < Test::Unit::TestCase
   # Test method for 'AbtPackageManager.test_freeze_package()'
   ## 
   def test_freeze_package
+    if !@system.package_installed( "ipc" )
+      @manager.install_package( "ipc" )
+    end
+    
     assert( @pkgMgr.freeze_package( "ipc" ), "test_freeze_package()" )
   end
   
