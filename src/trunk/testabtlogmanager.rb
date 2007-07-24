@@ -37,6 +37,9 @@ class TestAbtLogManager < Test::Unit::TestCase
     @logger = AbtLogManager.new
     @manager = AbtPackageManager.new
     @system  = AbtSystemManager.new
+    
+    # ensures download not needed.
+    FileUtils.cp "#{$PACKAGE_PATH}/ipc-1.4.tar.gz", "#{$SOURCES_REPOSITORY}", :verbose => true if !File.exist?( "#{$SOURCES_REPOSITORY}/ipc-1.4.tar.gz" )
   end
   
   ##
