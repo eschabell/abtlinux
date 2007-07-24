@@ -169,6 +169,9 @@ class AbtLogManager
       end
       
       installFile.close
+    else
+      # no tmp install file, thus no install running.
+      return false
     end
     
     return true;

@@ -34,48 +34,78 @@ class TestAbtLogManager < Test::Unit::TestCase
   # setup method for testing AbtLogManager.
   ## 
   def setup
-    @log = AbtLogManager.new()
+    @logger = AbtLogManager.new
+    @manager = AbtPackageManager.new
+    @system  = AbtSystemManager.new
   end
   
   ##
   # teardown method to cleanup after testing.
   ##
   def teardown
+    FileUtils.rm( "#{$ABT_TMP}/ipc-1.4.watch" ) if File.exist?( "#{$ABT_TMP}/ipc-1.2.watch" )
   end
   
   ##
   # Test method for 'AbtLogManager.test_log_package_integrity()'
   ## 
   def test_log_package_integrity()
-    assert( @log.log_package_integrity( "ipc" ), "test_log_package_integrity()" )
+    if !@system.package_installed( "ipc" )
+      @manager.install_package( "ipc" )
+    end
+    
+    assert( @logger.log_package_integrity( "ipc" ), "test_log_package_integrity()" )
   end
   
   ## 
   # Test method for 'AbtLogManager.test_log_package_install()'
   ##
   def test_log_package_install()
-    assert( @log.log_package_install( "ipc" ), "test_log_package_install()" )
+    if !@system.package_installed( "ipc" )
+      @manager.install_package( "ipc" )
+    end
+
+    # fill installwatch file.
+    File.open( "#{$ABT_TMP}/ipc-1.4.watch", "w" ) do |file|
+      file.puts "5       open    /usr/local/bin/ipc      #success"
+      file.puts "0       chmod   /usr/local/bin/ipc      00600   #success"
+      file.puts "0       chown   /usr/local/bin/ipc      -1      -1      #success"
+      file.puts "0       chmod   /usr/local/bin/ipc      00755   #success"
+      file.puts "5       open    /usr/local/share/ipc/elemente   #success"
+      file.puts "0       chmod   /usr/local/share/ipc/elemente   00600   #success"
+      file.puts "0       chown   /usr/local/share/ipc/elemente   -1      -1      #success"
+      file.puts "0       chmod   /usr/local/share/ipc/elemente   00644   #success"
+    end
+    
+    assert( @logger.log_package_install( "ipc" ), "test_log_package_install()" )
   end
   
   ##
   # Test method for 'AbtLogManager.test_log_package_build()'
   ## 
   def test_log_package_build()
-    assert( @log.log_package_build( "ipc" ), "test_log_package_build()" )
+    if !@system.package_installed( "ipc" )
+      @manager.install_package( "ipc" )
+    end
+  
+    assert( @logger.log_package_build( "ipc" ), "test_log_package_build()" )
   end
   
   ##
   # Test method for 'AbtLogManager.test_cache_package()'
   ## 
   def test_cache_package()
-    assert( @log.cache_package( "ipc" ), "test_cache_package()" )
+    if !@system.package_installed( "ipc" )
+      @manager.install_package( "ipc" )
+    end
+    
+    assert( @logger.cache_package( "ipc" ), "test_cache_package()" )
   end
   
   ##
   # Test method for 'AbtLogManager.test_to_journal()'
   ## 
   def test_to_journal()
-    assert( @log.to_journal( "Test message from AbtTestSuite." ), "test_to_journal()" )
+    assert( @logger.to_journal( "Test message from AbtTestSuite." ), "test_to_journal()" )
   end
-  
 end
