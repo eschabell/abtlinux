@@ -79,7 +79,7 @@ Test::Unit::TestCase
   <area shape="rect" coords="27,124,195,172"      href="TestAbtDownloadManager.html" alt="TestAbtDownloadManager" />
   <area shape="rect" coords="44,5,177,53"      href="Test/Unit/TestCase.html" alt="Test::Unit::TestCase" />
 </map>
-<img src="../dot/f_10.png" usemap="#map" border="0" alt="dot/f_10.png">
+<img src="../dot/f_10.png" usemap="#map" border="0" alt="TopLevel" />
   </td></tr></table>
 
   <div class="description"><p>
@@ -140,8 +140,8 @@ Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
   </div>
   <div class="description">
   <p>
-<a href="TestAbtDownloadManager.html#M000084">setup</a> method for testing
-<a href="AbtDownloadManager.html">AbtDownloadManager</a>.
+setup method for testing <a
+href="AbtDownloadManager.html">AbtDownloadManager</a>.
 </p>
   </div>
 <div class="sourcecode">
@@ -150,8 +150,10 @@ Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
 <pre>
     <span class="ruby-comment cmt"># File testabtdownloadmanager.rb, line 36</span>
 36:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">setup</span>
-37:     <span class="ruby-ivar">@download</span> = <span class="ruby-constant">AbtDownloadManager</span>.<span class="ruby-identifier">new</span>()
-38:   <span class="ruby-keyword kw">end</span>
+37:     <span class="ruby-ivar">@download</span> = <span class="ruby-constant">AbtDownloadManager</span>.<span class="ruby-identifier">new</span>
+38:     <span class="ruby-ivar">@manager</span> = <span class="ruby-constant">AbtPackageManager</span>.<span class="ruby-identifier">new</span>
+39:     <span class="ruby-ivar">@system</span>  = <span class="ruby-constant">AbtSystemManager</span>.<span class="ruby-identifier">new</span>
+40:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>
@@ -162,17 +164,16 @@ Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
   </div>
   <div class="description">
   <p>
-<a href="TestAbtDownloadManager.html#M000085">teardown</a> method to
-cleanup after testing.
+teardown method to cleanup after testing.
 </p>
   </div>
 <div class="sourcecode">
   <p class="source-link">[ <a href="javascript:toggleSource('M000085_source')" id="l_M000085_source">show source</a> ]</p>
   <div id="M000085_source" class="dyn-source">
 <pre>
-    <span class="ruby-comment cmt"># File testabtdownloadmanager.rb, line 43</span>
-43:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">teardown</span>
-44:   <span class="ruby-keyword kw">end</span>
+    <span class="ruby-comment cmt"># File testabtdownloadmanager.rb, line 45</span>
+45:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">teardown</span>
+46:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>
@@ -190,10 +191,10 @@ Test method for &#8216;AbtDownloadManager.test_retrieve_news_feed()&#8217;
   <p class="source-link">[ <a href="javascript:toggleSource('M000088_source')" id="l_M000088_source">show source</a> ]</p>
   <div id="M000088_source" class="dyn-source">
 <pre>
-    <span class="ruby-comment cmt"># File testabtdownloadmanager.rb, line 64</span>
-64:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">test_retrieve_news_feed</span>()
-65:     <span class="ruby-identifier">assert</span>( <span class="ruby-ivar">@download</span>.<span class="ruby-identifier">retrieve_news_feed</span>( <span class="ruby-identifier">$ABTNEWS</span> ), <span class="ruby-value str">&quot;test_retrieve_news_feed()&quot;</span> )
-66:   <span class="ruby-keyword kw">end</span>
+    <span class="ruby-comment cmt"># File testabtdownloadmanager.rb, line 68</span>
+68:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">test_retrieve_news_feed</span>()
+69:     <span class="ruby-identifier">assert</span>( <span class="ruby-ivar">@download</span>.<span class="ruby-identifier">retrieve_news_feed</span>( <span class="ruby-identifier">$ABTNEWS</span> ), <span class="ruby-value str">&quot;test_retrieve_news_feed()&quot;</span> )
+70:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>
@@ -212,11 +213,13 @@ Test method for
   <p class="source-link">[ <a href="javascript:toggleSource('M000086_source')" id="l_M000086_source">show source</a> ]</p>
   <div id="M000086_source" class="dyn-source">
 <pre>
-    <span class="ruby-comment cmt"># File testabtdownloadmanager.rb, line 49</span>
-49:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">test_retrieve_package_source</span>()
-50:     <span class="ruby-identifier">assert</span>( 
-51:       <span class="ruby-ivar">@download</span>.<span class="ruby-identifier">retrieve_package_source</span>( <span class="ruby-value str">&quot;ipc&quot;</span>, <span class="ruby-node">&quot;#{$SOURCES_REPOSITORY}&quot;</span> ), <span class="ruby-value str">&quot;test_retrieve_package_source()&quot;</span> )
-52:   <span class="ruby-keyword kw">end</span>
+    <span class="ruby-comment cmt"># File testabtdownloadmanager.rb, line 51</span>
+51:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">test_retrieve_package_source</span>()
+52:     <span class="ruby-comment cmt"># ensures download not needed.</span>
+53:     <span class="ruby-constant">FileUtils</span>.<span class="ruby-identifier">cp</span> <span class="ruby-node">&quot;#{$PACKAGE_PATH}/ipc-1.4.tar.gz&quot;</span>, <span class="ruby-node">&quot;#{$SOURCES_REPOSITORY}&quot;</span>, <span class="ruby-identifier">:verbose</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword kw">true</span> <span class="ruby-keyword kw">if</span> <span class="ruby-operator">!</span><span class="ruby-constant">File</span>.<span class="ruby-identifier">exist?</span>( <span class="ruby-node">&quot;#{$SOURCES_REPOSITORY}/ipc-1.4.tar.gz&quot;</span> )
+54:     
+55:     <span class="ruby-identifier">assert</span>( <span class="ruby-ivar">@download</span>.<span class="ruby-identifier">retrieve_package_source</span>( <span class="ruby-value str">&quot;ipc&quot;</span>, <span class="ruby-node">&quot;#{$SOURCES_REPOSITORY}&quot;</span> ), <span class="ruby-value str">&quot;test_retrieve_package_source()&quot;</span> )
+56:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>
@@ -235,10 +238,10 @@ Test method for
   <p class="source-link">[ <a href="javascript:toggleSource('M000087_source')" id="l_M000087_source">show source</a> ]</p>
   <div id="M000087_source" class="dyn-source">
 <pre>
-    <span class="ruby-comment cmt"># File testabtdownloadmanager.rb, line 57</span>
-57:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">test_retrieve_package_tree</span>()
-58:     <span class="ruby-identifier">assert</span>( <span class="ruby-ivar">@download</span>.<span class="ruby-identifier">retrieve_package_tree</span>( <span class="ruby-value str">&quot;dummy&quot;</span> ), <span class="ruby-value str">&quot;test_retrieve_package_tree()&quot;</span> )
-59:   <span class="ruby-keyword kw">end</span>
+    <span class="ruby-comment cmt"># File testabtdownloadmanager.rb, line 61</span>
+61:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">test_retrieve_package_tree</span>()
+62:     <span class="ruby-identifier">assert</span>( <span class="ruby-ivar">@download</span>.<span class="ruby-identifier">retrieve_package_tree</span>( <span class="ruby-value str">&quot;dummy&quot;</span> ), <span class="ruby-value str">&quot;test_retrieve_package_tree()&quot;</span> )
+63:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>
@@ -256,10 +259,10 @@ Test method for &#8216;AbtDownloadManager.test_update_package()&#8217;
   <p class="source-link">[ <a href="javascript:toggleSource('M000089_source')" id="l_M000089_source">show source</a> ]</p>
   <div id="M000089_source" class="dyn-source">
 <pre>
-    <span class="ruby-comment cmt"># File testabtdownloadmanager.rb, line 71</span>
-71:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">test_update_package</span>()
-72:     <span class="ruby-identifier">assert</span>( <span class="ruby-ivar">@download</span>.<span class="ruby-identifier">update_package</span>() , <span class="ruby-value str">&quot;test_update_package()&quot;</span> )
-73:   <span class="ruby-keyword kw">end</span>
+    <span class="ruby-comment cmt"># File testabtdownloadmanager.rb, line 75</span>
+75:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">test_update_package</span>()
+76:     <span class="ruby-identifier">assert</span>( <span class="ruby-ivar">@download</span>.<span class="ruby-identifier">update_package</span>() , <span class="ruby-value str">&quot;test_update_package()&quot;</span> )
+77:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>
@@ -277,10 +280,10 @@ Test method for &#8216;AbtDownloadManager.test_update_package_tree()&#8217;
   <p class="source-link">[ <a href="javascript:toggleSource('M000090_source')" id="l_M000090_source">show source</a> ]</p>
   <div id="M000090_source" class="dyn-source">
 <pre>
-    <span class="ruby-comment cmt"># File testabtdownloadmanager.rb, line 78</span>
-78:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">test_update_package_tree</span>()
-79:     <span class="ruby-identifier">assert</span>( <span class="ruby-ivar">@download</span>.<span class="ruby-identifier">update_package_tree</span>(), <span class="ruby-value str">&quot;test_update_package_tree()&quot;</span> )
-80:   <span class="ruby-keyword kw">end</span>
+    <span class="ruby-comment cmt"># File testabtdownloadmanager.rb, line 82</span>
+82:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">test_update_package_tree</span>()
+83:     <span class="ruby-identifier">assert</span>( <span class="ruby-ivar">@download</span>.<span class="ruby-identifier">update_package_tree</span>(), <span class="ruby-value str">&quot;test_update_package_tree()&quot;</span> )
+84:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>
@@ -298,10 +301,13 @@ Test method for &#8216;AbtDownloadManager.test_validated()&#8217;
   <p class="source-link">[ <a href="javascript:toggleSource('M000091_source')" id="l_M000091_source">show source</a> ]</p>
   <div id="M000091_source" class="dyn-source">
 <pre>
-    <span class="ruby-comment cmt"># File testabtdownloadmanager.rb, line 85</span>
-85:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">test_validated</span>()
-86:     <span class="ruby-identifier">assert</span>( <span class="ruby-ivar">@download</span>.<span class="ruby-identifier">validated</span>( <span class="ruby-value str">'e81278607b1d65dcb18c3613ec00fbf588b50319'</span>, <span class="ruby-node">&quot;#{$SOURCES_REPOSITORY}/ipc-1.4.tar.gz&quot;</span> ), <span class="ruby-value str">&quot;test_validated&quot;</span> )
-87:   <span class="ruby-keyword kw">end</span>
+    <span class="ruby-comment cmt"># File testabtdownloadmanager.rb, line 89</span>
+89:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">test_validated</span>()
+90:     <span class="ruby-comment cmt"># ensure a tarball is available to test!</span>
+91:     <span class="ruby-constant">FileUtils</span>.<span class="ruby-identifier">cp</span> <span class="ruby-node">&quot;#{$PACKAGE_PATH}/ipc-1.4.tar.gz&quot;</span>, <span class="ruby-node">&quot;#{$SOURCES_REPOSITORY}&quot;</span>, <span class="ruby-identifier">:verbose</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword kw">true</span> <span class="ruby-keyword kw">if</span> <span class="ruby-operator">!</span><span class="ruby-constant">File</span>.<span class="ruby-identifier">exist?</span>( <span class="ruby-node">&quot;#{$SOURCES_REPOSITORY}/ipc-1.4.tar.gz&quot;</span> )
+92:     
+93:     <span class="ruby-identifier">assert</span>( <span class="ruby-ivar">@download</span>.<span class="ruby-identifier">validated</span>( <span class="ruby-value str">'e81278607b1d65dcb18c3613ec00fbf588b50319'</span>, <span class="ruby-node">&quot;#{$SOURCES_REPOSITORY}/ipc-1.4.tar.gz&quot;</span> ), <span class="ruby-value str">&quot;test_validated&quot;</span> )
+94:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>

@@ -79,7 +79,7 @@ Test::Unit::TestCase
   <area shape="rect" coords="27,124,187,172"      href="TestAbtPackageManager.html" alt="TestAbtPackageManager" />
   <area shape="rect" coords="40,5,173,53"      href="Test/Unit/TestCase.html" alt="Test::Unit::TestCase" />
 </map>
-<img src="../dot/f_13.png" usemap="#map" border="0" alt="dot/f_13.png">
+<img src="../dot/f_13.png" usemap="#map" border="0" alt="TopLevel" />
   </td></tr></table>
 
   <div class="description"><p>
@@ -139,8 +139,8 @@ Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
   </div>
   <div class="description">
   <p>
-<a href="TestAbtPackageManager.html#M000018">setup</a> method for testing
-<a href="AbtPackageManager.html">AbtPackageManager</a>.
+setup method for testing <a
+href="AbtPackageManager.html">AbtPackageManager</a>.
 </p>
   </div>
 <div class="sourcecode">
@@ -149,8 +149,13 @@ Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
 <pre>
     <span class="ruby-comment cmt"># File testabtpackagemanager.rb, line 38</span>
 38:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">setup</span>
-39:     <span class="ruby-ivar">@pkgMgr</span> = <span class="ruby-constant">AbtPackageManager</span>.<span class="ruby-identifier">new</span>()
-40:   <span class="ruby-keyword kw">end</span>
+39:     <span class="ruby-ivar">@pkgMgr</span>  = <span class="ruby-constant">AbtPackageManager</span>.<span class="ruby-identifier">new</span>
+40:     <span class="ruby-ivar">@manager</span> = <span class="ruby-constant">AbtPackageManager</span>.<span class="ruby-identifier">new</span>
+41:     <span class="ruby-ivar">@system</span>  = <span class="ruby-constant">AbtSystemManager</span>.<span class="ruby-identifier">new</span>
+42:     
+43:     <span class="ruby-comment cmt"># ensures download not needed.</span>
+44:     <span class="ruby-constant">FileUtils</span>.<span class="ruby-identifier">cp</span> <span class="ruby-node">&quot;#{$PACKAGE_PATH}/ipc-1.4.tar.gz&quot;</span>, <span class="ruby-node">&quot;#{$SOURCES_REPOSITORY}&quot;</span>, <span class="ruby-identifier">:verbose</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword kw">true</span> <span class="ruby-keyword kw">if</span> <span class="ruby-operator">!</span><span class="ruby-constant">File</span>.<span class="ruby-identifier">exist?</span>( <span class="ruby-node">&quot;#{$SOURCES_REPOSITORY}/ipc-1.4.tar.gz&quot;</span> )
+45:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>
@@ -161,17 +166,16 @@ Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
   </div>
   <div class="description">
   <p>
-<a href="TestAbtPackageManager.html#M000019">teardown</a> method to cleanup
-after testing.
+teardown method to cleanup after testing.
 </p>
   </div>
 <div class="sourcecode">
   <p class="source-link">[ <a href="javascript:toggleSource('M000019_source')" id="l_M000019_source">show source</a> ]</p>
   <div id="M000019_source" class="dyn-source">
 <pre>
-    <span class="ruby-comment cmt"># File testabtpackagemanager.rb, line 45</span>
-45:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">teardown</span>
-46:   <span class="ruby-keyword kw">end</span>
+    <span class="ruby-comment cmt"># File testabtpackagemanager.rb, line 50</span>
+50:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">teardown</span>
+51:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>
@@ -189,10 +193,14 @@ Test method for &#8216;AbtPackageManager.test_downgrade_package()&#8217;
   <p class="source-link">[ <a href="javascript:toggleSource('M000023_source')" id="l_M000023_source">show source</a> ]</p>
   <div id="M000023_source" class="dyn-source">
 <pre>
-    <span class="ruby-comment cmt"># File testabtpackagemanager.rb, line 72</span>
-72:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">test_downgrade_package</span>
-73:     <span class="ruby-identifier">assert</span>( <span class="ruby-ivar">@pkgMgr</span>.<span class="ruby-identifier">downgrade_package</span>( <span class="ruby-value str">&quot;ipc&quot;</span>, <span class="ruby-value str">&quot;1.2&quot;</span> ), <span class="ruby-value str">&quot;test_downgrade_package()&quot;</span> )
-74:   <span class="ruby-keyword kw">end</span>
+    <span class="ruby-comment cmt"># File testabtpackagemanager.rb, line 89</span>
+89:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">test_downgrade_package</span>
+90:     <span class="ruby-keyword kw">if</span> <span class="ruby-operator">!</span><span class="ruby-ivar">@system</span>.<span class="ruby-identifier">package_installed</span>( <span class="ruby-value str">&quot;ipc&quot;</span> )
+91:       <span class="ruby-ivar">@manager</span>.<span class="ruby-identifier">install_package</span>( <span class="ruby-value str">&quot;ipc&quot;</span> )
+92:     <span class="ruby-keyword kw">end</span>
+93:     
+94:     <span class="ruby-identifier">assert</span>( <span class="ruby-ivar">@pkgMgr</span>.<span class="ruby-identifier">downgrade_package</span>( <span class="ruby-value str">&quot;ipc&quot;</span>, <span class="ruby-value str">&quot;1.2&quot;</span> ), <span class="ruby-value str">&quot;test_downgrade_package()&quot;</span> )
+95:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>
@@ -210,10 +218,14 @@ Test method for &#8216;AbtPackageManager.test_freeze_package()&#8217;
   <p class="source-link">[ <a href="javascript:toggleSource('M000024_source')" id="l_M000024_source">show source</a> ]</p>
   <div id="M000024_source" class="dyn-source">
 <pre>
-    <span class="ruby-comment cmt"># File testabtpackagemanager.rb, line 79</span>
-79:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">test_freeze_package</span>
-80:     <span class="ruby-identifier">assert</span>( <span class="ruby-ivar">@pkgMgr</span>.<span class="ruby-identifier">freeze_package</span>( <span class="ruby-value str">&quot;ipc&quot;</span> ), <span class="ruby-value str">&quot;test_freeze_package()&quot;</span> )
-81:   <span class="ruby-keyword kw">end</span>
+     <span class="ruby-comment cmt"># File testabtpackagemanager.rb, line 100</span>
+100:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">test_freeze_package</span>
+101:     <span class="ruby-keyword kw">if</span> <span class="ruby-operator">!</span><span class="ruby-ivar">@system</span>.<span class="ruby-identifier">package_installed</span>( <span class="ruby-value str">&quot;ipc&quot;</span> )
+102:       <span class="ruby-ivar">@manager</span>.<span class="ruby-identifier">install_package</span>( <span class="ruby-value str">&quot;ipc&quot;</span> )
+103:     <span class="ruby-keyword kw">end</span>
+104:     
+105:     <span class="ruby-identifier">assert</span>( <span class="ruby-ivar">@pkgMgr</span>.<span class="ruby-identifier">freeze_package</span>( <span class="ruby-value str">&quot;ipc&quot;</span> ), <span class="ruby-value str">&quot;test_freeze_package()&quot;</span> )
+106:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>
@@ -231,10 +243,14 @@ Test method for &#8216;AbtPackageManager.test_install_package()&#8217;
   <p class="source-link">[ <a href="javascript:toggleSource('M000020_source')" id="l_M000020_source">show source</a> ]</p>
   <div id="M000020_source" class="dyn-source">
 <pre>
-    <span class="ruby-comment cmt"># File testabtpackagemanager.rb, line 51</span>
-51:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">test_install_package</span>
-52:     <span class="ruby-identifier">assert</span>( <span class="ruby-ivar">@pkgMgr</span>.<span class="ruby-identifier">install_package</span>( <span class="ruby-value str">&quot;ipc&quot;</span>, <span class="ruby-identifier">$verbose</span> ), <span class="ruby-value str">&quot;test_install_package()&quot;</span> )
-53:   <span class="ruby-keyword kw">end</span>
+    <span class="ruby-comment cmt"># File testabtpackagemanager.rb, line 56</span>
+56:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">test_install_package</span>
+57:     <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@system</span>.<span class="ruby-identifier">package_installed</span>( <span class="ruby-value str">&quot;ipc&quot;</span> )
+58:       <span class="ruby-ivar">@manager</span>.<span class="ruby-identifier">remove_package</span>( <span class="ruby-value str">&quot;ipc&quot;</span> )
+59:     <span class="ruby-keyword kw">end</span>
+60:     
+61:     <span class="ruby-identifier">assert</span>( <span class="ruby-ivar">@pkgMgr</span>.<span class="ruby-identifier">install_package</span>( <span class="ruby-value str">&quot;ipc&quot;</span>, <span class="ruby-identifier">$verbose</span> ), <span class="ruby-value str">&quot;test_install_package()&quot;</span> )
+62:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>
@@ -252,10 +268,14 @@ Test method for &#8216;AbtPackageManager.test_reinstall_package()&#8217;
   <p class="source-link">[ <a href="javascript:toggleSource('M000021_source')" id="l_M000021_source">show source</a> ]</p>
   <div id="M000021_source" class="dyn-source">
 <pre>
-    <span class="ruby-comment cmt"># File testabtpackagemanager.rb, line 58</span>
-58:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">test_reinstall_package</span>
-59:     <span class="ruby-identifier">assert</span>( <span class="ruby-ivar">@pkgMgr</span>.<span class="ruby-identifier">reinstall_package</span>( <span class="ruby-value str">&quot;ipc&quot;</span> ), <span class="ruby-value str">&quot;test_reinstall_package()&quot;</span> )
-60:   <span class="ruby-keyword kw">end</span>
+    <span class="ruby-comment cmt"># File testabtpackagemanager.rb, line 67</span>
+67:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">test_reinstall_package</span>
+68:     <span class="ruby-keyword kw">if</span> <span class="ruby-operator">!</span><span class="ruby-ivar">@system</span>.<span class="ruby-identifier">package_installed</span>( <span class="ruby-value str">&quot;ipc&quot;</span> )
+69:       <span class="ruby-ivar">@manager</span>.<span class="ruby-identifier">install_package</span>( <span class="ruby-value str">&quot;ipc&quot;</span> )
+70:     <span class="ruby-keyword kw">end</span>
+71:     
+72:     <span class="ruby-identifier">assert</span>( <span class="ruby-ivar">@pkgMgr</span>.<span class="ruby-identifier">reinstall_package</span>( <span class="ruby-value str">&quot;ipc&quot;</span> ), <span class="ruby-value str">&quot;test_reinstall_package()&quot;</span> )
+73:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>
@@ -273,10 +293,14 @@ Test method for &#8216;AbtPackageManager.test_remove_package()&#8217;
   <p class="source-link">[ <a href="javascript:toggleSource('M000022_source')" id="l_M000022_source">show source</a> ]</p>
   <div id="M000022_source" class="dyn-source">
 <pre>
-    <span class="ruby-comment cmt"># File testabtpackagemanager.rb, line 65</span>
-65:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">test_remove_package</span>
-66:     <span class="ruby-identifier">assert</span>( <span class="ruby-ivar">@pkgMgr</span>.<span class="ruby-identifier">remove_package</span>( <span class="ruby-value str">&quot;ipc&quot;</span> ), <span class="ruby-value str">&quot;test_remove_package()&quot;</span> )
-67:   <span class="ruby-keyword kw">end</span>
+    <span class="ruby-comment cmt"># File testabtpackagemanager.rb, line 78</span>
+78:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">test_remove_package</span>
+79:     <span class="ruby-keyword kw">if</span> <span class="ruby-operator">!</span><span class="ruby-ivar">@system</span>.<span class="ruby-identifier">package_installed</span>( <span class="ruby-value str">&quot;ipc&quot;</span> )
+80:       <span class="ruby-ivar">@manager</span>.<span class="ruby-identifier">install_package</span>( <span class="ruby-value str">&quot;ipc&quot;</span> )
+81:     <span class="ruby-keyword kw">end</span>
+82:       
+83:     <span class="ruby-identifier">assert</span>( <span class="ruby-ivar">@pkgMgr</span>.<span class="ruby-identifier">remove_package</span>( <span class="ruby-value str">&quot;ipc&quot;</span> ), <span class="ruby-value str">&quot;test_remove_package()&quot;</span> )
+84:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>

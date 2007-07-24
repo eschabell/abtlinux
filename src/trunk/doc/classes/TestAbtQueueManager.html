@@ -79,7 +79,7 @@ Test::Unit::TestCase
   <area shape="rect" coords="27,124,179,172"      href="TestAbtQueueManager.html" alt="TestAbtQueueManager" />
   <area shape="rect" coords="36,5,169,53"      href="Test/Unit/TestCase.html" alt="Test::Unit::TestCase" />
 </map>
-<img src="../dot/f_14.png" usemap="#map" border="0" alt="dot/f_14.png">
+<img src="../dot/f_14.png" usemap="#map" border="0" alt="TopLevel" />
   </td></tr></table>
 
   <div class="description"><p>
@@ -134,7 +134,7 @@ Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
   </div>
   <div class="description">
   <p>
-<a href="TestAbtQueueManager.html#M000081">setup</a> method for testing <a
+setup method for testing <a
 href="AbtQueueManager.html">AbtQueueManager</a>.
 </p>
   </div>
@@ -144,7 +144,7 @@ href="AbtQueueManager.html">AbtQueueManager</a>.
 <pre>
     <span class="ruby-comment cmt"># File testabtqueuemanager.rb, line 36</span>
 36:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">setup</span>
-37:     <span class="ruby-ivar">@queue</span> = <span class="ruby-constant">AbtQueueManager</span>.<span class="ruby-identifier">new</span>()
+37:     <span class="ruby-ivar">@queue</span> = <span class="ruby-constant">AbtQueueManager</span>.<span class="ruby-identifier">new</span>
 38:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
@@ -156,8 +156,7 @@ href="AbtQueueManager.html">AbtQueueManager</a>.
   </div>
   <div class="description">
   <p>
-<a href="TestAbtQueueManager.html#M000082">teardown</a> method to cleanup
-after testing.
+teardown method to cleanup after testing.
 </p>
   </div>
 <div class="sourcecode">
@@ -187,8 +186,11 @@ href="AbtQueueManager.html#M000093">AbtQueueManager.action_package_queue</a>()&#
 <pre>
     <span class="ruby-comment cmt"># File testabtqueuemanager.rb, line 49</span>
 49:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">test_action_package_queue</span>
-50:     <span class="ruby-identifier">assert</span>( <span class="ruby-ivar">@queue</span>.<span class="ruby-identifier">action_package_queue</span>( <span class="ruby-value str">&quot;ipc&quot;</span>, <span class="ruby-value str">&quot;install&quot;</span>, <span class="ruby-value str">&quot;add&quot;</span> ), <span class="ruby-value str">&quot;test_action_package_queue()&quot;</span> )
-51:   <span class="ruby-keyword kw">end</span>
+50:     <span class="ruby-identifier">assert</span>( <span class="ruby-ivar">@queue</span>.<span class="ruby-identifier">action_package_queue</span>( <span class="ruby-value str">&quot;ipc&quot;</span>, <span class="ruby-value str">&quot;install&quot;</span>, <span class="ruby-value str">&quot;add&quot;</span> ), <span class="ruby-value str">&quot;test_action_package_queue(add)&quot;</span> )
+51:     <span class="ruby-identifier">assert</span>( <span class="ruby-ivar">@queue</span>.<span class="ruby-identifier">action_package_queue</span>( <span class="ruby-value str">&quot;ipc&quot;</span>, <span class="ruby-value str">&quot;install&quot;</span> ), <span class="ruby-value str">&quot;test_action_package_queue(default add again)&quot;</span> )
+52:     <span class="ruby-identifier">assert</span>( <span class="ruby-ivar">@queue</span>.<span class="ruby-identifier">action_package_queue</span>( <span class="ruby-value str">&quot;ipc&quot;</span>, <span class="ruby-value str">&quot;install&quot;</span>, <span class="ruby-value str">&quot;remove&quot;</span> ), <span class="ruby-value str">&quot;test_action_package_queue(remove)&quot;</span> )
+53:     
+54:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>

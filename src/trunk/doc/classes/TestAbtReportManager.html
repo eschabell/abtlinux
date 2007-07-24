@@ -79,7 +79,7 @@ Test::Unit::TestCase
   <area shape="rect" coords="27,124,179,172"      href="TestAbtReportManager.html" alt="TestAbtReportManager" />
   <area shape="rect" coords="36,5,169,53"      href="Test/Unit/TestCase.html" alt="Test::Unit::TestCase" />
 </map>
-<img src="../dot/f_15.png" usemap="#map" border="0" alt="dot/f_15.png">
+<img src="../dot/f_15.png" usemap="#map" border="0" alt="TopLevel" />
   </td></tr></table>
 
   <div class="description"><p>
@@ -146,7 +146,7 @@ Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
   </div>
   <div class="description">
   <p>
-<a href="TestAbtReportManager.html#M000049">setup</a> method for testing <a
+setup method for testing <a
 href="AbtReportManager.html">AbtReportManager</a>.
 </p>
   </div>
@@ -160,10 +160,9 @@ href="AbtReportManager.html">AbtReportManager</a>.
 38:     <span class="ruby-ivar">@manager</span> = <span class="ruby-constant">AbtPackageManager</span>.<span class="ruby-identifier">new</span>
 39:     <span class="ruby-ivar">@system</span>  = <span class="ruby-constant">AbtSystemManager</span>.<span class="ruby-identifier">new</span>
 40:     
-41:     <span class="ruby-keyword kw">if</span> <span class="ruby-operator">!</span><span class="ruby-ivar">@system</span>.<span class="ruby-identifier">package_installed</span>( <span class="ruby-value str">&quot;ipc&quot;</span> )
-42:       <span class="ruby-ivar">@manager</span>.<span class="ruby-identifier">install_package</span>( <span class="ruby-value str">&quot;ipc&quot;</span> )
-43:     <span class="ruby-keyword kw">end</span>
-44:   <span class="ruby-keyword kw">end</span>
+41:     <span class="ruby-comment cmt"># ensure tarball available without downloading.</span>
+42:     <span class="ruby-constant">FileUtils</span>.<span class="ruby-identifier">cp</span>( <span class="ruby-node">&quot;#{$PACKAGE_PATH}/ipc-1.4.tar.gz&quot;</span>, <span class="ruby-node">&quot;#{$SOURCES_REPOSITORY}&quot;</span>, <span class="ruby-identifier">:verbose</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword kw">true</span> ) <span class="ruby-keyword kw">if</span> <span class="ruby-operator">!</span><span class="ruby-constant">File</span>.<span class="ruby-identifier">exist?</span>( <span class="ruby-node">&quot;#{$SOURCES_REPOSITORY}/ipc-1.4.tar.gz&quot;</span> )
+43:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>
@@ -174,16 +173,16 @@ href="AbtReportManager.html">AbtReportManager</a>.
   </div>
   <div class="description">
   <p>
-<a href="TestAbtReportManager.html#M000050">teardown</a> method to cleanup
-after testing.
+teardown method to cleanup after testing.
 </p>
   </div>
 <div class="sourcecode">
   <p class="source-link">[ <a href="javascript:toggleSource('M000050_source')" id="l_M000050_source">show source</a> ]</p>
   <div id="M000050_source" class="dyn-source">
 <pre>
-    <span class="ruby-comment cmt"># File testabtreportmanager.rb, line 49</span>
-49:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">teardown</span>
+    <span class="ruby-comment cmt"># File testabtreportmanager.rb, line 48</span>
+48:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">teardown</span>
+49:     <span class="ruby-comment cmt"># TODO: if test package frozen, unfreeze it.</span>
 50:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
@@ -203,10 +202,15 @@ Test method for
   <p class="source-link">[ <a href="javascript:toggleSource('M000062_source')" id="l_M000062_source">show source</a> ]</p>
   <div id="M000062_source" class="dyn-source">
 <pre>
-     <span class="ruby-comment cmt"># File testabtreportmanager.rb, line 139</span>
-139:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">test_generate_HTML_package_listing</span>
-140:     <span class="ruby-identifier">assert</span>( <span class="ruby-ivar">@report</span>.<span class="ruby-identifier">generate_HTML_package_listing</span>(), <span class="ruby-value str">&quot;test_generate_HTML_package_listing()&quot;</span> )
-141:   <span class="ruby-keyword kw">end</span>
+     <span class="ruby-comment cmt"># File testabtreportmanager.rb, line 157</span>
+157:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">test_generate_HTML_package_listing</span>
+158:     <span class="ruby-comment cmt"># ensure at least one package is installed.</span>
+159:     <span class="ruby-keyword kw">if</span> <span class="ruby-operator">!</span><span class="ruby-ivar">@system</span>.<span class="ruby-identifier">package_installed</span>( <span class="ruby-value str">&quot;ipc&quot;</span> )
+160:       <span class="ruby-ivar">@manager</span>.<span class="ruby-identifier">install_package</span>( <span class="ruby-value str">&quot;ipc&quot;</span> )
+161:     <span class="ruby-keyword kw">end</span>
+162:     
+163:     <span class="ruby-identifier">assert</span>( <span class="ruby-ivar">@report</span>.<span class="ruby-identifier">generate_HTML_package_listing</span>(), <span class="ruby-value str">&quot;test_generate_HTML_package_listing()&quot;</span> )
+164:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>
@@ -225,11 +229,12 @@ Test method for
   <p class="source-link">[ <a href="javascript:toggleSource('M000059_source')" id="l_M000059_source">show source</a> ]</p>
   <div id="M000059_source" class="dyn-source">
 <pre>
-     <span class="ruby-comment cmt"># File testabtreportmanager.rb, line 113</span>
-113:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">test_search_package_descriptions</span>
-114:     <span class="ruby-identifier">expectedHash</span> = <span class="ruby-constant">Hash</span>[ <span class="ruby-value str">&quot;ipc-1.4&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;IPC is a program that calculates the isotopic distribution of a given chemical formula.&quot;</span>]
-115:     <span class="ruby-identifier">assert_equal</span>( <span class="ruby-ivar">@report</span>.<span class="ruby-identifier">search_package_descriptions</span>( <span class="ruby-value str">&quot;ipc&quot;</span> ), <span class="ruby-identifier">expectedHash</span>, <span class="ruby-value str">&quot;test_search_package_descriptions()&quot;</span> )
-116:   <span class="ruby-keyword kw">end</span>
+     <span class="ruby-comment cmt"># File testabtreportmanager.rb, line 134</span>
+134:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">test_search_package_descriptions</span>
+135:     <span class="ruby-identifier">expectedHash</span> = <span class="ruby-constant">Hash</span>[ <span class="ruby-value str">&quot;ipc-1.4&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;IPC is a program that calculates the isotopic distribution of a given chemical formula.&quot;</span>]
+136:     
+137:     <span class="ruby-identifier">assert_equal</span>( <span class="ruby-ivar">@report</span>.<span class="ruby-identifier">search_package_descriptions</span>( <span class="ruby-value str">&quot;ipc&quot;</span> ), <span class="ruby-identifier">expectedHash</span>, <span class="ruby-value str">&quot;test_search_package_descriptions()&quot;</span> )
+138:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>
@@ -247,10 +252,15 @@ Test method for &#8216;AbtReportManager.test_show_file_owner()&#8217;
   <p class="source-link">[ <a href="javascript:toggleSource('M000058_source')" id="l_M000058_source">show source</a> ]</p>
   <div id="M000058_source" class="dyn-source">
 <pre>
-     <span class="ruby-comment cmt"># File testabtreportmanager.rb, line 106</span>
-106:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">test_show_file_owner</span>
-107:     <span class="ruby-identifier">assert</span>( <span class="ruby-ivar">@report</span>.<span class="ruby-identifier">show_file_owner</span>( <span class="ruby-value str">&quot;ipcFile&quot;</span> ), <span class="ruby-value str">&quot;test_show_file_owner()&quot;</span> )
-108:   <span class="ruby-keyword kw">end</span>
+     <span class="ruby-comment cmt"># File testabtreportmanager.rb, line 122</span>
+122:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">test_show_file_owner</span>
+123:     <span class="ruby-comment cmt"># ensure package installed for testing file owner.</span>
+124:     <span class="ruby-keyword kw">if</span> <span class="ruby-operator">!</span><span class="ruby-ivar">@system</span>.<span class="ruby-identifier">package_installed</span>( <span class="ruby-value str">&quot;ipc&quot;</span> )
+125:       <span class="ruby-ivar">@manager</span>.<span class="ruby-identifier">install_package</span>( <span class="ruby-value str">&quot;ipc&quot;</span> )
+126:     <span class="ruby-keyword kw">end</span>
+127:     
+128:     <span class="ruby-identifier">assert</span>( <span class="ruby-ivar">@report</span>.<span class="ruby-identifier">show_file_owner</span>( <span class="ruby-value str">&quot;ipcFile&quot;</span> ), <span class="ruby-value str">&quot;test_show_file_owner()&quot;</span> )
+129:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>
@@ -268,10 +278,17 @@ Test method for &#8216;AbtReportManager.test_show_frozen_packages()&#8217;
   <p class="source-link">[ <a href="javascript:toggleSource('M000054_source')" id="l_M000054_source">show source</a> ]</p>
   <div id="M000054_source" class="dyn-source">
 <pre>
-    <span class="ruby-comment cmt"># File testabtreportmanager.rb, line 78</span>
-78:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">test_show_frozen_packages</span>
-79:     <span class="ruby-identifier">assert</span>( <span class="ruby-ivar">@report</span>.<span class="ruby-identifier">show_frozen_packages</span>(), <span class="ruby-value str">&quot;test_show_frozen_packages()&quot;</span> )
-80:   <span class="ruby-keyword kw">end</span>
+    <span class="ruby-comment cmt"># File testabtreportmanager.rb, line 87</span>
+87:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">test_show_frozen_packages</span>
+88:     <span class="ruby-comment cmt"># ensure test package installed.</span>
+89:     <span class="ruby-keyword kw">if</span> <span class="ruby-operator">!</span><span class="ruby-ivar">@system</span>.<span class="ruby-identifier">package_installed</span>( <span class="ruby-value str">&quot;ipc&quot;</span> )
+90:       <span class="ruby-ivar">@manager</span>.<span class="ruby-identifier">install_package</span>( <span class="ruby-value str">&quot;ipc&quot;</span> )
+91:     <span class="ruby-keyword kw">end</span>
+92:     
+93:     <span class="ruby-comment cmt"># TODO: freeze test pacakge.</span>
+94: 
+95:     <span class="ruby-identifier">assert</span>( <span class="ruby-ivar">@report</span>.<span class="ruby-identifier">show_frozen_packages</span>(), <span class="ruby-value str">&quot;test_show_frozen_packages()&quot;</span> )
+96:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>
@@ -292,8 +309,13 @@ Test method for
 <pre>
     <span class="ruby-comment cmt"># File testabtreportmanager.rb, line 62</span>
 62:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">test_show_installed_packages</span>
-63:     <span class="ruby-identifier">assert_nil</span>( <span class="ruby-ivar">@report</span>.<span class="ruby-identifier">show_installed_packages</span>(), <span class="ruby-value str">&quot;test_show_installed_packages()&quot;</span> )
-64:   <span class="ruby-keyword kw">end</span>
+63:     <span class="ruby-comment cmt"># ensure test pacakge installed for listing.</span>
+64:     <span class="ruby-keyword kw">if</span> <span class="ruby-operator">!</span><span class="ruby-ivar">@system</span>.<span class="ruby-identifier">package_installed</span>( <span class="ruby-value str">&quot;ipc&quot;</span> )
+65:       <span class="ruby-ivar">@manager</span>.<span class="ruby-identifier">install_package</span>( <span class="ruby-value str">&quot;ipc&quot;</span> )
+66:     <span class="ruby-keyword kw">end</span>
+67:     
+68:     <span class="ruby-identifier">assert_nil</span>( <span class="ruby-ivar">@report</span>.<span class="ruby-identifier">show_installed_packages</span>(), <span class="ruby-value str">&quot;test_show_installed_packages()&quot;</span> )
+69:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>
@@ -311,10 +333,10 @@ Test method for &#8216;AbtReportManager.test_show_journal()&#8217;
   <p class="source-link">[ <a href="javascript:toggleSource('M000057_source')" id="l_M000057_source">show source</a> ]</p>
   <div id="M000057_source" class="dyn-source">
 <pre>
-     <span class="ruby-comment cmt"># File testabtreportmanager.rb, line 99</span>
- 99:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">test_show_journal</span>
-100:     <span class="ruby-identifier">assert</span>( <span class="ruby-ivar">@report</span>.<span class="ruby-identifier">show_journal</span>( <span class="ruby-identifier">$JOURNAL</span> ), <span class="ruby-value str">&quot;test_show_journal()&quot;</span> )
-101:   <span class="ruby-keyword kw">end</span>
+     <span class="ruby-comment cmt"># File testabtreportmanager.rb, line 115</span>
+115:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">test_show_journal</span>
+116:     <span class="ruby-identifier">assert</span>( <span class="ruby-ivar">@report</span>.<span class="ruby-identifier">show_journal</span>( <span class="ruby-identifier">$JOURNAL</span> ), <span class="ruby-value str">&quot;test_show_journal()&quot;</span> )
+117:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>
@@ -333,10 +355,10 @@ Test method for
   <p class="source-link">[ <a href="javascript:toggleSource('M000055_source')" id="l_M000055_source">show source</a> ]</p>
   <div id="M000055_source" class="dyn-source">
 <pre>
-    <span class="ruby-comment cmt"># File testabtreportmanager.rb, line 85</span>
-85:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">test_show_package_dependencies</span>
-86:     <span class="ruby-identifier">assert</span>( <span class="ruby-keyword kw">false</span>, <span class="ruby-value str">&quot;test_show_package_dependencies()&quot;</span> )
-87:   <span class="ruby-keyword kw">end</span>
+     <span class="ruby-comment cmt"># File testabtreportmanager.rb, line 101</span>
+101:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">test_show_package_dependencies</span>
+102:     <span class="ruby-identifier">assert</span>( <span class="ruby-keyword kw">false</span>, <span class="ruby-value str">&quot;test_show_package_dependencies()&quot;</span> )
+103:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>
@@ -375,12 +397,16 @@ Test method for &#8216;AbtReportManager.test_show_package_log()&#8217;
   <p class="source-link">[ <a href="javascript:toggleSource('M000053_source')" id="l_M000053_source">show source</a> ]</p>
   <div id="M000053_source" class="dyn-source">
 <pre>
-    <span class="ruby-comment cmt"># File testabtreportmanager.rb, line 69</span>
-69:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">test_show_package_log</span>
-70:     <span class="ruby-identifier">assert</span>( <span class="ruby-ivar">@report</span>.<span class="ruby-identifier">show_package_log</span>( <span class="ruby-value str">&quot;ipc&quot;</span>, <span class="ruby-value str">&quot;install&quot;</span> ), <span class="ruby-value str">&quot;test_show_package_log(install)&quot;</span> )
-71:     <span class="ruby-identifier">assert</span>( <span class="ruby-ivar">@report</span>.<span class="ruby-identifier">show_package_log</span>( <span class="ruby-value str">&quot;ipc&quot;</span>, <span class="ruby-value str">&quot;build&quot;</span> ), <span class="ruby-value str">&quot;test_show_package_log(build)&quot;</span> )
-72:     <span class="ruby-identifier">assert</span>( <span class="ruby-ivar">@report</span>.<span class="ruby-identifier">show_package_log</span>( <span class="ruby-value str">&quot;ipc&quot;</span>, <span class="ruby-value str">&quot;integrity&quot;</span> ), <span class="ruby-value str">&quot;test_show_package_log(integrity)&quot;</span> )
-73:   <span class="ruby-keyword kw">end</span>
+    <span class="ruby-comment cmt"># File testabtreportmanager.rb, line 74</span>
+74:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">test_show_package_log</span>
+75:     <span class="ruby-keyword kw">if</span> <span class="ruby-operator">!</span><span class="ruby-ivar">@system</span>.<span class="ruby-identifier">package_installed</span>( <span class="ruby-value str">&quot;ipc&quot;</span> )
+76:       <span class="ruby-ivar">@manager</span>.<span class="ruby-identifier">install_package</span>( <span class="ruby-value str">&quot;ipc&quot;</span> )
+77:     <span class="ruby-keyword kw">end</span>
+78:     
+79:     <span class="ruby-identifier">assert</span>( <span class="ruby-ivar">@report</span>.<span class="ruby-identifier">show_package_log</span>( <span class="ruby-value str">&quot;ipc&quot;</span>, <span class="ruby-value str">&quot;install&quot;</span> ), <span class="ruby-value str">&quot;test_show_package_log(install)&quot;</span> )
+80:     <span class="ruby-identifier">assert</span>( <span class="ruby-ivar">@report</span>.<span class="ruby-identifier">show_package_log</span>( <span class="ruby-value str">&quot;ipc&quot;</span>, <span class="ruby-value str">&quot;build&quot;</span> ), <span class="ruby-value str">&quot;test_show_package_log(build)&quot;</span> )
+81:     <span class="ruby-identifier">assert</span>( <span class="ruby-ivar">@report</span>.<span class="ruby-identifier">show_package_log</span>( <span class="ruby-value str">&quot;ipc&quot;</span>, <span class="ruby-value str">&quot;integrity&quot;</span> ), <span class="ruby-value str">&quot;test_show_package_log(integrity)&quot;</span> )
+82:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>
@@ -398,14 +424,10 @@ Test method for &#8216;AbtReportManager.test_show_queue()&#8217;
   <p class="source-link">[ <a href="javascript:toggleSource('M000060_source')" id="l_M000060_source">show source</a> ]</p>
   <div id="M000060_source" class="dyn-source">
 <pre>
-     <span class="ruby-comment cmt"># File testabtreportmanager.rb, line 121</span>
-121:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">test_show_queue</span>
-122:     <span class="ruby-keyword kw">if</span> ( <span class="ruby-ivar">@report</span>.<span class="ruby-identifier">show_queue</span>( <span class="ruby-value str">&quot;install&quot;</span> ) )
-123:       <span class="ruby-identifier">assert</span>(<span class="ruby-keyword kw">false</span>, <span class="ruby-value str">&quot;test_show_queue()&quot;</span>)
-124:     <span class="ruby-keyword kw">else</span>
-125:       <span class="ruby-identifier">assert</span>(<span class="ruby-keyword kw">true</span>, <span class="ruby-value str">&quot;test_show_queue()&quot;</span>)
-126:     <span class="ruby-keyword kw">end</span>
-127:   <span class="ruby-keyword kw">end</span>
+     <span class="ruby-comment cmt"># File testabtreportmanager.rb, line 143</span>
+143:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">test_show_queue</span>
+144:     <span class="ruby-identifier">assert_nil</span>( <span class="ruby-ivar">@report</span>.<span class="ruby-identifier">show_queue</span>( <span class="ruby-value str">&quot;install&quot;</span> ), <span class="ruby-value str">&quot;test_show_queue(install)&quot;</span> )
+145:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>
@@ -423,10 +445,10 @@ Test method for &#8216;AbtReportManager.test_show_untracked_files()&#8217;
   <p class="source-link">[ <a href="javascript:toggleSource('M000056_source')" id="l_M000056_source">show source</a> ]</p>
   <div id="M000056_source" class="dyn-source">
 <pre>
-    <span class="ruby-comment cmt"># File testabtreportmanager.rb, line 92</span>
-92:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">test_show_untracked_files</span>
-93:     <span class="ruby-identifier">assert</span>( <span class="ruby-ivar">@report</span>.<span class="ruby-identifier">show_untracked_files</span>(), <span class="ruby-value str">&quot;test_show_untracked_files()&quot;</span> )
-94:   <span class="ruby-keyword kw">end</span>
+     <span class="ruby-comment cmt"># File testabtreportmanager.rb, line 108</span>
+108:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">test_show_untracked_files</span>
+109:     <span class="ruby-identifier">assert</span>( <span class="ruby-ivar">@report</span>.<span class="ruby-identifier">show_untracked_files</span>(), <span class="ruby-value str">&quot;test_show_untracked_files()&quot;</span> )
+110:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>
@@ -444,10 +466,10 @@ Test method for &#8216;AbtReportManager.test_show_updates()&#8217;
   <p class="source-link">[ <a href="javascript:toggleSource('M000061_source')" id="l_M000061_source">show source</a> ]</p>
   <div id="M000061_source" class="dyn-source">
 <pre>
-     <span class="ruby-comment cmt"># File testabtreportmanager.rb, line 132</span>
-132:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">test_show_updates</span>
-133:     <span class="ruby-identifier">assert</span>( <span class="ruby-ivar">@report</span>.<span class="ruby-identifier">show_updates</span>( <span class="ruby-value str">&quot;ipc&quot;</span> ), <span class="ruby-value str">&quot;test_show_updates()&quot;</span> )
-134:   <span class="ruby-keyword kw">end</span>
+     <span class="ruby-comment cmt"># File testabtreportmanager.rb, line 150</span>
+150:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">test_show_updates</span>
+151:     <span class="ruby-identifier">assert</span>( <span class="ruby-ivar">@report</span>.<span class="ruby-identifier">show_updates</span>( <span class="ruby-value str">&quot;ipc&quot;</span> ), <span class="ruby-value str">&quot;test_show_updates()&quot;</span> )
+152:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>
