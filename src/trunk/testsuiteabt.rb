@@ -18,13 +18,6 @@ require 'abtconfig'
 # This speeds up the test suit by more than 10 sec
 # on my machine. I get avg runs of around 17,5 sec.
 #
-logger  = AbtLogManager.new
-manager = AbtPackageManager.new
-system  = AbtSystemManager.new
-if !system.package_installed( "ipc" )
-	manager.install_package( "ipc" )
-end
-
 require 'testabtpackagemanager'
 require 'testabtlogmanager'
 require 'testabtdownloadmanager'
