@@ -48,13 +48,17 @@ class TestAbtPackage < Test::Unit::TestCase
   # setup method for testing AbtPackage.
   ## 
   def setup
-    @ipc = Ipc.new
+    @ipc     = Ipc.new
+    
+    # ensures download not needed.
+    FileUtils.cp "#{$PACKAGE_PATH}/ipc-1.4.tar.gz", "#{$SOURCES_REPOSITORY}", :verbose => true if !File.exist? "#{$SOURCES_REPOSITORY}/ipc-1.4.tar.gz"
   end
   
   ##
   # teardown method to cleanup after testing.
   ##
   def teardown
+    FileUtils.rm_r "#{$BUILD_LOCATION}/#{$dataTest['srcDir']}", :verbose => true if File.exist? "#{$BUILD_LOCATION}/#{$dataTest['srcDir']}"
   end
   
   ##
