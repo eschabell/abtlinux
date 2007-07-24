@@ -34,7 +34,7 @@ class TestAbtDepEngine < Test::Unit::TestCase
   # setup method for testing AbtDepEngine.
   ## 
   def setup
-    @depEngine = AbtDepEngine.new()
+    @depEngine = AbtDepEngine.new
   end
   
   ##
