@@ -34,13 +34,14 @@ class TestAbtQueueManager < Test::Unit::TestCase
   # setup method for testing AbtQueueManager.
   ## 
   def setup
-    @queue = AbtQueueManager.new()
+    @queue = AbtQueueManager.new
   end
   
   ##
   # teardown method to cleanup after testing.
   ##
   def teardown
+    @queue.action_package_queue "ipc", "install", "remove"
   end
   
   ##
