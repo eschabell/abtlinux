@@ -41,14 +41,16 @@ class TestAbtQueueManager < Test::Unit::TestCase
   # teardown method to cleanup after testing.
   ##
   def teardown
-    @queue.action_package_queue "ipc", "install", "remove"
   end
   
   ##
   # Test method for 'AbtQueueManager.action_package_queue()'
   ## 
   def test_action_package_queue
-    assert( @queue.action_package_queue( "ipc", "install", "add" ), "test_action_package_queue()" )
+    assert( @queue.action_package_queue( "ipc", "install", "add" ), "test_action_package_queue(add)" )
+    assert( @queue.action_package_queue( "ipc", "install" ), "test_action_package_queue(default add again)" )
+    assert( @queue.action_package_queue( "ipc", "install", "remove" ), "test_action_package_queue(remove)" )
+    
   end
   
 end
