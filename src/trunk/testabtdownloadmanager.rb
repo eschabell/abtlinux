@@ -34,7 +34,9 @@ class TestAbtDownloadManager < Test::Unit::TestCase
   # setup method for testing AbtDownloadManager.
   ## 
   def setup
-    @download = AbtDownloadManager.new()
+    @download = AbtDownloadManager.new
+    @manager = AbtPackageManager.new
+    @system  = AbtSystemManager.new
   end
   
   ##
@@ -47,8 +49,10 @@ class TestAbtDownloadManager < Test::Unit::TestCase
   # Test method for 'AbtDownloadManager.test_retrieve_package_source()'
   ## 
   def test_retrieve_package_source()
-    assert( 
-      @download.retrieve_package_source( "ipc", "#{$SOURCES_REPOSITORY}" ), "test_retrieve_package_source()" )
+    # ensures download not needed.
+    FileUtils.cp "#{$PACKAGE_PATH}/ipc-1.4.tar.gz", "#{$SOURCES_REPOSITORY}", :verbose => true if !File.exist?( "#{$SOURCES_REPOSITORY}/ipc-1.4.tar.gz" )
+    
+    assert( @download.retrieve_package_source( "ipc", "#{$SOURCES_REPOSITORY}" ), "test_retrieve_package_source()" )
   end
   
   ##
@@ -83,6 +87,9 @@ class TestAbtDownloadManager < Test::Unit::TestCase
   # Test method for 'AbtDownloadManager.test_validated()'
   ##
   def test_validated()
+    # ensure a tarball is available to test!
+    FileUtils.cp "#{$PACKAGE_PATH}/ipc-1.4.tar.gz", "#{$SOURCES_REPOSITORY}", :verbose => true if !File.exist?( "#{$SOURCES_REPOSITORY}/ipc-1.4.tar.gz" )
+    
     assert( @download.validated( 'e81278607b1d65dcb18c3613ec00fbf588b50319', "#{$SOURCES_REPOSITORY}/ipc-1.4.tar.gz" ), "test_validated" )
   end
 end
