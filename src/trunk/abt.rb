@@ -38,7 +38,7 @@ options    = Hash.new
 show       = AbtUsage.new
 
 # deal with usage request.
-if ( ARGV.length == 0 || ( ARGV.length == 1 && ( ARGV[0] == '--help' || ARGV[0] == '-h' ) ) )
+if ( ARGV.length == 0 || ( ARGV.length == 1 && ( ARGV[0] == '--help' || ARGV[0] == '-h'  || ARGV[0].downcase == 'help' ) ) )
   show.usage( "all" )
   exit
 end
