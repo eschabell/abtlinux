@@ -78,7 +78,7 @@ Object
     <map id="map" name="map">
   <area shape="rect" coords="27,50,120,98"      href="AbtPackage.html" alt="AbtPackage" />
 </map>
-<img src="../dot/f_3.png" usemap="#map" border="0" alt="TopLevel" />
+<img src="../dot/f_3.png" usemap="#map" border="0" alt="dot/f_3.png">
   </td></tr></table>
 
   <div class="description"><p>
@@ -90,7 +90,8 @@ href="AbtPackage.html">AbtPackage</a> creation within AbTLinux. By
 inheriting from this class (class Fortune &lt; <a
 href="AbtPackage.html">AbtPackage</a>) one picks up all supported standard
 functions for the abt <a href="AbtPackage.html">AbtPackage</a> manager to
-make use of the new <a href="AbtPackage.html">AbtPackage</a>.
+make use of the <a href="AbtPackage.html#M000026">new</a> <a
+href="AbtPackage.html">AbtPackage</a>.
 </p>
 <p>
 Created by Eric D. Schabell &lt;erics@abtlinux.org&gt; Copyright 2006, GPL.
@@ -107,8 +108,8 @@ any later version.
 <p>
 AbTLinux is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
-FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
-details.
+FOR A PARTICULAR PURPOSE. See the GNU General Public License for more <a
+href="AbtPackage.html#M000027">details</a>.
 </p>
 <p>
 You should have received a copy of the GNU General Public License along
@@ -309,7 +310,7 @@ the package version number.
   <div class="description">
   <p>
 Constructor for an <a href="AbtPackage.html">AbtPackage</a>, requires all
-the packge details.
+the packge <a href="AbtPackage.html#M000027">details</a>.
 </p>
 <p>
 <b>PARAM</b> <em>Hash</em> - hash containing all package data.
@@ -393,12 +394,13 @@ otherwise false.
   </div>
   <div class="description">
   <p>
-Here we manage the ./configure step (or equivalent). We need to give
-./configure (or autogen.sh, or whatever) the correct options so files are
-to be placed later in the right directories, so doc files and man pages are
-all in the same common location, etc. Don&#8216;t forget too that
-it&#8217;s here where we interact with the user in case there are optionnal
-dependencies.
+Here we manage the ./<a href="AbtPackage.html#M000029">configure</a> step
+(or equivalent). We need to give ./<a
+href="AbtPackage.html#M000029">configure</a> (or autogen.sh, or whatever)
+the correct options so files are to be placed later in the right
+directories, so doc files and man pages are all in the same common
+location, etc. Don&#8216;t forget too that it&#8216;s here where we
+interact with the user in case there are optionnal dependencies.
 </p>
 <p>
 <b>PARAM</b> <em>boolean</em> - true if you want to see the verbose output,
@@ -618,8 +620,8 @@ false.
   <div class="description">
   <p>
 Any actions needed before the installation can occur will happen here, such
-as creating new user accounts, dealing with existing configuration files,
-etc.
+as creating <a href="AbtPackage.html#M000026">new</a> user accounts,
+dealing with existing configuration files, etc.
 </p>
 <p>
 <b>PARAM</b> <em>boolean</em> - true if you want to see the verbose output,
@@ -650,7 +652,8 @@ otherwise false.
   </div>
   <div class="description">
   <p>
-Cleans up this packages source build directory.
+Cleans up this packages source <a href="AbtPackage.html#M000030">build</a>
+directory.
 </p>
 <p>
 <b>RETURNS:</b> <em>boolean</em> - True if the completes sucessfully,
@@ -689,7 +692,8 @@ otherwise false.
   </div>
   <div class="description">
   <p>
-Unpacks this packages source file into the standard build location.
+Unpacks this packages source file into the standard <a
+href="AbtPackage.html#M000030">build</a> location.
 </p>
 <p>
 <b>RETURNS:</b> <em>boolean</em> - True if the completes sucessfully,
