@@ -230,7 +230,7 @@ when "show-config"
     end
 
     puts "\nDisplay configure log for package : #{options['package']}"
-    puts "===============================\n\n"
+    puts "===============================\n"
     reporter.show_package_log( options['package'], "configure" )
   else
     show.usage( "queries" )
@@ -246,7 +246,7 @@ when "show-build"
     end
 
     puts "\nDisplay build log for package : #{options['package']}"
-    puts "===============================\n\n"
+    puts "===============================\n"
     reporter.show_package_log( options['package'], "build" )
   else
     show.usage( "queries" )
@@ -262,7 +262,7 @@ when "show-build"
     end
 
     puts "\nDisplay install log for package : #{options['package']}"
-    puts "===============================\n\n"
+    puts "===============================\n"
     reporter.show_package_log( options['package'], "install" )
   else
     show.usage( "queries" )
@@ -278,7 +278,7 @@ when "show-build"
     end
 
     puts "\nDisplay integrity log for package : #{options['package']}"
-    puts "===============================\n\n"
+    puts "=================================\n"
     reporter.show_package_log( options['package'], "integrity" )
   else
     show.usage( "queries" )
@@ -298,8 +298,14 @@ when "show-depends"
 when "show-files"
   if ( ARGV.length == 2 )
     options['package'] = ARGV[1]
-    # FIXME : show pkg files implementation.
-    puts "Display installed files from package : " + options['package']
+    if !system.package_installed( options['package'] )
+      puts "\nThe package #{options['package']} is not installed, can't show it's installed files."
+      exit
+    end
+
+    puts "\nDisplay installed files from package : #{options['package']}"
+    puts "====================================\n"
+    reporter.show_package_log( options['package'], "install" )
   else
     show.usage( "queries" )
     exit
