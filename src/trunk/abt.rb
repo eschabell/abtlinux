@@ -38,8 +38,9 @@ options    = Hash.new
 show       = AbtUsage.new
 
 # deal with usage request.
-if ( ARGV.length == 0 )
+if ( ARGV.length == 0 || ( ARGV.length == 1 && ( ARGV[0] == '--help' || ARGV[0] == '-h' ) ) )
   show.usage( "all" )
+  exit
 end
 
 # login as root for the rest.
