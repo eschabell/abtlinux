@@ -113,7 +113,7 @@ class AbtSystemManager
         puts "===================================="
       end
 
-      Dir.foreach( $SOURCES_REPOSITORY ) { |file| FileUtils.remove( file, :verbose => verbose, :force => true ) if ( file != "." && file != ".." && !sourcesArray.include?( file ) ) }
+      Dir.foreach( $SOURCES_REPOSITORY ) { |file| FileUtils.remove( "#{$SOURCES_REPOSITORY}/#{file}", :verbose => verbose, :force => true ) if ( file != "." && file != ".." && !sourcesArray.include?( file ) ) }
       
       if ( verbose )
         puts "====================================\n"

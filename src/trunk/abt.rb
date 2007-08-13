@@ -424,7 +424,6 @@ when "update", "-u"
   
 when "purge-src"
   if ( ARGV.length == 1 )
-    # FIXME : purge-src implementation.
     logger.to_journal( "Starting to purge sources from packages that are not installed.")
     if ( system.cleanup_package_sources )
       puts "\nPurged sources from packages that are not installed."
