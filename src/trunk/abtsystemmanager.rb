@@ -133,9 +133,8 @@ class AbtSystemManager
   ##
   def verify_installed_files( package )
     logger = AbtLogManager.new
-    system = AbtSystemManager.new
     
-    if !system.package_installed( package )
+    if !package_installed( package )
       logger.to_journal( "Unable to verify installed files for #{package}, it's not installed!")
       return false
     end
@@ -189,10 +188,50 @@ class AbtSystemManager
   # <b>PARAM</b> <i>String</i> - Package name.
   #
   # <b>RETURN</b> <i>hash</i> - Empty hash if no problems found, otherwise
-  # hash of problem files and their encountered errors.
+  # hash of problem files and their encountered errors. Hash has keys of 
+  # file names and the values are the package name and the problem detected. 
   ##
   def verify_package_integrity( package )
-    return false
+    require "#{$PACKAGE_PATH}#{package}"
+    sw = eval( "#{package.capitalize}.new" )
+    
+    logger = AbtLogManager.new
+    integrityHash = Hash.new  # holds files failing interity check.
+            
+    if !File.exist?( "#{$PACKAGE_INSTALLED}/#{sw.srcDir}/#{sw.srcDir}.integrity" )
+      logger.to_journal( "Unable to check file integrity for #{package}, integrity log missing!" ) 
+      return integrityHash   # empty hash, no entries.
+    else
+          
+      # FIXME: pickup each integrity file and check each entry (filename integrityvalue)
+      File.open( logger.get_log( package, "integrity" ) ).each { |line|
+      
+        # seperate the filepath and integrity value.
+        lineArray = line.split( ':' )
+        
+        # check for existing file.
+        if !File.exist?( lineArray[0].chomp )
+          logger.to_journal( "The file : #{lineArray[0].chomp} is missing for #{package}." )
+
+          # any failure or discrepency is added to hash: file => package + problem
+          integrityHash = integrityHash.merge( Hash[ lineArray[0].chomp => "#{package} - file missing." ] )
+        end
+        
+        # passed existence check, now integrity check, need to ensure
+        # value computed matches our logged octal results. This requires
+        # computing the results, converting to octal, then chop off the 
+        # first char by reversing the string and chopping the last (is
+        # there a better way?) char and then reversing those results.
+        octalResults = '%07o' % File.lstat( lineArray[0].chomp ).mode
+        
+        if lineArray[1].chomp != octalResults.reverse.chop.reverse
+          # any failure or discrepency is added to hash: file => package + problem
+          integrityHash = integrityHash.merge( Hash[ file => "#{package} #{sw.description}" ] )  
+        end
+      }      
+    end
+  
+    return integrityHash
   end
   
   ##

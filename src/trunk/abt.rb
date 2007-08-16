@@ -443,7 +443,7 @@ when "verify-files"
     logger.to_journal( "Starting verifcation of files for package : #{options['package']}.")
 
     if system.verify_installed_files( options['package'] )
-      puts "/nInstalled files verified for package : #{options['package']}"
+      puts "\nInstalled files verified for package : #{options['package']}"
       logger.to_journal( "Finished verifcation of files for package : #{options['package']}.")
       exit
     end
@@ -477,10 +477,22 @@ when "verify-deps"
   
 when "verify-integrity"
   if ( ARGV.length == 2 )
-    options['pkg'] = ARGV[1]
-    # FIXME : verify integrity of install pkg files implementation.
-    print "Verifiy integrity of installed files for "
-    puts  "package : #{options['pkg']}"
+    options['package'] = ARGV[1]
+    logger.to_journal( "Starting verification of files for package : #{options['package']}.")
+
+    integrityHash = system.verify_package_integrity( options['package'] )
+    if integrityHash.empty?
+      puts "\nInstalled files integrity check completed without problems being detected for package : #{options['package']}"
+      logger.to_journal( "Finished verification of files for package : #{options['package']}.")
+      exit
+    end
+    
+    integrityHash.each_pair {|file, problem| 
+      puts "Problem with #{file} from package #{problem}"
+      logger.to_journal( "Problem with #{file} from package #{problem}." )
+    }
+    
+    puts "/nInstalled files integrity check failed for package : #{options['package']} failed, see journal."
   else
     show.usage( "fix" )
     exit
