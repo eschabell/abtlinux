@@ -186,12 +186,12 @@ false.
 <pre>
      <span class="ruby-comment cmt"># File abtsystemmanager.rb, line 81</span>
  81:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">cleanup_package_sources</span>( <span class="ruby-identifier">verbose</span>=<span class="ruby-keyword kw">true</span>)
- 82:     <span class="ruby-identifier">logger</span>       = <span class="ruby-constant">AbtLogManager</span>.<span class="ruby-identifier">new</span>
+ 82:     <span class="ruby-identifier">logger</span>       = <span class="ruby-constant">Logger</span>.<span class="ruby-identifier">new</span>( <span class="ruby-identifier">$JOURNAL</span> )
  83:     <span class="ruby-identifier">sourcesArray</span> = <span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span>
  84:     
  85:     <span class="ruby-keyword kw">if</span> ( <span class="ruby-constant">Dir</span>.<span class="ruby-identifier">entries</span>( <span class="ruby-identifier">$PACKAGE_INSTALLED</span> ) <span class="ruby-operator">-</span> [ <span class="ruby-value str">'.'</span>, <span class="ruby-value str">'..'</span> ] ).<span class="ruby-identifier">empty?</span>
  86:       <span class="ruby-constant">FileUtils</span>.<span class="ruby-identifier">remove</span> <span class="ruby-constant">Dir</span>.<span class="ruby-identifier">glob</span>( <span class="ruby-node">&quot;#{$SOURCES_REPOSITORY}/*&quot;</span> ), <span class="ruby-identifier">:verbose</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">verbose</span>, <span class="ruby-identifier">:force</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword kw">true</span>
- 87:       <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">to_journal</span>( <span class="ruby-value str">&quot;Cleanup of package sources done, encountered an empty installation listing?&quot;</span> )
+ 87:       <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">info</span>( <span class="ruby-value str">&quot;Cleanup of package sources done, encountered an empty installation listing?&quot;</span> )
  88:       <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">true</span>
  89:     <span class="ruby-keyword kw">else</span>
  90:       <span class="ruby-constant">Dir</span>.<span class="ruby-identifier">foreach</span>( <span class="ruby-identifier">$PACKAGE_INSTALLED</span> ) { <span class="ruby-operator">|</span><span class="ruby-identifier">package</span><span class="ruby-operator">|</span> 
@@ -212,7 +212,7 @@ false.
 105:     <span class="ruby-keyword kw">end</span>
 106: 
 107:     <span class="ruby-keyword kw">if</span> ( <span class="ruby-constant">Dir</span>.<span class="ruby-identifier">entries</span>( <span class="ruby-identifier">$SOURCES_REPOSITORY</span> ) <span class="ruby-operator">-</span> [ <span class="ruby-value str">'.'</span>, <span class="ruby-value str">'..'</span> ] ).<span class="ruby-identifier">empty?</span>
-108:       <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">to_journal</span>( <span class="ruby-value str">&quot;Cleanup of package sources done, encountered an empty sources repository?&quot;</span> )
+108:       <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">info</span>( <span class="ruby-value str">&quot;Cleanup of package sources done, encountered an empty sources repository?&quot;</span> )
 109:       <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">false</span>
 110:     <span class="ruby-keyword kw">else</span>
 111:       <span class="ruby-keyword kw">if</span> ( <span class="ruby-identifier">verbose</span> )
@@ -253,10 +253,10 @@ false.
   <p class="source-link">[ <a href="javascript:toggleSource('M000007_source')" id="l_M000007_source">show source</a> ]</p>
   <div id="M000007_source" class="dyn-source">
 <pre>
-     <span class="ruby-comment cmt"># File abtsystemmanager.rb, line 245</span>
-245:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">fix_package</span>( <span class="ruby-identifier">package</span> )
-246:     <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">false</span>
-247:   <span class="ruby-keyword kw">end</span>
+     <span class="ruby-comment cmt"># File abtsystemmanager.rb, line 249</span>
+249:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">fix_package</span>( <span class="ruby-identifier">package</span> )
+250:     <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">false</span>
+251:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>
@@ -282,18 +282,18 @@ false.
   <p class="source-link">[ <a href="javascript:toggleSource('M000010_source')" id="l_M000010_source">show source</a> ]</p>
   <div id="M000010_source" class="dyn-source">
 <pre>
-     <span class="ruby-comment cmt"># File abtsystemmanager.rb, line 283</span>
-283:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">package_installed</span>( <span class="ruby-identifier">package</span> )
-284:     <span class="ruby-identifier">require</span> <span class="ruby-node">&quot;#{$PACKAGE_PATH}#{package}&quot;</span>
-285:     <span class="ruby-identifier">sw</span> = <span class="ruby-identifier">eval</span>( <span class="ruby-node">&quot;#{package.capitalize}.new&quot;</span> )
-286:     <span class="ruby-identifier">details</span> = <span class="ruby-identifier">sw</span>.<span class="ruby-identifier">details</span>
-287:     
-288:     <span class="ruby-keyword kw">if</span> ( <span class="ruby-identifier">found_entry</span>( <span class="ruby-identifier">$PACKAGE_INSTALLED</span>, <span class="ruby-identifier">sw</span>.<span class="ruby-identifier">srcDir</span> ) )
-289:       <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">true</span>
-290:     <span class="ruby-keyword kw">end</span>
-291:      
-292:     <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">false</span>
-293:   <span class="ruby-keyword kw">end</span>
+     <span class="ruby-comment cmt"># File abtsystemmanager.rb, line 287</span>
+287:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">package_installed</span>( <span class="ruby-identifier">package</span> )
+288:     <span class="ruby-identifier">require</span> <span class="ruby-node">&quot;#{$PACKAGE_PATH}#{package}&quot;</span>
+289:     <span class="ruby-identifier">sw</span> = <span class="ruby-identifier">eval</span>( <span class="ruby-node">&quot;#{package.capitalize}.new&quot;</span> )
+290:     <span class="ruby-identifier">details</span> = <span class="ruby-identifier">sw</span>.<span class="ruby-identifier">details</span>
+291:     
+292:     <span class="ruby-keyword kw">if</span> ( <span class="ruby-identifier">found_entry</span>( <span class="ruby-identifier">$PACKAGE_INSTALLED</span>, <span class="ruby-identifier">sw</span>.<span class="ruby-identifier">srcDir</span> ) )
+293:       <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">true</span>
+294:     <span class="ruby-keyword kw">end</span>
+295:      
+296:     <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">false</span>
+297:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>
@@ -318,10 +318,10 @@ located.
   <p class="source-link">[ <a href="javascript:toggleSource('M000008_source')" id="l_M000008_source">show source</a> ]</p>
   <div id="M000008_source" class="dyn-source">
 <pre>
-     <span class="ruby-comment cmt"># File abtsystemmanager.rb, line 257</span>
-257:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">set_central_repo</span>( <span class="ruby-identifier">uri</span> )
-258:     <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">false</span>
-259:   <span class="ruby-keyword kw">end</span>
+     <span class="ruby-comment cmt"># File abtsystemmanager.rb, line 261</span>
+261:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">set_central_repo</span>( <span class="ruby-identifier">uri</span> )
+262:     <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">false</span>
+263:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>
@@ -347,10 +347,10 @@ otherwise false.
   <p class="source-link">[ <a href="javascript:toggleSource('M000009_source')" id="l_M000009_source">show source</a> ]</p>
   <div id="M000009_source" class="dyn-source">
 <pre>
-     <span class="ruby-comment cmt"># File abtsystemmanager.rb, line 270</span>
-270:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">set_package_tree_location</span>( <span class="ruby-identifier">location</span> )
-271:     <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">false</span>
-272:   <span class="ruby-keyword kw">end</span>
+     <span class="ruby-comment cmt"># File abtsystemmanager.rb, line 274</span>
+274:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">set_package_tree_location</span>( <span class="ruby-identifier">location</span> )
+275:     <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">false</span>
+276:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>
@@ -377,30 +377,32 @@ otherwise false.
 <pre>
      <span class="ruby-comment cmt"># File abtsystemmanager.rb, line 134</span>
 134:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">verify_installed_files</span>( <span class="ruby-identifier">package</span> )
-135:     <span class="ruby-identifier">logger</span> = <span class="ruby-constant">AbtLogManager</span>.<span class="ruby-identifier">new</span>
-136:     
-137:     <span class="ruby-keyword kw">if</span> <span class="ruby-operator">!</span><span class="ruby-identifier">package_installed</span>( <span class="ruby-identifier">package</span> )
-138:       <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">to_journal</span>( <span class="ruby-node">&quot;Unable to verify installed files for #{package}, it's not installed!&quot;</span>)
-139:       <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">false</span>
-140:     <span class="ruby-keyword kw">end</span>
-141:     
-142:     <span class="ruby-keyword kw">if</span> <span class="ruby-operator">!</span><span class="ruby-constant">File</span>.<span class="ruby-identifier">exist?</span>( <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">get_log</span>( <span class="ruby-identifier">package</span>, <span class="ruby-value str">'install'</span> ) )
-143:       <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">to_journal</span>( <span class="ruby-node">&quot;Unable to verify installed files for #{package}, installed package but install log missing!&quot;</span> ) 
-144:       <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">false</span>
-145:     <span class="ruby-keyword kw">end</span>
-146:     
-147:     <span class="ruby-identifier">failure</span> = <span class="ruby-keyword kw">false</span>  <span class="ruby-comment cmt"># marker after checking all files to determine failure.</span>
-148:     <span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span>( <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">get_log</span>( <span class="ruby-identifier">package</span>, <span class="ruby-value str">&quot;install&quot;</span> ) ).<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">line</span><span class="ruby-operator">|</span> 
-149:       <span class="ruby-keyword kw">if</span> <span class="ruby-operator">!</span><span class="ruby-constant">File</span>.<span class="ruby-identifier">exist?</span>( <span class="ruby-identifier">line</span>.<span class="ruby-identifier">chomp</span> )
-150:         <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">to_journal</span>( <span class="ruby-node">&quot;The file : #{line.chomp} is missing for #{package}.&quot;</span> )
-151:         <span class="ruby-identifier">failure</span> = <span class="ruby-keyword kw">true</span>
-152:       <span class="ruby-keyword kw">end</span>
-153:     }
-154:     <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">false</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">failure</span>
-155:     
-156:     <span class="ruby-comment cmt"># all files passed check.</span>
-157:     <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">true</span>
-158:   <span class="ruby-keyword kw">end</span>
+135:     <span class="ruby-identifier">logger</span> = <span class="ruby-constant">Logger</span>.<span class="ruby-identifier">new</span>( <span class="ruby-identifier">$JOURNAL</span> )
+136:     <span class="ruby-comment cmt"># TODO: refactor myLogger:</span>
+137:     <span class="ruby-identifier">myLogger</span> = <span class="ruby-constant">AbtLogManager</span>.<span class="ruby-identifier">new</span>
+138:     
+139:     <span class="ruby-keyword kw">if</span> <span class="ruby-operator">!</span><span class="ruby-identifier">package_installed</span>( <span class="ruby-identifier">package</span> )
+140:       <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">info</span>( <span class="ruby-node">&quot;Unable to verify installed files for #{package}, it's not installed!&quot;</span>)
+141:       <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">false</span>
+142:     <span class="ruby-keyword kw">end</span>
+143:     
+144:     <span class="ruby-keyword kw">if</span> <span class="ruby-operator">!</span><span class="ruby-constant">File</span>.<span class="ruby-identifier">exist?</span>( <span class="ruby-identifier">myLogger</span>.<span class="ruby-identifier">get_log</span>( <span class="ruby-identifier">package</span>, <span class="ruby-value str">'install'</span> ) )
+145:       <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">info</span>( <span class="ruby-node">&quot;Unable to verify installed files for #{package}, installed package but install log missing!&quot;</span> ) 
+146:       <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">false</span>
+147:     <span class="ruby-keyword kw">end</span>
+148:     
+149:     <span class="ruby-identifier">failure</span> = <span class="ruby-keyword kw">false</span>  <span class="ruby-comment cmt"># marker after checking all files to determine failure.</span>
+150:     <span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span>( <span class="ruby-identifier">myLogger</span>.<span class="ruby-identifier">get_log</span>( <span class="ruby-identifier">package</span>, <span class="ruby-value str">&quot;install&quot;</span> ) ).<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">line</span><span class="ruby-operator">|</span> 
+151:       <span class="ruby-keyword kw">if</span> <span class="ruby-operator">!</span><span class="ruby-constant">File</span>.<span class="ruby-identifier">exist?</span>( <span class="ruby-identifier">line</span>.<span class="ruby-identifier">chomp</span> )
+152:         <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">info</span>( <span class="ruby-node">&quot;The file : #{line.chomp} is missing for #{package}.&quot;</span> )
+153:         <span class="ruby-identifier">failure</span> = <span class="ruby-keyword kw">true</span>
+154:       <span class="ruby-keyword kw">end</span>
+155:     }
+156:     <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">false</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">failure</span>
+157:     
+158:     <span class="ruby-comment cmt"># all files passed check.</span>
+159:     <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">true</span>
+160:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>
@@ -425,10 +427,10 @@ false.
   <p class="source-link">[ <a href="javascript:toggleSource('M000005_source')" id="l_M000005_source">show source</a> ]</p>
   <div id="M000005_source" class="dyn-source">
 <pre>
-     <span class="ruby-comment cmt"># File abtsystemmanager.rb, line 180</span>
-180:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">verify_package_depends</span>( <span class="ruby-identifier">package</span> )
-181:     <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">false</span>
-182:   <span class="ruby-keyword kw">end</span>
+     <span class="ruby-comment cmt"># File abtsystemmanager.rb, line 182</span>
+182:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">verify_package_depends</span>( <span class="ruby-identifier">package</span> )
+183:     <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">false</span>
+184:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>
@@ -455,49 +457,51 @@ names and the values are the package name and the problem detected.
   <p class="source-link">[ <a href="javascript:toggleSource('M000006_source')" id="l_M000006_source">show source</a> ]</p>
   <div id="M000006_source" class="dyn-source">
 <pre>
-     <span class="ruby-comment cmt"># File abtsystemmanager.rb, line 194</span>
-194:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">verify_package_integrity</span>( <span class="ruby-identifier">package</span> )
-195:     <span class="ruby-identifier">require</span> <span class="ruby-node">&quot;#{$PACKAGE_PATH}#{package}&quot;</span>
-196:     <span class="ruby-identifier">sw</span> = <span class="ruby-identifier">eval</span>( <span class="ruby-node">&quot;#{package.capitalize}.new&quot;</span> )
-197:     
-198:     <span class="ruby-identifier">logger</span> = <span class="ruby-constant">AbtLogManager</span>.<span class="ruby-identifier">new</span>
-199:     <span class="ruby-identifier">integrityHash</span> = <span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span>  <span class="ruby-comment cmt"># holds files failing interity check.</span>
-200:             
-201:     <span class="ruby-keyword kw">if</span> <span class="ruby-operator">!</span><span class="ruby-constant">File</span>.<span class="ruby-identifier">exist?</span>( <span class="ruby-node">&quot;#{$PACKAGE_INSTALLED}/#{sw.srcDir}/#{sw.srcDir}.integrity&quot;</span> )
-202:       <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">to_journal</span>( <span class="ruby-node">&quot;Unable to check file integrity for #{package}, integrity log missing!&quot;</span> ) 
-203:       <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">integrityHash</span>   <span class="ruby-comment cmt"># empty hash, no entries.</span>
-204:     <span class="ruby-keyword kw">else</span>
-205:           
-206:       <span class="ruby-comment cmt"># FIXME: pickup each integrity file and check each entry (filename integrityvalue)</span>
-207:       <span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span>( <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">get_log</span>( <span class="ruby-identifier">package</span>, <span class="ruby-value str">&quot;integrity&quot;</span> ) ).<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">line</span><span class="ruby-operator">|</span>
-208:       
-209:         <span class="ruby-comment cmt"># seperate the filepath and integrity value.</span>
-210:         <span class="ruby-identifier">lineArray</span> = <span class="ruby-identifier">line</span>.<span class="ruby-identifier">split</span>( <span class="ruby-value str">':'</span> )
-211:         
-212:         <span class="ruby-comment cmt"># check for existing file.</span>
-213:         <span class="ruby-keyword kw">if</span> <span class="ruby-operator">!</span><span class="ruby-constant">File</span>.<span class="ruby-identifier">exist?</span>( <span class="ruby-identifier">lineArray</span>[<span class="ruby-value">0</span>].<span class="ruby-identifier">chomp</span> )
-214:           <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">to_journal</span>( <span class="ruby-node">&quot;The file : #{lineArray[0].chomp} is missing for #{package}.&quot;</span> )
-215: 
-216:           <span class="ruby-comment cmt"># any failure or discrepency is added to hash: file =&gt; package + problem</span>
-217:           <span class="ruby-identifier">integrityHash</span> = <span class="ruby-identifier">integrityHash</span>.<span class="ruby-identifier">merge</span>( <span class="ruby-constant">Hash</span>[ <span class="ruby-identifier">lineArray</span>[<span class="ruby-value">0</span>].<span class="ruby-identifier">chomp</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-node">&quot;#{package} - file missing.&quot;</span> ] )
-218:         <span class="ruby-keyword kw">end</span>
-219:         
-220:         <span class="ruby-comment cmt"># passed existence check, now integrity check, need to ensure</span>
-221:         <span class="ruby-comment cmt"># value computed matches our logged octal results. This requires</span>
-222:         <span class="ruby-comment cmt"># computing the results, converting to octal, then chop off the </span>
-223:         <span class="ruby-comment cmt"># first char by reversing the string and chopping the last (is</span>
-224:         <span class="ruby-comment cmt"># there a better way?) char and then reversing those results.</span>
-225:         <span class="ruby-identifier">octalResults</span> = <span class="ruby-value str">'%07o'</span> <span class="ruby-operator">%</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">lstat</span>( <span class="ruby-identifier">lineArray</span>[<span class="ruby-value">0</span>].<span class="ruby-identifier">chomp</span> ).<span class="ruby-identifier">mode</span>
-226:         
-227:         <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">lineArray</span>[<span class="ruby-value">1</span>].<span class="ruby-identifier">chomp</span> <span class="ruby-operator">!=</span> <span class="ruby-identifier">octalResults</span>.<span class="ruby-identifier">reverse</span>.<span class="ruby-identifier">chop</span>.<span class="ruby-identifier">reverse</span>
-228:           <span class="ruby-comment cmt"># any failure or discrepency is added to hash: file =&gt; package + problem</span>
-229:           <span class="ruby-identifier">integrityHash</span> = <span class="ruby-identifier">integrityHash</span>.<span class="ruby-identifier">merge</span>( <span class="ruby-constant">Hash</span>[ <span class="ruby-identifier">file</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-node">&quot;#{package} #{sw.description}&quot;</span> ] )  
-230:         <span class="ruby-keyword kw">end</span>
-231:       }      
-232:     <span class="ruby-keyword kw">end</span>
-233:   
-234:     <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">integrityHash</span>
-235:   <span class="ruby-keyword kw">end</span>
+     <span class="ruby-comment cmt"># File abtsystemmanager.rb, line 196</span>
+196:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">verify_package_integrity</span>( <span class="ruby-identifier">package</span> )
+197:     <span class="ruby-identifier">require</span> <span class="ruby-node">&quot;#{$PACKAGE_PATH}#{package}&quot;</span>
+198:     <span class="ruby-identifier">sw</span> = <span class="ruby-identifier">eval</span>( <span class="ruby-node">&quot;#{package.capitalize}.new&quot;</span> )
+199:     
+200:     <span class="ruby-comment cmt"># TODO: refactor myLogger.</span>
+201:     <span class="ruby-identifier">myLogger</span> = <span class="ruby-constant">AbtLogManager</span>.<span class="ruby-identifier">new</span>
+202:     <span class="ruby-identifier">logger</span>   = <span class="ruby-constant">Logger</span>.<span class="ruby-identifier">new</span>( <span class="ruby-identifier">$JOURNAL</span> )
+203:     <span class="ruby-identifier">integrityHash</span> = <span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span>  <span class="ruby-comment cmt"># holds files failing interity check.</span>
+204:             
+205:     <span class="ruby-keyword kw">if</span> <span class="ruby-operator">!</span><span class="ruby-constant">File</span>.<span class="ruby-identifier">exist?</span>( <span class="ruby-node">&quot;#{$PACKAGE_INSTALLED}/#{sw.srcDir}/#{sw.srcDir}.integrity&quot;</span> )
+206:       <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">info</span>( <span class="ruby-node">&quot;Unable to check file integrity for #{package}, integrity log missing!&quot;</span> ) 
+207:       <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">integrityHash</span>   <span class="ruby-comment cmt"># empty hash, no entries.</span>
+208:     <span class="ruby-keyword kw">else</span>
+209:           
+210:       <span class="ruby-comment cmt"># FIXME: pickup each integrity file and check each entry (filename integrityvalue)</span>
+211:       <span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span>( <span class="ruby-identifier">myLogger</span>.<span class="ruby-identifier">get_log</span>( <span class="ruby-identifier">package</span>, <span class="ruby-value str">&quot;integrity&quot;</span> ) ).<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">line</span><span class="ruby-operator">|</span>
+212:       
+213:         <span class="ruby-comment cmt"># seperate the filepath and integrity value.</span>
+214:         <span class="ruby-identifier">lineArray</span> = <span class="ruby-identifier">line</span>.<span class="ruby-identifier">split</span>( <span class="ruby-value str">':'</span> )
+215:         
+216:         <span class="ruby-comment cmt"># check for existing file.</span>
+217:         <span class="ruby-keyword kw">if</span> <span class="ruby-operator">!</span><span class="ruby-constant">File</span>.<span class="ruby-identifier">exist?</span>( <span class="ruby-identifier">lineArray</span>[<span class="ruby-value">0</span>].<span class="ruby-identifier">chomp</span> )
+218:           <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">info</span>( <span class="ruby-node">&quot;The file : #{lineArray[0].chomp} is missing for #{package}.&quot;</span> )
+219: 
+220:           <span class="ruby-comment cmt"># any failure or discrepency is added to hash: file =&gt; package + problem</span>
+221:           <span class="ruby-identifier">integrityHash</span> = <span class="ruby-identifier">integrityHash</span>.<span class="ruby-identifier">merge</span>( <span class="ruby-constant">Hash</span>[ <span class="ruby-identifier">lineArray</span>[<span class="ruby-value">0</span>].<span class="ruby-identifier">chomp</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-node">&quot;#{package} - file missing.&quot;</span> ] )
+222:         <span class="ruby-keyword kw">end</span>
+223:         
+224:         <span class="ruby-comment cmt"># passed existence check, now integrity check, need to ensure</span>
+225:         <span class="ruby-comment cmt"># value computed matches our logged octal results. This requires</span>
+226:         <span class="ruby-comment cmt"># computing the results, converting to octal, then chop off the </span>
+227:         <span class="ruby-comment cmt"># first char by reversing the string and chopping the last (is</span>
+228:         <span class="ruby-comment cmt"># there a better way?) char and then reversing those results.</span>
+229:         <span class="ruby-identifier">octalResults</span> = <span class="ruby-value str">'%07o'</span> <span class="ruby-operator">%</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">lstat</span>( <span class="ruby-identifier">lineArray</span>[<span class="ruby-value">0</span>].<span class="ruby-identifier">chomp</span> ).<span class="ruby-identifier">mode</span>
+230:         
+231:         <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">lineArray</span>[<span class="ruby-value">1</span>].<span class="ruby-identifier">chomp</span> <span class="ruby-operator">!=</span> <span class="ruby-identifier">octalResults</span>.<span class="ruby-identifier">reverse</span>.<span class="ruby-identifier">chop</span>.<span class="ruby-identifier">reverse</span>
+232:           <span class="ruby-comment cmt"># any failure or discrepency is added to hash: file =&gt; package + problem</span>
+233:           <span class="ruby-identifier">integrityHash</span> = <span class="ruby-identifier">integrityHash</span>.<span class="ruby-identifier">merge</span>( <span class="ruby-constant">Hash</span>[ <span class="ruby-identifier">file</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-node">&quot;#{package} #{sw.description}&quot;</span> ] )  
+234:         <span class="ruby-keyword kw">end</span>
+235:       }      
+236:     <span class="ruby-keyword kw">end</span>
+237:   
+238:     <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">integrityHash</span>
+239:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>
@@ -522,10 +526,10 @@ broken, otherwise false.
   <p class="source-link">[ <a href="javascript:toggleSource('M000004_source')" id="l_M000004_source">show source</a> ]</p>
   <div id="M000004_source" class="dyn-source">
 <pre>
-     <span class="ruby-comment cmt"># File abtsystemmanager.rb, line 168</span>
-168:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">verify_symlinks</span>( <span class="ruby-identifier">package</span> )
-169:     <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">false</span>
-170:   <span class="ruby-keyword kw">end</span>
+     <span class="ruby-comment cmt"># File abtsystemmanager.rb, line 170</span>
+170:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">verify_symlinks</span>( <span class="ruby-identifier">package</span> )
+171:     <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">false</span>
+172:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>

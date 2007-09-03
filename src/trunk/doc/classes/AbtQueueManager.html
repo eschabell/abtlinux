@@ -117,8 +117,8 @@ Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
 
   <div class="sectiontitle">Methods</div>
   <ul>
-  <li><a href="#M000093">action_package_queue</a></li>
-  <li><a href="#M000092">new</a></li>
+  <li><a href="#M000092">action_package_queue</a></li>
+  <li><a href="#M000091">new</a></li>
   </ul>
 
 
@@ -129,7 +129,7 @@ Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
 <div class="sectiontitle">Public Class methods</div>
 <div class="method">
   <div class="title">
-    <a name="M000092"></a><b>new</b>()
+    <a name="M000091"></a><b>new</b>()
   </div>
   <div class="description">
   <p>
@@ -142,8 +142,8 @@ an initialized <a href="AbtQueueManager.html">AbtQueueManager</a> object.
 </p>
   </div>
 <div class="sourcecode">
-  <p class="source-link">[ <a href="javascript:toggleSource('M000092_source')" id="l_M000092_source">show source</a> ]</p>
-  <div id="M000092_source" class="dyn-source">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000091_source')" id="l_M000091_source">show source</a> ]</p>
+  <div id="M000091_source" class="dyn-source">
 <pre>
     <span class="ruby-comment cmt"># File abtqueuemanager.rb, line 41</span>
 41:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>
@@ -155,7 +155,7 @@ an initialized <a href="AbtQueueManager.html">AbtQueueManager</a> object.
 <div class="sectiontitle">Public Instance methods</div>
 <div class="method">
   <div class="title">
-    <a name="M000093"></a><b>action_package_queue</b>( package, queue, action=&quot;add&quot; )
+    <a name="M000092"></a><b>action_package_queue</b>( package, queue, action=&quot;add&quot; )
   </div>
   <div class="description">
   <p>
@@ -171,13 +171,13 @@ in the queue then it will not be added twice and return succes.
 </p>
   </div>
 <div class="sourcecode">
-  <p class="source-link">[ <a href="javascript:toggleSource('M000093_source')" id="l_M000093_source">show source</a> ]</p>
-  <div id="M000093_source" class="dyn-source">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000092_source')" id="l_M000092_source">show source</a> ]</p>
+  <div id="M000092_source" class="dyn-source">
 <pre>
      <span class="ruby-comment cmt"># File abtqueuemanager.rb, line 54</span>
  54:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">action_package_queue</span>( <span class="ruby-identifier">package</span>, <span class="ruby-identifier">queue</span>, <span class="ruby-identifier">action</span>=<span class="ruby-value str">&quot;add&quot;</span> )
  55:     <span class="ruby-identifier">require</span> <span class="ruby-value str">'fileutils'</span>
- 56:     <span class="ruby-identifier">logger</span> = <span class="ruby-constant">AbtLogManager</span>.<span class="ruby-identifier">new</span>
+ 56:     <span class="ruby-identifier">logger</span> = <span class="ruby-constant">Logger</span>.<span class="ruby-identifier">new</span>( <span class="ruby-identifier">$JOURNAL</span> )
  57:     <span class="ruby-identifier">queueFile</span> = <span class="ruby-value str">&quot;&quot;</span>  <span class="ruby-comment cmt"># used to hold the queue location.</span>
  58:     
  59:     <span class="ruby-comment cmt"># want to name install queue differently from log files.</span>
@@ -198,43 +198,42 @@ in the queue then it will not be added twice and return succes.
  74:             <span class="ruby-operator">!</span><span class="ruby-identifier">checkingQueue</span>.<span class="ruby-identifier">collect</span>{ <span class="ruby-operator">|</span><span class="ruby-identifier">i</span><span class="ruby-operator">|</span> <span class="ruby-identifier">i</span>.<span class="ruby-identifier">split</span>( <span class="ruby-value str">'|'</span> )[<span class="ruby-value">0</span>] }.<span class="ruby-identifier">include?</span>( 
  75:                                                                  <span class="ruby-identifier">package</span> ) )
  76:           <span class="ruby-identifier">log</span>.<span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;#{package}|#{$TIMESTAMP}&quot;</span>
- 77:           <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">to_journal</span>( <span class="ruby-node">&quot;Added #{package} to #{queue} queue.&quot;</span> )
+ 77:           <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">info</span>( <span class="ruby-node">&quot;Added #{package} to #{queue} queue.&quot;</span> )
  78:         <span class="ruby-keyword kw">else</span>
- 79:           <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">to_journal</span>( 
- 80:             <span class="ruby-node">&quot;Did not add #{package} to #{queue}, already exists.&quot;</span> )
- 81:         <span class="ruby-keyword kw">end</span>
- 82:         
- 83:         <span class="ruby-identifier">log</span>.<span class="ruby-identifier">close</span>
- 84:         <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">true</span>
- 85:       <span class="ruby-keyword kw">end</span>
- 86:     <span class="ruby-keyword kw">end</span>
- 87:     
- 88:     <span class="ruby-keyword kw">if</span> ( <span class="ruby-identifier">action</span> <span class="ruby-operator">==</span> <span class="ruby-value str">&quot;remove&quot;</span> )
- 89:       <span class="ruby-comment cmt"># remove entry from given queue.</span>
- 90:       <span class="ruby-keyword kw">if</span> ( 
- 91:           <span class="ruby-identifier">log</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">new</span>( <span class="ruby-identifier">queueFile</span>, <span class="ruby-constant">File</span><span class="ruby-operator">::</span><span class="ruby-constant">WRONLY</span><span class="ruby-operator">|</span><span class="ruby-constant">File</span><span class="ruby-operator">::</span><span class="ruby-constant">APPEND</span><span class="ruby-operator">|</span><span class="ruby-constant">File</span><span class="ruby-operator">::</span><span class="ruby-constant">CREAT</span>, <span class="ruby-value">0644</span> ) )
- 92:         <span class="ruby-comment cmt"># use temp file to filter out entry to be removed.</span>
- 93:         <span class="ruby-identifier">temp</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">queueFile</span> <span class="ruby-operator">+</span> <span class="ruby-value str">&quot;.tmp&quot;</span>, <span class="ruby-value str">&quot;a+&quot;</span>)
- 94:         
- 95:         <span class="ruby-comment cmt"># now check for line to be removed.</span>
- 96:         <span class="ruby-constant">IO</span>.<span class="ruby-identifier">foreach</span>( <span class="ruby-identifier">queueFile</span> ) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">line</span><span class="ruby-operator">|</span>
- 97:           <span class="ruby-identifier">entryName</span> = <span class="ruby-identifier">line</span>.<span class="ruby-identifier">split</span>( <span class="ruby-value str">'|'</span> )[<span class="ruby-value">0</span>]
- 98:           <span class="ruby-keyword kw">if</span> ( <span class="ruby-identifier">entryName</span> <span class="ruby-operator">!=</span> <span class="ruby-identifier">package</span>.<span class="ruby-identifier">downcase</span> )
- 99:             <span class="ruby-identifier">temp</span>.<span class="ruby-identifier">puts</span> <span class="ruby-identifier">line</span>
-100:           <span class="ruby-keyword kw">end</span>
-101:         <span class="ruby-keyword kw">end</span>
-102:         
-103:         <span class="ruby-identifier">temp</span>.<span class="ruby-identifier">close</span>
-104:         <span class="ruby-constant">FileUtils</span>.<span class="ruby-identifier">mv</span>( <span class="ruby-identifier">temp</span>.<span class="ruby-identifier">path</span>, <span class="ruby-identifier">queueFile</span> )
-105:       <span class="ruby-keyword kw">end</span>
-106:       
-107:       <span class="ruby-identifier">log</span>.<span class="ruby-identifier">close</span>
-108:       <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">true</span>
-109:     <span class="ruby-keyword kw">end</span>
-110:     
-111:     <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">to_journal</span>( <span class="ruby-node">&quot;Failed to open #{queueFile}.&quot;</span> )
-112:     <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">false</span>
-113:   <span class="ruby-keyword kw">end</span>
+ 79:           <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">info</span>( <span class="ruby-node">&quot;Did not add #{package} to #{queue}, already exists.&quot;</span> )
+ 80:         <span class="ruby-keyword kw">end</span>
+ 81:         
+ 82:         <span class="ruby-identifier">log</span>.<span class="ruby-identifier">close</span>
+ 83:         <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">true</span>
+ 84:       <span class="ruby-keyword kw">end</span>
+ 85:     <span class="ruby-keyword kw">end</span>
+ 86:     
+ 87:     <span class="ruby-keyword kw">if</span> ( <span class="ruby-identifier">action</span> <span class="ruby-operator">==</span> <span class="ruby-value str">&quot;remove&quot;</span> )
+ 88:       <span class="ruby-comment cmt"># remove entry from given queue.</span>
+ 89:       <span class="ruby-keyword kw">if</span> ( 
+ 90:           <span class="ruby-identifier">log</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">new</span>( <span class="ruby-identifier">queueFile</span>, <span class="ruby-constant">File</span><span class="ruby-operator">::</span><span class="ruby-constant">WRONLY</span><span class="ruby-operator">|</span><span class="ruby-constant">File</span><span class="ruby-operator">::</span><span class="ruby-constant">APPEND</span><span class="ruby-operator">|</span><span class="ruby-constant">File</span><span class="ruby-operator">::</span><span class="ruby-constant">CREAT</span>, <span class="ruby-value">0644</span> ) )
+ 91:         <span class="ruby-comment cmt"># use temp file to filter out entry to be removed.</span>
+ 92:         <span class="ruby-identifier">temp</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">queueFile</span> <span class="ruby-operator">+</span> <span class="ruby-value str">&quot;.tmp&quot;</span>, <span class="ruby-value str">&quot;a+&quot;</span>)
+ 93:         
+ 94:         <span class="ruby-comment cmt"># now check for line to be removed.</span>
+ 95:         <span class="ruby-constant">IO</span>.<span class="ruby-identifier">foreach</span>( <span class="ruby-identifier">queueFile</span> ) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">line</span><span class="ruby-operator">|</span>
+ 96:           <span class="ruby-identifier">entryName</span> = <span class="ruby-identifier">line</span>.<span class="ruby-identifier">split</span>( <span class="ruby-value str">'|'</span> )[<span class="ruby-value">0</span>]
+ 97:           <span class="ruby-keyword kw">if</span> ( <span class="ruby-identifier">entryName</span> <span class="ruby-operator">!=</span> <span class="ruby-identifier">package</span>.<span class="ruby-identifier">downcase</span> )
+ 98:             <span class="ruby-identifier">temp</span>.<span class="ruby-identifier">puts</span> <span class="ruby-identifier">line</span>
+ 99:           <span class="ruby-keyword kw">end</span>
+100:         <span class="ruby-keyword kw">end</span>
+101:         
+102:         <span class="ruby-identifier">temp</span>.<span class="ruby-identifier">close</span>
+103:         <span class="ruby-constant">FileUtils</span>.<span class="ruby-identifier">mv</span>( <span class="ruby-identifier">temp</span>.<span class="ruby-identifier">path</span>, <span class="ruby-identifier">queueFile</span> )
+104:       <span class="ruby-keyword kw">end</span>
+105:       
+106:       <span class="ruby-identifier">log</span>.<span class="ruby-identifier">close</span>
+107:       <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">true</span>
+108:     <span class="ruby-keyword kw">end</span>
+109:     
+110:     <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">info</span>( <span class="ruby-node">&quot;Failed to open #{queueFile}.&quot;</span> )
+111:     <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">false</span>
+112:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>
