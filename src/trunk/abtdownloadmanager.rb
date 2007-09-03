@@ -55,17 +55,17 @@ class AbtDownloadManager
   ##
   def retrieve_package_source( packageName, destination )
     require "#{$PACKAGE_PATH}#{packageName}"
-    logger		= AbtLogManager.new
+    logger		= Logger.new($JOURNAL)
     package		= eval( packageName.capitalize + '.new' )
     
     if ( File.exist?( "#{destination}/#{File.basename( package.srcUrl )}" ) )
-      logger.to_journal( "Download not needed, existing source found for #{packageName}" )
+      logger.info( "Download not needed, existing source found for #{packageName}" )
       return true
     end
     
     Dir.chdir( destination )
     if ( system( "wget #{package.srcUrl}" ) )
-      logger.to_journal( "Download completed for #{packageName}" )
+      logger.info( "Download completed for #{packageName}" )
       return true
     end
     
@@ -98,7 +98,7 @@ class AbtDownloadManager
     require 'rss/1.0'
     require 'rss/2.0'
     newsLog = ""
-    logger	= AbtLogManager.new
+    logger	= Logger.new( $JOURNAL)
     
     # ensure we have our news logfile.
     if ( cleanLog )
@@ -109,7 +109,7 @@ class AbtDownloadManager
     
     # pick up the abtlinux.org news feed.
     if ( !news = Net::HTTP.get( URI.parse( uri ) ) )
-      logger.to_journal( "Failed to retrieve news feed #{uri}." )
+      logger.info( "Failed to retrieve news feed #{uri}." )
       return false
     end
     
@@ -121,8 +121,7 @@ class AbtDownloadManager
     end 
     
     if ( rss.nil? )
-      logger.to_journal( "Failed to display news feed as feed #{uri} " +
-        "is not RSS 1.0/2.0." )
+      logger.info( "Failed to display news feed as feed #{uri} is not RSS 1.0/2.0." )
       return false
     else
       newsLog << "*** #{rss.channel.title} ***\n"
@@ -169,16 +168,16 @@ class AbtDownloadManager
   # otherwise false.
   ##
   def validated( hashvalue, path )
-    logger = AbtLogManager.new
+    logger = Logger.new( $JOURNAL )
     
     if hashvalue == Digest::SHA1.hexdigest( path )
       puts "Source hash validated successfully..."
-      logger.to_journal( "Validated sources successfully..." )
+      logger.info( "Validated sources successfully..." )
       return true
     end
 
     puts "Source hash failed validation..."
-    logger.to_journal( "Validating sources failed..." )
+    logger.info( "Validating sources failed..." )
     return false
   end
 end

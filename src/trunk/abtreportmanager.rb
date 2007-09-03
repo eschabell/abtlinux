@@ -86,7 +86,7 @@ class AbtReportManager
       return true
     end
     
-    logger.to_journal( "[AbtReportManger::showPackageDetails] - failed to show details for ${package}." )
+    logger.debug( "[AbtReportManger::showPackageDetails] - failed to show details for ${package}." )
     return false
   end
   

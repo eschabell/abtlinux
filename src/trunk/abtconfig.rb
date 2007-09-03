@@ -38,6 +38,7 @@ require 'abtusage'
 
 require 'fileutils'
 require 'find'
+require 'logger'
 require 'digest/sha1'
 
 # default paths / locations.
@@ -47,7 +48,7 @@ $ABT_STATE          = "/var/state/abt"
 $ABT_TMP            = "/tmp/abt"
 $ABTNEWS_LOG        = "#{$ABT_LOGS}/news.log"
 $BUILD_LOCATION		= "/usr/src"
-$JOURNAL			= "#{$ABT_LOGS}/journal.log"
+$JOURNAL			= "#{$ABT_LOGS}/journal.log, File::WRONLY | File::APPEND | File::CREAT"  # use logger.info.
 $PACKAGE_INSTALLED  = "#{$ABT_STATE}/installed"
 $PACKAGE_CACHED     = "#{$ABT_STATE}/cached"
 $PACKAGE_PATH       = "#{$ABT_CACHES}/packages/"
@@ -63,6 +64,7 @@ $DEFAULT_PREFIX        = "/usr/local"
 $REMOVE_BUILD_SOURCES  = true
 $TIMESTAMP             = Time.now.strftime( "%Y-%m-%d %H:%M:%S (%Z)" )
 $PAGER_DEFAULT         = "less -R -E -X -f"
+$LOG_LEVEL             = "Logger::DEBUG"
 
 
 # default URL listing.

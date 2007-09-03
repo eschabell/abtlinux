@@ -105,10 +105,4 @@ class TestAbtLogManager < Test::Unit::TestCase
     assert( @logger.cache_package( "ipc" ), "test_cache_package()" )
   end
   
-  ##
-  # Test method for 'AbtLogManager.test_to_journal()'
-  ## 
-  def test_to_journal()
-    assert( @logger.to_journal( "Test message from AbtTestSuite." ), "test_to_journal()" )
-  end
 end

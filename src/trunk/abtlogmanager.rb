@@ -78,12 +78,13 @@ class AbtLogManager
   # <b>RETURN</b> <i>AbtLogManager</i> - an initialized AbtLogManager object.
   ##
   def initialize
+	logger = Logger.new( $JOURNAL )
     [$ABT_LOGS, $ABT_CACHES, $ABT_STATE, $BUILD_LOCATION, $PACKAGE_INSTALLED,
     $PACKAGE_CACHED, $ABT_TMP, $SOURCES_REPOSITORY].each { |dir|
       
       if ( ! File.directory?( dir ) )
         FileUtils.mkdir_p( dir )
-        to_journal( "Created directory: #{dir}." )
+        logger.info( "Created directory: #{dir}." )
       end
     }
   end
@@ -284,21 +285,4 @@ class AbtLogManager
     return false  # package not installed, can't cache it.
   end
   
-  ##
-  # Provides logging of given message to the AbTLinux journal. Message logged
-  # with date timestamp.
-  #
-  # <b>PARAM</b> <i>String</i> - Message to be added to the log.
-  #
-  # <b>RETURN</b> <i>boolean</i> True if logged, otherwise false.
-  ##
-  def to_journal( message )
-    if ( log = File.new( $JOURNAL, "a+" ) )
-      log << "#{$TIMESTAMP} : #{message}\n"
-      log.close
-      return true
-    end
-    
-    return false
-  end
 end

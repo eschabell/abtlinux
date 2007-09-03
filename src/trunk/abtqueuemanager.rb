@@ -53,7 +53,7 @@ class AbtQueueManager
   ##
   def action_package_queue( package, queue, action="add" )
     require 'fileutils'
-    logger = AbtLogManager.new
+    logger = Logger.new( $JOURNAL )
     queueFile = ""  # used to hold the queue location.
     
     # want to name install queue differently from log files.
@@ -74,10 +74,9 @@ class AbtQueueManager
             !checkingQueue.collect{ |i| i.split( '|' )[0] }.include?( 
                                                                  package ) )
           log.puts "#{package}|#{$TIMESTAMP}"
-          logger.to_journal( "Added #{package} to #{queue} queue." )
+          logger.info( "Added #{package} to #{queue} queue." )
         else
-          logger.to_journal( 
-            "Did not add #{package} to #{queue}, already exists." )
+          logger.info( "Did not add #{package} to #{queue}, already exists." )
         end
         
         log.close
@@ -108,7 +107,7 @@ class AbtQueueManager
       return true
     end
     
-    logger.to_journal( "Failed to open #{queueFile}." )
+    logger.info( "Failed to open #{queueFile}." )
     return false
   end  
 end

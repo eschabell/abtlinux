@@ -79,12 +79,12 @@ class AbtSystemManager
   # false.
   ##
   def cleanup_package_sources( verbose=true)
-    logger       = AbtLogManager.new
+    logger       = Logger.new( $JOURNAL )
     sourcesArray = Array.new
     
     if ( Dir.entries( $PACKAGE_INSTALLED ) - [ '.', '..' ] ).empty?
       FileUtils.remove Dir.glob( "#{$SOURCES_REPOSITORY}/*" ), :verbose => verbose, :force => true
-      logger.to_journal( "Cleanup of package sources done, encountered an empty installation listing?" )
+      logger.info( "Cleanup of package sources done, encountered an empty installation listing?" )
       return true
     else
       Dir.foreach( $PACKAGE_INSTALLED ) { |package| 
@@ -105,7 +105,7 @@ class AbtSystemManager
     end
 
     if ( Dir.entries( $SOURCES_REPOSITORY ) - [ '.', '..' ] ).empty?
-      logger.to_journal( "Cleanup of package sources done, encountered an empty sources repository?" )
+      logger.info( "Cleanup of package sources done, encountered an empty sources repository?" )
       return false
     else
       if ( verbose )
@@ -132,22 +132,24 @@ class AbtSystemManager
   # otherwise false.
   ##
   def verify_installed_files( package )
-    logger = AbtLogManager.new
+    logger = Logger.new( $JOURNAL )
+    # TODO: refactor myLogger:
+    myLogger = AbtLogManager.new
     
     if !package_installed( package )
-      logger.to_journal( "Unable to verify installed files for #{package}, it's not installed!")
+      logger.info( "Unable to verify installed files for #{package}, it's not installed!")
       return false
     end
     
-    if !File.exist?( logger.get_log( package, 'install' ) )
-      logger.to_journal( "Unable to verify installed files for #{package}, installed package but install log missing!" ) 
+    if !File.exist?( myLogger.get_log( package, 'install' ) )
+      logger.info( "Unable to verify installed files for #{package}, installed package but install log missing!" ) 
       return false
     end
     
     failure = false  # marker after checking all files to determine failure.
-    File.open( logger.get_log( package, "install" ) ).each { |line| 
+    File.open( myLogger.get_log( package, "install" ) ).each { |line| 
       if !File.exist?( line.chomp )
-        logger.to_journal( "The file : #{line.chomp} is missing for #{package}." )
+        logger.info( "The file : #{line.chomp} is missing for #{package}." )
         failure = true
       end
     }
@@ -195,23 +197,25 @@ class AbtSystemManager
     require "#{$PACKAGE_PATH}#{package}"
     sw = eval( "#{package.capitalize}.new" )
     
-    logger = AbtLogManager.new
+    # TODO: refactor myLogger.
+    myLogger = AbtLogManager.new
+    logger   = Logger.new( $JOURNAL )
     integrityHash = Hash.new  # holds files failing interity check.
             
     if !File.exist?( "#{$PACKAGE_INSTALLED}/#{sw.srcDir}/#{sw.srcDir}.integrity" )
-      logger.to_journal( "Unable to check file integrity for #{package}, integrity log missing!" ) 
+      logger.info( "Unable to check file integrity for #{package}, integrity log missing!" ) 
       return integrityHash   # empty hash, no entries.
     else
           
       # FIXME: pickup each integrity file and check each entry (filename integrityvalue)
-      File.open( logger.get_log( package, "integrity" ) ).each { |line|
+      File.open( myLogger.get_log( package, "integrity" ) ).each { |line|
       
         # seperate the filepath and integrity value.
         lineArray = line.split( ':' )
         
         # check for existing file.
         if !File.exist?( lineArray[0].chomp )
-          logger.to_journal( "The file : #{lineArray[0].chomp} is missing for #{package}." )
+          logger.info( "The file : #{lineArray[0].chomp} is missing for #{package}." )
 
           # any failure or discrepency is added to hash: file => package + problem
           integrityHash = integrityHash.merge( Hash[ lineArray[0].chomp => "#{package} - file missing." ] )

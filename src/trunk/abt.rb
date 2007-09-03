@@ -30,12 +30,19 @@ require 'abtconfig'
 # Setup needed classes and get ready to parse arguments.
 ##
 manager    = AbtPackageManager.new
-logger     = AbtLogManager.new     # initializes all needed paths.
+logger     = Logger.new($JOURNAL)     # initializes all needed paths.
 reporter   = AbtReportManager.new
 downloader = AbtDownloadManager.new
 system     = AbtSystemManager.new
 options    = Hash.new
 show       = AbtUsage.new
+
+# setup timestamp.
+logger.datetime_format = "%Y-%m-%d %H:%M:%S "
+
+
+# TODO: used only until refactoring done.
+myLogger   = AbtLogManager.new
 
 # deal with usage request.
 if ( ARGV.length == 0 || ( ARGV.length == 1 && ( ARGV[0] == '--help' || ARGV[0] == '-h'  || ARGV[0].downcase == 'help' ) ) )
@@ -53,13 +60,13 @@ case ARGV[0]
 when "install", "-i"
   if ( ARGV.length == 2 && File.exist?( "#{$PACKAGE_PATH}#{ARGV[1]}.rb" ) )
     options['package'] = ARGV[1]
-    logger.to_journal( "Starting to install #{options['package']}" )
+    logger.info( "Starting to install #{options['package']}" )
     
     # return if already installed.
     if ( system.package_installed( options['package'] ) )
       puts "\n*** Package #{options['package']} is installed, might want to try reinstall? ***"
       puts "\n\tabt reinstall #{options['package']}\n\n"
-      logger.to_journal( "Completed install of #{options['package']}." )
+      logger.info( "Completed install of #{options['package']}." )
       exit
     end
     
@@ -67,15 +74,15 @@ when "install", "-i"
       puts "\n\n"
       puts "*** Completed install of #{options['package']}. ***"
       puts "\n\n"
-      logger.to_journal( "Completed install of #{options['package']}." )
+      logger.info( "Completed install of #{options['package']}." )
       
-      if ( logger.cache_package( options['package'] ) )
+      if ( myLogger.cache_package( options['package'] ) )
         puts "\n\n"
         puts "*** Completed caching of package #{options['package']}. ***"
         puts "\n\n"
-        logger.to_journal( "Caching completed for package #{options['package']}." )
+        logger.info( "Caching completed for package #{options['package']}." )
       else
-        logger.to_journal( "Caching of package #{options['package']} failed.")
+        logger.info( "Caching of package #{options['package']} failed.")
       end
     else
       puts "*** #{options['package'].capitalize} install failed, see journal. ***"
@@ -88,7 +95,7 @@ when "install", "-i"
 when "reinstall", "-ri"
   if ( ARGV.length == 2 && File.exist?( "#{$PACKAGE_PATH}#{ARGV[1]}.rb" ) )
     options['package'] = ARGV[1]
-    logger.to_journal( "Starting to reinstall #{options['package']}" )
+    logger.info( "Starting to reinstall #{options['package']}" )
     
     # check if already installed.
     if ( system.package_installed( options['package'] ) )
@@ -118,7 +125,7 @@ when "reinstall", "-ri"
       puts "\n\n"
       puts "*** Completed reinstall of #{options['package']}. ***"
       puts "\n\n"
-      logger.to_journal( "Completed reinstall of #{options['package']}." )
+      logger.info( "Completed reinstall of #{options['package']}." )
     else
       puts "*** #{options['package'].capitalize} reinstall failed, see journal. ***"
     end    
@@ -131,14 +138,14 @@ when "remove", "-r"
   if ( ARGV.length == 2 )
     options['package'] = ARGV[1]
     puts "Starting to remove #{options['package']}."
-    logger.to_journal( "Starting to remove #{options['package']}." )
+    logger.info( "Starting to remove #{options['package']}." )
     
     # return if not installed.
     if ( !( system.package_installed( options['package'] ) ) )
       puts "\n\n"
       puts "*** No need to remove #{options['package']}, it was not installed! ***"
       puts "\n\n"
-      logger.to_journal( "Completed removal of #{options['package']}." )
+      logger.info( "Completed removal of #{options['package']}." )
       exit
     end
 
@@ -147,7 +154,7 @@ when "remove", "-r"
       puts "\n\n"
       puts "*** Completed removal of #{options['package']}. ***"
       puts "\n\n"
-      logger.to_journal( "Completed removal of #{options['package']}." )
+      logger.info( "Completed removal of #{options['package']}." )
     end  
   else
     show.usage( "packages" )
@@ -179,7 +186,7 @@ when "freeze", "-f"
 when "search", "-s"
   if ( ARGV.length == 2 )
     options['searchString'] = ARGV[1]
-    logger.to_journal( "Starting search of package descriptions for : #{options['searchString']}" )
+    logger.info( "Starting search of package descriptions for : #{options['searchString']}" )
     searchResults = reporter.search_package_descriptions( options['searchString'].chomp )
     if ( searchResults.empty? )
       puts "\nNothing found matching your search query."
@@ -191,7 +198,7 @@ when "search", "-s"
       searchResults.each_pair { |name, description| puts "#{name} \t: #{description}"  }
     end
     
-    logger.to_journal( "Completed search of package descriptions for : #{options['searchString']}" )
+    logger.info( "Completed search of package descriptions for : #{options['searchString']}" )
   else
     show.usage( "queries" )
     exit
@@ -210,10 +217,10 @@ when "-v", "--version"
 when "show-details"
   if ( ARGV.length == 2 && File.exist?( $PACKAGE_PATH + ARGV[1] + ".rb" ) )
     options['pkg'] = ARGV[1]
-    logger.to_journal( "Starting show details for #{options['pkg']}" )
+    logger.info( "Starting show details for #{options['pkg']}" )
     
     if ( reporter.show_package_details( options['pkg'] ) )
-      logger.to_journal( "Completed show details for #{options['pkg']}" )
+      logger.info( "Completed show details for #{options['pkg']}" )
     else
       puts "Problems processing the details for #{options['pkg']}."
     end
@@ -364,7 +371,7 @@ when "html"
   
   # abt news | -n
 when "news", "-n"
-  logger.to_journal( "Starting to retrieve AbTLinux news." )
+  logger.info( "Starting to retrieve AbTLinux news." )
   
   # abtlinux.org news feeds.
   puts "\n"
@@ -385,24 +392,24 @@ when "news", "-n"
   # display the file contents.
   reporter.show_journal( $ABTNEWS_LOG )
   
-  logger.to_journal( "Completed the retrieval of AbTLinux news." )
+  logger.info( "Completed the retrieval of AbTLinux news." )
   
   # abt [-d | download ] <package>
 when "download", "-d"
   if ( ARGV.length == 2 && File.exist?( $PACKAGE_PATH + ARGV[1] + ".rb" ) )
     options['pkg'] = ARGV[1]
-    logger.to_journal( "Starting to download " + options['pkg'] )
+    logger.info( "Starting to download " + options['pkg'] )
     
     manager = AbtDownloadManager.new
     
     if ( manager.retrieve_package_source( options['pkg'], $SOURCES_REPOSITORY ) )
-      logger.to_journal( "Finished download for " + options['pkg'] )
+      logger.info( "Finished download for " + options['pkg'] )
       puts  "\n";
       print "Downloading of #{options['pkg']} to #{$SOURCES_REPOSITORY} "
       puts  "completed."
       puts  "\n\n"
     else
-      logger.to_journal( "FAILURE to download " + options['pkg'] )
+      logger.info( "FAILURE to download " + options['pkg'] )
       puts  "\n"
       puts "DOWNLOADING - failed to download source for #{options['pkg']}"
       puts "\n\n"
@@ -424,13 +431,13 @@ when "update", "-u"
   
 when "purge-src"
   if ( ARGV.length == 1 )
-    logger.to_journal( "Starting to purge sources from packages that are not installed.")
+    logger.info( "Starting to purge sources from packages that are not installed.")
     if ( system.cleanup_package_sources )
       puts "\nPurged sources from packages that are not installed."
-      logger.to_journal( "Finished purging sources from packages that are not installed.")
+      logger.info( "Finished purging sources from packages that are not installed.")
     else
       puts "\nUnable to complete a purge of sources from packages that are not installed, see journal."
-      logger.to_journal( "Cleanup of package sources encountered problems, see journal." )
+      logger.info( "Cleanup of package sources encountered problems, see journal." )
     end
   else  
     show.usage( "fix" )
@@ -440,15 +447,15 @@ when "purge-src"
 when "verify-files"
   if ( ARGV.length == 2 )
     options['package'] = ARGV[1]
-    logger.to_journal( "Starting verifcation of files for package : #{options['package']}.")
+    logger.info( "Starting verifcation of files for package : #{options['package']}.")
 
     if system.verify_installed_files( options['package'] )
       puts "\nInstalled files verified for package : #{options['package']}"
-      logger.to_journal( "Finished verifcation of files for package : #{options['package']}.")
+      logger.info( "Finished verifcation of files for package : #{options['package']}.")
       exit
     end
     
-    logger.to_journal( "Finished verifcation of files for package : #{options['package']}.")
+    logger.info( "Finished verifcation of files for package : #{options['package']}.")
     puts "/nInstalled files verification for package : #{options['package']} failed, see journal."
   else
     show.usage( "fix" )
@@ -478,18 +485,18 @@ when "verify-deps"
 when "verify-integrity"
   if ( ARGV.length == 2 )
     options['package'] = ARGV[1]
-    logger.to_journal( "Starting verification of files for package : #{options['package']}.")
+    logger.info( "Starting verification of files for package : #{options['package']}.")
 
     integrityHash = system.verify_package_integrity( options['package'] )
     if integrityHash.empty?
       puts "\nInstalled files integrity check completed without problems being detected for package : #{options['package']}"
-      logger.to_journal( "Finished verification of files for package : #{options['package']}.")
+      logger.info( "Finished verification of files for package : #{options['package']}.")
       exit
     end
     
     integrityHash.each_pair {|file, problem| 
       puts "Problem with #{file} from package #{problem}"
-      logger.to_journal( "Problem with #{file} from package #{problem}." )
+      logger.info( "Problem with #{file} from package #{problem}." )
     }
     
     puts "/nInstalled files integrity check failed for package : #{options['package']} failed, see journal."

@@ -92,7 +92,10 @@ class AbtPackageManager
     require "#{$PACKAGE_PATH}#{package}"
     sw = eval( "#{package.capitalize}.new" )
     queuer = AbtQueueManager.new
-    logger = AbtLogManager.new
+    logger = Logger.new( $JOURNAL )
+    
+    # TODO: refactor myLogger:
+    myLogger = AbtLogManager.new
     
     # get package details.
     details = sw.details
@@ -103,7 +106,7 @@ class AbtPackageManager
     puts "\n*** Adding #{package} to the INSTALL QUEUE. ***" if ( verbose )
     
     if ( !queuer.action_package_queue( package, "install", "add" ) )
-      logger.to_journal( "Failed to add #{package} to install queue." )
+      logger.info( "Failed to add #{package} to install queue." )
       return false
     end
     
@@ -111,48 +114,44 @@ class AbtPackageManager
     puts "\n*** Processing the PRE section for #{package}. ***" if (verbose )
     
     if ( !sw.pre )
-      logger.to_journal( "Failed to process pre-section in the " + 
-        "package description of #{package}." )
+      logger.info( "Failed to process pre-section in the package description of #{package}." )
       return false
     else
-      logger.to_journal( "Finished #{package} pre section." )
+      logger.info( "Finished #{package} pre section." )
     end
     
     # configure section.
     puts "\n*** Processing the CONFIGURE section for #{package}. ***" if ( verbose )
     
     if ( !sw.configure( verbose ) )
-      logger.to_journal( "Failed to process configure section in the " + 
-        "package description of #{package}." )
+      logger.info( "Failed to process configure section in the package description of #{package}." )
       return false
     else
-      logger.to_journal( "Finished #{package} configure section." )
+      logger.info( "Finished #{package} configure section." )
     end
     
     # build section.
     puts "\n*** Processing the BUILD section for #{package}. ***" if ( verbose )
     
     if ( !sw.build( verbose ) )
-      logger.to_journal( "Failed to process build section in the " + 
-        "package description of #{package}." )
+      logger.info( "Failed to process build section in the package description of #{package}." )
       return false
     else
-      if ( !logger.log_package_build( sw.name.downcase ) ) 
-        logger.to_journal( "Failed to create a package build log." )
+      if ( !myLogger.log_package_build( sw.name.downcase ) ) 
+        logger.info( "Failed to create a package build log." )
         return false
       end
-      logger.to_journal( "Finished #{package} build section." )
+      logger.info( "Finished #{package} build section." )
     end
     
     # preinstall section.
     puts "\n*** Processing the PREINSTALL section for #{package}. ***" if ( verbose )
     
     if ( !sw.preinstall )
-      logger.to_journal( "Failed to process preinstall section in the " + 
-        "package description of #{package}." )
+      logger.info( "Failed to process preinstall section in the package description of #{package}." )
       return false
     else
-      logger.to_journal( "Finished #{package} preinstall section." )
+      logger.info( "Finished #{package} preinstall section." )
     end
     
     # install section.
@@ -160,43 +159,42 @@ class AbtPackageManager
 
     if ( !sw.install )
       # rollback installed files if any and remove install log.
-      logger.to_journal( "Failed to process install section in the " + 
-        "package description of #{package}." )
-      logger.log_package_install( sw.name.downcase )
-      logger.to_journal( "***Starting rollback of #{package} install and removing install log." )
+      logger.info( "Failed to process install section in the package description of #{package}." )
+      myLogger.log_package_install( sw.name.downcase )
+      logger.info( "***Starting rollback of #{package} install and removing install log." )
       roll_back( "install", details )
       return false
     else
-      logger.log_package_install( sw.name.downcase )
-      logger.log_package_integrity( sw.name.downcase )
+      myLogger.log_package_install( sw.name.downcase )
+      myLogger.log_package_integrity( sw.name.downcase )
       
       # cleanup tmp files from installwatch.
       File.delete( "#{$ABT_TMP}/#{details['Source location']}.watch" )
 
-      logger.to_journal( "Finished #{package} install section." )
+      logger.info( "Finished #{package} install section." )
     end
     
     # post section.
     puts "\n*** Processing the POST section for #{package}. ***" if ( verbose )
     
     if ( !sw.post )
-      logger.to_journal( "Failed to process post section in the package description of #{package}." )
+      logger.info( "Failed to process post section in the package description of #{package}." )
       return false
     else
-      logger.to_journal( "Finished #{package} post section." )
+      logger.info( "Finished #{package} post section." )
     end
     
     # clean out build sources.        
     puts "\n*** Cleaning up the sources for #{package}. ***" if ( verbose )
     
     if ( !sw.remove_build )
-      logger.to_journal( "Failed to remove the build sources for #{package}." )
+      logger.info( "Failed to remove the build sources for #{package}." )
       #return false  # commented out as this is not a reason to fail.
     end
     
     # remove pacakge from install queue.
     if ( !queuer.action_package_queue( sw.name.downcase, "install", "remove" ) )
-      logger.to_journal( "Failed to remove #{sw.name.downcase} from install queue." )
+      logger.info( "Failed to remove #{sw.name.downcase} from install queue." )
     end
     
     return true # install completed!
@@ -213,22 +211,24 @@ class AbtPackageManager
   # otherwise false.
   ##
   def reinstall_package( package )
-    logger = AbtLogManager.new
+    logger = Logger.new( $JOURNAL )
+    # TODO: look into refactoring myLogger:
+    myLogger = AbtLogManager.new
     
     if ( install_package( package ) )
       puts "\n\n"
       puts "*** Completed reinstall of #{package}. ***"
       puts "\n\n"
-      logger.to_journal( "Completed reinstall of #{package}." )
+      logger.info( "Completed reinstall of #{package}." )
       
-      if ( logger.cache_package( package ) )
+      if ( myLogger.cache_package( package ) )
         puts "\n\n"
         puts "*** Completed caching of package #{package}. ***"
         puts "\n\n"
-        logger.to_journal( "Caching completed for package #{package}." )
+        logger.info( "Caching completed for package #{package}." )
         return true
       else
-        logger.to_journal( "Caching of package #{package} failed.")
+        logger.info( "Caching of package #{package} failed.")
       end
     end
       
@@ -246,7 +246,9 @@ class AbtPackageManager
   def remove_package( package )
     require "#{$PACKAGE_PATH}#{package}"
     sw = eval( "#{package.capitalize}.new" )
-    logger = AbtLogManager.new
+    # TODO: refactor myLogger.
+    myLogger = AbtLogManager.new
+    logger = Logger.new( $JOURNAL )
     
     # get package details.
     details = sw.details
@@ -254,7 +256,7 @@ class AbtPackageManager
     # TODO: something with possible /etc or other configure files before removal, check maybe integrity for changes since install?
 
     # remove listings in install log.
-    installLog = logger.get_log( package, 'install' )
+    installLog = myLogger.get_log( package, 'install' )
 
     # only process install log if it exists, continue on with 
     # journal log warning.
@@ -262,24 +264,24 @@ class AbtPackageManager
       IO.foreach( installLog ) do |line|
         if File.exist?( line.chomp )
           FileUtils.rm( line.chomp )
-          logger.to_journal( "Removed file #{line.chomp} from #{package} install log.")
+          logger.info( "Removed file #{line.chomp} from #{package} install log.")
         else
-          logger.to_journal( "Unable to remove #{line.chomp} from #{package} install log, does not exist.")
+          logger.info( "Unable to remove #{line.chomp} from #{package} install log, does not exist.")
           # do not return false, removed is ok, just put warning in journal log.
         end
       end
       
-      logger.to_journal( "Removed files from #{File.basename( installLog )} for #{package}." )
+      logger.info( "Removed files from #{File.basename( installLog )} for #{package}." )
     else
       puts "Install log missing for #{package}, see journal..."
-      logger.to_journal( "Install log was missing for #{package}..." )
-      logger.to_journal( "...continuing to remove package from install listing, but might have files still installed on system." )
+      logger.info( "Install log was missing for #{package}..." )
+      logger.info( "...continuing to remove package from install listing, but might have files still installed on system." )
     end
       
           
     # remove entry in install listing.
     FileUtils.remove_dir( "#{$PACKAGE_INSTALLED}/#{details['Source location']}" )    
-    logger.to_journal( "Removed entry from installed packages." )
+    logger.info( "Removed entry from installed packages." )
     return true
   end
   
