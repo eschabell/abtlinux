@@ -527,8 +527,7 @@ when "build-location"
   end
   
 when "package-repo"
-  # FIXME : packge repo implementation.
-  # sort out that we have enough args.
+  
   case ARGV.length
     
     # add or remove called.
@@ -538,8 +537,15 @@ when "package-repo"
     
     # list called.
   when 2
+    # FIXME: implements this.
     if ( ARGV[1] == "list" )
       options['repoAction'] = ARGV[1]
+      logger.info "TODO: Listing package repositories."
+    elsif ARGV[1] == "add" || ARGV[1] == "remove"
+      # add or remove default repo.
+      options['repoAction'] = ARGV[1]
+      options['repoUri']    = ""
+      logger.info "Default AbTLinux Package Repository : #{options['repoAction']}."
     else
       show.usage( "maintenance" )
       exit
@@ -549,23 +555,50 @@ when "package-repo"
     show.usage( "maintenance" )
     exit
   end # case ARGV.length.
-  
+
+  logger.info( "Starting package-repo : #{options['repoAction']}.")    
+    
   # hook location based on action.
   case options['repoAction']
     
   when "add"
-    puts "Adding package repository : " + options['repoUri']
-    
+    if options['repoUri'].length > 0
+        puts "Adding package repository : " + options['repoUri']
+        if downloader.retrieve_package_tree( options['repoUri'] )
+            puts "Added package tree : #{options['repoUri']}."
+        else
+            puts "Unable to add package tree : #{options['repoUri']}."
+            logger.error "Unable to add package tree : #{options['repoUri']}."
+            exit
+        end
+    else
+        puts "Adding package repository : Default AbTLinux Package Tree"
+        if downloader.retrieve_package_tree
+            puts "Added package tree : Default AbTLinux Package Tree}."
+        else
+            puts "Unable to add package tree : Default AbTLinux Package Tree."
+            logger.error "Unable to add package tree : Default AbTLinux Package Tree."
+            exit
+        end
+    end
   when "remove"
-    puts "Remove package repository : " + options['repoUri']
+    # FIXME: implement this.
+      if options['repoUri'].length > 0
+          puts "Removing package repository : " + options['repoUri']
+      else
+          puts "Removing package repository : Default AbTLinux Package Tree"
+      end
     
   when "list"
-    puts "Display listing of package repositories."
+    # FIXME: implement this.
+    puts "TODO: Display listing of package repositories."
     
   else
     show.usage( "maintenance" )
     exit
   end # case repoAction.
+  
+  logger.info( "Starting package-repo : #{ARGV[1]} - #{ARGV[2]}.")    
   
 else
   show.usage( "all" )
