@@ -179,52 +179,52 @@ otherwise false.
   <p class="source-link">[ <a href="javascript:toggleSource('M000014_source')" id="l_M000014_source">show source</a> ]</p>
   <div id="M000014_source" class="dyn-source">
 <pre>
-     <span class="ruby-comment cmt"># File abtdownloadmanager.rb, line 95</span>
- 95:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">retrieve_news_feed</span>( <span class="ruby-identifier">uri</span>, <span class="ruby-identifier">cleanLog</span>=<span class="ruby-keyword kw">true</span> )
- 96:     <span class="ruby-identifier">require</span> <span class="ruby-value str">'net/http'</span>
- 97:     <span class="ruby-identifier">require</span> <span class="ruby-value str">'uri'</span>
- 98:     <span class="ruby-identifier">require</span> <span class="ruby-value str">'rss/1.0'</span>
- 99:     <span class="ruby-identifier">require</span> <span class="ruby-value str">'rss/2.0'</span>
-100:     <span class="ruby-identifier">newsLog</span> = <span class="ruby-value str">&quot;&quot;</span>
-101:     <span class="ruby-identifier">logger</span>      = <span class="ruby-constant">Logger</span>.<span class="ruby-identifier">new</span>( <span class="ruby-identifier">$JOURNAL</span>)
-102:     
-103:     <span class="ruby-comment cmt"># ensure we have our news logfile.</span>
-104:     <span class="ruby-keyword kw">if</span> ( <span class="ruby-identifier">cleanLog</span> )
-105:       <span class="ruby-identifier">newsLog</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">new</span>( <span class="ruby-identifier">$ABTNEWS_LOG</span>, <span class="ruby-value str">&quot;w+&quot;</span> )
-106:     <span class="ruby-keyword kw">else</span>
-107:       <span class="ruby-identifier">newsLog</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">new</span>( <span class="ruby-identifier">$ABTNEWS_LOG</span>, <span class="ruby-value str">&quot;a+&quot;</span> )
-108:     <span class="ruby-keyword kw">end</span>
-109:     
-110:     <span class="ruby-comment cmt"># pick up the abtlinux.org news feed.</span>
-111:     <span class="ruby-keyword kw">if</span> ( <span class="ruby-operator">!</span><span class="ruby-identifier">news</span> = <span class="ruby-constant">Net</span><span class="ruby-operator">::</span><span class="ruby-constant">HTTP</span>.<span class="ruby-identifier">get</span>( <span class="ruby-constant">URI</span>.<span class="ruby-identifier">parse</span>( <span class="ruby-identifier">uri</span> ) ) )
-112:       <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">info</span>( <span class="ruby-node">&quot;Failed to retrieve news feed #{uri}.&quot;</span> )
-113:       <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">false</span>
-114:     <span class="ruby-keyword kw">end</span>
-115:     
-116:     <span class="ruby-comment cmt"># display the feeds.</span>
-117:     <span class="ruby-identifier">rss</span> = <span class="ruby-keyword kw">nil</span>
-118:     <span class="ruby-keyword kw">begin</span>
-119:       <span class="ruby-identifier">rss</span>  = <span class="ruby-constant">RSS</span><span class="ruby-operator">::</span><span class="ruby-constant">Parser</span>.<span class="ruby-identifier">parse</span>(<span class="ruby-identifier">news</span>, <span class="ruby-keyword kw">false</span>)
-120:     <span class="ruby-keyword kw">rescue</span> <span class="ruby-constant">RSS</span><span class="ruby-operator">::</span><span class="ruby-constant">Error</span>
-121:     <span class="ruby-keyword kw">end</span> 
-122:     
-123:     <span class="ruby-keyword kw">if</span> ( <span class="ruby-identifier">rss</span>.<span class="ruby-identifier">nil?</span> )
-124:       <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">info</span>( <span class="ruby-node">&quot;Failed to display news feed as feed #{uri} is not RSS 1.0/2.0.&quot;</span> )
-125:       <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">false</span>
-126:     <span class="ruby-keyword kw">else</span>
-127:       <span class="ruby-identifier">newsLog</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;*** #{rss.channel.title} ***\n&quot;</span>
-128:       
-129:       <span class="ruby-identifier">rss</span>.<span class="ruby-identifier">items</span>.<span class="ruby-identifier">each_with_index</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">item</span>, <span class="ruby-identifier">itemCount</span><span class="ruby-operator">|</span>
-130:         <span class="ruby-identifier">itemCount</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>
-131:         <span class="ruby-identifier">newsLog</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;#{itemCount}  #{item.link}  #{item.title}\n&quot;</span> 
-132:       <span class="ruby-keyword kw">end</span>
-133:     <span class="ruby-keyword kw">end</span>
-134:     
-135:     <span class="ruby-identifier">newsLog</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value str">&quot;\n\n&quot;</span>
-136:     <span class="ruby-identifier">newsLog</span>.<span class="ruby-identifier">close</span>
-137:     <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">true</span>
-138:     
-139:   <span class="ruby-keyword kw">end</span>
+     <span class="ruby-comment cmt"># File abtdownloadmanager.rb, line 126</span>
+126:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">retrieve_news_feed</span>( <span class="ruby-identifier">uri</span>, <span class="ruby-identifier">cleanLog</span>=<span class="ruby-keyword kw">true</span> )
+127:     <span class="ruby-identifier">require</span> <span class="ruby-value str">'net/http'</span>
+128:     <span class="ruby-identifier">require</span> <span class="ruby-value str">'uri'</span>
+129:     <span class="ruby-identifier">require</span> <span class="ruby-value str">'rss/1.0'</span>
+130:     <span class="ruby-identifier">require</span> <span class="ruby-value str">'rss/2.0'</span>
+131:     <span class="ruby-identifier">newsLog</span> = <span class="ruby-value str">&quot;&quot;</span>
+132:     <span class="ruby-identifier">logger</span>      = <span class="ruby-constant">Logger</span>.<span class="ruby-identifier">new</span>( <span class="ruby-identifier">$JOURNAL</span>)
+133:     
+134:     <span class="ruby-comment cmt"># ensure we have our news logfile.</span>
+135:     <span class="ruby-keyword kw">if</span> ( <span class="ruby-identifier">cleanLog</span> )
+136:       <span class="ruby-identifier">newsLog</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">new</span>( <span class="ruby-identifier">$ABTNEWS_LOG</span>, <span class="ruby-value str">&quot;w+&quot;</span> )
+137:     <span class="ruby-keyword kw">else</span>
+138:       <span class="ruby-identifier">newsLog</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">new</span>( <span class="ruby-identifier">$ABTNEWS_LOG</span>, <span class="ruby-value str">&quot;a+&quot;</span> )
+139:     <span class="ruby-keyword kw">end</span>
+140:     
+141:     <span class="ruby-comment cmt"># pick up the abtlinux.org news feed.</span>
+142:     <span class="ruby-keyword kw">if</span> ( <span class="ruby-operator">!</span><span class="ruby-identifier">news</span> = <span class="ruby-constant">Net</span><span class="ruby-operator">::</span><span class="ruby-constant">HTTP</span>.<span class="ruby-identifier">get</span>( <span class="ruby-constant">URI</span>.<span class="ruby-identifier">parse</span>( <span class="ruby-identifier">uri</span> ) ) )
+143:       <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">info</span>( <span class="ruby-node">&quot;Failed to retrieve news feed #{uri}.&quot;</span> )
+144:       <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">false</span>
+145:     <span class="ruby-keyword kw">end</span>
+146:     
+147:     <span class="ruby-comment cmt"># display the feeds.</span>
+148:     <span class="ruby-identifier">rss</span> = <span class="ruby-keyword kw">nil</span>
+149:     <span class="ruby-keyword kw">begin</span>
+150:       <span class="ruby-identifier">rss</span>  = <span class="ruby-constant">RSS</span><span class="ruby-operator">::</span><span class="ruby-constant">Parser</span>.<span class="ruby-identifier">parse</span>(<span class="ruby-identifier">news</span>, <span class="ruby-keyword kw">false</span>)
+151:     <span class="ruby-keyword kw">rescue</span> <span class="ruby-constant">RSS</span><span class="ruby-operator">::</span><span class="ruby-constant">Error</span>
+152:     <span class="ruby-keyword kw">end</span> 
+153:     
+154:     <span class="ruby-keyword kw">if</span> ( <span class="ruby-identifier">rss</span>.<span class="ruby-identifier">nil?</span> )
+155:       <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">info</span>( <span class="ruby-node">&quot;Failed to display news feed as feed #{uri} is not RSS 1.0/2.0.&quot;</span> )
+156:       <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">false</span>
+157:     <span class="ruby-keyword kw">else</span>
+158:       <span class="ruby-identifier">newsLog</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;*** #{rss.channel.title} ***\n&quot;</span>
+159:       
+160:       <span class="ruby-identifier">rss</span>.<span class="ruby-identifier">items</span>.<span class="ruby-identifier">each_with_index</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">item</span>, <span class="ruby-identifier">itemCount</span><span class="ruby-operator">|</span>
+161:         <span class="ruby-identifier">itemCount</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>
+162:         <span class="ruby-identifier">newsLog</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;#{itemCount}  #{item.link}  #{item.title}\n&quot;</span> 
+163:       <span class="ruby-keyword kw">end</span>
+164:     <span class="ruby-keyword kw">end</span>
+165:     
+166:     <span class="ruby-identifier">newsLog</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value str">&quot;\n\n&quot;</span>
+167:     <span class="ruby-identifier">newsLog</span>.<span class="ruby-identifier">close</span>
+168:     <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">true</span>
+169:     
+170:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>
@@ -277,7 +277,7 @@ downloaded, otherwise false.
 </div>
 <div class="method">
   <div class="title">
-    <a name="M000013"></a><b>retrieve_package_tree</b>( packageTreeName )
+    <a name="M000013"></a><b>retrieve_package_tree</b>( packageTreeName=&quot;AbTLinux&quot; )
   </div>
   <div class="description">
   <p>
@@ -296,9 +296,40 @@ otherwise false.
   <p class="source-link">[ <a href="javascript:toggleSource('M000013_source')" id="l_M000013_source">show source</a> ]</p>
   <div id="M000013_source" class="dyn-source">
 <pre>
-    <span class="ruby-comment cmt"># File abtdownloadmanager.rb, line 83</span>
-83:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">retrieve_package_tree</span>( <span class="ruby-identifier">packageTreeName</span> )
-84:   <span class="ruby-keyword kw">end</span>
+     <span class="ruby-comment cmt"># File abtdownloadmanager.rb, line 83</span>
+ 83:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">retrieve_package_tree</span>( <span class="ruby-identifier">packageTreeName</span>=<span class="ruby-value str">&quot;AbTLinux&quot;</span> )
+ 84:       <span class="ruby-identifier">logger</span>        = <span class="ruby-constant">Logger</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">$JOURNAL</span>)
+ 85: 
+ 86:       <span class="ruby-comment cmt"># check if package tree exists.</span>
+ 87:       <span class="ruby-keyword kw">if</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">directory?</span>( <span class="ruby-identifier">$PACKAGE_PATH</span> )
+ 88:         <span class="ruby-comment cmt"># check if svn directory.</span>
+ 89:         <span class="ruby-keyword kw">if</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">directory?</span>( <span class="ruby-node">&quot;#{$PACKAGE_PATH}.svn&quot;</span> )
+ 90:             <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">system</span>( <span class="ruby-node">&quot;svn update #{$PACKAGE_PATH}&quot;</span> )
+ 91:                 <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">info</span> <span class="ruby-value str">&quot;Package tree updated (svn update)&quot;</span>
+ 92:             <span class="ruby-keyword kw">else</span>
+ 93:                 <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">error</span> <span class="ruby-value str">&quot;Package tree unable to update (svn update).&quot;</span>
+ 94:                 <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">false</span>
+ 95:             <span class="ruby-keyword kw">end</span>
+ 96:         <span class="ruby-keyword kw">else</span>
+ 97:             <span class="ruby-comment cmt"># package directory exists, but is not a valid tree.</span>
+ 98:             <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">error</span> <span class="ruby-value str">&quot;Package tree exists, but is not valid svn tree.&quot;</span>
+ 99:             <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">false</span>
+100:         <span class="ruby-keyword kw">end</span>
+101:       
+102:       <span class="ruby-keyword kw">else</span>
+103:       
+104:         <span class="ruby-comment cmt"># pacakge directory does not exist, svn co.</span>
+105:         <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">system</span>( <span class="ruby-node">&quot;svn co #{$ABTLINUX_PACKAGES} #{$PACKAGE_PATH}&quot;</span> )
+106:           <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">info</span> <span class="ruby-value str">&quot;Package tree installed (svn co)&quot;</span>
+107:         <span class="ruby-keyword kw">else</span>
+108:           <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">error</span> <span class="ruby-value str">&quot;Package tree not installed (svn co), problems!&quot;</span>
+109:           <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">false</span>
+110:         <span class="ruby-keyword kw">end</span>
+111:       
+112:       <span class="ruby-keyword kw">end</span>
+113:       
+114:       <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">true</span>
+115:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>
@@ -323,9 +354,9 @@ updated, otherwise false.
   <p class="source-link">[ <a href="javascript:toggleSource('M000015_source')" id="l_M000015_source">show source</a> ]</p>
   <div id="M000015_source" class="dyn-source">
 <pre>
-     <span class="ruby-comment cmt"># File abtdownloadmanager.rb, line 149</span>
-149:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">update_package</span>
-150:   <span class="ruby-keyword kw">end</span>
+     <span class="ruby-comment cmt"># File abtdownloadmanager.rb, line 180</span>
+180:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">update_package</span>
+181:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>
@@ -347,9 +378,9 @@ otherwise false.
   <p class="source-link">[ <a href="javascript:toggleSource('M000016_source')" id="l_M000016_source">show source</a> ]</p>
   <div id="M000016_source" class="dyn-source">
 <pre>
-     <span class="ruby-comment cmt"># File abtdownloadmanager.rb, line 158</span>
-158:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">update_package_tree</span>
-159:   <span class="ruby-keyword kw">end</span>
+     <span class="ruby-comment cmt"># File abtdownloadmanager.rb, line 189</span>
+189:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">update_package_tree</span>
+190:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>
@@ -376,20 +407,20 @@ otherwise false.
   <p class="source-link">[ <a href="javascript:toggleSource('M000017_source')" id="l_M000017_source">show source</a> ]</p>
   <div id="M000017_source" class="dyn-source">
 <pre>
-     <span class="ruby-comment cmt"># File abtdownloadmanager.rb, line 170</span>
-170:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">validated</span>( <span class="ruby-identifier">hashvalue</span>, <span class="ruby-identifier">path</span> )
-171:     <span class="ruby-identifier">logger</span> = <span class="ruby-constant">Logger</span>.<span class="ruby-identifier">new</span>( <span class="ruby-identifier">$JOURNAL</span> )
-172:     
-173:     <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">hashvalue</span> <span class="ruby-operator">==</span> <span class="ruby-constant">Digest</span><span class="ruby-operator">::</span><span class="ruby-constant">SHA1</span>.<span class="ruby-identifier">hexdigest</span>( <span class="ruby-identifier">path</span> )
-174:       <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;Source hash validated successfully...&quot;</span>
-175:       <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">info</span>( <span class="ruby-value str">&quot;Validated sources successfully...&quot;</span> )
-176:       <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">true</span>
-177:     <span class="ruby-keyword kw">end</span>
-178: 
-179:     <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;Source hash failed validation...&quot;</span>
-180:     <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">info</span>( <span class="ruby-value str">&quot;Validating sources failed...&quot;</span> )
-181:     <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">false</span>
-182:   <span class="ruby-keyword kw">end</span>
+     <span class="ruby-comment cmt"># File abtdownloadmanager.rb, line 201</span>
+201:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">validated</span>( <span class="ruby-identifier">hashvalue</span>, <span class="ruby-identifier">path</span> )
+202:     <span class="ruby-identifier">logger</span> = <span class="ruby-constant">Logger</span>.<span class="ruby-identifier">new</span>( <span class="ruby-identifier">$JOURNAL</span> )
+203:     
+204:     <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">hashvalue</span> <span class="ruby-operator">==</span> <span class="ruby-constant">Digest</span><span class="ruby-operator">::</span><span class="ruby-constant">SHA1</span>.<span class="ruby-identifier">hexdigest</span>( <span class="ruby-identifier">path</span> )
+205:       <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;Source hash validated successfully...&quot;</span>
+206:       <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">info</span>( <span class="ruby-value str">&quot;Validated sources successfully...&quot;</span> )
+207:       <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">true</span>
+208:     <span class="ruby-keyword kw">end</span>
+209: 
+210:     <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;Source hash failed validation...&quot;</span>
+211:     <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">info</span>( <span class="ruby-value str">&quot;Validating sources failed...&quot;</span> )
+212:     <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">false</span>
+213:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>
