@@ -152,10 +152,9 @@ class AbtUsage
   def usage_maintenance
     puts "\nmaintenance:"
     puts "  build-location    [host]\t\tSets global location (default: localhost) for retrieving cached package builds."
-    puts "  package-repo      [add|remove|update|list] [URI]"
+    puts "  package-repo      [add|remove|list] [URI]"
     puts "                                        add    - add package repository."
     puts "                                        remove - remove a package repository."
-    puts "                                        update - update a package repository."
     puts "                                        list   - display current repository listing.\n"
   end
 end
