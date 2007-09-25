@@ -173,11 +173,37 @@ class AbtDownloadManager
   # <b>RETURN</b> <i>boolean</i> - True if the given package has been updated,
   # otherwise false.
   ##
-  def update_package
+  def update_package( packageName )
+      logger        = Logger.new($JOURNAL)
+
+      # check if package exists in tree.      
+      if File.exists?( "#{$PACKAGE_PATH}/#{packageName}.rb" )
+          # check if svn directory.
+          if File.directory?( "#{$PACKAGE_PATH}.svn" )
+              if system( "svn update #{$PACKAGE_PATH}/#{packageName.downcase}.rb" )
+                  logger.info "Package #{packageName.downcase} updated (svn update)"
+              else
+                  logger.error "Package #{packageName.downcase} unable to update (svn update)."
+                  return false
+              end
+          else
+              # package exists, but not an valid tree.
+              logger.error "Package #{packageName} exists, but not valid package tree (svn)."
+              return false
+          end        
+      else
+          # package does not exist.
+          logger.error "Package is not installed, not possible to update!"
+          return false      
+      end
+        
+      return true      
   end
   
   ##
   # Updates the package tree.
+  #
+  # <b>PARAM</b> <i>String</i> - the name of the tree to be updated, defaults to AbTLinux repo.
   #
   # <b>RETURN</b> <i>boolean</i> - True if the package tree has been updated,
   # otherwise false.
@@ -200,12 +226,10 @@ class AbtDownloadManager
             logger.error "Package tree exists, but is not valid svn tree."
             return false
         end
-      
       else
-      
-        # pacakge directory does not exist, svn co.
-          logger.error "Package tree not installed (svn co), problems!"
-          return false      
+        # package directory does not exist.
+        logger.error "Package tree not installed!"
+        return false      
       end
       
       return true

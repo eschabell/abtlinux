@@ -421,12 +421,50 @@ when "download", "-d"
   
 when "update", "-u"
   if ( ARGV.length == 2 )
-    options['updateItem'] = ARGV[1]
-    # FIXME : update package implementation.
-    puts "Updating item : #{options['updateItem']}"
+
+      if ( ARGV[1].length > 0 || ARGV[1] == "tree" || ARGV[1].downcase == "abtlinux" )
+        if ARGV[1].downcase == "tree" || ARGV[1].downcase == "abtlinux"
+          options['updateItem'] = "AbTLinux"
+
+          puts "Start updating package tree : #{options['updateItem']}."
+          logger.info "Start updating package tree : #{options['updateItem']}."
+          
+          if downloader.update_package_tree( options['updateItem'] )
+              puts "Updated package tree : #{options['updateItem']}."
+          else
+              puts "Unable to update package tree : #{options['updateItem']}."
+              logger.error "Unable to update package tree : #{options['updateItem']}."
+              logger.info( "Finished updating package tree : #{options['updateItem']}.")
+              exit
+          end
+
+          logger.info( "Finished updating package tree : #{options['updateItem']}.")
+          
+        else
+          # assuming package to be updated.
+          options['updateItem'] = ARGV[1].downcase
+
+          puts "Start updating package : #{options['updateItem']}."
+          logger.info "Start updating package : #{options['updateItem']}."
+          
+          if downloader.update_package( options['updateItem'] )
+              puts "Updated package : #{options['updateItem']}."
+          else
+              puts "Unable to update package : #{options['updateItem']}."
+              logger.error "Unable to update package : #{options['updateItem']}."
+              logger.info( "Finished updating package : #{options['updateItem']}")
+              exit
+          end
+          
+          logger.info( "Finished updating package : #{options['updateItem']}")                    
+        end
+      else
+        show.usage( "downloads" )
+        exit
+      end
   else
-    show.usage( "downloads" )
-    exit
+      show.usage( "downloads" )
+      exit      
   end
   
 when "purge-src"
@@ -530,7 +568,7 @@ when "package-repo"
   
   case ARGV.length
     
-    # add, remove or update called.
+    # add or remove called.
   when 3
     options['repoAction'] = ARGV[1]
     options['repoUri'] = ARGV[2]
@@ -541,7 +579,7 @@ when "package-repo"
     if ( ARGV[1] == "list" )
       options['repoAction'] = ARGV[1]
       logger.info "TODO: Listing package repositories."
-    elsif ARGV[1] == "add" || ARGV[1] == "remove" || ARGV[1] == "update"
+    elsif ARGV[1] == "add" || ARGV[1] == "remove"
       # add, remove or update default repo.
       options['repoAction'] = ARGV[1]
       options['repoUri']    = ""
@@ -582,26 +620,8 @@ when "package-repo"
             exit
         end
     end
-    
-    when "update"
-      if options['repoUri'].length >= 0
-          puts "Updating package repository : " + options['repoUri']
-          if downloader.update_package_tree( options['repoUri'] )
-              puts "Updated package tree : #{options['repoUri']}."
-          else
-              puts "Unable to update package tree : #{options['repoUri']}."
-              logger.error "Unable to update package tree : #{options['repoUri']}."
-              logger.info( "Finished package-repo : #{options['repoAction']}.")
-              exit
-          end
-      else
-          puts "Unable to update package tree : Default AbTLinux Package Tree."
-          logger.error "Unable to update package tree : Default AbTLinux Package Tree."
-          logger.info( "Finished package-repo : #{options['repoAction']}.")
-          exit
-      end
-      
-  when "remove"
+
+    when "remove"
     # FIXME: implement this.
       if options['repoUri'].length > 0
           puts "Removing package repository : " + options['repoUri']
