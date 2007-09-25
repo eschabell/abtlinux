@@ -187,84 +187,84 @@ successfully, otherwise false.
   <p class="source-link">[ <a href="javascript:toggleSource('M000068_source')" id="l_M000068_source">show source</a> ]</p>
   <div id="M000068_source" class="dyn-source">
 <pre>
-     <span class="ruby-comment cmt"># File abtlogmanager.rb, line 210</span>
-210:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">cache_package</span>( <span class="ruby-identifier">package</span> )
-211:     <span class="ruby-identifier">system</span> = <span class="ruby-constant">AbtSystemManager</span>.<span class="ruby-identifier">new</span>
-212:     
-213:     <span class="ruby-keyword kw">if</span> ( <span class="ruby-identifier">system</span>.<span class="ruby-identifier">package_installed</span>( <span class="ruby-identifier">package</span> ) )
-214:       <span class="ruby-identifier">sw</span>           = <span class="ruby-identifier">eval</span>( <span class="ruby-node">&quot;#{package.capitalize}.new&quot;</span> )
-215:       <span class="ruby-identifier">cachedDir</span>    = <span class="ruby-identifier">$PACKAGE_CACHED</span> <span class="ruby-operator">+</span> <span class="ruby-value str">&quot;/&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">sw</span>.<span class="ruby-identifier">srcDir</span>
-216:       <span class="ruby-identifier">sourcePath</span>   = <span class="ruby-identifier">$SOURCES_REPOSITORY</span> <span class="ruby-operator">+</span> <span class="ruby-value str">&quot;/&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">basename</span>( <span class="ruby-identifier">sw</span>.<span class="ruby-identifier">srcUrl</span> )
-217:       <span class="ruby-identifier">sourceFile</span>   = <span class="ruby-constant">File</span>.<span class="ruby-identifier">basename</span>( <span class="ruby-identifier">sw</span>.<span class="ruby-identifier">srcUrl</span> )
-218:       <span class="ruby-identifier">installLog</span>   = <span class="ruby-identifier">get_log</span>( <span class="ruby-identifier">package</span>, <span class="ruby-value str">'install'</span> )
-219:       <span class="ruby-identifier">buildLog</span>     = <span class="ruby-identifier">get_log</span>( <span class="ruby-identifier">package</span>, <span class="ruby-value str">'build'</span> )
-220:       <span class="ruby-identifier">configureLog</span> = <span class="ruby-identifier">get_log</span>( <span class="ruby-identifier">package</span>, <span class="ruby-value str">'configure'</span> )
-221:       <span class="ruby-identifier">integrityLog</span> = <span class="ruby-identifier">get_log</span>( <span class="ruby-identifier">package</span>, <span class="ruby-value str">'integrity'</span> )
-222:       <span class="ruby-identifier">packageFile</span>  = <span class="ruby-node">&quot;#{$PACKAGE_PATH}#{package}.rb&quot;</span>
-223:       
-224:       
-225:       <span class="ruby-constant">FileUtils</span>.<span class="ruby-identifier">mkdir_p</span>( <span class="ruby-identifier">cachedDir</span> )
-226: 
-227:       <span class="ruby-comment cmt"># collect package source.</span>
-228:       <span class="ruby-keyword kw">if</span> ( <span class="ruby-constant">FileTest</span><span class="ruby-operator">::</span><span class="ruby-identifier">exist?</span>( <span class="ruby-identifier">sourcePath</span> ) )
-229:         <span class="ruby-constant">FileUtils</span>.<span class="ruby-identifier">copy_file</span>( <span class="ruby-identifier">sourcePath</span>, <span class="ruby-node">&quot;#{cachedDir}/#{sourceFile}&quot;</span> )
-230:         <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;\nCaching copy of #{package} source.&quot;</span>
-231:       <span class="ruby-keyword kw">else</span>
-232:         <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;\nUnable to cache copy of #{package} source.&quot;</span>
-233:       <span class="ruby-keyword kw">end</span>
-234:         
-235:       <span class="ruby-comment cmt"># collect package install log. </span>
-236:       <span class="ruby-keyword kw">if</span> ( <span class="ruby-constant">FileTest</span><span class="ruby-operator">::</span><span class="ruby-identifier">exist?</span>( <span class="ruby-identifier">installLog</span> ) )
-237:         <span class="ruby-constant">FileUtils</span>.<span class="ruby-identifier">copy_file</span>( <span class="ruby-identifier">installLog</span>, <span class="ruby-node">&quot;#{cachedDir}/#{sw.srcDir}.install&quot;</span> )
-238:         <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;\nCaching copy of #{package} install log.&quot;</span>
-239:       <span class="ruby-keyword kw">else</span>
-240:         <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;\nUnable to cache copy of #{package} install log.&quot;</span>
-241:       <span class="ruby-keyword kw">end</span>
-242:       
-243:       <span class="ruby-comment cmt"># collect package build log. </span>
-244:       <span class="ruby-keyword kw">if</span> ( <span class="ruby-constant">FileTest</span><span class="ruby-operator">::</span><span class="ruby-identifier">exist?</span>( <span class="ruby-identifier">buildLog</span> ) )
-245:         <span class="ruby-constant">FileUtils</span>.<span class="ruby-identifier">copy_file</span>( <span class="ruby-identifier">buildLog</span>, <span class="ruby-node">&quot;#{cachedDir}/#{sw.srcDir}.build&quot;</span> )
-246:         <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;\nCaching copy of #{package} build log.&quot;</span>
-247:       <span class="ruby-keyword kw">else</span>
-248:         <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;\nUnable to cache copy of #{package} build log.&quot;</span>
-249:       <span class="ruby-keyword kw">end</span>
-250:       
-251:       <span class="ruby-comment cmt"># collect package configure log. </span>
-252:       <span class="ruby-keyword kw">if</span> ( <span class="ruby-constant">FileTest</span><span class="ruby-operator">::</span><span class="ruby-identifier">exist?</span>( <span class="ruby-identifier">configureLog</span> ) )
-253:         <span class="ruby-constant">FileUtils</span>.<span class="ruby-identifier">copy_file</span>( <span class="ruby-identifier">configureLog</span>, <span class="ruby-node">&quot;#{cachedDir}/#{sw.srcDir}.configure&quot;</span> )
-254:         <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;\nCaching copy of #{package} configure log.&quot;</span>
-255:       <span class="ruby-keyword kw">else</span>
-256:         <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;\nUnable to cache copy of #{package} configure log.&quot;</span>
-257:       <span class="ruby-keyword kw">end</span>
-258: 
-259:       <span class="ruby-comment cmt"># collect package integrity log.</span>
-260:       <span class="ruby-keyword kw">if</span> ( <span class="ruby-constant">FileTest</span><span class="ruby-operator">::</span><span class="ruby-identifier">exist?</span>( <span class="ruby-identifier">integrityLog</span> ) )
-261:         <span class="ruby-constant">FileUtils</span>.<span class="ruby-identifier">copy_file</span>( <span class="ruby-identifier">integrityLog</span>, <span class="ruby-node">&quot;#{cachedDir}/#{sw.srcDir}.integrity&quot;</span> )
-262:         <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;\nCaching copy of #{package} integrity log.&quot;</span>
-263:       <span class="ruby-keyword kw">else</span>
-264:         <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;\nUnable to cache copy of #{package} integrity log.&quot;</span>
-265:       <span class="ruby-keyword kw">end</span>
-266:       
-267:       <span class="ruby-comment cmt"># collect package description (class file).</span>
-268:       <span class="ruby-keyword kw">if</span> ( <span class="ruby-constant">FileTest</span><span class="ruby-operator">::</span><span class="ruby-identifier">exist?</span>( <span class="ruby-identifier">packageFile</span> ) )
-269:         <span class="ruby-constant">FileUtils</span>.<span class="ruby-identifier">copy_file</span>( <span class="ruby-identifier">packageFile</span>, <span class="ruby-node">&quot;#{cachedDir}/#{package}.rb&quot;</span> )
-270:         <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;\nCaching copy of #{package} package description.&quot;</span>
-271:       <span class="ruby-keyword kw">else</span>
-272:         <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;\nUnable to cache copy of #{package} package description, from location #{packageFile}&quot;</span>
-273:       <span class="ruby-keyword kw">end</span>
-274:       
-275:       <span class="ruby-comment cmt"># tar and bzip this directory (package-cache-version.tar.bz2) </span>
-276:       <span class="ruby-constant">Dir</span>.<span class="ruby-identifier">chdir</span>( <span class="ruby-identifier">$PACKAGE_CACHED</span> )
-277:       <span class="ruby-keyword kw">if</span> ( <span class="ruby-identifier">system</span>( <span class="ruby-node">&quot;tar -cf #{sw.srcDir}.tar #{sw.srcDir}&quot;</span> ) <span class="ruby-operator">&amp;&amp;</span>
-278:             <span class="ruby-identifier">system</span>( <span class="ruby-node">&quot;bzip2 -f #{sw.srcDir}.tar&quot;</span> ) )
-279:         <span class="ruby-comment cmt"># last but not least, remove our tarball directory</span>
-280:         <span class="ruby-constant">FileUtils</span>.<span class="ruby-identifier">rm_rf</span>( <span class="ruby-identifier">cachedDir</span> )
-281:         <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">true</span>
-282:       <span class="ruby-keyword kw">end</span>
-283:     <span class="ruby-keyword kw">end</span>
-284:     
-285:     <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">false</span>  <span class="ruby-comment cmt"># package not installed, can't cache it.</span>
-286:   <span class="ruby-keyword kw">end</span>
+     <span class="ruby-comment cmt"># File abtlogmanager.rb, line 207</span>
+207:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">cache_package</span>( <span class="ruby-identifier">package</span> )
+208:     <span class="ruby-identifier">system</span> = <span class="ruby-constant">AbtSystemManager</span>.<span class="ruby-identifier">new</span>
+209:     
+210:     <span class="ruby-keyword kw">if</span> ( <span class="ruby-identifier">system</span>.<span class="ruby-identifier">package_installed</span>( <span class="ruby-identifier">package</span> ) )
+211:       <span class="ruby-identifier">sw</span>           = <span class="ruby-identifier">eval</span>( <span class="ruby-node">&quot;#{package.capitalize}.new&quot;</span> )
+212:       <span class="ruby-identifier">cachedDir</span>    = <span class="ruby-identifier">$PACKAGE_CACHED</span> <span class="ruby-operator">+</span> <span class="ruby-value str">&quot;/&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">sw</span>.<span class="ruby-identifier">srcDir</span>
+213:       <span class="ruby-identifier">sourcePath</span>   = <span class="ruby-identifier">$SOURCES_REPOSITORY</span> <span class="ruby-operator">+</span> <span class="ruby-value str">&quot;/&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">basename</span>( <span class="ruby-identifier">sw</span>.<span class="ruby-identifier">srcUrl</span> )
+214:       <span class="ruby-identifier">sourceFile</span>   = <span class="ruby-constant">File</span>.<span class="ruby-identifier">basename</span>( <span class="ruby-identifier">sw</span>.<span class="ruby-identifier">srcUrl</span> )
+215:       <span class="ruby-identifier">installLog</span>   = <span class="ruby-identifier">get_log</span>( <span class="ruby-identifier">package</span>, <span class="ruby-value str">'install'</span> )
+216:       <span class="ruby-identifier">buildLog</span>     = <span class="ruby-identifier">get_log</span>( <span class="ruby-identifier">package</span>, <span class="ruby-value str">'build'</span> )
+217:       <span class="ruby-identifier">configureLog</span> = <span class="ruby-identifier">get_log</span>( <span class="ruby-identifier">package</span>, <span class="ruby-value str">'configure'</span> )
+218:       <span class="ruby-identifier">integrityLog</span> = <span class="ruby-identifier">get_log</span>( <span class="ruby-identifier">package</span>, <span class="ruby-value str">'integrity'</span> )
+219:       <span class="ruby-identifier">packageFile</span>  = <span class="ruby-node">&quot;#{$PACKAGE_PATH}#{package}.rb&quot;</span>
+220:       
+221:       
+222:       <span class="ruby-constant">FileUtils</span>.<span class="ruby-identifier">mkdir_p</span>( <span class="ruby-identifier">cachedDir</span> )
+223: 
+224:       <span class="ruby-comment cmt"># collect package source.</span>
+225:       <span class="ruby-keyword kw">if</span> ( <span class="ruby-constant">FileTest</span><span class="ruby-operator">::</span><span class="ruby-identifier">exist?</span>( <span class="ruby-identifier">sourcePath</span> ) )
+226:         <span class="ruby-constant">FileUtils</span>.<span class="ruby-identifier">copy_file</span>( <span class="ruby-identifier">sourcePath</span>, <span class="ruby-node">&quot;#{cachedDir}/#{sourceFile}&quot;</span> )
+227:         <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;\nCaching copy of #{package} source.&quot;</span>
+228:       <span class="ruby-keyword kw">else</span>
+229:         <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;\nUnable to cache copy of #{package} source.&quot;</span>
+230:       <span class="ruby-keyword kw">end</span>
+231:         
+232:       <span class="ruby-comment cmt"># collect package install log. </span>
+233:       <span class="ruby-keyword kw">if</span> ( <span class="ruby-constant">FileTest</span><span class="ruby-operator">::</span><span class="ruby-identifier">exist?</span>( <span class="ruby-identifier">installLog</span> ) )
+234:         <span class="ruby-constant">FileUtils</span>.<span class="ruby-identifier">copy_file</span>( <span class="ruby-identifier">installLog</span>, <span class="ruby-node">&quot;#{cachedDir}/#{sw.srcDir}.install&quot;</span> )
+235:         <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;\nCaching copy of #{package} install log.&quot;</span>
+236:       <span class="ruby-keyword kw">else</span>
+237:         <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;\nUnable to cache copy of #{package} install log.&quot;</span>
+238:       <span class="ruby-keyword kw">end</span>
+239:       
+240:       <span class="ruby-comment cmt"># collect package build log. </span>
+241:       <span class="ruby-keyword kw">if</span> ( <span class="ruby-constant">FileTest</span><span class="ruby-operator">::</span><span class="ruby-identifier">exist?</span>( <span class="ruby-identifier">buildLog</span> ) )
+242:         <span class="ruby-constant">FileUtils</span>.<span class="ruby-identifier">copy_file</span>( <span class="ruby-identifier">buildLog</span>, <span class="ruby-node">&quot;#{cachedDir}/#{sw.srcDir}.build&quot;</span> )
+243:         <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;\nCaching copy of #{package} build log.&quot;</span>
+244:       <span class="ruby-keyword kw">else</span>
+245:         <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;\nUnable to cache copy of #{package} build log.&quot;</span>
+246:       <span class="ruby-keyword kw">end</span>
+247:       
+248:       <span class="ruby-comment cmt"># collect package configure log. </span>
+249:       <span class="ruby-keyword kw">if</span> ( <span class="ruby-constant">FileTest</span><span class="ruby-operator">::</span><span class="ruby-identifier">exist?</span>( <span class="ruby-identifier">configureLog</span> ) )
+250:         <span class="ruby-constant">FileUtils</span>.<span class="ruby-identifier">copy_file</span>( <span class="ruby-identifier">configureLog</span>, <span class="ruby-node">&quot;#{cachedDir}/#{sw.srcDir}.configure&quot;</span> )
+251:         <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;\nCaching copy of #{package} configure log.&quot;</span>
+252:       <span class="ruby-keyword kw">else</span>
+253:         <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;\nUnable to cache copy of #{package} configure log.&quot;</span>
+254:       <span class="ruby-keyword kw">end</span>
+255: 
+256:       <span class="ruby-comment cmt"># collect package integrity log.</span>
+257:       <span class="ruby-keyword kw">if</span> ( <span class="ruby-constant">FileTest</span><span class="ruby-operator">::</span><span class="ruby-identifier">exist?</span>( <span class="ruby-identifier">integrityLog</span> ) )
+258:         <span class="ruby-constant">FileUtils</span>.<span class="ruby-identifier">copy_file</span>( <span class="ruby-identifier">integrityLog</span>, <span class="ruby-node">&quot;#{cachedDir}/#{sw.srcDir}.integrity&quot;</span> )
+259:         <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;\nCaching copy of #{package} integrity log.&quot;</span>
+260:       <span class="ruby-keyword kw">else</span>
+261:         <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;\nUnable to cache copy of #{package} integrity log.&quot;</span>
+262:       <span class="ruby-keyword kw">end</span>
+263:       
+264:       <span class="ruby-comment cmt"># collect package description (class file).</span>
+265:       <span class="ruby-keyword kw">if</span> ( <span class="ruby-constant">FileTest</span><span class="ruby-operator">::</span><span class="ruby-identifier">exist?</span>( <span class="ruby-identifier">packageFile</span> ) )
+266:         <span class="ruby-constant">FileUtils</span>.<span class="ruby-identifier">copy_file</span>( <span class="ruby-identifier">packageFile</span>, <span class="ruby-node">&quot;#{cachedDir}/#{package}.rb&quot;</span> )
+267:         <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;\nCaching copy of #{package} package description.&quot;</span>
+268:       <span class="ruby-keyword kw">else</span>
+269:         <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;\nUnable to cache copy of #{package} package description, from location #{packageFile}&quot;</span>
+270:       <span class="ruby-keyword kw">end</span>
+271:       
+272:       <span class="ruby-comment cmt"># tar and bzip this directory (package-cache-version.tar.bz2) </span>
+273:       <span class="ruby-constant">Dir</span>.<span class="ruby-identifier">chdir</span>( <span class="ruby-identifier">$PACKAGE_CACHED</span> )
+274:       <span class="ruby-keyword kw">if</span> ( <span class="ruby-identifier">system</span>( <span class="ruby-node">&quot;tar -cf #{sw.srcDir}.tar #{sw.srcDir}&quot;</span> ) <span class="ruby-operator">&amp;&amp;</span>
+275:             <span class="ruby-identifier">system</span>( <span class="ruby-node">&quot;bzip2 -f #{sw.srcDir}.tar&quot;</span> ) )
+276:         <span class="ruby-comment cmt"># last but not least, remove our tarball directory</span>
+277:         <span class="ruby-constant">FileUtils</span>.<span class="ruby-identifier">rm_rf</span>( <span class="ruby-identifier">cachedDir</span> )
+278:         <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">true</span>
+279:       <span class="ruby-keyword kw">end</span>
+280:     <span class="ruby-keyword kw">end</span>
+281:     
+282:     <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">false</span>  <span class="ruby-comment cmt"># package not installed, can't cache it.</span>
+283:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>
@@ -343,17 +343,17 @@ otherwise false.
   <p class="source-link">[ <a href="javascript:toggleSource('M000067_source')" id="l_M000067_source">show source</a> ]</p>
   <div id="M000067_source" class="dyn-source">
 <pre>
-     <span class="ruby-comment cmt"># File abtlogmanager.rb, line 190</span>
-190:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">log_package_build</span>( <span class="ruby-identifier">package</span> )
-191:     <span class="ruby-identifier">buildLog</span> = <span class="ruby-identifier">get_log</span>( <span class="ruby-identifier">package</span>, <span class="ruby-value str">'build'</span> )
-192:     
-193:     <span class="ruby-comment cmt"># make sure the build file exists.</span>
-194:     <span class="ruby-keyword kw">if</span> ( <span class="ruby-operator">!</span><span class="ruby-constant">File</span>.<span class="ruby-identifier">exist?</span>( <span class="ruby-identifier">buildLog</span> ) )
-195:       <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">false</span>
-196:     <span class="ruby-keyword kw">end</span>
-197:     
-198:     <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">true</span>
-199:   <span class="ruby-keyword kw">end</span>
+     <span class="ruby-comment cmt"># File abtlogmanager.rb, line 187</span>
+187:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">log_package_build</span>( <span class="ruby-identifier">package</span> )
+188:     <span class="ruby-identifier">buildLog</span> = <span class="ruby-identifier">get_log</span>( <span class="ruby-identifier">package</span>, <span class="ruby-value str">'build'</span> )
+189:     
+190:     <span class="ruby-comment cmt"># make sure the build file exists.</span>
+191:     <span class="ruby-keyword kw">if</span> ( <span class="ruby-operator">!</span><span class="ruby-constant">File</span>.<span class="ruby-identifier">exist?</span>( <span class="ruby-identifier">buildLog</span> ) )
+192:       <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">false</span>
+193:     <span class="ruby-keyword kw">end</span>
+194:     
+195:     <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">true</span>
+196:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>
@@ -379,45 +379,45 @@ otherwise false.
   <p class="source-link">[ <a href="javascript:toggleSource('M000066_source')" id="l_M000066_source">show source</a> ]</p>
   <div id="M000066_source" class="dyn-source">
 <pre>
-     <span class="ruby-comment cmt"># File abtlogmanager.rb, line 142</span>
-142:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">log_package_install</span>( <span class="ruby-identifier">package</span> )
-143:     <span class="ruby-comment cmt"># some dirs we will not add to an install log.</span>
-144:     <span class="ruby-identifier">excluded_pattern</span> = <span class="ruby-constant">Regexp</span>.<span class="ruby-identifier">new</span>( <span class="ruby-value str">&quot;^(/dev|/proc|/tmp|/var/tmp|/usr/src|/sys)+&quot;</span> )
-145:     <span class="ruby-identifier">badLine</span> = <span class="ruby-keyword kw">false</span>  <span class="ruby-comment cmt"># used to mark excluded lines from installwatch log.</span>
-146:     
-147:     <span class="ruby-comment cmt"># our log locations.</span>
-148:     <span class="ruby-identifier">installLog</span> = <span class="ruby-identifier">get_log</span>( <span class="ruby-identifier">package</span>, <span class="ruby-value str">'install'</span> )
-149:     <span class="ruby-identifier">tmpInstallLog</span> = <span class="ruby-identifier">get_log</span>( <span class="ruby-identifier">package</span>, <span class="ruby-value str">'tmpinstall'</span> )
-150:     
-151:     <span class="ruby-comment cmt"># get the installed files from the tmp file</span>
-152:     <span class="ruby-comment cmt"># into our install log.</span>
-153:     <span class="ruby-keyword kw">if</span> ( <span class="ruby-constant">File</span>.<span class="ruby-identifier">exist?</span>( <span class="ruby-identifier">tmpInstallLog</span> ) )
-154:       <span class="ruby-identifier">installFile</span> = <span class="ruby-identifier">open</span>( <span class="ruby-identifier">installLog</span>, <span class="ruby-value str">'w'</span>)
-155:       
-156:       <span class="ruby-comment cmt"># include only the file names from open calls</span>
-157:       <span class="ruby-comment cmt"># and not part of the excluded range of directories.</span>
-158:       <span class="ruby-constant">IO</span>.<span class="ruby-identifier">foreach</span>( <span class="ruby-identifier">tmpInstallLog</span> ) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">line</span><span class="ruby-operator">|</span>
-159:         <span class="ruby-keyword kw">if</span> ( <span class="ruby-identifier">line</span>.<span class="ruby-identifier">split</span>[<span class="ruby-value">1</span>] <span class="ruby-operator">==</span> <span class="ruby-value str">'open'</span> )
-160:           <span class="ruby-keyword kw">if</span> ( <span class="ruby-identifier">line</span>.<span class="ruby-identifier">split</span>[<span class="ruby-value">2</span>] <span class="ruby-operator">=~</span> <span class="ruby-identifier">excluded_pattern</span> )
-161:             <span class="ruby-identifier">badLine</span> = <span class="ruby-keyword kw">true</span>
-162:           <span class="ruby-keyword kw">else</span>
-163:             <span class="ruby-identifier">badLine</span> = <span class="ruby-keyword kw">false</span>
-164:           <span class="ruby-keyword kw">end</span>
-165:           
-166:           <span class="ruby-keyword kw">if</span> ( <span class="ruby-operator">!</span><span class="ruby-identifier">badLine</span> )
-167:             <span class="ruby-identifier">installFile</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;#{line.split[2]}\n&quot;</span>
-168:           <span class="ruby-keyword kw">end</span>
-169:         <span class="ruby-keyword kw">end</span> 
-170:       <span class="ruby-keyword kw">end</span>
-171:       
-172:       <span class="ruby-identifier">installFile</span>.<span class="ruby-identifier">close</span>
-173:     <span class="ruby-keyword kw">else</span>
-174:       <span class="ruby-comment cmt"># no tmp install file, thus no install running.</span>
-175:       <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">false</span>
-176:     <span class="ruby-keyword kw">end</span>
-177:     
-178:     <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">true</span>;
-179:   <span class="ruby-keyword kw">end</span>
+     <span class="ruby-comment cmt"># File abtlogmanager.rb, line 139</span>
+139:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">log_package_install</span>( <span class="ruby-identifier">package</span> )
+140:     <span class="ruby-comment cmt"># some dirs we will not add to an install log.</span>
+141:     <span class="ruby-identifier">excluded_pattern</span> = <span class="ruby-constant">Regexp</span>.<span class="ruby-identifier">new</span>( <span class="ruby-value str">&quot;^(/dev|/proc|/tmp|/var/tmp|/usr/src|/sys)+&quot;</span> )
+142:     <span class="ruby-identifier">badLine</span> = <span class="ruby-keyword kw">false</span>  <span class="ruby-comment cmt"># used to mark excluded lines from installwatch log.</span>
+143:     
+144:     <span class="ruby-comment cmt"># our log locations.</span>
+145:     <span class="ruby-identifier">installLog</span> = <span class="ruby-identifier">get_log</span>( <span class="ruby-identifier">package</span>, <span class="ruby-value str">'install'</span> )
+146:     <span class="ruby-identifier">tmpInstallLog</span> = <span class="ruby-identifier">get_log</span>( <span class="ruby-identifier">package</span>, <span class="ruby-value str">'tmpinstall'</span> )
+147:     
+148:     <span class="ruby-comment cmt"># get the installed files from the tmp file</span>
+149:     <span class="ruby-comment cmt"># into our install log.</span>
+150:     <span class="ruby-keyword kw">if</span> ( <span class="ruby-constant">File</span>.<span class="ruby-identifier">exist?</span>( <span class="ruby-identifier">tmpInstallLog</span> ) )
+151:       <span class="ruby-identifier">installFile</span> = <span class="ruby-identifier">open</span>( <span class="ruby-identifier">installLog</span>, <span class="ruby-value str">'w'</span>)
+152:       
+153:       <span class="ruby-comment cmt"># include only the file names from open calls</span>
+154:       <span class="ruby-comment cmt"># and not part of the excluded range of directories.</span>
+155:       <span class="ruby-constant">IO</span>.<span class="ruby-identifier">foreach</span>( <span class="ruby-identifier">tmpInstallLog</span> ) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">line</span><span class="ruby-operator">|</span>
+156:         <span class="ruby-keyword kw">if</span> ( <span class="ruby-identifier">line</span>.<span class="ruby-identifier">split</span>[<span class="ruby-value">1</span>] <span class="ruby-operator">==</span> <span class="ruby-value str">'open'</span> )
+157:           <span class="ruby-keyword kw">if</span> ( <span class="ruby-identifier">line</span>.<span class="ruby-identifier">split</span>[<span class="ruby-value">2</span>] <span class="ruby-operator">=~</span> <span class="ruby-identifier">excluded_pattern</span> )
+158:             <span class="ruby-identifier">badLine</span> = <span class="ruby-keyword kw">true</span>
+159:           <span class="ruby-keyword kw">else</span>
+160:             <span class="ruby-identifier">badLine</span> = <span class="ruby-keyword kw">false</span>
+161:           <span class="ruby-keyword kw">end</span>
+162:           
+163:           <span class="ruby-keyword kw">if</span> ( <span class="ruby-operator">!</span><span class="ruby-identifier">badLine</span> )
+164:             <span class="ruby-identifier">installFile</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;#{line.split[2]}\n&quot;</span>
+165:           <span class="ruby-keyword kw">end</span>
+166:         <span class="ruby-keyword kw">end</span> 
+167:       <span class="ruby-keyword kw">end</span>
+168:       
+169:       <span class="ruby-identifier">installFile</span>.<span class="ruby-identifier">close</span>
+170:     <span class="ruby-keyword kw">else</span>
+171:       <span class="ruby-comment cmt"># no tmp install file, thus no install running.</span>
+172:       <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">false</span>
+173:     <span class="ruby-keyword kw">end</span>
+174:     
+175:     <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">true</span>;
+176:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>
@@ -446,35 +446,32 @@ successfully, otherwise false.
 <pre>
      <span class="ruby-comment cmt"># File abtlogmanager.rb, line 102</span>
 102:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">log_package_integrity</span>( <span class="ruby-identifier">package</span> )
-103:     <span class="ruby-comment cmt">#require &quot;#{$PACKAGE_PATH}#{package}&quot;</span>
-104:     <span class="ruby-comment cmt">#sw = eval( &quot;#{package.capitalize}.new&quot; )</span>
-105:     <span class="ruby-comment cmt">#details = sw.details</span>
-106:     
-107:     <span class="ruby-comment cmt"># our log locations.</span>
-108:     <span class="ruby-identifier">installLog</span> = <span class="ruby-identifier">get_log</span>( <span class="ruby-identifier">package</span>, <span class="ruby-value str">'install'</span> )
-109:     <span class="ruby-identifier">integrityLog</span> = <span class="ruby-identifier">get_log</span>( <span class="ruby-identifier">package</span>, <span class="ruby-value str">'integrity'</span> )
-110:     
-111:     <span class="ruby-comment cmt"># get the installed files from the tmp file</span>
-112:     <span class="ruby-comment cmt"># into our install log.</span>
-113:     <span class="ruby-keyword kw">if</span> ( <span class="ruby-constant">File</span>.<span class="ruby-identifier">exist?</span>( <span class="ruby-identifier">installLog</span> ) )
-114:       <span class="ruby-identifier">installFile</span>   = <span class="ruby-identifier">open</span>( <span class="ruby-identifier">installLog</span>, <span class="ruby-value str">'r'</span> )
-115:       <span class="ruby-identifier">integrityFile</span> = <span class="ruby-identifier">open</span>( <span class="ruby-identifier">integrityLog</span>, <span class="ruby-value str">'w'</span> )
-116: 
-117:       <span class="ruby-comment cmt"># get the integrity for each file, initially just permissions.      </span>
-118:       <span class="ruby-constant">IO</span>.<span class="ruby-identifier">foreach</span>( <span class="ruby-identifier">installLog</span> ) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">line</span><span class="ruby-operator">|</span>
-119:         <span class="ruby-identifier">status</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">stat</span>( <span class="ruby-identifier">line</span>.<span class="ruby-identifier">chomp</span> )
-120:         <span class="ruby-identifier">octal</span>  = <span class="ruby-identifier">sprintf</span>( <span class="ruby-value str">&quot;%o&quot;</span>, <span class="ruby-identifier">status</span>.<span class="ruby-identifier">mode</span> )
-121:         <span class="ruby-identifier">integrityFile</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;#{line.chomp}:#{octal}\n&quot;</span>
-122:       <span class="ruby-keyword kw">end</span>
-123:       
-124:       <span class="ruby-identifier">installFile</span>.<span class="ruby-identifier">close</span>
-125:       <span class="ruby-identifier">integrityFile</span>.<span class="ruby-identifier">close</span>
-126:     <span class="ruby-keyword kw">else</span>
-127:       <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">false</span>  <span class="ruby-comment cmt"># no install log!</span>
-128:     <span class="ruby-keyword kw">end</span>
-129:     
-130:     <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">true</span>;
-131:   <span class="ruby-keyword kw">end</span>
+103:     
+104:     <span class="ruby-comment cmt"># our log locations.</span>
+105:     <span class="ruby-identifier">installLog</span> = <span class="ruby-identifier">get_log</span>( <span class="ruby-identifier">package</span>, <span class="ruby-value str">'install'</span> )
+106:     <span class="ruby-identifier">integrityLog</span> = <span class="ruby-identifier">get_log</span>( <span class="ruby-identifier">package</span>, <span class="ruby-value str">'integrity'</span> )
+107:     
+108:     <span class="ruby-comment cmt"># get the installed files from the tmp file</span>
+109:     <span class="ruby-comment cmt"># into our install log.</span>
+110:     <span class="ruby-keyword kw">if</span> ( <span class="ruby-constant">File</span>.<span class="ruby-identifier">exist?</span>( <span class="ruby-identifier">installLog</span> ) )
+111:       <span class="ruby-identifier">installFile</span>   = <span class="ruby-identifier">open</span>( <span class="ruby-identifier">installLog</span>, <span class="ruby-value str">'r'</span> )
+112:       <span class="ruby-identifier">integrityFile</span> = <span class="ruby-identifier">open</span>( <span class="ruby-identifier">integrityLog</span>, <span class="ruby-value str">'w'</span> )
+113: 
+114:       <span class="ruby-comment cmt"># get the integrity for each file, initially just permissions.      </span>
+115:       <span class="ruby-constant">IO</span>.<span class="ruby-identifier">foreach</span>( <span class="ruby-identifier">installLog</span> ) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">line</span><span class="ruby-operator">|</span>
+116:         <span class="ruby-identifier">status</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">stat</span>( <span class="ruby-identifier">line</span>.<span class="ruby-identifier">chomp</span> )
+117:         <span class="ruby-identifier">octal</span>  = <span class="ruby-identifier">sprintf</span>( <span class="ruby-value str">&quot;%o&quot;</span>, <span class="ruby-identifier">status</span>.<span class="ruby-identifier">mode</span> )
+118:         <span class="ruby-identifier">integrityFile</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;#{line.chomp}:#{octal}\n&quot;</span>
+119:       <span class="ruby-keyword kw">end</span>
+120:       
+121:       <span class="ruby-identifier">installFile</span>.<span class="ruby-identifier">close</span>
+122:       <span class="ruby-identifier">integrityFile</span>.<span class="ruby-identifier">close</span>
+123:     <span class="ruby-keyword kw">else</span>
+124:       <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">false</span>  <span class="ruby-comment cmt"># no install log!</span>
+125:     <span class="ruby-keyword kw">end</span>
+126:     
+127:     <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">true</span>;
+128:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>
