@@ -100,9 +100,6 @@ class AbtLogManager
   # otherwise false.
   ##
   def log_package_integrity( package )
-    #require "#{$PACKAGE_PATH}#{package}"
-    #sw = eval( "#{package.capitalize}.new" )
-    #details = sw.details
     
     # our log locations.
     installLog = get_log( package, 'install' )
