@@ -73,7 +73,7 @@ class TestAbtDownloadManager < Test::Unit::TestCase
   # Test method for 'AbtDownloadManager.test_update_package()'
   ## 
   def test_update_package()
-    assert( @download.update_package() , "test_update_package()" )
+    assert( @download.update_package( "ipc") , "test_update_package()" )
   end
   
   ##
