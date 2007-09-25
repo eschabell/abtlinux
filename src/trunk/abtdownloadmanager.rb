@@ -87,12 +87,8 @@ class AbtDownloadManager
       if File.directory?( $PACKAGE_PATH )
         # check if svn directory.
         if File.directory?( "#{$PACKAGE_PATH}.svn" )
-            if system( "svn update #{$PACKAGE_PATH}" )
-                logger.info "Package tree updated (svn update)"
-            else
-                logger.error "Package tree unable to update (svn update)."
-                return false
-            end
+            logger.info "Package tree #{packageTreeName} already installed."
+            return true
         else
             # package directory exists, but is not a valid tree.
             logger.error "Package tree exists, but is not valid svn tree."
@@ -186,7 +182,33 @@ class AbtDownloadManager
   # <b>RETURN</b> <i>boolean</i> - True if the package tree has been updated,
   # otherwise false.
   ##
-  def update_package_tree
+  def update_package_tree( packageTreeName="AbTLinux" )
+      logger        = Logger.new($JOURNAL)
+
+      # check if package tree exists.
+      if File.directory?( $PACKAGE_PATH )
+        # check if svn directory.
+        if File.directory?( "#{$PACKAGE_PATH}.svn" )
+            if system( "svn update #{$PACKAGE_PATH}" )
+                logger.info "Package tree updated (svn update)"
+            else
+                logger.error "Package tree unable to update (svn update)."
+                return false
+            end
+        else
+            # package directory exists, but is not a valid tree.
+            logger.error "Package tree exists, but is not valid svn tree."
+            return false
+        end
+      
+      else
+      
+        # pacakge directory does not exist, svn co.
+          logger.error "Package tree not installed (svn co), problems!"
+          return false      
+      end
+      
+      return true
   end
   
   ##

@@ -530,7 +530,7 @@ when "package-repo"
   
   case ARGV.length
     
-    # add or remove called.
+    # add, remove or update called.
   when 3
     options['repoAction'] = ARGV[1]
     options['repoUri'] = ARGV[2]
@@ -541,11 +541,10 @@ when "package-repo"
     if ( ARGV[1] == "list" )
       options['repoAction'] = ARGV[1]
       logger.info "TODO: Listing package repositories."
-    elsif ARGV[1] == "add" || ARGV[1] == "remove"
-      # add or remove default repo.
+    elsif ARGV[1] == "add" || ARGV[1] == "remove" || ARGV[1] == "update"
+      # add, remove or update default repo.
       options['repoAction'] = ARGV[1]
       options['repoUri']    = ""
-      logger.info "Default AbTLinux Package Repository : #{options['repoAction']}."
     else
       show.usage( "maintenance" )
       exit
@@ -569,18 +568,39 @@ when "package-repo"
         else
             puts "Unable to add package tree : #{options['repoUri']}."
             logger.error "Unable to add package tree : #{options['repoUri']}."
+            logger.info( "Finished package-repo : #{options['repoAction']}.")
             exit
         end
     else
         puts "Adding package repository : Default AbTLinux Package Tree"
         if downloader.retrieve_package_tree
-            puts "Added package tree : Default AbTLinux Package Tree}."
+            puts "Added package tree : Default AbTLinux Package Tree."
         else
             puts "Unable to add package tree : Default AbTLinux Package Tree."
             logger.error "Unable to add package tree : Default AbTLinux Package Tree."
+            logger.info( "Finished package-repo : #{options['repoAction']}.")
             exit
         end
     end
+    
+    when "update"
+      if options['repoUri'].length >= 0
+          puts "Updating package repository : " + options['repoUri']
+          if downloader.update_package_tree( options['repoUri'] )
+              puts "Updated package tree : #{options['repoUri']}."
+          else
+              puts "Unable to update package tree : #{options['repoUri']}."
+              logger.error "Unable to update package tree : #{options['repoUri']}."
+              logger.info( "Finished package-repo : #{options['repoAction']}.")
+              exit
+          end
+      else
+          puts "Unable to update package tree : Default AbTLinux Package Tree."
+          logger.error "Unable to update package tree : Default AbTLinux Package Tree."
+          logger.info( "Finished package-repo : #{options['repoAction']}.")
+          exit
+      end
+      
   when "remove"
     # FIXME: implement this.
       if options['repoUri'].length > 0
@@ -598,7 +618,7 @@ when "package-repo"
     exit
   end # case repoAction.
   
-  logger.info( "Starting package-repo : #{ARGV[1]} - #{ARGV[2]}.")    
+  logger.info( "Finished package-repo : #{options['repoAction']}.")
   
 else
   show.usage( "all" )
