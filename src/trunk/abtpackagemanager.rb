@@ -309,6 +309,29 @@ class AbtPackageManager
   # false.
   ##
   def freeze_package( package )
+		require "#{$PACKAGE_PATH}#{package}"
+    sw       = eval( "#{package.capitalize}.new" )
+    myLogger = AbtLogManager.new  # TODO: refactor myLogger.
+    logger   = Logger.new( $JOURNAL )
+		system   = AbtSystemManager.new
+    
+    # get package details.
+    details = sw.details
+
+		#if system.package_installed( package )
+		#	if system.package_frozen( package )
+    #		logger.info( "Package #{package} is already frozen!" )
+		#		return true
+		#	end
+
+			# FIXME: create file in $PACKAGE_INSTALLED frozen.log with date.
+			#frozen = File.open( "#{$PACKAGE_INSTALLED}/#{sw.srcDir}/frozen.log", "w" )
+			#frozen.puts "#{$TIMESTAMP}"
+			#frozen.close
+		#	end
+		#end
+    
+    #logger.info( "Package #{package} is not installed, unable to freeze it." )
     return false
   end
   
