@@ -76,7 +76,7 @@ Object
       <div id="content">
   <table cellpadding='0' cellspacing='0' border='0' width="100%"><tr><td align="center">
     <map id="map" name="map">
-  <area shape="rect" coords="27,50,163,98"      href="AbtSystemManager.html" alt="AbtSystemManager" />
+  <area shape="rect" coords="27,50,149,98"      href="AbtSystemManager.html" alt="AbtSystemManager" />
 </map>
 <img src="../dot/f_7.png" usemap="#map" border="0" alt="dot/f_7.png">
   </td></tr></table>
@@ -121,6 +121,7 @@ Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
   <li><a href="#M000002">cleanup_package_sources</a></li>
   <li><a href="#M000007">fix_package</a></li>
   <li><a href="#M000001">new</a></li>
+  <li><a href="#M000011">package_frozen</a></li>
   <li><a href="#M000010">package_installed</a></li>
   <li><a href="#M000008">set_central_repo</a></li>
   <li><a href="#M000009">set_package_tree_location</a></li>
@@ -263,6 +264,43 @@ false.
 </div>
 <div class="method">
   <div class="title">
+    <a name="M000011"></a><b>package_frozen</b>( package )
+  </div>
+  <div class="description">
+  <p>
+Checks if the given package is frozen by checking for entry in the
+installed directory (frozen.log file).
+</p>
+<p>
+<b>PARAM</b> <em>String</em> - Package name.
+</p>
+<p>
+<b>RETURN</b> <em>boolean</em> - True if package installed, otherwise
+false.
+</p>
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000011_source')" id="l_M000011_source">show source</a> ]</p>
+  <div id="M000011_source" class="dyn-source">
+<pre>
+     <span class="ruby-comment cmt"># File abtsystemmanager.rb, line 307</span>
+307:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">package_frozen</span>( <span class="ruby-identifier">package</span> )
+308:     <span class="ruby-identifier">require</span> <span class="ruby-node">&quot;#{$PACKAGE_PATH}#{package}&quot;</span>
+309:     <span class="ruby-identifier">sw</span> = <span class="ruby-identifier">eval</span>( <span class="ruby-node">&quot;#{package.capitalize}.new&quot;</span> )
+310:     
+311:                 <span class="ruby-comment cmt"># looking for frozen log file.</span>
+312:     <span class="ruby-keyword kw">if</span> ( <span class="ruby-identifier">found_entry</span>( <span class="ruby-node">&quot;#{$PACKAGE_INSTALLED}/#{sw.srcDir}&quot;</span>, <span class="ruby-value str">&quot;frozen.log&quot;</span> ) )
+313:       <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">true</span>
+314:     <span class="ruby-keyword kw">end</span>
+315:      
+316:     <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">false</span>
+317:   <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
     <a name="M000010"></a><b>package_installed</b>( package )
   </div>
   <div class="description">
@@ -286,14 +324,13 @@ false.
 287:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">package_installed</span>( <span class="ruby-identifier">package</span> )
 288:     <span class="ruby-identifier">require</span> <span class="ruby-node">&quot;#{$PACKAGE_PATH}#{package}&quot;</span>
 289:     <span class="ruby-identifier">sw</span> = <span class="ruby-identifier">eval</span>( <span class="ruby-node">&quot;#{package.capitalize}.new&quot;</span> )
-290:     <span class="ruby-identifier">details</span> = <span class="ruby-identifier">sw</span>.<span class="ruby-identifier">details</span>
-291:     
-292:     <span class="ruby-keyword kw">if</span> ( <span class="ruby-identifier">found_entry</span>( <span class="ruby-identifier">$PACKAGE_INSTALLED</span>, <span class="ruby-identifier">sw</span>.<span class="ruby-identifier">srcDir</span> ) )
-293:       <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">true</span>
-294:     <span class="ruby-keyword kw">end</span>
-295:      
-296:     <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">false</span>
-297:   <span class="ruby-keyword kw">end</span>
+290:     
+291:     <span class="ruby-keyword kw">if</span> ( <span class="ruby-identifier">found_entry</span>( <span class="ruby-identifier">$PACKAGE_INSTALLED</span>, <span class="ruby-identifier">sw</span>.<span class="ruby-identifier">srcDir</span> ) )
+292:       <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">true</span>
+293:     <span class="ruby-keyword kw">end</span>
+294:      
+295:     <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">false</span>
+296:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>
