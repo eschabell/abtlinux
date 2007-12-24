@@ -287,7 +287,6 @@ class AbtSystemManager
   def package_installed( package )
     require "#{$PACKAGE_PATH}#{package}"
     sw = eval( "#{package.capitalize}.new" )
-    details = sw.details
     
     if ( found_entry( $PACKAGE_INSTALLED, sw.srcDir ) )
       return true
@@ -296,4 +295,26 @@ class AbtSystemManager
     return false
   end
  
+	##
+  # Checks if the given package is frozen by checking for entry in the
+  # installed directory (frozen.log file).
+  #
+  # <b>PARAM</b> <i>String</i> - Package name.
+  #
+  # <b>RETURN</b> <i>boolean</i> - True if package installed, otherwise
+  # false.
+  ##
+  def package_frozen( package )
+    require "#{$PACKAGE_PATH}#{package}"
+    sw = eval( "#{package.capitalize}.new" )
+    
+		# looking for frozen log file.
+    if ( found_entry( "#{$PACKAGE_INSTALLED}/#{sw.srcDir}", "frozen.log" ) )
+      return true
+    end
+     
+    return false
+  end
+ 
+
 end
