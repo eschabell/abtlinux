@@ -176,10 +176,17 @@ when "downgrade", "-dg"
 when "freeze", "-f"
   if ( ARGV.length == 2 )
     options['package'] = ARGV[1]
-    # FIXME : freeze package implementation.
-    puts "Holdinging package : #{options['package']} at current version."
+    logger.info( "Starting freeze of package : #{options['package']}" )
+		puts "\nAttempting to freeze package #{options['package']}."
+		if ( !manager.freeze_package( options['package'] ) )
+			puts "\nUnable to freeze package #{options['package']}, see journal for details."
+		end
+    
+		logger.info( "Completed (un)freeze of package : #{options['package']}" )
+		puts "\nCompleted freeze of package : #{options['package']}"
   else
     show.usage( "packages" )
+    logger.info( "Completed (un)freeze of package : #{options['package']}" )
     exit
   end
   

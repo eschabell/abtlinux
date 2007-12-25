@@ -93,6 +93,7 @@ class AbtPackageManager
     sw = eval( "#{package.capitalize}.new" )
     queuer = AbtQueueManager.new
     logger = Logger.new( $JOURNAL )
+		system = AbtSystemManager.new
     
     # TODO: refactor myLogger:
     myLogger = AbtLogManager.new
@@ -100,6 +101,13 @@ class AbtPackageManager
     # get package details.
     details = sw.details
     
+		# check for frozen.
+		if ( system.package_frozen( package ) )
+			logger.info "Package #{package} is frozen, can not proceed with install package call."
+			puts "\nPackage #{package} is frozen, can not proceed with install package call."
+			return false
+		end
+
     # TODO:  check deps
     
     # add to install queue.
@@ -109,7 +117,7 @@ class AbtPackageManager
       logger.info( "Failed to add #{package} to install queue." )
       return false
     end
-    
+
     # pre section.
     puts "\n*** Processing the PRE section for #{package}. ***" if (verbose )
     
@@ -214,7 +222,15 @@ class AbtPackageManager
     logger = Logger.new( $JOURNAL )
     # TODO: look into refactoring myLogger:
     myLogger = AbtLogManager.new
+		system   = AbtSystemManager.new
     
+		# check for frozen.
+		if ( system.package_frozen( package ) )
+			logger.info "Package #{package} is frozen, can not proceed with reinstall package call."
+			puts "\nPackage #{package} is frozen, can not proceed with reinstall package call."
+			return false
+		end
+
     if ( install_package( package ) )
       puts "\n\n"
       puts "*** Completed reinstall of #{package}. ***"
@@ -249,10 +265,18 @@ class AbtPackageManager
     # TODO: refactor myLogger.
     myLogger = AbtLogManager.new
     logger = Logger.new( $JOURNAL )
+		system = AbtSystemManager.new
     
     # get package details.
     details = sw.details
     
+		# check for frozen.
+		if ( system.package_frozen( package ) )
+			logger.info "Package #{package} is frozen, can not proceed with remove package call."
+			puts "\nPackage #{package} is frozen, can not proceed with remove package call."
+			return false
+		end
+
     # TODO: something with possible /etc or other configure files before removal, check maybe integrity for changes since install?
 
     # remove listings in install log.
@@ -296,12 +320,21 @@ class AbtPackageManager
   # false.
   ##
   def downgrade_package( package, version )
+		system = AbtSystemManager.new
+
+		# check for frozen.
+		if ( system.package_frozen( package ) )
+			logger.info "Package #{package} is frozen, can not proceed with downgrade package call."
+			puts "\nPackage #{package} is frozen, can not proceed with downgrade package call."
+			return false
+		end
+
     return false
   end
   
   ##
   # Freezes a given package. If successful will add give package to the frozen
-  # list.
+  # list. If the given package is already frozen, it will be released.
   #
   # <b>PARAM</b> <i>String</i> - the name of the package to be frozen.
   #
@@ -315,23 +348,27 @@ class AbtPackageManager
     logger   = Logger.new( $JOURNAL )
 		system   = AbtSystemManager.new
     
-    # get package details.
-    details = sw.details
+		if ( system.package_installed( package ) )
+			if ( system.package_frozen( package ) )
+    		logger.info( "Package #{package} is already frozen!" )
 
-		#if system.package_installed( package )
-		#	if system.package_frozen( package )
-    #		logger.info( "Package #{package} is already frozen!" )
-		#		return true
-		#	end
+				# package already frozen, need to un-freeze by removing frozen.log
+				# file.
+				FileUtils.rm "#{$PACKAGE_INSTALLED}/#{sw.srcDir}/frozen.log"
+				puts "\nPackage #{package} was frozen, it has now been relased for use."
+				logger.info "Package #{package} released : removed file #{$PACKAGE_INSTALLED}/#{sw.srcDir}/frozen.log"
+			else
+				# place file in $PACKAGE_INSTALLED frozen.log with date.
+				frozen = File.open( "#{$PACKAGE_INSTALLED}/#{sw.srcDir}/frozen.log", "w" )
+				frozen.puts "#{$TIMESTAMP}"
+				frozen.close
+  			logger.info( "Package #{package} is now frozen." )
+  		end
 
-			# FIXME: create file in $PACKAGE_INSTALLED frozen.log with date.
-			#frozen = File.open( "#{$PACKAGE_INSTALLED}/#{sw.srcDir}/frozen.log", "w" )
-			#frozen.puts "#{$TIMESTAMP}"
-			#frozen.close
-		#	end
-		#end
+			return true
+		end
     
-    #logger.info( "Package #{package} is not installed, unable to freeze it." )
+    logger.info( "Package #{package} is not installed, unable to freeze it." )
     return false
   end
   
