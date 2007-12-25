@@ -206,13 +206,13 @@ commands.
   <p class="source-link">[ <a href="javascript:toggleSource('M000040_source')" id="l_M000040_source">show source</a> ]</p>
   <div id="M000040_source" class="dyn-source">
 <pre>
-     <span class="ruby-comment cmt"># File abtusage.rb, line 125</span>
-125:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">usage_downloads</span>
-126:     <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;\ndownloads:&quot;</span>
-127:     <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;  -d,  download     [package]\t\tRetrieve given package sources.&quot;</span>
-128:     <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;  -u,  update       [package]|[tree]\tUpdate given package or tree from AbTLinux repository.&quot;</span>
-129:     <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;  -n,  news\t\t\t\tDisplays newsfeeds from AbTLinux website.\n&quot;</span>
-130:   <span class="ruby-keyword kw">end</span>
+     <span class="ruby-comment cmt"># File abtusage.rb, line 126</span>
+126:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">usage_downloads</span>
+127:     <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;\ndownloads:&quot;</span>
+128:     <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;  -d,  download     [package]\t\tRetrieve given package sources.&quot;</span>
+129:     <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;  -u,  update       [package]|[tree]\tUpdate given package or tree from AbTLinux repository.&quot;</span>
+130:     <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;  -n,  news\t\t\t\tDisplays newsfeeds from AbTLinux website.\n&quot;</span>
+131:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>
@@ -234,16 +234,16 @@ commands.
   <p class="source-link">[ <a href="javascript:toggleSource('M000041_source')" id="l_M000041_source">show source</a> ]</p>
   <div id="M000041_source" class="dyn-source">
 <pre>
-     <span class="ruby-comment cmt"># File abtusage.rb, line 137</span>
-137:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">usage_fix</span>
-138:     <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;\nfix:&quot;</span>
-139:     <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;  purge-src\t\t\t\tRemove source caches for packages no longer installed.&quot;</span>
-140:     <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;  verify-files      [package]\t\tInstalled files are verified for given package.&quot;</span>
-141:     <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;  verify-symlinks   [package]\t\tSymlinks verified for given package.&quot;</span>
-142:     <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;  verify-deps       [package]\t\tDependency tree is verified for given package.&quot;</span>
-143:     <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;  verify-integrity  [package]\t\tVerify integrity of installed files for given package.&quot;</span>
-144:     <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;  fix               [package]\t\tGiven package is verified and fixed if needed.\n&quot;</span>
-145:   <span class="ruby-keyword kw">end</span>
+     <span class="ruby-comment cmt"># File abtusage.rb, line 138</span>
+138:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">usage_fix</span>
+139:     <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;\nfix:&quot;</span>
+140:     <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;  purge-src\t\t\t\tRemove source caches for packages no longer installed.&quot;</span>
+141:     <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;  verify-files      [package]\t\tInstalled files are verified for given package.&quot;</span>
+142:     <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;  verify-symlinks   [package]\t\tSymlinks verified for given package.&quot;</span>
+143:     <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;  verify-deps       [package]\t\tDependency tree is verified for given package.&quot;</span>
+144:     <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;  verify-integrity  [package]\t\tVerify integrity of installed files for given package.&quot;</span>
+145:     <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;  fix               [package]\t\tGiven package is verified and fixed if needed.\n&quot;</span>
+146:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>
@@ -265,13 +265,13 @@ generation commands.
   <p class="source-link">[ <a href="javascript:toggleSource('M000039_source')" id="l_M000039_source">show source</a> ]</p>
   <div id="M000039_source" class="dyn-source">
 <pre>
-     <span class="ruby-comment cmt"># File abtusage.rb, line 113</span>
-113:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">usage_generation</span>
-114:     <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;\ngeneration:&quot;</span>
-115:     <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;  show-updates\t\tShow a package listing with available update versions.&quot;</span>
-116:     <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;  html\t\t\tGenerate HTML page from installed packages:&quot;</span>
-117:     <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;  \t\t\t\t(package name with hyperlink to package website and version installed)\n&quot;</span>
-118:   <span class="ruby-keyword kw">end</span>
+     <span class="ruby-comment cmt"># File abtusage.rb, line 114</span>
+114:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">usage_generation</span>
+115:     <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;\ngeneration:&quot;</span>
+116:     <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;  show-updates\t\tShow a package listing with available update versions.&quot;</span>
+117:     <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;  html\t\t\tGenerate HTML page from installed packages:&quot;</span>
+118:     <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;  \t\t\t\t(package name with hyperlink to package website and version installed)\n&quot;</span>
+119:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>
@@ -293,15 +293,15 @@ maintenance commands.
   <p class="source-link">[ <a href="javascript:toggleSource('M000042_source')" id="l_M000042_source">show source</a> ]</p>
   <div id="M000042_source" class="dyn-source">
 <pre>
-     <span class="ruby-comment cmt"># File abtusage.rb, line 152</span>
-152:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">usage_maintenance</span>
-153:     <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;\nmaintenance:&quot;</span>
-154:     <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;  build-location    [host]\t\tSets global location (default: localhost) for retrieving cached package builds.&quot;</span>
-155:     <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;  package-repo      [add|remove|list] [URI]&quot;</span>
-156:     <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;                                        add    - add package repository.&quot;</span>
-157:     <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;                                        remove - remove a package repository.&quot;</span>
-158:     <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;                                        list   - display current repository listing.\n&quot;</span>
-159:   <span class="ruby-keyword kw">end</span>
+     <span class="ruby-comment cmt"># File abtusage.rb, line 153</span>
+153:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">usage_maintenance</span>
+154:     <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;\nmaintenance:&quot;</span>
+155:     <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;  build-location    [host]\t\tSets global location (default: localhost) for retrieving cached package builds.&quot;</span>
+156:     <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;  package-repo      [add|remove|list] [URI]&quot;</span>
+157:     <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;                                        add    - add package repository.&quot;</span>
+158:     <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;                                        remove - remove a package repository.&quot;</span>
+159:     <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;                                        list   - display current repository listing.\n&quot;</span>
+160:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>
@@ -331,7 +331,8 @@ commands.
 78:     <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;  -r,  remove      [package]\t\tRemove given package.&quot;</span>
 79:     <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;  -dg, downgrade   [version] [package]\tDowngrade given package to given version.&quot;</span>
 80:     <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;  -f,  freeze      [package]\t\tHolds given package at current version, prevents upgrades.\n&quot;</span>
-81:   <span class="ruby-keyword kw">end</span>
+81:                 <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;\t\t\t\t\tIf the given package is already frozen, it will be released.\n&quot;</span>
+82:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>
@@ -353,26 +354,26 @@ commands.
   <p class="source-link">[ <a href="javascript:toggleSource('M000038_source')" id="l_M000038_source">show source</a> ]</p>
   <div id="M000038_source" class="dyn-source">
 <pre>
-     <span class="ruby-comment cmt"># File abtusage.rb, line 88</span>
- 88:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">usage_queries</span>
- 89:     <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;\nqueries:&quot;</span>
- 90:     <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;  -s,  search      [string | regexp ]\tSearch package descriptions for given input.&quot;</span>
- 91:     <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;  -v,  --version\t\t\tShow abt package manager version.&quot;</span>
- 92:     <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;  show-details     [package]\t\tShow give package details.&quot;</span>
- 93:     <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;  show-config      [package]\t\tShow configure log of given package.&quot;</span>
- 94:     <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;  show-build       [package]\t\tShow build log of given package.&quot;</span>
- 95:     <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;  show-install     [package]\t\tShow install log of given package.&quot;</span>
- 96:     <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;  show-integrity   [package]\t\tShow integrity log of given package.&quot;</span>
- 97:     <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;  show-depends     [package]\t\tShow the dependency tree of given package.&quot;</span>
- 98:     <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;  show-files       [package]\t\tShow all installed files from given package.&quot;</span>
- 99:     <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;  show-owner       [file]\t\tShow the package owning given file.&quot;</span>
-100:     <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;  show-installed\t\t\tShow list of all installed packages.&quot;</span>
-101:     <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;  show-frozen\t\t\t\tShow list of all frozen packages.&quot;</span>
-102:     <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;  show-untracked\t\t\tShow all files on system not tracked by AbTLinux.&quot;</span>
-103:     <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;  show-journal\t\t\t\tShow the system journal.&quot;</span>
-104:     <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;  show-iqueue\t\t\t\tShow the contents of the install queue.&quot;</span>
-105:     <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;  show-patches\t\t\t\tShow the current available patches for installed package tree.\n&quot;</span>
-106:   <span class="ruby-keyword kw">end</span>
+     <span class="ruby-comment cmt"># File abtusage.rb, line 89</span>
+ 89:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">usage_queries</span>
+ 90:     <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;\nqueries:&quot;</span>
+ 91:     <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;  -s,  search      [string | regexp ]\tSearch package descriptions for given input.&quot;</span>
+ 92:     <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;  -v,  --version\t\t\tShow abt package manager version.&quot;</span>
+ 93:     <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;  show-details     [package]\t\tShow give package details.&quot;</span>
+ 94:     <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;  show-config      [package]\t\tShow configure log of given package.&quot;</span>
+ 95:     <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;  show-build       [package]\t\tShow build log of given package.&quot;</span>
+ 96:     <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;  show-install     [package]\t\tShow install log of given package.&quot;</span>
+ 97:     <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;  show-integrity   [package]\t\tShow integrity log of given package.&quot;</span>
+ 98:     <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;  show-depends     [package]\t\tShow the dependency tree of given package.&quot;</span>
+ 99:     <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;  show-files       [package]\t\tShow all installed files from given package.&quot;</span>
+100:     <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;  show-owner       [file]\t\tShow the package owning given file.&quot;</span>
+101:     <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;  show-installed\t\t\tShow list of all installed packages.&quot;</span>
+102:     <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;  show-frozen\t\t\t\tShow list of all frozen packages.&quot;</span>
+103:     <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;  show-untracked\t\t\tShow all files on system not tracked by AbTLinux.&quot;</span>
+104:     <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;  show-journal\t\t\t\tShow the system journal.&quot;</span>
+105:     <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;  show-iqueue\t\t\t\tShow the contents of the install queue.&quot;</span>
+106:     <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;  show-patches\t\t\t\tShow the current available patches for installed package tree.\n&quot;</span>
+107:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>

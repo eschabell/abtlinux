@@ -225,8 +225,15 @@ Test method for &#8216;AbtPackageManager.test_freeze_package()&#8217;
 102:       <span class="ruby-ivar">@manager</span>.<span class="ruby-identifier">install_package</span>( <span class="ruby-value str">&quot;ipc&quot;</span> )
 103:     <span class="ruby-keyword kw">end</span>
 104:     
-105:     <span class="ruby-identifier">assert</span>( <span class="ruby-ivar">@pkgMgr</span>.<span class="ruby-identifier">freeze_package</span>( <span class="ruby-value str">&quot;ipc&quot;</span> ), <span class="ruby-value str">&quot;test_freeze_package()&quot;</span> )
-106:   <span class="ruby-keyword kw">end</span>
+105:                 <span class="ruby-keyword kw">if</span> <span class="ruby-operator">!</span><span class="ruby-ivar">@system</span>.<span class="ruby-identifier">package_frozen</span>( <span class="ruby-value str">&quot;ipc&quot;</span> )
+106:         <span class="ruby-identifier">assert</span>( <span class="ruby-ivar">@pkgMgr</span>.<span class="ruby-identifier">freeze_package</span>( <span class="ruby-value str">&quot;ipc&quot;</span> ), <span class="ruby-value str">&quot;test_freeze_package()&quot;</span> )
+107: 
+108:                         <span class="ruby-comment cmt"># need to return package to initial state, un-frozen.</span>
+109:                         <span class="ruby-ivar">@pkgMgr</span>.<span class="ruby-identifier">freeze_package</span>( <span class="ruby-value str">&quot;ipc&quot;</span> )
+110:                 <span class="ruby-keyword kw">else</span>
+111:                         <span class="ruby-identifier">assert</span>( <span class="ruby-keyword kw">true</span> )
+112:                 <span class="ruby-keyword kw">end</span>
+113:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>
