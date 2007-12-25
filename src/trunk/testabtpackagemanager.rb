@@ -102,7 +102,14 @@ class TestAbtPackageManager < Test::Unit::TestCase
       @manager.install_package( "ipc" )
     end
     
-    assert( @pkgMgr.freeze_package( "ipc" ), "test_freeze_package()" )
+		if !@system.package_frozen( "ipc" )
+    	assert( @pkgMgr.freeze_package( "ipc" ), "test_freeze_package()" )
+
+			# need to return package to initial state, un-frozen.
+			@pkgMgr.freeze_package( "ipc" )
+		else
+			assert( true )
+		end
   end
   
 end
