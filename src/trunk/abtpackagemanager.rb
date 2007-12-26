@@ -231,6 +231,30 @@ class AbtPackageManager
 			return false
 		end
 
+		# check if already installed.
+    if ( system.package_installed( options['package'] ) )
+      puts "\n*** Package #{package} is already installed! ***\n"
+      puts "Are you sure you want to proceed with a reinstall? (y/n)"
+      
+      while answer = STDIN.gets
+        answer.chomp!
+        if answer == "y"
+          break
+        elsif answer == "n"
+          exit
+        else 
+          puts "Are you sure you want to reinstall #{package}? (y/n)"
+        end
+      end
+    else
+      puts "\n*** Package #{package} is not installed, we will install it for you now! ***\n"
+      puts "Hit enter to continue..."
+      while continue = STDIN.gets
+        continue.chomp!
+        break
+      end
+    end
+ 
     if ( install_package( package ) )
       puts "\n\n"
       puts "*** Completed reinstall of #{package}. ***"

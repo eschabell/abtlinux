@@ -97,37 +97,13 @@ when "reinstall", "-ri"
     options['package'] = ARGV[1]
     logger.info( "Starting to reinstall #{options['package']}" )
     
-    # check if already installed.
-    if ( system.package_installed( options['package'] ) )
-      puts "\n*** Package #{options['package']} is already installed! ***\n"
-      puts "Are you sure you want to proceed with a reinstall? (y/n)"
-      
-      while answer = STDIN.gets
-        answer.chomp!
-        if answer == "y"
-          break
-        elsif answer == "n"
-          exit
-        else 
-          puts "Are you sure you want to reinstall #{options['package']}? (y/n)"
-        end
-      end
-    else
-      puts "\n*** Package #{options['package']} is not installed, we will install it for you now! ***\n"
-      puts "Hit enter to continue..."
-      while continue = STDIN.gets
-        continue.chomp!
-        break
-      end
-    end
-    
-    if ( manager.reinstall_package( options['package'] ) )
+   if ( manager.reinstall_package( options['package'] ) )
       puts "\n\n"
       puts "*** Completed reinstall of #{options['package']}. ***"
       puts "\n\n"
       logger.info( "Completed reinstall of #{options['package']}." )
     else
-      puts "*** #{options['package'].capitalize} reinstall failed, see journal. ***"
+      puts "\n*** Unable to reinstall package #{options['package'].capitalize}, see why in the journal. ***"
     end    
   else
     show.usage( "packages" )
@@ -145,7 +121,7 @@ when "remove", "-r"
       puts "\n\n"
       puts "*** No need to remove #{options['package']}, it was not installed! ***"
       puts "\n\n"
-      logger.info( "Completed removal of #{options['package']}." )
+    	logger.info( "Unabel to complete removal of #{options['package']}." )
       exit
     end
 
@@ -154,9 +130,14 @@ when "remove", "-r"
       puts "\n\n"
       puts "*** Completed removal of #{options['package']}. ***"
       puts "\n\n"
-      logger.info( "Completed removal of #{options['package']}." )
+    	logger.info( "Unabel to complete removal of #{options['package']}." )
     end  
+    
+		puts "\n*** Unable to completed removal of #{options['package']}, see why in the journal. ***"
+    logger.info( "Unabel to complete removal of #{options['package']}." )
   else
+    puts "\n*** Unable to completed removal of #{options['package']}, see why in the journal. ***"
+    logger.info( "Unabel to complete removal of #{options['package']}." )
     show.usage( "packages" )
     exit
   end
