@@ -182,19 +182,20 @@ otherwise false.
   <p class="source-link">[ <a href="javascript:toggleSource('M000047_source')" id="l_M000047_source">show source</a> ]</p>
   <div id="M000047_source" class="dyn-source">
 <pre>
-     <span class="ruby-comment cmt"># File abtpackagemanager.rb, line 322</span>
-322:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">downgrade_package</span>( <span class="ruby-identifier">package</span>, <span class="ruby-identifier">version</span> )
-323:                 <span class="ruby-identifier">system</span> = <span class="ruby-constant">AbtSystemManager</span>.<span class="ruby-identifier">new</span>
-324: 
-325:                 <span class="ruby-comment cmt"># check for frozen.</span>
-326:                 <span class="ruby-keyword kw">if</span> ( <span class="ruby-identifier">system</span>.<span class="ruby-identifier">package_frozen</span>( <span class="ruby-identifier">package</span> ) )
-327:                         <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">info</span> <span class="ruby-node">&quot;Package #{package} is frozen, can not proceed with downgrade package call.&quot;</span>
-328:                         <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;\nPackage #{package} is frozen, can not proceed with downgrade package call.&quot;</span>
-329:                         <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">false</span>
-330:                 <span class="ruby-keyword kw">end</span>
-331: 
-332:     <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">false</span>
-333:   <span class="ruby-keyword kw">end</span>
+     <span class="ruby-comment cmt"># File abtpackagemanager.rb, line 350</span>
+350:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">downgrade_package</span>( <span class="ruby-identifier">package</span>, <span class="ruby-identifier">version</span> )
+351:                 <span class="ruby-identifier">system</span> = <span class="ruby-constant">AbtSystemManager</span>.<span class="ruby-identifier">new</span>
+352:     <span class="ruby-identifier">logger</span> = <span class="ruby-constant">Logger</span>.<span class="ruby-identifier">new</span>( <span class="ruby-identifier">$JOURNAL</span> )
+353: 
+354:                 <span class="ruby-comment cmt"># check for frozen.</span>
+355:                 <span class="ruby-keyword kw">if</span> ( <span class="ruby-identifier">system</span>.<span class="ruby-identifier">package_frozen</span>( <span class="ruby-identifier">package</span> ) )
+356:                         <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">info</span> <span class="ruby-node">&quot;Package #{package} is frozen, can not proceed with downgrade package call.&quot;</span>
+357:                         <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;\nPackage #{package} is frozen, can not proceed with downgrade package call.&quot;</span>
+358:                         <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">false</span>
+359:                 <span class="ruby-keyword kw">end</span>
+360: 
+361:     <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">false</span>
+362:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>
@@ -220,37 +221,37 @@ false.
   <p class="source-link">[ <a href="javascript:toggleSource('M000048_source')" id="l_M000048_source">show source</a> ]</p>
   <div id="M000048_source" class="dyn-source">
 <pre>
-     <span class="ruby-comment cmt"># File abtpackagemanager.rb, line 344</span>
-344:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">freeze_package</span>( <span class="ruby-identifier">package</span> )
-345:                 <span class="ruby-identifier">require</span> <span class="ruby-node">&quot;#{$PACKAGE_PATH}#{package}&quot;</span>
-346:     <span class="ruby-identifier">sw</span>       = <span class="ruby-identifier">eval</span>( <span class="ruby-node">&quot;#{package.capitalize}.new&quot;</span> )
-347:     <span class="ruby-identifier">myLogger</span> = <span class="ruby-constant">AbtLogManager</span>.<span class="ruby-identifier">new</span>  <span class="ruby-comment cmt"># TODO: refactor myLogger.</span>
-348:     <span class="ruby-identifier">logger</span>   = <span class="ruby-constant">Logger</span>.<span class="ruby-identifier">new</span>( <span class="ruby-identifier">$JOURNAL</span> )
-349:                 <span class="ruby-identifier">system</span>   = <span class="ruby-constant">AbtSystemManager</span>.<span class="ruby-identifier">new</span>
-350:     
-351:                 <span class="ruby-keyword kw">if</span> ( <span class="ruby-identifier">system</span>.<span class="ruby-identifier">package_installed</span>( <span class="ruby-identifier">package</span> ) )
-352:                         <span class="ruby-keyword kw">if</span> ( <span class="ruby-identifier">system</span>.<span class="ruby-identifier">package_frozen</span>( <span class="ruby-identifier">package</span> ) )
-353:                 <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">info</span>( <span class="ruby-node">&quot;Package #{package} is already frozen!&quot;</span> )
-354: 
-355:                                 <span class="ruby-comment cmt"># package already frozen, need to un-freeze by removing frozen.log</span>
-356:                                 <span class="ruby-comment cmt"># file.</span>
-357:                                 <span class="ruby-constant">FileUtils</span>.<span class="ruby-identifier">rm</span> <span class="ruby-node">&quot;#{$PACKAGE_INSTALLED}/#{sw.srcDir}/frozen.log&quot;</span>
-358:                                 <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;\nPackage #{package} was frozen, it has now been relased for use.&quot;</span>
-359:                                 <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">info</span> <span class="ruby-node">&quot;Package #{package} released : removed file #{$PACKAGE_INSTALLED}/#{sw.srcDir}/frozen.log&quot;</span>
-360:                         <span class="ruby-keyword kw">else</span>
-361:                                 <span class="ruby-comment cmt"># place file in $PACKAGE_INSTALLED frozen.log with date.</span>
-362:                                 <span class="ruby-identifier">frozen</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span>( <span class="ruby-node">&quot;#{$PACKAGE_INSTALLED}/#{sw.srcDir}/frozen.log&quot;</span>, <span class="ruby-value str">&quot;w&quot;</span> )
-363:                                 <span class="ruby-identifier">frozen</span>.<span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;#{$TIMESTAMP}&quot;</span>
-364:                                 <span class="ruby-identifier">frozen</span>.<span class="ruby-identifier">close</span>
-365:                         <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">info</span>( <span class="ruby-node">&quot;Package #{package} is now frozen.&quot;</span> )
-366:                 <span class="ruby-keyword kw">end</span>
-367: 
-368:                         <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">true</span>
-369:                 <span class="ruby-keyword kw">end</span>
-370:     
-371:     <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">info</span>( <span class="ruby-node">&quot;Package #{package} is not installed, unable to freeze it.&quot;</span> )
-372:     <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">false</span>
-373:   <span class="ruby-keyword kw">end</span>
+     <span class="ruby-comment cmt"># File abtpackagemanager.rb, line 373</span>
+373:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">freeze_package</span>( <span class="ruby-identifier">package</span> )
+374:                 <span class="ruby-identifier">require</span> <span class="ruby-node">&quot;#{$PACKAGE_PATH}#{package}&quot;</span>
+375:     <span class="ruby-identifier">sw</span>       = <span class="ruby-identifier">eval</span>( <span class="ruby-node">&quot;#{package.capitalize}.new&quot;</span> )
+376:     <span class="ruby-identifier">myLogger</span> = <span class="ruby-constant">AbtLogManager</span>.<span class="ruby-identifier">new</span>  <span class="ruby-comment cmt"># TODO: refactor myLogger.</span>
+377:     <span class="ruby-identifier">logger</span>   = <span class="ruby-constant">Logger</span>.<span class="ruby-identifier">new</span>( <span class="ruby-identifier">$JOURNAL</span> )
+378:                 <span class="ruby-identifier">system</span>   = <span class="ruby-constant">AbtSystemManager</span>.<span class="ruby-identifier">new</span>
+379:     
+380:                 <span class="ruby-keyword kw">if</span> ( <span class="ruby-identifier">system</span>.<span class="ruby-identifier">package_installed</span>( <span class="ruby-identifier">package</span> ) )
+381:                         <span class="ruby-keyword kw">if</span> ( <span class="ruby-identifier">system</span>.<span class="ruby-identifier">package_frozen</span>( <span class="ruby-identifier">package</span> ) )
+382:                 <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">info</span>( <span class="ruby-node">&quot;Package #{package} is already frozen!&quot;</span> )
+383: 
+384:                                 <span class="ruby-comment cmt"># package already frozen, need to un-freeze by removing frozen.log</span>
+385:                                 <span class="ruby-comment cmt"># file.</span>
+386:                                 <span class="ruby-constant">FileUtils</span>.<span class="ruby-identifier">rm</span> <span class="ruby-node">&quot;#{$PACKAGE_INSTALLED}/#{sw.srcDir}/frozen.log&quot;</span>
+387:                                 <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;\nPackage #{package} was frozen, it has now been relased for use.&quot;</span>
+388:                                 <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">info</span> <span class="ruby-node">&quot;Package #{package} released : removed file #{$PACKAGE_INSTALLED}/#{sw.srcDir}/frozen.log&quot;</span>
+389:                         <span class="ruby-keyword kw">else</span>
+390:                                 <span class="ruby-comment cmt"># place file in $PACKAGE_INSTALLED frozen.log with date.</span>
+391:                                 <span class="ruby-identifier">frozen</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span>( <span class="ruby-node">&quot;#{$PACKAGE_INSTALLED}/#{sw.srcDir}/frozen.log&quot;</span>, <span class="ruby-value str">&quot;w&quot;</span> )
+392:                                 <span class="ruby-identifier">frozen</span>.<span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;#{$TIMESTAMP}&quot;</span>
+393:                                 <span class="ruby-identifier">frozen</span>.<span class="ruby-identifier">close</span>
+394:                         <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">info</span>( <span class="ruby-node">&quot;Package #{package} is now frozen.&quot;</span> )
+395:                 <span class="ruby-keyword kw">end</span>
+396: 
+397:                         <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">true</span>
+398:                 <span class="ruby-keyword kw">end</span>
+399:     
+400:     <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">info</span>( <span class="ruby-node">&quot;Package #{package} is not installed, unable to freeze it.&quot;</span> )
+401:     <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">false</span>
+402:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>
@@ -403,7 +404,7 @@ otherwise false.
 </div>
 <div class="method">
   <div class="title">
-    <a name="M000045"></a><b>reinstall_package</b>( package )
+    <a name="M000045"></a><b>reinstall_package</b>( package, automated_build=false )
   </div>
   <div class="description">
   <p>
@@ -411,6 +412,8 @@ Reinstalls a given package.
 </p>
 <p>
 <b>PARAM</b> <em>String</em> - the name of the package to be reinstalled.
+<b>PARAM</b> <em>Boolean</em> - query the user if false (default),
+otherwise true and skip query.
 </p>
 <p>
 <b>RETURN</b> <em>boolean</em> - True if the package is reinstalled,
@@ -421,39 +424,66 @@ otherwise false.
   <p class="source-link">[ <a href="javascript:toggleSource('M000045_source')" id="l_M000045_source">show source</a> ]</p>
   <div id="M000045_source" class="dyn-source">
 <pre>
-     <span class="ruby-comment cmt"># File abtpackagemanager.rb, line 221</span>
-221:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">reinstall_package</span>( <span class="ruby-identifier">package</span> )
-222:     <span class="ruby-identifier">logger</span> = <span class="ruby-constant">Logger</span>.<span class="ruby-identifier">new</span>( <span class="ruby-identifier">$JOURNAL</span> )
-223:     <span class="ruby-comment cmt"># TODO: look into refactoring myLogger:</span>
-224:     <span class="ruby-identifier">myLogger</span> = <span class="ruby-constant">AbtLogManager</span>.<span class="ruby-identifier">new</span>
-225:                 <span class="ruby-identifier">system</span>   = <span class="ruby-constant">AbtSystemManager</span>.<span class="ruby-identifier">new</span>
-226:     
-227:                 <span class="ruby-comment cmt"># check for frozen.</span>
-228:                 <span class="ruby-keyword kw">if</span> ( <span class="ruby-identifier">system</span>.<span class="ruby-identifier">package_frozen</span>( <span class="ruby-identifier">package</span> ) )
-229:                         <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">info</span> <span class="ruby-node">&quot;Package #{package} is frozen, can not proceed with reinstall package call.&quot;</span>
-230:                         <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;\nPackage #{package} is frozen, can not proceed with reinstall package call.&quot;</span>
-231:                         <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">false</span>
-232:                 <span class="ruby-keyword kw">end</span>
-233: 
-234:     <span class="ruby-keyword kw">if</span> ( <span class="ruby-identifier">install_package</span>( <span class="ruby-identifier">package</span> ) )
-235:       <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;\n\n&quot;</span>
-236:       <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;*** Completed reinstall of #{package}. ***&quot;</span>
-237:       <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;\n\n&quot;</span>
-238:       <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">info</span>( <span class="ruby-node">&quot;Completed reinstall of #{package}.&quot;</span> )
-239:       
-240:       <span class="ruby-keyword kw">if</span> ( <span class="ruby-identifier">myLogger</span>.<span class="ruby-identifier">cache_package</span>( <span class="ruby-identifier">package</span> ) )
-241:         <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;\n\n&quot;</span>
-242:         <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;*** Completed caching of package #{package}. ***&quot;</span>
-243:         <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;\n\n&quot;</span>
-244:         <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">info</span>( <span class="ruby-node">&quot;Caching completed for package #{package}.&quot;</span> )
-245:         <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">true</span>
-246:       <span class="ruby-keyword kw">else</span>
-247:         <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">info</span>( <span class="ruby-node">&quot;Caching of package #{package} failed.&quot;</span>)
-248:       <span class="ruby-keyword kw">end</span>
-249:     <span class="ruby-keyword kw">end</span>
-250:       
-251:     <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">false</span>
-252:   <span class="ruby-keyword kw">end</span>
+     <span class="ruby-comment cmt"># File abtpackagemanager.rb, line 222</span>
+222:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">reinstall_package</span>( <span class="ruby-identifier">package</span>, <span class="ruby-identifier">automated_build</span>=<span class="ruby-keyword kw">false</span> )
+223:     <span class="ruby-identifier">logger</span> = <span class="ruby-constant">Logger</span>.<span class="ruby-identifier">new</span>( <span class="ruby-identifier">$JOURNAL</span> )
+224:     <span class="ruby-comment cmt"># TODO: look into refactoring myLogger:</span>
+225:     <span class="ruby-identifier">myLogger</span> = <span class="ruby-constant">AbtLogManager</span>.<span class="ruby-identifier">new</span>
+226:                 <span class="ruby-identifier">system</span>   = <span class="ruby-constant">AbtSystemManager</span>.<span class="ruby-identifier">new</span>
+227:     
+228:                 <span class="ruby-comment cmt"># check for frozen.</span>
+229:                 <span class="ruby-keyword kw">if</span> ( <span class="ruby-identifier">system</span>.<span class="ruby-identifier">package_frozen</span>( <span class="ruby-identifier">package</span> ) )
+230:                         <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">info</span> <span class="ruby-node">&quot;Package #{package} is frozen, can not proceed with reinstall package call.&quot;</span>
+231:                         <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;\nPackage #{package} is frozen, can not proceed with reinstall package call.&quot;</span>
+232:                         <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">false</span>
+233:                 <span class="ruby-keyword kw">end</span>
+234: 
+235:                 <span class="ruby-comment cmt"># check if already installed.</span>
+236:     <span class="ruby-keyword kw">if</span> ( <span class="ruby-identifier">system</span>.<span class="ruby-identifier">package_installed</span>( <span class="ruby-identifier">package</span> ) )
+237: 
+238:                         <span class="ruby-keyword kw">if</span> <span class="ruby-operator">!</span><span class="ruby-identifier">automated_build</span>
+239:         <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;\n*** Package #{package} is already installed! ***\n&quot;</span>
+240:         <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;Are you sure you want to proceed with a reinstall? (y/n)&quot;</span>
+241:       
+242:         <span class="ruby-keyword kw">while</span> <span class="ruby-identifier">answer</span> = <span class="ruby-constant">STDIN</span>.<span class="ruby-identifier">gets</span>
+243:                 <span class="ruby-identifier">answer</span>.<span class="ruby-identifier">chomp!</span>
+244:                 <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">answer</span> <span class="ruby-operator">==</span> <span class="ruby-value str">&quot;y&quot;</span>
+245:                 <span class="ruby-keyword kw">break</span>
+246:                 <span class="ruby-keyword kw">elsif</span> <span class="ruby-identifier">answer</span> <span class="ruby-operator">==</span> <span class="ruby-value str">&quot;n&quot;</span>
+247:                 <span class="ruby-identifier">exit</span>
+248:                 <span class="ruby-keyword kw">else</span> 
+249:                 <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;Are you sure you want to reinstall #{package}? (y/n)&quot;</span>
+250:                 <span class="ruby-keyword kw">end</span>
+251:         <span class="ruby-keyword kw">end</span>
+252:                         <span class="ruby-keyword kw">end</span>
+253:     <span class="ruby-keyword kw">else</span>
+254:       <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;\n*** Package #{package} is not installed, we will install it for you now! ***\n&quot;</span>
+255:       <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;Hit enter to continue...&quot;</span>
+256:       <span class="ruby-keyword kw">while</span> <span class="ruby-identifier">continue</span> = <span class="ruby-constant">STDIN</span>.<span class="ruby-identifier">gets</span>
+257:         <span class="ruby-identifier">continue</span>.<span class="ruby-identifier">chomp!</span>
+258:         <span class="ruby-keyword kw">break</span>
+259:       <span class="ruby-keyword kw">end</span>
+260:     <span class="ruby-keyword kw">end</span>
+261:  
+262:     <span class="ruby-keyword kw">if</span> ( <span class="ruby-identifier">install_package</span>( <span class="ruby-identifier">package</span> ) )
+263:       <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;\n\n&quot;</span>
+264:       <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;*** Completed reinstall of #{package}. ***&quot;</span>
+265:       <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;\n\n&quot;</span>
+266:       <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">info</span>( <span class="ruby-node">&quot;Completed reinstall of #{package}.&quot;</span> )
+267:       
+268:       <span class="ruby-keyword kw">if</span> ( <span class="ruby-identifier">myLogger</span>.<span class="ruby-identifier">cache_package</span>( <span class="ruby-identifier">package</span> ) )
+269:         <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;\n\n&quot;</span>
+270:         <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;*** Completed caching of package #{package}. ***&quot;</span>
+271:         <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;\n\n&quot;</span>
+272:         <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">info</span>( <span class="ruby-node">&quot;Caching completed for package #{package}.&quot;</span> )
+273:         <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">true</span>
+274:       <span class="ruby-keyword kw">else</span>
+275:         <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">info</span>( <span class="ruby-node">&quot;Caching of package #{package} failed.&quot;</span>)
+276:       <span class="ruby-keyword kw">end</span>
+277:     <span class="ruby-keyword kw">end</span>
+278:       
+279:     <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">false</span>
+280:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>
@@ -478,56 +508,56 @@ false.
   <p class="source-link">[ <a href="javascript:toggleSource('M000046_source')" id="l_M000046_source">show source</a> ]</p>
   <div id="M000046_source" class="dyn-source">
 <pre>
-     <span class="ruby-comment cmt"># File abtpackagemanager.rb, line 262</span>
-262:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">remove_package</span>( <span class="ruby-identifier">package</span> )
-263:     <span class="ruby-identifier">require</span> <span class="ruby-node">&quot;#{$PACKAGE_PATH}#{package}&quot;</span>
-264:     <span class="ruby-identifier">sw</span> = <span class="ruby-identifier">eval</span>( <span class="ruby-node">&quot;#{package.capitalize}.new&quot;</span> )
-265:     <span class="ruby-comment cmt"># TODO: refactor myLogger.</span>
-266:     <span class="ruby-identifier">myLogger</span> = <span class="ruby-constant">AbtLogManager</span>.<span class="ruby-identifier">new</span>
-267:     <span class="ruby-identifier">logger</span> = <span class="ruby-constant">Logger</span>.<span class="ruby-identifier">new</span>( <span class="ruby-identifier">$JOURNAL</span> )
-268:                 <span class="ruby-identifier">system</span> = <span class="ruby-constant">AbtSystemManager</span>.<span class="ruby-identifier">new</span>
-269:     
-270:     <span class="ruby-comment cmt"># get package details.</span>
-271:     <span class="ruby-identifier">details</span> = <span class="ruby-identifier">sw</span>.<span class="ruby-identifier">details</span>
-272:     
-273:                 <span class="ruby-comment cmt"># check for frozen.</span>
-274:                 <span class="ruby-keyword kw">if</span> ( <span class="ruby-identifier">system</span>.<span class="ruby-identifier">package_frozen</span>( <span class="ruby-identifier">package</span> ) )
-275:                         <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">info</span> <span class="ruby-node">&quot;Package #{package} is frozen, can not proceed with remove package call.&quot;</span>
-276:                         <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;\nPackage #{package} is frozen, can not proceed with remove package call.&quot;</span>
-277:                         <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">false</span>
-278:                 <span class="ruby-keyword kw">end</span>
-279: 
-280:     <span class="ruby-comment cmt"># TODO: something with possible /etc or other configure files before removal, check maybe integrity for changes since install?</span>
-281: 
-282:     <span class="ruby-comment cmt"># remove listings in install log.</span>
-283:     <span class="ruby-identifier">installLog</span> = <span class="ruby-identifier">myLogger</span>.<span class="ruby-identifier">get_log</span>( <span class="ruby-identifier">package</span>, <span class="ruby-value str">'install'</span> )
-284: 
-285:     <span class="ruby-comment cmt"># only process install log if it exists, continue on with </span>
-286:     <span class="ruby-comment cmt"># journal log warning.</span>
-287:     <span class="ruby-keyword kw">if</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">exist?</span>( <span class="ruby-identifier">installLog</span> )
-288:       <span class="ruby-constant">IO</span>.<span class="ruby-identifier">foreach</span>( <span class="ruby-identifier">installLog</span> ) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">line</span><span class="ruby-operator">|</span>
-289:         <span class="ruby-keyword kw">if</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">exist?</span>( <span class="ruby-identifier">line</span>.<span class="ruby-identifier">chomp</span> )
-290:           <span class="ruby-constant">FileUtils</span>.<span class="ruby-identifier">rm</span>( <span class="ruby-identifier">line</span>.<span class="ruby-identifier">chomp</span> )
-291:           <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">info</span>( <span class="ruby-node">&quot;Removed file #{line.chomp} from #{package} install log.&quot;</span>)
-292:         <span class="ruby-keyword kw">else</span>
-293:           <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">info</span>( <span class="ruby-node">&quot;Unable to remove #{line.chomp} from #{package} install log, does not exist.&quot;</span>)
-294:           <span class="ruby-comment cmt"># do not return false, removed is ok, just put warning in journal log.</span>
-295:         <span class="ruby-keyword kw">end</span>
-296:       <span class="ruby-keyword kw">end</span>
-297:       
-298:       <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">info</span>( <span class="ruby-node">&quot;Removed files from #{File.basename( installLog )} for #{package}.&quot;</span> )
-299:     <span class="ruby-keyword kw">else</span>
-300:       <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;Install log missing for #{package}, see journal...&quot;</span>
-301:       <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">info</span>( <span class="ruby-node">&quot;Install log was missing for #{package}...&quot;</span> )
-302:       <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">info</span>( <span class="ruby-value str">&quot;...continuing to remove package from install listing, but might have files still installed on system.&quot;</span> )
-303:     <span class="ruby-keyword kw">end</span>
-304:       
-305:           
-306:     <span class="ruby-comment cmt"># remove entry in install listing.</span>
-307:     <span class="ruby-constant">FileUtils</span>.<span class="ruby-identifier">remove_dir</span>( <span class="ruby-node">&quot;#{$PACKAGE_INSTALLED}/#{details['Source location']}&quot;</span> )    
-308:     <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">info</span>( <span class="ruby-value str">&quot;Removed entry from installed packages.&quot;</span> )
-309:     <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">true</span>
-310:   <span class="ruby-keyword kw">end</span>
+     <span class="ruby-comment cmt"># File abtpackagemanager.rb, line 290</span>
+290:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">remove_package</span>( <span class="ruby-identifier">package</span> )
+291:     <span class="ruby-identifier">require</span> <span class="ruby-node">&quot;#{$PACKAGE_PATH}#{package}&quot;</span>
+292:     <span class="ruby-identifier">sw</span> = <span class="ruby-identifier">eval</span>( <span class="ruby-node">&quot;#{package.capitalize}.new&quot;</span> )
+293:     <span class="ruby-comment cmt"># TODO: refactor myLogger.</span>
+294:     <span class="ruby-identifier">myLogger</span> = <span class="ruby-constant">AbtLogManager</span>.<span class="ruby-identifier">new</span>
+295:     <span class="ruby-identifier">logger</span> = <span class="ruby-constant">Logger</span>.<span class="ruby-identifier">new</span>( <span class="ruby-identifier">$JOURNAL</span> )
+296:                 <span class="ruby-identifier">system</span> = <span class="ruby-constant">AbtSystemManager</span>.<span class="ruby-identifier">new</span>
+297:     
+298:     <span class="ruby-comment cmt"># get package details.</span>
+299:     <span class="ruby-identifier">details</span> = <span class="ruby-identifier">sw</span>.<span class="ruby-identifier">details</span>
+300:     
+301:                 <span class="ruby-comment cmt"># check for frozen.</span>
+302:                 <span class="ruby-keyword kw">if</span> ( <span class="ruby-identifier">system</span>.<span class="ruby-identifier">package_frozen</span>( <span class="ruby-identifier">package</span> ) )
+303:                         <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">info</span> <span class="ruby-node">&quot;Package #{package} is frozen, can not proceed with remove package call.&quot;</span>
+304:                         <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;\nPackage #{package} is frozen, can not proceed with remove package call.&quot;</span>
+305:                         <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">false</span>
+306:                 <span class="ruby-keyword kw">end</span>
+307: 
+308:     <span class="ruby-comment cmt"># TODO: something with possible /etc or other configure files before removal, check maybe integrity for changes since install?</span>
+309: 
+310:     <span class="ruby-comment cmt"># remove listings in install log.</span>
+311:     <span class="ruby-identifier">installLog</span> = <span class="ruby-identifier">myLogger</span>.<span class="ruby-identifier">get_log</span>( <span class="ruby-identifier">package</span>, <span class="ruby-value str">'install'</span> )
+312: 
+313:     <span class="ruby-comment cmt"># only process install log if it exists, continue on with </span>
+314:     <span class="ruby-comment cmt"># journal log warning.</span>
+315:     <span class="ruby-keyword kw">if</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">exist?</span>( <span class="ruby-identifier">installLog</span> )
+316:       <span class="ruby-constant">IO</span>.<span class="ruby-identifier">foreach</span>( <span class="ruby-identifier">installLog</span> ) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">line</span><span class="ruby-operator">|</span>
+317:         <span class="ruby-keyword kw">if</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">exist?</span>( <span class="ruby-identifier">line</span>.<span class="ruby-identifier">chomp</span> )
+318:           <span class="ruby-constant">FileUtils</span>.<span class="ruby-identifier">rm</span>( <span class="ruby-identifier">line</span>.<span class="ruby-identifier">chomp</span> )
+319:           <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">info</span>( <span class="ruby-node">&quot;Removed file #{line.chomp} from #{package} install log.&quot;</span>)
+320:         <span class="ruby-keyword kw">else</span>
+321:           <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">info</span>( <span class="ruby-node">&quot;Unable to remove #{line.chomp} from #{package} install log, does not exist.&quot;</span>)
+322:           <span class="ruby-comment cmt"># do not return false, removed is ok, just put warning in journal log.</span>
+323:         <span class="ruby-keyword kw">end</span>
+324:       <span class="ruby-keyword kw">end</span>
+325:       
+326:       <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">info</span>( <span class="ruby-node">&quot;Removed files from #{File.basename( installLog )} for #{package}.&quot;</span> )
+327:     <span class="ruby-keyword kw">else</span>
+328:       <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;Install log missing for #{package}, see journal...&quot;</span>
+329:       <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">info</span>( <span class="ruby-node">&quot;Install log was missing for #{package}...&quot;</span> )
+330:       <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">info</span>( <span class="ruby-value str">&quot;...continuing to remove package from install listing, but might have files still installed on system.&quot;</span> )
+331:     <span class="ruby-keyword kw">end</span>
+332:       
+333:           
+334:     <span class="ruby-comment cmt"># remove entry in install listing.</span>
+335:     <span class="ruby-constant">FileUtils</span>.<span class="ruby-identifier">remove_dir</span>( <span class="ruby-node">&quot;#{$PACKAGE_INSTALLED}/#{details['Source location']}&quot;</span> )    
+336:     <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">info</span>( <span class="ruby-value str">&quot;Removed entry from installed packages.&quot;</span> )
+337:     <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">true</span>
+338:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>
@@ -551,20 +581,20 @@ Provides for a log through for root access using su.
   <p class="source-link">[ <a href="javascript:toggleSource('M000049_source')" id="l_M000049_source">show source</a> ]</p>
   <div id="M000049_source" class="dyn-source">
 <pre>
-     <span class="ruby-comment cmt"># File abtpackagemanager.rb, line 382</span>
-382:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">root_login</span>( <span class="ruby-identifier">arguments</span> )
-383:     <span class="ruby-keyword kw">if</span> ( <span class="ruby-constant">Process</span>.<span class="ruby-identifier">uid</span> <span class="ruby-operator">!=</span> <span class="ruby-value">0</span> )
-384:       <span class="ruby-identifier">args</span> = <span class="ruby-value str">&quot;&quot;</span>
-385:       <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;\nEnter root password:&quot;</span>
-386:       
-387:       <span class="ruby-keyword kw">for</span> <span class="ruby-identifier">i</span> <span class="ruby-keyword kw">in</span> <span class="ruby-value">0</span><span class="ruby-operator">...</span><span class="ruby-constant">ARGV</span>.<span class="ruby-identifier">length</span>
-388:         <span class="ruby-identifier">args</span> = <span class="ruby-identifier">args</span> <span class="ruby-operator">+</span> <span class="ruby-value str">&quot; &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-constant">ARGV</span>[<span class="ruby-identifier">i</span>]
-389:       <span class="ruby-keyword kw">end</span>
-390:       
-391:       <span class="ruby-identifier">system</span>( <span class="ruby-value str">'su -c &quot;./abt '</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">args</span> <span class="ruby-operator">+</span> <span class="ruby-value str">'&quot; root'</span> )
-392:       <span class="ruby-identifier">exit</span>
-393:     <span class="ruby-keyword kw">end</span>
-394:   <span class="ruby-keyword kw">end</span>
+     <span class="ruby-comment cmt"># File abtpackagemanager.rb, line 411</span>
+411:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">root_login</span>( <span class="ruby-identifier">arguments</span> )
+412:     <span class="ruby-keyword kw">if</span> ( <span class="ruby-constant">Process</span>.<span class="ruby-identifier">uid</span> <span class="ruby-operator">!=</span> <span class="ruby-value">0</span> )
+413:       <span class="ruby-identifier">args</span> = <span class="ruby-value str">&quot;&quot;</span>
+414:       <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;\nEnter root password:&quot;</span>
+415:       
+416:       <span class="ruby-keyword kw">for</span> <span class="ruby-identifier">i</span> <span class="ruby-keyword kw">in</span> <span class="ruby-value">0</span><span class="ruby-operator">...</span><span class="ruby-constant">ARGV</span>.<span class="ruby-identifier">length</span>
+417:         <span class="ruby-identifier">args</span> = <span class="ruby-identifier">args</span> <span class="ruby-operator">+</span> <span class="ruby-value str">&quot; &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-constant">ARGV</span>[<span class="ruby-identifier">i</span>]
+418:       <span class="ruby-keyword kw">end</span>
+419:       
+420:       <span class="ruby-identifier">system</span>( <span class="ruby-value str">'su -c &quot;./abt '</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">args</span> <span class="ruby-operator">+</span> <span class="ruby-value str">'&quot; root'</span> )
+421:       <span class="ruby-identifier">exit</span>
+422:     <span class="ruby-keyword kw">end</span>
+423:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>
