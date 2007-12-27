@@ -133,10 +133,44 @@ class AbtReportManager
   ##
   # Display a list of the packages found in the frozen list.
   #
-  # <b>RETURN</b> <i>void.</i>
+  # <b>RETURN</b> <i>hash</i> - a hash of the frozen packages, keys are package
+  # names and values are the frozen timestamps.
   ##
   def show_frozen_packages
-    return false
+
+		# determine if there are frozen pacakges.
+    frozenHash = Hash.new  # has for values found.
+    
+    if ( Dir.entries( $PACKAGE_INSTALLED ) - [ '.', '..' ] ).empty?
+      return Hash.new   # empty hash, no entries.
+    else
+      Dir.foreach( $PACKAGE_INSTALLED ) { |package| 
+        if ( package != "." && package != "..")
+          # split the installed entry into two parts,
+          # the package name and the version number.
+          #packageArray = package.split( "-" )
+          #packageName  = packageArray[0]
+          
+          # check for frozen log file.
+          if ( File.exist?( "#{$PACKAGE_INSTALLED}/#{package}/frozen.log" ) )
+						# dump packgae + frozen.log timestamp in packageHash.
+						begin
+							file = File.new("#{$PACKAGE_INSTALLED}/#{package}/frozen.log", "r")
+							#while (line = file.gets)
+							line = file.gets
+								frozenHash = frozenHash.merge( Hash[ "#{package}" => "#{line}" ] )
+							#end
+							file.close
+						rescue => error
+							puts "Exception: #{error}"
+							return false
+						end
+          end
+        end
+      }
+    end
+
+    return frozenHash 
   end
   
   ##

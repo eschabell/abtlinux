@@ -90,7 +90,10 @@ class TestAbtReportManager < Test::Unit::TestCase
       @manager.install_package( "ipc" )
     end
     
-    # TODO: freeze test pacakge.
+		# ensure test package freeze.
+		if !@system.package_frozen( "ipc" )
+			@manager.freeze_package "ipc"
+		end
 
     assert( @report.show_frozen_packages(), "test_show_frozen_packages()" )
   end

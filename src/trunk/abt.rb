@@ -325,10 +325,31 @@ when "show-installed"
   end
   
 when "show-frozen"
-  # FIXME : show frozen pkg's implementation.
-  puts "Display all packages frozen at current version."
-  show.usage( "queries" )
-  
+  if ( ARGV.length == 1 )
+    logger.info( "Starting display of frozen packages." )
+    frozenResults = reporter.show_frozen_packages
+    if ( frozenResults.empty? )
+      puts "\n\nNothing is frozen at this time.\n\n"
+    	logger.info( "Completed display of frozen packages." )
+      exit
+    else
+      # we have results hash!
+			puts "\n\n\t========================"
+			puts "\tAbTLinux frozen packages"
+			puts "\t========================"
+			puts "\nPackage name: \t\tFrozen since:"
+			puts "============\t\t============="
+      frozenResults.each_pair { |name, timestamp| puts "#{name} \t\t#{timestamp}"  }
+    end
+		
+		#puts "==========================================="
+		puts "\n\n"
+    logger.info( "Completed display of frozen packages." )
+  else
+    show.usage( "queries" )
+    exit
+  end
+ 
 when "show-untracked"
   # FIXME : show untracked files implementation.
   puts "Display all files on system not tracked by AbTLinux."
