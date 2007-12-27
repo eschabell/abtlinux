@@ -55,6 +55,11 @@ class TestAbtPackageManager < Test::Unit::TestCase
   ## 
   def test_install_package
     if @system.package_installed( "ipc" )
+			
+			if @system.package_frozen( "ipc" )
+				@manager.freeze_package( "ipc" )
+			end
+
       @manager.remove_package( "ipc" )
     end
     
@@ -69,7 +74,11 @@ class TestAbtPackageManager < Test::Unit::TestCase
       @manager.install_package( "ipc" )
     end
     
-    assert( @pkgMgr.reinstall_package( "ipc" ), "test_reinstall_package()" )
+		if @system.package_frozen( "ipc" )
+			@manager.freeze_package( "ipc" )
+		end
+
+    assert( @pkgMgr.reinstall_package( "ipc", true ), "test_reinstall_package()" )
   end
   
   ##
@@ -80,6 +89,10 @@ class TestAbtPackageManager < Test::Unit::TestCase
       @manager.install_package( "ipc" )
     end
       
+		if @system.package_frozen( "ipc" )
+			@manager.freeze_package( "ipc" )
+		end
+
     assert( @pkgMgr.remove_package( "ipc" ), "test_remove_package()" )
   end
   
@@ -90,6 +103,10 @@ class TestAbtPackageManager < Test::Unit::TestCase
     if !@system.package_installed( "ipc" )
       @manager.install_package( "ipc" )
     end
+
+		if @system.package_frozen( "ipc" )
+			@manager.freeze_package( "ipc" )
+		end
     
     assert( @pkgMgr.downgrade_package( "ipc", "1.2" ), "test_downgrade_package()" )
   end

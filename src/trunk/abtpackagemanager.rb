@@ -214,11 +214,12 @@ class AbtPackageManager
   # Reinstalls a given package.
   #
   # <b>PARAM</b> <i>String</i> - the name of the package to be reinstalled.
+  # <b>PARAM</b> <i>Boolean</i> - query the user if false (default), otherwise true and skip query.
   #
   # <b>RETURN</b> <i>boolean</i> - True if the package is reinstalled, 
   # otherwise false.
   ##
-  def reinstall_package( package )
+  def reinstall_package( package, automated_build=false )
     logger = Logger.new( $JOURNAL )
     # TODO: look into refactoring myLogger:
     myLogger = AbtLogManager.new
@@ -232,20 +233,23 @@ class AbtPackageManager
 		end
 
 		# check if already installed.
-    if ( system.package_installed( options['package'] ) )
-      puts "\n*** Package #{package} is already installed! ***\n"
-      puts "Are you sure you want to proceed with a reinstall? (y/n)"
+    if ( system.package_installed( package ) )
+
+			if !automated_build
+      	puts "\n*** Package #{package} is already installed! ***\n"
+      	puts "Are you sure you want to proceed with a reinstall? (y/n)"
       
-      while answer = STDIN.gets
-        answer.chomp!
-        if answer == "y"
-          break
-        elsif answer == "n"
-          exit
-        else 
-          puts "Are you sure you want to reinstall #{package}? (y/n)"
-        end
-      end
+      	while answer = STDIN.gets
+        	answer.chomp!
+        	if answer == "y"
+          	break
+        	elsif answer == "n"
+          	exit
+        	else 
+          	puts "Are you sure you want to reinstall #{package}? (y/n)"
+        	end
+      	end
+			end
     else
       puts "\n*** Package #{package} is not installed, we will install it for you now! ***\n"
       puts "Hit enter to continue..."
