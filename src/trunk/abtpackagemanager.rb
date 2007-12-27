@@ -345,6 +345,7 @@ class AbtPackageManager
   ##
   def downgrade_package( package, version )
 		system = AbtSystemManager.new
+    logger = Logger.new( $JOURNAL )
 
 		# check for frozen.
 		if ( system.package_frozen( package ) )
