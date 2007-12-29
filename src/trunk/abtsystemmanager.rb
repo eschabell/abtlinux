@@ -168,6 +168,7 @@ class AbtSystemManager
   # or broken, otherwise false.
   ##
   def verify_symlinks( package )
+    # TODO: implement this.
     return false
   end
   
@@ -180,6 +181,7 @@ class AbtSystemManager
   # false.
   ##
   def verify_package_depends( package )
+    # TODO: implement this.
     return false
   end
   
@@ -247,6 +249,7 @@ class AbtSystemManager
   # false.
   ##
   def fix_package( package )
+    # TODO: implement this.
     return false
   end
   
@@ -259,6 +262,7 @@ class AbtSystemManager
   # <b>RETURN</b> <i>boolean</i> - True if the URI is set, otherwise false.
   ##
   def set_central_repo( uri )
+    # TODO: implement this.
     return false
   end
   
@@ -272,6 +276,7 @@ class AbtSystemManager
   # otherwise false.
   ##
   def set_package_tree_location( location )
+    # TODO: implement this.
     return false
   end
     
@@ -316,5 +321,4 @@ class AbtSystemManager
     return false
   end
  
-
 end

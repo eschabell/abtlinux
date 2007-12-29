@@ -184,6 +184,7 @@ class AbtReportManager
   # hash of problem files and their encountered errors.
   ##
   def show_package_dependencies( package )
+    # TODO: implement this.
     return false
   end
   
@@ -195,6 +196,7 @@ class AbtReportManager
   # <b>RETURN</b> <i>void.</i>
   ##
   def show_untracked_files
+    # TODO: implement this.
     return false
   end
   
@@ -231,6 +233,7 @@ class AbtReportManager
   # <b>RETURN</b> <i>void.</i>
   ##
   def show_file_owner( file )
+    # TODO: implement this.
     return false
   end
   
@@ -319,6 +322,7 @@ class AbtReportManager
   # false.
   ##
   def show_updates( target )
+    # TODO: implement this.
     return false
   end
   
@@ -328,6 +332,7 @@ class AbtReportManager
   # <b>RETURN</b> <i>void.</i>
   ##
   def generate_HTML_package_listing
+    # TODO: implement this.
     return false
   end  
 end
