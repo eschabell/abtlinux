@@ -24,7 +24,25 @@
 # AbTLinux; if not, write to the Free Software Foundation, Inc., 51 Franklin
 # St, Fifth Floor, Boston, MA 02110-1301  USA
 ##
-require 'abtconfig'
+
+# Load our central configuration file.
+$ABTLINUX_MAIN_CONFIG = "https://abtlinux.svn.sourceforge.net/svnroot/abtlinux/src/trunk/abtconfig.rb"
+
+if File.exist?( "/etc/abt/abtconfig.rb" )
+  load '/etc/abt/abtconfig.rb'
+else
+  # missing configuration file, do some abt update?
+  puts "\n[abt.rb] Missing our main configuration file at /etc/abt/abtconfig.rb"
+  puts "\n Maybe time for an abt update? Let us try to fix it for you!\n"
+  ["/etc/abt", "/etc/abt/local"].each { |dir|
+    if ( ! File.directory?( dir ) )
+      FileUtils.mkdir_p( dir )
+      puts "Created directory: #{dir}."
+    end
+  }
+  system( "svn export #{$ABTLINUX_MAIN_CONFIG} /etc/abt/abtconfig.rb" )
+  exit
+end
 
 ##
 # Setup needed classes and get ready to parse arguments.
@@ -40,9 +58,15 @@ show       = AbtUsage.new
 # setup timestamp.
 logger.datetime_format = "%Y-%m-%d %H:%M:%S "
 
-
 # TODO: used only until refactoring done.
 myLogger   = AbtLogManager.new
+
+# And loading local file if found.
+if File.exist?( "/etc/abt/local/localconfig.rb" )
+  load '/etc/abt/local/localconfig.rb'
+else
+  logger.info( "[abt.rb] No local configuration file found, not a problem, just informing." )
+end
 
 # deal with usage request.
 if ( ARGV.length == 0 || ( ARGV.length == 1 && ( ARGV[0] == '--help' || ARGV[0] == '-h'  || ARGV[0].downcase == 'help' ) ) )
