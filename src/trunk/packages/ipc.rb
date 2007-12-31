@@ -1,6 +1,7 @@
 #!/usr/bin/ruby -w
 
-$LOAD_PATH.unshift '../'
+$LOAD_PATH.unshift '/var/lib/abt/'
+$LOAD_PATH.unshift '../libs/'       # development only.
 
 require 'abtpackage'
 
