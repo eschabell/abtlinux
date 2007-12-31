@@ -16,23 +16,23 @@
 #===============================================================================
 
 TEMPLATE="./abttemplate.rb";
-FILES="abtdepengine.rb
-		abtdownloadmanager.rb
-		abtlogmanager.rb
-		abtpackage.rb
-		abtpackagemanager.rb
-		abtqueuemanager.rb
-		abtreportmanager.rb
-		abtsystemmanager.rb
-		abtusage.rb
-		testabtdepengine.rb
-		testabtdownloadmanager.rb
-		testabtlogmanager.rb
-		testabtpackage.rb
-		testabtpackagemanager.rb
-		testabtqueuemanager.rb
-		testabtreportmanager.rb
-		testabtsystemmanager.rb
+FILES="./libs/abtdepengine.rb
+		./libs/abtdownloadmanager.rb
+		./libs/abtlogmanager.rb
+		./libs/abtpackage.rb
+		./libs/abtpackagemanager.rb
+		./libs/abtqueuemanager.rb
+		./libs/abtreportmanager.rb
+		./libs/abtsystemmanager.rb
+		./libs/abtusage.rb
+		./tests/testabtdepengine.rb
+		./tests/testabtdownloadmanager.rb
+		./tests/testabtlogmanager.rb
+		./tests/testabtpackage.rb
+		./tests/testabtpackagemanager.rb
+		./tests/testabtqueuemanager.rb
+		./tests/testabtreportmanager.rb
+		./tests/testabtsystemmanager.rb
 		";
 
 # run the actual doc generation.
