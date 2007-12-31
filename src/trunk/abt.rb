@@ -1,5 +1,8 @@
 #!/usr/bin/ruby -w
 
+$LOAD_PATH.unshift '/etc/abt/'
+$LOAD_PATH.unshift '/var/lib/abt/'
+
 ##
 # abt.rb
 #
