@@ -1,5 +1,7 @@
 #!/usr/bin/ruby -w
 
+$LOAD_PATH.unshift '../'
+
 require "abtpackage"
 
 ##
