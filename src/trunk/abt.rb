@@ -1,8 +1,5 @@
 #!/usr/bin/ruby -w
 
-$LOAD_PATH.unshift '/etc/abt/'
-$LOAD_PATH.unshift '/var/lib/abt/'
-
 ##
 # abt.rb
 #
@@ -29,15 +26,18 @@ $LOAD_PATH.unshift '/var/lib/abt/'
 ##
 
 # Load our central configuration file.
+#
 $ABTLINUX_MAIN_CONFIG = "https://abtlinux.svn.sourceforge.net/svnroot/abtlinux/src/trunk/abtconfig.rb"
 
 if File.exist?( "/etc/abt/abtconfig.rb" )
-  load '/etc/abt/abtconfig.rb'
+	$LOAD_PATH.unshift '/etc/abt/'
+  load 'abtconfig.rb'
 else
   # missing configuration file, do some abt update?
   puts "\nMissing our main configuration file at /etc/abt/abtconfig.rb"
   puts "\nMaybe time for an abt update? Let us try to fix it for you!\n"
-  # TODO:  check for root login.	
+  
+	# check for root login.	
   if ( Process.uid != 0 )
       puts "\nMust be root to fix configuration files."
 			exit
@@ -49,8 +49,34 @@ else
     	end
   	}
   	system( "svn export #{$ABTLINUX_MAIN_CONFIG} /etc/abt/abtconfig.rb" )
-  	exit
 	end
+
+	$LOAD_PATH.unshift '/etc/abt/'
+	load 'abtconfig.rb'
+
+	if File.exist?( "/etc/abt/local/localconfig.rb" )
+		$LOAD_PATH.unshift '/etc/abt/local/'
+		load 'localconfig.rb'
+	end
+end
+
+# Check and install our library files.
+#
+$ABTLINUX_CLASS_LIBS = "https://abtlinux.svn.sourceforge.net/svnroot/abtlinux/src/trunk/libs"
+
+if ( ! File.directory?( '/var/lib/abt' ) || Dir["/var/lib/abt"].empty? )
+	puts "\nMissing needed AbTLinux library files at /var/lib/abt"
+	puts "\nMaybe time for an abt update? Let us try to fix it for you!\n"
+
+	# check for root login.
+	if ( Process.uid != 0 )
+		puts "\nMust be root to fix library files."
+		exit
+	else
+		system( "svn co #{$ABTLINUX_CLASS_LIBS} /var/lib/abt/" )
+	end
+
+	$LOAD_PATH.unshift '/var/lib/abt/'
 end
 
 ##
