@@ -585,16 +585,17 @@ Provides for a log through for root access using su.
 411:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">root_login</span>( <span class="ruby-identifier">arguments</span> )
 412:     <span class="ruby-keyword kw">if</span> ( <span class="ruby-constant">Process</span>.<span class="ruby-identifier">uid</span> <span class="ruby-operator">!=</span> <span class="ruby-value">0</span> )
 413:       <span class="ruby-identifier">args</span> = <span class="ruby-value str">&quot;&quot;</span>
-414:       <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;\nEnter root password:&quot;</span>
-415:       
-416:       <span class="ruby-keyword kw">for</span> <span class="ruby-identifier">i</span> <span class="ruby-keyword kw">in</span> <span class="ruby-value">0</span><span class="ruby-operator">...</span><span class="ruby-constant">ARGV</span>.<span class="ruby-identifier">length</span>
-417:         <span class="ruby-identifier">args</span> = <span class="ruby-identifier">args</span> <span class="ruby-operator">+</span> <span class="ruby-value str">&quot; &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-constant">ARGV</span>[<span class="ruby-identifier">i</span>]
-418:       <span class="ruby-keyword kw">end</span>
-419:       
-420:       <span class="ruby-identifier">system</span>( <span class="ruby-value str">'su -c &quot;./abt '</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">args</span> <span class="ruby-operator">+</span> <span class="ruby-value str">'&quot; root'</span> )
-421:       <span class="ruby-identifier">exit</span>
-422:     <span class="ruby-keyword kw">end</span>
-423:   <span class="ruby-keyword kw">end</span>
+414:                         <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;\nYou need to be root for accessing the requested functionality.\n&quot;</span>
+415:       <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;\nEnter root password:&quot;</span>
+416:       
+417:       <span class="ruby-keyword kw">for</span> <span class="ruby-identifier">i</span> <span class="ruby-keyword kw">in</span> <span class="ruby-value">0</span><span class="ruby-operator">...</span><span class="ruby-constant">ARGV</span>.<span class="ruby-identifier">length</span>
+418:         <span class="ruby-identifier">args</span> = <span class="ruby-identifier">args</span> <span class="ruby-operator">+</span> <span class="ruby-value str">&quot; &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-constant">ARGV</span>[<span class="ruby-identifier">i</span>]
+419:       <span class="ruby-keyword kw">end</span>
+420:       
+421:       <span class="ruby-identifier">system</span>( <span class="ruby-value str">'su -c &quot;./abt '</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">args</span> <span class="ruby-operator">+</span> <span class="ruby-value str">'&quot; root'</span> )
+422:       <span class="ruby-identifier">exit</span>
+423:     <span class="ruby-keyword kw">end</span>
+424:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>
