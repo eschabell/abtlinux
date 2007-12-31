@@ -57,7 +57,7 @@
       <tr valign="top">
         <td>In:</td>
         <td>
-<a href="../files/abtreportmanager_rb.html">abtreportmanager.rb</a>
+<a href="../files/libs/abtreportmanager_rb.html">libs/abtreportmanager.rb</a>
         </td>
       </tr>
     <tr>
@@ -155,7 +155,7 @@ Constructor for the <a href="AbtReportManager.html">AbtReportManager</a>.
   <p class="source-link">[ <a href="javascript:toggleSource('M000113_source')" id="l_M000113_source">show source</a> ]</p>
   <div id="M000113_source" class="dyn-source">
 <pre>
-    <span class="ruby-comment cmt"># File abtreportmanager.rb, line 42</span>
+    <span class="ruby-comment cmt"># File libs/abtreportmanager.rb, line 42</span>
 42:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>
 43:   <span class="ruby-keyword kw">end</span>
 </pre>
@@ -179,7 +179,7 @@ Generates an HTML page of installed packages from installed packages list.
   <p class="source-link">[ <a href="javascript:toggleSource('M000125_source')" id="l_M000125_source">show source</a> ]</p>
   <div id="M000125_source" class="dyn-source">
 <pre>
-     <span class="ruby-comment cmt"># File abtreportmanager.rb, line 334</span>
+     <span class="ruby-comment cmt"># File libs/abtreportmanager.rb, line 334</span>
 334:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">generate_HTML_package_listing</span>
 335:     <span class="ruby-comment cmt"># TODO: implement this.</span>
 336:     <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">false</span>
@@ -209,7 +209,7 @@ package names and values are matching descriptions.
   <p class="source-link">[ <a href="javascript:toggleSource('M000122_source')" id="l_M000122_source">show source</a> ]</p>
   <div id="M000122_source" class="dyn-source">
 <pre>
-     <span class="ruby-comment cmt"># File abtreportmanager.rb, line 249</span>
+     <span class="ruby-comment cmt"># File libs/abtreportmanager.rb, line 249</span>
 249:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">search_package_descriptions</span>( <span class="ruby-identifier">searchText</span> )
 250:     <span class="ruby-identifier">packageHash</span> = <span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span>  <span class="ruby-comment cmt"># has for values found.</span>
 251:     
@@ -267,7 +267,7 @@ Display the name of the package(s) that own the given file.
   <p class="source-link">[ <a href="javascript:toggleSource('M000121_source')" id="l_M000121_source">show source</a> ]</p>
   <div id="M000121_source" class="dyn-source">
 <pre>
-     <span class="ruby-comment cmt"># File abtreportmanager.rb, line 235</span>
+     <span class="ruby-comment cmt"># File libs/abtreportmanager.rb, line 235</span>
 235:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">show_file_owner</span>( <span class="ruby-identifier">file</span> )
 236:     <span class="ruby-comment cmt"># TODO: implement this.</span>
 237:     <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">false</span>
@@ -293,7 +293,7 @@ package names and values are the frozen timestamps.
   <p class="source-link">[ <a href="javascript:toggleSource('M000117_source')" id="l_M000117_source">show source</a> ]</p>
   <div id="M000117_source" class="dyn-source">
 <pre>
-     <span class="ruby-comment cmt"># File abtreportmanager.rb, line 139</span>
+     <span class="ruby-comment cmt"># File libs/abtreportmanager.rb, line 139</span>
 139:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">show_frozen_packages</span>
 140: 
 141:                 <span class="ruby-comment cmt"># determine if there are frozen pacakges.</span>
@@ -350,7 +350,7 @@ Display all packages installed and tracked by AbTLinux.
   <p class="source-link">[ <a href="javascript:toggleSource('M000115_source')" id="l_M000115_source">show source</a> ]</p>
   <div id="M000115_source" class="dyn-source">
 <pre>
-     <span class="ruby-comment cmt"># File abtreportmanager.rb, line 98</span>
+     <span class="ruby-comment cmt"># File libs/abtreportmanager.rb, line 98</span>
  98:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">show_installed_packages</span>
  99:     <span class="ruby-keyword kw">if</span> ( <span class="ruby-constant">Dir</span>.<span class="ruby-identifier">entries</span>( <span class="ruby-identifier">$PACKAGE_INSTALLED</span> ) <span class="ruby-operator">-</span> [ <span class="ruby-value str">'.'</span>, <span class="ruby-value str">'..'</span> ] ).<span class="ruby-identifier">empty?</span>
 100:       <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;\nNo AbTLinux packages are listed as installed, is your #{$PACKAGE_INSTALLED} empty?\n\n&quot;</span>
@@ -384,7 +384,7 @@ Display the AbTLinux journal file.
   <p class="source-link">[ <a href="javascript:toggleSource('M000120_source')" id="l_M000120_source">show source</a> ]</p>
   <div id="M000120_source" class="dyn-source">
 <pre>
-     <span class="ruby-comment cmt"># File abtreportmanager.rb, line 210</span>
+     <span class="ruby-comment cmt"># File libs/abtreportmanager.rb, line 210</span>
 210:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">show_journal</span>( <span class="ruby-identifier">fileName</span> )
 211:     <span class="ruby-keyword kw">if</span> ( <span class="ruby-constant">File</span>.<span class="ruby-identifier">exist?</span>( <span class="ruby-identifier">fileName</span> ) )
 212:       <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;\n\n&quot;</span>
@@ -428,7 +428,7 @@ hash of problem files and their encountered errors.
   <p class="source-link">[ <a href="javascript:toggleSource('M000118_source')" id="l_M000118_source">show source</a> ]</p>
   <div id="M000118_source" class="dyn-source">
 <pre>
-     <span class="ruby-comment cmt"># File abtreportmanager.rb, line 186</span>
+     <span class="ruby-comment cmt"># File libs/abtreportmanager.rb, line 186</span>
 186:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">show_package_dependencies</span>( <span class="ruby-identifier">package</span> )
 187:     <span class="ruby-comment cmt"># TODO: implement this.</span>
 188:     <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">false</span>
@@ -457,7 +457,7 @@ false.
   <p class="source-link">[ <a href="javascript:toggleSource('M000114_source')" id="l_M000114_source">show source</a> ]</p>
   <div id="M000114_source" class="dyn-source">
 <pre>
-    <span class="ruby-comment cmt"># File abtreportmanager.rb, line 53</span>
+    <span class="ruby-comment cmt"># File libs/abtreportmanager.rb, line 53</span>
 53:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">show_package_details</span>( <span class="ruby-identifier">package</span> )
 54:     <span class="ruby-identifier">require</span> <span class="ruby-node">&quot;#{$PACKAGE_PATH}#{package}&quot;</span>
 55:     
@@ -525,7 +525,7 @@ nothing if the package log is not installed.
   <p class="source-link">[ <a href="javascript:toggleSource('M000116_source')" id="l_M000116_source">show source</a> ]</p>
   <div id="M000116_source" class="dyn-source">
 <pre>
-     <span class="ruby-comment cmt"># File abtreportmanager.rb, line 120</span>
+     <span class="ruby-comment cmt"># File libs/abtreportmanager.rb, line 120</span>
 120:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">show_package_log</span>( <span class="ruby-identifier">package</span>, <span class="ruby-identifier">logType</span> )
 121:     <span class="ruby-identifier">system</span> = <span class="ruby-constant">AbtSystemManager</span>.<span class="ruby-identifier">new</span>
 122:     <span class="ruby-identifier">logger</span> = <span class="ruby-constant">AbtLogManager</span>.<span class="ruby-identifier">new</span>
@@ -562,7 +562,7 @@ queue.
   <p class="source-link">[ <a href="javascript:toggleSource('M000123_source')" id="l_M000123_source">show source</a> ]</p>
   <div id="M000123_source" class="dyn-source">
 <pre>
-     <span class="ruby-comment cmt"># File abtreportmanager.rb, line 292</span>
+     <span class="ruby-comment cmt"># File libs/abtreportmanager.rb, line 292</span>
 292:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">show_queue</span>( <span class="ruby-identifier">queueType</span> )
 293:     
 294:     <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">queueType</span>
@@ -605,7 +605,7 @@ a list of files that are not tracked by AbTLinux package management.
   <p class="source-link">[ <a href="javascript:toggleSource('M000119_source')" id="l_M000119_source">show source</a> ]</p>
   <div id="M000119_source" class="dyn-source">
 <pre>
-     <span class="ruby-comment cmt"># File abtreportmanager.rb, line 198</span>
+     <span class="ruby-comment cmt"># File libs/abtreportmanager.rb, line 198</span>
 198:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">show_untracked_files</span>
 199:     <span class="ruby-comment cmt"># TODO: implement this.</span>
 200:     <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">false</span>
@@ -636,7 +636,7 @@ false.
   <p class="source-link">[ <a href="javascript:toggleSource('M000124_source')" id="l_M000124_source">show source</a> ]</p>
   <div id="M000124_source" class="dyn-source">
 <pre>
-     <span class="ruby-comment cmt"># File abtreportmanager.rb, line 324</span>
+     <span class="ruby-comment cmt"># File libs/abtreportmanager.rb, line 324</span>
 324:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">show_updates</span>( <span class="ruby-identifier">target</span> )
 325:     <span class="ruby-comment cmt"># TODO: implement this.</span>
 326:     <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">false</span>

@@ -13,7 +13,7 @@ digraph TopLevel {
     subgraph cluster_6 {
         fontname = Arial
         color = red
-        label = "abtqueuemanager.rb"
+        label = "libs/abtqueuemanager.rb"
         AbtQueueManager [
             fontcolor = black,
             URL = "classes/AbtQueueManager.html",

@@ -13,7 +13,7 @@ digraph TopLevel {
     subgraph cluster_9 {
         fontname = Arial
         color = red
-        label = "abtusage.rb"
+        label = "libs/abtusage.rb"
         AbtUsage [
             fontcolor = black,
             URL = "classes/AbtUsage.html",

@@ -57,7 +57,7 @@
       <tr valign="top">
         <td>In:</td>
         <td>
-<a href="../files/abtpackagemanager_rb.html">abtpackagemanager.rb</a>
+<a href="../files/libs/abtpackagemanager_rb.html">libs/abtpackagemanager.rb</a>
         </td>
       </tr>
     <tr>
@@ -151,7 +151,7 @@ href="AbtPackageManager.html">AbtPackageManager</a></em> - an initialized
   <p class="source-link">[ <a href="javascript:toggleSource('M000043_source')" id="l_M000043_source">show source</a> ]</p>
   <div id="M000043_source" class="dyn-source">
 <pre>
-    <span class="ruby-comment cmt"># File abtpackagemanager.rb, line 78</span>
+    <span class="ruby-comment cmt"># File libs/abtpackagemanager.rb, line 78</span>
 78:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>
 79:   <span class="ruby-keyword kw">end</span>
 </pre>
@@ -182,7 +182,7 @@ otherwise false.
   <p class="source-link">[ <a href="javascript:toggleSource('M000047_source')" id="l_M000047_source">show source</a> ]</p>
   <div id="M000047_source" class="dyn-source">
 <pre>
-     <span class="ruby-comment cmt"># File abtpackagemanager.rb, line 350</span>
+     <span class="ruby-comment cmt"># File libs/abtpackagemanager.rb, line 350</span>
 350:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">downgrade_package</span>( <span class="ruby-identifier">package</span>, <span class="ruby-identifier">version</span> )
 351:                 <span class="ruby-identifier">system</span> = <span class="ruby-constant">AbtSystemManager</span>.<span class="ruby-identifier">new</span>
 352:     <span class="ruby-identifier">logger</span> = <span class="ruby-constant">Logger</span>.<span class="ruby-identifier">new</span>( <span class="ruby-identifier">$JOURNAL</span> )
@@ -221,7 +221,7 @@ false.
   <p class="source-link">[ <a href="javascript:toggleSource('M000048_source')" id="l_M000048_source">show source</a> ]</p>
   <div id="M000048_source" class="dyn-source">
 <pre>
-     <span class="ruby-comment cmt"># File abtpackagemanager.rb, line 373</span>
+     <span class="ruby-comment cmt"># File libs/abtpackagemanager.rb, line 373</span>
 373:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">freeze_package</span>( <span class="ruby-identifier">package</span> )
 374:                 <span class="ruby-identifier">require</span> <span class="ruby-node">&quot;#{$PACKAGE_PATH}#{package}&quot;</span>
 375:     <span class="ruby-identifier">sw</span>       = <span class="ruby-identifier">eval</span>( <span class="ruby-node">&quot;#{package.capitalize}.new&quot;</span> )
@@ -278,7 +278,7 @@ otherwise false.
   <p class="source-link">[ <a href="javascript:toggleSource('M000044_source')" id="l_M000044_source">show source</a> ]</p>
   <div id="M000044_source" class="dyn-source">
 <pre>
-     <span class="ruby-comment cmt"># File abtpackagemanager.rb, line 91</span>
+     <span class="ruby-comment cmt"># File libs/abtpackagemanager.rb, line 91</span>
  91:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">install_package</span>( <span class="ruby-identifier">package</span>, <span class="ruby-identifier">verbose</span>=<span class="ruby-keyword kw">true</span> )
  92:     <span class="ruby-identifier">require</span> <span class="ruby-node">&quot;#{$PACKAGE_PATH}#{package}&quot;</span>
  93:     <span class="ruby-identifier">sw</span> = <span class="ruby-identifier">eval</span>( <span class="ruby-node">&quot;#{package.capitalize}.new&quot;</span> )
@@ -424,7 +424,7 @@ otherwise false.
   <p class="source-link">[ <a href="javascript:toggleSource('M000045_source')" id="l_M000045_source">show source</a> ]</p>
   <div id="M000045_source" class="dyn-source">
 <pre>
-     <span class="ruby-comment cmt"># File abtpackagemanager.rb, line 222</span>
+     <span class="ruby-comment cmt"># File libs/abtpackagemanager.rb, line 222</span>
 222:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">reinstall_package</span>( <span class="ruby-identifier">package</span>, <span class="ruby-identifier">automated_build</span>=<span class="ruby-keyword kw">false</span> )
 223:     <span class="ruby-identifier">logger</span> = <span class="ruby-constant">Logger</span>.<span class="ruby-identifier">new</span>( <span class="ruby-identifier">$JOURNAL</span> )
 224:     <span class="ruby-comment cmt"># TODO: look into refactoring myLogger:</span>
@@ -508,7 +508,7 @@ false.
   <p class="source-link">[ <a href="javascript:toggleSource('M000046_source')" id="l_M000046_source">show source</a> ]</p>
   <div id="M000046_source" class="dyn-source">
 <pre>
-     <span class="ruby-comment cmt"># File abtpackagemanager.rb, line 290</span>
+     <span class="ruby-comment cmt"># File libs/abtpackagemanager.rb, line 290</span>
 290:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">remove_package</span>( <span class="ruby-identifier">package</span> )
 291:     <span class="ruby-identifier">require</span> <span class="ruby-node">&quot;#{$PACKAGE_PATH}#{package}&quot;</span>
 292:     <span class="ruby-identifier">sw</span> = <span class="ruby-identifier">eval</span>( <span class="ruby-node">&quot;#{package.capitalize}.new&quot;</span> )
@@ -581,7 +581,7 @@ Provides for a log through for root access using su.
   <p class="source-link">[ <a href="javascript:toggleSource('M000049_source')" id="l_M000049_source">show source</a> ]</p>
   <div id="M000049_source" class="dyn-source">
 <pre>
-     <span class="ruby-comment cmt"># File abtpackagemanager.rb, line 411</span>
+     <span class="ruby-comment cmt"># File libs/abtpackagemanager.rb, line 411</span>
 411:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">root_login</span>( <span class="ruby-identifier">arguments</span> )
 412:     <span class="ruby-keyword kw">if</span> ( <span class="ruby-constant">Process</span>.<span class="ruby-identifier">uid</span> <span class="ruby-operator">!=</span> <span class="ruby-value">0</span> )
 413:       <span class="ruby-identifier">args</span> = <span class="ruby-value str">&quot;&quot;</span>

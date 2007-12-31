@@ -57,7 +57,7 @@
       <tr valign="top">
         <td>In:</td>
         <td>
-<a href="../files/abtlogmanager_rb.html">abtlogmanager.rb</a>
+<a href="../files/libs/abtlogmanager_rb.html">libs/abtlogmanager.rb</a>
         </td>
       </tr>
     <tr>
@@ -149,10 +149,10 @@ initialized <a href="AbtLogManager.html">AbtLogManager</a> object.
   <p class="source-link">[ <a href="javascript:toggleSource('M000065_source')" id="l_M000065_source">show source</a> ]</p>
   <div id="M000065_source" class="dyn-source">
 <pre>
-    <span class="ruby-comment cmt"># File abtlogmanager.rb, line 80</span>
+    <span class="ruby-comment cmt"># File libs/abtlogmanager.rb, line 80</span>
 80:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>
 81:         <span class="ruby-identifier">logger</span> = <span class="ruby-constant">Logger</span>.<span class="ruby-identifier">new</span>( <span class="ruby-identifier">$JOURNAL</span> )
-82:     [<span class="ruby-identifier">$ABT_LOGS</span>, <span class="ruby-identifier">$ABT_CACHES</span>, <span class="ruby-identifier">$ABT_STATE</span>, <span class="ruby-identifier">$BUILD_LOCATION</span>, <span class="ruby-identifier">$PACKAGE_INSTALLED</span>,
+82:     [<span class="ruby-identifier">$ABT_LOGS</span>, <span class="ruby-identifier">$ABT_CACHES</span>, <span class="ruby-identifier">$ABT_STATE</span>, <span class="ruby-identifier">$BUILD_LOCATION</span>, <span class="ruby-identifier">$PACKAGE_INSTALLED</span>, <span class="ruby-identifier">$ABT_LIBS</span>,
 83:     <span class="ruby-identifier">$PACKAGE_CACHED</span>, <span class="ruby-identifier">$ABT_TMP</span>, <span class="ruby-identifier">$ABT_CONFIG</span>, <span class="ruby-identifier">$ABT_LOCAL_CONFIG</span>, <span class="ruby-identifier">$SOURCES_REPOSITORY</span>].<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">dir</span><span class="ruby-operator">|</span>
 84:       
 85:       <span class="ruby-keyword kw">if</span> ( <span class="ruby-operator">!</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">directory?</span>( <span class="ruby-identifier">dir</span> ) )
@@ -187,7 +187,7 @@ successfully, otherwise false.
   <p class="source-link">[ <a href="javascript:toggleSource('M000069_source')" id="l_M000069_source">show source</a> ]</p>
   <div id="M000069_source" class="dyn-source">
 <pre>
-     <span class="ruby-comment cmt"># File abtlogmanager.rb, line 207</span>
+     <span class="ruby-comment cmt"># File libs/abtlogmanager.rb, line 207</span>
 207:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">cache_package</span>( <span class="ruby-identifier">package</span> )
 208:     <span class="ruby-identifier">system</span> = <span class="ruby-constant">AbtSystemManager</span>.<span class="ruby-identifier">new</span>
 209:     
@@ -288,7 +288,7 @@ Returns the path to given packages install log.
   <p class="source-link">[ <a href="javascript:toggleSource('M000064_source')" id="l_M000064_source">show source</a> ]</p>
   <div id="M000064_source" class="dyn-source">
 <pre>
-    <span class="ruby-comment cmt"># File abtlogmanager.rb, line 43</span>
+    <span class="ruby-comment cmt"># File libs/abtlogmanager.rb, line 43</span>
 43:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">get_log</span>( <span class="ruby-identifier">package</span>, <span class="ruby-identifier">type</span> )
 44:     <span class="ruby-identifier">require</span> <span class="ruby-node">&quot;#{$PACKAGE_PATH}#{package}&quot;</span>
 45:     <span class="ruby-identifier">sw</span>         = <span class="ruby-identifier">eval</span>( <span class="ruby-node">&quot;#{package.capitalize}.new&quot;</span> )
@@ -343,7 +343,7 @@ otherwise false.
   <p class="source-link">[ <a href="javascript:toggleSource('M000068_source')" id="l_M000068_source">show source</a> ]</p>
   <div id="M000068_source" class="dyn-source">
 <pre>
-     <span class="ruby-comment cmt"># File abtlogmanager.rb, line 187</span>
+     <span class="ruby-comment cmt"># File libs/abtlogmanager.rb, line 187</span>
 187:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">log_package_build</span>( <span class="ruby-identifier">package</span> )
 188:     <span class="ruby-identifier">buildLog</span> = <span class="ruby-identifier">get_log</span>( <span class="ruby-identifier">package</span>, <span class="ruby-value str">'build'</span> )
 189:     
@@ -379,7 +379,7 @@ otherwise false.
   <p class="source-link">[ <a href="javascript:toggleSource('M000067_source')" id="l_M000067_source">show source</a> ]</p>
   <div id="M000067_source" class="dyn-source">
 <pre>
-     <span class="ruby-comment cmt"># File abtlogmanager.rb, line 139</span>
+     <span class="ruby-comment cmt"># File libs/abtlogmanager.rb, line 139</span>
 139:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">log_package_install</span>( <span class="ruby-identifier">package</span> )
 140:     <span class="ruby-comment cmt"># some dirs we will not add to an install log.</span>
 141:     <span class="ruby-identifier">excluded_pattern</span> = <span class="ruby-constant">Regexp</span>.<span class="ruby-identifier">new</span>( <span class="ruby-value str">&quot;^(/dev|/proc|/tmp|/var/tmp|/usr/src|/sys)+&quot;</span> )
@@ -444,7 +444,7 @@ successfully, otherwise false.
   <p class="source-link">[ <a href="javascript:toggleSource('M000066_source')" id="l_M000066_source">show source</a> ]</p>
   <div id="M000066_source" class="dyn-source">
 <pre>
-     <span class="ruby-comment cmt"># File abtlogmanager.rb, line 102</span>
+     <span class="ruby-comment cmt"># File libs/abtlogmanager.rb, line 102</span>
 102:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">log_package_integrity</span>( <span class="ruby-identifier">package</span> )
 103:     
 104:     <span class="ruby-comment cmt"># our log locations.</span>

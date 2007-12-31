@@ -57,7 +57,7 @@
       <tr valign="top">
         <td>In:</td>
         <td>
-<a href="../files/abtdownloadmanager_rb.html">abtdownloadmanager.rb</a>
+<a href="../files/libs/abtdownloadmanager_rb.html">libs/abtdownloadmanager.rb</a>
         </td>
       </tr>
     <tr>
@@ -151,7 +151,7 @@ href="AbtDownloadManager.html">AbtDownloadManager</a></em> - an initialized
   <p class="source-link">[ <a href="javascript:toggleSource('M000012_source')" id="l_M000012_source">show source</a> ]</p>
   <div id="M000012_source" class="dyn-source">
 <pre>
-    <span class="ruby-comment cmt"># File abtdownloadmanager.rb, line 42</span>
+    <span class="ruby-comment cmt"># File libs/abtdownloadmanager.rb, line 42</span>
 42:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>
 43:   <span class="ruby-keyword kw">end</span>
 </pre>
@@ -179,7 +179,7 @@ otherwise false.
   <p class="source-link">[ <a href="javascript:toggleSource('M000015_source')" id="l_M000015_source">show source</a> ]</p>
   <div id="M000015_source" class="dyn-source">
 <pre>
-     <span class="ruby-comment cmt"># File abtdownloadmanager.rb, line 122</span>
+     <span class="ruby-comment cmt"># File libs/abtdownloadmanager.rb, line 122</span>
 122:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">retrieve_news_feed</span>( <span class="ruby-identifier">uri</span>, <span class="ruby-identifier">cleanLog</span>=<span class="ruby-keyword kw">true</span> )
 123:     <span class="ruby-identifier">require</span> <span class="ruby-value str">'net/http'</span>
 124:     <span class="ruby-identifier">require</span> <span class="ruby-value str">'uri'</span>
@@ -252,7 +252,7 @@ downloaded, otherwise false.
   <p class="source-link">[ <a href="javascript:toggleSource('M000013_source')" id="l_M000013_source">show source</a> ]</p>
   <div id="M000013_source" class="dyn-source">
 <pre>
-    <span class="ruby-comment cmt"># File abtdownloadmanager.rb, line 56</span>
+    <span class="ruby-comment cmt"># File libs/abtdownloadmanager.rb, line 56</span>
 56:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">retrieve_package_source</span>( <span class="ruby-identifier">packageName</span>, <span class="ruby-identifier">destination</span> )
 57:     <span class="ruby-identifier">require</span> <span class="ruby-node">&quot;#{$PACKAGE_PATH}#{packageName}&quot;</span>
 58:     <span class="ruby-identifier">logger</span>              = <span class="ruby-constant">Logger</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">$JOURNAL</span>)
@@ -296,7 +296,7 @@ otherwise false.
   <p class="source-link">[ <a href="javascript:toggleSource('M000014_source')" id="l_M000014_source">show source</a> ]</p>
   <div id="M000014_source" class="dyn-source">
 <pre>
-     <span class="ruby-comment cmt"># File abtdownloadmanager.rb, line 83</span>
+     <span class="ruby-comment cmt"># File libs/abtdownloadmanager.rb, line 83</span>
  83:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">retrieve_package_tree</span>( <span class="ruby-identifier">packageTreeName</span>=<span class="ruby-value str">&quot;AbTLinux&quot;</span> )
  84:       <span class="ruby-identifier">logger</span>        = <span class="ruby-constant">Logger</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">$JOURNAL</span>)
  85: 
@@ -350,7 +350,7 @@ updated, otherwise false.
   <p class="source-link">[ <a href="javascript:toggleSource('M000016_source')" id="l_M000016_source">show source</a> ]</p>
   <div id="M000016_source" class="dyn-source">
 <pre>
-     <span class="ruby-comment cmt"># File abtdownloadmanager.rb, line 176</span>
+     <span class="ruby-comment cmt"># File libs/abtdownloadmanager.rb, line 176</span>
 176:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">update_package</span>( <span class="ruby-identifier">packageName</span> )
 177:       <span class="ruby-identifier">logger</span>        = <span class="ruby-constant">Logger</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">$JOURNAL</span>)
 178: 
@@ -402,7 +402,7 @@ otherwise false.
   <p class="source-link">[ <a href="javascript:toggleSource('M000017_source')" id="l_M000017_source">show source</a> ]</p>
   <div id="M000017_source" class="dyn-source">
 <pre>
-     <span class="ruby-comment cmt"># File abtdownloadmanager.rb, line 211</span>
+     <span class="ruby-comment cmt"># File libs/abtdownloadmanager.rb, line 211</span>
 211:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">update_package_tree</span>( <span class="ruby-identifier">packageTreeName</span>=<span class="ruby-value str">&quot;AbTLinux&quot;</span> )
 212:       <span class="ruby-identifier">logger</span>        = <span class="ruby-constant">Logger</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">$JOURNAL</span>)
 213: 
@@ -455,7 +455,7 @@ otherwise false.
   <p class="source-link">[ <a href="javascript:toggleSource('M000018_source')" id="l_M000018_source">show source</a> ]</p>
   <div id="M000018_source" class="dyn-source">
 <pre>
-     <span class="ruby-comment cmt"># File abtdownloadmanager.rb, line 247</span>
+     <span class="ruby-comment cmt"># File libs/abtdownloadmanager.rb, line 247</span>
 247:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">validated</span>( <span class="ruby-identifier">hashvalue</span>, <span class="ruby-identifier">path</span> )
 248:     <span class="ruby-identifier">logger</span> = <span class="ruby-constant">Logger</span>.<span class="ruby-identifier">new</span>( <span class="ruby-identifier">$JOURNAL</span> )
 249:     

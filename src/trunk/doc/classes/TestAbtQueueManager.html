@@ -57,7 +57,7 @@
       <tr valign="top">
         <td>In:</td>
         <td>
-<a href="../files/testabtqueuemanager_rb.html">testabtqueuemanager.rb</a>
+<a href="../files/tests/testabtqueuemanager_rb.html">tests/testabtqueuemanager.rb</a>
         </td>
       </tr>
     <tr>
@@ -77,7 +77,7 @@ Test::Unit::TestCase
   <table cellpadding='0' cellspacing='0' border='0' width="100%"><tr><td align="center">
     <map id="map" name="map">
   <area shape="rect" coords="27,124,163,172"      href="TestAbtQueueManager.html" alt="TestAbtQueueManager" />
-  <area shape="rect" coords="33,5,156,53"      href="Test/Unit/TestCase.html" alt="Test::Unit::TestCase" />
+  <area shape="rect" coords="34,5,156,53"      href="Test/Unit/TestCase.html" alt="Test::Unit::TestCase" />
 </map>
 <img src="../dot/f_14.png" usemap="#map" border="0" alt="dot/f_14.png">
   </td></tr></table>
@@ -142,10 +142,10 @@ href="AbtQueueManager.html">AbtQueueManager</a>.
   <p class="source-link">[ <a href="javascript:toggleSource('M000081_source')" id="l_M000081_source">show source</a> ]</p>
   <div id="M000081_source" class="dyn-source">
 <pre>
-    <span class="ruby-comment cmt"># File testabtqueuemanager.rb, line 36</span>
-36:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">setup</span>
-37:     <span class="ruby-ivar">@queue</span> = <span class="ruby-constant">AbtQueueManager</span>.<span class="ruby-identifier">new</span>
-38:   <span class="ruby-keyword kw">end</span>
+    <span class="ruby-comment cmt"># File tests/testabtqueuemanager.rb, line 38</span>
+38:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">setup</span>
+39:     <span class="ruby-ivar">@queue</span> = <span class="ruby-constant">AbtQueueManager</span>.<span class="ruby-identifier">new</span>
+40:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>
@@ -164,9 +164,9 @@ after testing.
   <p class="source-link">[ <a href="javascript:toggleSource('M000082_source')" id="l_M000082_source">show source</a> ]</p>
   <div id="M000082_source" class="dyn-source">
 <pre>
-    <span class="ruby-comment cmt"># File testabtqueuemanager.rb, line 43</span>
-43:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">teardown</span>
-44:   <span class="ruby-keyword kw">end</span>
+    <span class="ruby-comment cmt"># File tests/testabtqueuemanager.rb, line 45</span>
+45:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">teardown</span>
+46:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>
@@ -185,13 +185,13 @@ href="AbtQueueManager.html#M000093">AbtQueueManager.action_package_queue</a>()&#
   <p class="source-link">[ <a href="javascript:toggleSource('M000083_source')" id="l_M000083_source">show source</a> ]</p>
   <div id="M000083_source" class="dyn-source">
 <pre>
-    <span class="ruby-comment cmt"># File testabtqueuemanager.rb, line 49</span>
-49:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">test_action_package_queue</span>
-50:     <span class="ruby-identifier">assert</span>( <span class="ruby-ivar">@queue</span>.<span class="ruby-identifier">action_package_queue</span>( <span class="ruby-value str">&quot;ipc&quot;</span>, <span class="ruby-value str">&quot;install&quot;</span>, <span class="ruby-value str">&quot;add&quot;</span> ), <span class="ruby-value str">&quot;test_action_package_queue(add)&quot;</span> )
-51:     <span class="ruby-identifier">assert</span>( <span class="ruby-ivar">@queue</span>.<span class="ruby-identifier">action_package_queue</span>( <span class="ruby-value str">&quot;ipc&quot;</span>, <span class="ruby-value str">&quot;install&quot;</span> ), <span class="ruby-value str">&quot;test_action_package_queue(default add again)&quot;</span> )
-52:     <span class="ruby-identifier">assert</span>( <span class="ruby-ivar">@queue</span>.<span class="ruby-identifier">action_package_queue</span>( <span class="ruby-value str">&quot;ipc&quot;</span>, <span class="ruby-value str">&quot;install&quot;</span>, <span class="ruby-value str">&quot;remove&quot;</span> ), <span class="ruby-value str">&quot;test_action_package_queue(remove)&quot;</span> )
-53:     
-54:   <span class="ruby-keyword kw">end</span>
+    <span class="ruby-comment cmt"># File tests/testabtqueuemanager.rb, line 51</span>
+51:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">test_action_package_queue</span>
+52:     <span class="ruby-identifier">assert</span>( <span class="ruby-ivar">@queue</span>.<span class="ruby-identifier">action_package_queue</span>( <span class="ruby-value str">&quot;ipc&quot;</span>, <span class="ruby-value str">&quot;install&quot;</span>, <span class="ruby-value str">&quot;add&quot;</span> ), <span class="ruby-value str">&quot;test_action_package_queue(add)&quot;</span> )
+53:     <span class="ruby-identifier">assert</span>( <span class="ruby-ivar">@queue</span>.<span class="ruby-identifier">action_package_queue</span>( <span class="ruby-value str">&quot;ipc&quot;</span>, <span class="ruby-value str">&quot;install&quot;</span> ), <span class="ruby-value str">&quot;test_action_package_queue(default add again)&quot;</span> )
+54:     <span class="ruby-identifier">assert</span>( <span class="ruby-ivar">@queue</span>.<span class="ruby-identifier">action_package_queue</span>( <span class="ruby-value str">&quot;ipc&quot;</span>, <span class="ruby-value str">&quot;install&quot;</span>, <span class="ruby-value str">&quot;remove&quot;</span> ), <span class="ruby-value str">&quot;test_action_package_queue(remove)&quot;</span> )
+55:     
+56:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>

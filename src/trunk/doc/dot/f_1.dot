@@ -13,7 +13,7 @@ digraph TopLevel {
     subgraph cluster_2 {
         fontname = Arial
         color = red
-        label = "abtdownloadmanager.rb"
+        label = "libs/abtdownloadmanager.rb"
         AbtDownloadManager [
             fontcolor = black,
             URL = "classes/AbtDownloadManager.html",
