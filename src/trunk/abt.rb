@@ -32,30 +32,45 @@ if File.exist?( "/etc/abt/abtconfig.rb" )
   load '/etc/abt/abtconfig.rb'
 else
   # missing configuration file, do some abt update?
-  puts "\n[abt.rb] Missing our main configuration file at /etc/abt/abtconfig.rb"
-  puts "\n Maybe time for an abt update? Let us try to fix it for you!\n"
-  ["/etc/abt", "/etc/abt/local"].each { |dir|
-    if ( ! File.directory?( dir ) )
-      FileUtils.mkdir_p( dir )
-      puts "Created directory: #{dir}."
-    end
-  }
-  system( "svn export #{$ABTLINUX_MAIN_CONFIG} /etc/abt/abtconfig.rb" )
-  exit
+  puts "\nMissing our main configuration file at /etc/abt/abtconfig.rb"
+  puts "\nMaybe time for an abt update? Let us try to fix it for you!\n"
+  # TODO:  check for root login.	
+  if ( Process.uid != 0 )
+      puts "\nMust be root to fix configuration files."
+			exit
+	else
+  	["/etc/abt", "/etc/abt/local"].each { |dir|
+    	if ( ! File.directory?( dir ) )
+      	FileUtils.mkdir_p( dir )
+      	puts "Created directory: #{dir}."
+    	end
+  	}
+  	system( "svn export #{$ABTLINUX_MAIN_CONFIG} /etc/abt/abtconfig.rb" )
+  	exit
+	end
 end
 
 ##
 # Setup needed classes and get ready to parse arguments.
 ##
 manager    = AbtPackageManager.new
-logger     = Logger.new($JOURNAL)     # initializes all needed paths.
 reporter   = AbtReportManager.new
 downloader = AbtDownloadManager.new
 system     = AbtSystemManager.new
 options    = Hash.new
 show       = AbtUsage.new
 
+# deal with usage request.
+if ( ARGV.length == 0 || ( ARGV.length == 1 && ( ARGV[0] == '--help' || ARGV[0] == '-h'  || ARGV[0].downcase == 'help' ) ) )
+  show.usage( "all" )
+  exit
+end
+
+# login as root for the rest.
+manager.root_login( ARGV )
+
 # setup timestamp.
+logger     = Logger.new($JOURNAL)     # initializes all needed paths.
 logger.datetime_format = "%Y-%m-%d %H:%M:%S "
 
 # TODO: used only until refactoring done.
@@ -68,14 +83,6 @@ else
   logger.info( "[abt.rb] No local configuration file found, not a problem, just informing." )
 end
 
-# deal with usage request.
-if ( ARGV.length == 0 || ( ARGV.length == 1 && ( ARGV[0] == '--help' || ARGV[0] == '-h'  || ARGV[0].downcase == 'help' ) ) )
-  show.usage( "all" )
-  exit
-end
-
-# login as root for the rest.
-manager.root_login( ARGV )
 
 # parse arguments.
 case ARGV[0]
