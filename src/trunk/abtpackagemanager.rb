@@ -411,6 +411,7 @@ class AbtPackageManager
   def root_login( arguments )
     if ( Process.uid != 0 )
       args = ""
+			puts "\nYou need to be root for accessing the requested functionality.\n"
       puts "\nEnter root password:"
       
       for i in 0...ARGV.length
