@@ -79,7 +79,7 @@ class AbtLogManager
   ##
   def initialize
 	logger = Logger.new( $JOURNAL )
-    [$ABT_LOGS, $ABT_CACHES, $ABT_STATE, $BUILD_LOCATION, $PACKAGE_INSTALLED,
+    [$ABT_LOGS, $ABT_CACHES, $ABT_STATE, $BUILD_LOCATION, $PACKAGE_INSTALLED, $ABT_LIBS,
     $PACKAGE_CACHED, $ABT_TMP, $ABT_CONFIG, $ABT_LOCAL_CONFIG, $SOURCES_REPOSITORY].each { |dir|
       
       if ( ! File.directory?( dir ) )
