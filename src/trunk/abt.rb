@@ -25,6 +25,25 @@
 # St, Fifth Floor, Boston, MA 02110-1301  USA
 ##
 
+# Check and install our library files.
+#
+$ABTLINUX_CLASS_LIBS = "https://abtlinux.svn.sourceforge.net/svnroot/abtlinux/src/trunk/libs"
+
+if ( ! File.directory?( '/var/lib/abt' ) || Dir["/var/lib/abt"].empty? )
+  puts "\nMissing needed AbTLinux library files at /var/lib/abt"
+  puts "\nMaybe time for an abt update? Let us try to fix it for you!\n"
+
+  # check for root login.
+  if ( Process.uid != 0 )
+    puts "\nMust be root to fix library files."
+    exit
+  else
+    system( "svn co #{$ABTLINUX_CLASS_LIBS} /var/lib/abt/" )
+  end
+
+  $LOAD_PATH.unshift '/var/lib/abt/'
+end
+
 # Load our central configuration file.
 #
 $ABTLINUX_MAIN_CONFIG = "https://abtlinux.svn.sourceforge.net/svnroot/abtlinux/src/trunk/abtconfig.rb"
@@ -60,24 +79,6 @@ else
 	end
 end
 
-# Check and install our library files.
-#
-$ABTLINUX_CLASS_LIBS = "https://abtlinux.svn.sourceforge.net/svnroot/abtlinux/src/trunk/libs"
-
-if ( ! File.directory?( '/var/lib/abt' ) || Dir["/var/lib/abt"].empty? )
-	puts "\nMissing needed AbTLinux library files at /var/lib/abt"
-	puts "\nMaybe time for an abt update? Let us try to fix it for you!\n"
-
-	# check for root login.
-	if ( Process.uid != 0 )
-		puts "\nMust be root to fix library files."
-		exit
-	else
-		system( "svn co #{$ABTLINUX_CLASS_LIBS} /var/lib/abt/" )
-	end
-
-	$LOAD_PATH.unshift '/var/lib/abt/'
-end
 
 ##
 # Setup needed classes and get ready to parse arguments.
@@ -108,8 +109,6 @@ myLogger   = AbtLogManager.new
 # And loading local file if found.
 if File.exist?( "/etc/abt/local/localconfig.rb" )
   load '/etc/abt/local/localconfig.rb'
-else
-  logger.info( "[abt.rb] No local configuration file found, not a problem, just informing." )
 end
 
 
@@ -341,10 +340,14 @@ when "show-build"
   end
 
 when "show-depends"
-  if ( ARGV.length == 2 )
-    options['package'] = ARGV[1]
-    # FIXME : show package depends implementation.
-    puts "Display dependency tree for package : " + options['package']
+  if ( ARGV.length == 2 && File.exist?( $PACKAGE_PATH + ARGV[1] + ".rb" ) )
+    options['pkg'] = ARGV[1]
+    logger.info( "Starting show depends for #{options['pkg']}" )
+    if ( reporter.show_package_dependencies( options['pkg'] ) )
+      logger.info( "Completed show depends for #{options['pkg']}" )
+    else
+      puts "Problems showing the depends for #{options['pkg']}."
+    end
   else
     show.usage( "queries" )
     exit

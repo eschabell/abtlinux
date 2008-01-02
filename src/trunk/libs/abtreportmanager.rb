@@ -184,7 +184,31 @@ class AbtReportManager
   # hash of problem files and their encountered errors.
   ##
   def show_package_dependencies( package )
-    # TODO: implement this.
+      require "#{$PACKAGE_PATH}#{package}"
+
+    if ( package = eval( "#{package.capitalize}.new" ) )
+      details = package.details
+    
+      puts "|====================================="
+      puts "| Package name\t\t: #{details['Package name']}"
+      puts "| Version\t\t: #{details['Version']}"
+      puts "|====================================="
+      puts "|====================================="
+      
+      if details['Depends On'].empty? && details['Relies On'].empty? && 
+        details['Optional DO'].empty? && details['Optional RO'].empty?
+        puts "| No dependencies listed for this package."
+      else
+        puts "| Depends On\t\t: #{details['Depends On']}" if !details['Depends On'].empty?
+        puts "| Relies On\t\t: #{details['Relies On']}" if !details['Relies On'].empty?
+        puts "| Optional Depends On\t: #{details['Optional DO']}" if !details['Optional DO'].empty?
+        puts "| Optional Relies On\t: #{details['Optional RO']}" if !details['Optional RO'].empty?
+      end
+      
+      puts "|====================================="
+      return true
+    end
+
     return false
   end
   

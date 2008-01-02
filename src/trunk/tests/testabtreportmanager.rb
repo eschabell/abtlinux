@@ -167,5 +167,12 @@ class TestAbtReportManager < Test::Unit::TestCase
     
     assert( @report.generate_HTML_package_listing(), "test_generate_HTML_package_listing()" )
   end
-  
+
+    ##
+  # Test method for 'AbtReportManager.test_show_package_dependencies()'
+  ## 
+  def test_show_package_dependencies
+    assert( @report.show_package_dependencies( "ipc" ), "test_show_package_dependencies()" )
+  end
+
 end
