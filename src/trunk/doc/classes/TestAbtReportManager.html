@@ -127,6 +127,7 @@ Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
   <li><a href="#M000053">test_show_installed_packages</a></li>
   <li><a href="#M000058">test_show_journal</a></li>
   <li><a href="#M000056">test_show_package_dependencies</a></li>
+  <li><a href="#M000064">test_show_package_dependencies</a></li>
   <li><a href="#M000052">test_show_package_details</a></li>
   <li><a href="#M000054">test_show_package_log</a></li>
   <li><a href="#M000061">test_show_queue</a></li>
@@ -363,6 +364,28 @@ Test method for
 106:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">test_show_package_dependencies</span>
 107:     <span class="ruby-identifier">assert</span>( <span class="ruby-keyword kw">false</span>, <span class="ruby-value str">&quot;test_show_package_dependencies()&quot;</span> )
 108:   <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000064"></a><b>test_show_package_dependencies</b>()
+  </div>
+  <div class="description">
+  <p>
+Test method for
+&#8216;AbtReportManager.test_show_package_dependencies()&#8217;
+</p>
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000064_source')" id="l_M000064_source">show source</a> ]</p>
+  <div id="M000064_source" class="dyn-source">
+<pre>
+     <span class="ruby-comment cmt"># File tests/testabtreportmanager.rb, line 174</span>
+174:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">test_show_package_dependencies</span>
+175:     <span class="ruby-identifier">assert</span>( <span class="ruby-ivar">@report</span>.<span class="ruby-identifier">show_package_dependencies</span>( <span class="ruby-value str">&quot;ipc&quot;</span> ), <span class="ruby-value str">&quot;test_show_package_dependencies()&quot;</span> )
+176:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
 </div>
