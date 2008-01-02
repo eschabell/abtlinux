@@ -1,7 +1,6 @@
 #!/usr/bin/ruby -w
 
 $LOAD_PATH.unshift '/var/lib/abt/'
-$LOAD_PATH.unshift '../libs/'       # development only.
 
 require "abtpackage"
 
@@ -46,10 +45,10 @@ private
     'srcDir'					=> $srcDir,
     'homepage'					=> "http://www.ibiblio.org/pub/Linux/games/amusements/#{$name.downcase}/",
     'srcUrl'					=> "http://www.ibiblio.org/pub/Linux/games/amusements/#{$name.downcase}/#{$srcDir}.tar.gz",
-    'dependsOn'					=> "",
-    'reliesOn'					=> "",
-    'optionalDO'				=> "",
-    'optionalRO'				=> "",
+    'dependsOn'					=> "my patience",
+    'reliesOn'					=> "simply nothing",
+    'optionalDO'				=> "garbage",
+    'optionalRO'				=> "sense of humor",
     'hashCheck'					=> "sha512:80c5b71d84eeb3092b2dfe483f0dad8ed42e2efeaa1f8791c2",
     'patches'					=> "http://patches.abtlinux.org/#{$srcDir}-patches-1.tar.gz",
     'patchesHashCheck'          => "",
