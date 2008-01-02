@@ -1,7 +1,6 @@
 #!/usr/bin/ruby -w
 
 $LOAD_PATH.unshift '/var/lib/abt/'
-$LOAD_PATH.unshift './libs/'         # for development.
 ##
 # abtconfig.rb
 #
