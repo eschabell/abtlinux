@@ -7,8 +7,6 @@ if ( Process.uid != 0 )
 end
 
 $LOAD_PATH.unshift '/etc/abt/'
-$LOAD_PATH.unshift '/var/lib/abt/'
-$LOAD_PATH.unshift '../libs/'       # development only.
 
 require 'test/unit'
 require 'abtconfig'
