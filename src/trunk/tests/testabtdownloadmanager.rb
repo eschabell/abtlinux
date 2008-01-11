@@ -52,37 +52,37 @@ class TestAbtDownloadManager < Test::Unit::TestCase
   ## 
   def test_retrieve_package_source()
     # ensures download not needed.
-    FileUtils.cp "#{$PACKAGE_PATH}/ipc-1.4.tar.gz", "#{$SOURCES_REPOSITORY}", :verbose => true if !File.exist?( "#{$SOURCES_REPOSITORY}/ipc-1.4.tar.gz" )
+    FileUtils.cp "#{$PACKAGE_PATH}/ipc-1.4.tar.gz", "#{$SOURCES_REPOSITORY}", :verbose => true if !File.exist?("#{$SOURCES_REPOSITORY}/ipc-1.4.tar.gz")
     
-    assert( @download.retrieve_package_source( "ipc", "#{$SOURCES_REPOSITORY}" ), "test_retrieve_package_source()" )
+    assert(@download.retrieve_package_source("ipc", "#{$SOURCES_REPOSITORY}"), "test_retrieve_package_source()")
   end
   
   ##
   # Test method for 'AbtDownloadManager.test_retrieve_package_tree()'
   ## 
   def test_retrieve_package_tree()
-    assert( @download.retrieve_package_tree( "dummy" ), "test_retrieve_package_tree()" )
+    assert(@download.retrieve_package_tree("dummy"), "test_retrieve_package_tree()")
   end
   
   ##
   # Test method for 'AbtDownloadManager.test_retrieve_news_feed()'
   ## 
   def test_retrieve_news_feed()
-    assert( @download.retrieve_news_feed( $ABTNEWS ), "test_retrieve_news_feed()" )
+    assert(@download.retrieve_news_feed($ABTNEWS), "test_retrieve_news_feed()")
   end
   
   ##
   # Test method for 'AbtDownloadManager.test_update_package()'
   ## 
   def test_update_package()
-    assert( @download.update_package( "ipc") , "test_update_package()" )
+    assert(@download.update_package("ipc") , "test_update_package()")
   end
   
   ##
   # Test method for 'AbtDownloadManager.test_update_package_tree()'
   ## 
   def test_update_package_tree()
-    assert( @download.update_package_tree(), "test_update_package_tree()" )
+    assert(@download.update_package_tree(), "test_update_package_tree()")
   end
 
   ##
@@ -90,8 +90,8 @@ class TestAbtDownloadManager < Test::Unit::TestCase
   ##
   def test_validated()
     # ensure a tarball is available to test!
-    FileUtils.cp "#{$PACKAGE_PATH}/ipc-1.4.tar.gz", "#{$SOURCES_REPOSITORY}", :verbose => true if !File.exist?( "#{$SOURCES_REPOSITORY}/ipc-1.4.tar.gz" )
+    FileUtils.cp "#{$PACKAGE_PATH}/ipc-1.4.tar.gz", "#{$SOURCES_REPOSITORY}", :verbose => true if !File.exist?("#{$SOURCES_REPOSITORY}/ipc-1.4.tar.gz")
     
-    assert( @download.validated( 'e81278607b1d65dcb18c3613ec00fbf588b50319', "#{$SOURCES_REPOSITORY}/ipc-1.4.tar.gz" ), "test_validated" )
+    assert(@download.validated('e81278607b1d65dcb18c3613ec00fbf588b50319', "#{$SOURCES_REPOSITORY}/ipc-1.4.tar.gz"), "test_validated")
   end
 end

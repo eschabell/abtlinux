@@ -40,9 +40,9 @@ class AbtLogManager
   #
   # <b>RETURN</b> <i>String</i> - Full path to install log.
   ##
-  def get_log( package, type )
+  def get_log(package, type)
     require "#{$PACKAGE_PATH}#{package}"
-    sw         = eval( "#{package.capitalize}.new" )
+    sw         = eval("#{package.capitalize}.new")
     details    = sw.details
     
     case type
@@ -78,13 +78,13 @@ class AbtLogManager
   # <b>RETURN</b> <i>AbtLogManager</i> - an initialized AbtLogManager object.
   ##
   def initialize
-	logger = Logger.new( $JOURNAL )
+	logger = Logger.new($JOURNAL)
     [$ABT_LOGS, $ABT_CACHES, $ABT_STATE, $BUILD_LOCATION, $PACKAGE_INSTALLED, $ABT_LIBS,
     $PACKAGE_CACHED, $ABT_TMP, $ABT_CONFIG, $ABT_LOCAL_CONFIG, $SOURCES_REPOSITORY].each { |dir|
       
-      if ( ! File.directory?( dir ) )
-        FileUtils.mkdir_p( dir )
-        logger.info( "Created directory: #{dir}." )
+      if (! File.directory?(dir))
+        FileUtils.mkdir_p(dir)
+        logger.info("Created directory: #{dir}.")
       end
     }
   end
@@ -99,22 +99,22 @@ class AbtLogManager
   # <b>RETURN</b> <i>boolean</i> - True if integrity log created successfully,
   # otherwise false.
   ##
-  def log_package_integrity( package )
+  def log_package_integrity(package)
     
     # our log locations.
-    installLog = get_log( package, 'install' )
-    integrityLog = get_log( package, 'integrity' )
+    installLog = get_log(package, 'install')
+    integrityLog = get_log(package, 'integrity')
     
     # get the installed files from the tmp file
     # into our install log.
-    if ( File.exist?( installLog ) )
-      installFile   = open( installLog, 'r' )
-      integrityFile = open( integrityLog, 'w' )
+    if (File.exist?(installLog))
+      installFile   = open(installLog, 'r')
+      integrityFile = open(integrityLog, 'w')
 
       # get the integrity for each file, initially just permissions.      
-      IO.foreach( installLog ) do |line|
-        status = File.stat( line.chomp )
-        octal  = sprintf( "%o", status.mode )
+      IO.foreach(installLog) do |line|
+        status = File.stat(line.chomp)
+        octal  = sprintf("%o", status.mode)
         integrityFile << "#{line.chomp}:#{octal}\n"
       end
       
@@ -136,31 +136,31 @@ class AbtLogManager
   # <b>RETURN</b> <i>boolean</i> - True if install log created successfully,
   # otherwise false.
   ##
-  def log_package_install( package )
+  def log_package_install(package)
     # some dirs we will not add to an install log.
-    excluded_pattern = Regexp.new( "^(/dev|/proc|/tmp|/var/tmp|/usr/src|/sys)+" )
+    excluded_pattern = Regexp.new("^(/dev|/proc|/tmp|/var/tmp|/usr/src|/sys)+")
     badLine = false  # used to mark excluded lines from installwatch log.
     
     # our log locations.
-    installLog = get_log( package, 'install' )
-    tmpInstallLog = get_log( package, 'tmpinstall' )
+    installLog = get_log(package, 'install')
+    tmpInstallLog = get_log(package, 'tmpinstall')
     
     # get the installed files from the tmp file
     # into our install log.
-    if ( File.exist?( tmpInstallLog ) )
-      installFile = open( installLog, 'w')
+    if (File.exist?(tmpInstallLog))
+      installFile = open(installLog, 'w')
       
       # include only the file names from open calls
       # and not part of the excluded range of directories.
-      IO.foreach( tmpInstallLog ) do |line|
-        if ( line.split[1] == 'open' )
-          if ( line.split[2] =~ excluded_pattern )
+      IO.foreach(tmpInstallLog) do |line|
+        if (line.split[1] == 'open')
+          if (line.split[2] =~ excluded_pattern)
             badLine = true
           else
             badLine = false
           end
           
-          if ( !badLine )
+          if (!badLine)
             installFile << "#{line.split[2]}\n"
           end
         end 
@@ -184,11 +184,11 @@ class AbtLogManager
   # <b>RETURN</b> <i>boolean</i> - True if build log created successfully,
   # otherwise false.
   ##
-  def log_package_build( package )
-    buildLog = get_log( package, 'build' )
+  def log_package_build(package)
+    buildLog = get_log(package, 'build')
     
     # make sure the build file exists.
-    if ( !File.exist?( buildLog ) )
+    if (!File.exist?(buildLog))
       return false
     end
     
@@ -204,77 +204,77 @@ class AbtLogManager
   # <b>RETURN</b> <i>boolean</i> - True if package cache created successfully,
   # otherwise false.
   ##
-  def cache_package( package )
+  def cache_package(package)
     system = AbtSystemManager.new
     
-    if ( system.package_installed( package ) )
-      sw           = eval( "#{package.capitalize}.new" )
+    if (system.package_installed(package))
+      sw           = eval("#{package.capitalize}.new")
       cachedDir    = $PACKAGE_CACHED + "/" + sw.srcDir
-      sourcePath   = $SOURCES_REPOSITORY + "/" + File.basename( sw.srcUrl )
-      sourceFile   = File.basename( sw.srcUrl )
-      installLog   = get_log( package, 'install' )
-      buildLog     = get_log( package, 'build' )
-      configureLog = get_log( package, 'configure' )
-      integrityLog = get_log( package, 'integrity' )
+      sourcePath   = $SOURCES_REPOSITORY + "/" + File.basename(sw.srcUrl)
+      sourceFile   = File.basename(sw.srcUrl)
+      installLog   = get_log(package, 'install')
+      buildLog     = get_log(package, 'build')
+      configureLog = get_log(package, 'configure')
+      integrityLog = get_log(package, 'integrity')
       packageFile  = "#{$PACKAGE_PATH}#{package}.rb"
       
       
-      FileUtils.mkdir_p( cachedDir )
+      FileUtils.mkdir_p(cachedDir)
 
       # collect package source.
-      if ( FileTest::exist?( sourcePath ) )
-        FileUtils.copy_file( sourcePath, "#{cachedDir}/#{sourceFile}" )
+      if (FileTest::exist?(sourcePath))
+        FileUtils.copy_file(sourcePath, "#{cachedDir}/#{sourceFile}")
         puts "\nCaching copy of #{package} source."
       else
         puts "\nUnable to cache copy of #{package} source."
       end
         
       # collect package install log. 
-      if ( FileTest::exist?( installLog ) )
-        FileUtils.copy_file( installLog, "#{cachedDir}/#{sw.srcDir}.install" )
+      if (FileTest::exist?(installLog))
+        FileUtils.copy_file(installLog, "#{cachedDir}/#{sw.srcDir}.install")
         puts "\nCaching copy of #{package} install log."
       else
         puts "\nUnable to cache copy of #{package} install log."
       end
       
       # collect package build log. 
-      if ( FileTest::exist?( buildLog ) )
-        FileUtils.copy_file( buildLog, "#{cachedDir}/#{sw.srcDir}.build" )
+      if (FileTest::exist?(buildLog))
+        FileUtils.copy_file(buildLog, "#{cachedDir}/#{sw.srcDir}.build")
         puts "\nCaching copy of #{package} build log."
       else
         puts "\nUnable to cache copy of #{package} build log."
       end
       
       # collect package configure log. 
-      if ( FileTest::exist?( configureLog ) )
-        FileUtils.copy_file( configureLog, "#{cachedDir}/#{sw.srcDir}.configure" )
+      if (FileTest::exist?(configureLog))
+        FileUtils.copy_file(configureLog, "#{cachedDir}/#{sw.srcDir}.configure")
         puts "\nCaching copy of #{package} configure log."
       else
         puts "\nUnable to cache copy of #{package} configure log."
       end
 
       # collect package integrity log.
-      if ( FileTest::exist?( integrityLog ) )
-        FileUtils.copy_file( integrityLog, "#{cachedDir}/#{sw.srcDir}.integrity" )
+      if (FileTest::exist?(integrityLog))
+        FileUtils.copy_file(integrityLog, "#{cachedDir}/#{sw.srcDir}.integrity")
         puts "\nCaching copy of #{package} integrity log."
       else
         puts "\nUnable to cache copy of #{package} integrity log."
       end
       
       # collect package description (class file).
-      if ( FileTest::exist?( packageFile ) )
-        FileUtils.copy_file( packageFile, "#{cachedDir}/#{package}.rb" )
+      if (FileTest::exist?(packageFile))
+        FileUtils.copy_file(packageFile, "#{cachedDir}/#{package}.rb")
         puts "\nCaching copy of #{package} package description."
       else
         puts "\nUnable to cache copy of #{package} package description, from location #{packageFile}"
       end
       
       # tar and bzip this directory (package-cache-version.tar.bz2) 
-      Dir.chdir( $PACKAGE_CACHED )
-      if ( system( "tar -cf #{sw.srcDir}.tar #{sw.srcDir}" ) &&
-            system( "bzip2 -f #{sw.srcDir}.tar" ) )
+      Dir.chdir($PACKAGE_CACHED)
+      if (system("tar -cf #{sw.srcDir}.tar #{sw.srcDir}") &&
+            system("bzip2 -f #{sw.srcDir}.tar"))
         # last but not least, remove our tarball directory
-        FileUtils.rm_rf( cachedDir )
+        FileUtils.rm_rf(cachedDir)
         return true
       end
     end

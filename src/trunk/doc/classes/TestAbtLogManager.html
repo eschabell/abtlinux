@@ -11,25 +11,25 @@
     <script language="JavaScript" type="text/javascript">
     // <![CDATA[
 
-        function toggleSource( id )
+        function toggleSource(id)
         {
           var elem
           var link
 
-          if( document.getElementById )
+          if(document.getElementById)
           {
-            elem = document.getElementById( id )
-            link = document.getElementById( "l_" + id )
+            elem = document.getElementById(id)
+            link = document.getElementById("l_" + id)
           }
-          else if ( document.all )
+          else if (document.all)
           {
-            elem = eval( "document.all." + id )
-            link = eval( "document.all.l_" + id )
+            elem = eval("document.all." + id)
+            link = eval("document.all.l_" + id)
           }
           else
             return false;
 
-          if( elem.style.display == "block" )
+          if(elem.style.display == "block")
           {
             elem.style.display = "none"
             link.innerHTML = "show source"
@@ -41,9 +41,9 @@
           }
         }
 
-        function openCode( url )
+        function openCode(url)
         {
-          window.open( url, "SOURCE_CODE", "width=400,height=400,scrollbars=yes" )
+          window.open(url, "SOURCE_CODE", "width=400,height=400,scrollbars=yes")
         }
       // ]]>
     </script>
@@ -152,7 +152,7 @@ href="AbtLogManager.html">AbtLogManager</a>.
 41:     <span class="ruby-ivar">@system</span>  = <span class="ruby-constant">AbtSystemManager</span>.<span class="ruby-identifier">new</span>
 42:     
 43:     <span class="ruby-comment cmt"># ensures download not needed.</span>
-44:     <span class="ruby-constant">FileUtils</span>.<span class="ruby-identifier">cp</span> <span class="ruby-node">&quot;#{$PACKAGE_PATH}/ipc-1.4.tar.gz&quot;</span>, <span class="ruby-node">&quot;#{$SOURCES_REPOSITORY}&quot;</span>, <span class="ruby-identifier">:verbose</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword kw">true</span> <span class="ruby-keyword kw">if</span> <span class="ruby-operator">!</span><span class="ruby-constant">File</span>.<span class="ruby-identifier">exist?</span>( <span class="ruby-node">&quot;#{$SOURCES_REPOSITORY}/ipc-1.4.tar.gz&quot;</span> )
+44:     <span class="ruby-constant">FileUtils</span>.<span class="ruby-identifier">cp</span> <span class="ruby-node">&quot;#{$PACKAGE_PATH}/ipc-1.4.tar.gz&quot;</span>, <span class="ruby-node">&quot;#{$SOURCES_REPOSITORY}&quot;</span>, <span class="ruby-identifier">:verbose</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword kw">true</span> <span class="ruby-keyword kw">if</span> <span class="ruby-operator">!</span><span class="ruby-constant">File</span>.<span class="ruby-identifier">exist?</span>(<span class="ruby-node">&quot;#{$SOURCES_REPOSITORY}/ipc-1.4.tar.gz&quot;</span>)
 45:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
@@ -174,7 +174,7 @@ after testing.
 <pre>
     <span class="ruby-comment cmt"># File tests/testabtlogmanager.rb, line 50</span>
 50:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">teardown</span>
-51:     <span class="ruby-constant">FileUtils</span>.<span class="ruby-identifier">rm</span>( <span class="ruby-node">&quot;#{$ABT_TMP}/ipc-1.4.watch&quot;</span> ) <span class="ruby-keyword kw">if</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">exist?</span>( <span class="ruby-node">&quot;#{$ABT_TMP}/ipc-1.2.watch&quot;</span> )
+51:     <span class="ruby-constant">FileUtils</span>.<span class="ruby-identifier">rm</span>(<span class="ruby-node">&quot;#{$ABT_TMP}/ipc-1.4.watch&quot;</span>) <span class="ruby-keyword kw">if</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">exist?</span>(<span class="ruby-node">&quot;#{$ABT_TMP}/ipc-1.2.watch&quot;</span>)
 52:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
@@ -195,11 +195,11 @@ Test method for &#8216;AbtLogManager.test_cache_package()&#8217;
 <pre>
      <span class="ruby-comment cmt"># File tests/testabtlogmanager.rb, line 102</span>
 102:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">test_cache_package</span>()
-103:     <span class="ruby-keyword kw">if</span> <span class="ruby-operator">!</span><span class="ruby-ivar">@system</span>.<span class="ruby-identifier">package_installed</span>( <span class="ruby-value str">&quot;ipc&quot;</span> )
-104:       <span class="ruby-ivar">@manager</span>.<span class="ruby-identifier">install_package</span>( <span class="ruby-value str">&quot;ipc&quot;</span> )
+103:     <span class="ruby-keyword kw">if</span> <span class="ruby-operator">!</span><span class="ruby-ivar">@system</span>.<span class="ruby-identifier">package_installed</span>(<span class="ruby-value str">&quot;ipc&quot;</span>)
+104:       <span class="ruby-ivar">@manager</span>.<span class="ruby-identifier">install_package</span>(<span class="ruby-value str">&quot;ipc&quot;</span>)
 105:     <span class="ruby-keyword kw">end</span>
 106:     
-107:     <span class="ruby-identifier">assert</span>( <span class="ruby-ivar">@logger</span>.<span class="ruby-identifier">cache_package</span>( <span class="ruby-value str">&quot;ipc&quot;</span> ), <span class="ruby-value str">&quot;test_cache_package()&quot;</span> )
+107:     <span class="ruby-identifier">assert</span>(<span class="ruby-ivar">@logger</span>.<span class="ruby-identifier">cache_package</span>(<span class="ruby-value str">&quot;ipc&quot;</span>), <span class="ruby-value str">&quot;test_cache_package()&quot;</span>)
 108:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
@@ -220,11 +220,11 @@ Test method for &#8216;AbtLogManager.test_log_package_build()&#8217;
 <pre>
     <span class="ruby-comment cmt"># File tests/testabtlogmanager.rb, line 91</span>
 91:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">test_log_package_build</span>()
-92:     <span class="ruby-keyword kw">if</span> <span class="ruby-operator">!</span><span class="ruby-ivar">@system</span>.<span class="ruby-identifier">package_installed</span>( <span class="ruby-value str">&quot;ipc&quot;</span> )
-93:       <span class="ruby-ivar">@manager</span>.<span class="ruby-identifier">install_package</span>( <span class="ruby-value str">&quot;ipc&quot;</span> )
+92:     <span class="ruby-keyword kw">if</span> <span class="ruby-operator">!</span><span class="ruby-ivar">@system</span>.<span class="ruby-identifier">package_installed</span>(<span class="ruby-value str">&quot;ipc&quot;</span>)
+93:       <span class="ruby-ivar">@manager</span>.<span class="ruby-identifier">install_package</span>(<span class="ruby-value str">&quot;ipc&quot;</span>)
 94:     <span class="ruby-keyword kw">end</span>
 95:   
-96:     <span class="ruby-identifier">assert</span>( <span class="ruby-ivar">@logger</span>.<span class="ruby-identifier">log_package_build</span>( <span class="ruby-value str">&quot;ipc&quot;</span> ), <span class="ruby-value str">&quot;test_log_package_build()&quot;</span> )
+96:     <span class="ruby-identifier">assert</span>(<span class="ruby-ivar">@logger</span>.<span class="ruby-identifier">log_package_build</span>(<span class="ruby-value str">&quot;ipc&quot;</span>), <span class="ruby-value str">&quot;test_log_package_build()&quot;</span>)
 97:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
@@ -245,12 +245,12 @@ Test method for &#8216;AbtLogManager.test_log_package_install()&#8217;
 <pre>
     <span class="ruby-comment cmt"># File tests/testabtlogmanager.rb, line 68</span>
 68:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">test_log_package_install</span>()
-69:     <span class="ruby-keyword kw">if</span> <span class="ruby-operator">!</span><span class="ruby-ivar">@system</span>.<span class="ruby-identifier">package_installed</span>( <span class="ruby-value str">&quot;ipc&quot;</span> )
-70:       <span class="ruby-ivar">@manager</span>.<span class="ruby-identifier">install_package</span>( <span class="ruby-value str">&quot;ipc&quot;</span> )
+69:     <span class="ruby-keyword kw">if</span> <span class="ruby-operator">!</span><span class="ruby-ivar">@system</span>.<span class="ruby-identifier">package_installed</span>(<span class="ruby-value str">&quot;ipc&quot;</span>)
+70:       <span class="ruby-ivar">@manager</span>.<span class="ruby-identifier">install_package</span>(<span class="ruby-value str">&quot;ipc&quot;</span>)
 71:     <span class="ruby-keyword kw">end</span>
 72: 
 73:     <span class="ruby-comment cmt"># fill installwatch file.</span>
-74:     <span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span>( <span class="ruby-node">&quot;#{$ABT_TMP}/ipc-1.4.watch&quot;</span>, <span class="ruby-value str">&quot;w&quot;</span> ) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">file</span><span class="ruby-operator">|</span>
+74:     <span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span>(<span class="ruby-node">&quot;#{$ABT_TMP}/ipc-1.4.watch&quot;</span>, <span class="ruby-value str">&quot;w&quot;</span>) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">file</span><span class="ruby-operator">|</span>
 75:       <span class="ruby-identifier">file</span>.<span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;5       open    /usr/local/bin/ipc      #success&quot;</span>
 76:       <span class="ruby-identifier">file</span>.<span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;0       chmod   /usr/local/bin/ipc      00600   #success&quot;</span>
 77:       <span class="ruby-identifier">file</span>.<span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;0       chown   /usr/local/bin/ipc      -1      -1      #success&quot;</span>
@@ -261,7 +261,7 @@ Test method for &#8216;AbtLogManager.test_log_package_install()&#8217;
 82:       <span class="ruby-identifier">file</span>.<span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;0       chmod   /usr/local/share/ipc/elemente   00644   #success&quot;</span>
 83:     <span class="ruby-keyword kw">end</span>
 84:     
-85:     <span class="ruby-identifier">assert</span>( <span class="ruby-ivar">@logger</span>.<span class="ruby-identifier">log_package_install</span>( <span class="ruby-value str">&quot;ipc&quot;</span> ), <span class="ruby-value str">&quot;test_log_package_install()&quot;</span> )
+85:     <span class="ruby-identifier">assert</span>(<span class="ruby-ivar">@logger</span>.<span class="ruby-identifier">log_package_install</span>(<span class="ruby-value str">&quot;ipc&quot;</span>), <span class="ruby-value str">&quot;test_log_package_install()&quot;</span>)
 86:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
@@ -282,11 +282,11 @@ Test method for &#8216;AbtLogManager.test_log_package_integrity()&#8217;
 <pre>
     <span class="ruby-comment cmt"># File tests/testabtlogmanager.rb, line 57</span>
 57:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">test_log_package_integrity</span>()
-58:     <span class="ruby-keyword kw">if</span> <span class="ruby-operator">!</span><span class="ruby-ivar">@system</span>.<span class="ruby-identifier">package_installed</span>( <span class="ruby-value str">&quot;ipc&quot;</span> )
-59:       <span class="ruby-ivar">@manager</span>.<span class="ruby-identifier">install_package</span>( <span class="ruby-value str">&quot;ipc&quot;</span> )
+58:     <span class="ruby-keyword kw">if</span> <span class="ruby-operator">!</span><span class="ruby-ivar">@system</span>.<span class="ruby-identifier">package_installed</span>(<span class="ruby-value str">&quot;ipc&quot;</span>)
+59:       <span class="ruby-ivar">@manager</span>.<span class="ruby-identifier">install_package</span>(<span class="ruby-value str">&quot;ipc&quot;</span>)
 60:     <span class="ruby-keyword kw">end</span>
 61:     
-62:     <span class="ruby-identifier">assert</span>( <span class="ruby-ivar">@logger</span>.<span class="ruby-identifier">log_package_integrity</span>( <span class="ruby-value str">&quot;ipc&quot;</span> ), <span class="ruby-value str">&quot;test_log_package_integrity()&quot;</span> )
+62:     <span class="ruby-identifier">assert</span>(<span class="ruby-ivar">@logger</span>.<span class="ruby-identifier">log_package_integrity</span>(<span class="ruby-value str">&quot;ipc&quot;</span>), <span class="ruby-value str">&quot;test_log_package_integrity()&quot;</span>)
 63:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>

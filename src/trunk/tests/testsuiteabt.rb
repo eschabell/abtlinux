@@ -1,8 +1,8 @@
 #!/usr/bin/ruby -w
 
-if ( Process.uid != 0 )
+if (Process.uid != 0)
   puts "Enter root password:"
-  system( 'su -c ./testsuiteabt.rb root' )
+  system('su -c ./testsuiteabt.rb root')
   exit
 end
 

@@ -38,22 +38,22 @@ class AbtPackage
   # otherwise false.
   ##
   def unpack_sources
-    srcFile			= File.basename( @srcUrl )
+    srcFile			= File.basename(@srcUrl)
     sourcesToUnpack = "#{$SOURCES_REPOSITORY}/#{srcFile}"
     unpackTool		= ""
     
     # check for existing file in source repo.
-    if ( !File.exist?( sourcesToUnpack ) )
+    if (!File.exist?(sourcesToUnpack))
       return false
     end
     
     # check if possible existing sources in build directory.
-    if ( File.directory?( "#{$BUILD_LOCATION}/#{@srcDir}" ) )
+    if (File.directory?("#{$BUILD_LOCATION}/#{@srcDir}"))
       return true
     end
     
     # determine which supported compression used [gz, tar, tgz, bz2, zip].
-    compressionType = srcFile.split( '.' )
+    compressionType = srcFile.split('.')
     
     case compressionType.last
       
@@ -77,8 +77,8 @@ class AbtPackage
       return false
     end
         
-    Dir.chdir( $BUILD_LOCATION )
-    if ( !system( "#{unpackTool} #{sourcesToUnpack}" ) )
+    Dir.chdir($BUILD_LOCATION)
+    if (!system("#{unpackTool} #{sourcesToUnpack}"))
       return false
     end
     
@@ -144,7 +144,7 @@ class AbtPackage
   # <b>PARAM</b> <i>Hash</i> - hash containing all package data.
   #
   ##
-  def initialize( data )
+  def initialize(data)
     @name             = data['name']
     @execName         = data['execName']
     @version          = data['version']
@@ -200,27 +200,27 @@ class AbtPackage
   # <b>RETURNS:</b>  <i>boolean</i> - True if completes sucessfully, 
   # otherwise false.
   ##
-  def pre( verbose=true )
+  def pre(verbose=true)
     downloader = AbtDownloadManager.new
     
     # download sources.
-    if ( !downloader.retrieve_package_source( @name.downcase, $SOURCES_REPOSITORY ) )
+    if (!downloader.retrieve_package_source(@name.downcase, $SOURCES_REPOSITORY))
       return false
     end
     
     # validate sources sha1.
-    if ( !downloader.validated( @hashCheck, "#{$SOURCES_REPOSITORY}/#{File.basename( @srcUrl )}" ) )
+    if (!downloader.validated(@hashCheck, "#{$SOURCES_REPOSITORY}/#{File.basename(@srcUrl)}"))
       return false
     end
     
     # unpack sources.
-    if ( !unpack_sources )
+    if (!unpack_sources)
       return false
     end
     
     # ensure we have an installed directory to use.
-    if ( ! File.directory?( "#{$PACKAGE_INSTALLED}/#{@srcDir}" ) )
-      FileUtils.mkdir_p( "#{$PACKAGE_INSTALLED}/#{@srcDir}" )
+    if (! File.directory?("#{$PACKAGE_INSTALLED}/#{@srcDir}"))
+      FileUtils.mkdir_p("#{$PACKAGE_INSTALLED}/#{@srcDir}")
     end
     
     # TODO: implement pre section retrieve patches?
@@ -243,21 +243,21 @@ class AbtPackage
   # <b>RETURNS:</b>  <i>boolean</i> - True if the completes sucessfully, 
   # otherwise false.
   ##
-  def configure( verbose=true )
-    if ( verbose )
+  def configure(verbose=true)
+    if (verbose)
       command = "./configure --prefix=#{$DEFAULT_PREFIX} | tee #{$PACKAGE_INSTALLED}/#{@srcDir}/#{@srcDir}.configure"
     else
       command = "./configure --prefix=#{$DEFAULT_PREFIX} 1> #{$PACKAGE_INSTALLED}/#{@srcDir}/#{@srcDir}.configure 2>&1"
     end 
     
-    Dir.chdir( "#{$BUILD_LOCATION}/#{@srcDir}" )
+    Dir.chdir("#{$BUILD_LOCATION}/#{@srcDir}")
     
-    if ( !system( command ) )
+    if (!system(command))
       puts "[AbtPackage.configure] - configure section failed."
       return false
     end
     
-    puts "[AbtPackage.configure] - configure section completed!" if (verbose )
+    puts "[AbtPackage.configure] - configure section completed!" if (verbose)
     return true
   end
   
@@ -271,21 +271,21 @@ class AbtPackage
   # <b>RETURNS:</b>  <i>boolean</i> - True if the completes sucessfully, 
   # otherwise false.
   ##
-  def build( verbose=true )
-    if ( verbose )
+  def build(verbose=true)
+    if (verbose)
       command = "make | tee #{$PACKAGE_INSTALLED}/#{@srcDir}/#{@srcDir}.build"
     else
       command = "make > #{$PACKAGE_INSTALLED}/#{@srcDir}/#{@srcDir}.build 2>&1"
     end 
 
-    Dir.chdir( "#{$BUILD_LOCATION}/#{@srcDir}" )
+    Dir.chdir("#{$BUILD_LOCATION}/#{@srcDir}")
     
-    if( !system( command ) )
+    if(!system(command))
       puts "[AbtPackage.build] - build section failed."
       return false
     end
     
-    puts "[AbtPackage.build] - build section completed!" if ( verbose )
+    puts "[AbtPackage.build] - build section completed!" if (verbose)
     return true
   end
   
@@ -300,7 +300,7 @@ class AbtPackage
   # <b>RETURNS:</b>  <i>boolean</i> - True if the completes sucessfully, 
   # otherwise false.
   ##
-  def preinstall( verbose=true )
+  def preinstall(verbose=true)
     # TODO: preinstall section create_group?
     # TODO: preinstall section create_user?
     return true;
@@ -315,8 +315,8 @@ class AbtPackage
   # <b>RETURNS:</b>  <i>boolean</i> - True if the completes sucessfully, 
   # otherwise false.
   ##
-  def install( verbose=true )
-    if ( verbose )
+  def install(verbose=true)
+    if (verbose)
       command = "installwatch --transl=no --backup=no " +
           "--exclude=/dev,/proc,/tmp,/var/tmp,/usr/src,/sys " +
           "--logfile=#{$ABT_TMP}/#{@srcDir}.watch make install"
@@ -326,14 +326,14 @@ class AbtPackage
           "--logfile=#{$ABT_TMP}/#{@srcDir}.watch make install >/dev/null"
     end 
   
-    Dir.chdir( "#{$BUILD_LOCATION}/#{@srcDir}" )
+    Dir.chdir("#{$BUILD_LOCATION}/#{@srcDir}")
     
-    if( !system( command ) )
+    if(!system(command))
       puts "[AbtPackage.install] - install section failed."
       return false
     end
     
-    puts "[AbtPackage.install] - install section completed!" if ( verbose )
+    puts "[AbtPackage.install] - install section completed!" if (verbose)
     return true
   end
   
@@ -347,7 +347,7 @@ class AbtPackage
   # <b>RETURNS:</b>  <i>boolean</i> - True if the completes sucessfully, 
   # otherwise false.
   ##
-  def post( verbose=true )
+  def post(verbose=true)
     # TODO: implement post section install init scripts service
     return true
   end
@@ -360,14 +360,14 @@ class AbtPackage
   ##
   def remove_build
     puts "Removings build..."
-    if ( $REMOVE_BUILD_SOURCES )
+    if ($REMOVE_BUILD_SOURCES)
       buildSourcesLocation = "#{$BUILD_LOCATION}/#{srcDir}"
       
-      if ( !File.directory?( buildSourcesLocation ) )
+      if (!File.directory?(buildSourcesLocation))
         return true
       end
       
-      if ( !FileUtils.rm_rf buildSourcesLocation, :verbose => true  )
+      if (!FileUtils.rm_rf buildSourcesLocation, :verbose => true )
         return false
       end
     end

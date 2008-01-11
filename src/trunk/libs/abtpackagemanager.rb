@@ -42,23 +42,23 @@ class AbtPackageManager
   # <b>RETURN</b> <i>boolean</i> - True if the action rolls back, otherwise
   # false.
   ##
-  def roll_back( type, details )
+  def roll_back(type, details)
     logFile = "#{$PACKAGE_INSTALLED}/#{details['Source location']}/"
     
     case type
     when "install"
       logFile = logFile + "#{details['Source location']}.install"
       
-      file = File.new( logFile, "r" )
-      while ( line = file.gets )
-        if ( File.file?( line.chomp ) )
-          File.delete( line.chomp )
+      file = File.new(logFile, "r")
+      while (line = file.gets)
+        if (File.file?(line.chomp))
+          File.delete(line.chomp)
         end
       end
       file.close
       
       # cleanup install log as it is incomplete.
-      File.delete( logFile )
+      File.delete(logFile)
     else
       return false
     end
@@ -88,11 +88,11 @@ class AbtPackageManager
   # <b>RETURN</b> <i>boolean</i> - True if the package is installed, otherwise
   # false.
   ##
-  def install_package( package, verbose=true )
+  def install_package(package, verbose=true)
     require "#{$PACKAGE_PATH}#{package}"
-    sw = eval( "#{package.capitalize}.new" )
+    sw = eval("#{package.capitalize}.new")
     queuer = AbtQueueManager.new
-    logger = Logger.new( $JOURNAL )
+    logger = Logger.new($JOURNAL)
 		system = AbtSystemManager.new
     
     # TODO: refactor myLogger:
@@ -102,7 +102,7 @@ class AbtPackageManager
     details = sw.details
     
 		# check for frozen.
-		if ( system.package_frozen( package ) )
+		if (system.package_frozen(package))
 			logger.info "Package #{package} is frozen, can not proceed with install package call."
 			puts "\nPackage #{package} is frozen, can not proceed with install package call."
 			return false
@@ -111,104 +111,104 @@ class AbtPackageManager
     # TODO:  check deps
     
     # add to install queue.
-    puts "\n*** Adding #{package} to the INSTALL QUEUE. ***" if ( verbose )
+    puts "\n*** Adding #{package} to the INSTALL QUEUE. ***" if (verbose)
     
-    if ( !queuer.action_package_queue( package, "install", "add" ) )
-      logger.info( "Failed to add #{package} to install queue." )
+    if (!queuer.action_package_queue(package, "install", "add"))
+      logger.info("Failed to add #{package} to install queue.")
       return false
     end
 
     # pre section.
-    puts "\n*** Processing the PRE section for #{package}. ***" if (verbose )
+    puts "\n*** Processing the PRE section for #{package}. ***" if (verbose)
     
-    if ( !sw.pre )
-      logger.info( "Failed to process pre-section in the package description of #{package}." )
+    if (!sw.pre)
+      logger.info("Failed to process pre-section in the package description of #{package}.")
       return false
     else
-      logger.info( "Finished #{package} pre section." )
+      logger.info("Finished #{package} pre section.")
     end
     
     # configure section.
-    puts "\n*** Processing the CONFIGURE section for #{package}. ***" if ( verbose )
+    puts "\n*** Processing the CONFIGURE section for #{package}. ***" if (verbose)
     
-    if ( !sw.configure( verbose ) )
-      logger.info( "Failed to process configure section in the package description of #{package}." )
+    if (!sw.configure(verbose))
+      logger.info("Failed to process configure section in the package description of #{package}.")
       return false
     else
-      logger.info( "Finished #{package} configure section." )
+      logger.info("Finished #{package} configure section.")
     end
     
     # build section.
-    puts "\n*** Processing the BUILD section for #{package}. ***" if ( verbose )
+    puts "\n*** Processing the BUILD section for #{package}. ***" if (verbose)
     
-    if ( !sw.build( verbose ) )
-      logger.info( "Failed to process build section in the package description of #{package}." )
+    if (!sw.build(verbose))
+      logger.info("Failed to process build section in the package description of #{package}.")
       return false
     else
-      if ( !myLogger.log_package_build( sw.name.downcase ) ) 
-        logger.info( "Failed to create a package build log." )
+      if (!myLogger.log_package_build(sw.name.downcase)) 
+        logger.info("Failed to create a package build log.")
         return false
       end
-      logger.info( "Finished #{package} build section." )
+      logger.info("Finished #{package} build section.")
     end
     
     # preinstall section.
-    puts "\n*** Processing the PREINSTALL section for #{package}. ***" if ( verbose )
+    puts "\n*** Processing the PREINSTALL section for #{package}. ***" if (verbose)
     
-    if ( !sw.preinstall )
-      logger.info( "Failed to process preinstall section in the package description of #{package}." )
+    if (!sw.preinstall)
+      logger.info("Failed to process preinstall section in the package description of #{package}.")
       return false
     else
-      logger.info( "Finished #{package} preinstall section." )
+      logger.info("Finished #{package} preinstall section.")
     end
     
     # install section.
-    puts "\n*** Processing the INSTALL section for #{package}. ***" if ( verbose )
+    puts "\n*** Processing the INSTALL section for #{package}. ***" if (verbose)
 
-    if ( !sw.install )
+    if (!sw.install)
       # rollback installed files if any and remove install log.
-      logger.info( "Failed to process install section in the package description of #{package}." )
-      myLogger.log_package_install( sw.name.downcase )
-      logger.info( "***Starting rollback of #{package} install and removing install log." )
-      roll_back( "install", details )
+      logger.info("Failed to process install section in the package description of #{package}.")
+      myLogger.log_package_install(sw.name.downcase)
+      logger.info("***Starting rollback of #{package} install and removing install log.")
+      roll_back("install", details)
       return false
     else
-      myLogger.log_package_install( sw.name.downcase )
-      myLogger.log_package_integrity( sw.name.downcase )
+      myLogger.log_package_install(sw.name.downcase)
+      myLogger.log_package_integrity(sw.name.downcase)
       
       # cleanup tmp files from installwatch.
-      File.delete( "#{$ABT_TMP}/#{details['Source location']}.watch" )
+      File.delete("#{$ABT_TMP}/#{details['Source location']}.watch")
 
-      logger.info( "Finished #{package} install section." )
+      logger.info("Finished #{package} install section.")
     end
     
     # post section.
-    puts "\n*** Processing the POST section for #{package}. ***" if ( verbose )
+    puts "\n*** Processing the POST section for #{package}. ***" if (verbose)
     
-    if ( !sw.post )
-      logger.info( "Failed to process post section in the package description of #{package}." )
+    if (!sw.post)
+      logger.info("Failed to process post section in the package description of #{package}.")
       return false
     else
-      logger.info( "Finished #{package} post section." )
+      logger.info("Finished #{package} post section.")
     end
     
     # clean out build sources.        
-    puts "\n*** Cleaning up the sources for #{package}. ***" if ( verbose )
+    puts "\n*** Cleaning up the sources for #{package}. ***" if (verbose)
     
-    if ( !sw.remove_build )
-      logger.info( "Failed to remove the build sources for #{package}." )
+    if (!sw.remove_build)
+      logger.info("Failed to remove the build sources for #{package}.")
       #return false  # commented out as this is not a reason to fail.
     end
     
     # remove pacakge from install queue.
-    if ( !queuer.action_package_queue( sw.name.downcase, "install", "remove" ) )
-      logger.info( "Failed to remove #{sw.name.downcase} from install queue." )
+    if (!queuer.action_package_queue(sw.name.downcase, "install", "remove"))
+      logger.info("Failed to remove #{sw.name.downcase} from install queue.")
     end
     
     return true # install completed!
   end
   
-  # TODO: add install_cached_package( package )
+  # TODO: add install_cached_package(package)
   
   ##
   # Reinstalls a given package.
@@ -219,21 +219,21 @@ class AbtPackageManager
   # <b>RETURN</b> <i>boolean</i> - True if the package is reinstalled, 
   # otherwise false.
   ##
-  def reinstall_package( package, automated_build=false )
-    logger = Logger.new( $JOURNAL )
+  def reinstall_package(package, automated_build=false)
+    logger = Logger.new($JOURNAL)
     # TODO: look into refactoring myLogger:
     myLogger = AbtLogManager.new
 		system   = AbtSystemManager.new
     
 		# check for frozen.
-		if ( system.package_frozen( package ) )
+		if (system.package_frozen(package))
 			logger.info "Package #{package} is frozen, can not proceed with reinstall package call."
 			puts "\nPackage #{package} is frozen, can not proceed with reinstall package call."
 			return false
 		end
 
 		# check if already installed.
-    if ( system.package_installed( package ) )
+    if (system.package_installed(package))
 
 			if !automated_build
       	puts "\n*** Package #{package} is already installed! ***\n"
@@ -259,20 +259,20 @@ class AbtPackageManager
       end
     end
  
-    if ( install_package( package ) )
+    if (install_package(package))
       puts "\n\n"
       puts "*** Completed reinstall of #{package}. ***"
       puts "\n\n"
-      logger.info( "Completed reinstall of #{package}." )
+      logger.info("Completed reinstall of #{package}.")
       
-      if ( myLogger.cache_package( package ) )
+      if (myLogger.cache_package(package))
         puts "\n\n"
         puts "*** Completed caching of package #{package}. ***"
         puts "\n\n"
-        logger.info( "Caching completed for package #{package}." )
+        logger.info("Caching completed for package #{package}.")
         return true
       else
-        logger.info( "Caching of package #{package} failed.")
+        logger.info("Caching of package #{package} failed.")
       end
     end
       
@@ -287,19 +287,19 @@ class AbtPackageManager
   # <b>RETURN</b> <i>boolean</i> - True if the package is removed, otherwise
   # false.
   ##
-  def remove_package( package )
+  def remove_package(package)
     require "#{$PACKAGE_PATH}#{package}"
-    sw = eval( "#{package.capitalize}.new" )
+    sw = eval("#{package.capitalize}.new")
     # TODO: refactor myLogger.
     myLogger = AbtLogManager.new
-    logger = Logger.new( $JOURNAL )
+    logger = Logger.new($JOURNAL)
 		system = AbtSystemManager.new
     
     # get package details.
     details = sw.details
     
 		# check for frozen.
-		if ( system.package_frozen( package ) )
+		if (system.package_frozen(package))
 			logger.info "Package #{package} is frozen, can not proceed with remove package call."
 			puts "\nPackage #{package} is frozen, can not proceed with remove package call."
 			return false
@@ -308,32 +308,32 @@ class AbtPackageManager
     # TODO: something with possible /etc or other configure files before removal, check maybe integrity for changes since install?
 
     # remove listings in install log.
-    installLog = myLogger.get_log( package, 'install' )
+    installLog = myLogger.get_log(package, 'install')
 
     # only process install log if it exists, continue on with 
     # journal log warning.
-    if File.exist?( installLog )
-      IO.foreach( installLog ) do |line|
-        if File.exist?( line.chomp )
-          FileUtils.rm( line.chomp )
-          logger.info( "Removed file #{line.chomp} from #{package} install log.")
+    if File.exist?(installLog)
+      IO.foreach(installLog) do |line|
+        if File.exist?(line.chomp)
+          FileUtils.rm(line.chomp)
+          logger.info("Removed file #{line.chomp} from #{package} install log.")
         else
-          logger.info( "Unable to remove #{line.chomp} from #{package} install log, does not exist.")
+          logger.info("Unable to remove #{line.chomp} from #{package} install log, does not exist.")
           # do not return false, removed is ok, just put warning in journal log.
         end
       end
       
-      logger.info( "Removed files from #{File.basename( installLog )} for #{package}." )
+      logger.info("Removed files from #{File.basename(installLog)} for #{package}.")
     else
       puts "Install log missing for #{package}, see journal..."
-      logger.info( "Install log was missing for #{package}..." )
-      logger.info( "...continuing to remove package from install listing, but might have files still installed on system." )
+      logger.info("Install log was missing for #{package}...")
+      logger.info("...continuing to remove package from install listing, but might have files still installed on system.")
     end
       
           
     # remove entry in install listing.
-    FileUtils.remove_dir( "#{$PACKAGE_INSTALLED}/#{details['Source location']}" )    
-    logger.info( "Removed entry from installed packages." )
+    FileUtils.remove_dir("#{$PACKAGE_INSTALLED}/#{details['Source location']}")    
+    logger.info("Removed entry from installed packages.")
     return true
   end
   
@@ -347,12 +347,12 @@ class AbtPackageManager
   # <b>RETURN</b> <i>boolean</i> - True if the package is downgraded, otherwise
   # false.
   ##
-  def downgrade_package( package, version )
+  def downgrade_package(package, version)
 		system = AbtSystemManager.new
-    logger = Logger.new( $JOURNAL )
+    logger = Logger.new($JOURNAL)
 
 		# check for frozen.
-		if ( system.package_frozen( package ) )
+		if (system.package_frozen(package))
 			logger.info "Package #{package} is frozen, can not proceed with downgrade package call."
 			puts "\nPackage #{package} is frozen, can not proceed with downgrade package call."
 			return false
@@ -370,16 +370,16 @@ class AbtPackageManager
   # <b>RETURN</b> <i>boolean</i> - True if the package is frozen, otherwise
   # false.
   ##
-  def freeze_package( package )
+  def freeze_package(package)
 		require "#{$PACKAGE_PATH}#{package}"
-    sw       = eval( "#{package.capitalize}.new" )
+    sw       = eval("#{package.capitalize}.new")
     myLogger = AbtLogManager.new  # TODO: refactor myLogger.
-    logger   = Logger.new( $JOURNAL )
+    logger   = Logger.new($JOURNAL)
 		system   = AbtSystemManager.new
     
-		if ( system.package_installed( package ) )
-			if ( system.package_frozen( package ) )
-    		logger.info( "Package #{package} is already frozen!" )
+		if (system.package_installed(package))
+			if (system.package_frozen(package))
+    		logger.info("Package #{package} is already frozen!")
 
 				# package already frozen, need to un-freeze by removing frozen.log
 				# file.
@@ -388,16 +388,16 @@ class AbtPackageManager
 				logger.info "Package #{package} released : removed file #{$PACKAGE_INSTALLED}/#{sw.srcDir}/frozen.log"
 			else
 				# place file in $PACKAGE_INSTALLED frozen.log with date.
-				frozen = File.open( "#{$PACKAGE_INSTALLED}/#{sw.srcDir}/frozen.log", "w" )
+				frozen = File.open("#{$PACKAGE_INSTALLED}/#{sw.srcDir}/frozen.log", "w")
 				frozen.puts "#{$TIMESTAMP}"
 				frozen.close
-  			logger.info( "Package #{package} is now frozen." )
+  			logger.info("Package #{package} is now frozen.")
   		end
 
 			return true
 		end
     
-    logger.info( "Package #{package} is not installed, unable to freeze it." )
+    logger.info("Package #{package} is not installed, unable to freeze it.")
     return false
   end
   
@@ -408,8 +408,8 @@ class AbtPackageManager
   #
   # <b>RETURN</b> <i>void</i>
   ##
-  def root_login( arguments )
-    if ( Process.uid != 0 )
+  def root_login(arguments)
+    if (Process.uid != 0)
       args = ""
 			puts "\nYou need to be root for accessing the requested functionality.\n"
       puts "\nEnter root password:"
@@ -418,7 +418,7 @@ class AbtPackageManager
         args = args + " " + ARGV[i]
       end
       
-      system( 'su -c "./abt ' + args + '" root' )
+      system('su -c "./abt ' + args + '" root')
       exit
     end
   end

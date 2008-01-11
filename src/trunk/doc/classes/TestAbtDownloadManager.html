@@ -11,25 +11,25 @@
     <script language="JavaScript" type="text/javascript">
     // <![CDATA[
 
-        function toggleSource( id )
+        function toggleSource(id)
         {
           var elem
           var link
 
-          if( document.getElementById )
+          if(document.getElementById)
           {
-            elem = document.getElementById( id )
-            link = document.getElementById( "l_" + id )
+            elem = document.getElementById(id)
+            link = document.getElementById("l_" + id)
           }
-          else if ( document.all )
+          else if (document.all)
           {
-            elem = eval( "document.all." + id )
-            link = eval( "document.all.l_" + id )
+            elem = eval("document.all." + id)
+            link = eval("document.all.l_" + id)
           }
           else
             return false;
 
-          if( elem.style.display == "block" )
+          if(elem.style.display == "block")
           {
             elem.style.display = "none"
             link.innerHTML = "show source"
@@ -41,9 +41,9 @@
           }
         }
 
-        function openCode( url )
+        function openCode(url)
         {
-          window.open( url, "SOURCE_CODE", "width=400,height=400,scrollbars=yes" )
+          window.open(url, "SOURCE_CODE", "width=400,height=400,scrollbars=yes")
         }
       // ]]>
     </script>
@@ -194,7 +194,7 @@ Test method for &#8216;AbtDownloadManager.test_retrieve_news_feed()&#8217;
 <pre>
     <span class="ruby-comment cmt"># File tests/testabtdownloadmanager.rb, line 70</span>
 70:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">test_retrieve_news_feed</span>()
-71:     <span class="ruby-identifier">assert</span>( <span class="ruby-ivar">@download</span>.<span class="ruby-identifier">retrieve_news_feed</span>( <span class="ruby-identifier">$ABTNEWS</span> ), <span class="ruby-value str">&quot;test_retrieve_news_feed()&quot;</span> )
+71:     <span class="ruby-identifier">assert</span>(<span class="ruby-ivar">@download</span>.<span class="ruby-identifier">retrieve_news_feed</span>(<span class="ruby-identifier">$ABTNEWS</span>), <span class="ruby-value str">&quot;test_retrieve_news_feed()&quot;</span>)
 72:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
@@ -217,9 +217,9 @@ Test method for
     <span class="ruby-comment cmt"># File tests/testabtdownloadmanager.rb, line 53</span>
 53:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">test_retrieve_package_source</span>()
 54:     <span class="ruby-comment cmt"># ensures download not needed.</span>
-55:     <span class="ruby-constant">FileUtils</span>.<span class="ruby-identifier">cp</span> <span class="ruby-node">&quot;#{$PACKAGE_PATH}/ipc-1.4.tar.gz&quot;</span>, <span class="ruby-node">&quot;#{$SOURCES_REPOSITORY}&quot;</span>, <span class="ruby-identifier">:verbose</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword kw">true</span> <span class="ruby-keyword kw">if</span> <span class="ruby-operator">!</span><span class="ruby-constant">File</span>.<span class="ruby-identifier">exist?</span>( <span class="ruby-node">&quot;#{$SOURCES_REPOSITORY}/ipc-1.4.tar.gz&quot;</span> )
+55:     <span class="ruby-constant">FileUtils</span>.<span class="ruby-identifier">cp</span> <span class="ruby-node">&quot;#{$PACKAGE_PATH}/ipc-1.4.tar.gz&quot;</span>, <span class="ruby-node">&quot;#{$SOURCES_REPOSITORY}&quot;</span>, <span class="ruby-identifier">:verbose</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword kw">true</span> <span class="ruby-keyword kw">if</span> <span class="ruby-operator">!</span><span class="ruby-constant">File</span>.<span class="ruby-identifier">exist?</span>(<span class="ruby-node">&quot;#{$SOURCES_REPOSITORY}/ipc-1.4.tar.gz&quot;</span>)
 56:     
-57:     <span class="ruby-identifier">assert</span>( <span class="ruby-ivar">@download</span>.<span class="ruby-identifier">retrieve_package_source</span>( <span class="ruby-value str">&quot;ipc&quot;</span>, <span class="ruby-node">&quot;#{$SOURCES_REPOSITORY}&quot;</span> ), <span class="ruby-value str">&quot;test_retrieve_package_source()&quot;</span> )
+57:     <span class="ruby-identifier">assert</span>(<span class="ruby-ivar">@download</span>.<span class="ruby-identifier">retrieve_package_source</span>(<span class="ruby-value str">&quot;ipc&quot;</span>, <span class="ruby-node">&quot;#{$SOURCES_REPOSITORY}&quot;</span>), <span class="ruby-value str">&quot;test_retrieve_package_source()&quot;</span>)
 58:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
@@ -241,7 +241,7 @@ Test method for
 <pre>
     <span class="ruby-comment cmt"># File tests/testabtdownloadmanager.rb, line 63</span>
 63:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">test_retrieve_package_tree</span>()
-64:     <span class="ruby-identifier">assert</span>( <span class="ruby-ivar">@download</span>.<span class="ruby-identifier">retrieve_package_tree</span>( <span class="ruby-value str">&quot;dummy&quot;</span> ), <span class="ruby-value str">&quot;test_retrieve_package_tree()&quot;</span> )
+64:     <span class="ruby-identifier">assert</span>(<span class="ruby-ivar">@download</span>.<span class="ruby-identifier">retrieve_package_tree</span>(<span class="ruby-value str">&quot;dummy&quot;</span>), <span class="ruby-value str">&quot;test_retrieve_package_tree()&quot;</span>)
 65:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
@@ -262,7 +262,7 @@ Test method for &#8216;AbtDownloadManager.test_update_package()&#8217;
 <pre>
     <span class="ruby-comment cmt"># File tests/testabtdownloadmanager.rb, line 77</span>
 77:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">test_update_package</span>()
-78:     <span class="ruby-identifier">assert</span>( <span class="ruby-ivar">@download</span>.<span class="ruby-identifier">update_package</span>( <span class="ruby-value str">&quot;ipc&quot;</span>) , <span class="ruby-value str">&quot;test_update_package()&quot;</span> )
+78:     <span class="ruby-identifier">assert</span>(<span class="ruby-ivar">@download</span>.<span class="ruby-identifier">update_package</span>(<span class="ruby-value str">&quot;ipc&quot;</span>) , <span class="ruby-value str">&quot;test_update_package()&quot;</span>)
 79:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
@@ -283,7 +283,7 @@ Test method for &#8216;AbtDownloadManager.test_update_package_tree()&#8217;
 <pre>
     <span class="ruby-comment cmt"># File tests/testabtdownloadmanager.rb, line 84</span>
 84:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">test_update_package_tree</span>()
-85:     <span class="ruby-identifier">assert</span>( <span class="ruby-ivar">@download</span>.<span class="ruby-identifier">update_package_tree</span>(), <span class="ruby-value str">&quot;test_update_package_tree()&quot;</span> )
+85:     <span class="ruby-identifier">assert</span>(<span class="ruby-ivar">@download</span>.<span class="ruby-identifier">update_package_tree</span>(), <span class="ruby-value str">&quot;test_update_package_tree()&quot;</span>)
 86:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
@@ -305,9 +305,9 @@ Test method for &#8216;AbtDownloadManager.test_validated()&#8217;
     <span class="ruby-comment cmt"># File tests/testabtdownloadmanager.rb, line 91</span>
 91:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">test_validated</span>()
 92:     <span class="ruby-comment cmt"># ensure a tarball is available to test!</span>
-93:     <span class="ruby-constant">FileUtils</span>.<span class="ruby-identifier">cp</span> <span class="ruby-node">&quot;#{$PACKAGE_PATH}/ipc-1.4.tar.gz&quot;</span>, <span class="ruby-node">&quot;#{$SOURCES_REPOSITORY}&quot;</span>, <span class="ruby-identifier">:verbose</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword kw">true</span> <span class="ruby-keyword kw">if</span> <span class="ruby-operator">!</span><span class="ruby-constant">File</span>.<span class="ruby-identifier">exist?</span>( <span class="ruby-node">&quot;#{$SOURCES_REPOSITORY}/ipc-1.4.tar.gz&quot;</span> )
+93:     <span class="ruby-constant">FileUtils</span>.<span class="ruby-identifier">cp</span> <span class="ruby-node">&quot;#{$PACKAGE_PATH}/ipc-1.4.tar.gz&quot;</span>, <span class="ruby-node">&quot;#{$SOURCES_REPOSITORY}&quot;</span>, <span class="ruby-identifier">:verbose</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword kw">true</span> <span class="ruby-keyword kw">if</span> <span class="ruby-operator">!</span><span class="ruby-constant">File</span>.<span class="ruby-identifier">exist?</span>(<span class="ruby-node">&quot;#{$SOURCES_REPOSITORY}/ipc-1.4.tar.gz&quot;</span>)
 94:     
-95:     <span class="ruby-identifier">assert</span>( <span class="ruby-ivar">@download</span>.<span class="ruby-identifier">validated</span>( <span class="ruby-value str">'e81278607b1d65dcb18c3613ec00fbf588b50319'</span>, <span class="ruby-node">&quot;#{$SOURCES_REPOSITORY}/ipc-1.4.tar.gz&quot;</span> ), <span class="ruby-value str">&quot;test_validated&quot;</span> )
+95:     <span class="ruby-identifier">assert</span>(<span class="ruby-ivar">@download</span>.<span class="ruby-identifier">validated</span>(<span class="ruby-value str">'e81278607b1d65dcb18c3613ec00fbf588b50319'</span>, <span class="ruby-node">&quot;#{$SOURCES_REPOSITORY}/ipc-1.4.tar.gz&quot;</span>), <span class="ruby-value str">&quot;test_validated&quot;</span>)
 96:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>

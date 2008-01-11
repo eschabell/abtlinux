@@ -51,32 +51,32 @@ class AbtQueueManager
   #
   # <b>RETURN</b> <i>boolean</i> - true if action succeeds, otherwise false.
   ##
-  def action_package_queue( package, queue, action="add" )
+  def action_package_queue(package, queue, action="add")
     require 'fileutils'
-    logger = Logger.new( $JOURNAL )
+    logger = Logger.new($JOURNAL)
     queueFile = ""  # used to hold the queue location.
     
     # want to name install queue differently from log files.
-    if ( queue == 'install' )
+    if (queue == 'install')
       queueFile = "#{$ABT_LOGS}/#{queue}.queue"
     else
       queueFile = "#{$ABT_LOGS}/#{queue}.log"
     end
     
-    if ( action == "add")
-      if ( 
-          log = File.new( queueFile, File::WRONLY|File::APPEND|File::CREAT, 0644 ) )
+    if (action == "add")
+      if (
+          log = File.new(queueFile, File::WRONLY|File::APPEND|File::CREAT, 0644))
         # pickup queue contents to ensure no duplicates.
-        checkingQueue = IO.readlines( queueFile )
+        checkingQueue = IO.readlines(queueFile)
         
         # check if package exists, otherwise add.
-        if ( 
-            !checkingQueue.collect{ |i| i.split( '|' )[0] }.include?( 
-                                                                 package ) )
+        if (
+            !checkingQueue.collect{ |i| i.split('|')[0] }.include?(
+                                                                 package))
           log.puts "#{package}|#{$TIMESTAMP}"
-          logger.info( "Added #{package} to #{queue} queue." )
+          logger.info("Added #{package} to #{queue} queue.")
         else
-          logger.info( "Did not add #{package} to #{queue}, already exists." )
+          logger.info("Did not add #{package} to #{queue}, already exists.")
         end
         
         log.close
@@ -84,30 +84,30 @@ class AbtQueueManager
       end
     end
     
-    if ( action == "remove" )
+    if (action == "remove")
       # remove entry from given queue.
-      if ( 
-          log = File.new( queueFile, File::WRONLY|File::APPEND|File::CREAT, 0644 ) )
+      if (
+          log = File.new(queueFile, File::WRONLY|File::APPEND|File::CREAT, 0644))
         # use temp file to filter out entry to be removed.
         temp = File.new(queueFile + ".tmp", "a+")
         
         # now check for line to be removed.
-        IO.foreach( queueFile ) do |line|
-          entryName = line.split( '|' )[0]
-          if ( entryName != package.downcase )
+        IO.foreach(queueFile) do |line|
+          entryName = line.split('|')[0]
+          if (entryName != package.downcase)
             temp.puts line
           end
         end
         
         temp.close
-        FileUtils.mv( temp.path, queueFile )
+        FileUtils.mv(temp.path, queueFile)
       end
       
       log.close
       return true
     end
     
-    logger.info( "Failed to open #{queueFile}." )
+    logger.info("Failed to open #{queueFile}.")
     return false
   end  
 end

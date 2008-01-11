@@ -11,25 +11,25 @@
     <script language="JavaScript" type="text/javascript">
     // <![CDATA[
 
-        function toggleSource( id )
+        function toggleSource(id)
         {
           var elem
           var link
 
-          if( document.getElementById )
+          if(document.getElementById)
           {
-            elem = document.getElementById( id )
-            link = document.getElementById( "l_" + id )
+            elem = document.getElementById(id)
+            link = document.getElementById("l_" + id)
           }
-          else if ( document.all )
+          else if (document.all)
           {
-            elem = eval( "document.all." + id )
-            link = eval( "document.all.l_" + id )
+            elem = eval("document.all." + id)
+            link = eval("document.all.l_" + id)
           }
           else
             return false;
 
-          if( elem.style.display == "block" )
+          if(elem.style.display == "block")
           {
             elem.style.display = "none"
             link.innerHTML = "show source"
@@ -41,9 +41,9 @@
           }
         }
 
-        function openCode( url )
+        function openCode(url)
         {
-          window.open( url, "SOURCE_CODE", "width=400,height=400,scrollbars=yes" )
+          window.open(url, "SOURCE_CODE", "width=400,height=400,scrollbars=yes")
         }
       // ]]>
     </script>
@@ -157,7 +157,7 @@ href="AbtSystemManager.html">AbtSystemManager</a>.
 40:     <span class="ruby-ivar">@manager</span> = <span class="ruby-constant">AbtPackageManager</span>.<span class="ruby-identifier">new</span>
 41:     
 42:     <span class="ruby-comment cmt"># ensure tarball availabe without downloading.</span>
-43:     <span class="ruby-constant">FileUtils</span>.<span class="ruby-identifier">cp</span>( <span class="ruby-node">&quot;#{$PACKAGE_PATH}/ipc-1.4.tar.gz&quot;</span>, <span class="ruby-node">&quot;#{$SOURCES_REPOSITORY}&quot;</span>, <span class="ruby-identifier">:verbose</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword kw">true</span> ) <span class="ruby-keyword kw">if</span> <span class="ruby-operator">!</span><span class="ruby-constant">File</span>.<span class="ruby-identifier">exist?</span>( <span class="ruby-node">&quot;#{$SOURCES_REPOSITORY}/ipc-1.4.tar.gz&quot;</span> ) 
+43:     <span class="ruby-constant">FileUtils</span>.<span class="ruby-identifier">cp</span>(<span class="ruby-node">&quot;#{$PACKAGE_PATH}/ipc-1.4.tar.gz&quot;</span>, <span class="ruby-node">&quot;#{$SOURCES_REPOSITORY}&quot;</span>, <span class="ruby-identifier">:verbose</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword kw">true</span>) <span class="ruby-keyword kw">if</span> <span class="ruby-operator">!</span><span class="ruby-constant">File</span>.<span class="ruby-identifier">exist?</span>(<span class="ruby-node">&quot;#{$SOURCES_REPOSITORY}/ipc-1.4.tar.gz&quot;</span>) 
 44:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
@@ -201,14 +201,14 @@ Test method for
     <span class="ruby-comment cmt"># File tests/testabtsystemmanager.rb, line 55</span>
 55:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">test_cleanup_package_sources</span>
 56:     <span class="ruby-comment cmt"># remove test package so that sources can be removed.</span>
-57:     <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@system</span>.<span class="ruby-identifier">package_installed</span>( <span class="ruby-value str">&quot;ipc&quot;</span> )
-58:       <span class="ruby-ivar">@manager</span>.<span class="ruby-identifier">remove_package</span>( <span class="ruby-value str">&quot;ipc&quot;</span> )
+57:     <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@system</span>.<span class="ruby-identifier">package_installed</span>(<span class="ruby-value str">&quot;ipc&quot;</span>)
+58:       <span class="ruby-ivar">@manager</span>.<span class="ruby-identifier">remove_package</span>(<span class="ruby-value str">&quot;ipc&quot;</span>)
 59:     <span class="ruby-keyword kw">end</span>
 60:     
 61:     <span class="ruby-comment cmt"># ensure tarball availabe without downloading.</span>
-62:     <span class="ruby-constant">FileUtils</span>.<span class="ruby-identifier">cp</span>( <span class="ruby-node">&quot;#{$PACKAGE_PATH}/ipc-1.4.tar.gz&quot;</span>, <span class="ruby-node">&quot;#{$SOURCES_REPOSITORY}&quot;</span>, <span class="ruby-identifier">:verbose</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword kw">true</span> ) <span class="ruby-keyword kw">if</span> <span class="ruby-operator">!</span><span class="ruby-constant">File</span>.<span class="ruby-identifier">exist?</span>( <span class="ruby-node">&quot;#{$SOURCES_REPOSITORY}/ipc-1.4.tar.gz&quot;</span> ) 
+62:     <span class="ruby-constant">FileUtils</span>.<span class="ruby-identifier">cp</span>(<span class="ruby-node">&quot;#{$PACKAGE_PATH}/ipc-1.4.tar.gz&quot;</span>, <span class="ruby-node">&quot;#{$SOURCES_REPOSITORY}&quot;</span>, <span class="ruby-identifier">:verbose</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword kw">true</span>) <span class="ruby-keyword kw">if</span> <span class="ruby-operator">!</span><span class="ruby-constant">File</span>.<span class="ruby-identifier">exist?</span>(<span class="ruby-node">&quot;#{$SOURCES_REPOSITORY}/ipc-1.4.tar.gz&quot;</span>) 
 63:     
-64:     <span class="ruby-identifier">assert</span>( <span class="ruby-ivar">@system</span>.<span class="ruby-identifier">cleanup_package_sources</span>(), <span class="ruby-value str">&quot;test_cleanup_package_sources()&quot;</span> )
+64:     <span class="ruby-identifier">assert</span>(<span class="ruby-ivar">@system</span>.<span class="ruby-identifier">cleanup_package_sources</span>(), <span class="ruby-value str">&quot;test_cleanup_package_sources()&quot;</span>)
 65:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
@@ -229,7 +229,7 @@ Test method for &#8216;AbtSystemManager.test_fix_package()&#8217;
 <pre>
      <span class="ruby-comment cmt"># File tests/testabtsystemmanager.rb, line 107</span>
 107:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">test_fix_package</span>
-108:     <span class="ruby-identifier">assert</span>( <span class="ruby-ivar">@system</span>.<span class="ruby-identifier">fix_package</span>( <span class="ruby-value str">&quot;dummy&quot;</span> ), <span class="ruby-value str">&quot;test_fix_package()&quot;</span> )
+108:     <span class="ruby-identifier">assert</span>(<span class="ruby-ivar">@system</span>.<span class="ruby-identifier">fix_package</span>(<span class="ruby-value str">&quot;dummy&quot;</span>), <span class="ruby-value str">&quot;test_fix_package()&quot;</span>)
 109:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
@@ -250,11 +250,11 @@ Test method for &#8216;AbtSystemManager.test_package_installed()&#8217;
 <pre>
      <span class="ruby-comment cmt"># File tests/testabtsystemmanager.rb, line 128</span>
 128:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">test_package_installed</span>
-129:     <span class="ruby-keyword kw">if</span> <span class="ruby-operator">!</span><span class="ruby-ivar">@system</span>.<span class="ruby-identifier">package_installed</span>( <span class="ruby-value str">&quot;ipc&quot;</span> )
-130:       <span class="ruby-ivar">@manager</span>.<span class="ruby-identifier">install_package</span>( <span class="ruby-value str">&quot;ipc&quot;</span> )
+129:     <span class="ruby-keyword kw">if</span> <span class="ruby-operator">!</span><span class="ruby-ivar">@system</span>.<span class="ruby-identifier">package_installed</span>(<span class="ruby-value str">&quot;ipc&quot;</span>)
+130:       <span class="ruby-ivar">@manager</span>.<span class="ruby-identifier">install_package</span>(<span class="ruby-value str">&quot;ipc&quot;</span>)
 131:     <span class="ruby-keyword kw">end</span>
 132:     
-133:     <span class="ruby-identifier">assert</span>( <span class="ruby-ivar">@system</span>.<span class="ruby-identifier">package_installed</span>( <span class="ruby-value str">&quot;ipc&quot;</span> ), <span class="ruby-value str">&quot;test_package_installed()&quot;</span> )
+133:     <span class="ruby-identifier">assert</span>(<span class="ruby-ivar">@system</span>.<span class="ruby-identifier">package_installed</span>(<span class="ruby-value str">&quot;ipc&quot;</span>), <span class="ruby-value str">&quot;test_package_installed()&quot;</span>)
 134:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
@@ -275,7 +275,7 @@ Test method for &#8216;AbtSystemManager.test_set_central_repo()&#8217;
 <pre>
      <span class="ruby-comment cmt"># File tests/testabtsystemmanager.rb, line 114</span>
 114:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">test_set_central_repo</span>
-115:     <span class="ruby-identifier">assert</span>( <span class="ruby-ivar">@system</span>.<span class="ruby-identifier">set_central_repo</span>( <span class="ruby-value str">&quot;http://localhost&quot;</span> ), <span class="ruby-value str">&quot;test_set_central_repo()&quot;</span> )
+115:     <span class="ruby-identifier">assert</span>(<span class="ruby-ivar">@system</span>.<span class="ruby-identifier">set_central_repo</span>(<span class="ruby-value str">&quot;http://localhost&quot;</span>), <span class="ruby-value str">&quot;test_set_central_repo()&quot;</span>)
 116:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
@@ -297,7 +297,7 @@ Test method for
 <pre>
      <span class="ruby-comment cmt"># File tests/testabtsystemmanager.rb, line 121</span>
 121:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">test_set_package_tree_location</span>
-122:     <span class="ruby-identifier">assert</span>( <span class="ruby-ivar">@system</span>.<span class="ruby-identifier">set_package_tree_location</span>( <span class="ruby-value str">&quot;/var/lib/ericsPackages&quot;</span> ), <span class="ruby-value str">&quot;test_set_package_tree_location()&quot;</span> )
+122:     <span class="ruby-identifier">assert</span>(<span class="ruby-ivar">@system</span>.<span class="ruby-identifier">set_package_tree_location</span>(<span class="ruby-value str">&quot;/var/lib/ericsPackages&quot;</span>), <span class="ruby-value str">&quot;test_set_package_tree_location()&quot;</span>)
 123:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
@@ -320,11 +320,11 @@ Test method for
     <span class="ruby-comment cmt"># File tests/testabtsystemmanager.rb, line 70</span>
 70:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">test_verify_installed_files</span>
 71:     <span class="ruby-comment cmt"># ensure test package installed.</span>
-72:     <span class="ruby-keyword kw">if</span> <span class="ruby-operator">!</span><span class="ruby-ivar">@system</span>.<span class="ruby-identifier">package_installed</span>( <span class="ruby-value str">&quot;ipc&quot;</span> )
-73:       <span class="ruby-ivar">@manager</span>.<span class="ruby-identifier">install_package</span>( <span class="ruby-value str">&quot;ipc&quot;</span> )
+72:     <span class="ruby-keyword kw">if</span> <span class="ruby-operator">!</span><span class="ruby-ivar">@system</span>.<span class="ruby-identifier">package_installed</span>(<span class="ruby-value str">&quot;ipc&quot;</span>)
+73:       <span class="ruby-ivar">@manager</span>.<span class="ruby-identifier">install_package</span>(<span class="ruby-value str">&quot;ipc&quot;</span>)
 74:     <span class="ruby-keyword kw">end</span>
 75:     
-76:     <span class="ruby-identifier">assert</span>( <span class="ruby-ivar">@system</span>.<span class="ruby-identifier">verify_installed_files</span>( <span class="ruby-value str">&quot;ipc&quot;</span> ), <span class="ruby-value str">&quot;test_verify_installed_files()&quot;</span> )
+76:     <span class="ruby-identifier">assert</span>(<span class="ruby-ivar">@system</span>.<span class="ruby-identifier">verify_installed_files</span>(<span class="ruby-value str">&quot;ipc&quot;</span>), <span class="ruby-value str">&quot;test_verify_installed_files()&quot;</span>)
 77:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
@@ -346,7 +346,7 @@ Test method for
 <pre>
     <span class="ruby-comment cmt"># File tests/testabtsystemmanager.rb, line 89</span>
 89:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">test_verify_package_depends</span>
-90:     <span class="ruby-identifier">assert</span>( <span class="ruby-ivar">@system</span>.<span class="ruby-identifier">verify_package_depends</span>( <span class="ruby-value str">&quot;dummy&quot;</span> ), <span class="ruby-value str">&quot;test_verify_package_depends()&quot;</span> )
+90:     <span class="ruby-identifier">assert</span>(<span class="ruby-ivar">@system</span>.<span class="ruby-identifier">verify_package_depends</span>(<span class="ruby-value str">&quot;dummy&quot;</span>), <span class="ruby-value str">&quot;test_verify_package_depends()&quot;</span>)
 91:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
@@ -368,11 +368,11 @@ Test method for
 <pre>
      <span class="ruby-comment cmt"># File tests/testabtsystemmanager.rb, line 96</span>
  96:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">test_verify_package_integrity</span>
- 97:     <span class="ruby-keyword kw">if</span> <span class="ruby-operator">!</span><span class="ruby-ivar">@system</span>.<span class="ruby-identifier">package_installed</span>( <span class="ruby-value str">&quot;ipc&quot;</span> )
- 98:       <span class="ruby-ivar">@manager</span>.<span class="ruby-identifier">install_package</span>( <span class="ruby-value str">&quot;ipc&quot;</span> )
+ 97:     <span class="ruby-keyword kw">if</span> <span class="ruby-operator">!</span><span class="ruby-ivar">@system</span>.<span class="ruby-identifier">package_installed</span>(<span class="ruby-value str">&quot;ipc&quot;</span>)
+ 98:       <span class="ruby-ivar">@manager</span>.<span class="ruby-identifier">install_package</span>(<span class="ruby-value str">&quot;ipc&quot;</span>)
  99:     <span class="ruby-keyword kw">end</span>
 100:     
-101:     <span class="ruby-identifier">assert</span>( <span class="ruby-ivar">@system</span>.<span class="ruby-identifier">verify_package_integrity</span>( <span class="ruby-value str">&quot;ipc&quot;</span> ), <span class="ruby-value str">&quot;test_verify_package_integrity()&quot;</span> )
+101:     <span class="ruby-identifier">assert</span>(<span class="ruby-ivar">@system</span>.<span class="ruby-identifier">verify_package_integrity</span>(<span class="ruby-value str">&quot;ipc&quot;</span>), <span class="ruby-value str">&quot;test_verify_package_integrity()&quot;</span>)
 102:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>
@@ -393,7 +393,7 @@ Test method for &#8216;AbtSystemManager.test_verify_symlinks()&#8217;
 <pre>
     <span class="ruby-comment cmt"># File tests/testabtsystemmanager.rb, line 82</span>
 82:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">test_verify_symlinks</span>
-83:     <span class="ruby-identifier">assert</span>( <span class="ruby-ivar">@system</span>.<span class="ruby-identifier">verify_symlinks</span>( <span class="ruby-value str">&quot;dummy&quot;</span> ), <span class="ruby-value str">&quot;test_verify_symlinks()&quot;</span> )
+83:     <span class="ruby-identifier">assert</span>(<span class="ruby-ivar">@system</span>.<span class="ruby-identifier">verify_symlinks</span>(<span class="ruby-value str">&quot;dummy&quot;</span>), <span class="ruby-value str">&quot;test_verify_symlinks()&quot;</span>)
 84:   <span class="ruby-keyword kw">end</span>
 </pre>
   </div>

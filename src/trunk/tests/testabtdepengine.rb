@@ -49,7 +49,7 @@ class TestAbtDepEngine < Test::Unit::TestCase
   # Test method for 'AbtDepEngine.test_dep_engine()'
   ## 
   def test_dep_engine
-    assert_equal( false, true, "test_dep_engine()" )
+    assert_equal(false, true, "test_dep_engine()")
   end
   
 end

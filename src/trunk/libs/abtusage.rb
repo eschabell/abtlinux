@@ -33,7 +33,7 @@ class AbtUsage
   #
   # <b>RETURN</b> <i>void</i>
   ##
-  def usage( section )
+  def usage(section)
     puts "Usage: abt.rb [options]\n\n"
 
     case section

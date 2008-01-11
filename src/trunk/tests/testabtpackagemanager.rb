@@ -43,7 +43,7 @@ class TestAbtPackageManager < Test::Unit::TestCase
     @system  = AbtSystemManager.new
     
     # ensures download not needed.
-    FileUtils.cp "#{$PACKAGE_PATH}/ipc-1.4.tar.gz", "#{$SOURCES_REPOSITORY}", :verbose => true if !File.exist?( "#{$SOURCES_REPOSITORY}/ipc-1.4.tar.gz" )
+    FileUtils.cp "#{$PACKAGE_PATH}/ipc-1.4.tar.gz", "#{$SOURCES_REPOSITORY}", :verbose => true if !File.exist?("#{$SOURCES_REPOSITORY}/ipc-1.4.tar.gz")
   end
   
   ##
@@ -56,78 +56,78 @@ class TestAbtPackageManager < Test::Unit::TestCase
   # Test method for 'AbtPackageManager.test_install_package()'
   ## 
   def test_install_package
-    if @system.package_installed( "ipc" )
+    if @system.package_installed("ipc")
 			
-			if @system.package_frozen( "ipc" )
-				@manager.freeze_package( "ipc" )
+			if @system.package_frozen("ipc")
+				@manager.freeze_package("ipc")
 			end
 
-      @manager.remove_package( "ipc" )
+      @manager.remove_package("ipc")
     end
     
-    assert( @pkgMgr.install_package( "ipc", $verbose ), "test_install_package()" )
+    assert(@pkgMgr.install_package("ipc", $verbose), "test_install_package()")
   end
   
   ##
   # Test method for 'AbtPackageManager.test_reinstall_package()'
   ## 
   def test_reinstall_package
-    if !@system.package_installed( "ipc" )
-      @manager.install_package( "ipc" )
+    if !@system.package_installed("ipc")
+      @manager.install_package("ipc")
     end
     
-		if @system.package_frozen( "ipc" )
-			@manager.freeze_package( "ipc" )
+		if @system.package_frozen("ipc")
+			@manager.freeze_package("ipc")
 		end
 
-    assert( @pkgMgr.reinstall_package( "ipc", true ), "test_reinstall_package()" )
+    assert(@pkgMgr.reinstall_package("ipc", true), "test_reinstall_package()")
   end
   
   ##
   # Test method for 'AbtPackageManager.test_remove_package()'
   ## 
   def test_remove_package
-    if !@system.package_installed( "ipc" )
-      @manager.install_package( "ipc" )
+    if !@system.package_installed("ipc")
+      @manager.install_package("ipc")
     end
       
-		if @system.package_frozen( "ipc" )
-			@manager.freeze_package( "ipc" )
+		if @system.package_frozen("ipc")
+			@manager.freeze_package("ipc")
 		end
 
-    assert( @pkgMgr.remove_package( "ipc" ), "test_remove_package()" )
+    assert(@pkgMgr.remove_package("ipc"), "test_remove_package()")
   end
   
   ##
   # Test method for 'AbtPackageManager.test_downgrade_package()'
   ## 
   def test_downgrade_package
-    if !@system.package_installed( "ipc" )
-      @manager.install_package( "ipc" )
+    if !@system.package_installed("ipc")
+      @manager.install_package("ipc")
     end
 
-		if @system.package_frozen( "ipc" )
-			@manager.freeze_package( "ipc" )
+		if @system.package_frozen("ipc")
+			@manager.freeze_package("ipc")
 		end
     
-    assert( @pkgMgr.downgrade_package( "ipc", "1.2" ), "test_downgrade_package()" )
+    assert(@pkgMgr.downgrade_package("ipc", "1.2"), "test_downgrade_package()")
   end
   
   ##
   # Test method for 'AbtPackageManager.test_freeze_package()'
   ## 
   def test_freeze_package
-    if !@system.package_installed( "ipc" )
-      @manager.install_package( "ipc" )
+    if !@system.package_installed("ipc")
+      @manager.install_package("ipc")
     end
     
-		if !@system.package_frozen( "ipc" )
-    	assert( @pkgMgr.freeze_package( "ipc" ), "test_freeze_package()" )
+		if !@system.package_frozen("ipc")
+    	assert(@pkgMgr.freeze_package("ipc"), "test_freeze_package()")
 
 			# need to return package to initial state, un-frozen.
-			@pkgMgr.freeze_package( "ipc" )
+			@pkgMgr.freeze_package("ipc")
 		else
-			assert( true )
+			assert(true)
 		end
   end
   

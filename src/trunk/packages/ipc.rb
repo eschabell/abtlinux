@@ -68,6 +68,6 @@ public
   #
   ##
   def initialize()
-      super( $packageData )
+      super($packageData)
   end
 end
