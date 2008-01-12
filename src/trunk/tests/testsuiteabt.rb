@@ -6,7 +6,7 @@ if (Process.uid != 0)
   exit
 end
 
-$LOAD_PATH.unshift '/etc/abt/'
+$LOAD_PATH.unshift '../'
 
 require 'test/unit'
 require 'abtconfig'

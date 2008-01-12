@@ -1,7 +1,7 @@
 #!/usr/bin/ruby -w
 
 $LOAD_PATH.unshift '../'
-$LOAD_PATH.unshift '../packages/'
+$LOAD_PATH.unshift '/var/spool/abt/packages/'
 
 require 'test/unit/testcase'
 require 'test/unit/autorunner'
