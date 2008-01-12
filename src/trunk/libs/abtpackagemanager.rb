@@ -373,7 +373,6 @@ class AbtPackageManager
   def freeze_package(package)
 		require "#{$PACKAGE_PATH}#{package}"
     sw       = eval("#{package.capitalize}.new")
-    myLogger = AbtLogManager.new  # TODO: refactor myLogger.
     logger   = Logger.new($JOURNAL)
 		system   = AbtSystemManager.new
     
