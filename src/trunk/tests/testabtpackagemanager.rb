@@ -130,5 +130,16 @@ class TestAbtPackageManager < Test::Unit::TestCase
 			assert(true)
 		end
   end
-  
+    
+  ##
+  # Test method for 'AbtLogManager.test_cache_package()'
+  ## 
+  def test_cache_package()
+    if !@system.package_installed("ipc")
+      @manager.install_package("ipc")
+    end
+    
+    assert(@manager.cache_package("ipc"), "test_cache_package()")
+  end
+
 end
