@@ -76,9 +76,13 @@ class AbtUsage
     puts "  -i,  install     [package]\t\tInstall given package."
     puts "  -ri, reinstall   [package]\t\tReinstall given package."
     puts "  -r,  remove      [package]\t\tRemove given package."
-    puts "  -dg, downgrade   [version] [package]\tDowngrade given package to given version."
     puts "  -f,  freeze      [package]\t\tHolds given package at current version, prevents upgrades.\n"
-		puts "\t\t\t\t\tIf the given package is already frozen, it will be released.\n"
+    puts "\t\t\t\t\tIf the given package is already frozen, it will be released.\n"
+
+    ##
+    # [POSTPONED FEATURE, TO BE ADDED AT LATER VERSION/DATE]
+    ##
+    #    puts "  -dg, downgrade   [version] [package]\tDowngrade given package to given version."
   end
 
   ##

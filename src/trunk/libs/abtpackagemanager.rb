@@ -337,7 +337,7 @@ class AbtPackageManager
   end
   
   ##
-  # Downgrades a given package.
+  # Downgrades a given package. [POSTPONED FEATURE, TO BE ADDED AT LATER VERSION/DATE]
   #
   # <b>PARAM</b> <i>String</i> - the name of the package to be downgraded.
   #
@@ -346,19 +346,19 @@ class AbtPackageManager
   # <b>RETURN</b> <i>boolean</i> - True if the package is downgraded, otherwise
   # false.
   ##
-  def downgrade_package(package, version)
-		system = AbtSystemManager.new
-    logger = Logger.new($JOURNAL)
-
-		# check for frozen.
-		if (system.package_frozen(package))
-			logger.info "Package #{package} is frozen, can not proceed with downgrade package call."
-			puts "\nPackage #{package} is frozen, can not proceed with downgrade package call."
-			return false
-		end
-
-    return false
-  end
+#  def downgrade_package(package, version)
+#		system = AbtSystemManager.new
+#    logger = Logger.new($JOURNAL)
+#
+#		# check for frozen.
+#		if (system.package_frozen(package))
+#			logger.info "Package #{package} is frozen, can not proceed with downgrade package call."
+#			puts "\nPackage #{package} is frozen, can not proceed with downgrade package call."
+#			return false
+#		end
+#
+#    return false
+#  end
   
   ##
   # Freezes a given package. If successful will add give package to the frozen

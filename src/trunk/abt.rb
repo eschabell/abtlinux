@@ -200,18 +200,21 @@ when "remove", "-r"
     show.usage("packages")
     exit
   end
-  
-when "downgrade", "-dg"
-  if (ARGV.length == 3)
-    options['version'] = ARGV[1]
-    options['package'] = ARGV[2]
-    # FIXME: downgrade pkg implementation.
-    print "Downgradinging package : #{options['package']} "
-    puts  "to version : #{options['version']}"
-  else
-    show.usage("packages")
-    exit
-  end
+
+##
+# [POSTPONED FEATURE, TO BE ADDED AT LATER VERSION/DATE]
+##
+#when "downgrade", "-dg"
+#  if (ARGV.length == 3)
+#    options['version'] = ARGV[1]
+#    options['package'] = ARGV[2]
+#    # FIXME: downgrade pkg implementation.
+#    print "Downgradinging package : #{options['package']} "
+#    puts  "to version : #{options['version']}"
+#  else
+#    show.usage("packages")
+#    exit
+#  end
   
 when "freeze", "-f"
   if (ARGV.length == 2)

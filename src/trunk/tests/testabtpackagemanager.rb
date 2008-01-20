@@ -98,20 +98,23 @@ class TestAbtPackageManager < Test::Unit::TestCase
     assert(@pkgMgr.remove_package("ipc"), "test_remove_package()")
   end
   
+##
+# [POSTPONED FEATURE, TO BE ADDED AT LATER VERSION/DATE]
+##
   ##
   # Test method for 'AbtPackageManager.test_downgrade_package()'
   ## 
-  def test_downgrade_package
-    if !@system.package_installed("ipc")
-      @manager.install_package("ipc")
-    end
-
-		if @system.package_frozen("ipc")
-			@manager.freeze_package("ipc")
-		end
-    
-    assert(@pkgMgr.downgrade_package("ipc", "1.2"), "test_downgrade_package()")
-  end
+#  def test_downgrade_package
+#    if !@system.package_installed("ipc")
+#      @manager.install_package("ipc")
+#    end
+#
+#		if @system.package_frozen("ipc")
+#			@manager.freeze_package("ipc")
+#		end
+#    
+#    assert(@pkgMgr.downgrade_package("ipc", "1.2"), "test_downgrade_package()")
+#  end
   
   ##
   # Test method for 'AbtPackageManager.test_freeze_package()'
