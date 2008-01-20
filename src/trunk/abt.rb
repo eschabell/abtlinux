@@ -208,7 +208,7 @@ when "remove", "-r"
 #  if (ARGV.length == 3)
 #    options['version'] = ARGV[1]
 #    options['package'] = ARGV[2]
-#    # FIXME: downgrade pkg implementation.
+#    # downgrade pkg implementation.
 #    print "Downgradinging package : #{options['package']} "
 #    puts  "to version : #{options['version']}"
 #  else
