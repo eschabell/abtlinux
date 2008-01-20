@@ -1,11 +1,12 @@
 #!/usr/bin/ruby -w
 
 $LOAD_PATH.unshift '../'
-$LOAD_PATH.unshift '/var/spool/abt/packages/'
 
 require 'test/unit/testcase'
 require 'test/unit/autorunner'
 require 'abtconfig'
+
+$LOAD_PATH.unshift "#{$DEFAULT_PREFIX}/var/spool/abt/packages/"
 require 'ipc'
 
 ##

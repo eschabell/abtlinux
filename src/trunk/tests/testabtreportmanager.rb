@@ -101,13 +101,6 @@ class TestAbtReportManager < Test::Unit::TestCase
   end
   
   ##
-  # Test method for 'AbtReportManager.test_show_package_dependencies()'
-  ## 
-  def test_show_package_dependencies
-    assert(false, "test_show_package_dependencies()")
-  end
-  
-  ##
   # Test method for 'AbtReportManager.test_show_untracked_files()'
   ## 
   def test_show_untracked_files

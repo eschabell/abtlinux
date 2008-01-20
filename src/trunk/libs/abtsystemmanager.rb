@@ -196,7 +196,7 @@ class AbtSystemManager
   # file names and the values are the package name and the problem detected. 
   ##
   def verify_package_integrity(package)
-    require "#{$PACKAGE_PATH}#{package}"
+    require "#{$PACKAGE_PATH}/#{package}"
     sw = eval("#{package.capitalize}.new")
     
     # TODO: refactor myLogger.
@@ -290,7 +290,7 @@ class AbtSystemManager
   # false.
   ##
   def package_installed(package)
-    require "#{$PACKAGE_PATH}#{package}"
+    require "#{$PACKAGE_PATH}/#{package}"
     sw = eval("#{package.capitalize}.new")
     
     if (found_entry($PACKAGE_INSTALLED, sw.srcDir))
@@ -310,7 +310,7 @@ class AbtSystemManager
   # false.
   ##
   def package_frozen(package)
-    require "#{$PACKAGE_PATH}#{package}"
+    require "#{$PACKAGE_PATH}/#{package}"
     sw = eval("#{package.capitalize}.new")
     
 		# looking for frozen log file.

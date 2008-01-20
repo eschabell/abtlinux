@@ -41,7 +41,7 @@ class AbtLogManager
   # <b>RETURN</b> <i>String</i> - Full path to install log.
   ##
   def get_log(package, type)
-    require "#{$PACKAGE_PATH}#{package}"
+    require "#{$PACKAGE_PATH}/#{package}"
     sw         = eval("#{package.capitalize}.new")
     details    = sw.details
     

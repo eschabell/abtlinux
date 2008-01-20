@@ -1,6 +1,6 @@
 #!/usr/bin/ruby -w
-
-$LOAD_PATH.unshift '/var/lib/abt/'
+$DEFAULT_PREFIX     = "/usr/local"
+$LOAD_PATH.unshift "#{$DEFAULT_PREFIX}/var/lib/abt/"
 ##
 # abtconfig.rb
 #
@@ -43,19 +43,19 @@ require 'logger'
 require 'digest/sha1'
 
 # default paths / locations.
-$ABT_LOGS           = "/var/log/abt"
-$ABT_CACHES         = "/var/spool/abt"
-$ABT_STATE          = "/var/state/abt"
+$ABT_LOGS           = "#{$DEFAULT_PREFIX}/var/log/abt"
+$ABT_CACHES         = "#{$DEFAULT_PREFIX}/var/spool/abt"
+$ABT_STATE          = "#{$DEFAULT_PREFIX}/var/state/abt"
 $ABT_TMP            = "/tmp/abt"
-$ABT_CONFIG         = "/etc/abt"
-$ABT_LIBS           = "/var/lib/abt"
-$ABT_LOCAL_CONFIG   = "/etc/abt/local"
+$ABT_CONFIG         = "#{$DEFAULT_PREFIX}/etc/abt"
+$ABT_LIBS           = "#{$DEFAULT_PREFIX}/var/lib/abt"
+$ABT_LOCAL_CONFIG   = "#{$DEFAULT_PREFIX}/etc/abt/local"
 $ABTNEWS_LOG        = "#{$ABT_LOGS}/news.log"
-$BUILD_LOCATION		= "/usr/src"
-$JOURNAL           = "#{$ABT_LOGS}/journal.log"  # use logger.info.
+$BUILD_LOCATION		  = "#{$DEFAULT_PREFIX}/usr/src"
+$JOURNAL            = "#{$ABT_LOGS}/journal.log"  # use logger.info.
 $PACKAGE_INSTALLED  = "#{$ABT_STATE}/installed"
 $PACKAGE_CACHED     = "#{$ABT_STATE}/cached"
-$PACKAGE_PATH       = "#{$ABT_CACHES}/packages/"
+$PACKAGE_PATH       = "#{$ABT_CACHES}/packages"
 $SOURCES_REPOSITORY = "#{$ABT_CACHES}/sources"
 
 
@@ -64,7 +64,6 @@ $SOURCES_REPOSITORY = "#{$ABT_CACHES}/sources"
 $ABT_VERSION           = "0.1"
 $BUILD_ARCHITECTURE    = "i686"
 $BUILD_OPTIMIZATIONS   = "strip"
-$DEFAULT_PREFIX        = "/usr/local"
 $REMOVE_BUILD_SOURCES  = true
 $TIMESTAMP             = Time.now.strftime( "%Y-%m-%d %H:%M:%S (%Z)" )
 $PAGER_DEFAULT         = "less -R -E -X -f"

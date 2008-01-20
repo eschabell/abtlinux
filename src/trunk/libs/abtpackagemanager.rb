@@ -89,7 +89,7 @@ class AbtPackageManager
   # false.
   ##
   def install_package(package, verbose=true)
-    require "#{$PACKAGE_PATH}#{package}"
+    require "#{$PACKAGE_PATH}/#{package}"
     sw = eval("#{package.capitalize}.new")
     queuer = AbtQueueManager.new
     logger = Logger.new($JOURNAL)
@@ -251,11 +251,6 @@ class AbtPackageManager
 			end
     else
       puts "\n*** Package #{package} is not installed, we will install it for you now! ***\n"
-      puts "Hit enter to continue..."
-      while continue = STDIN.gets
-        continue.chomp!
-        break
-      end
     end
  
     if (install_package(package))
@@ -287,7 +282,7 @@ class AbtPackageManager
   # false.
   ##
   def remove_package(package)
-    require "#{$PACKAGE_PATH}#{package}"
+    require "#{$PACKAGE_PATH}/#{package}"
     sw = eval("#{package.capitalize}.new")
     # TODO: refactor myLogger.
     myLogger = AbtLogManager.new
@@ -370,7 +365,7 @@ class AbtPackageManager
   # false.
   ##
   def freeze_package(package)
-		require "#{$PACKAGE_PATH}#{package}"
+		require "#{$PACKAGE_PATH}/#{package}"
     sw       = eval("#{package.capitalize}.new")
     logger   = Logger.new($JOURNAL)
 		system   = AbtSystemManager.new

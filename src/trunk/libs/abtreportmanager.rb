@@ -51,7 +51,7 @@ class AbtReportManager
   # otherwise false.
   ##
   def show_package_details(package)
-    require "#{$PACKAGE_PATH}#{package}"
+    require "#{$PACKAGE_PATH}/#{package}"
     
     if (package = eval("#{package.capitalize}.new"))
       details = package.details
@@ -184,7 +184,7 @@ class AbtReportManager
   # hash of problem files and their encountered errors.
   ##
   def show_package_dependencies(package)
-      require "#{$PACKAGE_PATH}#{package}"
+      require "#{$PACKAGE_PATH}/#{package}"
 
     if (package = eval("#{package.capitalize}.new"))
       details = package.details
@@ -284,8 +284,8 @@ class AbtReportManager
           packageName  = packageArray[0]
           
           # check for match to name and description if the package file exists.
-          if (File.exist?("#{$PACKAGE_PATH}#{packageName}.rb"))
-            require "#{$PACKAGE_PATH}#{packageName}" 
+          if (File.exist?("#{$PACKAGE_PATH}/#{packageName}.rb"))
+            require "#{$PACKAGE_PATH}/#{packageName}" 
             sw = eval("#{packageName.capitalize}.new")
             
             # add if matches name or description entries.

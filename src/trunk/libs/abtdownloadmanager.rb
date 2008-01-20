@@ -54,7 +54,7 @@ class AbtDownloadManager
   # downloaded, otherwise false.
   ##
   def retrieve_package_source(packageName, destination)
-    require "#{$PACKAGE_PATH}#{packageName}"
+    require "#{$PACKAGE_PATH}/#{packageName}"
     logger		= Logger.new($JOURNAL)
     package		= eval(packageName.capitalize + '.new')
     
@@ -81,12 +81,12 @@ class AbtDownloadManager
   # otherwise false.
   ##
   def retrieve_package_tree(packageTreeName="AbTLinux")
-      logger        = Logger.new($JOURNAL)
+      logger = Logger.new($JOURNAL)
 
       # check if package tree exists.
       if File.directory?($PACKAGE_PATH)
         # check if svn directory.
-        if File.directory?("#{$PACKAGE_PATH}.svn")
+        if File.directory?("#{$PACKAGE_PATH}/.svn")
             logger.info "Package tree #{packageTreeName} already installed."
             return true
         else
@@ -179,7 +179,7 @@ class AbtDownloadManager
       # check if package exists in tree.      
       if File.exists?("#{$PACKAGE_PATH}/#{packageName}.rb")
           # check if svn directory.
-          if File.directory?("#{$PACKAGE_PATH}.svn")
+          if File.directory?("#{$PACKAGE_PATH}/.svn")
               if system("svn update #{$PACKAGE_PATH}/#{packageName.downcase}.rb")
                   logger.info "Package #{packageName.downcase} updated (svn update)"
               else
@@ -208,13 +208,14 @@ class AbtDownloadManager
   # <b>RETURN</b> <i>boolean</i> - True if the package tree has been updated,
   # otherwise false.
   ##
-  def update_package_tree(packageTreeName="AbTLinux")
-      logger        = Logger.new($JOURNAL)
+  #def update_package_tree(packageTreeName="AbTLinux")
+  def update_package_tree()
+      logger = Logger.new($JOURNAL)
 
       # check if package tree exists.
       if File.directory?($PACKAGE_PATH)
         # check if svn directory.
-        if File.directory?("#{$PACKAGE_PATH}.svn")
+        if File.directory?("#{$PACKAGE_PATH}/.svn")
             if system("svn update #{$PACKAGE_PATH}")
                 logger.info "Package tree updated (svn update)"
             else

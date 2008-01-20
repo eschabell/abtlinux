@@ -27,9 +27,10 @@
 
 # Check and install our library files.
 #
+$DEFAULT_PREFIX     = "/usr/local"
 $ABTLINUX_CLASS_LIBS = "https://abtlinux.svn.sourceforge.net/svnroot/abtlinux/src/trunk/libs"
 
-if (! File.directory?('/var/lib/abt') || Dir["/var/lib/abt"].empty?)
+if (! File.directory?("#{$DEFAULT_PREFIX}/var/lib/abt") || Dir["#{$DEFAULT_PREFIX}/var/lib/abt"].empty?)
   puts "\nMissing needed AbTLinux library files at /var/lib/abt"
   puts "\nMaybe time for an abt update? Let us try to fix it for you!\n"
 
@@ -38,18 +39,18 @@ if (! File.directory?('/var/lib/abt') || Dir["/var/lib/abt"].empty?)
     puts "\nMust be root to fix library files."
     exit
   else
-    system("svn co #{$ABTLINUX_CLASS_LIBS} /var/lib/abt/")
+    system("svn co #{$ABTLINUX_CLASS_LIBS} #{$DEFAULT_PREFIX}/var/lib/abt/")
   end
 
-  $LOAD_PATH.unshift '/var/lib/abt/'
+  $LOAD_PATH.unshift "#{$DEFAULT_PREFIX}/var/lib/abt/"
 end
 
 # Load our central configuration file.
 #
 $ABTLINUX_MAIN_CONFIG = "https://abtlinux.svn.sourceforge.net/svnroot/abtlinux/src/trunk/abtconfig.rb"
 
-if File.exist?("/etc/abt/abtconfig.rb")
-	$LOAD_PATH.unshift '/etc/abt/'
+if File.exist?("#{$DEFAULT_PREFIX}/etc/abt/abtconfig.rb")
+	$LOAD_PATH.unshift "#{$DEFAULT_PREFIX}/etc/abt/"
   load 'abtconfig.rb'
 else
   # missing configuration file, do some abt update?
@@ -61,20 +62,20 @@ else
       puts "\nMust be root to fix configuration files."
 			exit
 	else
-  	["/etc/abt", "/etc/abt/local"].each { |dir|
+  	["#{$DEFAULT_PREFIX}/etc/abt", "#{$DEFAULT_PREFIX}/etc/abt/local"].each { |dir|
     	if (! File.directory?(dir))
       	FileUtils.mkdir_p(dir)
       	puts "Created directory: #{dir}."
     	end
   	}
-  	system("svn export #{$ABTLINUX_MAIN_CONFIG} /etc/abt/abtconfig.rb")
+  	system("svn export #{$ABTLINUX_MAIN_CONFIG} #{$DEFAULT_PREFIX}/etc/abt/abtconfig.rb")
 	end
 
-	$LOAD_PATH.unshift '/etc/abt/'
+	$LOAD_PATH.unshift "#{$DEFAULT_PREFIX}/etc/abt/"
 	load 'abtconfig.rb'
 
-	if File.exist?("/etc/abt/local/localconfig.rb")
-		$LOAD_PATH.unshift '/etc/abt/local/'
+	if File.exist?("#{$DEFAULT_PREFIX}/etc/abt/local/localconfig.rb")
+		$LOAD_PATH.unshift "#{$DEFAULT_PREFIX}/etc/abt/local/"
 		load 'localconfig.rb'
 	end
 end
@@ -107,8 +108,8 @@ logger.datetime_format = "%Y-%m-%d %H:%M:%S "
 myLogger   = AbtLogManager.new
 
 # And loading local file if found.
-if File.exist?("/etc/abt/local/localconfig.rb")
-  load '/etc/abt/local/localconfig.rb'
+if File.exist?("#{$DEFAULT_PREFIX}/etc/abt/local/localconfig.rb")
+  load "#{$DEFAULT_PREFIX}/etc/abt/local/localconfig.rb"
 end
 
 
@@ -117,7 +118,7 @@ case ARGV[0]
   
   # abt [ -i | install ] <package>
 when "install", "-i"
-  if (ARGV.length == 2 && File.exist?("#{$PACKAGE_PATH}#{ARGV[1]}.rb"))
+  if (ARGV.length == 2 && File.exist?("#{$PACKAGE_PATH}/#{ARGV[1]}.rb"))
     options['package'] = ARGV[1]
     logger.info("Starting to install #{options['package']}")
     
@@ -135,7 +136,7 @@ when "install", "-i"
       puts "\n\n"
       logger.info("Completed install of #{options['package']}.")
       
-      if (myLogger.cache_package(options['package']))
+      if (manager.cache_package(options['package']))
         puts "\n\n"
         puts "*** Completed caching of package #{options['package']}. ***"
         puts "\n\n"
@@ -152,7 +153,7 @@ when "install", "-i"
   end
   
 when "reinstall", "-ri"
-  if (ARGV.length == 2 && File.exist?("#{$PACKAGE_PATH}#{ARGV[1]}.rb"))
+  if (ARGV.length == 2 && File.exist?("#{$PACKAGE_PATH}/#{ARGV[1]}.rb"))
     options['package'] = ARGV[1]
     logger.info("Starting to reinstall #{options['package']}")
     
@@ -180,7 +181,7 @@ when "remove", "-r"
       puts "\n\n"
       puts "*** No need to remove #{options['package']}, it was not installed! ***"
       puts "\n\n"
-    	logger.info("Unabel to complete removal of #{options['package']}.")
+    	logger.info("Completed removal of #{options['package']}.")
       exit
     end
 
@@ -189,11 +190,10 @@ when "remove", "-r"
       puts "\n\n"
       puts "*** Completed removal of #{options['package']}. ***"
       puts "\n\n"
-    	logger.info("Unabel to complete removal of #{options['package']}.")
+    	logger.info("Complete removal of #{options['package']}.")
+      exit
     end  
     
-		puts "\n*** Unable to completed removal of #{options['package']}, see why in the journal. ***"
-    logger.info("Unabel to complete removal of #{options['package']}.")
   else
     puts "\n*** Unable to completed removal of #{options['package']}, see why in the journal. ***"
     logger.info("Unabel to complete removal of #{options['package']}.")
@@ -265,7 +265,7 @@ when "-v", "--version"
   
   # abt show-details <package>
 when "show-details"
-  if (ARGV.length == 2 && File.exist?($PACKAGE_PATH + ARGV[1] + ".rb"))
+  if (ARGV.length == 2 && File.exist?("#{$PACKAGE_PATH}/#{ARGV[1]}.rb"))
     options['pkg'] = ARGV[1]
     logger.info("Starting show details for #{options['pkg']}")
     
@@ -343,7 +343,7 @@ when "show-build"
   end
 
 when "show-depends"
-  if (ARGV.length == 2 && File.exist?($PACKAGE_PATH + ARGV[1] + ".rb"))
+  if (ARGV.length == 2 && File.exist?("#{$PACKAGE_PATH}/#{ARGV[1]}.rb"))
     options['pkg'] = ARGV[1]
     logger.info("Starting show depends for #{options['pkg']}")
     if (reporter.show_package_dependencies(options['pkg']))
@@ -471,7 +471,7 @@ when "news", "-n"
   
   # abt [-d | download ] <package>
 when "download", "-d"
-  if (ARGV.length == 2 && File.exist?($PACKAGE_PATH + ARGV[1] + ".rb"))
+  if (ARGV.length == 2 && File.exist?("#{$PACKAGE_PATH}/#{ARGV[1]}.rb"))
     options['pkg'] = ARGV[1]
     logger.info("Starting to download " + options['pkg'])
     
@@ -696,13 +696,13 @@ when "package-repo"
         end
     end
 
-    when "remove"
+  when "remove"
     # FIXME: implement this.
-      if options['repoUri'].length > 0
-          puts "Removing package repository : " + options['repoUri']
-      else
-          puts "Removing package repository : Default AbTLinux Package Tree"
-      end
+    if options['repoUri'].length > 0
+      puts "TODO: Removing package repository : " + options['repoUri']
+    else
+      puts "TODO: Removing package repository : Default AbTLinux Package Tree"
+    end
     
   when "list"
     # FIXME: implement this.

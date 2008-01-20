@@ -92,6 +92,6 @@ class TestAbtDownloadManager < Test::Unit::TestCase
     # ensure a tarball is available to test!
     FileUtils.cp "#{$PACKAGE_PATH}/ipc-1.4.tar.gz", "#{$SOURCES_REPOSITORY}", :verbose => true if !File.exist?("#{$SOURCES_REPOSITORY}/ipc-1.4.tar.gz")
     
-    assert(@download.validated('e81278607b1d65dcb18c3613ec00fbf588b50319', "#{$SOURCES_REPOSITORY}/ipc-1.4.tar.gz"), "test_validated")
+    assert(@download.validated('c7100a74f4f6cafa4607bc5bd68a1175a1876ecc', "#{$SOURCES_REPOSITORY}/ipc-1.4.tar.gz"), "test_validated")
   end
 end
