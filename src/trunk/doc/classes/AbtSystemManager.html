@@ -286,7 +286,7 @@ false.
 <pre>
      <span class="ruby-comment cmt"># File libs/abtsystemmanager.rb, line 312</span>
 312:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">package_frozen</span>(<span class="ruby-identifier">package</span>)
-313:     <span class="ruby-identifier">require</span> <span class="ruby-node">&quot;#{$PACKAGE_PATH}#{package}&quot;</span>
+313:     <span class="ruby-identifier">require</span> <span class="ruby-node">&quot;#{$PACKAGE_PATH}/#{package}&quot;</span>
 314:     <span class="ruby-identifier">sw</span> = <span class="ruby-identifier">eval</span>(<span class="ruby-node">&quot;#{package.capitalize}.new&quot;</span>)
 315:     
 316:                 <span class="ruby-comment cmt"># looking for frozen log file.</span>
@@ -323,7 +323,7 @@ false.
 <pre>
      <span class="ruby-comment cmt"># File libs/abtsystemmanager.rb, line 292</span>
 292:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">package_installed</span>(<span class="ruby-identifier">package</span>)
-293:     <span class="ruby-identifier">require</span> <span class="ruby-node">&quot;#{$PACKAGE_PATH}#{package}&quot;</span>
+293:     <span class="ruby-identifier">require</span> <span class="ruby-node">&quot;#{$PACKAGE_PATH}/#{package}&quot;</span>
 294:     <span class="ruby-identifier">sw</span> = <span class="ruby-identifier">eval</span>(<span class="ruby-node">&quot;#{package.capitalize}.new&quot;</span>)
 295:     
 296:     <span class="ruby-keyword kw">if</span> (<span class="ruby-identifier">found_entry</span>(<span class="ruby-identifier">$PACKAGE_INSTALLED</span>, <span class="ruby-identifier">sw</span>.<span class="ruby-identifier">srcDir</span>))
@@ -500,7 +500,7 @@ names and the values are the package name and the problem detected.
 <pre>
      <span class="ruby-comment cmt"># File libs/abtsystemmanager.rb, line 198</span>
 198:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">verify_package_integrity</span>(<span class="ruby-identifier">package</span>)
-199:     <span class="ruby-identifier">require</span> <span class="ruby-node">&quot;#{$PACKAGE_PATH}#{package}&quot;</span>
+199:     <span class="ruby-identifier">require</span> <span class="ruby-node">&quot;#{$PACKAGE_PATH}/#{package}&quot;</span>
 200:     <span class="ruby-identifier">sw</span> = <span class="ruby-identifier">eval</span>(<span class="ruby-node">&quot;#{package.capitalize}.new&quot;</span>)
 201:     
 202:     <span class="ruby-comment cmt"># TODO: refactor myLogger.</span>
