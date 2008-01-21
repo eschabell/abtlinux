@@ -1,5 +1,5 @@
 #!/usr/bin/ruby -w
-$DEFAULT_PREFIX     = "/usr/local"
+$DEFAULT_PREFIX = "/usr/local"
 $LOAD_PATH.unshift "#{$DEFAULT_PREFIX}/var/lib/abt/"
 ##
 # abtconfig.rb
