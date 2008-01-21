@@ -27,11 +27,12 @@
 
 # Check and install our library files.
 #
-$DEFAULT_PREFIX     = "/usr/local"
+$DEFAULT_PREFIX = "/usr/local"
+libpath = "#{$DEFAULT_PREFIX}/var/lib/abt"
 $ABTLINUX_CLASS_LIBS = "https://abtlinux.svn.sourceforge.net/svnroot/abtlinux/src/trunk/libs"
 
-if (! File.directory?("#{$DEFAULT_PREFIX}/var/lib/abt") || Dir["#{$DEFAULT_PREFIX}/var/lib/abt"].empty?)
-  puts "\nMissing needed AbTLinux library files at /var/lib/abt"
+if (! File.directory?(libpath) || Dir[libpath].empty?)
+  puts "\nMissing needed AbTLinux library files..."
   puts "\nMaybe time for an abt update? Let us try to fix it for you!\n"
 
   # check for root login.
@@ -39,24 +40,33 @@ if (! File.directory?("#{$DEFAULT_PREFIX}/var/lib/abt") || Dir["#{$DEFAULT_PREFI
     puts "\nMust be root to fix library files."
     exit
   else
-    system("svn co #{$ABTLINUX_CLASS_LIBS} #{$DEFAULT_PREFIX}/var/lib/abt/")
+    require 'fileutils'  # needed here, normally in abtconfig.
+    
+    if (! File.directory?(libpath))
+      FileUtils.mkdir_p(libpath)
+      puts "Created directory: #{libpath}"
+    end
+  
+    system("svn co #{$ABTLINUX_CLASS_LIBS} #{libpath}")
   end
-
-  $LOAD_PATH.unshift "#{$DEFAULT_PREFIX}/var/lib/abt/"
 end
+
+$LOAD_PATH.unshift libpath
 
 # Load our central configuration file.
 #
 $ABTLINUX_MAIN_CONFIG = "https://abtlinux.svn.sourceforge.net/svnroot/abtlinux/src/trunk/abtconfig.rb"
+configfile = "#{$DEFAULT_PREFIX}/etc/abt/abtconfig.rb"
+maxconfigpath = "#{$DEFAULT_PREFIX}/etc/abt/local"
 
-if File.exist?("#{$DEFAULT_PREFIX}/etc/abt/abtconfig.rb")
+if File.exist?(configfile)
 	$LOAD_PATH.unshift "#{$DEFAULT_PREFIX}/etc/abt/"
   load 'abtconfig.rb'
 else
 	require 'fileutils'  # need this here, usually in abtconfig.
 
   # missing configuration file, do some abt update?
-  puts "\nMissing our main configuration file at /etc/abt/abtconfig.rb"
+  puts "\nMissing our main configuration file at #{configfile}"
   puts "\nMaybe time for an abt update? Let us try to fix it for you!\n"
   
 	# check for root login.	
@@ -64,24 +74,23 @@ else
       puts "\nMust be root to fix configuration files."
 			exit
 	else
-  	["#{$DEFAULT_PREFIX}/etc/abt", "#{$DEFAULT_PREFIX}/etc/abt/local"].each { |dir|
-    	if (! File.directory?(dir))
-      	FileUtils.mkdir_p(dir)
-      	puts "Created directory: #{dir}."
-    	end
-  	}
-  	system("svn export #{$ABTLINUX_MAIN_CONFIG} #{$DEFAULT_PREFIX}/etc/abt/abtconfig.rb")
+   if (! File.directory?(maxconfigpath))
+     puts "debug: directory to be created: #{maxconfigpath}" 
+     FileUtils.mkdir_p maxconfigpath
+     puts "Created directory: #{maxconfigpath}"
+   end
+   
+   system("svn export #{$ABTLINUX_MAIN_CONFIG} #{configfile}")
 	end
 
 	$LOAD_PATH.unshift "#{$DEFAULT_PREFIX}/etc/abt/"
 	load 'abtconfig.rb'
 
 	if File.exist?("#{$DEFAULT_PREFIX}/etc/abt/local/localconfig.rb")
-		$LOAD_PATH.unshift "#{$DEFAULT_PREFIX}/etc/abt/local/"
+		$LOAD_PATH.unshift maxconfigpath
 		load 'localconfig.rb'
 	end
 end
-
 
 ##
 # Setup needed classes and get ready to parse arguments.
