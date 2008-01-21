@@ -53,6 +53,8 @@ if File.exist?("#{$DEFAULT_PREFIX}/etc/abt/abtconfig.rb")
 	$LOAD_PATH.unshift "#{$DEFAULT_PREFIX}/etc/abt/"
   load 'abtconfig.rb'
 else
+	require 'fileutils'  # need this here, usually in abtconfig.
+
   # missing configuration file, do some abt update?
   puts "\nMissing our main configuration file at /etc/abt/abtconfig.rb"
   puts "\nMaybe time for an abt update? Let us try to fix it for you!\n"
