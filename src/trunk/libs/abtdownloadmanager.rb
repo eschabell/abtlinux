@@ -64,7 +64,7 @@ class AbtDownloadManager
     end
     
     Dir.chdir(destination)
-    if (system("wget #{package.srcUrl}") != 0)
+    if !system("wget #{package.srcUrl}")
     	return false  # download failed.
     end
       
@@ -98,7 +98,7 @@ class AbtDownloadManager
       else
       
         # pacakge directory does not exist, svn co.
-        if (system("svn co #{$ABTLINUX_PACKAGES} #{$PACKAGE_PATH}") != 0)
+        if !system("svn co #{$ABTLINUX_PACKAGES} #{$PACKAGE_PATH}")
           logger.error "Package tree not installed (svn co), problems!"
           return false
         end
@@ -179,7 +179,7 @@ class AbtDownloadManager
       if File.exists?("#{$PACKAGE_PATH}/#{packageName}.rb")
           # check if svn directory.
           if File.directory?("#{$PACKAGE_PATH}/.svn")
-              if (system("svn update #{$PACKAGE_PATH}/#{packageName.downcase}.rb") != 0)
+              if !system("svn update #{$PACKAGE_PATH}/#{packageName.downcase}.rb")
                 logger.error "Package #{packageName.downcase} unable to update (svn update)."
                 return false
               end
@@ -215,7 +215,7 @@ class AbtDownloadManager
       if File.directory?($PACKAGE_PATH)
         # check if svn directory.
         if File.directory?("#{$PACKAGE_PATH}/.svn")
-            if (system("svn update #{$PACKAGE_PATH}") != 0)
+            if !system("svn update #{$PACKAGE_PATH}")
               logger.error "Package tree unable to update (svn update)."
               return false
             end
