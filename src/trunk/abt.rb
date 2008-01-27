@@ -101,6 +101,11 @@ downloader = AbtDownloadManager.new
 system     = AbtSystemManager.new
 options    = Hash.new
 show       = AbtUsage.new
+myLogger   = AbtLogManager.new # initializes all ABT directories if missing.
+
+# setup timestamp.
+logger     = Logger.new($JOURNAL)     # initializes all needed paths.
+logger.datetime_format = "%Y-%m-%d %H:%M:%S "
 
 # deal with usage request.
 if (ARGV.length == 0 || (ARGV.length == 1 && (ARGV[0] == '--help' || ARGV[0] == '-h'  || ARGV[0].downcase == 'help')))
@@ -110,13 +115,6 @@ end
 
 # login as root for the rest.
 manager.root_login(ARGV)
-
-# setup timestamp.
-logger     = Logger.new($JOURNAL)     # initializes all needed paths.
-logger.datetime_format = "%Y-%m-%d %H:%M:%S "
-
-# TODO: used only until refactoring done.
-myLogger   = AbtLogManager.new
 
 # And loading local file if found.
 if File.exist?("#{$DEFAULT_PREFIX}/etc/abt/local/localconfig.rb")

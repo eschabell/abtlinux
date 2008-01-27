@@ -78,7 +78,12 @@ class AbtLogManager
   # <b>RETURN</b> <i>AbtLogManager</i> - an initialized AbtLogManager object.
   ##
   def initialize
-	logger = Logger.new($JOURNAL)
+		if (! File.directory?($JOURNAL))
+			# logging directory missing, create it!
+			FileUtils.mkdir_p($ABT_LOGS)
+		end
+
+		logger = Logger.new($JOURNAL)
     [$ABT_LOGS, $ABT_CACHES, $ABT_STATE, $BUILD_LOCATION, $PACKAGE_INSTALLED, $ABT_LIBS,
     $PACKAGE_CACHED, $ABT_TMP, $ABT_CONFIG, $ABT_LOCAL_CONFIG, $SOURCES_REPOSITORY].each { |dir|
       
