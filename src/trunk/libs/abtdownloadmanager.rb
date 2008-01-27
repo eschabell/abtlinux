@@ -64,12 +64,12 @@ class AbtDownloadManager
     end
     
     Dir.chdir(destination)
-    if (system("wget #{package.srcUrl}"))
-      logger.info("Download completed for #{packageName}")
-      return true
+    if (system("wget #{package.srcUrl}") != 0)
+    	return false  # download failed.
     end
-    
-    return false  # download failed.
+      
+		logger.info("Download completed for #{packageName}")
+    return true
   end
   
   ##
@@ -98,13 +98,12 @@ class AbtDownloadManager
       else
       
         # pacakge directory does not exist, svn co.
-        if system("svn co #{$ABTLINUX_PACKAGES} #{$PACKAGE_PATH}")
-          logger.info "Package tree installed (svn co)"
-        else
+        if (system("svn co #{$ABTLINUX_PACKAGES} #{$PACKAGE_PATH}") != 0)
           logger.error "Package tree not installed (svn co), problems!"
           return false
         end
       
+        logger.info "Package tree installed (svn co)"
       end
       
       return true
@@ -180,12 +179,12 @@ class AbtDownloadManager
       if File.exists?("#{$PACKAGE_PATH}/#{packageName}.rb")
           # check if svn directory.
           if File.directory?("#{$PACKAGE_PATH}/.svn")
-              if system("svn update #{$PACKAGE_PATH}/#{packageName.downcase}.rb")
-                  logger.info "Package #{packageName.downcase} updated (svn update)"
-              else
-                  logger.error "Package #{packageName.downcase} unable to update (svn update)."
-                  return false
+              if (system("svn update #{$PACKAGE_PATH}/#{packageName.downcase}.rb") != 0)
+                logger.error "Package #{packageName.downcase} unable to update (svn update)."
+                return false
               end
+
+              logger.info "Package #{packageName.downcase} updated (svn update)"
           else
               # package exists, but not an valid tree.
               logger.error "Package #{packageName} exists, but not valid package tree (svn)."
@@ -216,12 +215,12 @@ class AbtDownloadManager
       if File.directory?($PACKAGE_PATH)
         # check if svn directory.
         if File.directory?("#{$PACKAGE_PATH}/.svn")
-            if system("svn update #{$PACKAGE_PATH}")
-                logger.info "Package tree updated (svn update)"
-            else
-                logger.error "Package tree unable to update (svn update)."
-                return false
+            if (system("svn update #{$PACKAGE_PATH}") != 0)
+              logger.error "Package tree unable to update (svn update)."
+              return false
             end
+                
+						logger.info "Package tree updated (svn update)"
         else
             # package directory exists, but is not a valid tree.
             logger.error "Package tree exists, but is not valid svn tree."

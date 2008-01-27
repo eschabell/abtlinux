@@ -78,7 +78,7 @@ class AbtPackage
     end
         
     Dir.chdir($BUILD_LOCATION)
-    if (!system("#{unpackTool} #{sourcesToUnpack}"))
+    if (system("#{unpackTool} #{sourcesToUnpack}") != 0)
       return false
     end
     
@@ -252,7 +252,7 @@ class AbtPackage
     
     Dir.chdir("#{$BUILD_LOCATION}/#{@srcDir}")
     
-    if (!system(command))
+    if (system(command) != 0)
       puts "[AbtPackage.configure] - configure section failed."
       return false
     end
@@ -280,7 +280,7 @@ class AbtPackage
 
     Dir.chdir("#{$BUILD_LOCATION}/#{@srcDir}")
     
-    if(!system(command))
+    if(system(command) != 0)
       puts "[AbtPackage.build] - build section failed."
       return false
     end
@@ -328,7 +328,7 @@ class AbtPackage
   
     Dir.chdir("#{$BUILD_LOCATION}/#{@srcDir}")
     
-    if(!system(command))
+    if(system(command) != 0)
       puts "[AbtPackage.install] - install section failed."
       return false
     end
