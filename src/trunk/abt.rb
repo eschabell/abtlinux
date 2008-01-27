@@ -83,13 +83,32 @@ else
    system("svn export #{$ABTLINUX_MAIN_CONFIG} #{configfile}")
 	end
 
-	$LOAD_PATH.unshift "#{$DEFAULT_PREFIX}/etc/abt/"
-	load 'abtconfig.rb'
-
 	if File.exist?("#{$DEFAULT_PREFIX}/etc/abt/local/localconfig.rb")
 		$LOAD_PATH.unshift maxconfigpath
 		load 'localconfig.rb'
 	end
+end
+
+# should be installed, load config.
+$LOAD_PATH.unshift "#{$DEFAULT_PREFIX}/etc/abt/"
+load 'abtconfig.rb'
+
+# Check for missing default packages path, if needed install them.
+#	
+if (! File.directory?($PACKAGE_PATH) || (Dir.entries($PACKAGE_PATH) - [ '.', '..' ]).empty?)
+	puts "\nMissing our main packages directory at #{$PACKAGE_PATH}"
+  puts "\nMaybe time for an abt update? Let us try to fix it for you!\n"
+
+	# check for root login.	
+	if (Process.uid != 0)
+  	puts "\nMust be root to install package files."
+		exit
+	else
+		FileUtils.mkdir_p($PACKAGE_PATH)
+    puts "Created missing directory: #{$PACKAGE_PATH}"
+  end
+   
+  system("svn --force export #{$ABTLINUX_PACKAGES} #{$PACKAGE_PATH}")
 end
 
 ##
