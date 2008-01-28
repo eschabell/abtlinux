@@ -252,7 +252,9 @@ class AbtDownloadManager
     end
 
     puts "Source hash failed validation..."
-    logger.info("Validating sources failed...")
+    logger.error("Validating sources failed...")
+		logger.error("  expected: #{hashvalue}")
+		logger.error("  computed: #{Digest::SHA1.hexdigest(path)}")
     return false
   end
 end
