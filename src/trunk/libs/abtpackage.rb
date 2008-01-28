@@ -78,7 +78,9 @@ class AbtPackage
     end
         
     Dir.chdir($BUILD_LOCATION)
-    if !system("#{unpackTool} #{sourcesToUnpack}")
+		output = `#{unpackTool} #{sourcesToUnpack}`
+		exitcode = $?.exitstatus
+    if (exitcode != 0)
       return false
     end
     
@@ -251,13 +253,13 @@ class AbtPackage
     end 
     
     Dir.chdir("#{$BUILD_LOCATION}/#{@srcDir}")
-    
-    if !system(command)
-      puts "[AbtPackage.configure] - configure section failed."
+
+		if !system(command)
+      puts "[AbtPackage.configure] - configure section failed, exit code was #{$?.exitstatus}."
       return false
-    end
-    
-    puts "[AbtPackage.configure] - configure section completed!" if (verbose)
+		end
+    	
+		puts "[AbtPackage.configure] - configure section completed, exit code was #{$?.exitstatus}!" if (verbose)
     return true
   end
   
@@ -281,11 +283,11 @@ class AbtPackage
     Dir.chdir("#{$BUILD_LOCATION}/#{@srcDir}")
     
     if !system(command)
-      puts "[AbtPackage.build] - build section failed."
+      puts "[AbtPackage.build] - build section failed, exit code was #{$?.exitstatus}."
       return false
     end
     
-    puts "[AbtPackage.build] - build section completed!" if (verbose)
+    puts "[AbtPackage.build] - build section completed, exit code was #{$?.exitstatus}!" if (verbose)
     return true
   end
   
@@ -329,11 +331,11 @@ class AbtPackage
     Dir.chdir("#{$BUILD_LOCATION}/#{@srcDir}")
     
     if !system(command)
-      puts "[AbtPackage.install] - install section failed."
+      puts "[AbtPackage.install] - install section failed, exit code was #{$?.exitstatus}."
       return false
     end
     
-    puts "[AbtPackage.install] - install section completed!" if (verbose)
+    puts "[AbtPackage.install] - install section completed, exit code was #{$?.exitstatus}!" if (verbose)
     return true
   end
   

@@ -59,12 +59,13 @@ class AbtDownloadManager
     package		= eval(packageName.capitalize + '.new')
     
     if (File.exist?("#{destination}/#{File.basename(package.srcUrl)}"))
-      logger.info("Download not needed, existing source found for #{packageName}")
+      logger.info("Download not needed, existing source found for #{packageName}.")
       return true
     end
     
     Dir.chdir(destination)
     if !system("wget #{package.srcUrl}")
+			logger.error("Download failed, unable to retrieve package #{packageName} sources, exit code was #{$?.exitstatus}.")
     	return false  # download failed.
     end
       
@@ -99,11 +100,11 @@ class AbtDownloadManager
       
         # pacakge directory does not exist, svn co.
         if !system("svn co #{$ABTLINUX_PACKAGES} #{$PACKAGE_PATH}")
-          logger.error "Package tree not installed (svn co), problems!"
+          logger.error "Package tree #{packageTreeName} not installed (svn co), exit status was #{$?.exitstatus}."
           return false
         end
       
-        logger.info "Package tree installed (svn co)"
+        logger.info "Package tree #{packageTreeName} installed (svn co)."
       end
       
       return true
@@ -180,11 +181,11 @@ class AbtDownloadManager
           # check if svn directory.
           if File.directory?("#{$PACKAGE_PATH}/.svn")
               if !system("svn update #{$PACKAGE_PATH}/#{packageName.downcase}.rb")
-                logger.error "Package #{packageName.downcase} unable to update (svn update)."
+                logger.error "Package #{packageName.downcase} unable to update (svn update), exit status was #{$?.exitstatus}."
                 return false
               end
 
-              logger.info "Package #{packageName.downcase} updated (svn update)"
+              logger.info "Package #{packageName.downcase} updated (svn update)."
           else
               # package exists, but not an valid tree.
               logger.error "Package #{packageName} exists, but not valid package tree (svn)."
@@ -202,12 +203,9 @@ class AbtDownloadManager
   ##
   # Updates the package tree.
   #
-  # <b>PARAM</b> <i>String</i> - the name of the tree to be updated, defaults to AbTLinux repo.
-  #
   # <b>RETURN</b> <i>boolean</i> - True if the package tree has been updated,
   # otherwise false.
   ##
-  #def update_package_tree(packageTreeName="AbTLinux")
   def update_package_tree()
       logger = Logger.new($JOURNAL)
 
@@ -216,7 +214,7 @@ class AbtDownloadManager
         # check if svn directory.
         if File.directory?("#{$PACKAGE_PATH}/.svn")
             if !system("svn update #{$PACKAGE_PATH}")
-              logger.error "Package tree unable to update (svn update)."
+              logger.error "Package tree unable to update (svn update), exit status was #{$?.exitstatus}."
               return false
             end
                 

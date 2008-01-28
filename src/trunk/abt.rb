@@ -532,7 +532,7 @@ when "update", "-u"
           puts "Start updating package tree : #{options['updateItem']}."
           logger.info "Start updating package tree : #{options['updateItem']}."
           
-          if downloader.update_package_tree(options['updateItem'])
+          if downloader.update_package_tree
               puts "Updated package tree : #{options['updateItem']}."
           else
               puts "Unable to update package tree : #{options['updateItem']}."
