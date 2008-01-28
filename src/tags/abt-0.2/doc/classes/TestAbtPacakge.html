@@ -1,0 +1,324 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+  <head>
+    <title>Class: TestAbtPacakge</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+    <link rel="stylesheet" href=".././rdoc-style.css" type="text/css" media="screen" />
+
+    <script language="JavaScript" type="text/javascript">
+    // <![CDATA[
+
+        function toggleSource( id )
+        {
+          var elem
+          var link
+
+          if( document.getElementById )
+          {
+            elem = document.getElementById( id )
+            link = document.getElementById( "l_" + id )
+          }
+          else if ( document.all )
+          {
+            elem = eval( "document.all." + id )
+            link = eval( "document.all.l_" + id )
+          }
+          else
+            return false;
+
+          if( elem.style.display == "block" )
+          {
+            elem.style.display = "none"
+            link.innerHTML = "show source"
+          }
+          else
+          {
+            elem.style.display = "block"
+            link.innerHTML = "hide source"
+          }
+        }
+
+        function openCode( url )
+        {
+          window.open( url, "SOURCE_CODE", "width=400,height=400,scrollbars=yes" )
+        }
+      // ]]>
+    </script>
+  </head>
+
+  <body>
+  <table width="100%" border='0' cellpadding='0' cellspacing='0' class='banner'><tr>
+  <td class="file-title"><span class="file-title-prefix">Class</span><br />TestAbtPacakge</td>
+  <td align="right">
+    <table cellspacing=0 cellpadding=2>
+      <tr valign="top">
+        <td>In:</td>
+        <td>
+<a href="../files/TestAbtPackage_rb.html">TestAbtPackage.rb</a>
+        </td>
+      </tr>
+    <tr>
+      <td>Parent:</td>
+      <td>
+Test::Unit::TestCase
+     </td>
+   </tr>
+         </table>
+        </td>
+        </tr>
+      </table>
+ <!-- banner header -->
+
+  <div id="bodyContent">
+      <div id="content">
+  <table cellpadding='0' cellspacing='0' border='0' width="100%"><tr><td align="center">
+    <map id="map" name="map">
+  <area shape="RECT" coords="28,103,135,151"      href="TestAbtPacakge.html" alt="TestAbtPacakge">
+  <area shape="RECT" coords="19,7,144,55"      href="Test/Unit/TestCase.html" alt="Test::Unit::TestCase">
+</map>
+<img src="../dot/f_11.png" usemap="#map" border=0 alt="TopLevel">
+  </td></tr></table>
+
+  <div class="description"><p>
+TestAbtPackage.rb
+</p>
+<p>
+Unit testing for <a href="AbtPackage.html">AbtPackage</a> class.
+</p>
+<p>
+Created by Eric D. Schabell &lt;erics@abtlinux.org&gt; Copyright 2006, GPL.
+</p>
+<p>
+This file is part of AbTLinux.
+</p>
+<p>
+AbTLinux is free software; you can redistribute it and/or modify it under
+the terms of the GNU General Public License as published by the Free
+Software Foundation; either version 2 of the License, or (at your option)
+any later version.
+</p>
+<p>
+AbTLinux is distributed in the hope that it will be useful, but WITHOUT ANY
+WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
+details.
+</p>
+<p>
+You should have received a copy of the GNU General Public License along
+with AbTLinux; if not, write to the Free Software Foundation, Inc., 51
+Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
+</p>
+</div>
+
+
+
+  <div class="sectiontitle">Methods</div>
+  <ul>
+  <li><a href="#M000036">setup</a></li>
+  <li><a href="#M000040">testBuild</a></li>
+  <li><a href="#M000039">testConfigure</a></li>
+  <li><a href="#M000037">testDetails</a></li>
+  <li><a href="#M000042">testInstall</a></li>
+  <li><a href="#M000043">testPost</a></li>
+  <li><a href="#M000038">testPre</a></li>
+  <li><a href="#M000041">testPreinstall</a></li>
+  </ul>
+
+
+
+
+
+
+<div class="sectiontitle">Public Instance methods</div>
+<div class="method">
+  <div class="title">
+    <a name="M000036"></a><b>setup</b>()
+  </div>
+  <div class="description">
+  <p>
+setup method for testing <a href="AbtPackage.html">AbtPackage</a>.
+</p>
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000036_source')" id="l_M000036_source">show source</a> ]</p>
+  <div id="M000036_source" class="dyn-source">
+<pre>
+    <span class="ruby-comment cmt"># File TestAbtPackage.rb, line 59</span>
+59:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">setup</span>
+60:     <span class="ruby-ivar">@fortune</span> = <span class="ruby-constant">AbtPackage</span>.<span class="ruby-identifier">new</span>( <span class="ruby-identifier">$data</span> )
+61:   <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000040"></a><b>testBuild</b>()
+  </div>
+  <div class="description">
+  <p>
+Test method for &#8216;AbtPackage.testBuild()&#8217;
+</p>
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000040_source')" id="l_M000040_source">show source</a> ]</p>
+  <div id="M000040_source" class="dyn-source">
+<pre>
+     <span class="ruby-comment cmt"># File TestAbtPackage.rb, line 102</span>
+102:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">testBuild</span>
+103:     <span class="ruby-identifier">assert_equal</span>( <span class="ruby-keyword kw">false</span>, <span class="ruby-keyword kw">true</span>, <span class="ruby-value str">&quot;testBuild()&quot;</span> )
+104:   <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000039"></a><b>testConfigure</b>()
+  </div>
+  <div class="description">
+  <p>
+Test method for &#8216;AbtPackage.testConfigure()&#8217;
+</p>
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000039_source')" id="l_M000039_source">show source</a> ]</p>
+  <div id="M000039_source" class="dyn-source">
+<pre>
+    <span class="ruby-comment cmt"># File TestAbtPackage.rb, line 95</span>
+95:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">testConfigure</span>
+96:     <span class="ruby-identifier">assert_equal</span>( <span class="ruby-keyword kw">false</span>, <span class="ruby-keyword kw">true</span>, <span class="ruby-value str">&quot;testConfigure()&quot;</span> )
+97:   <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000037"></a><b>testDetails</b>()
+  </div>
+  <div class="description">
+  <p>
+Test method for &#8216;AbtPackage.testDetails()&#8217;
+</p>
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000037_source')" id="l_M000037_source">show source</a> ]</p>
+  <div id="M000037_source" class="dyn-source">
+<pre>
+    <span class="ruby-comment cmt"># File TestAbtPackage.rb, line 66</span>
+66:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">testDetails</span>
+67:     <span class="ruby-identifier">assert_equal</span>( <span class="ruby-identifier">$data</span>[<span class="ruby-value str">'name'</span>], <span class="ruby-ivar">@fortune</span>.<span class="ruby-identifier">details</span>[<span class="ruby-value str">'name'</span>], <span class="ruby-value str">&quot;testDetails()&quot;</span> )
+68:     <span class="ruby-identifier">assert_equal</span>( <span class="ruby-identifier">$data</span>[<span class="ruby-value str">'execName'</span>], <span class="ruby-ivar">@fortune</span>.<span class="ruby-identifier">details</span>[<span class="ruby-value str">'execName'</span>], <span class="ruby-value str">&quot;testDetails()&quot;</span> )
+69:     <span class="ruby-identifier">assert_equal</span>( <span class="ruby-identifier">$data</span>[<span class="ruby-value str">'version'</span>], <span class="ruby-ivar">@fortune</span>.<span class="ruby-identifier">details</span>[<span class="ruby-value str">'version'</span>], <span class="ruby-value str">&quot;testDetails()&quot;</span> )
+70:     <span class="ruby-identifier">assert_equal</span>( <span class="ruby-identifier">$data</span>[<span class="ruby-value str">'srcDir'</span>], <span class="ruby-ivar">@fortune</span>.<span class="ruby-identifier">details</span>[<span class="ruby-value str">'srcDir'</span>], <span class="ruby-value str">&quot;testDetails()&quot;</span> )
+71:     <span class="ruby-identifier">assert_equal</span>( <span class="ruby-identifier">$data</span>[<span class="ruby-value str">'homepage'</span>], <span class="ruby-ivar">@fortune</span>.<span class="ruby-identifier">details</span>[<span class="ruby-value str">'homepage'</span>], <span class="ruby-value str">&quot;testDetails()&quot;</span> )
+72:     <span class="ruby-identifier">assert_equal</span>( <span class="ruby-identifier">$data</span>[<span class="ruby-value str">'srcUrl'</span>], <span class="ruby-ivar">@fortune</span>.<span class="ruby-identifier">details</span>[<span class="ruby-value str">'srcUrl'</span>], <span class="ruby-value str">&quot;testDetails()&quot;</span> )
+73:     <span class="ruby-identifier">assert_equal</span>( <span class="ruby-identifier">$data</span>[<span class="ruby-value str">'dependsOn'</span>], <span class="ruby-ivar">@fortune</span>.<span class="ruby-identifier">details</span>[<span class="ruby-value str">'dependsOn'</span>], <span class="ruby-value str">&quot;testDetails()&quot;</span> )
+74:     <span class="ruby-identifier">assert_equal</span>( <span class="ruby-identifier">$data</span>[<span class="ruby-value str">'reliesOn'</span>], <span class="ruby-ivar">@fortune</span>.<span class="ruby-identifier">details</span>[<span class="ruby-value str">'reliesOn'</span>], <span class="ruby-value str">&quot;testDetails()&quot;</span> )
+75:     <span class="ruby-identifier">assert_equal</span>( <span class="ruby-identifier">$data</span>[<span class="ruby-value str">'optionalDO'</span>], <span class="ruby-ivar">@fortune</span>.<span class="ruby-identifier">details</span>[<span class="ruby-value str">'optionalDO'</span>], <span class="ruby-value str">&quot;testDetails()&quot;</span> )
+76:     <span class="ruby-identifier">assert_equal</span>( <span class="ruby-identifier">$data</span>[<span class="ruby-value str">'optionalRO'</span>], <span class="ruby-ivar">@fortune</span>.<span class="ruby-identifier">details</span>[<span class="ruby-value str">'optionalRO'</span>], <span class="ruby-value str">&quot;testDetails()&quot;</span> )
+77:     <span class="ruby-identifier">assert_equal</span>( <span class="ruby-identifier">$data</span>[<span class="ruby-value str">'hashCheck'</span>], <span class="ruby-ivar">@fortune</span>.<span class="ruby-identifier">details</span>[<span class="ruby-value str">'hashCheck'</span>], <span class="ruby-value str">&quot;testDetails()&quot;</span> )
+78:     <span class="ruby-identifier">assert_equal</span>( <span class="ruby-identifier">$data</span>[<span class="ruby-value str">'patches'</span>], <span class="ruby-ivar">@fortune</span>.<span class="ruby-identifier">details</span>[<span class="ruby-value str">'patches'</span>], <span class="ruby-value str">&quot;testDetails()&quot;</span> )
+79:     <span class="ruby-identifier">assert_equal</span>( <span class="ruby-identifier">$data</span>[<span class="ruby-value str">'patchesHashCheck'</span>], <span class="ruby-ivar">@fortune</span>.<span class="ruby-identifier">details</span>[<span class="ruby-value str">'patchesHashCheck'</span>], <span class="ruby-value str">&quot;testDetails()&quot;</span> )
+80:     <span class="ruby-identifier">assert_equal</span>( <span class="ruby-identifier">$data</span>[<span class="ruby-value str">'mirrorPath'</span>], <span class="ruby-ivar">@fortune</span>.<span class="ruby-identifier">details</span>[<span class="ruby-value str">'mirrorPath'</span>], <span class="ruby-value str">&quot;testDetails()&quot;</span> )
+81:     <span class="ruby-identifier">assert_equal</span>( <span class="ruby-identifier">$data</span>[<span class="ruby-value str">'license'</span>], <span class="ruby-ivar">@fortune</span>.<span class="ruby-identifier">details</span>[<span class="ruby-value str">'license'</span>], <span class="ruby-value str">&quot;testDetails()&quot;</span> )
+82:     <span class="ruby-identifier">assert_equal</span>( <span class="ruby-identifier">$data</span>[<span class="ruby-value str">'description'</span>], <span class="ruby-ivar">@fortune</span>.<span class="ruby-identifier">details</span>[<span class="ruby-value str">'description'</span>], <span class="ruby-value str">&quot;testDetails()&quot;</span> )
+83:   <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000042"></a><b>testInstall</b>()
+  </div>
+  <div class="description">
+  <p>
+Test method for &#8216;AbtPackage.testInstall()&#8217;
+</p>
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000042_source')" id="l_M000042_source">show source</a> ]</p>
+  <div id="M000042_source" class="dyn-source">
+<pre>
+     <span class="ruby-comment cmt"># File TestAbtPackage.rb, line 116</span>
+116:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">testInstall</span>
+117:     <span class="ruby-identifier">assert_equal</span>( <span class="ruby-keyword kw">false</span>, <span class="ruby-keyword kw">true</span>, <span class="ruby-value str">&quot;testInstall()&quot;</span> )
+118:   <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000043"></a><b>testPost</b>()
+  </div>
+  <div class="description">
+  <p>
+Test method for &#8216;AbtPackage.testPost()&#8217;
+</p>
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000043_source')" id="l_M000043_source">show source</a> ]</p>
+  <div id="M000043_source" class="dyn-source">
+<pre>
+     <span class="ruby-comment cmt"># File TestAbtPackage.rb, line 123</span>
+123:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">testPost</span>
+124:     <span class="ruby-identifier">assert_equal</span>( <span class="ruby-keyword kw">false</span>, <span class="ruby-keyword kw">true</span>, <span class="ruby-value str">&quot;testPost()&quot;</span> )
+125:   <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000038"></a><b>testPre</b>()
+  </div>
+  <div class="description">
+  <p>
+Test method for &#8216;AbtPackage.testPre()&#8217;
+</p>
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000038_source')" id="l_M000038_source">show source</a> ]</p>
+  <div id="M000038_source" class="dyn-source">
+<pre>
+    <span class="ruby-comment cmt"># File TestAbtPackage.rb, line 88</span>
+88:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">testPre</span>
+89:     <span class="ruby-identifier">assert_equal</span>( <span class="ruby-keyword kw">false</span>, <span class="ruby-keyword kw">true</span>, <span class="ruby-value str">&quot;testPre()&quot;</span> )
+90:   <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000041"></a><b>testPreinstall</b>()
+  </div>
+  <div class="description">
+  <p>
+Test method for &#8216;AbtPackage.testPreinstall()&#8217;
+</p>
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000041_source')" id="l_M000041_source">show source</a> ]</p>
+  <div id="M000041_source" class="dyn-source">
+<pre>
+     <span class="ruby-comment cmt"># File TestAbtPackage.rb, line 109</span>
+109:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">testPreinstall</span>
+110:     <span class="ruby-identifier">assert_equal</span>( <span class="ruby-keyword kw">false</span>, <span class="ruby-keyword kw">true</span>, <span class="ruby-value str">&quot;testPreinstall()&quot;</span> )
+111:   <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+</div>
+
+  </div>
+
+    </body>
+</html>

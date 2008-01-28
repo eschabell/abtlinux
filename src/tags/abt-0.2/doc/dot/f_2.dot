@@ -1,0 +1,29 @@
+digraph TopLevel {
+    compound = true
+    bgcolor = lightcyan1
+    fontname = Arial
+    fontsize = 8
+    label = "TopLevel"
+    node [
+        fontname = Arial,
+        fontsize = 8,
+        color = black
+    ]
+
+    subgraph cluster_3 {
+        fontname = Arial
+        color = red
+        label = "libs/abtlogmanager.rb"
+        AbtLogManager [
+            fontcolor = black,
+            URL = "classes/AbtLogManager.html",
+            shape = ellipse,
+            color = palegoldenrod,
+            style = filled,
+            label = "AbtLogManager"
+        ]
+
+    }
+
+}
+
