@@ -107,7 +107,6 @@ class AbtUsage
     puts "  show-untracked\t\t\tShow all files on system not tracked by AbTLinux."
     puts "  show-journal\t\t\t\tShow the system journal."
     puts "  show-iqueue\t\t\t\tShow the contents of the install queue."
-    puts "  show-patches\t\t\t\tShow the current available patches for installed package tree.\n"
   end
 
   ##

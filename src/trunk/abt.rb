@@ -83,15 +83,16 @@ else
    system("svn export #{$ABTLINUX_MAIN_CONFIG} #{configfile}")
 	end
 
+	# should be installed, load config.
+	$LOAD_PATH.unshift "#{$DEFAULT_PREFIX}/etc/abt/"
+	load 'abtconfig.rb'
+
 	if File.exist?("#{$DEFAULT_PREFIX}/etc/abt/local/localconfig.rb")
 		$LOAD_PATH.unshift maxconfigpath
 		load 'localconfig.rb'
 	end
 end
 
-# should be installed, load config.
-$LOAD_PATH.unshift "#{$DEFAULT_PREFIX}/etc/abt/"
-load 'abtconfig.rb'
 
 # Check for missing default packages path, if needed install them.
 #	
@@ -111,6 +112,23 @@ if (! File.directory?($PACKAGE_PATH) || (Dir.entries($PACKAGE_PATH) - [ '.', '..
   system("svn --force export #{$ABTLINUX_PACKAGES} #{$PACKAGE_PATH}")
 end
 
+# Chick for missing logging paths, if needed install them.
+#
+if (!File.directory?($ABT_LOGS) || (Dir.entries($ABT_LOGS) - ['.', '..']).empty?)
+	puts "\nMissing our main logging directory at #{$ABT_LOGS}"
+  puts "Maybe time for an abt update? Let us try to fix it for you!"
+
+	# check for root login.	
+	if (Process.uid != 0)
+  	puts "\nMust be root to fix missing logging paths."
+		exit
+	else
+		initializeAllAbtlinuxPaths = AbtLogManager.new
+    puts "\nCreated missing logging paths: #{$ABT_LOGS} and other general paths."
+		puts "\n\n"
+  end
+end
+   
 ##
 # Setup needed classes and get ready to parse arguments.
 ##
@@ -120,11 +138,6 @@ downloader = AbtDownloadManager.new
 system     = AbtSystemManager.new
 options    = Hash.new
 show       = AbtUsage.new
-myLogger   = AbtLogManager.new # initializes all ABT directories if missing.
-
-# setup timestamp.
-logger     = Logger.new($JOURNAL)     # initializes all needed paths.
-logger.datetime_format = "%Y-%m-%d %H:%M:%S "
 
 # deal with usage request.
 if (ARGV.length == 0 || (ARGV.length == 1 && (ARGV[0] == '--help' || ARGV[0] == '-h'  || ARGV[0].downcase == 'help')))
@@ -134,6 +147,14 @@ end
 
 # login as root for the rest.
 manager.root_login(ARGV)
+
+# this initializes all needed ABT directories if missing.
+myLogger   = AbtLogManager.new
+
+# setup timestamp.
+logger     = Logger.new($JOURNAL)     # initializes all needed paths.
+logger.datetime_format = "%Y-%m-%d %H:%M:%S "
+
 
 # And loading local file if found.
 if File.exist?("#{$DEFAULT_PREFIX}/etc/abt/local/localconfig.rb")
@@ -455,11 +476,6 @@ when "show-journal"
   
 when "show-iqueue"
   reporter.show_queue("install")
-  
-when "show-patches"
-  # FIXME : show patches implementation.
-  puts "Display currently available patches for installed package tree."
-  show.usage("queries")
   
 when "show-updates"
   # FIXME : show updates implementation.
