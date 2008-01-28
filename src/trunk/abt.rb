@@ -25,6 +25,14 @@
 # St, Fifth Floor, Boston, MA 02110-1301  USA
 ##
 
+##
+## NOTE: some dependencies; checkinstall.
+##
+if !File.exists? "/usr/bin/installwatch"
+	puts "\n\nUnable to run without installwatch, install checkinstall package first."
+	exit
+end
+
 # Check and install our library files.
 #
 $DEFAULT_PREFIX = "/usr/local"
