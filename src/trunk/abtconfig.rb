@@ -61,7 +61,7 @@ $SOURCES_REPOSITORY = "#{$ABT_CACHES}/sources"
 
 # default config options.
 #
-$ABT_VERSION           = "0.1"
+$ABT_VERSION           = "0.2"
 $BUILD_ARCHITECTURE    = "i686"
 $BUILD_OPTIMIZATIONS   = "strip"
 $REMOVE_BUILD_SOURCES  = true
