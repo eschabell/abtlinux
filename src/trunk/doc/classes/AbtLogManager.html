@@ -76,9 +76,9 @@ Object
       <div id="content">
   <table cellpadding='0' cellspacing='0' border='0' width="100%"><tr><td align="center">
     <map id="map" name="map">
-  <area shape="rect" coords="28,51,140,99"      href="AbtLogManager.html" alt="AbtLogManager" />
+  <area shape="rect" coords="27,50,131,98"      href="AbtLogManager.html" alt="AbtLogManager" />
 </map>
-<img src="../dot/f_1.png" usemap="#map" border="0" alt="dot/f_1.png">
+<img src="../dot/f_2.png" usemap="#map" border="0" alt="dot/f_2.png">
   </td></tr></table>
 
   <div class="description"><p>
@@ -117,11 +117,11 @@ Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
 
   <div class="sectiontitle">Methods</div>
   <ul>
-  <li><a href="#M000018">get_log</a></li>
-  <li><a href="#M000022">log_package_build</a></li>
-  <li><a href="#M000021">log_package_install</a></li>
-  <li><a href="#M000020">log_package_integrity</a></li>
-  <li><a href="#M000019">new</a></li>
+  <li><a href="#M000064">get_log</a></li>
+  <li><a href="#M000068">log_package_build</a></li>
+  <li><a href="#M000067">log_package_install</a></li>
+  <li><a href="#M000066">log_package_integrity</a></li>
+  <li><a href="#M000065">new</a></li>
   </ul>
 
 
@@ -132,7 +132,7 @@ Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
 <div class="sectiontitle">Public Class methods</div>
 <div class="method">
   <div class="title">
-    <a name="M000019"></a><b>new</b>()
+    <a name="M000065"></a><b>new</b>()
   </div>
   <div class="description">
   <p>
@@ -145,8 +145,8 @@ initialized <a href="AbtLogManager.html">AbtLogManager</a> object.
 </p>
   </div>
 <div class="sourcecode">
-  <p class="source-link">[ <a href="javascript:toggleSource('M000019_source')" id="l_M000019_source">show source</a> ]</p>
-  <div id="M000019_source" class="dyn-source">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000065_source')" id="l_M000065_source">show source</a> ]</p>
+  <div id="M000065_source" class="dyn-source">
 <pre>
     <span class="ruby-comment cmt"># File libs/abtlogmanager.rb, line 80</span>
 80:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>
@@ -172,7 +172,7 @@ initialized <a href="AbtLogManager.html">AbtLogManager</a> object.
 <div class="sectiontitle">Public Instance methods</div>
 <div class="method">
   <div class="title">
-    <a name="M000018"></a><b>get_log</b>(package, type)
+    <a name="M000064"></a><b>get_log</b>(package, type)
   </div>
   <div class="description">
   <p>
@@ -186,8 +186,8 @@ Returns the path to given packages install log.
 </p>
   </div>
 <div class="sourcecode">
-  <p class="source-link">[ <a href="javascript:toggleSource('M000018_source')" id="l_M000018_source">show source</a> ]</p>
-  <div id="M000018_source" class="dyn-source">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000064_source')" id="l_M000064_source">show source</a> ]</p>
+  <div id="M000064_source" class="dyn-source">
 <pre>
     <span class="ruby-comment cmt"># File libs/abtlogmanager.rb, line 43</span>
 43:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">get_log</span>(<span class="ruby-identifier">package</span>, <span class="ruby-identifier">type</span>)
@@ -225,7 +225,7 @@ Returns the path to given packages install log.
 </div>
 <div class="method">
   <div class="title">
-    <a name="M000022"></a><b>log_package_build</b>(package)
+    <a name="M000068"></a><b>log_package_build</b>(package)
   </div>
   <div class="description">
   <p>
@@ -241,8 +241,8 @@ otherwise false.
 </p>
   </div>
 <div class="sourcecode">
-  <p class="source-link">[ <a href="javascript:toggleSource('M000022_source')" id="l_M000022_source">show source</a> ]</p>
-  <div id="M000022_source" class="dyn-source">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000068_source')" id="l_M000068_source">show source</a> ]</p>
+  <div id="M000068_source" class="dyn-source">
 <pre>
      <span class="ruby-comment cmt"># File libs/abtlogmanager.rb, line 192</span>
 192:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">log_package_build</span>(<span class="ruby-identifier">package</span>)
@@ -261,7 +261,7 @@ otherwise false.
 </div>
 <div class="method">
   <div class="title">
-    <a name="M000021"></a><b>log_package_install</b>(package)
+    <a name="M000067"></a><b>log_package_install</b>(package)
   </div>
   <div class="description">
   <p>
@@ -277,8 +277,8 @@ otherwise false.
 </p>
   </div>
 <div class="sourcecode">
-  <p class="source-link">[ <a href="javascript:toggleSource('M000021_source')" id="l_M000021_source">show source</a> ]</p>
-  <div id="M000021_source" class="dyn-source">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000067_source')" id="l_M000067_source">show source</a> ]</p>
+  <div id="M000067_source" class="dyn-source">
 <pre>
      <span class="ruby-comment cmt"># File libs/abtlogmanager.rb, line 144</span>
 144:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">log_package_install</span>(<span class="ruby-identifier">package</span>)
@@ -325,7 +325,7 @@ otherwise false.
 </div>
 <div class="method">
   <div class="title">
-    <a name="M000020"></a><b>log_package_integrity</b>(package)
+    <a name="M000066"></a><b>log_package_integrity</b>(package)
   </div>
   <div class="description">
   <p>
@@ -342,8 +342,8 @@ successfully, otherwise false.
 </p>
   </div>
 <div class="sourcecode">
-  <p class="source-link">[ <a href="javascript:toggleSource('M000020_source')" id="l_M000020_source">show source</a> ]</p>
-  <div id="M000020_source" class="dyn-source">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000066_source')" id="l_M000066_source">show source</a> ]</p>
+  <div id="M000066_source" class="dyn-source">
 <pre>
      <span class="ruby-comment cmt"># File libs/abtlogmanager.rb, line 107</span>
 107:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">log_package_integrity</span>(<span class="ruby-identifier">package</span>)
