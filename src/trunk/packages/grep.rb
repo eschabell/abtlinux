@@ -38,7 +38,7 @@ private
   $name				  = "Grep"
   $version			= "2.5.1"
   $srcDir			  = "#{$name.downcase}-#{$version}"
-  $srcFile      = "#{$srcDir}.tar.bz"
+  $srcFile      = "#{$srcDir}.tar.bz2"
   $packageData	= {
     'name'				      => $name,
     'execName'		      => $name.downcase,
