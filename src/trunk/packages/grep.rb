@@ -5,9 +5,9 @@ $LOAD_PATH.unshift '/var/lib/abt/'
 require 'abtpackage'
 
 ##
-# checkinstall.rb 
+# grep.rb 
 #
-# Checkinstall package.
+# Grep package.
 #
 # Created by Eric D. Schabell <erics@abtlinux.org>
 # Copyright 2008, GPL.
@@ -29,36 +29,35 @@ require 'abtpackage'
 # St, Fifth Floor, Boston, MA 02110-1301  USA
 ##
 
-class Checkinstall < AbtPackage
+class Grep < AbtPackage
   
 protected
   
 private
   
-  $name				  = "Checkinstall"
-  $version			= "1.6.1"
+  $name				  = "Grep"
+  $version			= "2.5.1"
   $srcDir			  = "#{$name.downcase}-#{$version}"
-  $srcFile      = "#{$srcDir}.tgz"
+  $srcFile      = "#{$srcDir}.tar.bz"
   $packageData	= {
     'name'				      => $name,
     'execName'		      => $name.downcase,
     'version'			      => $version,
     'srcDir'			      => $srcDir,
-    'homepage'		      => "http://asic-linux.com.mx/~izto/checkinstall",
-    'srcUrl'			      => "http://asic-linux.com.mx/~izto/checkinstall/files/source/#{$srcFile}",
-    'dependsOn'			    => "gettext",
+    'homepage'		      => "http://www.gnu.org/software/grep/",
+    'srcUrl'			      => "ftp://ftp.nluug.nl/pub/gnu/grep/#{$srcFile}",
+    'dependsOn'			    => "",
     'reliesOn'			    => "",
     'optionalDO'		    => "",
     'optionalRO'		    => "",
-    'hashCheck'			    => "3b52f4ccb999522776e9874472c2eef91563e822",
+    'hashCheck'			    => "",
     'patches'			      => "",
     'patchesHashCheck'	=> "",
     'mirrorPath'		    => "",
     'license'			      => "GPL2",
     'description'		    => 
-		"Installs a compiled program from the program's source directory 
-		  using 'make install' or any other command supplied on 
-			checkinstall's command line. Includes installwatch program."
+    "The grep command searches one or more input files for lines containing 
+      a match to a specified pattern. By default, grep prints the matching lines."
   }
 
   
