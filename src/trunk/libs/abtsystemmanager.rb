@@ -293,7 +293,7 @@ class AbtSystemManager
     require "#{$PACKAGE_PATH}/#{package}"
     sw = eval("#{package.capitalize}.new")
     
-    if (found_entry($PACKAGE_INSTALLED, sw.srcDir))
+    if (found_entry("#{$PACKAGE_INSTALLED}/#{sw.srcDir}", "#{sw.srcDir}.install"))
       return true
     end
      
