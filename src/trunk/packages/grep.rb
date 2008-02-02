@@ -50,7 +50,7 @@ private
     'reliesOn'			    => "",
     'optionalDO'		    => "",
     'optionalRO'		    => "",
-    'hashCheck'			    => "",
+    'hashCheck'			    => "82858cc631a7f1ef55597aff661474bef481d4a2",
     'patches'			      => "",
     'patchesHashCheck'	=> "",
     'mirrorPath'		    => "",
