@@ -49,7 +49,7 @@ private
     'reliesOn'					=> "simply nothing",
     'optionalDO'				=> "garbage",
     'optionalRO'				=> "sense of humor",
-    'hashCheck'					=> "sha512:80c5b71d84eeb3092b2dfe483f0dad8ed42e2efeaa1f8791c2",
+    'hashCheck'					=> "82756fd65c3f69a02edcec6aef85f765c6b5d3ca",
     'patches'					=> "http://patches.abtlinux.org/#{$srcDir}-patches-1.tar.gz",
     'patchesHashCheck'          => "",
     'mirrorPath'				=> "http://mirror.abtlinux.org/#{$srcDir}.tar.gz",
