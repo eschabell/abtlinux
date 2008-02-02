@@ -73,9 +73,12 @@ public
 	##
 	# Overriding configure.
 	#
+  # <b>PARAM</b> <i>boolean</i> - true if you want to see the verbose output,
+  # otherwise false. Defaults to true.
+  # 
 	# <b>RETURN</b> <i>boolean</i> - returns true.
 	##
-	def configure 
+	def configure(verbose=true) 
 		return true  # nothing to do, standard makefile is fine.
 	end
 end
