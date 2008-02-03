@@ -46,19 +46,42 @@ puts "What is the source download location url?"
 $srcUrl = gets.chomp
 
 # get dependsOn.
+puts "Definition dependsOn: If package foo1 depends on package foo2, then package 
+foo1 will be rebuilt any time package foo2 is rebuilt."
+puts "Does this package depend on another? Provide a comma seperated list."
+$dependsOn = gets.chomp
 
 # get reliesOn.
+puts "Definition reliesOn: If package foo1 relies on package foo2, then package 
+foo1 will be rebuilt any time package foo2 is reconfigured."
+puts "Does this package rely on another? Provide a comma seperated list."
+$reliesOn = gets.chomp
 
 # get optional dependsOn.
+puts "Definition dependsOn: If package foo1 depends on package foo2, then package 
+foo1 will be rebuilt any time package foo2 is rebuilt."
+puts "Does this package optionally depend on another? Provide a comma seperated list."
+$optDependsOn = gets.chomp
 
 # get optional reliesOn.
+puts "Definition reliesOn: If package foo1 relies on package foo2, then package 
+foo1 will be rebuilt any time package foo2 is reconfigured."
+puts "Does this package optionally rely on another? Provide a comma seperated list."
+$optReliesOn = gets.chomp
 
 # get hash check (get file location and run Digest::SHA1.hexdigest(path)).
+puts "Provide the complete path to and existing copy of the source tarball."
+$localPath = gets.chomp
+require 'digest/sha1'
+$hash = "#{Digest::SHA1.hexdigest($localPath)}"
 
 # get license field.
+puts "Enter the license type (GPL, Apache, etc)."
+$license = gets.chomp
 
 # get descriptions text.
-
+puts "Provide a short description of the package."
+$description = gets.chomp
 
 ##
 # Generate pacakge file.
@@ -108,26 +131,23 @@ private
   $srcDir       = "#{$packageName.downcase}-#{$version}"
   $srcFile      = "#{$srcFile}"
   $packageData  = {
-    'name'              => #{$packageName.downcase},
-    'execName'          => #{$packageName.downcase},
-    'version'           => #{$version},
-    'srcDir'            => #{$packageName.downcase}-#{$version},
+    'name'              => "#{$packageName.downcase}",
+    'execName'          => "#{$packageName.downcase}",
+    'version'           => "#{$version}",
+    'srcDir'            => "#{$packageName.downcase}-#{$version}",
     'homepage'          => "#{$website}",
-    'srcUrl'            => "#{$srcURL}",
-    'dependsOn'         => "",
-    'reliesOn'          => "",
-    'optionalDO'        => "",
-    'optionalRO'        => "",
-    'hashCheck'         => "",
+    'srcUrl'            => "#{$srcUrl}",
+    'dependsOn'         => "#{$dependsOn}",
+    'reliesOn'          => "#{$reliesOn}",
+    'optionalDO'        => "#{$optDependsOn}",
+    'optionalRO'        => "#{$optReliesOn}",
+    'hashCheck'         => "#{$hash}",
     'patches'           => "",
     'patchesHashCheck'  => "",
     'mirrorPath'        => "",
-    'license'           => "GPL2",
-    'description'       => 
-    "The grep command searches one or more input files for lines containing 
-      a match to a specified pattern. By default, grep prints the matching lines."
+    'license'           => "#{$license}",
+    'description'       => "#{$description}"
   }
-
   
 public
 
