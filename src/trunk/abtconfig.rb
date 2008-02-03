@@ -62,8 +62,9 @@ $SOURCES_REPOSITORY = "#{$ABT_CACHES}/sources"
 # default config options.
 #
 $ABT_VERSION           = "0.2"
-$BUILD_ARCHITECTURE    = "i686"
-$BUILD_OPTIMIZATIONS   = "strip"
+$BUILD_ARCHITECTURE    = "-march=i486"  # i486
+$BUILD_OPTIMIZATIONS   = "-O2 -Os "     # fast, small
+
 $REMOVE_BUILD_SOURCES  = true
 $TIMESTAMP             = Time.now.strftime( "%Y-%m-%d %H:%M:%S (%Z)" )
 $PAGER_DEFAULT         = "less -R -E -X -f"
