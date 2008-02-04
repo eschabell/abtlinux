@@ -101,7 +101,8 @@ class AbtReportManager
     else
       puts "\nInstalled AbTLinux packages:"
       puts "============================"
-      Dir.foreach($PACKAGE_INSTALLED) { |package| puts package if package != "." && package != ".." }
+			Dir.chdir($PACKAGE_INSTALLED)
+      Dir.foreach($PACKAGE_INSTALLED) {|package| Dir.foreach(package) {|file| puts package if file.match('\.install')} if (package != "." && package != "..")}
       puts "\n"
     end
   end
