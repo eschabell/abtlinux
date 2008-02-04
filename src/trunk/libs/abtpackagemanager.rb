@@ -431,14 +431,14 @@ class AbtPackageManager
     
     if (system.package_installed(package))
       sw           = eval("#{package.capitalize}.new")
-      cachedDir    = $PACKAGE_CACHED + "/" + sw.srcDir
-      sourcePath   = $SOURCES_REPOSITORY + "/" + File.basename(sw.srcUrl)
+      cachedDir    = "#{$PACKAGE_CACHED}/#{sw.srcDir}"
+      sourcePath   = "#{$SOURCES_REPOSITORY}/#{File.basename(sw.srcUrl)}"
       sourceFile   = File.basename(sw.srcUrl)
       installLog   = logger.get_log(package, 'install')
       buildLog     = logger.get_log(package, 'build')
       configureLog = logger.get_log(package, 'configure')
       integrityLog = logger.get_log(package, 'integrity')
-      packageFile  = "#{$PACKAGE_PATH}#{package}.rb"
+      packageFile  = "#{$PACKAGE_PATH}/#{package}.rb"
       
       
       FileUtils.mkdir_p(cachedDir)
