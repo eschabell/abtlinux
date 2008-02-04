@@ -364,7 +364,18 @@ class AbtPackage
   # otherwise false.
   ##
   def post(verbose=true)
-    # TODO: implement post section install init scripts service
+    if (verbose)
+      command = "ldconfig"
+    else
+      command = "ldconfig >/dev/null"
+    end 
+  
+    if !system(command)
+      puts "[AbtPackage.post] - post section failed, exit code was #{$?.exitstatus}."
+      return false
+    end
+    
+    puts "[AbtPackage.post] - post section completed, exit code was #{$?.exitstatus}!" if (verbose)
     return true
   end
   
