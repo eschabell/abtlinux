@@ -13,17 +13,26 @@ digraph TopLevel {
     subgraph cluster_4 {
         fontname = Arial
         color = red
-        label = "libs/abtpackage.rb"
-        AbtPackage [
+        label = "tests/testabtlogmanager.rb"
+        TestAbtLogManager [
             fontcolor = black,
-            URL = "classes/AbtPackage.html",
+            URL = "classes/TestAbtLogManager.html",
             shape = ellipse,
             color = palegoldenrod,
             style = filled,
-            label = "AbtPackage"
+            label = "TestAbtLogManager"
         ]
 
     }
+
+    Test__Unit__TestCase [
+        URL = "classes/Test/Unit/TestCase.html",
+        label = "Test::Unit::TestCase"
+    ]
+
+    Test__Unit__TestCase -> TestAbtLogManager [
+
+    ]
 
 }
 

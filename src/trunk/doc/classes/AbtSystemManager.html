@@ -76,9 +76,9 @@ Object
       <div id="content">
   <table cellpadding='0' cellspacing='0' border='0' width="100%"><tr><td align="center">
     <map id="map" name="map">
-  <area shape="rect" coords="27,50,149,98"      href="AbtSystemManager.html" alt="AbtSystemManager" />
+  <area shape="rect" coords="29,51,163,99"      href="AbtSystemManager.html" alt="AbtSystemManager" />
 </map>
-<img src="../dot/f_7.png" usemap="#map" border="0" alt="dot/f_7.png">
+<img src="../dot/f_2.png" usemap="#map" border="0" alt="dot/f_2.png">
   </td></tr></table>
 
   <div class="description"><p>
@@ -326,7 +326,7 @@ false.
 293:     <span class="ruby-identifier">require</span> <span class="ruby-node">&quot;#{$PACKAGE_PATH}/#{package}&quot;</span>
 294:     <span class="ruby-identifier">sw</span> = <span class="ruby-identifier">eval</span>(<span class="ruby-node">&quot;#{package.capitalize}.new&quot;</span>)
 295:     
-296:     <span class="ruby-keyword kw">if</span> (<span class="ruby-identifier">found_entry</span>(<span class="ruby-identifier">$PACKAGE_INSTALLED</span>, <span class="ruby-identifier">sw</span>.<span class="ruby-identifier">srcDir</span>))
+296:     <span class="ruby-keyword kw">if</span> (<span class="ruby-identifier">found_entry</span>(<span class="ruby-node">&quot;#{$PACKAGE_INSTALLED}/#{sw.srcDir}&quot;</span>, <span class="ruby-node">&quot;#{sw.srcDir}.install&quot;</span>))
 297:       <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">true</span>
 298:     <span class="ruby-keyword kw">end</span>
 299:      
