@@ -62,8 +62,9 @@ $SOURCES_REPOSITORY = "#{$ABT_CACHES}/sources"
 # default config options.
 #
 $ABT_VERSION           = "0.2"
-$BUILD_ARCHITECTURE    = "-march=i486"  # i486
-$BUILD_OPTIMIZATIONS   = "-O2 -Os "     # fast, small
+$BUILD_ARCHITECTURE    = "-march=i486"        # i486
+$BUILD_OPTIMIZATIONS   = "-O2 -Os "           # fast, small
+$BUILD_HOST            = "i486-pc-linux-gnu"  # i486
 $BUILD_PREFIX          = "#{$DEFAULT_PREFIX}/usr"
 $BUILD_SYSCONFDIR      = "#{$DEFAULT_PREFIX}/etc"
 $BUILD_LOCALSTATEDIR   = "#{$DEFAULT_PREFIX}/var"

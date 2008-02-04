@@ -247,18 +247,22 @@ class AbtPackage
   ##
   def configure(verbose=true)
     if (verbose)
-      command = "./configure --prefix=#{$BUILD_PREFIX}               \
-                             --sysconfdir=#{$BUILD_SYSCONFDIR}       \
+      command = "./configure --prefix=#{$BUILD_PREFIX} \
+                             --sysconfdir=#{$BUILD_SYSCONFDIR} \
                              --localstatedir=#{$BUILD_LOCALSTATEDIR} \
-                             --mandir=#{$BUILD_MANDIR}               \
-                             --infodir=#{$BUILD_INFODIR}             \
+                             --mandir=#{$BUILD_MANDIR} \
+                             --infodir=#{$BUILD_INFODIR} \
+                             --host=#{$BUILD_HOST} \
+                             --build=#{$BUILD_HOST} \
       | tee #{$PACKAGE_INSTALLED}/#{@srcDir}/#{@srcDir}.configure"
     else
-      command = "./configure --prefix=#{$BUILD_PREFIX}               \
-                             --sysconfdir=#{$BUILD_SYSCONFDIR}       \
+      command = "./configure --prefix=#{$BUILD_PREFIX} \
+                             --sysconfdir=#{$BUILD_SYSCONFDIR} \
                              --localstatedir=#{$BUILD_LOCALSTATEDIR} \
-                             --mandir=#{$BUILD_MANDIR}               \
-                             --infodir=#{$BUILD_INFODIR}             \
+                             --mandir=#{$BUILD_MANDIR} \
+                             --infodir=#{$BUILD_INFODIR} \
+                             --host=#{$BUILD_HOST} \
+                             --build=#{$BUILD_HOST} \
       1> #{$PACKAGE_INSTALLED}/#{@srcDir}/#{@srcDir}.configure 2>&1"
     end 
     
