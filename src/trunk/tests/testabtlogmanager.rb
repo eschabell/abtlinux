@@ -43,7 +43,27 @@ class TestAbtLogManager < Test::Unit::TestCase
     # ensures download not needed.
     FileUtils.cp "#{$PACKAGE_PATH}/ipc-1.4.tar.gz", "#{$SOURCES_REPOSITORY}", :verbose => true if !File.exist?("#{$SOURCES_REPOSITORY}/ipc-1.4.tar.gz")
   end
-  
+
+
+	private
+
+  def fill_installwatch_file()
+		
+		# fill installwatch file.
+    File.open("#{$ABT_TMP}/ipc-1.4.watch", "w") do |file|
+      file.puts "5       open    #{$DEFAULT_PREFIX}/usr/bin/ipc      #success"
+      file.puts "0       chmod   #{$DEFAULT_PREFIX}/usr/bin/ipc      00600   #success"
+      file.puts "0       chown   #{$DEFAULT_PREFIX}/usr/bin/ipc      -1      -1      #success"
+      file.puts "0       chmod   #{$DEFAULT_PREFIX}/usr/bin/ipc      00755   #success"
+      file.puts "5       open    #{$DEFAULT_PREFIX}/usr/share/ipc/elemente   #success"
+      file.puts "0       chmod   #{$DEFAULT_PREFIX}/usr/share/ipc/elemente   00600   #success"
+      file.puts "0       chown   #{$DEFAULT_PREFIX}/usr/share/ipc/elemente   -1      -1      #success"
+      file.puts "0       chmod   #{$DEFAULT_PREFIX}/usr/share/ipc/elemente   00644   #success"
+    end
+	end
+
+	public
+
   ##
   # teardown method to cleanup after testing.
   ##
@@ -59,6 +79,9 @@ class TestAbtLogManager < Test::Unit::TestCase
       @manager.install_package("ipc")
     end
     
+		# create fake file to log from.
+		fill_installwatch_file()
+    
     assert(@logger.log_package_integrity("ipc"), "test_log_package_integrity()")
   end
   
@@ -70,17 +93,8 @@ class TestAbtLogManager < Test::Unit::TestCase
       @manager.install_package("ipc")
     end
 
-    # fill installwatch file.
-    File.open("#{$ABT_TMP}/ipc-1.4.watch", "w") do |file|
-      file.puts "5       open    /usr/local/bin/ipc      #success"
-      file.puts "0       chmod   /usr/local/bin/ipc      00600   #success"
-      file.puts "0       chown   /usr/local/bin/ipc      -1      -1      #success"
-      file.puts "0       chmod   /usr/local/bin/ipc      00755   #success"
-      file.puts "5       open    /usr/local/share/ipc/elemente   #success"
-      file.puts "0       chmod   /usr/local/share/ipc/elemente   00600   #success"
-      file.puts "0       chown   /usr/local/share/ipc/elemente   -1      -1      #success"
-      file.puts "0       chmod   /usr/local/share/ipc/elemente   00644   #success"
-    end
+		# create fake file to log from.
+		fill_installwatch_file()
     
     assert(@logger.log_package_install("ipc"), "test_log_package_install()")
   end
