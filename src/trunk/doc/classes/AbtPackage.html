@@ -78,7 +78,7 @@ Object
     <map id="map" name="map">
   <area shape="rect" coords="29,51,123,99"      href="AbtPackage.html" alt="AbtPackage" />
 </map>
-<img src="../dot/f_0.png" usemap="#map" border="0" alt="dot/f_0.png">
+<img src="../dot/f_1.png" usemap="#map" border="0" alt="dot/f_1.png">
   </td></tr></table>
 
   <div class="description"><p>
@@ -90,7 +90,7 @@ href="AbtPackage.html">AbtPackage</a> creation within AbTLinux. By
 inheriting from this class (class Fortune &lt; <a
 href="AbtPackage.html">AbtPackage</a>) one picks up all supported standard
 functions for the abt <a href="AbtPackage.html">AbtPackage</a> manager to
-make use of the <a href="AbtPackage.html#M000013">new</a> <a
+make use of the <a href="AbtPackage.html#M000020">new</a> <a
 href="AbtPackage.html">AbtPackage</a>.
 </p>
 <p>
@@ -109,7 +109,7 @@ any later version.
 AbTLinux is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
 FOR A PARTICULAR PURPOSE. See the GNU General Public License for more <a
-href="AbtPackage.html#M000014">details</a>.
+href="AbtPackage.html#M000021">details</a>.
 </p>
 <p>
 You should have received a copy of the GNU General Public License along
@@ -122,16 +122,16 @@ Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
 
   <div class="sectiontitle">Methods</div>
   <ul>
-  <li><a href="#M000017">build</a></li>
-  <li><a href="#M000016">configure</a></li>
-  <li><a href="#M000014">details</a></li>
-  <li><a href="#M000019">install</a></li>
-  <li><a href="#M000013">new</a></li>
-  <li><a href="#M000020">post</a></li>
-  <li><a href="#M000015">pre</a></li>
-  <li><a href="#M000018">preinstall</a></li>
-  <li><a href="#M000021">remove_build</a></li>
-  <li><a href="#M000012">unpack_sources</a></li>
+  <li><a href="#M000024">build</a></li>
+  <li><a href="#M000023">configure</a></li>
+  <li><a href="#M000021">details</a></li>
+  <li><a href="#M000026">install</a></li>
+  <li><a href="#M000020">new</a></li>
+  <li><a href="#M000027">post</a></li>
+  <li><a href="#M000022">pre</a></li>
+  <li><a href="#M000025">preinstall</a></li>
+  <li><a href="#M000028">remove_build</a></li>
+  <li><a href="#M000019">unpack_sources</a></li>
   </ul>
 
 
@@ -305,20 +305,20 @@ the package version number.
 <div class="sectiontitle">Public Class methods</div>
 <div class="method">
   <div class="title">
-    <a name="M000013"></a><b>new</b>(data)
+    <a name="M000020"></a><b>new</b>(data)
   </div>
   <div class="description">
   <p>
 Constructor for an <a href="AbtPackage.html">AbtPackage</a>, requires all
-the packge <a href="AbtPackage.html#M000014">details</a>.
+the packge <a href="AbtPackage.html#M000021">details</a>.
 </p>
 <p>
 <b>PARAM</b> <em>Hash</em> - hash containing all package data.
 </p>
   </div>
 <div class="sourcecode">
-  <p class="source-link">[ <a href="javascript:toggleSource('M000013_source')" id="l_M000013_source">show source</a> ]</p>
-  <div id="M000013_source" class="dyn-source">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000020_source')" id="l_M000020_source">show source</a> ]</p>
+  <div id="M000020_source" class="dyn-source">
 <pre>
      <span class="ruby-comment cmt"># File libs/abtpackage.rb, line 149</span>
 149:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">data</span>)
@@ -346,7 +346,7 @@ the packge <a href="AbtPackage.html#M000014">details</a>.
 <div class="sectiontitle">Public Instance methods</div>
 <div class="method">
   <div class="title">
-    <a name="M000017"></a><b>build</b>(verbose=true)
+    <a name="M000024"></a><b>build</b>(verbose=true)
   </div>
   <div class="description">
   <p>
@@ -363,8 +363,8 @@ otherwise false.
 </p>
   </div>
 <div class="sourcecode">
-  <p class="source-link">[ <a href="javascript:toggleSource('M000017_source')" id="l_M000017_source">show source</a> ]</p>
-  <div id="M000017_source" class="dyn-source">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000024_source')" id="l_M000024_source">show source</a> ]</p>
+  <div id="M000024_source" class="dyn-source">
 <pre>
      <span class="ruby-comment cmt"># File libs/abtpackage.rb, line 290</span>
 290:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">build</span>(<span class="ruby-identifier">verbose</span>=<span class="ruby-keyword kw">true</span>)
@@ -390,13 +390,13 @@ otherwise false.
 </div>
 <div class="method">
   <div class="title">
-    <a name="M000016"></a><b>configure</b>(verbose=true)
+    <a name="M000023"></a><b>configure</b>(verbose=true)
   </div>
   <div class="description">
   <p>
-Here we manage the ./<a href="AbtPackage.html#M000016">configure</a> step
+Here we manage the ./<a href="AbtPackage.html#M000023">configure</a> step
 (or equivalent). We need to give ./<a
-href="AbtPackage.html#M000016">configure</a> (or autogen.sh, or whatever)
+href="AbtPackage.html#M000023">configure</a> (or autogen.sh, or whatever)
 the correct options so files are to be placed later in the right
 directories, so doc files and man pages are all in the same common
 location, etc. Don&#8216;t forget too that it&#8216;s here where we
@@ -412,8 +412,8 @@ otherwise false.
 </p>
   </div>
 <div class="sourcecode">
-  <p class="source-link">[ <a href="javascript:toggleSource('M000016_source')" id="l_M000016_source">show source</a> ]</p>
-  <div id="M000016_source" class="dyn-source">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000023_source')" id="l_M000023_source">show source</a> ]</p>
+  <div id="M000023_source" class="dyn-source">
 <pre>
      <span class="ruby-comment cmt"># File libs/abtpackage.rb, line 248</span>
 248:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">configure</span>(<span class="ruby-identifier">verbose</span>=<span class="ruby-keyword kw">true</span>)
@@ -453,7 +453,7 @@ otherwise false.
 </div>
 <div class="method">
   <div class="title">
-    <a name="M000014"></a><b>details</b>()
+    <a name="M000021"></a><b>details</b>()
   </div>
   <div class="description">
   <p>
@@ -466,8 +466,8 @@ href="AbtPackage.html">AbtPackage</a> attributes (constants).
 </p>
   </div>
 <div class="sourcecode">
-  <p class="source-link">[ <a href="javascript:toggleSource('M000014_source')" id="l_M000014_source">show source</a> ]</p>
-  <div id="M000014_source" class="dyn-source">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000021_source')" id="l_M000021_source">show source</a> ]</p>
+  <div id="M000021_source" class="dyn-source">
 <pre>
      <span class="ruby-comment cmt"># File libs/abtpackage.rb, line 174</span>
 174:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">details</span>
@@ -496,7 +496,7 @@ href="AbtPackage.html">AbtPackage</a> attributes (constants).
 </div>
 <div class="method">
   <div class="title">
-    <a name="M000019"></a><b>install</b>(verbose=true)
+    <a name="M000026"></a><b>install</b>(verbose=true)
   </div>
   <div class="description">
   <p>
@@ -512,8 +512,8 @@ otherwise false.
 </p>
   </div>
 <div class="sourcecode">
-  <p class="source-link">[ <a href="javascript:toggleSource('M000019_source')" id="l_M000019_source">show source</a> ]</p>
-  <div id="M000019_source" class="dyn-source">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000026_source')" id="l_M000026_source">show source</a> ]</p>
+  <div id="M000026_source" class="dyn-source">
 <pre>
      <span class="ruby-comment cmt"># File libs/abtpackage.rb, line 334</span>
 334:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">install</span>(<span class="ruby-identifier">verbose</span>=<span class="ruby-keyword kw">true</span>)
@@ -543,7 +543,7 @@ otherwise false.
 </div>
 <div class="method">
   <div class="title">
-    <a name="M000020"></a><b>post</b>(verbose=true)
+    <a name="M000027"></a><b>post</b>(verbose=true)
   </div>
   <div class="description">
   <p>
@@ -560,8 +560,8 @@ otherwise false.
 </p>
   </div>
 <div class="sourcecode">
-  <p class="source-link">[ <a href="javascript:toggleSource('M000020_source')" id="l_M000020_source">show source</a> ]</p>
-  <div id="M000020_source" class="dyn-source">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000027_source')" id="l_M000027_source">show source</a> ]</p>
+  <div id="M000027_source" class="dyn-source">
 <pre>
      <span class="ruby-comment cmt"># File libs/abtpackage.rb, line 366</span>
 366:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">post</span>(<span class="ruby-identifier">verbose</span>=<span class="ruby-keyword kw">true</span>)
@@ -585,7 +585,7 @@ otherwise false.
 </div>
 <div class="method">
   <div class="title">
-    <a name="M000015"></a><b>pre</b>(verbose=true)
+    <a name="M000022"></a><b>pre</b>(verbose=true)
   </div>
   <div class="description">
   <p>
@@ -602,8 +602,8 @@ false.
 </p>
   </div>
 <div class="sourcecode">
-  <p class="source-link">[ <a href="javascript:toggleSource('M000015_source')" id="l_M000015_source">show source</a> ]</p>
-  <div id="M000015_source" class="dyn-source">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000022_source')" id="l_M000022_source">show source</a> ]</p>
+  <div id="M000022_source" class="dyn-source">
 <pre>
      <span class="ruby-comment cmt"># File libs/abtpackage.rb, line 205</span>
 205:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">pre</span>(<span class="ruby-identifier">verbose</span>=<span class="ruby-keyword kw">true</span>)
@@ -640,12 +640,12 @@ false.
 </div>
 <div class="method">
   <div class="title">
-    <a name="M000018"></a><b>preinstall</b>(verbose=true)
+    <a name="M000025"></a><b>preinstall</b>(verbose=true)
   </div>
   <div class="description">
   <p>
 Any actions needed before the installation can occur will happen here, such
-as creating <a href="AbtPackage.html#M000013">new</a> user accounts,
+as creating <a href="AbtPackage.html#M000020">new</a> user accounts,
 dealing with existing configuration files, etc.
 </p>
 <p>
@@ -658,8 +658,8 @@ otherwise false.
 </p>
   </div>
 <div class="sourcecode">
-  <p class="source-link">[ <a href="javascript:toggleSource('M000018_source')" id="l_M000018_source">show source</a> ]</p>
-  <div id="M000018_source" class="dyn-source">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000025_source')" id="l_M000025_source">show source</a> ]</p>
+  <div id="M000025_source" class="dyn-source">
 <pre>
      <span class="ruby-comment cmt"># File libs/abtpackage.rb, line 319</span>
 319:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">preinstall</span>(<span class="ruby-identifier">verbose</span>=<span class="ruby-keyword kw">true</span>)
@@ -673,11 +673,11 @@ otherwise false.
 </div>
 <div class="method">
   <div class="title">
-    <a name="M000021"></a><b>remove_build</b>()
+    <a name="M000028"></a><b>remove_build</b>()
   </div>
   <div class="description">
   <p>
-Cleans up this packages source <a href="AbtPackage.html#M000017">build</a>
+Cleans up this packages source <a href="AbtPackage.html#M000024">build</a>
 directory.
 </p>
 <p>
@@ -686,8 +686,8 @@ otherwise false.
 </p>
   </div>
 <div class="sourcecode">
-  <p class="source-link">[ <a href="javascript:toggleSource('M000021_source')" id="l_M000021_source">show source</a> ]</p>
-  <div id="M000021_source" class="dyn-source">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000028_source')" id="l_M000028_source">show source</a> ]</p>
+  <div id="M000028_source" class="dyn-source">
 <pre>
      <span class="ruby-comment cmt"># File libs/abtpackage.rb, line 388</span>
 388:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">remove_build</span>
@@ -713,12 +713,12 @@ otherwise false.
 <div class="sectiontitle">Protected Instance methods</div>
 <div class="method">
   <div class="title">
-    <a name="M000012"></a><b>unpack_sources</b>()
+    <a name="M000019"></a><b>unpack_sources</b>()
   </div>
   <div class="description">
   <p>
 Unpacks this packages source file into the standard <a
-href="AbtPackage.html#M000017">build</a> location.
+href="AbtPackage.html#M000024">build</a> location.
 </p>
 <p>
 <b>RETURNS:</b> <em>boolean</em> - True if the completes sucessfully,
@@ -726,8 +726,8 @@ otherwise false.
 </p>
   </div>
 <div class="sourcecode">
-  <p class="source-link">[ <a href="javascript:toggleSource('M000012_source')" id="l_M000012_source">show source</a> ]</p>
-  <div id="M000012_source" class="dyn-source">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000019_source')" id="l_M000019_source">show source</a> ]</p>
+  <div id="M000019_source" class="dyn-source">
 <pre>
     <span class="ruby-comment cmt"># File libs/abtpackage.rb, line 40</span>
 40:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">unpack_sources</span>

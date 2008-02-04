@@ -13,14 +13,14 @@ digraph TopLevel {
     subgraph cluster_2 {
         fontname = Arial
         color = red
-        label = "libs/abtpackagemanager.rb"
-        AbtPackageManager [
+        label = "libs/abtpackage.rb"
+        AbtPackage [
             fontcolor = black,
-            URL = "classes/AbtPackageManager.html",
+            URL = "classes/AbtPackage.html",
             shape = ellipse,
             color = palegoldenrod,
             style = filled,
-            label = "AbtPackageManager"
+            label = "AbtPackage"
         ]
 
     }
