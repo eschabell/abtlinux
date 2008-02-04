@@ -86,8 +86,9 @@ $description = gets.chomp
 ##
 # Generate pacakge file.
 ##
+newPackage = open("#{$packageName.downcase}.rb", 'w')
 
-print <<EOF
+newPackage.print <<EOF
 
 #!/usr/bin/ruby -w
 
@@ -162,3 +163,5 @@ public
   end  
 end
 EOF
+
+puts "New package written to #{$packageName.downcase}.rb."
