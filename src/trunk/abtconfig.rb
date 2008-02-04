@@ -64,6 +64,11 @@ $SOURCES_REPOSITORY = "#{$ABT_CACHES}/sources"
 $ABT_VERSION           = "0.2"
 $BUILD_ARCHITECTURE    = "-march=i486"  # i486
 $BUILD_OPTIMIZATIONS   = "-O2 -Os "     # fast, small
+$BUILD_PREFIX          = "#{$DEFAULT_PREFIX}/usr"
+$BUILD_SYSCONFDIR      = "#{$DEFAULT_PREFIX}/etc"
+$BUILD_LOCALSTATEDIR   = "#{$DEFAULT_PREFIX}/var"
+$BUILD_MANDIR          = "#{$DEFAULT_PREFIX}/usr/share/man"
+$BUILD_INFODIR         = "#{$DEFAULT_PREFIX}/usr/share/info"
 
 $REMOVE_BUILD_SOURCES  = true
 $TIMESTAMP             = Time.now.strftime( "%Y-%m-%d %H:%M:%S (%Z)" )

@@ -247,9 +247,19 @@ class AbtPackage
   ##
   def configure(verbose=true)
     if (verbose)
-      command = "./configure --prefix=#{$DEFAULT_PREFIX} | tee #{$PACKAGE_INSTALLED}/#{@srcDir}/#{@srcDir}.configure"
+      command = "./configure --prefix=#{$BUILD_PREFIX}               \
+                             --sysconfdir=#{$BUILD_SYSCONFDIR}       \
+                             --localstatedir=#{$BUILD_LOCALSTATEDIR} \
+                             --mandir=#{$BUILD_MANDIR}               \
+                             --infodir=#{$BUILD_INFODIR}             \
+      | tee #{$PACKAGE_INSTALLED}/#{@srcDir}/#{@srcDir}.configure"
     else
-      command = "./configure --prefix=#{$DEFAULT_PREFIX} 1> #{$PACKAGE_INSTALLED}/#{@srcDir}/#{@srcDir}.configure 2>&1"
+      command = "./configure --prefix=#{$BUILD_PREFIX}               \
+                             --sysconfdir=#{$BUILD_SYSCONFDIR}       \
+                             --localstatedir=#{$BUILD_LOCALSTATEDIR} \
+                             --mandir=#{$BUILD_MANDIR}               \
+                             --infodir=#{$BUILD_INFODIR}             \
+      1> #{$PACKAGE_INSTALLED}/#{@srcDir}/#{@srcDir}.configure 2>&1"
     end 
     
     Dir.chdir("#{$BUILD_LOCATION}/#{@srcDir}")
