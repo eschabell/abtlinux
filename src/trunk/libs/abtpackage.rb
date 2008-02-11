@@ -252,8 +252,6 @@ class AbtPackage
                              --localstatedir=#{$BUILD_LOCALSTATEDIR} \
                              --mandir=#{$BUILD_MANDIR} \
                              --infodir=#{$BUILD_INFODIR} \
-                             --host=#{$BUILD_HOST} \
-                             --build=#{$BUILD_HOST} \
       | tee #{$PACKAGE_INSTALLED}/#{@srcDir}/#{@srcDir}.configure"
     else
       command = "./configure --prefix=#{$BUILD_PREFIX} \
@@ -261,14 +259,17 @@ class AbtPackage
                              --localstatedir=#{$BUILD_LOCALSTATEDIR} \
                              --mandir=#{$BUILD_MANDIR} \
                              --infodir=#{$BUILD_INFODIR} \
-                             --host=#{$BUILD_HOST} \
-                             --build=#{$BUILD_HOST} \
       1> #{$PACKAGE_INSTALLED}/#{@srcDir}/#{@srcDir}.configure 2>&1"
     end 
     
     Dir.chdir("#{$BUILD_LOCATION}/#{@srcDir}")
 
-		if !system(command)
+		# set our optimizations before configuring.
+		$cflags   = "CFLAGS=" + '"' + $BUILD_CFLAGS + '"'
+		puts "Using the following optimizations:  export #{$cflags}\n"
+
+		# now configure.
+		if !system("export #{$cflags}; export CXXFLAGS='${CFLAGS}'; #{command}")
       puts "[AbtPackage.configure] - configure section failed, exit code was #{$?.exitstatus}."
       return false
 		end

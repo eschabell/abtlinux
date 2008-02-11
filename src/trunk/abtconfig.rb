@@ -62,9 +62,11 @@ $SOURCES_REPOSITORY = "#{$ABT_CACHES}/sources"
 # default config options.
 #
 $ABT_VERSION           = "0.2"
-$BUILD_ARCHITECTURE    = "-march=i486"        # i486
-$BUILD_OPTIMIZATIONS   = "-O2 -Os "           # fast, small
-$BUILD_HOST            = "i486-pc-linux-gnu"  # i486
+$BUILD_ARCH            = "-march=pentium2"      # i686, pentium II.
+$BUILD_SIZE            = "-Os"                  # optimize for size.
+$BUILD_NODEBUG         = "-fomit-frame-pointer" # removes debug info.
+$BUILD_SPEEDY          = "-pipe"                # faster compile, pipes into next function instead of temp files.
+$BUILD_CFLAGS          = "#{$BUILD_ARCH} #{$BUILD_SIZE} #{$BUILD_SPEEDY} #{$BUILD_NODEBUG}" # all our build options.
 $BUILD_PREFIX          = "#{$DEFAULT_PREFIX}/usr"
 $BUILD_SYSCONFDIR      = "#{$DEFAULT_PREFIX}/etc"
 $BUILD_LOCALSTATEDIR   = "#{$DEFAULT_PREFIX}/var"

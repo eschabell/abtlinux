@@ -141,62 +141,12 @@ public
   # otherwise false.
   ##
   def configure(verbose=true)
-		# create our bash.static, never want to be without it!
-    if (verbose)
-      command = "./configure --prefix=#{$BUILD_PREFIX} \
-                             --sysconfdir=#{$BUILD_SYSCONFDIR} \
-                             --localstatedir=#{$BUILD_LOCALSTATEDIR} \
-                             --mandir=#{$BUILD_MANDIR} \
-                             --infodir=#{$BUILD_INFODIR} \
-                             --host=#{$BUILD_HOST} \
-                             --build=#{$BUILD_HOST} \
-			                       --enable-static-link \
-			                       --with-bash-malloc=no \
-      | tee #{$PACKAGE_INSTALLED}/#{@srcDir}/#{@srcDir}.configure"
-    else
-      command = "./configure --prefix=#{$BUILD_PREFIX} \
-                             --sysconfdir=#{$BUILD_SYSCONFDIR} \
-                             --localstatedir=#{$BUILD_LOCALSTATEDIR} \
-                             --mandir=#{$BUILD_MANDIR} \
-                             --infodir=#{$BUILD_INFODIR} \
-                             --host=#{$BUILD_HOST} \
-                             --build=#{$BUILD_HOST} \
-			                       --enable-static-link \
-			                       --with-bash-malloc=no \
-      1> #{$PACKAGE_INSTALLED}/#{@srcDir}/#{@srcDir}.configure 2>&1"
-    end 
-    
-    Dir.chdir("#{$BUILD_LOCATION}/#{@srcDir}")
-
-		if !system(command)
-      puts "[bash.rb] - configure section failed during static bash configure, exit code was #{$?.exitstatus}."
-      return false
-		end
-    	
-		if !system("make bash DESTDIR=#{$DEFAULT_PREFIX}")
-      puts "[bash.rb] - configure section failed during static bash build, exit code was #{$?.exitstatus}."
-      return false
-		end
-
-		if !(system("mv bash bash.static"))
-      puts "[bash.rb] - configure section failed during copy of bash.static, exit code was #{$?.exitstatus}."
-      return false
-		end
-
-		if !(system("make clean"))
-      puts "[bash.rb] - configure section failed during make clean, exit code was #{$?.exitstatus}."
-      return false
-		end
-
-		# now configure for normal bash build.
 		if (verbose)
       command = "./configure --prefix=#{$BUILD_PREFIX} \
                              --sysconfdir=#{$BUILD_SYSCONFDIR} \
                              --localstatedir=#{$BUILD_LOCALSTATEDIR} \
                              --mandir=#{$BUILD_MANDIR} \
                              --infodir=#{$BUILD_INFODIR} \
-                             --host=#{$BUILD_HOST} \
-                             --build=#{$BUILD_HOST} \
 			                       --enable-static-link \
 			                       --with-bash-malloc=no \
       | tee #{$PACKAGE_INSTALLED}/#{@srcDir}/#{@srcDir}.configure"
@@ -206,43 +156,23 @@ public
                              --localstatedir=#{$BUILD_LOCALSTATEDIR} \
                              --mandir=#{$BUILD_MANDIR} \
                              --infodir=#{$BUILD_INFODIR} \
-                             --host=#{$BUILD_HOST} \
-                             --build=#{$BUILD_HOST} \
 			                       --enable-static-link \
 			                       --with-bash-malloc=no \
       1> #{$PACKAGE_INSTALLED}/#{@srcDir}/#{@srcDir}.configure 2>&1"
     end 
  
-		if !system(command)
+    Dir.chdir("#{$BUILD_LOCATION}/#{@srcDir}")
+
+		# set our optimizations before configuring.
+		$cflags   = "CFLAGS=" + '"' + $BUILD_CFLAGS + '"'
+		puts "Using the following optimizations:  export #{$cflags}\n"
+
+		# now configure.
+		if !system("export #{$cflags}; export CXXFLAGS='${CFLAGS}'; #{command}")
       puts "[bash.rb] - configure section failed during bash configure, exit code was #{$?.exitstatus}."
       return false
 		end
 
     return true
-  end
-
-  ##
-  # Any actions needed before the installation can occur will happen here,
-	# so we are installing a bash.static binary to our sbin directory. Note that
-	# this is an untracked file so that it never gets removed, just over written
-	# should the package be installed again. We never want a system without
-	# bash.
-  #
-  # <b>PARAM</b> <i>boolean</i> - true if you want to see the verbose output,
-  # otherwise false. Defaults to true.
-  # 
-  # <b>RETURNS:</b>  <i>boolean</i> - True if the completes sucessfully, 
-  # otherwise false.
-  ##
-  def preinstall(verbose=true)
-		# install static bash
-    Dir.chdir("#{$BUILD_LOCATION}/#{@srcDir}")
-
-		if (!system("install  -D  -m  755  bash.static  #{$DEFAULT_PREFIX}/sbin/bash.static"))
-      puts "[bash.rb] - preinstall section failed during bash.static install, exit code was #{$?.exitstatus}."
-      return false
-		end
-
-    return true;
   end
 end 
