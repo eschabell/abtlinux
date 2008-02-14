@@ -28,8 +28,18 @@
 ##
 ## NOTE: some dependencies; checkinstall.
 ##
-if !File.exists? "/usr/bin/installwatch"
-	puts "\n\nUnable to run without installwatch, install checkinstall package first."
+$counter = 0
+["/usr/bin/installwatch", "/bin/installwatch", "/usr/sbin/installwatch", "/sbin/installwatch",
+	"/usr/local/bin/installwatch", "/usr/local/usr/bin/installwatch", "/usr/local/sbin/installwatch",
+	"/usr/local/usr/sbin/installwatch"].each { |file|
+
+  if File.exists?(file)
+		$counter =+ 1
+  end
+}
+
+if !($counter > 0)
+	puts "\n\nUnable to run without installwatch, see package details of checkinstall."
 	exit
 end
 
