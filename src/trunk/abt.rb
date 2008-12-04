@@ -39,15 +39,15 @@ $counter = 0
 }
 
 if !($counter > 0)
-	puts "\n\nUnable to run without installwatch, see package details of checkinstall."
-	exit
+	puts "\n\nUnable to run properly without installwatch, see package details of checkinstall."
+	puts "\nWe can continue but you may experience unexpected results, please install checkinstall asap.\n\n"
 end
 
 # Check and install our library files.
 #
 $DEFAULT_PREFIX = "/usr/local"
 libpath = "#{$DEFAULT_PREFIX}/var/lib/abt"
-$ABTLINUX_CLASS_LIBS = "https://abtlinux.svn.sourceforge.net/svnroot/abtlinux/src/trunk/libs"
+$ABTLINUX_CLASS_LIBS = "http://svn2.assembla.com/svn/abtlinux/src/trunk/libs"
 
 if (! File.directory?(libpath) || Dir[libpath].empty?)
   puts "\nMissing needed AbTLinux library files..."
@@ -73,42 +73,46 @@ $LOAD_PATH.unshift libpath
 
 # Load our central configuration file.
 #
-$ABTLINUX_MAIN_CONFIG = "https://abtlinux.svn.sourceforge.net/svnroot/abtlinux/src/trunk/abtconfig.rb"
+$ABTLINUX_MAIN_CONFIG = "http://svn2.assembla.com/svn/abtlinux/src/trunk/abtconfig.rb"
 configfile = "#{$DEFAULT_PREFIX}/etc/abt/abtconfig.rb"
+myconfig   = "#{$DEFAULT_PREFIX}/etc/abt/local/myabtconfig.rb"
 maxconfigpath = "#{$DEFAULT_PREFIX}/etc/abt/local"
 
 if File.exist?(configfile)
 	$LOAD_PATH.unshift "#{$DEFAULT_PREFIX}/etc/abt/"
   load 'abtconfig.rb'
+  
+  # do we need to load a local config file?
+  if File.exist?(myconfig)
+    $LOAD_PATH.unshift maxconfigpath
+    load 'myabtconfig.rb'
+  end
+   
 else
-	require 'fileutils'  # need this here, usually in abtconfig.
+  # no config file, need to download it.
+  require 'fileutils'  # need this here, usually in abtconfig.
 
   # missing configuration file, do some abt update?
   puts "\nMissing our main configuration file at #{configfile}"
   puts "\nMaybe time for an abt update? Let us try to fix it for you!\n"
-  
-	# check for root login.	
+
+  # check for root login.	
   if (Process.uid != 0)
-      puts "\nMust be root to fix configuration files."
-			exit
-	else
-   if (! File.directory?(maxconfigpath))
-     puts "debug: directory to be created: #{maxconfigpath}" 
-     FileUtils.mkdir_p maxconfigpath
-     puts "Created directory: #{maxconfigpath}"
-   end
-   
-   system("svn export #{$ABTLINUX_MAIN_CONFIG} #{configfile}")
-	end
+    puts "\nMust be root to fix configuration files."
+		exit
+  else
+    if (! File.directory?(maxconfigpath))
+      puts "debug: directory to be created: #{maxconfigpath}" 
+      FileUtils.mkdir_p maxconfigpath
+      puts "Created directory: #{maxconfigpath}"
+    end
+ 
+    system("svn export #{$ABTLINUX_MAIN_CONFIG} #{configfile}")
+  end
 
 	# should be installed, load config.
 	$LOAD_PATH.unshift "#{$DEFAULT_PREFIX}/etc/abt/"
 	load 'abtconfig.rb'
-
-	if File.exist?("#{$DEFAULT_PREFIX}/etc/abt/local/localconfig.rb")
-		$LOAD_PATH.unshift maxconfigpath
-		load 'localconfig.rb'
-	end
 end
 
 
@@ -348,10 +352,6 @@ when "show-details"
 when "show-config"
   if (ARGV.length == 2)
     options['package'] = ARGV[1]
-    if !system.package_installed(options['package'])
-      puts "\nThe package #{options['package']} is not installed, can't show the configure log."
-      exit
-    end
 
     puts "\nDisplay configure log for package : #{options['package']}"
     puts "===============================\n"

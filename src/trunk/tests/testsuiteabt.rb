@@ -9,17 +9,26 @@ end
 $LOAD_PATH.unshift '../'
 
 require 'test/unit'
-require 'abtconfig'
 
-# By ensuring an install of the test package ipc
-# is done prior to running unit tests, we are able
-# to ensure that all needed directories, logs, etc 
-# are created prior to running the tests. If ipc is
-# already installed, this process is not repleated. 
-# 
-# This speeds up the test suit by more than 10 sec
-# on my machine. I get avg runs of around 17,5 sec.
+# if a new setup, you need to run 'abt -h' to ensure things are installed
+# correctly (self tests will sort it out for you).
 #
+#if !system('../abt.rb -h')
+#	puts "\nYou need to run 'abt -h' before this testsuite will run, (self tests will sort out the missing components for you)."
+#  exit
+#end
+
+# if a new setup, test build of our default test package to ensure system can
+# build.
+#
+#system('../abt.rb remove ipc')
+#if !system('../abt.rb install ipc')
+#	puts "\nProblem building the system, see journal for details."
+#	exit
+#end
+
+
+# now we run the testsuite.
 require 'testabtpackagemanager'
 require 'testabtlogmanager'
 require 'testabtdownloadmanager'

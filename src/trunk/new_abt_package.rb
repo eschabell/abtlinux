@@ -24,6 +24,11 @@
 # AbTLinux; if not, write to the Free Software Foundation, Inc., 51 Franklin
 # St, Fifth Floor, Boston, MA 02110-1301  USA
 ##
+
+$DEFAULT_PREFIX = "/usr/local"
+libpath = "#{$DEFAULT_PREFIX}/var/lib/abt"
+$LOAD_PATH.unshift libpath
+load 'abtconfig.rb'
   
 # get name of package.
 puts "What is the packages name?"
@@ -34,8 +39,9 @@ puts "What is the version number of this package?"
 $version = gets.chomp
 
 # get source file name.
-puts "What is the source file name (like grep-1.2.1.tar.bz2)?"
-$srcFile = gets.chomp
+puts "Source file is gz or bz2?"
+$compression = gets.chomp.downcase
+$srcFile = "\#{$srcDir}.tar.#{$compression}"
 
 # get website / homepage.
 puts "What is the packages website url?"
@@ -69,15 +75,18 @@ foo1 will be rebuilt any time package foo2 is reconfigured."
 puts "Does this package optionally rely on another? Provide a comma seperated list."
 $optReliesOn = gets.chomp
 
-# get hash check (get file location and run Digest::SHA1.hexdigest(path)).
-puts "Provide the complete path to and existing copy of the source tarball."
-$localPath = gets.chomp
+# get hash check (get file location and run Digeost::SHA1.hexdigest(path)).
 require 'digest/sha1'
-$hash = "#{Digest::SHA1.hexdigest($localPath)}"
+$hash = "Empty"
+if system("cd #{$SOURCES_REPOSITORY}; wget #{$srcUrl}")
+	puts "DEBUG:  gonna run hash1 on #{$SOURCES_REPOSITORY}/#{$packageName}-#{$version}.tar.#{$compression}"
+	$hash = Digest::SHA1.hexdigest("#{$SOURCES_REPOSITORY}/#{$packageName}-#{$version}.tar.#{$compression}")
+else
+	puts "Unable to determine digest hash, after first install attempt of this package you can find the hash in the journal."
+end
 
 # get license field.
-puts "Enter the license type (GPL, Apache, etc)."
-$license = gets.chomp
+$license = "GPL"
 
 # get descriptions text.
 puts "Provide a short description of the package."
@@ -129,13 +138,13 @@ private
   
   $name         = "#{$packageName.capitalize}"
   $version      = "#{$version}"
-  $srcDir       = "#{$packageName.downcase}-#{$version}"
+  $srcDir       = "\#{$name.downcase}-\#{$version}"
   $srcFile      = "#{$srcFile}"
   $packageData  = {
-    'name'              => "#{$packageName.downcase}",
-    'execName'          => "#{$packageName.downcase}",
-    'version'           => "#{$version}",
-    'srcDir'            => "#{$packageName.downcase}-#{$version}",
+    'name'              => $name,
+    'execName'          => $name.downcase,
+    'version'           => $version,
+    'srcDir'            => $srcDir,
     'homepage'          => "#{$website}",
     'srcUrl'            => "#{$srcUrl}",
     'dependsOn'         => "#{$dependsOn}",

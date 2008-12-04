@@ -1,0 +1,38 @@
+digraph TopLevel {
+    compound = true
+    bgcolor = lightcyan1
+    fontname = Arial
+    fontsize = 8
+    label = "TopLevel"
+    node [
+        fontname = Arial,
+        fontsize = 8,
+        color = black
+    ]
+
+    subgraph cluster_27 {
+        fontname = Arial
+        color = red
+        label = "packages/sed.rb"
+        Sed [
+            fontcolor = black,
+            URL = "classes/Sed.html",
+            shape = ellipse,
+            color = palegoldenrod,
+            style = filled,
+            label = "Sed"
+        ]
+
+    }
+
+    AbtPackage [
+        URL = "classes/AbtPackage.html",
+        label = "AbtPackage"
+    ]
+
+    AbtPackage -> Sed [
+
+    ]
+
+}
+

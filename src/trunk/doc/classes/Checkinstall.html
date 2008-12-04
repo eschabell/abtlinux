@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+  <head>
+    <title>Class: Checkinstall</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+    <link rel="stylesheet" href=".././rdoc-style.css" type="text/css" media="screen" />
+
+    <script language="JavaScript" type="text/javascript">
+    // <![CDATA[
+
+        function toggleSource(id)
+        {
+          var elem
+          var link
+
+          if(document.getElementById)
+          {
+            elem = document.getElementById(id)
+            link = document.getElementById("l_" + id)
+          }
+          else if (document.all)
+          {
+            elem = eval("document.all." + id)
+            link = eval("document.all.l_" + id)
+          }
+          else
+            return false;
+
+          if(elem.style.display == "block")
+          {
+            elem.style.display = "none"
+            link.innerHTML = "show source"
+          }
+          else
+          {
+            elem.style.display = "block"
+            link.innerHTML = "hide source"
+          }
+        }
+
+        function openCode(url)
+        {
+          window.open(url, "SOURCE_CODE", "width=400,height=400,scrollbars=yes")
+        }
+      // ]]>
+    </script>
+  </head>
+
+  <body>
+  <table width="100%" border='0' cellpadding='0' cellspacing='0' class='banner'><tr>
+  <td class="file-title"><span class="file-title-prefix">Class</span><br />Checkinstall</td>
+  <td align="right">
+    <table cellspacing=0 cellpadding=2>
+      <tr valign="top">
+        <td>In:</td>
+        <td>
+<a href="../files/packages/checkinstall_rb.html">packages/checkinstall.rb</a>
+        </td>
+      </tr>
+    <tr>
+      <td>Parent:</td>
+      <td>
+        <a href="AbtPackage.html">
+AbtPackage
+         </a>
+     </td>
+   </tr>
+         </table>
+        </td>
+        </tr>
+      </table>
+ <!-- banner header -->
+
+  <div id="bodyContent">
+      <div id="content">
+  <table cellpadding='0' cellspacing='0' border='0' width="100%"><tr><td align="center">
+    <map id="map" name="map">
+  <area shape="rect" coords="40,101,128,149"      href="Checkinstall.html" alt="Checkinstall" />
+  <area shape="rect" coords="40,5,128,53"      href="AbtPackage.html" alt="AbtPackage" />
+</map>
+<img src="../dot/f_19.png" usemap="#map" border="0" alt="dot/f_19.png">
+  </td></tr></table>
+
+  <div class="description"><p>
+checkinstall.rb
+</p>
+<p>
+<a href="Checkinstall.html">Checkinstall</a> package.
+</p>
+<p>
+Created by Eric D. Schabell &lt;erics@abtlinux.org&gt; Copyright 2008, GPL.
+</p>
+<p>
+This file is part of AbTLinux.
+</p>
+<p>
+AbTLinux is free software; you can redistribute it and/or modify it under
+the terms of the GNU General Public License as published by the Free
+Software Foundation; either version 2 of the License, or (at your option)
+any later version.
+</p>
+<p>
+AbTLinux is distributed in the hope that it will be useful, but WITHOUT ANY
+WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
+details.
+</p>
+<p>
+You should have received a copy of the GNU General Public License along
+with AbTLinux; if not, write to the Free Software Foundation, Inc., 51
+Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
+</p>
+</div>
+
+
+
+  <div class="sectiontitle">Methods</div>
+  <ul>
+  <li><a href="#M000094">configure</a></li>
+  <li><a href="#M000095">install</a></li>
+  <li><a href="#M000093">new</a></li>
+  </ul>
+
+
+
+
+
+
+<div class="sectiontitle">Public Class methods</div>
+<div class="method">
+  <div class="title">
+    <a name="M000093"></a><b>new</b>()
+  </div>
+  <div class="description">
+  <p>
+Constructor for an <a href="AbtPackage.html">AbtPackage</a>, requires all
+the packge details.
+</p>
+<p>
+<b>PARAM</b> <em>Hash</em> - hash containing all pacakge data.
+</p>
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000093_source')" id="l_M000093_source">show source</a> ]</p>
+  <div id="M000093_source" class="dyn-source">
+<pre>
+    <span class="ruby-comment cmt"># File packages/checkinstall.rb, line 73</span>
+73:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>()
+74:       <span class="ruby-keyword kw">super</span>(<span class="ruby-identifier">$packageData</span>)
+75:   <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="sectiontitle">Public Instance methods</div>
+<div class="method">
+  <div class="title">
+    <a name="M000094"></a><b>configure</b>(verbose=true)
+  </div>
+  <div class="description">
+  <p>
+Override <a href="Checkinstall.html#M000094">configure</a> by returning
+true, none needed.
+</p>
+<p>
+<b>PARAM</b> <em>boolean</em> - true if you want to see the verbose output,
+otherwise false. Defaults to true.
+</p>
+<p>
+<b>RETURNS:</b> <em>boolean</em> - True always.
+</p>
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000094_source')" id="l_M000094_source">show source</a> ]</p>
+  <div id="M000094_source" class="dyn-source">
+<pre>
+    <span class="ruby-comment cmt"># File packages/checkinstall.rb, line 85</span>
+85:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">configure</span>(<span class="ruby-identifier">verbose</span>=<span class="ruby-keyword kw">true</span>)
+86:     <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">true</span>
+87:   <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000095"></a><b>install</b>(verbose=true)
+  </div>
+  <div class="description">
+  <p>
+All files to be installed are installed here, note without installwatch, as
+we are installing it!
+</p>
+<p>
+<b>PARAM</b> <em>boolean</em> - true if you want to see the verbose output,
+otherwise false. Defaults to true.
+</p>
+<p>
+<b>RETURNS:</b> <em>boolean</em> - True if the completes sucessfully,
+otherwise false.
+</p>
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000095_source')" id="l_M000095_source">show source</a> ]</p>
+  <div id="M000095_source" class="dyn-source">
+<pre>
+     <span class="ruby-comment cmt"># File packages/checkinstall.rb, line 99</span>
+ 99:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">install</span>(<span class="ruby-identifier">verbose</span>=<span class="ruby-keyword kw">true</span>)
+100:     <span class="ruby-keyword kw">if</span> (<span class="ruby-identifier">verbose</span>)
+101:       <span class="ruby-identifier">command</span> = <span class="ruby-value str">&quot;make install&quot;</span>
+102:     <span class="ruby-keyword kw">else</span>
+103:       <span class="ruby-identifier">command</span> = <span class="ruby-value str">&quot;make install &gt;/dev/null&quot;</span>
+104:     <span class="ruby-keyword kw">end</span> 
+105:   
+106:     <span class="ruby-constant">Dir</span>.<span class="ruby-identifier">chdir</span>(<span class="ruby-node">&quot;#{$BUILD_LOCATION}/#{@srcDir}&quot;</span>)
+107:     
+108:     <span class="ruby-keyword kw">if</span> <span class="ruby-operator">!</span><span class="ruby-identifier">system</span>(<span class="ruby-identifier">command</span>)
+109:       <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;[AbtPackage.install] - pre-install section failed, exit code was #{$?.exitstatus}.&quot;</span>
+110:       <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">false</span>
+111:     <span class="ruby-keyword kw">end</span>
+112:     
+113:     <span class="ruby-keyword kw">if</span> (<span class="ruby-identifier">verbose</span>)
+114:       <span class="ruby-identifier">command</span> = <span class="ruby-value str">&quot;installwatch --transl=no --backup=no &quot;</span> <span class="ruby-operator">+</span>
+115:           <span class="ruby-value str">&quot;--exclude=/dev,/proc,/tmp,/var/tmp,/usr/src,/sys &quot;</span> <span class="ruby-operator">+</span>
+116:           <span class="ruby-node">&quot;--logfile=#{$ABT_TMP}/#{@srcDir}.watch make install&quot;</span>
+117:     <span class="ruby-keyword kw">else</span>
+118:       <span class="ruby-identifier">command</span> = <span class="ruby-value str">&quot;installwatch --transl=no --backup=no &quot;</span> <span class="ruby-operator">+</span>
+119:           <span class="ruby-value str">&quot;--exclude=/dev,/proc,/tmp,/var/tmp,/usr/src,/sys &quot;</span> <span class="ruby-operator">+</span>
+120:           <span class="ruby-node">&quot;--logfile=#{$ABT_TMP}/#{@srcDir}.watch make install &gt;/dev/null&quot;</span>
+121:     <span class="ruby-keyword kw">end</span> 
+122:   
+123:     <span class="ruby-constant">Dir</span>.<span class="ruby-identifier">chdir</span>(<span class="ruby-node">&quot;#{$BUILD_LOCATION}/#{@srcDir}&quot;</span>)
+124:     
+125:     <span class="ruby-keyword kw">if</span> <span class="ruby-operator">!</span><span class="ruby-identifier">system</span>(<span class="ruby-identifier">command</span>)
+126:       <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;[AbtPackage.install] - install section failed, exit code was #{$?.exitstatus}.&quot;</span>
+127:       <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">false</span>
+128:     <span class="ruby-keyword kw">end</span>
+129:     
+130:     <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;[AbtPackage.install] - install section completed, exit code was #{$?.exitstatus}!&quot;</span> <span class="ruby-keyword kw">if</span> (<span class="ruby-identifier">verbose</span>)
+131:     <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">true</span>
+132:   <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+</div>
+
+  </div>
+
+    </body>
+</html>

@@ -96,15 +96,45 @@ class AbtReportManager
   # <b>RETURN</b> <i>void.</i>
   ##
   def show_installed_packages
+    logger = Logger.new($JOURNAL)
+    an_error_occurred = false    # set if something is incorrect in the state of an installed package.
+		time_offset_position = 2     # position in array where time offset is to be removed.
+    
     if (Dir.entries($PACKAGE_INSTALLED) - [ '.', '..' ]).empty?
       puts "\nNo AbTLinux packages are listed as installed, is your #{$PACKAGE_INSTALLED} empty?\n\n"
     else
-      puts "\nInstalled AbTLinux packages:"
-      puts "============================"
+      puts "\nInstalled AbTLinux packages:\n\n"
+      puts "Package \t Version \t Installed"
+			puts "========================================================="
+
 			Dir.chdir($PACKAGE_INSTALLED)
-      Dir.foreach($PACKAGE_INSTALLED) {|package| Dir.foreach(package) {|file| puts package if file.match('\.install')} if (package != "." && package != "..")}
+      Dir.foreach($PACKAGE_INSTALLED) { |package| 
+        if package != "." && package != ".."
+          if File.exist?("#{$PACKAGE_INSTALLED}/#{package}/#{package}.install")
+						# display package and version and then clean out offset from  timestamp.
+						name_array = package.split('-')
+						print name_array[0]
+						if package.split('-')[0].length > 7
+							print "\t"
+						else
+							print "\t\t"
+						end
+						name_array.shift   # remove first item, as already printed.
+						name_array.each { |item| print "#{item}" }
+						print "\t\t "
+						time = "#{File.stat("#{$PACKAGE_INSTALLED}/#{package}/#{package}.install").ctime}".split
+						time.each{ |element| print "#{element} " if time.index(element) != time.length - time_offset_position }
+						puts "\n"
+          else
+            logger.error("[show_installed_packages] : #{package} missing install file, while entry exists in installed state.")
+            an_error_occurred = true
+          end
+        end
+      }
       puts "\n"
     end
+    
+    puts "*** From abt : please see the journal for information about installation state inconsistancies. ***" if an_error_occurred
   end
   
   ##
@@ -122,13 +152,11 @@ class AbtReportManager
     system = AbtSystemManager.new
     logger = AbtLogManager.new
     
-    # just return if package not installed, up to 
+    # just return if package log file type is not installed, up to 
     # caller to message the user about why.
-    if !system.package_installed(package)
-      return
+    if File.exists?(logger.get_log(package, logType))
+    	File.open(logger.get_log(package, logType)).each { |line| puts line }
     end
-    
-    File.open(logger.get_log(package, logType)).each { |line| puts line }
   end
   
   ##
@@ -272,14 +300,14 @@ class AbtReportManager
   # names and values are matching descriptions.
   ##
   def search_package_descriptions(searchText)
-    packageHash = Hash.new  # has for values found.
+    packageHash            = Hash.new  # has for values found.
     
     if (Dir.entries($PACKAGE_INSTALLED) - [ '.', '..' ]).empty?
       return packageHash   # empty hash, no entries.
     else
       Dir.foreach($PACKAGE_INSTALLED) { |package| 
         if (package != "." && package != "..")
-          # split the installed entry into two parts,
+					# split the installed entry into two parts,
           # the package name and the version number.
           packageArray = package.split("-")
           packageName  = packageArray[0]
@@ -293,8 +321,8 @@ class AbtReportManager
             matchesArray = sw.description.scan(searchText)
             matchesArray = matchesArray.concat(packageName.scan(searchText))
             
-            if (matchesArray.length > 0)
-              # matches so add to hash.
+            if matchesArray.length > 0 
+              # matches description so add it to hash.
               packageHash = packageHash.merge(Hash[ "#{package}" => "#{sw.description}" ])
             end
           end

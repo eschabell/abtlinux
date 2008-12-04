@@ -1,0 +1,38 @@
+digraph TopLevel {
+    compound = true
+    bgcolor = lightcyan1
+    fontname = Arial
+    fontsize = 8
+    label = "TopLevel"
+    node [
+        fontname = Arial,
+        fontsize = 8,
+        color = black
+    ]
+
+    subgraph cluster_24 {
+        fontname = Arial
+        color = red
+        label = "packages/grep.rb"
+        Grep [
+            fontcolor = black,
+            URL = "classes/Grep.html",
+            shape = ellipse,
+            color = palegoldenrod,
+            style = filled,
+            label = "Grep"
+        ]
+
+    }
+
+    AbtPackage [
+        URL = "classes/AbtPackage.html",
+        label = "AbtPackage"
+    ]
+
+    AbtPackage -> Grep [
+
+    ]
+
+}
+

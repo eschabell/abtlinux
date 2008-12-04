@@ -104,25 +104,6 @@ public
       FileUtils.mkdir_p("#{$PACKAGE_INSTALLED}/#{@srcDir}")
     end
     
-    #Dir.chdir("#{$BUILD_LOCATION}/#{@srcDir}")
-
-    # retrieve patches
-		#if (!system("wget #{@patches}/bash32-???"))
-    #  puts "[bash.rb] - pre section failed during bash patch downloading, exit code was #{$?.exitstatus}."
-    #  return false
-		#end
-
-    # apply patches by cycling through build directory and applying patches.
-		#Dir.foreach("#{$BUILD_LOCATION}/#{@srcDir}") {|file| 
-		#	if file.match('bash32-\d\d\d')
-		#		puts "[bash.rb] - pre section about to apply patch --verbose -p0 < #{file}"
-		#		if (!system("patch --verbose -p0 < #{file}"))
-    #  		puts "[bash.rb] - pre section failed during bash patch application of file #{file}, exit code was #{$?.exitstatus}."
-    #  		return false
-		#		end
-		#	end
-		#}
-    
     return true
   end
 
@@ -141,38 +122,40 @@ public
   # otherwise false.
   ##
   def configure(verbose=true)
-		if (verbose)
-      command = "./configure --prefix=#{$BUILD_PREFIX} \
-                             --sysconfdir=#{$BUILD_SYSCONFDIR} \
-                             --localstatedir=#{$BUILD_LOCALSTATEDIR} \
-                             --mandir=#{$BUILD_MANDIR} \
-                             --infodir=#{$BUILD_INFODIR} \
-			                       --enable-static-link \
-			                       --with-bash-malloc=no \
-      | tee #{$PACKAGE_INSTALLED}/#{@srcDir}/#{@srcDir}.configure"
+    cmd = "./configure --prefix=#{$BUILD_PREFIX} --sysconfdir=#{$BUILD_SYSCONFDIR} --localstatedir=#{$BUILD_LOCALSTATEDIR} --mandir=#{$BUILD_MANDIR} --infodir=#{$BUILD_INFODIR} --enable-static-link --with-bash-malloc=no"
+    verbose_redirect = "| tee #{$PACKAGE_INSTALLED}/#{@srcDir}/#{@srcDir}.configure"
+    silent_redirect = "> #{$PACKAGE_INSTALLED}/#{@srcDir}/#{@srcDir}.configure 2>&1"
+
+    # if we chain commands with pipe for verbose is true, then want to get
+    # the configure command exit status with the following.
+    verbose_results = %x/exit ${PIPESTATUS[0]}/
+
+    # setup command.
+	
+    if verbose
+      cmd = "#{cmd} #{verbose_redirect}; #{verbose_results}"
     else
-      command = "./configure --prefix=#{$BUILD_PREFIX} \
-                             --sysconfdir=#{$BUILD_SYSCONFDIR} \
-                             --localstatedir=#{$BUILD_LOCALSTATEDIR} \
-                             --mandir=#{$BUILD_MANDIR} \
-                             --infodir=#{$BUILD_INFODIR} \
-			                       --enable-static-link \
-			                       --with-bash-malloc=no \
-      1> #{$PACKAGE_INSTALLED}/#{@srcDir}/#{@srcDir}.configure 2>&1"
-    end 
- 
+      cmd = "#{cmd} #{silent_redirect}"
+    end
+
     Dir.chdir("#{$BUILD_LOCATION}/#{@srcDir}")
+    
+    # set our optimizations before configuring.
+    $cflags   = "CFLAGS=" + '"' + $BUILD_CFLAGS + '"'
+    puts "Using the following optimizations:  export #{$cflags}\n"
 
-		# set our optimizations before configuring.
-		$cflags   = "CFLAGS=" + '"' + $BUILD_CFLAGS + '"'
-		puts "Using the following optimizations:  export #{$cflags}\n"
-
-		# now configure.
-		if !system("export #{$cflags}; export CXXFLAGS='${CFLAGS}'; #{command}")
-      puts "[bash.rb] - configure section failed during bash configure, exit code was #{$?.exitstatus}."
+    # now start to configure.
+    if !system("export #{$cflags}; export CXXFLAGS='${CFLAGS}'")
+      puts "[bash.configure] - configure section failed trying to export #{$cflags}, exit code was #{$?.exitstatus}."
       return false
-		end
+    end
 
+    if !system(cmd)
+      puts "[bash.configure] - configure section failed, exit code was #{$?.exitstatus}."
+      return false
+    end
+    
+    puts "[bash.configure] - configure section completed, exit code was #{$?.exitstatus}!" if (verbose)
     return true
   end
 end 

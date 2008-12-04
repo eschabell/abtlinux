@@ -123,6 +123,7 @@ class AbtPackageManager
     
     if (!sw.pre)
       logger.info("Failed to process pre-section in the package description of #{package}.")
+      logger.info("Pre-section of #{package}, failure is related to downloading problems.")
       return false
     else
       logger.info("Finished #{package} pre section.")

@@ -1,0 +1,38 @@
+digraph TopLevel {
+    compound = true
+    bgcolor = lightcyan1
+    fontname = Arial
+    fontsize = 8
+    label = "TopLevel"
+    node [
+        fontname = Arial,
+        fontsize = 8,
+        color = black
+    ]
+
+    subgraph cluster_26 {
+        fontname = Arial
+        color = red
+        label = "packages/ncurses.rb"
+        Ncurses [
+            fontcolor = black,
+            URL = "classes/Ncurses.html",
+            shape = ellipse,
+            color = palegoldenrod,
+            style = filled,
+            label = "Ncurses"
+        ]
+
+    }
+
+    AbtPackage [
+        URL = "classes/AbtPackage.html",
+        label = "AbtPackage"
+    ]
+
+    AbtPackage -> Ncurses [
+
+    ]
+
+}
+

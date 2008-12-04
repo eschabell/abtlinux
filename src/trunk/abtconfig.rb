@@ -61,7 +61,7 @@ $SOURCES_REPOSITORY = "#{$ABT_CACHES}/sources"
 
 # default config options.
 #
-$ABT_VERSION           = "0.2"
+$ABT_VERSION           = "0.3"
 $BUILD_ARCH            = "-march=pentium2"      # i686, pentium II.
 $BUILD_SIZE            = "-Os"                  # optimize for size.
 $BUILD_NODEBUG         = "-fomit-frame-pointer" # removes debug info.
@@ -77,7 +77,7 @@ $REMOVE_BUILD_SOURCES  = true
 $TIMESTAMP             = Time.now.strftime( "%Y-%m-%d %H:%M:%S (%Z)" )
 $PAGER_DEFAULT         = "less -R -E -X -f"
 $LOG_LEVEL             = "Logger::DEBUG"
-$ABTLINUX_PACKAGES     = "https://abtlinux.svn.sourceforge.net/svnroot/abtlinux/src/trunk/packages"
+$ABTLINUX_PACKAGES     = "https://svn2.assembla.com/svn/abtlinux/src/trunk/packages"
 
 # default URL listing.
 #
@@ -88,7 +88,7 @@ $ABTNEWS_THREADS    = "http://abtlinux.org/e107_plugins/rss_menu/rss.php?6.2"
 $APACHE_URL         = "http://www.ibiblio.org/pub/mirrors/apache"
 $CTAN_URL           = "ftp://tug.ctan.org/tex-archive"
 $GNOME_URL          = "ftp://ftp.gnome.org/pub/GNOME"
-$GNU_URL            = "ftp://ftp.gnu.org/pub/gnu"
+$GNU_URL            = "http://ftp.gnu.org/gnu"
 $KDE_URL            = "ftp://ftp.kde.org/pub/kde"
 $KERNEL_URL         = "ftp://ftp.kernel.org"
 $SOURCEFORGE_URL    = "http://osdn.dl.sourceforge.net/sourceforge"

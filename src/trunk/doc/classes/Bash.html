@@ -1,0 +1,301 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+  <head>
+    <title>Class: Bash</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+    <link rel="stylesheet" href=".././rdoc-style.css" type="text/css" media="screen" />
+
+    <script language="JavaScript" type="text/javascript">
+    // <![CDATA[
+
+        function toggleSource(id)
+        {
+          var elem
+          var link
+
+          if(document.getElementById)
+          {
+            elem = document.getElementById(id)
+            link = document.getElementById("l_" + id)
+          }
+          else if (document.all)
+          {
+            elem = eval("document.all." + id)
+            link = eval("document.all.l_" + id)
+          }
+          else
+            return false;
+
+          if(elem.style.display == "block")
+          {
+            elem.style.display = "none"
+            link.innerHTML = "show source"
+          }
+          else
+          {
+            elem.style.display = "block"
+            link.innerHTML = "hide source"
+          }
+        }
+
+        function openCode(url)
+        {
+          window.open(url, "SOURCE_CODE", "width=400,height=400,scrollbars=yes")
+        }
+      // ]]>
+    </script>
+  </head>
+
+  <body>
+  <table width="100%" border='0' cellpadding='0' cellspacing='0' class='banner'><tr>
+  <td class="file-title"><span class="file-title-prefix">Class</span><br />Bash</td>
+  <td align="right">
+    <table cellspacing=0 cellpadding=2>
+      <tr valign="top">
+        <td>In:</td>
+        <td>
+<a href="../files/packages/bash_rb.html">packages/bash.rb</a>
+        </td>
+      </tr>
+    <tr>
+      <td>Parent:</td>
+      <td>
+        <a href="AbtPackage.html">
+AbtPackage
+         </a>
+     </td>
+   </tr>
+         </table>
+        </td>
+        </tr>
+      </table>
+ <!-- banner header -->
+
+  <div id="bodyContent">
+      <div id="content">
+  <table cellpadding='0' cellspacing='0' border='0' width="100%"><tr><td align="center">
+    <map id="map" name="map">
+  <area shape="rect" coords="32,101,104,149"      href="Bash.html" alt="Bash" />
+  <area shape="rect" coords="24,5,112,53"      href="AbtPackage.html" alt="AbtPackage" />
+</map>
+<img src="../dot/f_17.png" usemap="#map" border="0" alt="dot/f_17.png">
+  </td></tr></table>
+
+  <div class="description"><p>
+bash.rb
+</p>
+<p>
+<a href="Bash.html">Bash</a> package.
+</p>
+<p>
+Created by Eric D. Schabell &lt;erics@abtlinux.org&gt; Copyright 2008, GPL.
+</p>
+<p>
+This file is part of AbTLinux.
+</p>
+<p>
+AbTLinux is free software; you can redistribute it and/or modify it under
+the terms of the GNU General Public License as published by the Free
+Software Foundation; either version 2 of the License, or (at your option)
+any later version.
+</p>
+<p>
+AbTLinux is distributed in the hope that it will be useful, but WITHOUT ANY
+WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
+details.
+</p>
+<p>
+You should have received a copy of the GNU General Public License along
+with AbTLinux; if not, write to the Free Software Foundation, Inc., 51
+Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
+</p>
+</div>
+
+
+
+  <div class="sectiontitle">Methods</div>
+  <ul>
+  <li><a href="#M000110">configure</a></li>
+  <li><a href="#M000108">new</a></li>
+  <li><a href="#M000109">pre</a></li>
+  </ul>
+
+
+
+
+
+
+<div class="sectiontitle">Public Class methods</div>
+<div class="method">
+  <div class="title">
+    <a name="M000108"></a><b>new</b>()
+  </div>
+  <div class="description">
+  <p>
+Constructor for an <a href="AbtPackage.html">AbtPackage</a>, requires all
+the packge details.
+</p>
+<p>
+<b>PARAM</b> <em>Hash</em> - hash containing all pacakge data.
+</p>
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000108_source')" id="l_M000108_source">show source</a> ]</p>
+  <div id="M000108_source" class="dyn-source">
+<pre>
+    <span class="ruby-comment cmt"># File packages/bash.rb, line 70</span>
+70:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>()
+71:       <span class="ruby-keyword kw">super</span>(<span class="ruby-identifier">$packageData</span>)
+72:   <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="sectiontitle">Public Instance methods</div>
+<div class="method">
+  <div class="title">
+    <a name="M000110"></a><b>configure</b>(verbose=true)
+  </div>
+  <div class="description">
+  <p>
+Here we manage the ./<a href="Bash.html#M000110">configure</a> step (or
+equivalent). We need to give ./<a href="Bash.html#M000110">configure</a>
+(or autogen.sh, or whatever) the correct options so files are to be placed
+later in the right directories, so doc files and man pages are all in the
+same common location, etc. Don&#8216;t forget too that it&#8216;s here
+where we interact with the user in case there are optionnal dependencies.
+</p>
+<p>
+<b>PARAM</b> <em>boolean</em> - true if you want to see the verbose output,
+otherwise false. Defaults to true.
+</p>
+<p>
+<b>RETURNS:</b> <em>boolean</em> - True if the completes sucessfully,
+otherwise false.
+</p>
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000110_source')" id="l_M000110_source">show source</a> ]</p>
+  <div id="M000110_source" class="dyn-source">
+<pre>
+     <span class="ruby-comment cmt"># File packages/bash.rb, line 143</span>
+143:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">configure</span>(<span class="ruby-identifier">verbose</span>=<span class="ruby-keyword kw">true</span>)
+144:                 <span class="ruby-keyword kw">if</span> (<span class="ruby-identifier">verbose</span>)
+145:       <span class="ruby-identifier">command</span> = <span class="ruby-node">&quot;./configure --prefix=#{$BUILD_PREFIX} \
+146:                              --sysconfdir=#{$BUILD_SYSCONFDIR} \
+147:                              --localstatedir=#{$BUILD_LOCALSTATEDIR} \
+148:                              --mandir=#{$BUILD_MANDIR} \
+149:                              --infodir=#{$BUILD_INFODIR} \
+150:                                                --enable-static-link \
+151:                                                --with-bash-malloc=no \
+152:       | tee #{$PACKAGE_INSTALLED}/#{@srcDir}/#{@srcDir}.configure&quot;</span>
+153:     <span class="ruby-keyword kw">else</span>
+154:       <span class="ruby-identifier">command</span> = <span class="ruby-node">&quot;./configure --prefix=#{$BUILD_PREFIX} \
+155:                              --sysconfdir=#{$BUILD_SYSCONFDIR} \
+156:                              --localstatedir=#{$BUILD_LOCALSTATEDIR} \
+157:                              --mandir=#{$BUILD_MANDIR} \
+158:                              --infodir=#{$BUILD_INFODIR} \
+159:                                                --enable-static-link \
+160:                                                --with-bash-malloc=no \
+161:       1&gt; #{$PACKAGE_INSTALLED}/#{@srcDir}/#{@srcDir}.configure 2&gt;&amp;1&quot;</span>
+162:     <span class="ruby-keyword kw">end</span> 
+163:  
+164:     <span class="ruby-constant">Dir</span>.<span class="ruby-identifier">chdir</span>(<span class="ruby-node">&quot;#{$BUILD_LOCATION}/#{@srcDir}&quot;</span>)
+165: 
+166:                 <span class="ruby-comment cmt"># set our optimizations before configuring.</span>
+167:                 <span class="ruby-identifier">$cflags</span>   = <span class="ruby-value str">&quot;CFLAGS=&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-value str">'&quot;'</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">$BUILD_CFLAGS</span> <span class="ruby-operator">+</span> <span class="ruby-value str">'&quot;'</span>
+168:                 <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;Using the following optimizations:  export #{$cflags}\n&quot;</span>
+169: 
+170:                 <span class="ruby-comment cmt"># now configure.</span>
+171:                 <span class="ruby-keyword kw">if</span> <span class="ruby-operator">!</span><span class="ruby-identifier">system</span>(<span class="ruby-node">&quot;export #{$cflags}; export CXXFLAGS='${CFLAGS}'; #{command}&quot;</span>)
+172:       <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;[bash.rb] - configure section failed during bash configure, exit code was #{$?.exitstatus}.&quot;</span>
+173:       <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">false</span>
+174:                 <span class="ruby-keyword kw">end</span>
+175: 
+176:     <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">true</span>
+177:   <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000109"></a><b>pre</b>(verbose=true)
+  </div>
+  <div class="description">
+  <p>
+Preliminary work will happen here such as downloading the tarball,
+unpacking it, downloading and applying patches.
+</p>
+<p>
+<b>PARAM</b> <em>boolean</em> - true if you want to see the verbose output,
+otherwise false. Defaults to true.
+</p>
+<p>
+<b>RETURNS:</b> <em>boolean</em> - True if completes sucessfully, otherwise
+false.
+</p>
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000109_source')" id="l_M000109_source">show source</a> ]</p>
+  <div id="M000109_source" class="dyn-source">
+<pre>
+     <span class="ruby-comment cmt"># File packages/bash.rb, line 84</span>
+ 84:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">pre</span>(<span class="ruby-identifier">verbose</span>=<span class="ruby-keyword kw">true</span>)
+ 85:     <span class="ruby-identifier">downloader</span> = <span class="ruby-constant">AbtDownloadManager</span>.<span class="ruby-identifier">new</span>
+ 86:     
+ 87:     <span class="ruby-comment cmt"># download sources.</span>
+ 88:     <span class="ruby-keyword kw">if</span> (<span class="ruby-operator">!</span><span class="ruby-identifier">downloader</span>.<span class="ruby-identifier">retrieve_package_source</span>(<span class="ruby-ivar">@name</span>.<span class="ruby-identifier">downcase</span>, <span class="ruby-identifier">$SOURCES_REPOSITORY</span>))
+ 89:       <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">false</span>
+ 90:     <span class="ruby-keyword kw">end</span>
+ 91:     
+ 92:     <span class="ruby-comment cmt"># validate sources sha1.</span>
+ 93:     <span class="ruby-keyword kw">if</span> (<span class="ruby-operator">!</span><span class="ruby-identifier">downloader</span>.<span class="ruby-identifier">validated</span>(<span class="ruby-ivar">@hashCheck</span>, <span class="ruby-node">&quot;#{$SOURCES_REPOSITORY}/#{File.basename(@srcUrl)}&quot;</span>))
+ 94:       <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">false</span>
+ 95:     <span class="ruby-keyword kw">end</span>
+ 96:     
+ 97:     <span class="ruby-comment cmt"># unpack sources.</span>
+ 98:     <span class="ruby-keyword kw">if</span> (<span class="ruby-operator">!</span><span class="ruby-identifier">unpack_sources</span>)
+ 99:       <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">false</span>
+100:     <span class="ruby-keyword kw">end</span>
+101:     
+102:     <span class="ruby-comment cmt"># ensure we have an installed directory to use.</span>
+103:     <span class="ruby-keyword kw">if</span> (<span class="ruby-operator">!</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">directory?</span>(<span class="ruby-node">&quot;#{$PACKAGE_INSTALLED}/#{@srcDir}&quot;</span>))
+104:       <span class="ruby-constant">FileUtils</span>.<span class="ruby-identifier">mkdir_p</span>(<span class="ruby-node">&quot;#{$PACKAGE_INSTALLED}/#{@srcDir}&quot;</span>)
+105:     <span class="ruby-keyword kw">end</span>
+106:     
+107:     <span class="ruby-comment cmt">#Dir.chdir(&quot;#{$BUILD_LOCATION}/#{@srcDir}&quot;)</span>
+108: 
+109:     <span class="ruby-comment cmt"># retrieve patches</span>
+110:                 <span class="ruby-comment cmt">#if (!system(&quot;wget #{@patches}/bash32-???&quot;))</span>
+111:     <span class="ruby-comment cmt">#  puts &quot;[bash.rb] - pre section failed during bash patch downloading, exit code was #{$?.exitstatus}.&quot;</span>
+112:     <span class="ruby-comment cmt">#  return false</span>
+113:                 <span class="ruby-comment cmt">#end</span>
+114: 
+115:     <span class="ruby-comment cmt"># apply patches by cycling through build directory and applying patches.</span>
+116:                 <span class="ruby-comment cmt">#Dir.foreach(&quot;#{$BUILD_LOCATION}/#{@srcDir}&quot;) {|file| </span>
+117:                 <span class="ruby-comment cmt">#     if file.match('bash32-\d\d\d')</span>
+118:                 <span class="ruby-comment cmt">#             puts &quot;[bash.rb] - pre section about to apply patch --verbose -p0 &lt; #{file}&quot;</span>
+119:                 <span class="ruby-comment cmt">#             if (!system(&quot;patch --verbose -p0 &lt; #{file}&quot;))</span>
+120:     <span class="ruby-comment cmt">#           puts &quot;[bash.rb] - pre section failed during bash patch application of file #{file}, exit code was #{$?.exitstatus}.&quot;</span>
+121:     <span class="ruby-comment cmt">#           return false</span>
+122:                 <span class="ruby-comment cmt">#             end</span>
+123:                 <span class="ruby-comment cmt">#     end</span>
+124:                 <span class="ruby-comment cmt">#}</span>
+125:     
+126:     <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">true</span>
+127:   <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+</div>
+
+  </div>
+
+    </body>
+</html>

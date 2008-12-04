@@ -33,14 +33,27 @@ FILES="./libs/abtdepengine.rb
 		./tests/testabtqueuemanager.rb
 		./tests/testabtreportmanager.rb
 		./tests/testabtsystemmanager.rb
+		./packages/bash.rb
+		./packages/binutils.rb
+		./packages/checkinstall.rb
+		./packages/diffutils.rb
+		./packages/findutils.rb
+		./packages/fortune.rb
+		./packages/grep.rb
+		./packages/ipc.rb
+		./packages/ncurses.rb
+		./packages/sed.rb
+		./packages/tar.rb
+		./packages/wget.rb
 		";
 
 # run the actual doc generation.
-rdoc	--diagram                               \
+rdoc	--diagram                             \
 		--template $TEMPLATE                    \
 		--fileboxes                             \
 		--inline-source                         \
 		--line-numbers                          \
+		--force-update                          \
 		--main AbtPackageManager                \
 		--title "AbTLinux Package Manager API"  \
 		$FILES

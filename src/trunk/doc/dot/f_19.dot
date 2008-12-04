@@ -1,0 +1,38 @@
+digraph TopLevel {
+    compound = true
+    bgcolor = lightcyan1
+    fontname = Arial
+    fontsize = 8
+    label = "TopLevel"
+    node [
+        fontname = Arial,
+        fontsize = 8,
+        color = black
+    ]
+
+    subgraph cluster_20 {
+        fontname = Arial
+        color = red
+        label = "packages/checkinstall.rb"
+        Checkinstall [
+            fontcolor = black,
+            URL = "classes/Checkinstall.html",
+            shape = ellipse,
+            color = palegoldenrod,
+            style = filled,
+            label = "Checkinstall"
+        ]
+
+    }
+
+    AbtPackage [
+        URL = "classes/AbtPackage.html",
+        label = "AbtPackage"
+    ]
+
+    AbtPackage -> Checkinstall [
+
+    ]
+
+}
+

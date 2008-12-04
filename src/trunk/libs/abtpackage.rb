@@ -241,40 +241,48 @@ class AbtPackage
   #
   # <b>PARAM</b> <i>boolean</i> - true if you want to see the verbose output,
   # otherwise false. Defaults to true.
-  # 
+  #
   # <b>RETURNS:</b>  <i>boolean</i> - True if the completes sucessfully, 
   # otherwise false.
   ##
   def configure(verbose=true)
-    if (verbose)
-      command = "./configure --prefix=#{$BUILD_PREFIX} \
-                             --sysconfdir=#{$BUILD_SYSCONFDIR} \
-                             --localstatedir=#{$BUILD_LOCALSTATEDIR} \
-                             --mandir=#{$BUILD_MANDIR} \
-                             --infodir=#{$BUILD_INFODIR} \
-      | tee #{$PACKAGE_INSTALLED}/#{@srcDir}/#{@srcDir}.configure"
-    else
-      command = "./configure --prefix=#{$BUILD_PREFIX} \
-                             --sysconfdir=#{$BUILD_SYSCONFDIR} \
-                             --localstatedir=#{$BUILD_LOCALSTATEDIR} \
-                             --mandir=#{$BUILD_MANDIR} \
-                             --infodir=#{$BUILD_INFODIR} \
-      1> #{$PACKAGE_INSTALLED}/#{@srcDir}/#{@srcDir}.configure 2>&1"
-    end 
+    cmd = "./configure --prefix=#{$BUILD_PREFIX} --sysconfdir=#{$BUILD_SYSCONFDIR} --localstatedir=#{$BUILD_LOCALSTATEDIR} --mandir=#{$BUILD_MANDIR} --infodir=#{$BUILD_INFODIR}" 
+    verbose_redirect = "| tee #{$PACKAGE_INSTALLED}/#{@srcDir}/#{@srcDir}.configure"
+    silent_redirect = "> #{$PACKAGE_INSTALLED}/#{@srcDir}/#{@srcDir}.configure 2>&1"
+
+    # if we chain commands with pipe for verbose is true, then want to get
+    # the configure command exit status with the following.
+    verbose_results = %x/exit ${PIPESTATUS[0]}/
     
+    # setup command.
+    if verbose
+      command = "#{cmd} #{verbose_redirect}; #{verbose_results}"
+      puts "DEBUG verbose: #{command}"
+    else
+      command = "#{cmd} #{silent_redirect}"
+      puts "DEBUG not verbose: #{command}"
+    end
+
     Dir.chdir("#{$BUILD_LOCATION}/#{@srcDir}")
 
-		# set our optimizations before configuring.
-		$cflags   = "CFLAGS=" + '"' + $BUILD_CFLAGS + '"'
-		puts "Using the following optimizations:  export #{$cflags}\n"
+    # set our optimizations before configuring.
+    $cflags   = "CFLAGS=" + '"' + $BUILD_CFLAGS + '"'
+    puts "Using the following optimizations:  export #{$cflags}\n"
 
-		# now configure.
-		if !system("export #{$cflags}; export CXXFLAGS='${CFLAGS}'; #{command}")
+    # now start to configure.
+    if !system("export #{$cflags}; export CXXFLAGS='${CFLAGS}'")
+      puts "[AbtPackage.configure] - configure section failed trying to export #{$cflags}, exit code was #{$?.exitstatus}."
+      return false
+    end
+    
+    puts "DEBUG: exported our flags fine!"
+
+    if !system(command)
       puts "[AbtPackage.configure] - configure section failed, exit code was #{$?.exitstatus}."
       return false
-		end
-    	
-		puts "[AbtPackage.configure] - configure section completed, exit code was #{$?.exitstatus}!" if (verbose)
+    end
+    
+    puts "[AbtPackage.configure] - configure section completed, exit code was #{$?.exitstatus}!" if (verbose)
     return true
   end
   
@@ -289,15 +297,25 @@ class AbtPackage
   # otherwise false.
   ##
   def build(verbose=true)
-    if (verbose)
-      command = "make | tee #{$PACKAGE_INSTALLED}/#{@srcDir}/#{@srcDir}.build"
+    cmd = "make"
+    verbose_redirect = "| tee #{$PACKAGE_INSTALLED}/#{@srcDir}/#{@srcDir}.build"
+    silent_redirect = "> #{$PACKAGE_INSTALLED}/#{@srcDir}/#{@srcDir}.build 2>&1"
+
+    # if we chain commands with pipe for verbose is true, then want to get
+    # the configure command exit status with the following.
+    verbose_results = %x/exit ${PIPESTATUS[0]}/    
+    
+    # setup command.
+    if verbose
+	    cmd = "#{cmd} #{verbose_redirect}; #{verbose_results}"
     else
-      command = "make > #{$PACKAGE_INSTALLED}/#{@srcDir}/#{@srcDir}.build 2>&1"
-    end 
+	    cmd = "#{cmd} #{silent_redirect}"
+    end
+
 
     Dir.chdir("#{$BUILD_LOCATION}/#{@srcDir}")
     
-    if !system(command)
+    if !system(cmd)
       puts "[AbtPackage.build] - build section failed, exit code was #{$?.exitstatus}."
       return false
     end
@@ -372,11 +390,11 @@ class AbtPackage
     end 
   
     if !system(command)
-      puts "[AbtPackage.post] - post section failed, exit code was #{$?.exitstatus}."
+      puts "[AbtPackage.post] - post section failed trying to run ldconfig, exit code was #{$?.exitstatus}."
       return false
     end
     
-    puts "[AbtPackage.post] - post section completed, exit code was #{$?.exitstatus}!" if (verbose)
+    puts "[AbtPackage.post] - post section completed run of ldconfig, exit code was #{$?.exitstatus}!" if (verbose)
     return true
   end
   

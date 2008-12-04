@@ -35,27 +35,27 @@ protected
   
 private
   
-  $name				  = "Ipc"
-  $version			= "1.4"
-  $srcDir			  = "#{$name.downcase}-#{$version}"
+  $name		= "Ipc"
+  $version	= "1.4"
+  $srcDir	= "#{$name.downcase}-#{$version}"
   $srcFile      = "#{$srcDir}.tar.gz"
   $packageData	= {
-    'name'				      => $name,
-    'execName'		      => $name.downcase,
-    'version'			      => $version,
-    'srcDir'			      => $srcDir,
-    'homepage'		      => "http://isotopatcalc.sourceforge.net/",
-    'srcUrl'			      => "#{$SOURCEFORGE_URL}/isotopatcalc/#{$srcFile}",
-    'dependsOn'			    => "",
-    'reliesOn'			    => "",
-    'optionalDO'		    => "",
-    'optionalRO'		    => "",
-    'hashCheck'			    => "c7100a74f4f6cafa4607bc5bd68a1175a1876ecc",
-    'patches'			      => "",
+    'name'		=> $name,
+    'execName'		=> $name.downcase,
+    'version'		=> $version,
+    'srcDir'		=> $srcDir,
+    'homepage'		=> "http://isotopatcalc.sourceforge.net/",
+    'srcUrl'		=> "#{$SOURCEFORGE_URL}/isotopatcalc/#{$srcFile}",
+    'dependsOn'		=> "",
+    'reliesOn'		=> "",
+    'optionalDO'	=> "",
+    'optionalRO'	=> "",
+    'hashCheck'		=> "c7100a74f4f6cafa4607bc5bd68a1175a1876ecc",
+    'patches'		=> "",
     'patchesHashCheck'	=> "",
-    'mirrorPath'		    => "",
-    'license'			      => "GPL",
-    'description'		    => "IPC is a program that calculates the isotopic distribution of a given chemical formula."
+    'mirrorPath'	=> "",
+    'license'		=> "GPL",
+    'description'	=> "IPC is a program that calculates the isotopic distribution of a given chemical formula."
   }
 
   

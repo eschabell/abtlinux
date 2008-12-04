@@ -1,0 +1,38 @@
+digraph TopLevel {
+    compound = true
+    bgcolor = lightcyan1
+    fontname = Arial
+    fontsize = 8
+    label = "TopLevel"
+    node [
+        fontname = Arial,
+        fontsize = 8,
+        color = black
+    ]
+
+    subgraph cluster_25 {
+        fontname = Arial
+        color = red
+        label = "packages/ipc.rb"
+        Ipc [
+            fontcolor = black,
+            URL = "classes/Ipc.html",
+            shape = ellipse,
+            color = palegoldenrod,
+            style = filled,
+            label = "Ipc"
+        ]
+
+    }
+
+    AbtPackage [
+        URL = "classes/AbtPackage.html",
+        label = "AbtPackage"
+    ]
+
+    AbtPackage -> Ipc [
+
+    ]
+
+}
+
