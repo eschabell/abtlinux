@@ -1,6 +1,5 @@
 #!/usr/bin/ruby -w
-$DEFAULT_PREFIX = "/usr/local"
-$LOAD_PATH.unshift "#{$DEFAULT_PREFIX}/var/lib/abt/"
+
 ##
 # abtconfig.rb
 #
@@ -27,6 +26,18 @@ $LOAD_PATH.unshift "#{$DEFAULT_PREFIX}/var/lib/abt/"
 ##
 
 # global requires.
+require 'fileutils'
+require 'ftools'
+require 'find'
+require 'logger'
+require 'digest/sha1'
+
+# need this path here first before loading our project requires.
+$DEFAULT_PREFIX = "/usr/local"
+$ABT_LIBS       = File.join($DEFAULT_PREFIX, "var", "lib", "abt")
+$LOAD_PATH.unshift $ABT_LIBS
+
+# project requires.
 require 'abtdownloadmanager'
 require 'abtlogmanager'
 require 'abtpackagemanager'
@@ -37,26 +48,20 @@ require 'abtreportmanager'
 require 'abtsystemmanager'
 require 'abtusage'
 
-require 'fileutils'
-require 'find'
-require 'logger'
-require 'digest/sha1'
-
 # default paths / locations.
-$ABT_LOGS           = "#{$DEFAULT_PREFIX}/var/log/abt"
-$ABT_CACHES         = "#{$DEFAULT_PREFIX}/var/spool/abt"
-$ABT_STATE          = "#{$DEFAULT_PREFIX}/var/state/abt"
+$ABT_LOGS           = File.join($DEFAULT_PREFIX, "var", "log", "abt")
+$ABT_CACHES         = File.join($DEFAULT_PREFIX, "var", "spool", "abt")
+$ABT_STATE          = File.join($DEFAULT_PREFIX, "var", "state", "abt")
 $ABT_TMP            = "/tmp/abt"
-$ABT_CONFIG         = "#{$DEFAULT_PREFIX}/etc/abt"
-$ABT_LIBS           = "#{$DEFAULT_PREFIX}/var/lib/abt"
-$ABT_LOCAL_CONFIG   = "#{$DEFAULT_PREFIX}/etc/abt/local"
-$ABTNEWS_LOG        = "#{$ABT_LOGS}/news.log"
-$BUILD_LOCATION		  = "#{$DEFAULT_PREFIX}/usr/src"
-$JOURNAL            = "#{$ABT_LOGS}/journal.log"  # use logger.info.
-$PACKAGE_INSTALLED  = "#{$ABT_STATE}/installed"
-$PACKAGE_CACHED     = "#{$ABT_STATE}/cached"
-$PACKAGE_PATH       = "#{$ABT_CACHES}/packages"
-$SOURCES_REPOSITORY = "#{$ABT_CACHES}/sources"
+$ABT_CONFIG         = File.join($DEFAULT_PREFIX, "etc", "abt")
+$ABT_LOCAL_CONFIG   = File.join($DEFAULT_PREFIX, "etc", "abt", "local")
+$ABTNEWS_LOG        = File.join($ABT_LOGS, "news.log")
+$BUILD_LOCATION		  = File.join($DEFAULT_PREFIX, "usr", "src")
+$JOURNAL            = File.join($ABT_LOGS, "journal.log")  # use logger.info.
+$PACKAGE_INSTALLED  = File.join($ABT_STATE, "installed")
+$PACKAGE_CACHED     = File.join($ABT_STATE, "cached")
+$PACKAGE_PATH       = File.join($ABT_CACHES, "packages")
+$SOURCES_REPOSITORY = File.join($ABT_CACHES, "sources")
 
 
 # default config options.
@@ -67,11 +72,11 @@ $BUILD_SIZE            = "-Os"                  # optimize for size.
 $BUILD_NODEBUG         = "-fomit-frame-pointer" # removes debug info.
 $BUILD_SPEEDY          = "-pipe"                # faster compile, pipes into next function instead of temp files.
 $BUILD_CFLAGS          = "#{$BUILD_ARCH} #{$BUILD_SIZE} #{$BUILD_SPEEDY} #{$BUILD_NODEBUG}" # all our build options.
-$BUILD_PREFIX          = "#{$DEFAULT_PREFIX}/usr"
-$BUILD_SYSCONFDIR      = "#{$DEFAULT_PREFIX}/etc"
-$BUILD_LOCALSTATEDIR   = "#{$DEFAULT_PREFIX}/var"
-$BUILD_MANDIR          = "#{$DEFAULT_PREFIX}/usr/share/man"
-$BUILD_INFODIR         = "#{$DEFAULT_PREFIX}/usr/share/info"
+$BUILD_PREFIX          = File.join($DEFAULT_PREFIX, "usr")
+$BUILD_SYSCONFDIR      = File.join($DEFAULT_PREFIX, "etc")
+$BUILD_LOCALSTATEDIR   = File.join($DEFAULT_PREFIX, "var")
+$BUILD_MANDIR          = File.join($DEFAULT_PREFIX, "usr", "share", "man")
+$BUILD_INFODIR         = File.join($DEFAULT_PREFIX, "usr", "share", "info")
 
 $REMOVE_BUILD_SOURCES  = true
 $TIMESTAMP             = Time.now.strftime( "%Y-%m-%d %H:%M:%S (%Z)" )
