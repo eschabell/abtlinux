@@ -43,13 +43,13 @@ class AbtPackageManager
   # false.
   ##
   def roll_back(type, details)
-    logFile = "#{$PACKAGE_INSTALLED}/#{details['Source location']}/"
+    log_file = File.join($PACKAGE_INSTALLED, details['Source location'])
     
     case type
     when "install"
-      logFile = logFile + "#{details['Source location']}.install"
+      log_file = log_file + "#{details['Source location']}.install"
       
-      file = File.new(logFile, "r")
+      file = File.new(log_file, "r")
       while (line = file.gets)
         if (File.file?(line.chomp))
           File.delete(line.chomp)
@@ -58,7 +58,7 @@ class AbtPackageManager
       file.close
       
       # cleanup install log as it is incomplete.
-      File.delete(logFile)
+      File.delete(log_file)
     else
       return false
     end
@@ -95,8 +95,8 @@ class AbtPackageManager
     logger = Logger.new($JOURNAL)
 		system = AbtSystemManager.new
     
-    # TODO: refactor myLogger:
-    myLogger = AbtLogManager.new
+    # TODO: refactor my_logger:
+    my_logger = AbtLogManager.new
     
     # get package details.
     details = sw.details
@@ -146,7 +146,7 @@ class AbtPackageManager
       logger.info("Failed to process build section in the package description of #{package}.")
       return false
     else
-      if (!myLogger.log_package_build(sw.name.downcase)) 
+      if (!my_logger.log_package_build(sw.name.downcase)) 
         logger.info("Failed to create a package build log.")
         return false
       end
@@ -169,13 +169,13 @@ class AbtPackageManager
     if (!sw.install)
       # rollback installed files if any and remove install log.
       logger.info("Failed to process install section in the package description of #{package}.")
-      myLogger.log_package_install(sw.name.downcase)
+      my_logger.log_package_install(sw.name.downcase)
       logger.info("***Starting rollback of #{package} install and removing install log.")
       roll_back("install", details)
       return false
     else
-      myLogger.log_package_install(sw.name.downcase)
-      myLogger.log_package_integrity(sw.name.downcase)
+      my_logger.log_package_install(sw.name.downcase)
+      my_logger.log_package_integrity(sw.name.downcase)
       
       # cleanup tmp files from installwatch.
       File.delete("#{$ABT_TMP}/#{details['Source location']}.watch")
@@ -285,8 +285,8 @@ class AbtPackageManager
   def remove_package(package)
     require "#{$PACKAGE_PATH}/#{package}"
     sw = eval("#{package.capitalize}.new")
-    # TODO: refactor myLogger.
-    myLogger = AbtLogManager.new
+    # TODO: refactor my_logger.
+    my_logger = AbtLogManager.new
     logger = Logger.new($JOURNAL)
 		system = AbtSystemManager.new
     
@@ -303,12 +303,12 @@ class AbtPackageManager
     # TODO: something with possible /etc or other configure files before removal, check maybe integrity for changes since install?
 
     # remove listings in install log.
-    installLog = myLogger.get_log(package, 'install')
+    install_log = my_logger.get_log(package, 'install')
 
     # only process install log if it exists, continue on with 
     # journal log warning.
-    if File.exist?(installLog)
-      IO.foreach(installLog) do |line|
+    if File.exist?(install_log)
+      IO.foreach(install_log) do |line|
         if File.exist?(line.chomp)
           FileUtils.rm(line.chomp)
           logger.info("Removed file #{line.chomp} from #{package} install log.")
@@ -318,7 +318,7 @@ class AbtPackageManager
         end
       end
       
-      logger.info("Removed files from #{File.basename(installLog)} for #{package}.")
+      logger.info("Removed files from #{File.basename(install_log)} for #{package}.")
     else
       puts "Install log missing for #{package}, see journal..."
       logger.info("Install log was missing for #{package}...")
@@ -327,7 +327,7 @@ class AbtPackageManager
       
           
     # remove entry in install listing.
-    FileUtils.remove_dir("#{$PACKAGE_INSTALLED}/#{details['Source location']}")    
+    FileUtils.remove_dir(File.join($PACKAGE_INSTALLED, details['Source location']))    
     logger.info("Removed entry from installed packages.")
     return true
   end
@@ -377,12 +377,12 @@ class AbtPackageManager
 
 				# package already frozen, need to un-freeze by removing frozen.log
 				# file.
-				FileUtils.rm "#{$PACKAGE_INSTALLED}/#{sw.srcDir}/frozen.log"
+				FileUtils.rm(File.join($PACKAGE_INSTALLED, sw.srcDir, "frozen.log"))
 				puts "\nPackage #{package} was frozen, it has now been relased for use."
 				logger.info "Package #{package} released : removed file #{$PACKAGE_INSTALLED}/#{sw.srcDir}/frozen.log"
 			else
 				# place file in $PACKAGE_INSTALLED frozen.log with date.
-				frozen = File.open("#{$PACKAGE_INSTALLED}/#{sw.srcDir}/frozen.log", "w")
+				frozen = File.open(File.join($PACKAGE_INSTALLED, sw.srcDir, "frozen.log"), "w")
 				frozen.puts "#{$TIMESTAMP}"
 				frozen.close
   			logger.info("Package #{package} is now frozen.")
@@ -431,65 +431,65 @@ class AbtPackageManager
     logger = AbtLogManager.new
     
     if (system.package_installed(package))
-      sw           = eval("#{package.capitalize}.new")
-      cachedDir    = "#{$PACKAGE_CACHED}/#{sw.srcDir}"
-      sourcePath   = "#{$SOURCES_REPOSITORY}/#{File.basename(sw.srcUrl)}"
-      sourceFile   = File.basename(sw.srcUrl)
-      installLog   = logger.get_log(package, 'install')
-      buildLog     = logger.get_log(package, 'build')
-      configureLog = logger.get_log(package, 'configure')
-      integrityLog = logger.get_log(package, 'integrity')
-      packageFile  = "#{$PACKAGE_PATH}/#{package}.rb"
+      sw            = eval("#{package.capitalize}.new")
+      cached_dir    = File.join($PACKAGE_CACHED, sw.srcDir)
+      source_path   = File.join($SOURCES_REPOSITORY, File.basename(sw.srcUrl))
+      source_file   = File.basename(sw.srcUrl)
+      install_log   = logger.get_log(package, 'install')
+      build_log     = logger.get_log(package, 'build')
+      configure_log = logger.get_log(package, 'configure')
+      integrity_log = logger.get_log(package, 'integrity')
+      package_file  = File.join($PACKAGE_PATH, "#{package}.rb")
       
       
-      FileUtils.mkdir_p(cachedDir)
+      FileUtils.mkdir_p(cached_dir)
 
       # collect package source.
-      if (FileTest::exist?(sourcePath))
-        FileUtils.copy_file(sourcePath, "#{cachedDir}/#{sourceFile}")
+      if (FileTest::exist?(source_path))
+        FileUtils.copy_file(source_path, File.join(cached_dir, source_file))
         puts "\nCaching copy of #{package} source."
       else
         puts "\nUnable to cache copy of #{package} source."
       end
         
       # collect package install log. 
-      if (FileTest::exist?(installLog))
-        FileUtils.copy_file(installLog, "#{cachedDir}/#{sw.srcDir}.install")
+      if (FileTest::exist?(install_log))
+        FileUtils.copy_file(install_log, File.join(cached_dir, "#{sw.srcDir}.install"))
         puts "\nCaching copy of #{package} install log."
       else
         puts "\nUnable to cache copy of #{package} install log."
       end
       
       # collect package build log. 
-      if (FileTest::exist?(buildLog))
-        FileUtils.copy_file(buildLog, "#{cachedDir}/#{sw.srcDir}.build")
+      if (FileTest::exist?(build_log))
+        FileUtils.copy_file(build_log, File.join(cached_dir, "#{sw.srcDir}.build"))
         puts "\nCaching copy of #{package} build log."
       else
         puts "\nUnable to cache copy of #{package} build log."
       end
       
       # collect package configure log. 
-      if (FileTest::exist?(configureLog))
-        FileUtils.copy_file(configureLog, "#{cachedDir}/#{sw.srcDir}.configure")
+      if (FileTest::exist?(configure_log))
+        FileUtils.copy_file(configure_log, File.join(cached_dir, "#{sw.srcDir}.configure"))
         puts "\nCaching copy of #{package} configure log."
       else
         puts "\nUnable to cache copy of #{package} configure log."
       end
 
       # collect package integrity log.
-      if (FileTest::exist?(integrityLog))
-        FileUtils.copy_file(integrityLog, "#{cachedDir}/#{sw.srcDir}.integrity")
+      if (FileTest::exist?(integrity_log))
+        FileUtils.copy_file(integrity_log, File.join(cached_dir, "#{sw.srcDir}.integrity"))
         puts "\nCaching copy of #{package} integrity log."
       else
         puts "\nUnable to cache copy of #{package} integrity log."
       end
       
       # collect package description (class file).
-      if (FileTest::exist?(packageFile))
-        FileUtils.copy_file(packageFile, "#{cachedDir}/#{package}.rb")
+      if (FileTest::exist?(package_file))
+        FileUtils.copy_file(package_file, File.join(cached_dir, "#{package}.rb"))
         puts "\nCaching copy of #{package} package description."
       else
-        puts "\nUnable to cache copy of #{package} package description, from location #{packageFile}"
+        puts "\nUnable to cache copy of #{package} package description, from location #{package_file}"
       end
       
       # tar and bzip this directory (package-cache-version.tar.bz2) 
@@ -497,7 +497,7 @@ class AbtPackageManager
       if (system("tar -cf #{sw.srcDir}.tar #{sw.srcDir}") &&
             system("bzip2 -f #{sw.srcDir}.tar"))
         # last but not least, remove our tarball directory
-        FileUtils.rm_rf(cachedDir)
+        FileUtils.rm_rf(cached_dir)
         return true
       end
     end
