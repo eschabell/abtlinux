@@ -293,7 +293,7 @@ class AbtSystemManager
     require "#{$PACKAGE_PATH}/#{package}"
     sw = eval("#{package.capitalize}.new")
     
-    if (found_entry("#{$PACKAGE_INSTALLED}/#{sw.srcDir}", "#{sw.srcDir}.install"))
+    if (found_entry(File.join($PACKAGE_INSTALLED, sw.srcDir), "#{sw.srcDir}.install"))
       return true
     end
      
@@ -313,8 +313,8 @@ class AbtSystemManager
     require "#{$PACKAGE_PATH}/#{package}"
     sw = eval("#{package.capitalize}.new")
     
-		# looking for frozen log file.
-    if (found_entry("#{$PACKAGE_INSTALLED}/#{sw.srcDir}", "frozen.log"))
+    # looking for frozen log file.
+    if (found_entry(File.join($PACKAGE_INSTALLED, sw.srcDir), "frozen.log"))
       return true
     end
      
