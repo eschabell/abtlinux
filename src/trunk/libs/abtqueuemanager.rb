@@ -54,25 +54,22 @@ class AbtQueueManager
   def action_package_queue(package, queue, action="add")
     require 'fileutils'
     logger = Logger.new($JOURNAL)
-    queueFile = ""  # used to hold the queue location.
+    queue_file = ""  # used to hold the queue location.
     
     # want to name install queue differently from log files.
     if (queue == 'install')
-      queueFile = "#{$ABT_LOGS}/#{queue}.queue"
+      queue_file = File.join($ABT_LOGS, "#{queue}.queue")
     else
-      queueFile = "#{$ABT_LOGS}/#{queue}.log"
+      queue_file = File.join($ABT_LOGS, "#{queue}.log")
     end
     
     if (action == "add")
-      if (
-          log = File.new(queueFile, File::WRONLY|File::APPEND|File::CREAT, 0644))
+      if (log = File.new(queue_file, File::WRONLY|File::APPEND|File::CREAT, 0644))
         # pickup queue contents to ensure no duplicates.
-        checkingQueue = IO.readlines(queueFile)
+        checking_queue = IO.readlines(queue_file)
         
         # check if package exists, otherwise add.
-        if (
-            !checkingQueue.collect{ |i| i.split('|')[0] }.include?(
-                                                                 package))
+        if (!checking_queue.collect{ |i| i.split('|')[0] }.include?(package))
           log.puts "#{package}|#{$TIMESTAMP}"
           logger.info("Added #{package} to #{queue} queue.")
         else
@@ -87,27 +84,27 @@ class AbtQueueManager
     if (action == "remove")
       # remove entry from given queue.
       if (
-          log = File.new(queueFile, File::WRONLY|File::APPEND|File::CREAT, 0644))
+          log = File.new(queue_file, File::WRONLY|File::APPEND|File::CREAT, 0644))
         # use temp file to filter out entry to be removed.
-        temp = File.new(queueFile + ".tmp", "a+")
+        temp = File.new(queue_file + ".tmp", "a+")
         
         # now check for line to be removed.
-        IO.foreach(queueFile) do |line|
-          entryName = line.split('|')[0]
-          if (entryName != package.downcase)
+        IO.foreach(queue_file) do |line|
+          entry_name = line.split('|')[0]
+          if (entry_name != package.downcase)
             temp.puts line
           end
         end
         
         temp.close
-        FileUtils.mv(temp.path, queueFile)
+        FileUtils.mv(temp.path, queue_file)
       end
       
       log.close
       return true
     end
     
-    logger.info("Failed to open #{queueFile}.")
+    logger.info("Failed to open #{queue_file}.")
     return false
   end  
 end
