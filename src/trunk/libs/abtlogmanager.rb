@@ -41,30 +41,30 @@ class AbtLogManager
   #
   # <b>RETURN</b> <i>void</i>
   ##
-	def	check_for_file_renames(renames, installLog)
+	def	check_for_file_renames(renames, install_log)
 		# DEBUG: start check for renaming of files during installation.
 		#renames.each_pair {|key, value| puts "#{key} is #{value}" }
 
 		# cleanup install log renames.
-		installFile = open(installLog, 'r+')
-		lines = installFile.readlines
-		installFile.close
+		install_file = open(install_log, 'r+')
+		lines = install_file.readlines
+		install_file.close
 
 		# check for changes due to renames.
-		#puts "DEBUG: [installlog] read in old install log..."
-		newInstall = File.new(installLog,'w')
+		#puts "DEBUG: [install_log] read in old install log..."
+		new_install = File.new(install_log,'w')
 		
 		lines.each do |line|
 			changed = false  # keep track of renamed lines.
 			renames.each_pair do |old, new|
 				if line.chomp == old.chomp
 					#puts "DEBUG: [CHANGES] detected change at :#{line}"
-					newInstall.puts new
+					new_install.puts new
 					changed = true
 				end
 			end
 			
-			newInstall.puts line if !changed
+			new_install.puts line if !changed
 		end
 	end
 
@@ -86,19 +86,19 @@ class AbtLogManager
     case type
       
       when 'install'
-        log = "#{$PACKAGE_INSTALLED}/#{details['Source location']}/#{details['Source location']}.install"
+        log = File.join($PACKAGE_INSTALLED, details['Source location'], "#{details['Source location']}.install")
       
       when 'integrity'
-        log = "#{$PACKAGE_INSTALLED}/#{details['Source location']}/#{details['Source location']}.integrity"
+        log = File.join($PACKAGE_INSTALLED, details['Source location'], "#{details['Source location']}.integrity")
           
       when 'tmpinstall'
-        log = "#{$ABT_TMP}/#{details['Source location']}.watch"
+        log = File.join($ABT_TMP, "#{details['Source location']}.watch")
 
       when 'build'
-        log = "#{$PACKAGE_INSTALLED}/#{details['Source location']}/#{details['Source location']}.build"
+        log = File.join($PACKAGE_INSTALLED, details['Source location'], "#{details['Source location']}.build")
           
       when 'configure'
-        log = "#{$PACKAGE_INSTALLED}/#{details['Source location']}/#{details['Source location']}.configure"
+        log = File.join($PACKAGE_INSTALLED, details['Source location'], "#{details['Source location']}.configure")
 
       else
         log = ""
@@ -146,28 +146,28 @@ class AbtLogManager
 		logger = Logger.new($JOURNAL)
   
     # our log locations.
-    installLog = get_log(package, 'install')
-    integrityLog = get_log(package, 'integrity')
+    install_log = get_log(package, 'install')
+    integrity_log = get_log(package, 'integrity')
     
     # get the installed files from the tmp file
     # into our install log.
-    if (File.exist?(installLog))
-      installFile   = open(installLog, 'r')
-      integrityFile = open(integrityLog, 'w')
+    if (File.exist?(install_log))
+      install_file   = open(install_log, 'r')
+      integrity_file = open(integrity_log, 'w')
 
       # get the integrity for each file, initially just permissions.      
-      IO.foreach(installLog) do |line|
+      IO.foreach(install_log) do |line|
 				if File.exist?(line.chomp)
 					status = File.stat(line.chomp)
 					octal  = sprintf("%o", status.mode)
-					integrityFile << "#{line.chomp}:#{octal}\n"
+					integrity_file << "#{line.chomp}:#{octal}\n"
 				else
 					logger.info("[log_package_integrity] - #{line} is not installed, no worries, I will take care of everything...")
 				end 
       end
       
-      installFile.close
-      integrityFile.close
+      install_file.close
+      integrity_file.close
     else
       return false  # no install log!
     end
@@ -192,17 +192,17 @@ class AbtLogManager
     excluded_pattern = Regexp.new("^(/dev|/proc|/tmp|/var/tmp|/usr/src|/sys|#{$DEFAULT_PREFIX}/usr/src)+")
     
     # our log locations.
-    installLog = get_log(package, 'install')
-    tmpInstallLog = get_log(package, 'tmpinstall')
+    install_log = get_log(package, 'install')
+    tmpinstall_log = get_log(package, 'tmpinstall')
     
     # get the installed files from the tmp file
     # into our install log.
-    if (File.exist?(tmpInstallLog))
-      installFile = open(installLog, 'w')
+    if (File.exist?(tmpinstall_log))
+      install_file = open(install_log, 'w')
       
       # include only the file names from open calls
       # and not part of the excluded range of directories.
-      IO.foreach(tmpInstallLog) do |line|
+      IO.foreach(tmpinstall_log) do |line|
 				if (line.split[1] == 'rename')
 					# they renamed the line, save this entry for cleaning
 					# after install log is closed. Hash key is the original
@@ -216,13 +216,13 @@ class AbtLogManager
 						if !duplicates.key?(line.split[2])
 							# add to duplicate tracking hash and install log.
 							duplicates[line.split[2]] = line.split[2]
-							installFile << "#{line.split[2]}\n"
+							install_file << "#{line.split[2]}\n"
 						end
           end
         end 
       end
 			
-			check_for_file_renames(renames, installLog) if !renames.empty?
+			check_for_file_renames(renames, install_log) if !renames.empty?
     else
       # no tmp install file, thus no install running.
       return false
@@ -241,10 +241,10 @@ class AbtLogManager
   # otherwise false.
   ##
   def log_package_build(package)
-    buildLog = get_log(package, 'build')
+    build_log = get_log(package, 'build')
     
     # make sure the build file exists.
-    if (!File.exist?(buildLog))
+    if (!File.exist?(build_log))
       return false
     end
     
