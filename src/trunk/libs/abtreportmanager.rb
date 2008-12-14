@@ -148,14 +148,14 @@ class AbtReportManager
   #
   # <b>RETURN</b> <i>void.</i>
   ##
-  def show_package_log(package, logType)
+  def show_package_log(package, log_type)
     system = AbtSystemManager.new
     logger = AbtLogManager.new
     
     # just return if package log file type is not installed, up to 
     # caller to message the user about why.
-    if File.exists?(logger.get_log(package, logType))
-    	File.open(logger.get_log(package, logType)).each { |line| puts line }
+    if File.exists?(logger.get_log(package, log_type))
+    	File.open(logger.get_log(package, log_type)).each { |line| puts line }
     end
   end
   
@@ -168,7 +168,7 @@ class AbtReportManager
   def show_frozen_packages
 
 		# determine if there are frozen pacakges.
-    frozenHash = Hash.new  # has for values found.
+    frozen_hash = Hash.new  # has for values found.
     
     if (Dir.entries($PACKAGE_INSTALLED) - [ '.', '..' ]).empty?
       return Hash.new   # empty hash, no entries.
@@ -177,17 +177,17 @@ class AbtReportManager
         if (package != "." && package != "..")
           # split the installed entry into two parts,
           # the package name and the version number.
-          #packageArray = package.split("-")
-          #packageName  = packageArray[0]
+          #package_array = package.split("-")
+          #package_name  = package_array[0]
           
           # check for frozen log file.
-          if (File.exist?("#{$PACKAGE_INSTALLED}/#{package}/frozen.log"))
-						# dump packgae + frozen.log timestamp in packageHash.
+          if (File.exist?(File.join($PACKAGE_INSTALLED, package, "frozen.log")))
+						# dump packgae + frozen.log timestamp in package_hash.
 						begin
-							file = File.new("#{$PACKAGE_INSTALLED}/#{package}/frozen.log", "r")
+							file = File.new(File.join($PACKAGE_INSTALLED, package, "frozen.log"), "r")
 							#while (line = file.gets)
 							line = file.gets
-								frozenHash = frozenHash.merge(Hash[ "#{package}" => "#{line}" ])
+								frozen_hash = frozen_hash.merge(Hash[ "#{package}" => "#{line}" ])
 							#end
 							file.close
 						rescue => error
@@ -199,7 +199,7 @@ class AbtReportManager
       }
     end
 
-    return frozenHash 
+    return frozen_hash 
   end
   
   ##
@@ -260,17 +260,17 @@ class AbtReportManager
   #
   # <b>RETURN</b> <i>iboolean</i> True if journal shown, otherwise false.
   ##
-  def show_journal(fileName)
-    if (File.exist?(fileName))
+  def show_journal(file_name)
+    if (File.exist?(file_name))
       puts "\n\n"
       puts "AbTLinux log:"
       puts "============="
-      log = IO.readlines(fileName)
+      log = IO.readlines(file_name)
       log.each{ |entry| puts entry }
       puts "\n\n"
     else
       puts "\n\n"
-      puts "AbtLinux log (#{File.basename(fileName)}) " + 
+      puts "AbtLinux log (#{File.basename(file_name)}) " + 
            "is empty at this time."
       puts "\n\n"
     end
@@ -299,31 +299,31 @@ class AbtReportManager
   # <b>RETURN</b> <i>hash</i> - a hash of the search results, keys are package
   # names and values are matching descriptions.
   ##
-  def search_package_descriptions(searchText)
-    packageHash            = Hash.new  # has for values found.
+  def search_package_descriptions(search_text)
+    package_hash            = Hash.new  # has for values found.
     
     if (Dir.entries($PACKAGE_INSTALLED) - [ '.', '..' ]).empty?
-      return packageHash   # empty hash, no entries.
+      return package_hash   # empty hash, no entries.
     else
       Dir.foreach($PACKAGE_INSTALLED) { |package| 
         if (package != "." && package != "..")
 					# split the installed entry into two parts,
           # the package name and the version number.
-          packageArray = package.split("-")
-          packageName  = packageArray[0]
+          package_array = package.split("-")
+          package_name  = package_array[0]
           
           # check for match to name and description if the package file exists.
-          if (File.exist?("#{$PACKAGE_PATH}/#{packageName}.rb"))
-            require "#{$PACKAGE_PATH}/#{packageName}" 
-            sw = eval("#{packageName.capitalize}.new")
+          if (File.exist?("#{$PACKAGE_PATH}/#{package_name}.rb"))
+            require "#{$PACKAGE_PATH}/#{package_name}" 
+            sw = eval("#{package_name.capitalize}.new")
             
             # add if matches name or description entries.
-            matchesArray = sw.description.scan(searchText)
-            matchesArray = matchesArray.concat(packageName.scan(searchText))
+            matches_array = sw.description.scan(search_text)
+            matches_array = matches_array.concat(package_name.scan(search_text))
             
-            if matchesArray.length > 0 
+            if matches_array.length > 0 
               # matches description so add it to hash.
-              packageHash = packageHash.merge(Hash[ "#{package}" => "#{sw.description}" ])
+              package_hash = package_hash.merge(Hash[ "#{package}" => "#{sw.description}" ])
             end
           end
         end
@@ -331,7 +331,7 @@ class AbtReportManager
     end
 
     # finished search results.
-    return packageHash 
+    return package_hash 
   end
   
   ##
@@ -342,25 +342,25 @@ class AbtReportManager
   #
   # <b>RETURN</b> <i>void.</i>
   ##
-  def show_queue(queueType)
+  def show_queue(queue_type)
     
-    case queueType
+    case queue_type
       
     when "install"
-      if (File.exist?("#{$ABT_LOGS}/#{queueType}.queue"))
+      if (File.exist?(File.join($ABT_LOGS, "#{queue_type}.queue")))
         puts "\n\n"
-        puts "AbTLinux #{queueType} queue:"
+        puts "AbTLinux #{queue_type} queue:"
         puts "======================="
-        queue = IO.readlines("#{$ABT_LOGS}/#{queueType}.queue")
+        queue = IO.readlines(File.join($ABT_LOGS, "#{queue_type}.queue"))
         queue.each{ |entry| puts entry }
         puts "\n\n"
       else
         puts "\n\n"
-        puts "AbtLinux  #{queueType} is empty at this time."
+        puts "AbtLinux  #{queue_type} is empty at this time."
         puts "\n\n"
       end
     else
-      puts "#{queueType.capitalize} is not an AbTLinux queue."
+      puts "#{queue_type.capitalize} is not an AbTLinux queue."
     end
   end
   
