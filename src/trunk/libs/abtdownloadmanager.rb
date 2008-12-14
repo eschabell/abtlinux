@@ -53,23 +53,23 @@ class AbtDownloadManager
   # <b>RETURN</b> <i>boolean</i> - True if the package source has been
   # downloaded, otherwise false.
   ##
-  def retrieve_package_source(packageName, destination)
-    require "#{$PACKAGE_PATH}/#{packageName}"
+  def retrieve_package_source(package_name, destination)
+    require "#{$PACKAGE_PATH}/#{package_name}"
     logger		= Logger.new($JOURNAL)
-    package		= eval(packageName.capitalize + '.new')
+    package		= eval(package_name.capitalize + '.new')
     
-    if (File.exist?("#{destination}/#{File.basename(package.srcUrl)}"))
-      logger.info("Download not needed, existing source found for #{packageName}.")
+    if (File.exist?(File.join(destination, File.basename(package.srcUrl))))
+      logger.info("Download not needed, existing source found for #{package_name}.")
       return true
     end
     
     Dir.chdir(destination)
     if !system("wget #{package.srcUrl}")
-			logger.error("Download failed, unable to retrieve package #{packageName} sources, exit code was #{$?.exitstatus}.")
+			logger.error("Download failed, unable to retrieve package #{package_name} sources, exit code was #{$?.exitstatus}.")
     	return false  # download failed.
     end
       
-		logger.info("Download completed for #{packageName}")
+		logger.info("Download completed for #{package_name}")
     return true
   end
   
@@ -81,14 +81,14 @@ class AbtDownloadManager
   # <b>RETURN</b> <i>boolean</i> - True if the package tree is retrieved, 
   # otherwise false.
   ##
-  def retrieve_package_tree(packageTreeName="AbTLinux")
+  def retrieve_package_tree(package_tree_name="AbTLinux")
       logger = Logger.new($JOURNAL)
 
       # check if package tree exists.
       if File.directory?($PACKAGE_PATH)
         # check if svn directory.
-        if File.directory?("#{$PACKAGE_PATH}/.svn")
-            logger.info "Package tree #{packageTreeName} already installed."
+        if File.directory?(File.join($PACKAGE_PATH, ".svn"))
+            logger.info "Package tree #{package_tree_name} already installed."
             return true
         else
             # package directory exists, but is not a valid tree.
@@ -100,11 +100,11 @@ class AbtDownloadManager
       
         # pacakge directory does not exist, svn co.
         if !system("svn co #{$ABTLINUX_PACKAGES} #{$PACKAGE_PATH}")
-          logger.error "Package tree #{packageTreeName} not installed (svn co), exit status was #{$?.exitstatus}."
+          logger.error "Package tree #{package_tree_name} not installed (svn co), exit status was #{$?.exitstatus}."
           return false
         end
       
-        logger.info "Package tree #{packageTreeName} installed (svn co)."
+        logger.info "Package tree #{package_tree_name} installed (svn co)."
       end
       
       return true
@@ -124,14 +124,14 @@ class AbtDownloadManager
     require 'uri'
     require 'rss/1.0'
     require 'rss/2.0'
-    newsLog = ""
+    news_log = ""
     logger	= Logger.new($JOURNAL)
     
     # ensure we have our news logfile.
     if (cleanLog)
-      newsLog = File.new($ABTNEWS_LOG, "w+")
+      news_log = File.new($ABTNEWS_LOG, "w+")
     else
-      newsLog = File.new($ABTNEWS_LOG, "a+")
+      news_log = File.new($ABTNEWS_LOG, "a+")
     end
     
     # pick up the abtlinux.org news feed.
@@ -151,16 +151,16 @@ class AbtDownloadManager
       logger.info("Failed to display news feed as feed #{uri} is not RSS 1.0/2.0.")
       return false
     else
-      newsLog << "*** #{rss.channel.title} ***\n"
+      news_log << "*** #{rss.channel.title} ***\n"
       
       rss.items.each_with_index do |item, itemCount|
         itemCount += 1
-        newsLog << "#{itemCount}  #{item.link}  #{item.title}\n" 
+        news_log << "#{itemCount}  #{item.link}  #{item.title}\n" 
       end
     end
     
-    newsLog << "\n\n"
-    newsLog.close
+    news_log << "\n\n"
+    news_log.close
     return true
     
   end
@@ -173,22 +173,22 @@ class AbtDownloadManager
   # <b>RETURN</b> <i>boolean</i> - True if the given package has been updated,
   # otherwise false.
   ##
-  def update_package(packageName)
+  def update_package(package_name)
       logger = Logger.new($JOURNAL)
 
       # check if package exists in tree.      
-      if File.exists?("#{$PACKAGE_PATH}/#{packageName}.rb")
+      if File.exists?(File.join($PACKAGE_PATH, "#{package_name}.rb"))
           # check if svn directory.
-          if File.directory?("#{$PACKAGE_PATH}/.svn")
-              if !system("svn update #{$PACKAGE_PATH}/#{packageName.downcase}.rb")
-                logger.error "Package #{packageName.downcase} unable to update (svn update), exit status was #{$?.exitstatus}."
+          if File.directory?(File.join($PACKAGE_PATH, ".svn"))
+              if !system("svn update #{$PACKAGE_PATH}/#{package_name.downcase}.rb")
+                logger.error "Package #{package_name.downcase} unable to update (svn update), exit status was #{$?.exitstatus}."
                 return false
               end
 
-              logger.info "Package #{packageName.downcase} updated (svn update)."
+              logger.info "Package #{package_name.downcase} updated (svn update)."
           else
               # package exists, but not an valid tree.
-              logger.error "Package #{packageName} exists, but not valid package tree (svn)."
+              logger.error "Package #{package_name} exists, but not valid package tree (svn)."
               return false
           end        
       else
@@ -212,7 +212,7 @@ class AbtDownloadManager
       # check if package tree exists.
       if File.directory?($PACKAGE_PATH)
         # check if svn directory.
-        if File.directory?("#{$PACKAGE_PATH}/.svn")
+        if File.directory?(File.join($PACKAGE_PATH, ".svn"))
             if !system("svn update #{$PACKAGE_PATH}")
               logger.error "Package tree unable to update (svn update), exit status was #{$?.exitstatus}."
               return false
@@ -242,10 +242,10 @@ class AbtDownloadManager
   # <b>RETURNS:</b> <i>boolean</i> - True if the completes sucessfully, 
   # otherwise false.
   ##
-  def validated(hashvalue, path)
+  def validated(hash_value, path)
     logger = Logger.new($JOURNAL)
     
-    if hashvalue == Digest::SHA1.hexdigest(path)
+    if hash_value == Digest::SHA1.hexdigest(path)
       puts "Source hash validated successfully..."
       logger.info("Validated sources successfully...")
       return true
@@ -253,7 +253,7 @@ class AbtDownloadManager
 
     puts "Source hash failed validation..."
     logger.error("Validating sources failed...")
-		logger.error("  expected: #{hashvalue}")
+		logger.error("  expected: #{hash_value}")
 		logger.error("  computed: #{Digest::SHA1.hexdigest(path)}")
     return false
   end
