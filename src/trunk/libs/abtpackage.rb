@@ -38,12 +38,12 @@ class AbtPackage
   # otherwise false.
   ##
   def unpack_sources
-    srcFile			= File.basename(@srcUrl)
-    sourcesToUnpack = "#{$SOURCES_REPOSITORY}/#{srcFile}"
-    unpackTool		= ""
+    src_file			= File.basename(@srcUrl)
+    sources_to_unpack = File.join($SOURCES_REPOSITORY, src_file)
+    unpack_tool		= ""
     
     # check for existing file in source repo.
-    if (!File.exist?(sourcesToUnpack))
+    if (!File.exist?(sources_to_unpack))
       return false
     end
     
@@ -53,24 +53,24 @@ class AbtPackage
     end
     
     # determine which supported compression used [gz, tar, tgz, bz2, zip].
-    compressionType = srcFile.split('.')
+    compression_type = src_file.split('.')
     
-    case compressionType.last
+    case compression_type.last
       
     when "gz"
-      unpackTool = "tar xzvf"
+      unpack_tool = "tar xzvf"
       
     when "tar"
-      unpackTool = "tar xvf"
+      unpack_tool = "tar xvf"
       
     when "bz2"
-      unpackTool = "tar xjvf"
+      unpack_tool = "tar xjvf"
       
     when "tgz"
-      unpackTool = "tar xzvf"
+      unpack_tool = "tar xzvf"
       
     when "zip"
-      unpackTool = "unizp"
+      unpack_tool = "unizp"
       
     else
       # unsupported format.
@@ -78,7 +78,7 @@ class AbtPackage
     end
         
     Dir.chdir($BUILD_LOCATION)
-		output = `#{unpackTool} #{sourcesToUnpack}`
+		output = `#{unpack_tool} #{sources_to_unpack}`
 		exitcode = $?.exitstatus
     if (exitcode != 0)
       return false
@@ -211,7 +211,7 @@ class AbtPackage
     end
     
     # validate sources sha1.
-    if (!downloader.validated(@hashCheck, "#{$SOURCES_REPOSITORY}/#{File.basename(@srcUrl)}"))
+    if (!downloader.validated(@hashCheck, File.join($SOURCES_REPOSITORY, File.basename(@srcUrl))))
       return false
     end
     
@@ -221,8 +221,8 @@ class AbtPackage
     end
     
     # ensure we have an installed directory to use.
-    if (! File.directory?("#{$PACKAGE_INSTALLED}/#{@srcDir}"))
-      FileUtils.mkdir_p("#{$PACKAGE_INSTALLED}/#{@srcDir}")
+    if (! File.directory?(File.join($PACKAGE_INSTALLED, @srcDir)))
+      FileUtils.mkdir_p(File.join($PACKAGE_INSTALLED, @srcDir))
     end
     
     # TODO: implement pre section retrieve patches?
@@ -263,7 +263,7 @@ class AbtPackage
       puts "DEBUG not verbose: #{command}"
     end
 
-    Dir.chdir("#{$BUILD_LOCATION}/#{@srcDir}")
+    Dir.chdir(File.join($BUILD_LOCATION, @srcDir))
 
     # set our optimizations before configuring.
     $cflags   = "CFLAGS=" + '"' + $BUILD_CFLAGS + '"'
@@ -313,7 +313,7 @@ class AbtPackage
     end
 
 
-    Dir.chdir("#{$BUILD_LOCATION}/#{@srcDir}")
+    Dir.chdir(File.join($BUILD_LOCATION, @srcDir))
     
     if !system(cmd)
       puts "[AbtPackage.build] - build section failed, exit code was #{$?.exitstatus}."
@@ -361,7 +361,7 @@ class AbtPackage
           "--logfile=#{$ABT_TMP}/#{@srcDir}.watch make install >/dev/null"
     end 
   
-    Dir.chdir("#{$BUILD_LOCATION}/#{@srcDir}")
+    Dir.chdir(File.join($BUILD_LOCATION, @srcDir))
     
     if !system(command)
       puts "[AbtPackage.install] - install section failed, exit code was #{$?.exitstatus}."
@@ -407,13 +407,13 @@ class AbtPackage
   def remove_build
     puts "Removings build..."
     if ($REMOVE_BUILD_SOURCES)
-      buildSourcesLocation = "#{$BUILD_LOCATION}/#{srcDir}"
+      build_sources_location = File.join($BUILD_LOCATION, srcDir)
       
-      if (!File.directory?(buildSourcesLocation))
+      if (!File.directory?(build_sources_location))
         return true
       end
       
-      if (!FileUtils.rm_rf buildSourcesLocation, :verbose => true )
+      if (!FileUtils.rm_rf build_sources_location, :verbose => true )
         return false
       end
     end
