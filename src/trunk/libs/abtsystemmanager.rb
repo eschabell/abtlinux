@@ -80,7 +80,7 @@ class AbtSystemManager
   ##
   def cleanup_package_sources(verbose=true)
     logger       = Logger.new($JOURNAL)
-    sourcesArray = Array.new
+    sources_array = Array.new
     
     if (Dir.entries($PACKAGE_INSTALLED) - [ '.', '..' ]).empty?
       FileUtils.remove Dir.glob("#{$SOURCES_REPOSITORY}/*"), :verbose => verbose, :force => true
@@ -91,14 +91,14 @@ class AbtSystemManager
         if (package != "." && package != "..")
           # split the installed entry into two parts,
           # the package name and the version number.
-          packageArray = package.split("-")
-          packageName  = packageArray[0]
+          package_array = package.split("-")
+          package_name  = package_array[0]
           
           # create an array of installed package tarball names.
-          if (File.exist?("#{$PACKAGE_PATH}#{packageName}.rb"))
-            require "#{$PACKAGE_PATH}#{packageName}" 
-            sw = eval("#{packageName.capitalize}.new")
-            sourcesArray.push(File.basename(sw.srcUrl))
+	  if (File.exist?("#{$PACKAGE_PATH}#{package_name}.rb"))
+            require "#{$PACKAGE_PATH}#{package_name}" 
+            sw = eval("#{package_name.capitalize}.new")
+            sources_array.push(File.basename(sw.srcUrl))
           end
         end
       }
@@ -113,7 +113,7 @@ class AbtSystemManager
         puts "===================================="
       end
 
-      Dir.foreach($SOURCES_REPOSITORY) { |file| FileUtils.remove("#{$SOURCES_REPOSITORY}/#{file}", :verbose => verbose, :force => true) if (file != "." && file != ".." && !sourcesArray.include?(file)) }
+      Dir.foreach($SOURCES_REPOSITORY) { |file| FileUtils.remove(File.join($SOURCES_REPOSITORY, file), :verbose => verbose, :force => true) if (file != "." && file != ".." && !sources_array.include?(file)) }
       
       if (verbose)
         puts "====================================\n"
@@ -133,21 +133,21 @@ class AbtSystemManager
   ##
   def verify_installed_files(package)
     logger = Logger.new($JOURNAL)
-    # TODO: refactor myLogger:
-    myLogger = AbtLogManager.new
+    # TODO: refactor my_logger:
+    my_logger = AbtLogManager.new
     
     if !package_installed(package)
       logger.info("Unable to verify installed files for #{package}, it's not installed!")
       return false
     end
     
-    if !File.exist?(myLogger.get_log(package, 'install'))
+    if !File.exist?(my_logger.get_log(package, 'install'))
       logger.info("Unable to verify installed files for #{package}, installed package but install log missing!") 
       return false
     end
     
     failure = false  # marker after checking all files to determine failure.
-    File.open(myLogger.get_log(package, "install")).each { |line| 
+    File.open(my_logger.get_log(package, "install")).each { |line| 
       if !File.exist?(line.chomp)
         logger.info("The file : #{line.chomp} is missing for #{package}.")
         failure = true
@@ -199,28 +199,28 @@ class AbtSystemManager
     require "#{$PACKAGE_PATH}/#{package}"
     sw = eval("#{package.capitalize}.new")
     
-    # TODO: refactor myLogger.
-    myLogger = AbtLogManager.new
+    # TODO: refactor my_logger.
+    my_logger = AbtLogManager.new
     logger   = Logger.new($JOURNAL)
-    integrityHash = Hash.new  # holds files failing interity check.
+    integrity_hash = Hash.new  # holds files failing interity check.
             
-    if !File.exist?("#{$PACKAGE_INSTALLED}/#{sw.srcDir}/#{sw.srcDir}.integrity")
+    if !File.exist?(File.join($PACKAGE_INSTALLED, sw.srcDir, "#{sw.srcDir}.integrity"))
       logger.info("Unable to check file integrity for #{package}, integrity log missing!") 
-      return integrityHash   # empty hash, no entries.
+      return integrity_hash   # empty hash, no entries.
     else
           
       # FIXME: pickup each integrity file and check each entry (filename integrityvalue)
-      File.open(myLogger.get_log(package, "integrity")).each { |line|
+      File.open(my_logger.get_log(package, "integrity")).each { |line|
       
         # seperate the filepath and integrity value.
-        lineArray = line.split(':')
+        line_array = line.split(':')
         
         # check for existing file.
-        if !File.exist?(lineArray[0].chomp)
-          logger.info("The file : #{lineArray[0].chomp} is missing for #{package}.")
+        if !File.exist?(line_array[0].chomp)
+          logger.info("The file : #{line_array[0].chomp} is missing for #{package}.")
 
           # any failure or discrepency is added to hash: file => package + problem
-          integrityHash = integrityHash.merge(Hash[ lineArray[0].chomp => "#{package} - file missing." ])
+          integrity_hash = integrity_hash.merge(Hash[ line_array[0].chomp => "#{package} - file missing." ])
         end
         
         # passed existence check, now integrity check, need to ensure
@@ -228,16 +228,16 @@ class AbtSystemManager
         # computing the results, converting to octal, then chop off the 
         # first char by reversing the string and chopping the last (is
         # there a better way?) char and then reversing those results.
-        octalResults = '%07o' % File.lstat(lineArray[0].chomp).mode
+        octal_results = '%07o' % File.lstat(line_array[0].chomp).mode
         
-        if lineArray[1].chomp != octalResults.reverse.chop.reverse
+        if line_array[1].chomp != octal_results.reverse.chop.reverse
           # any failure or discrepency is added to hash: file => package + problem
-          integrityHash = integrityHash.merge(Hash[ file => "#{package} #{sw.description}" ])  
+          integrity_hash = integrity_hash.merge(Hash[ file => "#{package} #{sw.description}" ])  
         end
       }      
     end
   
-    return integrityHash
+    return integrity_hash
   end
   
   ##
